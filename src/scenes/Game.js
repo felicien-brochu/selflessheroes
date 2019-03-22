@@ -1,6 +1,7 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
 
+import lang from '../lang'
 import Mushroom from '../sprites/Mushroom'
 
 export default class extends Phaser.Scene {
@@ -21,7 +22,8 @@ export default class extends Phaser.Scene {
     })
 
     this.add.existing(this.mushroom)
-    var text = this.add.text(100, 100, 'AI World', {
+    const bannerText = lang.text('welcome')
+    var text = this.add.text(100, 100, bannerText, {
       font: '64px Bangers',
       fill: '#7744ff'
     })
