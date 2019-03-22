@@ -1,9 +1,4 @@
 node_modules/
-www/
-platforms/
-plugins/
 dist/
 .vscode/
 *.log
-/index.html
-build/
