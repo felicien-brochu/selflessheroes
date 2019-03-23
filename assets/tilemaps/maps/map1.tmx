@@ -76,13 +76,13 @@
 </data>
  </layer>
  <objectgroup id="2" name="objects">
-  <object id="1" name="hero" type="hero" x="179.667" y="568">
-   <point/>
-  </object>
   <object id="2" name="objective" type="objective" x="176" y="148">
    <properties>
     <property name="color" type="int" value="0"/>
    </properties>
+   <point/>
+  </object>
+  <object id="1" name="hero" type="hero" x="179.667" y="568">
    <point/>
   </object>
  </objectgroup>

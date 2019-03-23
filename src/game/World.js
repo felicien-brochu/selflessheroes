@@ -11,7 +11,7 @@ export default class World {
     this.objectives = []
     this.parseObjects()
 
-    this.stepInterval = 40
+    this.stepInterval = 1000
     this.timerID = -1
   }
 

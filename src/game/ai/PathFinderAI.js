@@ -32,29 +32,60 @@ export default class PathFinderAI {
     for (var i = 0; i < this.world.map.height; i++) {
       let row = []
       for (var j = 0; j < this.world.map.width; j++) {
-        row.push(this.world.map.isInside(j, i))
+        row.push(this.world.map.isInside(j, i) ? 1000000000 : 0)
       }
       this.map.push(row)
     }
 
-    this.buildRec(this.character.x, this.character.y)
+    this.path = this.buildRec(this.character.x, this.character.y, 0, [])[0]
     this.pathIndex = 0
+
+    for (var i = 0; i < this.map.length; i++) {
+      let l = ""
+      for (var j = 0; j < this.map[i].length; j++) {
+        l += this.map[i][j] + ", "
+      }
+    }
   }
 
-  buildRec(x, y) {
-    if (!this.map[y][x]) {
-      return false
-    }
-    this.path.push([x, y])
+  buildRec(x, y, length, path) {
+    let map = this.map
+    path.push([x, y])
     if (x === this.objective.x && y === this.objective.y) {
-      return true
+      return [path, length]
     }
-    this.map[y][x] = false
-    if (!this.buildRec(x + 1, y) && !this.buildRec(x, y + 1) && !this.buildRec(x - 1, y) && !this.buildRec(x, y - 1)) {
-      this.path.pop()
-      return false
-    } else {
-      return true
+    map[y][x] = length
+    length++
+    let min = 1000000000000000000000
+    let res = null
+    if (map[y][x + 1] > length) {
+      let r = this.buildRec(x + 1, y, length, path.slice(0))
+      if (r !== null && r[1] < min) {
+        res = r
+        min = r[1]
+      }
     }
+    if (map[y][x - 1] > length) {
+      let r = this.buildRec(x - 1, y, length, path.slice(0))
+      if (r !== null && r[1] < min) {
+        res = r
+        min = r[1]
+      }
+    }
+    if (map[y + 1][x] > length) {
+      let r = this.buildRec(x, y + 1, length, path.slice(0))
+      if (r !== null && r[1] < min) {
+        res = r
+        min = r[1]
+      }
+    }
+    if (map[y - 1][x] > length) {
+      let r = this.buildRec(x, y - 1, length, path.slice(0))
+      if (r !== null && r[1] < min) {
+        res = r
+        min = r[1]
+      }
+    }
+    return res
   }
 }
