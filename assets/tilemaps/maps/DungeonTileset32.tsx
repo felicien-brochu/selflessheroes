@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tileset version="1.2" tiledversion="2019.03.13" name="DungeonTileset32" tilewidth="32" tileheight="32" tilecount="100" columns="10">
+ <image source="../tiles/Dungeon_Tileset32.png" trans="000000" width="320" height="320"/>
+ <terraintypes>
+  <terrain name="Dungeon" tile="79"/>
+  <terrain name="Wall" tile="69"/>
+  <terrain name="Outside" tile="78"/>
+ </terraintypes>
+ <tile id="0" terrain="2,2,2,1"/>
+ <tile id="1" terrain="2,2,1,1"/>
+ <tile id="2" terrain="2,2,1,1"/>
+ <tile id="3" terrain="2,2,1,1"/>
+ <tile id="4" terrain="2,2,1,1"/>
+ <tile id="5" terrain="2,2,1,2"/>
+ <tile id="6" terrain="0,0,0,0"/>
+ <tile id="7" terrain="0,0,0,0"/>
+ <tile id="8" terrain="0,0,0,0"/>
+ <tile id="9" terrain="0,0,0,0"/>
+ <tile id="10" terrain="2,1,2,1"/>
+ <tile id="11" terrain="1,1,1,0"/>
+ <tile id="12" terrain="1,1,0,0"/>
+ <tile id="13" terrain="1,1,0,0"/>
+ <tile id="14" terrain="1,1,0,1"/>
+ <tile id="15" terrain="1,2,1,2"/>
+ <tile id="16" terrain="0,0,0,0"/>
+ <tile id="17" terrain="0,0,0,0"/>
+ <tile id="18" terrain="0,0,0,0"/>
+ <tile id="19" terrain="0,0,0,0"/>
+ <tile id="20" terrain="2,1,2,1"/>
+ <tile id="21" terrain="1,0,1,0"/>
+ <tile id="22" terrain="0,0,0,0"/>
+ <tile id="23" terrain="0,0,0,0"/>
+ <tile id="24" terrain="0,1,0,1"/>
+ <tile id="25" terrain="1,2,1,2"/>
+ <tile id="26" terrain="0,0,0,0"/>
+ <tile id="27" terrain="0,0,0,0"/>
+ <tile id="28" terrain="0,0,0,0"/>
+ <tile id="29" terrain="0,0,0,0"/>
+ <tile id="30" terrain="2,1,2,1"/>
+ <tile id="31" terrain="1,0,1,1"/>
+ <tile id="32" terrain="0,0,1,1"/>
+ <tile id="33" terrain="0,0,1,1"/>
+ <tile id="34" terrain="0,1,1,1"/>
+ <tile id="35" terrain="1,2,1,2"/>
+ <tile id="40" terrain="2,1,2,2"/>
+ <tile id="41" terrain="1,1,2,2"/>
+ <tile id="42" terrain="1,1,2,2"/>
+ <tile id="43" terrain="1,1,2,2"/>
+ <tile id="44" terrain="1,1,2,2"/>
+ <tile id="45" terrain="1,2,2,2"/>
+ <tile id="50" terrain="1,1,1,2"/>
+ <tile id="51" terrain="1,1,2,2"/>
+ <tile id="52" terrain="1,1,2,2"/>
+ <tile id="53" terrain="1,1,2,1"/>
+ <tile id="54" terrain="1,1,1,2"/>
+ <tile id="55" terrain="1,1,2,1"/>
+ <tile id="60" terrain="1,1,0,0"/>
+ <tile id="61" terrain="1,1,0,0"/>
+ <tile id="62" terrain="1,1,0,0"/>
+ <tile id="63" terrain="1,1,0,0"/>
+ <tile id="69" terrain="1,1,1,1"/>
+ <tile id="70" terrain="0,0,0,0"/>
+ <tile id="71" terrain="0,0,0,0"/>
+ <tile id="72" terrain="0,0,0,0"/>
+ <tile id="73" terrain="0,0,0,0"/>
+ <tile id="78" terrain="2,2,2,2"/>
+</tileset>
