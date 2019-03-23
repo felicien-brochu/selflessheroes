@@ -1,0 +1,17 @@
+export default class WorldObject {
+  constructor(config, tileWidth, tileHeight) {
+    this.config = config
+    this.x = (config.x - (config.x % tileWidth)) / tileWidth
+    this.y = (config.y - (config.y % tileHeight)) / tileHeight
+  }
+
+  parseProperties() {
+    for (let property of this.config.properties) {
+      this[property.name] = property.value
+    }
+  }
+
+  overlaps(object) {
+    return this.x === object.x && this.y === object.y
+  }
+}
