@@ -42,6 +42,16 @@ export default class extends Phaser.Scene {
     this.controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig)
 
     this.createWorld(this.cache.json.get('map_object'))
+
+    this.gameOverText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, lang.text('game_over'), {
+      font: '64px Bangers',
+      fill: '#57a900',
+      padding: 30
+    })
+    this.gameOverText.setAlpha(0)
+    this.gameOverText.setScrollFactor(0)
+    this.gameOverText.setOrigin(0.5)
+
     this.world.play()
   }
 
@@ -49,16 +59,16 @@ export default class extends Phaser.Scene {
     this.world = new World(mapObject)
     this.heros = []
     this.objectives = []
+    for (let objective of this.world.objectives) {
+      let sprite = new ObjectiveS(this, objective, this.map.tileWidth, this.map.tileHeight)
+      this.objectives.push(sprite)
+      this.add.existing(sprite);
+    }
     for (let hero of this.world.heros) {
       let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight)
       this.heros.push(sprite)
       this.add.existing(sprite);
       this.cameras.main.startFollow(sprite, false, 0.1, 0.1)
-    }
-    for (let objective of this.world.objectives) {
-      let sprite = new ObjectiveS(this, objective, this.map.tileWidth, this.map.tileHeight)
-      this.objectives.push(sprite)
-      this.add.existing(sprite);
     }
 
 
@@ -88,6 +98,10 @@ export default class extends Phaser.Scene {
     }
     for (let sprite of this.objectives) {
       sprite.update()
+    }
+
+    if (this.world.gameOver) {
+      this.gameOverText.setAlpha(1)
     }
   }
 }

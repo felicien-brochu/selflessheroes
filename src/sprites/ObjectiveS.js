@@ -12,6 +12,6 @@ export default class ObjectiveS extends Phaser.GameObjects.Sprite {
   }
 
   update() {
-    this.setFrame(this.objective.enabled ? 1 : 0)
+    this.setFrame(this.objective.isEnabled() ? 1 : 0)
   }
 }

@@ -1,6 +1,7 @@
 import Map from './Map'
 import Hero from './Hero'
 import Objective from './Objective'
+import RuleSet from './rules/RuleSet'
 
 export default class World {
   constructor(config) {
@@ -11,27 +12,43 @@ export default class World {
     this.objectives = []
     this.parseObjects()
 
-    this.stepInterval = 1000
+    this.stepInterval = 100
     this.timerID = -1
+
+    this.hasWon = false
+    this.hasLost = false
+    this.gameOver = false
   }
 
   parseObjects() {
-    let pathLayer = null,
-      objectsLayer = null
+    let objectsLayer = null,
+      rulesLayer = null
     for (let layer of this.config.layers) {
       if (layer.name === 'objects') {
         objectsLayer = layer
+      } else if (layer.name === 'rules') {
+        rulesLayer = layer
       }
     }
 
     if (!objectsLayer) {
-      throw new Error("objects layer is missing from the map object: " + JSON.stringify(config))
+      throw new Error("objects layer is missing from the map object: " + JSON.stringify(this.config))
     }
+    if (!rulesLayer) {
+      throw new Error("rules layer is missing from the map object: " + JSON.stringify(this.config))
+    }
+    let ruleSet = rulesLayer.objects[0]
+    if (!ruleSet || ruleSet.type !== 'ruleSet') {
+      throw new Error("ruleSet object is missing from the map object: " + JSON.stringify(this.config))
+    }
+
+    this.ruleSet = RuleSet.build(ruleSet, this)
 
     for (var i = 0; i < objectsLayer.objects.length; i++) {
       this.createObject(objectsLayer.objects[i], this.config.tilewidth, this.config.tileheight)
     }
   }
+
 
   createObject(config, tileWidth, tileHeight) {
     switch (config.type) {
@@ -70,9 +87,29 @@ export default class World {
       }
     }
 
+    if (this.ruleSet.checkWinCondition()) {
+      this.declareWin()
+    } else if (this.ruleSet.checkLossCondition()) {
+      this.declareLoss()
+    }
   }
 
   collideWall(character, action) {
     return this.map.isOutside(character.x + action.x, character.y + action.y)
+  }
+
+  declareWin() {
+    this.hasWon = true
+    this.declareGameOver()
+  }
+
+  declareLoss() {
+    this.hasLost = true
+    this.declareGameOver()
+  }
+
+  declareGameOver() {
+    this.gameOver = true
+    this.pause()
   }
 }

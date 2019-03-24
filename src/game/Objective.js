@@ -11,4 +11,12 @@ export default class Objective extends WorldObject {
   enable() {
     this.enabled = true
   }
+
+  isDisabled() {
+    return !this.enabled
+  }
+
+  isEnabled() {
+    return this.enabled
+  }
 }

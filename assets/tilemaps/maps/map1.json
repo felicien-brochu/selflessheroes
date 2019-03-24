@@ -65,9 +65,43 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":14,
+         "name":"rules",
+         "objects":[
+                {
+                 "height":0,
+                 "id":7,
+                 "name":"rules",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"lossCondition",
+                         "type":"string",
+                         "value":"none"
+                        }, 
+                        {
+                         "name":"winCondition",
+                         "type":"string",
+                         "value":"all_objectives"
+                        }],
+                 "rotation":0,
+                 "type":"ruleSet",
+                 "visible":true,
+                 "width":0,
+                 "x":-174,
+                 "y":-1
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":14,
- "nextobjectid":5,
+ "nextlayerid":15,
+ "nextobjectid":8,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2019.03.13",

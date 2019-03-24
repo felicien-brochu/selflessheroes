@@ -11,8 +11,6 @@ export default class extends Phaser.Scene {
     //
     // load your assets
     //
-    this.load.image('mushroom', 'assets/images/mushroom2.png')
-
     this.load.spritesheet('elf_f', 'assets/images/elf_f.png', {
       frameWidth: 32,
       frameHeight: 56
