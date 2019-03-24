@@ -5,8 +5,10 @@
   "author": "Félicien Brochu <felicien.brochu@gmail.com>",
   "main": "index.js",
   "scripts": {
-    "start": "webpack",
-    "deploy": ""
+    "start": "npm run serve:dev",
+    "build": "cross-env NODE_ENV=production webpack",
+    "serve:dev": "cross-env NODE_ENV=development webpack --watch",
+    "serve:production": "cross-env NODE_ENV=production webpack --watch"
   },
   "license": "MIT",
   "devDependencies": {
@@ -16,6 +18,9 @@
     "babel-loader": "^8.0.2",
     "browser-sync": "^2.26.3",
     "browser-sync-webpack-plugin": "^2.2.2",
+    "copy-webpack-plugin": "^5.0.2",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
     "eslint": "^5.15.3",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
@@ -23,12 +28,26 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-standard": "^4.0.0",
     "expose-loader": "^0.7.3",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "monaco-editor-webpack-plugin": "^1.7.0",
+    "node-sass": "^4.11.0",
+    "node-sass-magic-importer": "^5.3.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "vue-loader": "^15.7.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
     "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
     "idiom.js": "^1.0.1",
+    "monaco-editor": "^0.16.2",
     "phaser": "^3.16.0",
+    "vue": "^2.6.10",
+    "vue-resize-split-pane": "^0.1.5",
     "webfontloader": "^1.6.28"
   }
 }

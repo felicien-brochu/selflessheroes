@@ -8,6 +8,6 @@ export default {
   zoom: 1,
   resolution: 1,
   type: Phaser.AUTO,
-  parent: 'content',
+  parent: 'world-content',
   localStorageName: 'aiworld'
 }

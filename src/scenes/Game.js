@@ -1,4 +1,3 @@
-/* globals __DEV__ */
 import Phaser from 'phaser'
 
 import lang from '../lang'
@@ -51,8 +50,6 @@ export default class extends Phaser.Scene {
     this.gameOverText.setAlpha(0)
     this.gameOverText.setScrollFactor(0)
     this.gameOverText.setOrigin(0.5)
-
-    this.world.play()
   }
 
   createWorld(mapObject) {

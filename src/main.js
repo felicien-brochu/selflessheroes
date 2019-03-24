@@ -1,19 +1,13 @@
-import Phaser from 'phaser'
+import Vue from 'vue'
+import App from './App.vue'
+import ResSplitPane from 'vue-resize-split-pane'
 
-import BootScene from './scenes/Boot'
-import SplashScene from './scenes/Splash'
-import GameScene from './scenes/Game'
+Vue.component('rs-panes', ResSplitPane)
 
-import config from './config'
-
-const gameConfig = Object.assign(config, {
-  scene: [BootScene, SplashScene, GameScene]
-})
-
-class Game extends Phaser.Game {
-  constructor () {
-    super(gameConfig)
+new Vue({
+  el: '#app',
+  template: '<App/>',
+  components: {
+    App
   }
-}
-
-window.game = new Game()
+})
