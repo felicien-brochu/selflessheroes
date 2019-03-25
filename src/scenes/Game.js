@@ -70,10 +70,19 @@ export default class extends Phaser.Scene {
   initCamera() {
     const xMargin = 100,
       yMargin = 50
-    this.cameras.main.setBounds(-xMargin, -yMargin, this.map.widthInPixels + 2 * xMargin, this.map.heightInPixels + 2 * yMargin)
+    let camera = this.cameras.main
+    camera.setBounds(-xMargin, -yMargin, this.map.widthInPixels + 2 * xMargin, this.map.heightInPixels + 2 * yMargin)
+    // adapt camera viewport according to the editor width
     this.handleResizeCamera(40)
+    // center camera
+    camera.setScroll(this.map.widthInPixels / 2 - (camera.width / 2), this.map.heightInPixels / 2 - (camera.height / 2))
 
-    var cursors = this.input.keyboard.createCursorKeys();
+    var cursors = this.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.UP,
+      down: Phaser.Input.Keyboard.KeyCodes.DOWN,
+      left: Phaser.Input.Keyboard.KeyCodes.LEFT,
+      right: Phaser.Input.Keyboard.KeyCodes.RIGHT
+    })
     var controlConfig = {
       camera: this.cameras.main,
       left: cursors.left,

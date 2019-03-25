@@ -34,8 +34,6 @@ export default {
       lineNumbers: true,
       mode: 'javascript',
       theme: 'one-dark',
-      viewportMargin: Infinity,
-      matchBrackets: true,
     })
   },
   methods: {

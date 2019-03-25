@@ -1,5 +1,5 @@
 <template>
-		<div id="world-content"></div>
+<div id="world-content"></div>
 </template>
 
 <script>
@@ -16,7 +16,7 @@ const gameConfig = Object.assign(config, {
 })
 
 class Game extends Phaser.Game {
-  constructor () {
+  constructor() {
     super(gameConfig)
   }
 }
@@ -24,22 +24,19 @@ class Game extends Phaser.Game {
 window.game = new Game()
 
 export default {
-	components: {
-	}
+  components: {}
 }
 </script>
 
 <style lang="scss">
-
 #world-content {
-	right: 0;
-	height: 100%;
-	position: absolute;
+    right: 0;
+    height: 100%;
+    position: absolute;
 
-	canvas {
-		width: 100%;
-		height: 100%;
-	}
+    canvas {
+        width: 100%;
+        height: 100%;
+    }
 }
-
 </style>
