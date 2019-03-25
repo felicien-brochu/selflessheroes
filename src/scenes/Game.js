@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 
 import lang from '../lang'
+import AnimationBuilder from './AnimationBuilder'
 import World from '../game/World'
 import HeroS from '../sprites/HeroS'
 import ObjectiveS from '../sprites/ObjectiveS'
@@ -16,6 +17,8 @@ export default class extends Phaser.Scene {
   preload() {}
 
   create() {
+    AnimationBuilder.build(this)
+
     this.map = this.make.tilemap({
       key: 'map'
     })
@@ -25,9 +28,7 @@ export default class extends Phaser.Scene {
     this.tiles = this.map.addTilesetImage('DungeonTileset', 'tiles')
 
     // You can load a layer from the map using the layer name from Tiled, or by using the layer index
-    var layer = this.map.createStaticLayer('ground', this.tiles, 1, 2)
-
-
+    var layer = this.map.createDynamicLayer('ground', this.tiles, 1, 2)
 
     this.createWorld(this.cache.json.get('map_object'))
     this.initCamera()
@@ -48,14 +49,14 @@ export default class extends Phaser.Scene {
     this.world = new World(mapObject)
     this.heros = []
     this.objectives = []
-    for (let objective of this.world.objectives) {
-      let sprite = new ObjectiveS(this, objective, this.map.tileWidth, this.map.tileHeight)
-      this.objectives.push(sprite)
-      this.add.existing(sprite);
-    }
     for (let hero of this.world.heros) {
       let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight)
       this.heros.push(sprite)
+      this.add.existing(sprite);
+    }
+    for (let objective of this.world.objectives) {
+      let sprite = new ObjectiveS(this, objective, this.map.tileWidth, this.map.tileHeight)
+      this.objectives.push(sprite)
       this.add.existing(sprite);
     }
 

@@ -1,17 +1,24 @@
 import Phaser from 'phaser'
 
-export default class HeroS extends Phaser.GameObjects.Sprite {
+import CharacterS from './CharacterS'
+
+let heroCreated = 0
+let assets = [
+  'elf_m',
+  'knight_m',
+  'wizzard_m',
+  'elf_f',
+  'knight_f',
+  'wizzard_f',
+]
+
+
+export default class HeroS extends CharacterS {
+
   constructor(scene, hero, tileWidth, tileHeight) {
-    super(scene, (hero.x + 0.5) * tileWidth, (hero.y + 0.5) * tileHeight, 'elf_m')
+    let asset = assets[heroCreated % assets.length]
+    super(scene, hero, asset, tileWidth, tileHeight, 2, -16)
 
-    this.tileWidth = tileWidth
-    this.tileHeight = tileHeight
-    this.hero = hero
-  }
-
-  update() {
-    this.x = (this.hero.x + 0.5) * this.tileWidth + 2
-    this.y = (this.hero.y + 0.5) * this.tileHeight - 18
-    this.depth = 0
+    heroCreated++
   }
 }

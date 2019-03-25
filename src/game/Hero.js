@@ -1,7 +1,8 @@
 import Character from './Character'
 import PathFinderAI from './ai/PathFinderAI'
 import {
-  MoveAction
+  MoveAction,
+  WaitAction
 } from './CharacterAction'
 
 export default class Hero extends Character {
@@ -11,6 +12,7 @@ export default class Hero extends Character {
   }
 
   step() {
-    return this.ai.step()
+    this.lastAction = this.ai.step()
+    return this.lastAction
   }
 }

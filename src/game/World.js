@@ -12,7 +12,7 @@ export default class World {
     this.objectives = []
     this.parseObjects()
 
-    this.stepInterval = 100
+    this.stepInterval = 200
     this.timerID = -1
 
     this.hasWon = false
