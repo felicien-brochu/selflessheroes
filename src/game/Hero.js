@@ -1,5 +1,5 @@
 import Character from './Character'
-import PathFinderAI from './ai/PathFinderAI'
+import ObjectiveFinderAI from './ai/ObjectiveFinderAI'
 import {
   MoveAction,
   WaitAction
@@ -8,7 +8,8 @@ import {
 export default class Hero extends Character {
   constructor(config, tileWidth, tileHeight, world) {
     super(config, tileWidth, tileHeight)
-    this.ai = new PathFinderAI(world, this)
+    let objective
+    this.ai = new ObjectiveFinderAI(world, this, )
   }
 
   step() {

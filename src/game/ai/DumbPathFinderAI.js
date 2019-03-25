@@ -1,18 +1,19 @@
+import AI from './AI'
 import Character from '../Character'
 import {
   MoveAction
 } from '../CharacterAction'
 
-export default class PathFinderAI {
-  constructor(world, character) {
-    this.world = world
-    this.character = character
+export default class DumbPathFinderAI extends AI {
+  constructor(world, character, x, y) {
+    super(world, character)
+    this.objectiveX = x
+    this.objectiveY = y
+
+    this.buildPath()
   }
 
   step() {
-    if (!this.path) {
-      this.buildPath()
-    }
     let action
     if (this.pathIndex < this.path.length - 1) {
       action = new MoveAction(this.path[this.pathIndex + 1][0] - this.character.x, this.path[this.pathIndex + 1][1] - this.character.y)
@@ -26,7 +27,6 @@ export default class PathFinderAI {
 
   buildPath() {
     this.path = []
-    this.objective = this.world.objectives[0]
 
     this.map = []
     for (var i = 0; i < this.world.map.height; i++) {
@@ -46,7 +46,7 @@ export default class PathFinderAI {
       return false
     }
     this.path.push([x, y])
-    if (x === this.objective.x && y === this.objective.y) {
+    if (x === this.objectiveX && y === this.objectiveY) {
       return true
     }
     this.map[y][x] = false
@@ -56,5 +56,9 @@ export default class PathFinderAI {
     } else {
       return true
     }
+  }
+
+  isDone() {
+    return this.pathIndex >= this.path.length - 1
   }
 }

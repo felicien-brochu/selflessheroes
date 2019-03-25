@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="11" height="5" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
- <tileset firstgid="1" source="DungeonTileset32.tsx"/>
+ <tileset firstgid="1" source="../tiles/DungeonTileset.tsx"/>
  <layer id="5" name="regions" width="11" height="5">
   <data encoding="csv">
 79,79,0,79,79,0,80,79,0,79,80,
