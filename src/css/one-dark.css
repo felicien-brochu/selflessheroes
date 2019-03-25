@@ -4,6 +4,7 @@
     Original Atom One Dark Theme (https://github.com/atom/one-dark-ui & https://github.com/atom/one-dark-syntax)
 */
 /* basic */
+
 .cm-s-one-dark {
 	font-family: Consolas, Menlo, monaco, 'DejaVu Sans Mono', monospace;
 	font-weight: 250;
@@ -37,7 +38,6 @@
 	border-left: 2px solid #56b6c2 !important;
 }
 /* addon: edit/machingbrackets.js & addon: edit/matchtags.js */
-
 .cm-s-one-dark .CodeMirror-matchingbracket,
 .cm-s-one-dark .CodeMirror-matchingtag {
 	border-bottom: 2px solid #56b6c2;
@@ -51,7 +51,6 @@
 	background-color: transparent;
 }
 /* addon: fold/foldgutter.js */
-
 .cm-s-one-dark .CodeMirror-foldgutter,
 .cm-s-one-dark .CodeMirror-foldgutter-folded,
 .cm-s-one-dark .CodeMirror-foldgutter-open,
@@ -62,12 +61,10 @@
 	background-color: transparent;
 }
 /* addon: selection/active-line.js */
-
 .cm-s-one-dark .CodeMirror-activeline-background {
 	background-color: rgba(153, 187, 255, 0.04);
 }
 /* basic syntax */
-
 .cm-s-one-dark .cm-header {
 	color: #e06c75;
 }
@@ -130,7 +127,6 @@
 	color: #e5c07b;
 }
 /* original:  #d19a66; */
-
 .cm-s-one-dark .cm-atom {
 	color: #d19a66;
 }
@@ -143,7 +139,6 @@
 	color: #56b6c2;
 }
 /* original: #abb2bf */
-
 .cm-s-one-dark .cm-qualifier {
 	color: #d19a66;
 }
@@ -164,7 +159,6 @@
 	color: #56b6c2;
 }
 /* original: #abb2bf */
-
 .cm-s-one-dark .cm-meta {
 	color: #abb2bf;
 }
@@ -182,7 +176,6 @@
 	color: #e06c75;
 }
 /* css syntax corrections */
-
 .cm-s-one-dark .cm-m-css.cm-variable {
 	color: #828997;
 }
@@ -199,7 +192,6 @@
 	color: #56b6c2;
 }
 /* lua syntax corrections */
-
 .cm-s-one-dark .cm-m-lua.cm-variable {
 	color: #56b6c2;
 }
