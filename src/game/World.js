@@ -4,8 +4,10 @@ import Objective from './Objective'
 import RuleSet from './rules/RuleSet'
 
 export default class World {
-  constructor(config) {
+  constructor(config, aiCode) {
     this.config = config
+    this.aiCode = aiCode
+
     this.map = new Map(config)
     this.characters = []
     this.heros = []
@@ -53,7 +55,7 @@ export default class World {
   createObject(config, tileWidth, tileHeight) {
     switch (config.type) {
       case 'hero':
-        let hero = new Hero(config, tileWidth, tileHeight, this)
+        let hero = new Hero(config, this.aiCode, tileWidth, tileHeight, this)
         this.heros.push(hero)
         this.characters.push(hero)
         break;
@@ -73,18 +75,23 @@ export default class World {
   }
 
   step() {
-    for (var i = 0; i < this.heros.length; i++) {
-      let hero = this.heros[i]
-      let action = hero.step()
-      if (action.type === 'move' && !this.collideWall(hero, action)) {
-        hero.move(action.x, action.y)
+    try {
+      for (var i = 0; i < this.heros.length; i++) {
+        let hero = this.heros[i]
+        let action = hero.step()
+        if (action.type === 'move' && !this.collideWall(hero, action)) {
+          hero.move(action.x, action.y)
 
-        for (let objective of this.objectives) {
-          if (hero.overlaps(objective)) {
-            objective.enable()
+          for (let objective of this.objectives) {
+            if (hero.overlaps(objective)) {
+              objective.enable()
+            }
           }
         }
       }
+    } catch (e) {
+      console.error(e)
+      this.pause()
     }
 
     if (this.ruleSet.checkWinCondition()) {
@@ -110,6 +117,10 @@ export default class World {
 
   declareGameOver() {
     this.gameOver = true
+    this.pause()
+  }
+
+  end() {
     this.pause()
   }
 }

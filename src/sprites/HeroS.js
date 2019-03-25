@@ -17,7 +17,7 @@ export default class HeroS extends CharacterS {
 
   constructor(scene, hero, tileWidth, tileHeight) {
     let asset = assets[heroCreated % assets.length]
-    super(scene, hero, asset, tileWidth, tileHeight, 2, -16)
+    super(scene, hero, asset, tileWidth, tileHeight, 0, -16)
 
     heroCreated++
   }

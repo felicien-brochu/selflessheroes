@@ -12,9 +12,15 @@ export default class extends Phaser.Scene {
     super({
       key: 'GameScene'
     })
+    this.aiCode = null
   }
-  init() {}
-  preload() {}
+
+  init(data) {
+    this.aiCode = null
+    if (data && data.aiCode) {
+      this.aiCode = data.aiCode
+    }
+  }
 
   create() {
     AnimationBuilder.build(this)
@@ -23,6 +29,7 @@ export default class extends Phaser.Scene {
       key: 'map'
     })
 
+    this.createWorld(this.cache.json.get('map_object'))
     // The first parameter is the name of the tileset in Tiled and the second parameter is the key
     // of the tileset image used when loading the file in preload.
     this.tiles = this.map.addTilesetImage('DungeonTileset', 'tiles')
@@ -30,7 +37,6 @@ export default class extends Phaser.Scene {
     // You can load a layer from the map using the layer name from Tiled, or by using the layer index
     var layer = this.map.createDynamicLayer('ground', this.tiles, 1, 2)
 
-    this.createWorld(this.cache.json.get('map_object'))
     this.initCamera()
 
     this.gameOverText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, lang.text('game_over'), {
@@ -46,7 +52,7 @@ export default class extends Phaser.Scene {
   }
 
   createWorld(mapObject) {
-    this.world = new World(mapObject)
+    this.world = new World(mapObject, this.aiCode)
     this.heros = []
     this.objectives = []
     for (let hero of this.world.heros) {
@@ -59,24 +65,6 @@ export default class extends Phaser.Scene {
       this.objectives.push(sprite)
       this.add.existing(sprite);
     }
-
-
-    // var spriteKey = 'big_demon'
-    // var config = {
-    //   key: 'walk',
-    //   frames: this.anims.generateFrameNumbers(spriteKey, {
-    //     start: 0,
-    //     end: 3
-    //   }),
-    //   frameRate: 4,
-    //   yoyo: false,
-    //   repeat: -1
-    // };
-
-    // var anim = this.anims.create(config);
-
-    // sprite.anims.load('walk');
-    // sprite.anims.play('walk');
   }
 
   initCamera() {
@@ -116,5 +104,12 @@ export default class extends Phaser.Scene {
   handleResizeCamera(e) {
     this.cameras.main.setViewport(window.innerWidth * (e / 100), 0,
       window.innerWidth - (window.innerWidth * (e / 100)), window.innerHeight)
+  }
+
+  runAI(code) {
+    this.world.end()
+    this.scene.restart({
+      aiCode: code
+    })
   }
 }
