@@ -10,7 +10,8 @@ export default class HeroS extends Phaser.GameObjects.Sprite {
   }
 
   update() {
-    this.x = (this.hero.x + 0.5) * this.tileWidth
-    this.y = (this.hero.y + 0.5) * this.tileHeight - 12
+    this.x = (this.hero.x + 0.5) * this.tileWidth + 2
+    this.y = (this.hero.y + 0.5) * this.tileHeight - 18
+    this.depth = 0
   }
 }

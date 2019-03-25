@@ -22,25 +22,15 @@ export default class extends Phaser.Scene {
 
     // The first parameter is the name of the tileset in Tiled and the second parameter is the key
     // of the tileset image used when loading the file in preload.
-    this.tiles = this.map.addTilesetImage('DungeonTileset32', 'tiles')
+    this.tiles = this.map.addTilesetImage('DungeonTileset', 'tiles')
 
     // You can load a layer from the map using the layer name from Tiled, or by using the layer index
-    var layer = this.map.createStaticLayer('ground', this.tiles, 0, 0)
+    var layer = this.map.createStaticLayer('ground', this.tiles, 1, 2)
 
-    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels)
 
-    var cursors = this.input.keyboard.createCursorKeys();
-    var controlConfig = {
-      camera: this.cameras.main,
-      left: cursors.left,
-      right: cursors.right,
-      up: cursors.up,
-      down: cursors.down,
-      speed: 0.5
-    };
-    this.controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig)
 
     this.createWorld(this.cache.json.get('map_object'))
+    this.initCamera()
 
     this.gameOverText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, lang.text('game_over'), {
       font: '64px Bangers',
@@ -50,6 +40,8 @@ export default class extends Phaser.Scene {
     this.gameOverText.setAlpha(0)
     this.gameOverText.setScrollFactor(0)
     this.gameOverText.setOrigin(0.5)
+
+    this.world.play()
   }
 
   createWorld(mapObject) {
@@ -65,7 +57,6 @@ export default class extends Phaser.Scene {
       let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight)
       this.heros.push(sprite)
       this.add.existing(sprite);
-      this.cameras.main.startFollow(sprite, false, 0.1, 0.1)
     }
 
 
@@ -87,6 +78,25 @@ export default class extends Phaser.Scene {
     // sprite.anims.play('walk');
   }
 
+  initCamera() {
+    const xMargin = 100,
+      yMargin = 50
+    this.cameras.main.setBounds(-xMargin, -yMargin, this.map.widthInPixels + 2 * xMargin, this.map.heightInPixels + 2 * yMargin)
+    this.handleResizeCamera(40)
+
+    var cursors = this.input.keyboard.createCursorKeys();
+    var controlConfig = {
+      camera: this.cameras.main,
+      left: cursors.left,
+      right: cursors.right,
+      up: cursors.up,
+      down: cursors.down,
+      speed: 0.5
+    };
+    this.controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig)
+    this.cameras.main.startFollow(this.heros[0], false, 0.1, 0.1)
+  }
+
   update(time, delta) {
     this.controls.update(delta);
 
@@ -100,5 +110,10 @@ export default class extends Phaser.Scene {
     if (this.world.gameOver) {
       this.gameOverText.setAlpha(1)
     }
+  }
+
+  handleResizeCamera(e) {
+    this.cameras.main.setViewport(window.innerWidth * (e / 100), 0,
+      window.innerWidth - (window.innerWidth * (e / 100)), window.innerHeight)
   }
 }

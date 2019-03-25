@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<world/>
-		<rs-panes split-to="columns" :allow-resize="true" :size="200" :min-size="100">
+		<rs-panes split-to="columns" v-on:update:size="handleResize" :allow-resize="true" :size="40" :min-size="10" units="percents">
       <editor slot="firstPane"/>
       <div slot="secondPane"/>
     </rs-panes>
@@ -16,6 +16,13 @@ export default {
 	components: {
 		World,
 		Editor
+	},
+	mounted() {
+	},
+	methods: {
+		handleResize(e) {
+			window.game.scene.keys.GameScene.handleResizeCamera(e)
+		}
 	}
 }
 </script>

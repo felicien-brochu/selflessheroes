@@ -32,7 +32,7 @@ export default {
 <style lang="scss">
 
 #world-content {
-	margin-left: 200px;
+	right: 0;
 	height: 100%;
 	position: absolute;
 

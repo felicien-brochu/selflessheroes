@@ -2,11 +2,13 @@ import Phaser from 'phaser'
 import WebFont from 'webfontloader'
 
 export default class extends Phaser.Scene {
-  constructor () {
-    super({ key: 'BootScene' })
+  constructor() {
+    super({
+      key: 'BootScene'
+    })
   }
 
-  preload () {
+  preload() {
     this.fontsReady = false
     this.fontsLoaded = this.fontsLoaded.bind(this)
     this.add.text(100, 100, 'loading fonts...')
@@ -18,17 +20,27 @@ export default class extends Phaser.Scene {
       google: {
         families: ['Bangers']
       },
+      custom: {
+        families: [
+          'Menlo',
+          'Consolas'
+        ],
+        urls: [
+          '//db.onlinewebfonts.com/c/9f94dc20bb2a09c15241d3a880b7ad01?family=Menlo',
+          '//db.onlinewebfonts.com/c/1db29588408eadbd4406aae9238555eb?family=Consolas'
+        ]
+      },
       active: this.fontsLoaded
     })
   }
 
-  update () {
+  update() {
     if (this.fontsReady) {
       this.scene.start('SplashScene')
     }
   }
 
-  fontsLoaded () {
+  fontsLoaded() {
     this.fontsReady = true
   }
 }
