@@ -46,7 +46,7 @@ export default {
         padding-bottom: 8px;
         padding-left: 12px;
         background-color: #191c21;
-        z-index: 30;
+        z-index: 100;
 
         #run-button {
             font-family: Arial;

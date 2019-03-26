@@ -38,13 +38,18 @@ export default class extends Phaser.Scene {
     this.createWorld(this.cache.json.get('map_object'))
 
     this.initCamera()
+    this.initEvents()
+
+    this.followCursor = this.add.image(0, 0, 'follow_cursor')
+    this.followCursor.setAlpha(0.7)
+    this.followCursor.setVisible(false)
 
     this.gameOverText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, lang.text('game_over'), {
       font: '64px Bangers',
       fill: '#57a900',
       padding: 30
     })
-    this.gameOverText.setAlpha(0)
+    this.gameOverText.setVisible(false)
     this.gameOverText.setScrollFactor(0)
     this.gameOverText.setOrigin(0.5)
 
@@ -58,7 +63,10 @@ export default class extends Phaser.Scene {
     for (let hero of this.world.heros) {
       let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight)
       this.heros.push(sprite)
+      sprite.setOrigin(0.5)
       this.add.existing(sprite);
+      sprite.setInteractive()
+      sprite.on('pointerdown', () => this.handleClick(sprite), this)
     }
     for (let objective of this.world.objectives) {
       let sprite = new ObjectiveS(this, objective, this.map.tileWidth, this.map.tileHeight)
@@ -72,12 +80,13 @@ export default class extends Phaser.Scene {
       yMargin = 50
     let camera = this.cameras.main
     camera.setBounds(-xMargin, -yMargin, this.map.widthInPixels + 2 * xMargin, this.map.heightInPixels + 2 * yMargin)
-    camera.setZoom(0.5)
+    camera.setZoom(1)
     // adapt camera viewport according to the editor width
     this.handleResizeCamera(40)
     // center camera
     camera.setScroll(this.map.widthInPixels / 2 - (camera.width / 2), this.map.heightInPixels / 2 - (camera.height / 2))
-
+    this.mouseWheelToUpDown = this.plugins.get('rexMouseWheelToUpDown').add(this)
+    var cursorKeys = this.mouseWheelToUpDown.createCursorKeys()
     var cursors = this.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.UP,
       down: Phaser.Input.Keyboard.KeyCodes.DOWN,
@@ -90,10 +99,35 @@ export default class extends Phaser.Scene {
       right: cursors.right,
       up: cursors.up,
       down: cursors.down,
-      speed: 0.5
+      zoomIn: cursorKeys.down,
+      zoomOut: cursorKeys.up,
+      zoomSpeed: 0.1,
+      speed: {
+        x: 0.5,
+        y: 0.5
+      }
     };
     this.controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig)
-    this.cameras.main.startFollow(this.heros[0], false, 0.1, 0.1)
+  }
+
+  initEvents() {
+    let bg = this.add.sprite(0, 0)
+    bg.setScrollFactor(0)
+    bg.setScale(this.game.config.width, this.game.config.height)
+    bg.setInteractive()
+    bg.on('pointerdown', this.handleClickOutside, this)
+  }
+
+  follow(sprite) {
+    this.cameras.main.startFollow(sprite, false, 0.05, 0.05)
+    this.followSprite = sprite
+    this.followCursor.setVisible(true)
+  }
+
+  stopFollow() {
+    this.cameras.main.stopFollow()
+    this.followSprite = null
+    this.followCursor.setVisible(false)
   }
 
   update(time, delta) {
@@ -106,14 +140,29 @@ export default class extends Phaser.Scene {
       sprite.update()
     }
 
+    if (this.followSprite) {
+      this.followCursor.x = this.followSprite.x
+      this.followCursor.y = this.followSprite.y + 6
+      this.followCursor.depth = this.followSprite.depth - 1
+    }
+
     if (this.world.gameOver) {
-      this.gameOverText.setAlpha(1)
+      this.gameOverText.setVisible(true)
     }
   }
 
   handleResizeCamera(e) {
     this.cameras.main.setViewport(0, 0,
       window.innerWidth - (window.innerWidth * (e / 100)), window.innerHeight)
+  }
+
+  handleClick(target) {
+    this.follow(target)
+    return false
+  }
+
+  handleClickOutside() {
+    this.stopFollow()
   }
 
   runAI(code) {

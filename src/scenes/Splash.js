@@ -111,6 +111,7 @@ export default class extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 32
     })
+    this.load.image('follow_cursor', 'assets/images/follow_cursor.png')
     this.load.image('tiles', 'assets/tilemaps/tiles/DungeonTileset.png')
     this.load.tilemapTiledJSON('map', 'assets/tilemaps/maps/map1.json')
     this.load.json('map_object', 'assets/tilemaps/maps/map1.json')

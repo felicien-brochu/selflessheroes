@@ -30,6 +30,7 @@ export default {
 
 <style lang="scss">
 #world-content {
+    z-index: 10;
     right: 0;
     height: 100%;
     position: absolute;

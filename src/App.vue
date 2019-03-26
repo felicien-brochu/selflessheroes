@@ -47,4 +47,8 @@ html {
 #app {
     margin: 0 auto;
 }
+
+.pane-rs .Pane:last-child {
+    z-index: 20;
+}
 </style>

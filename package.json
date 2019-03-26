@@ -45,6 +45,7 @@
     "codemirror": "^5.45.0",
     "idiom.js": "^1.0.1",
     "phaser": "^3.16.0",
+    "phaser3-rex-plugins": "git+https://git@github.com/rexrainbow/phaser3-rex-notes.git",
     "vue": "^2.6.10",
     "vue-resize-split-pane": "^0.1.5",
     "webfontloader": "^1.6.28"

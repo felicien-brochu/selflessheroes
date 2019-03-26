@@ -60,7 +60,5 @@ export default class CharacterS extends Phaser.GameObjects.Sprite {
       this._lastTileY = this._character.y
     }
     this.depth = this.y
-    // this.x = (this._character.x + 0.5) * this._tileWidth + this._offsetX
-    // this.y = (this._character.y + 0.5) * this._tileHeight + this._offsetY
   }
 }
