@@ -1,3 +1,5 @@
 rule1.tmx
 rule2.tmx
 rule3.tmx
+rule4.tmx
+rule5.tmx

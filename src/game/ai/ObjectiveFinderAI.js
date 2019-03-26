@@ -12,7 +12,7 @@ export default class ObjectiveFinderAI extends AI {
   }
 
   step() {
-    if (this.pathFinder.isDone() && this.objectiveIndex < this.world.objectives.length) {
+    if (this.pathFinder.isDone() && this.objectiveIndex < this.world.objectives.length - 1) {
       this.nextObjective()
     }
     return this.pathFinder.step()

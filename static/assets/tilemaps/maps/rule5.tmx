@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="7" height="2" tilewidth="32" tileheight="32" infinite="0" nextlayerid="29" nextobjectid="1">
+ <tileset firstgid="1" source="../tiles/DungeonTileset.tsx"/>
+ <layer id="26" name="regions" width="7" height="2">
+  <data encoding="csv">
+80,79,80,0,80,79,80,
+79,79,80,0,80,79,79
+</data>
+ </layer>
+ <layer id="27" name="input_path" width="7" height="2">
+  <data encoding="csv">
+80,79,80,0,80,79,80,
+79,79,80,0,80,79,79
+</data>
+ </layer>
+ <layer id="28" name="output_ground" width="7" height="2">
+  <data encoding="csv">
+0,0,0,0,0,0,0,
+0,48,0,0,0,47,0
+</data>
+ </layer>
+</map>

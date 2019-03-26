@@ -29,13 +29,13 @@ export default class extends Phaser.Scene {
       key: 'map'
     })
 
-    this.createWorld(this.cache.json.get('map_object'))
     // The first parameter is the name of the tileset in Tiled and the second parameter is the key
     // of the tileset image used when loading the file in preload.
     this.tiles = this.map.addTilesetImage('DungeonTileset', 'tiles')
 
     // You can load a layer from the map using the layer name from Tiled, or by using the layer index
     var layer = this.map.createDynamicLayer('ground', this.tiles, 1, 2)
+    this.createWorld(this.cache.json.get('map_object'))
 
     this.initCamera()
 
@@ -72,6 +72,7 @@ export default class extends Phaser.Scene {
       yMargin = 50
     let camera = this.cameras.main
     camera.setBounds(-xMargin, -yMargin, this.map.widthInPixels + 2 * xMargin, this.map.heightInPixels + 2 * yMargin)
+    camera.setZoom(0.5)
     // adapt camera viewport according to the editor width
     this.handleResizeCamera(40)
     // center camera

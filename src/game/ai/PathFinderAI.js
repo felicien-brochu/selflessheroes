@@ -27,6 +27,7 @@ export default class PathFinderAI extends AI {
 
   buildPath() {
     this.path = []
+    this.pathIndex = 0
 
     this.map = []
     for (var i = 0; i < this.world.map.height; i++) {
@@ -37,14 +38,9 @@ export default class PathFinderAI extends AI {
       this.map.push(row)
     }
 
-    this.path = this.buildRec(this.character.x, this.character.y, 0, [])[0]
-    this.pathIndex = 0
-
-    for (var i = 0; i < this.map.length; i++) {
-      let l = ""
-      for (var j = 0; j < this.map[i].length; j++) {
-        l += this.map[i][j] + ", "
-      }
+    let res = this.buildRec(this.character.x, this.character.y, 0, [])
+    if (res) {
+      this.path = res[0]
     }
   }
 

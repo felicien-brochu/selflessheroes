@@ -1,5 +1,6 @@
 import Character from './Character'
 import IdleAI from './ai/IdleAI'
+import ObjectiveFinderAI from './ai/ObjectiveFinderAI'
 import UserAI from './ai/UserAI'
 import {
   MoveAction,
@@ -13,7 +14,7 @@ export default class Hero extends Character {
     if (aiCode) {
       this.ai = new UserAI(world, this, aiCode)
     } else {
-      this.ai = new IdleAI
+      this.ai = new ObjectiveFinderAI(world, this)
     }
   }
 
