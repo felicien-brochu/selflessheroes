@@ -8,9 +8,10 @@ export default class UserAI extends AI {
     super(world, character)
 
     this.code = code
+    this.func = new Function(this.code)
   }
 
   step() {
-    return new Function(this.code)()
+    return this.func()
   }
 }

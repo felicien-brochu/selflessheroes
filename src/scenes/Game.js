@@ -111,7 +111,7 @@ export default class extends Phaser.Scene {
   }
 
   handleResizeCamera(e) {
-    this.cameras.main.setViewport(window.innerWidth * (e / 100), 0,
+    this.cameras.main.setViewport(0, 0,
       window.innerWidth - (window.innerWidth * (e / 100)), window.innerHeight)
   }
 

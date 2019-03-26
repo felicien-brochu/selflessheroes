@@ -25,11 +25,12 @@ const config = {
     publicPath: '/',
   },
   optimization: {
-    splitChunks: {
-      // Must be specified for HtmlWebpackPlugin to work correctly.
-      // See: https://github.com/jantimon/html-webpack-plugin/issues/882
-      chunks: 'all',
-    },
+    // splitChunks: {
+    //   // Must be specified
+    //   // for HtmlWebpackPlugin to work correctly.
+    //   // See: https: //github.com/jantimon/html-webpack-plugin/issues/882
+    //   chunks: 'all'
+    // },
   },
   devtool: sourceMap ? 'cheap-module-eval-source-map' : undefined,
   module: {
@@ -110,6 +111,11 @@ if (minify) {
     new UglifyJsPlugin({
       cache: true,
       parallel: true,
+      uglifyOptions: {
+        output: {
+          comments: false,
+        },
+      },
     }),
   ];
 }
