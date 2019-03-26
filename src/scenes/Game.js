@@ -111,11 +111,7 @@ export default class extends Phaser.Scene {
   }
 
   initEvents() {
-    let bg = this.add.sprite(0, 0)
-    bg.setScrollFactor(0)
-    bg.setScale(this.game.config.width, this.game.config.height)
-    bg.setInteractive()
-    bg.on('pointerdown', this.handleClickOutside, this)
+    this.input.on('pointerdown', this.handleClickOutside, this)
   }
 
   follow(sprite) {
@@ -131,7 +127,7 @@ export default class extends Phaser.Scene {
   }
 
   update(time, delta) {
-    this.controls.update(delta);
+    this.updateCamera(time, delta)
 
     for (let sprite of this.heros) {
       sprite.update()
@@ -151,6 +147,21 @@ export default class extends Phaser.Scene {
     }
   }
 
+  updateCamera(time, delta) {
+    this.controls.update(delta);
+    let camera = this.cameras.main
+
+    if (this.input.activePointer.isDown) {
+      if (this.origDragPoint) { // move the camera by the amount the mouse has moved since last update
+        camera.scrollX += this.origDragPoint.x - this.input.activePointer.position.x;
+        camera.scrollY += this.origDragPoint.y - this.input.activePointer.position.y;
+      } // set new drag origin to current position
+      this.origDragPoint = this.input.activePointer.position.clone();
+    } else {
+      this.origDragPoint = null;
+    }
+  }
+
   handleResizeCamera(e) {
     this.cameras.main.setViewport(0, 0,
       window.innerWidth - (window.innerWidth * (e / 100)), window.innerHeight)
@@ -161,8 +172,10 @@ export default class extends Phaser.Scene {
     return false
   }
 
-  handleClickOutside() {
-    this.stopFollow()
+  handleClickOutside(pointer, currentlyOver) {
+    if (currentlyOver.length === 0) {
+      this.stopFollow()
+    }
   }
 
   runAI(code) {
