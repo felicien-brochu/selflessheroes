@@ -26,17 +26,19 @@ export default class extends Phaser.Scene {
   create() {
     AnimationBuilder.build(this)
     this.mapConfig = this.cache.json.get('map_object')
+    this.createMap()
 
-    this.createStaticElements()
     this.createWorld()
 
     this.initCamera()
     this.initEvents()
 
+    this.createStaticElements()
+
     this.world.play()
   }
 
-  createStaticElements() {
+  createMap() {
     this.map = this.make.tilemap({
       key: 'map'
     })
@@ -45,7 +47,9 @@ export default class extends Phaser.Scene {
     this.tiles = this.map.addTilesetImage('DungeonTileset', 'tiles')
     // You can load a layer from the map using the layer name from Tiled, or by using the layer index
     this.mapLayer = this.map.createDynamicLayer('ground', this.tiles, 1, 2)
+  }
 
+  createStaticElements() {
     this.followCursor = this.add.image(0, 0, 'follow_cursor')
     this.followCursor.setAlpha(0.7)
     this.followCursor.setVisible(false)
