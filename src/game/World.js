@@ -4,7 +4,7 @@ import Objective from './Objective'
 import RuleSet from './rules/RuleSet'
 
 export default class World {
-  constructor(config, aiCode) {
+  constructor(config, aiCode, speed = 1) {
     this.config = config
     this.aiCode = aiCode
 
@@ -15,6 +15,7 @@ export default class World {
     this.parseObjects()
 
     this.stepInterval = 200
+    this.speed = speed
     this.timerID = -1
 
     this.hasWon = false
@@ -66,12 +67,16 @@ export default class World {
   }
 
   play() {
-    this.timerID = setInterval(this.step.bind(this), this.stepInterval)
+    this.timerID = setInterval(this.step.bind(this), this.stepInterval / this.speed)
   }
 
   pause() {
     clearInterval(this.timerID)
     this.timerID = -1
+  }
+
+  isPaused() {
+    return this.timerID < 0
   }
 
   step() {
@@ -124,7 +129,11 @@ export default class World {
     this.pause()
   }
 
-  restart(aiCode) {
-
+  setSpeed(speed) {
+    this.speed = speed
+    if (!this.isPaused()) {
+      this.pause()
+      this.play()
+    }
   }
 }

@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 
 import lang from '../lang'
 import AnimationBuilder from './AnimationBuilder'
+import Speeds from './Speeds'
 import World from '../game/World'
 import HeroS from '../sprites/HeroS'
 import ObjectiveS from '../sprites/ObjectiveS'
@@ -13,6 +14,7 @@ export default class extends Phaser.Scene {
       key: 'GameScene'
     })
     this.aiCode = null
+    this.speed = Speeds.values[Speeds.default]
     this.followHeroIndex = -1
   }
 
@@ -66,7 +68,7 @@ export default class extends Phaser.Scene {
   }
 
   createWorld() {
-    this.world = new World(this.mapConfig, this.aiCode)
+    this.world = new World(this.mapConfig, this.aiCode, this.speed)
     this.heros = []
     this.objectives = []
 
@@ -213,6 +215,10 @@ export default class extends Phaser.Scene {
       window.innerWidth - e, window.innerHeight)
   }
 
+  handleSpeedChange(speedIndex) {
+    this.setSpeed(Speeds.values[speedIndex])
+  }
+
   handleClick(target) {
     this.startFollowHero(target)
     return false
@@ -227,5 +233,10 @@ export default class extends Phaser.Scene {
   runAI(code) {
     this.restartWorld(code)
     this.world.play()
+  }
+
+  setSpeed(speed) {
+    this.speed = speed
+    this.world.setSpeed(speed)
   }
 }

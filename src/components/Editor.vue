@@ -3,20 +3,20 @@
   <code-mirror id="editor-text" :value="code" :options="codeMirrorConfig" v-bind:value="code" v-on:change="$emit('change', $event)" />
   <div id="bottom-bar">
     <button id="run-button" v-on:click="$emit('run-ai')">{{runLabel}}</button>
-    <touch-range :min="1" :max="4" :step="1" v-model="speed" />
+    <speed-range v-on:change="$emit('speed-change', $event)" />
   </div>
 </div>
 </template>
 
 <script>
 import CodeMirror from './CodeMirror'
-import TouchRange from './TouchRange'
+import SpeedRange from './SpeedRange'
 import lang from '../lang'
 
 export default {
   components: {
     CodeMirror,
-    TouchRange
+    SpeedRange
   },
   props: ['code'],
   model: {
@@ -25,7 +25,6 @@ export default {
   },
   data: function() {
     return {
-      speed: 1,
       runLabel: lang.text('run_label'),
       codeMirrorConfig: {
         lineNumbers: true,
@@ -33,20 +32,29 @@ export default {
         theme: 'one-dark'
       }
     }
+  },
+  mounted: () => {
+    resizeCodeMirror()
   }
 }
+
+function resizeCodeMirror() {
+  let height = window.innerHeight - 86
+  document.getElementsByClassName("CodeMirror")[0].style = "height: " + height + "px;"
+}
+window.addEventListener("resize", resizeCodeMirror)
 </script>
 
 <style lang="scss">
 #editor {
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    background-color: #282c34;
 
     #bottom-bar {
-        $padding-v: 8px;
-        $padding-h: 12px;
+        $padding-v: 12px;
+        $padding-h: 18px;
 
         display: flex;
         justify-content: flex-start;
@@ -58,7 +66,6 @@ export default {
             font-family: Arial;
             z-index: 30;
             padding: 0;
-            margin-top: -20px - $padding-v;
             font-size: 30px;
             line-height: 40px;
             border-radius: 20px;
@@ -75,18 +82,17 @@ export default {
             }
         }
 
-        input[type=range] {
-            margin: -19px 50px 10px;
+        .speed-range {
             align-self: center;
+            margin: 0 20px;
         }
     }
 
     #editor-text {
+        position: relative;
         flex-grow: 1;
-        width: 100%;
         .CodeMirror {
-            padding-top: 30px;
-            height: 100%;
+            padding-top: 20px;
             width: 100%;
         }
     }

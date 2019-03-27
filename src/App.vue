@@ -3,7 +3,7 @@
   <world />
   <res-split-pane split-to="columns" v-on:update:size="handleResize" :allow-resize="true" :size="400" :min-size="300" units="pixels" resizerColor="#4b5261" primary="second">
     <div slot="firstPane" />
-    <editor slot="secondPane" v-on:run-ai="handleRunAI" v-model="code" />
+    <editor slot="secondPane" v-on:run-ai="handleRunAI" v-on:speed-change="handleSpeedChange" v-model="code" />
   </res-split-pane>
 </div>
 </template>
@@ -21,7 +21,7 @@ export default {
   },
   data: function() {
     return {
-      code: 'return {\n\ttype: "move",\n\tx: 1,\n\ty: 1\n}',
+      code: 'return {\n\ttype: "move",\n\tx: 1,\n\ty: 1\n}'
     }
   },
   mounted() {},
@@ -31,6 +31,9 @@ export default {
     },
     handleRunAI() {
       window.game.scene.keys.GameScene.runAI(this.$data.code)
+    },
+    handleSpeedChange(speed) {
+      window.game.scene.keys.GameScene.handleSpeedChange(speed)
     }
   }
 }
@@ -39,13 +42,16 @@ export default {
 <style lang="scss">
 body,
 html {
+    height: 100vh;
     margin: 0;
     padding: 0;
     background-color: #a99ea2;
+    font-family: Consolas, Arial, sans-serif;
 }
 
 #app {
     margin: 0 auto;
+    height: 100vh;
 }
 
 .pane-rs .Pane:last-child {

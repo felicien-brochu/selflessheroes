@@ -64,7 +64,7 @@ $thumb-shadow-color: rgba(0, 0, 0, .2) !default;
 $thumb-border-width: 2px !default;
 $thumb-border-color: #eceff1 !default;
 
-$track-width: 100px;
+$track-width: 120px;
 $track-width: 100% !default;
 $track-height: 8px !default;
 $track-shadow-size: 1px !default;
