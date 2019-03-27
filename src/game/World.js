@@ -123,4 +123,8 @@ export default class World {
   end() {
     this.pause()
   }
+
+  restart(aiCode) {
+
+  }
 }

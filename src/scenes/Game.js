@@ -13,6 +13,7 @@ export default class extends Phaser.Scene {
       key: 'GameScene'
     })
     this.aiCode = null
+    this.followHeroIndex = -1
   }
 
   init(data) {
@@ -24,21 +25,26 @@ export default class extends Phaser.Scene {
 
   create() {
     AnimationBuilder.build(this)
+    this.mapConfig = this.cache.json.get('map_object')
 
-    this.map = this.make.tilemap({
-      key: 'map'
-    })
-
-    // The first parameter is the name of the tileset in Tiled and the second parameter is the key
-    // of the tileset image used when loading the file in preload.
-    this.tiles = this.map.addTilesetImage('DungeonTileset', 'tiles')
-
-    // You can load a layer from the map using the layer name from Tiled, or by using the layer index
-    var layer = this.map.createDynamicLayer('ground', this.tiles, 1, 2)
-    this.createWorld(this.cache.json.get('map_object'))
+    this.createStaticElements()
+    this.createWorld()
 
     this.initCamera()
     this.initEvents()
+
+    this.world.play()
+  }
+
+  createStaticElements() {
+    this.map = this.make.tilemap({
+      key: 'map'
+    })
+    // The first parameter is the name of the tileset in Tiled and the second parameter is the key
+    // of the tileset image used when loading the file in preload.
+    this.tiles = this.map.addTilesetImage('DungeonTileset', 'tiles')
+    // You can load a layer from the map using the layer name from Tiled, or by using the layer index
+    this.mapLayer = this.map.createDynamicLayer('ground', this.tiles, 1, 2)
 
     this.followCursor = this.add.image(0, 0, 'follow_cursor')
     this.followCursor.setAlpha(0.7)
@@ -46,28 +52,32 @@ export default class extends Phaser.Scene {
 
     this.gameOverText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, lang.text('game_over'), {
       font: '64px Bangers',
-      fill: '#57a900',
+      fill: '#7b804f',
       padding: 30
     })
     this.gameOverText.setVisible(false)
     this.gameOverText.setScrollFactor(0)
     this.gameOverText.setOrigin(0.5)
-
-    this.world.play()
+    this.gameOverText.setShadow(0, 1, '#212121', 6)
   }
 
-  createWorld(mapObject) {
-    this.world = new World(mapObject, this.aiCode)
+  createWorld() {
+    this.world = new World(this.mapConfig, this.aiCode)
     this.heros = []
     this.objectives = []
+
+    let heroIndex = 0
+
     for (let hero of this.world.heros) {
-      let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight)
+      let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight, heroIndex)
       this.heros.push(sprite)
       sprite.setOrigin(0.5)
       this.add.existing(sprite);
       sprite.setInteractive()
       sprite.on('pointerdown', () => this.handleClick(sprite), this)
+      heroIndex++
     }
+
     for (let objective of this.world.objectives) {
       let sprite = new ObjectiveS(this, objective, this.map.tileWidth, this.map.tileHeight)
       this.objectives.push(sprite)
@@ -76,8 +86,8 @@ export default class extends Phaser.Scene {
   }
 
   initCamera() {
-    const xMargin = 100,
-      yMargin = 50
+    const xMargin = 100
+    const yMargin = 50
     let camera = this.cameras.main
     camera.setBounds(-xMargin, -yMargin, this.map.widthInPixels + 2 * xMargin, this.map.heightInPixels + 2 * yMargin)
     camera.setZoom(1)
@@ -114,15 +124,24 @@ export default class extends Phaser.Scene {
     this.input.on('pointerdown', this.handleClickOutside, this)
   }
 
-  follow(sprite) {
-    this.cameras.main.startFollow(sprite, false, 0.05, 0.05)
-    this.followSprite = sprite
-    this.followCursor.setVisible(true)
+  startFollowHero(sprite) {
+    let heroIndex = -1
+    for (let i = 0; i < this.heros.length; i++) {
+      if (sprite === this.heros[i]) {
+        heroIndex = i
+        break
+      }
+    }
+    if (heroIndex >= 0) {
+      this.cameras.main.startFollow(sprite, false, 0.05, 0.05)
+      this.followHeroIndex = heroIndex
+      this.followCursor.setVisible(true)
+    }
   }
 
-  stopFollow() {
+  stopFollowHero() {
     this.cameras.main.stopFollow()
-    this.followSprite = null
+    this.followHeroIndex = -1
     this.followCursor.setVisible(false)
   }
 
@@ -136,10 +155,11 @@ export default class extends Phaser.Scene {
       sprite.update()
     }
 
-    if (this.followSprite) {
-      this.followCursor.x = this.followSprite.x
-      this.followCursor.y = this.followSprite.y + 6
-      this.followCursor.depth = this.followSprite.depth - 1
+    if (this.followHeroIndex >= 0) {
+      let hero = this.heros[this.followHeroIndex]
+      this.followCursor.x = hero.x
+      this.followCursor.y = hero.y + 6
+      this.followCursor.depth = hero.depth - 1
     }
 
     if (this.world.gameOver) {
@@ -162,26 +182,46 @@ export default class extends Phaser.Scene {
     }
   }
 
+  restartWorld(aiCode) {
+    this.world.end()
+    this.aiCode = aiCode
+    this.destroySprites()
+    this.createWorld()
+
+    if (this.followHeroIndex >= 0) {
+      this.startFollowHero(this.heros[this.followHeroIndex])
+    }
+
+    this.gameOverText.setVisible(false)
+  }
+
+  destroySprites() {
+    for (let hero of this.heros) {
+      hero.destroy()
+    }
+    for (let objective of this.objectives) {
+      objective.destroy()
+    }
+  }
+
   handleResizeCamera(e) {
     this.cameras.main.setViewport(0, 0,
       window.innerWidth - (window.innerWidth * (e / 100)), window.innerHeight)
   }
 
   handleClick(target) {
-    this.follow(target)
+    this.startFollowHero(target)
     return false
   }
 
   handleClickOutside(pointer, currentlyOver) {
     if (currentlyOver.length === 0) {
-      this.stopFollow()
+      this.stopFollowHero()
     }
   }
 
   runAI(code) {
-    this.world.end()
-    this.scene.restart({
-      aiCode: code
-    })
+    this.restartWorld(code)
+    this.world.play()
   }
 }

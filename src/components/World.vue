@@ -21,10 +21,12 @@ class Game extends Phaser.Game {
   }
 }
 
-window.game = new Game()
 
 export default {
-  components: {}
+  components: {},
+  mounted: () => {
+    window.game = new Game()
+  }
 }
 </script>
 
