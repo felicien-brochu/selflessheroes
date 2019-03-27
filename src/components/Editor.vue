@@ -1,19 +1,22 @@
 <template>
 <div id="editor">
   <code-mirror id="editor-text" :value="code" :options="codeMirrorConfig" v-bind:value="code" v-on:change="$emit('change', $event)" />
-  <div id="top-bar">
+  <div id="bottom-bar">
     <button id="run-button" v-on:click="$emit('run-ai')">{{runLabel}}</button>
+    <touch-range :min="1" :max="4" :step="1" v-model="speed" />
   </div>
 </div>
 </template>
 
 <script>
 import CodeMirror from './CodeMirror'
+import TouchRange from './TouchRange'
 import lang from '../lang'
 
 export default {
   components: {
-    CodeMirror
+    CodeMirror,
+    TouchRange
   },
   props: ['code'],
   model: {
@@ -22,6 +25,7 @@ export default {
   },
   data: function() {
     return {
+      speed: 1,
       runLabel: lang.text('run_label'),
       codeMirrorConfig: {
         lineNumbers: true,
@@ -40,11 +44,13 @@ export default {
     flex-direction: column;
     align-items: stretch;
 
-    #top-bar {
+    #bottom-bar {
+        $padding-v: 8px;
+        $padding-h: 12px;
+
         display: flex;
         justify-content: flex-start;
-        padding-bottom: 8px;
-        padding-left: 12px;
+        padding: $padding-v $padding-h;
         background-color: #191c21;
         z-index: 100;
 
@@ -52,7 +58,7 @@ export default {
             font-family: Arial;
             z-index: 30;
             padding: 0;
-            margin-top: -20px;
+            margin-top: -20px - $padding-v;
             font-size: 30px;
             line-height: 40px;
             border-radius: 20px;
@@ -68,15 +74,17 @@ export default {
                 background-color: rgb(200, 200, 200);
             }
         }
+
+        input[type=range] {
+            margin: -19px 50px 10px;
+            align-self: center;
+        }
     }
 
     #editor-text {
-        // display: flex;
         flex-grow: 1;
-        // align-items: stretch;
         width: 100%;
         .CodeMirror {
-            // flex-grow: 1;
             padding-top: 30px;
             height: 100%;
             width: 100%;

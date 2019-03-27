@@ -1,7 +1,7 @@
 <template>
 <div id="app">
   <world />
-  <res-split-pane split-to="columns" v-on:update:size="handleResize" :allow-resize="true" :size="40" :min-size="10" units="percents" resizerColor="#4b5261" primary="second">
+  <res-split-pane split-to="columns" v-on:update:size="handleResize" :allow-resize="true" :size="400" :min-size="300" units="pixels" resizerColor="#4b5261" primary="second">
     <div slot="firstPane" />
     <editor slot="secondPane" v-on:run-ai="handleRunAI" v-model="code" />
   </res-split-pane>

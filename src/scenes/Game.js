@@ -96,7 +96,7 @@ export default class extends Phaser.Scene {
     camera.setBounds(-xMargin, -yMargin, this.map.widthInPixels + 2 * xMargin, this.map.heightInPixels + 2 * yMargin)
     camera.setZoom(1)
     // adapt camera viewport according to the editor width
-    this.handleResizeCamera(40)
+    this.handleResizeCamera(400)
     // center camera
     camera.setScroll(this.map.widthInPixels / 2 - (camera.width / 2), this.map.heightInPixels / 2 - (camera.height / 2))
     this.mouseWheelToUpDown = this.plugins.get('rexMouseWheelToUpDown').add(this)
@@ -210,7 +210,7 @@ export default class extends Phaser.Scene {
 
   handleResizeCamera(e) {
     this.cameras.main.setViewport(0, 0,
-      window.innerWidth - (window.innerWidth * (e / 100)), window.innerHeight)
+      window.innerWidth - e, window.innerHeight)
   }
 
   handleClick(target) {
