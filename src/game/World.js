@@ -4,7 +4,7 @@ import Objective from './Objective'
 import RuleSet from './rules/RuleSet'
 
 export default class World {
-  constructor(config, aiCode, speed = 1) {
+  constructor(config, aiCode) {
     this.config = config
     this.aiCode = aiCode
 
@@ -14,13 +14,10 @@ export default class World {
     this.objectives = []
     this.parseObjects()
 
-    this.stepInterval = 200
-    this.speed = speed
-    this.timerID = -1
-
     this.hasWon = false
     this.hasLost = false
     this.gameOver = false
+    this.steps = 0
   }
 
   parseObjects() {
@@ -66,20 +63,8 @@ export default class World {
     }
   }
 
-  play() {
-    this.timerID = setInterval(this.step.bind(this), this.stepInterval / this.speed)
-  }
-
-  pause() {
-    clearInterval(this.timerID)
-    this.timerID = -1
-  }
-
-  isPaused() {
-    return this.timerID < 0
-  }
-
   step() {
+    this.steps++
     try {
       for (var i = 0; i < this.heros.length; i++) {
         let hero = this.heros[i]
@@ -122,18 +107,5 @@ export default class World {
 
   declareGameOver() {
     this.gameOver = true
-    this.pause()
-  }
-
-  end() {
-    this.pause()
-  }
-
-  setSpeed(speed) {
-    this.speed = speed
-    if (!this.isPaused()) {
-      this.pause()
-      this.play()
-    }
   }
 }

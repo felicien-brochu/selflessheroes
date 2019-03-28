@@ -1,9 +1,12 @@
 <template>
 <div id="editor">
-  <code-mirror id="editor-text" :value="code" :options="codeMirrorConfig" v-bind:value="code" v-on:change="$emit('change', $event)" />
+  <code-mirror id="editor-text" :value="code" :options="codeMirrorConfig" @change="$emit('change', $event)" />
   <div id="bottom-bar">
-    <button id="run-button" v-on:click="$emit('run-ai')">{{runLabel}}</button>
-    <speed-range v-on:change="$emit('speed-change', $event)" />
+    <button class="run-button" @click="$emit('run-ai')" :disabled="!worldReady || code.length === 0" />
+    <play-pause-button @play-pause="$emit('play-pause', $event)" :paused="worldState.paused" :disabled="!worldReady" />
+    <speed-range @change="$emit('speed-change', $event)" />
+    <button class="step-button" @click="$emit('step')" :disabled="!worldReady || worldState.gameOver" />
+    <button class="stop-button" @click="$emit('stop')" :disabled="!worldReady || worldState.steps < 1" />
   </div>
 </div>
 </template>
@@ -11,26 +14,39 @@
 <script>
 import CodeMirror from './CodeMirror'
 import SpeedRange from './SpeedRange'
-import lang from '../lang'
+import PlayPauseButton from './PlayPauseButton'
 
 export default {
   components: {
     CodeMirror,
-    SpeedRange
+    SpeedRange,
+    PlayPauseButton
   },
-  props: ['code'],
+  props: {
+    'code': {
+      type: String,
+      default: ''
+    },
+    'worldState': {
+      type: Object,
+      default: {}
+    },
+    'worldReady': {
+      type: Boolean,
+      default: false
+    }
+  },
   model: {
     prop: 'code',
     event: 'change'
   },
   data: function() {
     return {
-      runLabel: lang.text('run_label'),
       codeMirrorConfig: {
         lineNumbers: true,
         mode: 'javascript',
         theme: 'one-dark'
-      }
+      },
     }
   },
   mounted: () => {
@@ -57,34 +73,55 @@ window.addEventListener("resize", resizeCodeMirror)
         $padding-h: 18px;
 
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-around;
         padding: $padding-v $padding-h;
         background-color: #191c21;
         z-index: 100;
 
-        #run-button {
-            font-family: Arial;
-            z-index: 30;
+        .speed-range {
+            align-self: center;
+            margin: 0 20px;
+        }
+
+        button {
+            background: none;
+            color: inherit;
+            border: none;
             padding: 0;
-            font-size: 30px;
-            line-height: 40px;
-            border-radius: 20px;
-            border-width: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
             width: 40px;
             height: 40px;
-            background-color: rgb(240, 240, 240);
+            border-radius: 20px;
             box-shadow: 0 1px 6px 0 black;
+
             &:hover {
                 box-shadow: 0 1px 6px 0 #656565;
             }
             &:active {
-                background-color: rgb(200, 200, 200);
+                background-color: rgb(75, 75, 75);
             }
-        }
 
-        .speed-range {
-            align-self: center;
-            margin: 0 20px;
+            &:disabled {
+                opacity: 0.3;
+                &:hover {
+                    box-shadow: inherit;
+                }
+                &:active {
+                    background-color: inherit;
+                }
+            }
+
+            &.run-button {
+                background-image: url("/assets/images/run-button.png");
+            }
+            &.step-button {
+                background-image: url("/assets/images/step-button.png");
+            }
+            &.stop-button {
+                background-image: url("/assets/images/stop-button.png");
+            }
         }
     }
 

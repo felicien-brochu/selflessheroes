@@ -5,27 +5,30 @@
 <script>
 import Phaser from 'phaser'
 
-import BootScene from '../scenes/Boot'
-import SplashScene from '../scenes/Splash'
-import GameScene from '../scenes/Game'
-
-import config from '../config'
-
-const gameConfig = Object.assign(config, {
-  scene: [BootScene, SplashScene, GameScene]
-})
+import gameConfig from '../config'
 
 class Game extends Phaser.Game {
-  constructor() {
+  constructor(gameSceneConfig) {
     super(gameConfig)
+    this.gameSceneConfig = gameSceneConfig
   }
 }
 
 
 export default {
-  components: {},
-  mounted: () => {
-    window.game = new Game()
+  mounted: function() {
+    window.game = new Game({
+      onGameSceneReady: this.handleGameReady
+    })
+  },
+  methods: {
+    handleGameReady(gameScene) {
+      gameScene.setWorldStateListener(this.handleWorldStateChange)
+      this.$emit('ready', gameScene.getWorldState(), gameScene)
+    },
+    handleWorldStateChange(worldState) {
+      this.$emit('world-state-change', worldState)
+    }
   }
 }
 </script>

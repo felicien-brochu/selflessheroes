@@ -1,6 +1,6 @@
 <template>
 <div class="speed-range">
-  <touch-range :value="speed" :min="0" :max="maxSpeed" step="1" v-on:input="$emit('change', $event)" v-model="speed" />
+  <touch-range :value="speed" :min="0" :max="maxSpeed" step="1" @input="$emit('change', $event)" v-model="speed" />
   <ul class="speed-list">
     <li v-for="speedItem in speeds" :class="speedItem.value == speed ? 'selected' : ''">
       {{ speedItem.name }}

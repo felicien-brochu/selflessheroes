@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 
 import lang from '../lang'
 import AnimationBuilder from './AnimationBuilder'
+import WorldRunner from './WorldRunner'
 import Speeds from './Speeds'
 import World from '../game/World'
 import HeroS from '../sprites/HeroS'
@@ -14,14 +15,18 @@ export default class extends Phaser.Scene {
       key: 'GameScene'
     })
     this.aiCode = null
-    this.speed = Speeds.values[Speeds.default]
+    this.onSceneReady = null
     this.followHeroIndex = -1
+    this.runner = new WorldRunner()
   }
 
   init(data) {
     this.aiCode = null
-    if (data && data.aiCode) {
+    this.onSceneReady = null
+
+    if (data) {
       this.aiCode = data.aiCode
+      this.onSceneReady = data.onGameSceneReady
     }
   }
 
@@ -31,13 +36,16 @@ export default class extends Phaser.Scene {
     this.createMap()
 
     this.createWorld()
+    this.runner.init(this.world)
 
     this.initCamera()
     this.initEvents()
 
     this.createStaticElements()
 
-    this.world.play()
+    if (this.onSceneReady) {
+      this.onSceneReady(this)
+    }
   }
 
   createMap() {
@@ -68,7 +76,7 @@ export default class extends Phaser.Scene {
   }
 
   createWorld() {
-    this.world = new World(this.mapConfig, this.aiCode, this.speed)
+    this.world = new World(this.mapConfig, this.aiCode)
     this.heros = []
     this.objectives = []
 
@@ -188,11 +196,20 @@ export default class extends Phaser.Scene {
     }
   }
 
-  restartWorld(aiCode) {
-    this.world.end()
+  play() {
+    this.runner.play()
+  }
+
+  pause() {
+    this.runner.pause()
+  }
+
+  restartWorld(aiCode = this.aiCode) {
+    this.runner.end()
     this.aiCode = aiCode
     this.destroySprites()
     this.createWorld()
+    this.runner.restart(this.world)
 
     if (this.followHeroIndex >= 0) {
       this.startFollowHero(this.heros[this.followHeroIndex])
@@ -210,13 +227,17 @@ export default class extends Phaser.Scene {
     }
   }
 
+  setWorldStateListener(listener) {
+    this.runner.setStateListener(listener)
+  }
+
   handleResizeCamera(e) {
     this.cameras.main.setViewport(0, 0,
       window.innerWidth - e, window.innerHeight)
   }
 
   handleSpeedChange(speedIndex) {
-    this.setSpeed(Speeds.values[speedIndex])
+    this.runner.setSpeed(Speeds.values[speedIndex])
   }
 
   handleClick(target) {
@@ -232,11 +253,27 @@ export default class extends Phaser.Scene {
 
   runAI(code) {
     this.restartWorld(code)
-    this.world.play()
+    this.runner.pause()
   }
 
   setSpeed(speed) {
-    this.speed = speed
-    this.world.setSpeed(speed)
+    this.runner.setSpeed(speed)
+  }
+
+  getWorldState() {
+    return this.runner ? this.runner.getObservableState() : {}
+  }
+
+  step() {
+    if (this.runner.isPaused()) {
+      this.runner.doOneStep()
+    } else {
+      this.runner.pause()
+    }
+  }
+
+  stop() {
+    this.restartWorld()
+    this.runner.pause()
   }
 }

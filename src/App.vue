@@ -1,9 +1,9 @@
 <template>
 <div id="app">
-  <world />
-  <res-split-pane split-to="columns" v-on:update:size="handleResize" :allow-resize="true" :size="400" :min-size="300" units="pixels" resizerColor="#4b5261" primary="second">
+  <world @world-state-change="worldState = $event" @ready="handleWorldReady" />
+  <res-split-pane split-to="columns" @update:size="handleResize" :allow-resize="true" :size="400" :min-size="300" units="pixels" resizerColor="#4b5261" primary="second">
     <div slot="firstPane" />
-    <editor slot="secondPane" v-on:run-ai="handleRunAI" v-on:speed-change="handleSpeedChange" v-model="code" />
+    <editor slot="secondPane" :worldState="worldState" :worldReady="worldReady" @run-ai="handleRunAI" @play-pause="handlePlayPause" @speed-change="handleSpeedChange" @step="handleStep" @stop="handleStop" v-model="code" />
   </res-split-pane>
 </div>
 </template>
@@ -13,6 +13,8 @@ import World from './components/World'
 import Editor from './components/Editor'
 import ResSplitPane from 'vue-resize-split-pane'
 
+let game = null
+
 export default {
   components: {
     World,
@@ -21,19 +23,51 @@ export default {
   },
   data: function() {
     return {
-      code: 'return {\n\ttype: "move",\n\tx: 1,\n\ty: 1\n}'
+      code: 'return {\n\ttype: "move",\n\tx: 1,\n\ty: 1\n}',
+      worldState: {},
+      worldReady: false
     }
   },
-  mounted() {},
   methods: {
+    handleWorldReady(worldState, gameScene) {
+      game = gameScene
+      this.worldState = worldState
+      this.worldReady = true
+    },
     handleResize(e) {
-      window.game.scene.keys.GameScene.handleResizeCamera(e)
+      if (game) {
+        game.handleResizeCamera(e)
+      }
     },
     handleRunAI() {
-      window.game.scene.keys.GameScene.runAI(this.$data.code)
+      if (game) {
+        game.runAI(this.$data.code)
+      }
+    },
+    handlePlayPause(play) {
+      if (game) {
+        if (play) {
+          game.play()
+        }
+        else {
+          game.pause()
+        }
+      }
     },
     handleSpeedChange(speed) {
-      window.game.scene.keys.GameScene.handleSpeedChange(speed)
+      if (game) {
+        game.handleSpeedChange(speed)
+      }
+    },
+    handleStep() {
+      if (game) {
+        game.step()
+      }
+    },
+    handleStop() {
+      if (game) {
+        game.stop()
+      }
     }
   }
 }

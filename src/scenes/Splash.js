@@ -118,7 +118,7 @@ export default class extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start('GameScene')
+    this.scene.start('GameScene', this.game.gameSceneConfig)
   }
 
   update() {}
