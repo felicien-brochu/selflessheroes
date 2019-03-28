@@ -20,21 +20,23 @@ export default class WorldRunner {
   }
 
   step() {
-    this.steps++
+    if (!this.world.gameOver) {
+      this.steps++
 
-    this.world.step()
+      this.world.step()
 
-    if (this.steps === 1 || this.world.gameOver) {
-      this.emitStateChange()
-    }
+      if (this.steps === 1 || this.world.gameOver) {
+        this.emitStateChange()
+      }
 
-    if (this.world.gameOver) {
-      this.pause()
+      if (this.world.gameOver) {
+        this.pause()
+      }
     }
   }
 
   play() {
-    if (this.isPaused()) {
+    if (this.isPaused() && !this.world.gameOver) {
       this.timerID = setInterval(this.step.bind(this), this.stepInterval / this.speed)
       this.emitStateChange()
     }
@@ -50,10 +52,6 @@ export default class WorldRunner {
 
   isPaused() {
     return this.timerID < 0
-  }
-
-  end() {
-    this.pause()
   }
 
   doOneStep() {

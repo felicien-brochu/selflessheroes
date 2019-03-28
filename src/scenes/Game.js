@@ -205,7 +205,7 @@ export default class extends Phaser.Scene {
   }
 
   restartWorld(aiCode = this.aiCode) {
-    this.runner.end()
+    this.runner.pause()
     this.aiCode = aiCode
     this.destroySprites()
     this.createWorld()

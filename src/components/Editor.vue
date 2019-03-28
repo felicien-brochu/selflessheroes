@@ -3,7 +3,7 @@
   <code-mirror id="editor-text" :value="code" :options="codeMirrorConfig" @change="$emit('change', $event)" />
   <div id="bottom-bar">
     <button class="run-button" @click="$emit('run-ai')" :disabled="!worldReady || code.length === 0" />
-    <play-pause-button @play-pause="$emit('play-pause', $event)" :paused="worldState.paused" :disabled="!worldReady" />
+    <play-pause-button @play-pause="$emit('play-pause', $event)" :paused="worldState.paused" :disabled="!worldReady || worldState.gameOver" />
     <speed-range @change="$emit('speed-change', $event)" />
     <button class="step-button" @click="$emit('step')" :disabled="!worldReady || worldState.gameOver" />
     <button class="stop-button" @click="$emit('stop')" :disabled="!worldReady || worldState.steps < 1" />

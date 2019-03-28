@@ -10,54 +10,54 @@ export default class CharacterS extends Phaser.GameObjects.Sprite {
       y = (character.y + 0.5) * tileHeight + offsetY
     super(scene, x, y, asset)
 
-    this._tileWidth = tileWidth
-    this._tileHeight = tileHeight
-    this._character = character
-    this._asset = asset
-    this._offsetX = offsetX
-    this._offsetY = offsetY
+    this.tileWidth = tileWidth
+    this.tileHeight = tileHeight
+    this.character = character
+    this.asset = asset
+    this.offsetX = offsetX
+    this.offsetY = offsetY
 
-    this._lastTileX = character.x
-    this._lastTileY = character.y
+    this.lastTileX = character.x
+    this.lastTileY = character.y
 
-    this._actionState = stateIdle
+    this.actionState = stateIdle
     this.playAnimation()
   }
 
   playAnimation() {
-    this.play(this._asset + '_' + this._actionState)
+    this.play(this.asset + '_' + this.actionState)
   }
 
   updateState() {
     let newState = stateIdle
-    if (this._character.lastAction) {
-      if (this._character.lastAction.type === 'move') {
+    if (this.character.lastAction) {
+      if (this.character.lastAction.type === 'move') {
         newState = stateRun
       }
     }
-    if (this._actionState !== newState) {
-      this._actionState = newState
+    if (this.actionState !== newState) {
+      this.actionState = newState
       this.playAnimation()
     }
   }
 
   update() {
     this.updateState()
-    if (this._lastTileX !== this._character.x || this._lastTileY !== this._character.y) {
-      if (this._lastTileX < this._character.x) {
+    if (this.lastTileX !== this.character.x || this.lastTileY !== this.character.y) {
+      if (this.lastTileX < this.character.x) {
         this.setFlipX(false)
-      } else if (this._lastTileX > this._character.x) {
+      } else if (this.lastTileX > this.character.x) {
         this.setFlipX(true)
       }
       this.scene.tweens.add({
         targets: this,
-        x: (this._character.x + 0.5) * this._tileWidth + this._offsetX,
-        y: (this._character.y + 0.5) * this._tileHeight + this._offsetY,
+        x: (this.character.x + 0.5) * this.tileWidth + this.offsetX,
+        y: (this.character.y + 0.5) * this.tileHeight + this.offsetY,
         duration: this.scene.runner.stepInterval,
         ease: 'Power2',
       })
-      this._lastTileX = this._character.x
-      this._lastTileY = this._character.y
+      this.lastTileX = this.character.x
+      this.lastTileY = this.character.y
     }
     this.depth = this.y
   }
