@@ -1,17 +1,17 @@
 <template>
 <div id="app">
   <world @world-state-change="worldState = $event" @ready="handleWorldReady" />
-  <res-split-pane split-to="columns" @update:size="handleResize" :allow-resize="true" :size="400" :min-size="300" units="pixels" resizerColor="#4b5261" primary="second">
+  <resize-split-pane split-to="columns" @resize="handleResize" :allow-resize="true" :size="400" :min-size="352" units="pixels" resizerColor="#4b5261" primary="second">
     <div slot="firstPane" />
     <editor slot="secondPane" :worldState="worldState" :worldReady="worldReady" @run-ai="handleRunAI" @play-pause="handlePlayPause" @speed-change="handleSpeedChange" @step="handleStep" @stop="handleStop" v-model="code" />
-  </res-split-pane>
+  </resize-split-pane>
 </div>
 </template>
 
 <script>
 import World from './components/World'
 import Editor from './components/Editor'
-import ResSplitPane from 'vue-resize-split-pane'
+import ResizeSplitPane from './components/rspane/ResizeSplitPane'
 
 let game = null
 
@@ -19,7 +19,7 @@ export default {
   components: {
     World,
     Editor,
-    ResSplitPane
+    ResizeSplitPane
   },
   data: function() {
     return {
@@ -35,6 +35,7 @@ export default {
       this.worldReady = true
     },
     handleResize(e) {
+      console.log("resize")
       if (game) {
         game.handleResizeCamera(e)
       }

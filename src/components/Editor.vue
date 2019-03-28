@@ -70,17 +70,17 @@ window.addEventListener("resize", resizeCodeMirror)
 
     #bottom-bar {
         $padding-v: 12px;
-        $padding-h: 18px;
+        $padding-h: 5px;
 
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         padding: $padding-v $padding-h;
         background-color: #191c21;
         z-index: 100;
 
         .speed-range {
             align-self: center;
-            margin: 0 20px;
+            margin: 0 8px;
         }
 
         button {
@@ -95,6 +95,7 @@ window.addEventListener("resize", resizeCodeMirror)
             height: 40px;
             border-radius: 20px;
             box-shadow: 0 1px 6px 0 black;
+            margin: 0 5px;
 
             &:hover {
                 box-shadow: 0 1px 6px 0 #656565;
