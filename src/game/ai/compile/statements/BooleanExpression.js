@@ -111,7 +111,7 @@ export default class BooleanExpression extends Expression {
     }
 
     if (!this.operator) {
-      throw new InvalidBooleanExpressionException('No comparison operator found in this boolean expression.', this)
+      throw new InvalidBooleanExpressionException('no comparison operator found in this boolean expression', this)
     }
 
     operatorPosition = operatorPosition[0]

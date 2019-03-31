@@ -26,13 +26,13 @@ export default class TypeLiteral extends Expression {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(codeRegExp)
     if (!res) {
-      throw new MismatchStatementException('You try to compile as a type literal a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as a type literal a statement which is not one', this)
     }
 
     this.name = joinedCode.trim()
 
     if (!config.types.some(type => this.name === type)) {
-      throw new ForbiddenTypeLiteralException(`The type literal ${this.name} is forbidden. You may use the following types: ${config.types}.`, this)
+      throw new ForbiddenTypeLiteralException(`the type literal ${this.name} is forbidden. You may use the following types: ${config.types}`, this)
     }
   }
 

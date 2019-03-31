@@ -16,6 +16,8 @@ export default class IfStatement extends PrimaryStatement {
   constructor(line, column = 0) {
     super('IfStatement', line, column)
     this.condition = null
+    this.elseStatement = null
+    this.endIfStatement = null
   }
 
   static matchLine(line) {
@@ -26,11 +28,23 @@ export default class IfStatement extends PrimaryStatement {
     return codeRegExp.test(this.code.join(' '))
   }
 
+  setElseStatement(elseStatement) {
+    this.elseStatement = elseStatement
+  }
+
+  setEndIfStatement(endIfStatement) {
+    this.endIfStatement = endIfStatement
+
+    if (this.elseStatement) {
+      this.elseStatement.setEndIfStatement(endIfStatement)
+    }
+  }
+
   compile(config) {
     let joinedCode = this.code.join(' ')
     let groups = joinedCode.match(codeRegExp)
     if (!groups) {
-      throw new MismatchStatementException('You try to compile as a if statement a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as a if statement a statement which is not one', this)
     }
 
     let conditionStr = groups[1]

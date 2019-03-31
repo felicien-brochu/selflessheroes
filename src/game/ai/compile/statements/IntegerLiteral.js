@@ -15,7 +15,7 @@ export default class IntegerLiteral extends Expression {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(codeRegExp)
     if (!res) {
-      throw new MismatchStatementException('You try to compile as an integer literal a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as an integer literal a statement which is not one', this)
     }
 
     this.value = parseInt(res[1], 10)

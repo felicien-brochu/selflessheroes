@@ -9,7 +9,7 @@ export default class InvalidExpression extends Expression {
   }
 
   compile(config) {
-    throw new InvalidExpressionException('Invalid expression.', this)
+    throw new InvalidExpressionException('invalid expression.', this)
   }
 
   static isValid(code) {

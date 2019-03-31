@@ -9,7 +9,7 @@ export default class InvalidStatement extends Statement {
   }
 
   compile(config) {
-    throw new InvalidStatementException('Invalid statement.', this)
+    throw new InvalidStatementException('invalid statement', this)
   }
 
   isCodeComplete() {

@@ -9,7 +9,7 @@ export default class CompilerException extends Error {
   }
 
   format(message) {
-    return `at ${this.line}:${this.column} : ${message}\n"${this.code.join('\n')}"`
+    return `\nat ${this.line + 1}:${this.column + 1} : ${message}\n"${this.code.join('\n')}"`
   }
 }
 
@@ -24,6 +24,37 @@ export class InvalidStatementException extends StatementException {
     super('InvalidStatementException', message, statement)
   }
 }
+
+export class IfWithoutEndIfException extends StatementException {
+  constructor(message, statement) {
+    super('IfWithoutEndIfException', message, statement)
+  }
+}
+
+export class ElseWithoutIfException extends StatementException {
+  constructor(message, statement) {
+    super('ElseWithoutIfException', message, statement)
+  }
+}
+
+export class EndIfWithoutIfException extends StatementException {
+  constructor(message, statement) {
+    super('EndIfWithoutIfException', message, statement)
+  }
+}
+
+export class JumpToUnknownAnchorException extends StatementException {
+  constructor(message, statement) {
+    super('JumpToUnknownAnchorException', message, statement)
+  }
+}
+
+export class DuplicateAnchorException extends StatementException {
+  constructor(message, statement) {
+    super('JumpToUnknownAnchorException', message, statement)
+  }
+}
+
 
 export class MismatchStatementException extends StatementException {
   constructor(message, statement) {

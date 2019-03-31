@@ -16,14 +16,14 @@ export default class VariableIdentifier extends Expression {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(codeRegExp)
     if (!res) {
-      throw new MismatchStatementException('You try to compile as a variable a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as a variable a statement which is not one', this)
     }
 
     this.name = joinedCode.trim()
     let allowedNames = config.getAllowedVariableIdentifiers()
 
     if (!allowedNames.some(allowedName => allowedName === this.name)) {
-      throw new ForbiddenVariableIdentifierException(`The variable name ''${this.name}' is forbidden. You may choose between the following names: ${allowedNames}.`, this)
+      throw new ForbiddenVariableIdentifierException(`the variable name ''${this.name}' is forbidden. You may choose between the following names: ${allowedNames}`, this)
     }
   }
 

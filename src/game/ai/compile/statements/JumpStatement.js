@@ -10,6 +10,7 @@ export default class JumpStatement extends PrimaryStatement {
   constructor(line, column = 0) {
     super('JumpStatement', line, column)
     this.anchor = null
+    this.anchorStatement = null
   }
 
   static matchLine(line) {
@@ -20,11 +21,15 @@ export default class JumpStatement extends PrimaryStatement {
     return this.code.length >= 1
   }
 
+  setAnchorStatement(anchorStatement) {
+    this.anchorStatement = anchorStatement
+  }
+
   compile(config) {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(codeRegExp)
     if (!res) {
-      throw new MismatchStatementException('You try to compile as a jump statement a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as a jump statement a statement which is not one', this)
     }
 
     this.anchor = res[1]

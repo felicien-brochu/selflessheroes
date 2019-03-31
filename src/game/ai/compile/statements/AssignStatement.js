@@ -36,7 +36,7 @@ export default class AssignStatement extends PrimaryStatement {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(codeRegExp)
     if (!res) {
-      throw new MismatchStatementException('You try to compile as an assign statement a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as an assign statement a statement which is not one', this)
     }
 
     let operatorPosition = indexOfStringInLines(assignOperator, this.code)
@@ -52,7 +52,7 @@ export default class AssignStatement extends PrimaryStatement {
     this.variable = createUnitExpression(variableCode, [VariableIdentifier], this.line, this.column)
 
     if (this.variable.type === 'InvalidExpression') {
-      throw new InvalidVariableIdentifierException('This identifier is not a valid variable identifier', this.variable)
+      throw new InvalidVariableIdentifierException('this identifier is not a valid variable identifier', this.variable)
     }
 
     this.variable.compile(config)
@@ -61,7 +61,7 @@ export default class AssignStatement extends PrimaryStatement {
       this.line + operatorPosition.end.line, operatorPosition.end.column)
 
     if (this.value.type === 'InvalidExpression') {
-      throw new InvalidExpressionException('This identifier is neither a value function, an integer literal or a valid variable identifier', this.value)
+      throw new InvalidExpressionException('this identifier is neither a value function, an integer literal or a valid variable identifier', this.value)
     }
     this.value.compile(config)
   }

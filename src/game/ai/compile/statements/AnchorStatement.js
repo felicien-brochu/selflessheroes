@@ -24,7 +24,7 @@ export default class AnchorStatement extends PrimaryStatement {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(codeRegExp)
     if (!res) {
-      throw new MismatchStatementException('You try to compile as an anchor statement a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as an anchor statement a statement which is not one', this)
     }
 
     this.name = res[1]
