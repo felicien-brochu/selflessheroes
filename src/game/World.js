@@ -4,9 +4,9 @@ import Objective from './Objective'
 import RuleSet from './rules/RuleSet'
 
 export default class World {
-  constructor(config, aiCode) {
+  constructor(config, aiFactory) {
     this.config = config
-    this.aiCode = aiCode
+    this.aiFactory = aiFactory
 
     this.map = new Map(config)
     this.characters = []
@@ -53,7 +53,7 @@ export default class World {
   createObject(config, tileWidth, tileHeight) {
     switch (config.type) {
       case 'hero':
-        let hero = new Hero(config, this.aiCode, tileWidth, tileHeight, this)
+        let hero = new Hero(config, this.aiFactory, tileWidth, tileHeight, this)
         this.heros.push(hero)
         this.characters.push(hero)
         break;

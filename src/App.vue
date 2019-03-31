@@ -23,7 +23,7 @@ export default {
   },
   data: function() {
     return {
-      code: 'return {\n\ttype: "move",\n\tx: 1,\n\ty: 1\n}',
+      code: 'a1 = 30\n\t ',
       worldState: {},
       worldReady: false
     }

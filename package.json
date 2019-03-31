@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "codemirror": "^5.45.0",
+    "escape-string-regexp": "^1.0.5",
     "idiom.js": "^1.0.1",
     "phaser": "^3.16.0",
     "phaser3-rex-plugins": "git+https://git@github.com/rexrainbow/phaser3-rex-notes.git",

@@ -5,6 +5,7 @@ import AnimationBuilder from './AnimationBuilder'
 import WorldRunner from './WorldRunner'
 import Speeds from './Speeds'
 import World from '../game/World'
+import Compiler from '../game/ai/compile/Compiler'
 import HeroS from '../sprites/HeroS'
 import ObjectiveS from '../sprites/ObjectiveS'
 
@@ -14,18 +15,20 @@ export default class extends Phaser.Scene {
     super({
       key: 'GameScene'
     })
-    this.aiCode = null
+    this.aiCode = ''
     this.onSceneReady = null
     this.followHeroIndex = -1
     this.runner = new WorldRunner()
   }
 
   init(data) {
-    this.aiCode = null
+    this.aiCode = ''
     this.onSceneReady = null
 
     if (data) {
-      this.aiCode = data.aiCode
+      if (data.aiCode) {
+        this.aiCode = data.aiCode
+      }
       this.onSceneReady = data.onGameSceneReady
     }
   }
@@ -76,7 +79,9 @@ export default class extends Phaser.Scene {
   }
 
   createWorld() {
-    this.world = new World(this.mapConfig, this.aiCode)
+    let compiler = new Compiler(this.aiCode)
+    let aiFactory = compiler.compile()
+    this.world = new World(this.mapConfig, aiFactory)
     this.heros = []
     this.objectives = []
 

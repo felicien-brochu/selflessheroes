@@ -3,7 +3,7 @@ import {
   WaitAction
 } from '../CharacterAction'
 
-export default class UserAI extends AI {
+export default class JavascriptAI extends AI {
   constructor(world, character, code) {
     super(world, character)
 
