@@ -12,7 +12,7 @@ import InvalidStatement from './statements/InvalidStatement'
 export default class Compiler {
   constructor(code, config = CompilerConfig.getDefaultConfig()) {
     this.code = code
-    this.code = 'a:  \nb:\nstep(n)\na = dir(s)\n\t \n  if b == 3 &&\n\t 4 < \n\n3\n\t ||1>dir( n ):\nelse\n\na = 9\n\tstep(n, s)\n\njump c\n\nendif'
+    // this.code = 'a:  \nb:\nstep(n)\na = dir(s)\n\t \n  if b == 3 &&\n\t 4 < \n\n3\n\t ||1>dir( n ):\nelse\n\na = 9\n\tstep(n, s)\n\njump c\n\nendif'
     this.config = config
     this.statements = []
   }

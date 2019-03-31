@@ -29,7 +29,7 @@ export default class JumpStatement extends PrimaryStatement {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(codeRegExp)
     if (!res) {
-      throw new MismatchStatementException('you try to compile as a jump statement a statement which is not one', this)
+      throw new MismatchStatementException('jump statements must have a target anchor', this)
     }
 
     this.anchor = res[1]

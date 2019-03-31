@@ -1,7 +1,8 @@
 import PrimaryStatement from './PrimaryStatement'
 import {
   MismatchStatementException,
-  InvalidVariableIdentifierException
+  InvalidVariableIdentifierException,
+  InvalidExpressionException
 } from '../exceptions/CompilerException'
 import {
   indexOfStringInLines,
