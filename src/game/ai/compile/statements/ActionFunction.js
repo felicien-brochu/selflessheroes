@@ -7,9 +7,6 @@ import {
   InvalidFunctionParamsException
 } from '../CompilerException'
 
-const startLineRegExp = /^\s*((\w+)\s*\((.*)\))/
-const codeRegExp = /^\s*((\w+)\s*\((.*)\))\s*$/
-
 export const actionFunctions = [
   StepFunction
 ]
@@ -22,17 +19,13 @@ export default class ActionFunction extends PrimaryStatement {
     this.params = []
   }
 
-  static matchLine(line) {
-    return startLineRegExp.test(line)
-  }
-
   isCodeComplete() {
     return this.code.length >= 1
   }
 
   compile(config) {
     let joinedCode = this.code.join(' ')
-    let res = joinedCode.match(codeRegExp)
+    let res = joinedCode.match(ActionFunction.codeRegExp)
     if (!res) {
       throw new MismatchStatementException('you try to compile as a value function a statement which is not one', this)
     }
@@ -57,7 +50,15 @@ export default class ActionFunction extends PrimaryStatement {
     }
   }
 
-  static isValid(code) {
-    return codeRegExp.test(code.trim())
+  execute(context) {
+    return {
+      step: true,
+      complete: true,
+      goto: null,
+      action: null
+    }
   }
 }
+
+ActionFunction.startLineRegExp = /^\s*((\w+)\s*\((.*)\))/
+ActionFunction.codeRegExp = /^\s*((\w+)\s*\((.*)\))\s*$/

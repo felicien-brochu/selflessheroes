@@ -1,15 +1,9 @@
 import PrimaryStatement from './PrimaryStatement'
 
-const startLineRegExp = /^\s*$/
-
 export default class EmptyStatement extends PrimaryStatement {
 
   constructor(line, column = 0) {
     super('EmptyStatement', line, column)
-  }
-
-  static matchLine(line) {
-    return startLineRegExp.test(line)
   }
 
   isCodeComplete() {
@@ -17,4 +11,15 @@ export default class EmptyStatement extends PrimaryStatement {
   }
 
   compile(config) {}
+
+  execute(context) {
+    return {
+      step: false,
+      complete: true,
+      goto: null,
+      action: null
+    }
+  }
 }
+
+EmptyStatement.startLineRegExp = /^\s*$/

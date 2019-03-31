@@ -3,18 +3,12 @@ import {
   MismatchStatementException
 } from '../CompilerException'
 
-const startLineRegExp = /^\s*jump/
-const codeRegExp = /^\s*jump\s+(\w+)\s*$/
 export default class JumpStatement extends PrimaryStatement {
 
   constructor(line, column = 0) {
     super('JumpStatement', line, column)
     this.anchor = null
     this.anchorStatement = null
-  }
-
-  static matchLine(line) {
-    return startLineRegExp.test(line)
   }
 
   isCodeComplete() {
@@ -27,11 +21,23 @@ export default class JumpStatement extends PrimaryStatement {
 
   compile(config) {
     let joinedCode = this.code.join(' ')
-    let res = joinedCode.match(codeRegExp)
+    let res = joinedCode.match(JumpStatement.codeRegExp)
     if (!res) {
       throw new MismatchStatementException('jump statements must have a target anchor', this)
     }
 
     this.anchor = res[1]
   }
+
+  execute(context) {
+    return {
+      step: true,
+      complete: true,
+      goto: this.anchorStatement,
+      action: null
+    }
+  }
 }
+
+JumpStatement.startLineRegExp = /^\s*jump/
+JumpStatement.codeRegExp = /^\s*jump\s+(\w+)\s*$/

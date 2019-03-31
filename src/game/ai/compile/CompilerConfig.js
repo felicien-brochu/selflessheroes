@@ -11,7 +11,7 @@ import {
   typeWall,
   typeHole,
   typeHero
-} from './statements/TypeLiteral'
+} from './statements/ObjectTypeLiteral'
 
 
 export default class CompilerConfig {
@@ -35,7 +35,7 @@ export default class CompilerConfig {
 
     config.variables = 3
 
-    config.types = [
+    config.objectTypes = [
       typeEmpty,
       typeWall,
       typeHole,

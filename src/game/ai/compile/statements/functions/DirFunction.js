@@ -1,4 +1,6 @@
 import Function from './Function'
+import ExpressionTypes from '../ExpressionTypes'
+import ExpressionValue from '../ExpressionValue'
 
 const identifier = 'dir'
 
@@ -21,15 +23,14 @@ export default class DirFunction extends Function {
 
   static checkParams(params, config) {
     return params.length === 1 && allowedParams.indexOf(params[0]) >= 0
-    // For step
-    // return params.every(param => allowedParams.indexOf(param) >= 0)
   }
 
   static getReturnType() {
-    throw new Error('NOOP')
+    return ExpressionTypes.composite
   }
 
-  static call(hero, world, params) {
-    throw new Error('NOOP')
+  static call(context, params) {
+    // TODO: dir function
+    return ExpressionValue.composite([])
   }
 }

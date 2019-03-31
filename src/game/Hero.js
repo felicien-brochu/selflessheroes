@@ -11,9 +11,9 @@ export default class Hero extends Character {
     super(config, tileWidth, tileHeight)
 
     if (aiFactory) {
-      this.ai = aiFactory.buildAI()
+      this.ai = aiFactory.buildAI(world, this)
     } else {
-      this.ai = new ObjectiveFinderAI(world, this)
+      this.ai = new IdleAI(world, this)
     }
   }
 

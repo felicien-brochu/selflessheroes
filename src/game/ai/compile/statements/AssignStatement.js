@@ -14,8 +14,6 @@ import ValueFunction from './ValueFunction'
 import IntegerLiteral from './IntegerLiteral'
 import InvalidExpression from './InvalidExpression'
 
-const startLineRegExp = /^\s*(\w+)\s*=\s*(.+)\s*$/
-const codeRegExp = /^\s*(\w+)\s*=\s*(.+)\s*$/
 const assignOperator = '='
 
 export default class AssignStatement extends PrimaryStatement {
@@ -23,19 +21,16 @@ export default class AssignStatement extends PrimaryStatement {
     super('AssignStatement', line, column)
 
     this.variable = null
-  }
-
-  static matchLine(line) {
-    return startLineRegExp.test(line)
+    this.value = null
   }
 
   isCodeComplete() {
-    return codeRegExp.test(this.code.join(' '))
+    return AssignStatement.codeRegExp.test(this.code.join(' '))
   }
 
   compile(config) {
     let joinedCode = this.code.join(' ')
-    let res = joinedCode.match(codeRegExp)
+    let res = joinedCode.match(AssignStatement.codeRegExp)
     if (!res) {
       throw new MismatchStatementException('you try to compile as an assign statement a statement which is not one', this)
     }
@@ -66,4 +61,17 @@ export default class AssignStatement extends PrimaryStatement {
     }
     this.value.compile(config)
   }
+
+  execute(context) {
+    context.variables[this.variable.name] = this.value.computeValue(context)
+    return {
+      step: true,
+      complete: true,
+      goto: null,
+      action: null
+    }
+  }
 }
+
+AssignStatement.startLineRegExp = /^\s*(\w+)\s*=\s*(.+)\s*$/
+AssignStatement.codeRegExp = /^\s*(\w+)\s*=\s*(.+)\s*$/

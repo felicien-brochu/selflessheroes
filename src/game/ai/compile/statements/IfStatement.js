@@ -8,10 +8,6 @@ import {
   indexOfStringInLines
 } from '../utils'
 
-const startLineRegExpStr = '^\\s*if\\s+.*$'
-const startLineRegExp = /^\s*if/
-const codeRegExp = /^\s*if\s+(.+)\s*:\s*$/
-
 export default class IfStatement extends PrimaryStatement {
   constructor(line, column = 0) {
     super('IfStatement', line, column)
@@ -20,12 +16,8 @@ export default class IfStatement extends PrimaryStatement {
     this.endIfStatement = null
   }
 
-  static matchLine(line) {
-    return startLineRegExp.test(line)
-  }
-
   isCodeComplete() {
-    return codeRegExp.test(this.code.join(' '))
+    return IfStatement.codeRegExp.test(this.code.join(' '))
   }
 
   setElseStatement(elseStatement) {
@@ -42,7 +34,7 @@ export default class IfStatement extends PrimaryStatement {
 
   compile(config) {
     let joinedCode = this.code.join(' ')
-    let groups = joinedCode.match(codeRegExp)
+    let groups = joinedCode.match(IfStatement.codeRegExp)
     if (!groups) {
       throw new MismatchStatementException('you try to compile as a if statement a statement which is not one', this)
     }
@@ -64,4 +56,20 @@ export default class IfStatement extends PrimaryStatement {
 
     this.condition.compile(config)
   }
+
+  execute(context) {
+    let goto = null
+    if (!this.condition.computeValue(context).value) {
+      goto = this.elseStatement ? this.elseStatement : this.endIfStatement
+    }
+    return {
+      step: true,
+      complete: true,
+      goto: goto,
+      action: null
+    }
+  }
 }
+
+IfStatement.codeRegExp = /^\s*if\s+(.+)\s*:\s*$/
+IfStatement.startLineRegExp = /^\s*if/

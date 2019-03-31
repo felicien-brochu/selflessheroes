@@ -1,9 +1,11 @@
 import Expression from './Expression'
-import TypeLiteral from './TypeLiteral'
+import ObjectTypeLiteral from './ObjectTypeLiteral'
 import IntegerLiteral from './IntegerLiteral'
 import VariableIdentifier from './VariableIdentifier'
 import ValueFunction from './ValueFunction'
 import InvalidExpression from './InvalidExpression'
+import ExpressionTypes from './ExpressionTypes'
+import ExpressionValue from './ExpressionValue'
 import {
   InvalidBooleanExpressionException
 } from '../CompilerException'
@@ -38,7 +40,7 @@ const compOperators = [
 ]
 
 const unitExpressions = [
-  TypeLiteral,
+  ObjectTypeLiteral,
   IntegerLiteral,
   VariableIdentifier,
   ValueFunction
@@ -125,5 +127,74 @@ export default class BooleanExpression extends Expression {
 
     this.expression1 = createUnitExpression(expression1Code, unitExpressions, this.line, this.column)
     this.expression2 = createUnitExpression(expression2Code, unitExpressions, this.line + operatorPosition.end.line, operatorPosition.end.column)
+  }
+
+  computeValue(context) {
+    if (this.composite) {
+      return this.computeCompositeValue(context)
+    } else {
+      return this.computeSingleValue(context)
+    }
+  }
+
+  computeCompositeValue(context) {
+    let value1 = this.expression1.computeValue(context)
+    let value2 = this.expression2.computeValue(context)
+    let value
+    if (this.operator === andOperator) {
+      value = value1 && value2
+    } else {
+      value = value1 || value2
+    }
+
+    return ExpressionValue.boolean(value)
+  }
+
+  computeSingleValue(context) {
+    let value1 = this.expression1.computeValue(context)
+    let value2 = this.expression2.computeValue(context)
+    let value = false
+
+    if (this.operator === eqOperator) {
+      value = this.computeEqual(value1, value2)
+    } else if (this.operator === neOperator) {
+      value = !this.computeEqual(value1, value2)
+    } else
+    if (value1.hasIntegerValue() && value2.hasIntegerValue()) {
+      if (this.operator === ltOperator) {
+        value = value1.value < value2.value
+      } else if (this.operator === leOperator) {
+        value = value1.value <= value2.value
+      } else if (this.operator === gtOperator) {
+        value = value1.value > value2.value
+      } else if (this.operator === geOperator) {
+        value = value1.value >= value2.value
+      }
+    }
+
+    return ExpressionValue.boolean(value)
+  }
+
+  computeEqual(value1, value2) {
+    if (value1.hasBooleanValue() && value2.hasBooleanValue()) {
+      return value1.getFirstBooleanValue() === value2.getFirstBooleanValue()
+    } else if (value1.hasIntegerValue() && value2.hasIntegerValue()) {
+      return value1.getFirstIntegerValue() === value2.getFirstIntegerValue()
+    } else if (value1.hasObjectTypeValue() && value2.hasObjectTypeValue()) {
+      if (value1.type === ExpressionTypes.objectType) {
+        if (value2.type === ExpressionTypes.objectType) {
+          return value1.value === value2.value
+        } else if (value2.type === ExpressionTypes.composite) {
+          return value2.value.some(val => value1.value === val)
+        }
+      } else if (value1.type === ExpressionTypes.composite) {
+        if (value2.type === ExpressionTypes.objectType) {
+          return value1.value.some(val => value2.value === val)
+        } else if (value2.type === ExpressionTypes.composite) {
+          return value1.value.some(val => value2.value.some(v => v === val))
+        }
+      }
+    }
+    return false
   }
 }

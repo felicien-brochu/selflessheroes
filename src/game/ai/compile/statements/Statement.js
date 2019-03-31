@@ -6,6 +6,14 @@ export default class Statement {
     this.code = []
   }
 
+  static get codeRegExp() {
+    return this.hasOwnProperty('_codeRegExp') ? this._codeRegExp : undefined
+  }
+
+  static set codeRegExp(regexp) {
+    this._codeRegExp = regexp
+  }
+
   pushLine(line) {
     this.code.push(line)
   }
@@ -15,6 +23,10 @@ export default class Statement {
   }
 
   compile(config) {
-    throw new Error('Needs subclass implementation.')
+    throw new Error('Needs subclass implementation')
+  }
+
+  static isValid(code) {
+    return this.codeRegExp.test(code.trim())
   }
 }

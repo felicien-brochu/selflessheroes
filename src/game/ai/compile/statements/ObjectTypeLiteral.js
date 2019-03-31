@@ -1,4 +1,5 @@
 import Expression from './Expression'
+import ExpressionValue from './ExpressionValue'
 import {
   MismatchStatementException
 } from '../CompilerException'
@@ -14,30 +15,35 @@ export const types = [
   typeHole,
   typeHero
 ]
-const codeRegExp = /^\s*(\w+)\s*$/
 
-export default class TypeLiteral extends Expression {
+export default class ObjectTypeLiteral extends Expression {
   constructor(line, column) {
-    super('TypeLiteral', line, column)
+    super('ObjectTypeLiteral', line, column)
     this.name = null
   }
 
   compile(config) {
     let joinedCode = this.code.join(' ')
-    let res = joinedCode.match(codeRegExp)
+    let res = joinedCode.match(ObjectTypeLiteral.codeRegExp)
     if (!res) {
       throw new MismatchStatementException('you try to compile as a type literal a statement which is not one', this)
     }
 
     this.name = joinedCode.trim()
 
-    if (!config.types.some(type => this.name === type)) {
-      throw new ForbiddenTypeLiteralException(`the type literal ${this.name} is forbidden. You may use the following types: ${config.types}`, this)
+    if (!config.objectTypes.some(type => this.name === type)) {
+      throw new ForbiddenObjectTypeLiteralException(`the type literal ${this.name} is forbidden. You may use the following object types: ${config.objectTypes}`, this)
     }
   }
 
   static isValid(code) {
     let name = code.trim()
-    return !!name.match(codeRegExp) && types.some(type => name === type)
+    return !!name.match(ObjectTypeLiteral.codeRegExp) && types.some(type => name === type)
+  }
+
+  computeValue(context) {
+    return ExpressionValue.objectType(this.name)
   }
 }
+
+ObjectTypeLiteral.codeRegExp = /^\s*(\w+)\s*$/

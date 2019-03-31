@@ -11,7 +11,7 @@ export default class Function {
     throw new Error('Needs subclass implementation.')
   }
 
-  static call(hero, world, params) {
+  static call(params, context) {
     throw new Error('Needs subclass implementation.')
   }
 }

@@ -5,6 +5,6 @@ export default class AI {
   }
 
   step() {
-    return null
+    throw new Error('Needs subclass implementation')
   }
 }

@@ -7,8 +7,6 @@ import {
   InvalidFunctionParamsException
 } from '../CompilerException'
 
-const codeRegExp = /^\s*((\w+)\s*\((.*)\))\s*$/
-
 export const valueFunctions = [
   DirFunction
 ]
@@ -23,7 +21,7 @@ export default class ValueFunction extends Expression {
 
   compile(config) {
     let joinedCode = this.code.join(' ')
-    let res = joinedCode.match(codeRegExp)
+    let res = joinedCode.match(ValueFunction.codeRegExp)
     if (!res) {
       throw new MismatchStatementException('you try to compile as a value function a statement which is not one', this)
     }
@@ -48,7 +46,9 @@ export default class ValueFunction extends Expression {
     }
   }
 
-  static isValid(code) {
-    return codeRegExp.test(code.trim())
+  computeValue(context) {
+    return this.func.call(this.params, context)
   }
 }
+
+ValueFunction.codeRegExp = /^\s*((\w+)\s*\((.*)\))\s*$/

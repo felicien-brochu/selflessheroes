@@ -3,17 +3,11 @@ import {
   MismatchStatementException
 } from '../CompilerException'
 
-const startLineRegExp = /^\s*(\w+)\s*:/
-const codeRegExp = /^\s*(\w+)\s*:\s*$/
 export default class AnchorStatement extends PrimaryStatement {
 
   constructor(line, column = 0) {
     super('AnchorStatement', line, column)
     this.name = null
-  }
-
-  static matchLine(line) {
-    return startLineRegExp.test(line)
   }
 
   isCodeComplete() {
@@ -22,11 +16,23 @@ export default class AnchorStatement extends PrimaryStatement {
 
   compile(config) {
     let joinedCode = this.code.join(' ')
-    let res = joinedCode.match(codeRegExp)
+    let res = joinedCode.match(AnchorStatement.codeRegExp)
     if (!res) {
       throw new MismatchStatementException('you try to compile as an anchor statement a statement which is not one', this)
     }
 
     this.name = res[1]
   }
+
+  execute(context) {
+    return {
+      step: false,
+      complete: true,
+      goto: null,
+      action: null
+    }
+  }
 }
+
+AnchorStatement.startLineRegExp = /^\s*(\w+)\s*:/
+AnchorStatement.codeRegExp = /^\s*(\w+)\s*:\s*$/

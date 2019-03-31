@@ -4,8 +4,6 @@ import {
   ForbiddenVariableIdentifierException
 } from '../CompilerException'
 
-const codeRegExp = /^\s*([a-z])\s*$/
-
 export default class VariableIdentifier extends Expression {
   constructor(line, column) {
     super('VariableIdentifier', line, column)
@@ -14,7 +12,7 @@ export default class VariableIdentifier extends Expression {
 
   compile(config) {
     let joinedCode = this.code.join(' ')
-    let res = joinedCode.match(codeRegExp)
+    let res = joinedCode.match(VariableIdentifier.codeRegExp)
     if (!res) {
       throw new MismatchStatementException('you try to compile as a variable a statement which is not one', this)
     }
@@ -27,8 +25,9 @@ export default class VariableIdentifier extends Expression {
     }
   }
 
-  static isValid(code) {
-    let name = code.trim()
-    return codeRegExp.test(name)
+  computeValue(context) {
+    return context.variables[this.name]
   }
 }
+
+VariableIdentifier.codeRegExp = /^\s*([a-z])\s*$/

@@ -74,9 +74,9 @@ export class ForbiddenValueFunctionException extends StatementException {
   }
 }
 
-export class ForbiddenTypeLiteralException extends StatementException {
+export class ForbiddenObjectTypeLiteralException extends StatementException {
   constructor(message, statement) {
-    super('ForbiddenTypeLiteralException', message, statement)
+    super('ForbiddenObjectTypeLiteralException', message, statement)
   }
 }
 

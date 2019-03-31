@@ -1,9 +1,12 @@
-import IdleAI from '../IdleAI'
+import CustomAI from './CustomAI'
 
 export default class AIFactory {
-  constructor() {}
+  constructor(statements, compilerConfig) {
+    this.statements = statements
+    this.compilerConfig = compilerConfig
+  }
 
-  buildAI() {
-    return new IdleAI()
+  buildAI(world, character) {
+    return new CustomAI(this.statements, this.compilerConfig, world, character)
   }
 }

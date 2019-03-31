@@ -69,12 +69,14 @@ export default class World {
       for (var i = 0; i < this.heros.length; i++) {
         let hero = this.heros[i]
         let action = hero.step()
-        if (action.type === 'move' && !this.collideWall(hero, action)) {
-          hero.move(action.x, action.y)
+        if (action) {
+          if (action.type === 'move' && !this.collideWall(hero, action)) {
+            hero.move(action.x, action.y)
 
-          for (let objective of this.objectives) {
-            if (hero.overlaps(objective)) {
-              objective.enable()
+            for (let objective of this.objectives) {
+              if (hero.overlaps(objective)) {
+                objective.enable()
+              }
             }
           }
         }
