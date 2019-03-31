@@ -2,7 +2,7 @@ import Expression from './Expression'
 import {
   MismatchStatementException,
   ForbiddenVariableIdentifierException
-} from '../exceptions/CompilerException'
+} from '../CompilerException'
 
 const codeRegExp = /^\s*([a-z])\s*$/
 

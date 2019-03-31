@@ -6,7 +6,7 @@ import ValueFunction from './ValueFunction'
 import InvalidExpression from './InvalidExpression'
 import {
   InvalidBooleanExpressionException
-} from '../exceptions/CompilerException'
+} from '../CompilerException'
 
 import {
   indexOfStringInLines,

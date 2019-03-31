@@ -1,7 +1,7 @@
 import PrimaryStatement from './PrimaryStatement'
 import {
   MismatchStatementException
-} from '../exceptions/CompilerException'
+} from '../CompilerException'
 
 const startLineRegExp = /^\s*jump/
 const codeRegExp = /^\s*jump\s+(\w+)\s*$/

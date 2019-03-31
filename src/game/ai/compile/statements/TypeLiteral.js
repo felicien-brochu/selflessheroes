@@ -1,7 +1,7 @@
 import Expression from './Expression'
 import {
   MismatchStatementException
-} from '../exceptions/CompilerException'
+} from '../CompilerException'
 
 export const typeEmpty = 'empty'
 export const typeWall = 'wall'

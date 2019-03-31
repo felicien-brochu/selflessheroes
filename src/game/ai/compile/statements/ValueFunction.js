@@ -5,7 +5,7 @@ import {
   ForbiddenValueFunctionException,
   UnknownFunctionException,
   InvalidFunctionParamsException
-} from '../exceptions/CompilerException'
+} from '../CompilerException'
 
 const codeRegExp = /^\s*((\w+)\s*\((.*)\))\s*$/
 

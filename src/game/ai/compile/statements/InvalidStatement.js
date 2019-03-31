@@ -1,7 +1,7 @@
 import Statement from './Statement'
 import {
   InvalidStatementException
-} from '../exceptions/CompilerException'
+} from '../CompilerException'
 
 export default class InvalidStatement extends Statement {
   constructor(line, column) {

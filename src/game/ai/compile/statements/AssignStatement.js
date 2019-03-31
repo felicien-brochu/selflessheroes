@@ -3,7 +3,7 @@ import {
   MismatchStatementException,
   InvalidVariableIdentifierException,
   InvalidExpressionException
-} from '../exceptions/CompilerException'
+} from '../CompilerException'
 import {
   indexOfStringInLines,
   createUnitExpression

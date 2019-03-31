@@ -6,7 +6,7 @@ import {
   EndIfWithoutIfException,
   DuplicateAnchorException,
   JumpToUnknownAnchorException
-} from './exceptions/CompilerException'
+} from './CompilerException'
 import InvalidStatement from './statements/InvalidStatement'
 
 export default class Compiler {

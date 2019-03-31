@@ -1,7 +1,7 @@
 import Expression from './Expression'
 import {
   InvalidExpressionException
-} from '../exceptions/CompilerException'
+} from '../CompilerException'
 
 export default class InvalidExpression extends Expression {
   constructor(line, column) {
@@ -9,7 +9,7 @@ export default class InvalidExpression extends Expression {
   }
 
   compile(config) {
-    throw new InvalidExpressionException('invalid expression.', this)
+    throw new InvalidExpressionException('invalid expression', this)
   }
 
   static isValid(code) {

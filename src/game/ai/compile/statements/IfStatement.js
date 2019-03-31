@@ -2,7 +2,7 @@ import PrimaryStatement from './PrimaryStatement'
 import BooleanExpression from './BooleanExpression'
 import {
   MismatchStatementException
-} from '../exceptions/CompilerException'
+} from '../CompilerException'
 
 import {
   indexOfStringInLines
