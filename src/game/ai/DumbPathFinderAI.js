@@ -1,8 +1,7 @@
 import AI from './AI'
 import Character from '../Character'
-import {
-  MoveAction
-} from '../CharacterAction'
+import StepAction from '../actions/StepAction'
+import Direction from '../Direction'
 
 export default class DumbPathFinderAI extends AI {
   constructor(world, character, x, y) {
@@ -14,15 +13,15 @@ export default class DumbPathFinderAI extends AI {
   }
 
   step() {
-    let action
+    let direction
     if (this.pathIndex < this.path.length - 1) {
-      action = new MoveAction(this.path[this.pathIndex + 1][0] - this.character.x, this.path[this.pathIndex + 1][1] - this.character.y)
+      direction = new Direction(this.path[this.pathIndex + 1][0] - this.character.x, this.path[this.pathIndex + 1][1] - this.character.y)
       this.pathIndex++
     } else {
       let r = Math.random()
-      action = r > 0.75 ? new MoveAction(0, 1) : r > 0.5 ? new MoveAction(1, 0) : r > 0.25 ? new MoveAction(0, -1) : new MoveAction(-1, 0)
+      direction = r > 0.75 ? Direction.n : r > 0.5 ? Direction.e : r > 0.25 ? Direction.s : Direction.w
     }
-    return action
+    return new StepAction(direction)
   }
 
   buildPath() {
@@ -32,7 +31,7 @@ export default class DumbPathFinderAI extends AI {
     for (var i = 0; i < this.world.map.height; i++) {
       let row = []
       for (var j = 0; j < this.world.map.width; j++) {
-        row.push(this.world.map.isInside(j, i))
+        row.push(this.world.map.isFloor(j, i))
       }
       this.map.push(row)
     }

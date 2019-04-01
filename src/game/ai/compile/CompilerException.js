@@ -74,9 +74,21 @@ export class ForbiddenValueFunctionException extends StatementException {
   }
 }
 
+export class ForbiddenActionFunctionException extends StatementException {
+  constructor(message, statement) {
+    super('ForbiddenActionFunctionException', message, statement)
+  }
+}
+
 export class ForbiddenObjectTypeLiteralException extends StatementException {
   constructor(message, statement) {
     super('ForbiddenObjectTypeLiteralException', message, statement)
+  }
+}
+
+export class ForbiddenTerrainTypeLiteralException extends StatementException {
+  constructor(message, statement) {
+    super('ForbiddenTerrainTypeLiteralException', message, statement)
   }
 }
 
@@ -107,5 +119,11 @@ export class UnknownFunctionException extends StatementException {
 export class InvalidFunctionParamsException extends StatementException {
   constructor(message, statement) {
     super('InvalidFunctionParamsException', message, statement)
+  }
+}
+
+export class InvalidNumberOfParamsException extends StatementException {
+  constructor(message, statement) {
+    super('InvalidNumberOfParamsException', message, statement)
   }
 }

@@ -47,6 +47,22 @@ export default class ExpressionValue {
     return this.getFirstValueType(ExpressionTypes.objectType)
   }
 
+  hasTerrainTypeValue() {
+    return this.hasValueType(ExpressionTypes.terrainType)
+  }
+
+  getFirstTerrainTypeValue() {
+    return this.getFirstValueType(ExpressionTypes.terrainType)
+  }
+
+  hasDirectionValue() {
+    return this.hasValueType(ExpressionTypes.direction)
+  }
+
+  getFirstDirectionValue() {
+    return this.getFirstValueType(ExpressionTypes.direction)
+  }
+
   static boolean(value) {
     return new ExpressionValue(ExpressionTypes.boolean, value)
   }
@@ -57,6 +73,14 @@ export default class ExpressionValue {
 
   static objectType(value) {
     return new ExpressionValue(ExpressionTypes.objectType, value)
+  }
+
+  static terrainType(value) {
+    return new ExpressionValue(ExpressionTypes.terrainType, value)
+  }
+
+  static direction(value) {
+    return new ExpressionValue(ExpressionTypes.direction, value)
   }
 
   static composite(value) {

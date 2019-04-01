@@ -1,22 +1,21 @@
 import Expression from './Expression'
-import DirFunction from './functions/DirFunction'
 import {
   MismatchStatementException,
   ForbiddenValueFunctionException,
   UnknownFunctionException,
   InvalidFunctionParamsException
 } from '../CompilerException'
-
-export const valueFunctions = [
-  DirFunction
-]
+import {
+  splitCode,
+  subCode,
+  indexOfStringInLines
+} from '../utils'
 
 export default class ValueFunction extends Expression {
-  constructor(line, column) {
-    super('ValueFunction', line, column)
-    this.func = null
-    this.identifier = null
+  constructor(type, identifier, line, column) {
+    super(type, line, column)
     this.params = []
+    this.identifier = identifier
   }
 
   compile(config) {
@@ -27,27 +26,9 @@ export default class ValueFunction extends Expression {
     }
 
     let allowedTypes = config.valueFunctions
-    this.identifier = res[2]
-
     if (!allowedTypes.some(allowedType => allowedType === this.identifier)) {
       throw new ForbiddenValueFunctionException(`the function ${this.identifier} is forbidden. You may use the following functions: ${allowedTypes}`, this)
     }
-
-    this.func = valueFunctions.find(funcClass => funcClass.getIdentifier() === this.identifier)
-    if (!this.func) {
-      throw new UnknownFunctionException(`the function '${this.identifier}()' is unknown. You may use the following functions: ${allowedTypes}`, this)
-    }
-
-    let params = res[3].split(',')
-    this.params = params.map(param => param.trim())
-
-    if (!this.func.checkParams(this.params, config)) {
-      throw new InvalidFunctionParamsException(`the function '${this.identifier}()' does not accept this kind of parameters: ${this.params}`, this)
-    }
-  }
-
-  computeValue(context) {
-    return this.func.call(this.params, context)
   }
 }
 

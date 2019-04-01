@@ -70,8 +70,8 @@ export default class World {
         let hero = this.heros[i]
         let action = hero.step()
         if (action) {
-          if (action.type === 'move' && !this.collideWall(hero, action)) {
-            hero.move(action.x, action.y)
+          if (action.type === 'StepAction' && !this.collideWall(hero, action.direction)) {
+            hero.move(action.direction)
 
             for (let objective of this.objectives) {
               if (hero.overlaps(objective)) {
@@ -93,8 +93,16 @@ export default class World {
     }
   }
 
-  collideWall(character, action) {
-    return this.map.isOutside(character.x + action.x, character.y + action.y)
+  collideWall(character, direction) {
+    return this.map.isWall(character.x + direction.dx, character.y + direction.dy)
+  }
+
+  getWorldObjectsAt(x, y) {
+    return this.getWorldObjects().filter(o => o.x === x && o.y === y)
+  }
+
+  getWorldObjects() {
+    return [].concat(this.heros).concat(this.objectives)
   }
 
   declareWin() {

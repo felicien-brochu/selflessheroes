@@ -6,12 +6,9 @@ import EndIfStatement from './statements/EndIfStatement'
 import ActionFunction from './statements/ActionFunction'
 import JumpStatement from './statements/JumpStatement'
 import AnchorStatement from './statements/AnchorStatement'
-import {
-  typeEmpty,
-  typeWall,
-  typeHole,
-  typeHero
-} from './statements/ObjectTypeLiteral'
+import ActionFunctions from './statements/ActionFunctions'
+import ObjectType from '../../ObjectType'
+import TerrainType from '../../TerrainType'
 
 
 export default class CompilerConfig {
@@ -28,25 +25,20 @@ export default class CompilerConfig {
       IfStatement,
       ElseStatement,
       EndIfStatement,
-      ActionFunction,
       JumpStatement,
       AnchorStatement
     ]
 
     config.variables = 3
 
-    config.objectTypes = [
-      typeEmpty,
-      typeWall,
-      typeHole,
-      typeHero
-    ]
+    config.objectTypes = Object.keys(ObjectType)
+    config.terrainTypes = Object.keys(TerrainType)
 
     config.valueFunctions = [
       'dir'
     ]
 
-    config.actions = [
+    config.actionFunctions = [
       'step'
     ]
 
@@ -59,5 +51,9 @@ export default class CompilerConfig {
       names.push(String.fromCharCode(0x61 + i))
     }
     return names
+  }
+
+  getPrimaryStatements() {
+    return this.statements.concat(this.actionFunctions.map(key => ActionFunctions[key]))
   }
 }

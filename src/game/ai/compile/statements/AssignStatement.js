@@ -10,7 +10,7 @@ import {
 } from '../utils'
 
 import VariableIdentifier from './VariableIdentifier'
-import ValueFunction from './ValueFunction'
+import ValueFunctions from './ValueFunctions'
 import IntegerLiteral from './IntegerLiteral'
 import InvalidExpression from './InvalidExpression'
 
@@ -53,7 +53,7 @@ export default class AssignStatement extends PrimaryStatement {
 
     this.variable.compile(config)
 
-    this.value = createUnitExpression(valueCode, [ValueFunction, IntegerLiteral, VariableIdentifier],
+    this.value = createUnitExpression(valueCode, [IntegerLiteral, VariableIdentifier, ...Object.values(ValueFunctions)],
       this.line + operatorPosition.end.line, operatorPosition.end.column)
 
     if (this.value.type === 'InvalidExpression') {

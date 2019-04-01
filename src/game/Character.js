@@ -8,11 +8,11 @@ export default class Character extends WorldObject {
   }
 
   step() {
-
+    throw new Error('Needs subclass implementation')
   }
 
-  move(x, y) {
-    this.x += x
-    this.y += y
+  move(direction) {
+    this.x += direction.dx
+    this.y += direction.dy
   }
 }

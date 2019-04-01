@@ -1,36 +1,64 @@
-import Function from './Function'
-import ExpressionTypes from '../ExpressionTypes'
+import ValueFunction from '../ValueFunction'
 import ExpressionValue from '../ExpressionValue'
+import DirectionLiteral from '../DirectionLiteral'
+import Direction from '../../../../Direction'
+import {
+  MismatchStatementException,
+  InvalidNumberOfParamsException,
+  InvalidFunctionParamsException
+} from '../../CompilerException'
+import {
+  createUnitExpression,
+  extractParams
+} from '../../utils'
 
-const identifier = 'dir'
-
-const allowedParams = [
-  'hr', // Here
-  'n', // North
-  'ne', // North East
-  'e', // East
-  'se', // South East
-  's', // South
-  'sw', // South West
-  'w', // West
-  'nw' // North West
-]
-
-export default class DirFunction extends Function {
-  static getIdentifier() {
-    return identifier
+export default class DirFunction extends ValueFunction {
+  constructor(line, column) {
+    super('DirFunction', 'dir', line, column)
   }
 
-  static checkParams(params, config) {
-    return params.length === 1 && allowedParams.indexOf(params[0]) >= 0
+  compile(config) {
+    super.compile(config)
+
+    let joinedCode = this.code.join(' ')
+    let res = joinedCode.match(DirFunction.codeRegExp)
+    if (!res) {
+      throw new MismatchStatementException('you try to compile as a dir function a statement which is not one', this)
+    }
+
+    let paramsJoinedCode = res[2]
+    let params = extractParams(paramsJoinedCode, this.code, this.line, this.column)
+
+    if (params.length !== 1) {
+      throw new InvalidNumberOfParamsException('\'dir\' function requires exactly 1 parameter', this)
+    }
+    params.forEach((param, index) => this.compileParam(param, index, config))
   }
 
-  static getReturnType() {
-    return ExpressionTypes.composite
+  compileParam(paramCode, index, config) {
+    let param = createUnitExpression(paramCode.code, [DirectionLiteral], paramCode.line, paramCode.column)
+    this.params.push(param)
+
+    if (param.type === 'InvalidExpression') {
+      throw new InvalidFunctionParamsException(`the function 'dir()' only accept one direction literal as parameter`, param)
+    }
+    param.compile(config)
   }
 
-  static call(context, params) {
-    // TODO: dir function
-    return ExpressionValue.composite([])
+  computeValue(context) {
+    let res = []
+    let direction = this.params[0].computeValue(context).value
+    let x = context.character.x + direction.dx
+    let y = context.character.y + direction.dy
+
+    let terrainType = context.world.map.getTerrainTypeAt(x, y)
+    res.push(ExpressionValue.terrainType(terrainType))
+
+    let worldObjects = context.world.getWorldObjectsAt(x, y)
+    worldObjects.forEach(obj => res.push(ExpressionValue.objectType(obj.getObjectType())))
+
+    return ExpressionValue.composite(res)
   }
 }
+
+DirFunction.codeRegExp = /^\s*(dir\s*\((.*)\))\s*$/

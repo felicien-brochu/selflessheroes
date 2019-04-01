@@ -1,9 +1,8 @@
 import AI from './AI'
 import Character from '../Character'
-import {
-  MoveAction,
-  WaitAction
-} from '../CharacterAction'
+import StepAction from '../actions/StepAction'
+import WaitAction from '../actions/WaitAction'
+import Direction from '../Direction'
 
 export default class PathFinderAI extends AI {
   constructor(world, character, x, y) {
@@ -17,7 +16,7 @@ export default class PathFinderAI extends AI {
   step() {
     let action
     if (this.pathIndex < this.path.length - 1) {
-      action = new MoveAction(this.path[this.pathIndex + 1][0] - this.character.x, this.path[this.pathIndex + 1][1] - this.character.y)
+      action = new StepAction(new Direction(this.path[this.pathIndex + 1][0] - this.character.x, this.path[this.pathIndex + 1][1] - this.character.y))
       this.pathIndex++
     } else {
       action = new WaitAction()
@@ -33,7 +32,7 @@ export default class PathFinderAI extends AI {
     for (var i = 0; i < this.world.map.height; i++) {
       let row = []
       for (var j = 0; j < this.world.map.width; j++) {
-        row.push(this.world.map.isInside(j, i) ? 1000000000 : 0)
+        row.push(this.world.map.isFloor(j, i) ? 1000000000 : 0)
       }
       this.map.push(row)
     }

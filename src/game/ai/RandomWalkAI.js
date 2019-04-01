@@ -1,7 +1,6 @@
 import AI from './AI'
-import {
-  MoveAction
-} from '../CharacterAction'
+import StepAction from '../actions/StepAction'
+import Direction from '../Direction'
 
 export default class RandomWalkAI extends AI {
   constructor(world, character) {
@@ -10,7 +9,8 @@ export default class RandomWalkAI extends AI {
 
   step() {
     let r = Math.random()
-    return r > 0.75 ? new MoveAction(0, 1) : r > 0.5 ? new MoveAction(1, 0) : r > 0.25 ? new MoveAction(0, -1) : new MoveAction(-1, 0)
+    let dir = r > 0.75 ? Direction.n : r > 0.5 ? Direction.e : r > 0.25 ? Direction.s : Direction.w
+    return new StepAction(dir)
   }
 
 }

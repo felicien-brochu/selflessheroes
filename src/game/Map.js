@@ -1,3 +1,5 @@
+import TerrainType from './TerrainType'
+
 export default class Map {
   constructor(config) {
     this.config = config
@@ -17,38 +19,46 @@ export default class Map {
     }
 
     if (!pathLayer) {
-      throw new Error("path layer is missing from the map object: " + JSON.stringify(config))
+      throw new Error("path layer is missing from the map object: " + JSON.stringify(this.config))
     }
 
-    let floorTile = -1,
-      outsideTile = -1
+    let terrains = {}
 
     for (let terrain of this.config.tilesets[0].terrains) {
-      if (terrain.name === 'floor') {
-        floorTile = terrain.tile + 1
-      } else if (terrain.name === 'outside') {
-        outsideTile = terrain.tile + 1
+      let type = TerrainType[terrain.name]
+      if (type) {
+        terrains[terrain.tile + 1] = type
       }
     }
 
-    if (floorTile === -1 || outsideTile === -1) {
-      throw new Error("One of the required terrains are missing from the map object: " + JSON.stringify(config))
+    if (!Object.values(terrains).includes(TerrainType.floor) ||
+      !Object.values(terrains).includes(TerrainType.wall) ||
+      !Object.values(terrains).includes(TerrainType.hole)) {
+      throw new Error("One of the required terrains are missing from the map object: " + JSON.stringify(this.config))
     }
 
     for (let i = 0; i < pathLayer.data.length; i++) {
-      let tile = 0
-      if (pathLayer.data[i] === floorTile) {
-        tile = 1
+      let tile = terrains[pathLayer.data[i]]
+      if (!tile) {
+        tile = TerrainType.void
       }
       this.tiles.push(tile)
     }
   }
 
-  isOutside(x, y) {
-    return this.tiles[y * this.width + x] === 0
+  isHole(x, y) {
+    return this.getTerrainTypeAt(x, y) === TerrainType.hole
   }
 
-  isInside(x, y) {
-    return !this.isOutside(x, y)
+  isFloor(x, y) {
+    return this.getTerrainTypeAt(x, y) === TerrainType.floor
+  }
+
+  isWall(x, y) {
+    return this.getTerrainTypeAt(x, y) === TerrainType.wall
+  }
+
+  getTerrainTypeAt(x, y) {
+    return this.tiles[y * this.width + x]
   }
 }

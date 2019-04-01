@@ -1,4 +1,5 @@
 import WorldObject from './WorldObject'
+import ObjectType from './ObjectType'
 
 export default class Objective extends WorldObject {
   constructor(config, tileWidth, tileHeight) {
@@ -18,5 +19,9 @@ export default class Objective extends WorldObject {
 
   isEnabled() {
     return this.enabled
+  }
+
+  getObjectType() {
+    return ObjectType.objective
   }
 }

@@ -1,7 +1,5 @@
 import AI from './AI'
-import {
-  WaitAction
-} from '../CharacterAction'
+import WaitAction from '../actions/WaitAction'
 
 export default class IdleAI extends AI {
   constructor(world, character) {

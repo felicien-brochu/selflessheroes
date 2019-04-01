@@ -14,4 +14,8 @@ export default class WorldObject {
   overlaps(object) {
     return this.x === object.x && this.y === object.y
   }
+
+  getObjectType() {
+    throw new Error('Needs subclass implementation')
+  }
 }

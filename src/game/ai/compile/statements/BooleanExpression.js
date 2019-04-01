@@ -2,7 +2,7 @@ import Expression from './Expression'
 import ObjectTypeLiteral from './ObjectTypeLiteral'
 import IntegerLiteral from './IntegerLiteral'
 import VariableIdentifier from './VariableIdentifier'
-import ValueFunction from './ValueFunction'
+import ValueFunctions from './ValueFunctions'
 import InvalidExpression from './InvalidExpression'
 import ExpressionTypes from './ExpressionTypes'
 import ExpressionValue from './ExpressionValue'
@@ -12,7 +12,8 @@ import {
 
 import {
   indexOfStringInLines,
-  createUnitExpression
+  createUnitExpression,
+  splitCode
 } from '../utils'
 
 const andOperator = '&&'
@@ -43,7 +44,7 @@ const unitExpressions = [
   ObjectTypeLiteral,
   IntegerLiteral,
   VariableIdentifier,
-  ValueFunction
+  ...Object.values(ValueFunctions)
 ]
 
 
@@ -82,20 +83,13 @@ export default class BooleanExpression extends Expression {
       return false
     }
 
-    operatorPosition = operatorPosition[0]
+    let codeSplit = splitCode(this.code, this.operator, this.line, this.column)
 
     this.composite = true
-    this.expression1 = new BooleanExpression(this.line, this.column)
-    this.expression2 = new BooleanExpression(this.line + operatorPosition.end.line, operatorPosition.end.column)
-
-    let expression1Code = this.code.slice(0, operatorPosition.start.line + 1)
-    let expression2Code = this.code.slice(operatorPosition.start.line)
-
-    expression1Code[expression1Code.length - 1] = expression1Code[expression1Code.length - 1].substring(0, operatorPosition.start.column)
-    expression2Code[0] = expression2Code[0].substring(operatorPosition.end.column)
-
-    this.expression1.pushLines(expression1Code)
-    this.expression2.pushLines(expression2Code)
+    this.expression1 = new BooleanExpression(codeSplit[0].line, codeSplit[0].column)
+    this.expression2 = new BooleanExpression(codeSplit[1].line, codeSplit[1].column)
+    this.expression1.pushLines(codeSplit[0].code)
+    this.expression2.pushLines(codeSplit[1].code)
 
     return true
   }
@@ -142,9 +136,9 @@ export default class BooleanExpression extends Expression {
     let value2 = this.expression2.computeValue(context)
     let value
     if (this.operator === andOperator) {
-      value = value1 && value2
+      value = value1.value && value2.value
     } else {
-      value = value1 || value2
+      value = value1.value || value2.value
     }
 
     return ExpressionValue.boolean(value)
@@ -185,13 +179,27 @@ export default class BooleanExpression extends Expression {
         if (value2.type === ExpressionTypes.objectType) {
           return value1.value === value2.value
         } else if (value2.type === ExpressionTypes.composite) {
-          return value2.value.some(val => value1.value === val)
+          return value2.value.some(val => value1.value === val.value)
         }
       } else if (value1.type === ExpressionTypes.composite) {
         if (value2.type === ExpressionTypes.objectType) {
-          return value1.value.some(val => value2.value === val)
+          return value1.value.some(val => value2.value === val.value)
         } else if (value2.type === ExpressionTypes.composite) {
-          return value1.value.some(val => value2.value.some(v => v === val))
+          return value1.value.some(val => value2.value.some(v => v.value === val.value))
+        }
+      }
+    } else if (value1.hasTerrainTypeValue() && value2.hasTerrainTypeValue()) {
+      if (value1.type === ExpressionTypes.terrainType) {
+        if (value2.type === ExpressionTypes.terrainType) {
+          return value1.value === value2.value
+        } else if (value2.type === ExpressionTypes.composite) {
+          return value2.value.some(val => value1.value === val.value)
+        }
+      } else if (value1.type === ExpressionTypes.composite) {
+        if (value2.type === ExpressionTypes.terrainType) {
+          return value1.value.some(val => value2.value === val.value)
+        } else if (value2.type === ExpressionTypes.composite) {
+          return value1.value.some(val => value2.value.some(v => v.value === val.value))
         }
       }
     }

@@ -5,7 +5,8 @@ import {
 } from '../CompilerException'
 
 import {
-  indexOfStringInLines
+  indexOfStringInLines,
+  subCode
 } from '../utils'
 
 export default class IfStatement extends PrimaryStatement {
@@ -43,16 +44,8 @@ export default class IfStatement extends PrimaryStatement {
     let position = indexOfStringInLines(conditionStr, this.code)[0]
 
     this.condition = new BooleanExpression(this.line + position.start.line, position.start.column)
-    for (let i = position.start.line; i <= position.end.line; i++) {
-      let line = this.code[i]
-      if (i === position.start.line) {
-        line = line.substring(position.start.column)
-      }
-      if (i === position.end.line) {
-        line = line.substring(0, line.length - (this.code[i].length - position.end.column))
-      }
-      this.condition.pushLine(line)
-    }
+    let subcode = subCode(this.code, position.start.line, position.start.column, position.end.line, position.end.column)
+    this.condition.pushLines(subcode)
 
     this.condition.compile(config)
   }

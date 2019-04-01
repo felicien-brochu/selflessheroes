@@ -39,7 +39,7 @@ export default class Compiler {
     for (let i = 0; i < lines.length; i++) {
       let line = lines[i]
       if (!currentStatement) {
-        for (let statementClass of this.config.statements) {
+        for (let statementClass of this.config.getPrimaryStatements()) {
           if (statementClass.matchLine(lines[i])) {
             currentStatement = new statementClass(i)
             break

@@ -3,6 +3,7 @@
  <image source="DungeonTileset.png" trans="000000" width="340" height="340"/>
  <terraintypes>
   <terrain name="floor" tile="79"/>
-  <terrain name="outside" tile="78"/>
+  <terrain name="wall" tile="69"/>
+  <terrain name="hole" tile="78"/>
  </terraintypes>
 </tileset>
