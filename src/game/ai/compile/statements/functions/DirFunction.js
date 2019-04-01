@@ -1,6 +1,6 @@
-import ValueFunction from '../ValueFunction'
+import ValueFunction from './ValueFunction'
 import ExpressionValue from '../ExpressionValue'
-import DirectionLiteral from '../DirectionLiteral'
+import DirectionLiteral from '../literals/DirectionLiteral'
 import Direction from '../../../../Direction'
 import {
   MismatchStatementException,

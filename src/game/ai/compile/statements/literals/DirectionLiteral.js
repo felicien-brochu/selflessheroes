@@ -1,10 +1,10 @@
-import Expression from './Expression'
-import ExpressionValue from './ExpressionValue'
+import Expression from '../Expression'
+import ExpressionValue from '../ExpressionValue'
 import {
   MismatchStatementException,
   ForbiddenObjectTypeLiteralException
-} from '../CompilerException'
-import Direction from '../../../Direction'
+} from '../../CompilerException'
+import Direction from '../../../../Direction'
 
 export default class DirectionLiteral extends Expression {
   constructor(line, column) {

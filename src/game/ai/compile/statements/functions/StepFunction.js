@@ -1,5 +1,5 @@
-import ActionFunction from '../ActionFunction'
-import DirectionLiteral from '../DirectionLiteral'
+import ActionFunction from './ActionFunction'
+import DirectionLiteral from '../literals/DirectionLiteral'
 import Direction from '../../../../Direction'
 import StepAction from '../../../../actions/StepAction'
 import {

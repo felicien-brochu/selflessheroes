@@ -10,8 +10,8 @@ import {
 } from '../utils'
 
 import VariableIdentifier from './VariableIdentifier'
-import ValueFunctions from './ValueFunctions'
-import IntegerLiteral from './IntegerLiteral'
+import ValueFunctions from './functions/ValueFunctions'
+import IntegerLiteral from './literals/IntegerLiteral'
 import InvalidExpression from './InvalidExpression'
 
 const assignOperator = '='

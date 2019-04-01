@@ -1,10 +1,10 @@
-import Expression from './Expression'
-import ExpressionValue from './ExpressionValue'
+import Expression from '../Expression'
+import ExpressionValue from '../ExpressionValue'
 import {
   MismatchStatementException,
   ForbiddenObjectTypeLiteralException
-} from '../CompilerException'
-import ObjectType from '../../../ObjectType'
+} from '../../CompilerException'
+import ObjectType from '../../../../ObjectType'
 
 export default class ObjectTypeLiteral extends Expression {
   constructor(line, column) {

@@ -1,8 +1,8 @@
-import Expression from './Expression'
-import ExpressionValue from './ExpressionValue'
+import Expression from '../Expression'
+import ExpressionValue from '../ExpressionValue'
 import {
   MismatchStatementException
-} from '../CompilerException'
+} from '../../CompilerException'
 
 export default class IntegerLiteral extends Expression {
   constructor(line, column) {

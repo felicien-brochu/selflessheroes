@@ -1,15 +1,15 @@
-import Expression from './Expression'
+import Expression from '../Expression'
 import {
   MismatchStatementException,
   ForbiddenValueFunctionException,
   UnknownFunctionException,
   InvalidFunctionParamsException
-} from '../CompilerException'
+} from '../../CompilerException'
 import {
   splitCode,
   subCode,
   indexOfStringInLines
-} from '../utils'
+} from '../../utils'
 
 export default class ValueFunction extends Expression {
   constructor(type, identifier, line, column) {

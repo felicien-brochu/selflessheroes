@@ -1,10 +1,10 @@
-import PrimaryStatement from './PrimaryStatement'
+import PrimaryStatement from '../PrimaryStatement'
 import {
   MismatchStatementException,
   ForbiddenActionFunctionException,
   UnknownFunctionException,
   InvalidFunctionParamsException
-} from '../CompilerException'
+} from '../../CompilerException'
 
 export default class ActionFunction extends PrimaryStatement {
   constructor(type, identifier, line, column) {

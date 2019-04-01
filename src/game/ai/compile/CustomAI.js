@@ -34,7 +34,7 @@ export default class CustomAI extends AI {
       } else if (complete) {
         this.cursor++
       }
-      console.log("STEP", this)
+      // console.log("STEP", this)
       if (step) {
         return action
       }
