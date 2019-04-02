@@ -131,6 +131,10 @@ export default {
 </script>
 
 <style>
+.CodeMirror {
+  cursor: text;
+}
+
 .compiler-exception {
   text-decoration: underline;
   text-decoration-style: double;

@@ -9,6 +9,8 @@ import Compiler from '../world/ai/compile/Compiler'
 import HeroS from './sprites/HeroS'
 import ObjectiveS from './sprites/ObjectiveS'
 
+const cameraXMargin = 90
+const cameraYMargin = 55
 
 export default class extends Phaser.Scene {
   constructor() {
@@ -19,6 +21,7 @@ export default class extends Phaser.Scene {
     this.onSceneReady = null
     this.followHeroIndex = -1
     this.runner = new WorldRunner(this)
+    this.editorWidth = 0
   }
 
   init(data) {
@@ -99,13 +102,28 @@ export default class extends Phaser.Scene {
   }
 
   initCamera() {
-    const xMargin = 100
-    const yMargin = 50
     let camera = this.cameras.main
-    camera.setBounds(-xMargin, -yMargin, this.map.widthInPixels + 2 * xMargin, this.map.heightInPixels + 2 * yMargin)
-    camera.setZoom(1)
-    // center camera
-    camera.setScroll(this.map.widthInPixels / 2 - (camera.width / 2), this.map.heightInPixels / 2 - (camera.height / 2))
+
+    let zoom = 1
+    if (zoom * (this.map.widthInPixels + 2 * cameraXMargin) > window.innerWidth - 400) {
+      zoom = (window.innerWidth - 400) / (this.map.widthInPixels + 2 * cameraXMargin)
+    }
+    if (zoom * (this.map.heightInPixels + 2 * cameraYMargin) > window.innerHeight) {
+      zoom = window.innerHeight / (this.map.heightInPixels + 2 * cameraYMargin)
+    }
+    zoom = Math.max(zoom, 0.7)
+    camera.setZoom(zoom)
+    // console.log(camera.zoomEffect)
+    // camera.zoomEffect.events.on('camerazoomcomplete', () => {
+    //   console.log('camerazoomcomplete')
+    // })
+    // camera.on('camerazoomstart', () => {
+    //   console.log('camerazoomstart')
+    // })
+    // console.log("######ZOOOM", zoom, this.map.heightInPixels + 2 * cameraYMargin, window.innerHeight)
+
+    // camera.setScroll(this.map.widthInPixels / 2 - (camera.width / 2), this.map.heightInPixels / 2 - (camera.height / 2))
+
     this.mouseWheelToUpDown = this.plugins.get('rexMouseWheelToUpDown').add(this)
     var cursorKeys = this.mouseWheelToUpDown.createCursorKeys()
     var cursors = this.input.keyboard.addKeys({
@@ -115,7 +133,7 @@ export default class extends Phaser.Scene {
       right: Phaser.Input.Keyboard.KeyCodes.RIGHT
     })
     var controlConfig = {
-      camera: this.cameras.main,
+      camera: camera,
       left: cursors.left,
       right: cursors.right,
       up: cursors.up,
@@ -195,7 +213,36 @@ export default class extends Phaser.Scene {
   }
 
   resizeCameraViewport() {
-    this.cameras.main.setViewport(0, 0, window.innerWidth - this.editorWidth, window.innerHeight)
+    let camera = this.cameras.main
+    let visibleWidth = window.innerWidth - this.editorWidth
+    let visibleHeight = window.innerHeight
+    camera.setViewport(0, 0, visibleWidth, visibleHeight)
+
+    let mapWidth = this.map.widthInPixels
+    let mapHeight = this.map.heightInPixels
+    let minWidth = mapWidth + 2 * cameraXMargin
+    let minHeight = mapHeight + 2 * cameraYMargin
+    let width
+    let height
+    let x
+    let y
+
+    if (camera.zoom * mapWidth + 2 * cameraXMargin < visibleWidth) {
+      x = -((visibleWidth / camera.zoom) - mapWidth) / 2
+      width = visibleWidth / camera.zoom
+    } else {
+      x = -cameraXMargin / camera.zoom
+      width = mapWidth + (2 * cameraXMargin / camera.zoom)
+    }
+
+    if (camera.zoom * mapHeight + 2 * cameraYMargin < visibleHeight) {
+      y = -((visibleHeight / camera.zoom) - mapHeight) / 2
+      height = visibleHeight / camera.zoom
+    } else {
+      y = -cameraYMargin / camera.zoom
+      height = mapHeight + (2 * cameraYMargin / camera.zoom)
+    }
+    camera.setBounds(x, y, width, height)
   }
 
   compileAI(code) {

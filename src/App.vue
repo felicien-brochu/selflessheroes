@@ -46,7 +46,7 @@ export default {
         if (this.compilerTimeoutID >= 0) {
           clearTimeout(this.compilerTimeoutID)
         }
-        this.compilerTimeoutID = setTimeout(this.tryCompilingAsync, 150)
+        this.compilerTimeoutID = setTimeout(this.tryCompilingAsync, 250)
       }
       else {
         this.tryCompiling()
