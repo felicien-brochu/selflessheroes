@@ -30,6 +30,9 @@ export default {
       editorWidth: 400
     }
   },
+  beforeCreate: function() {
+    this.compilerTimeoutID = -1
+  },
   methods: {
     handleWorldReady(worldState, gameScene) {
       game = gameScene
@@ -39,7 +42,15 @@ export default {
       this.tryCompiling()
     },
     handleCodeChange() {
-      this.tryCompiling()
+      if (!this.worldState.aiReady) {
+        if (this.compilerTimeoutID >= 0) {
+          clearTimeout(this.compilerTimeoutID)
+        }
+        this.compilerTimeoutID = setTimeout(this.tryCompilingAsync, 150)
+      }
+      else {
+        this.tryCompiling()
+      }
     },
     handleEditorResize(editorWidth) {
       if (game) {
@@ -65,6 +76,10 @@ export default {
       if (game) {
         game.stop()
       }
+    },
+    tryCompilingAsync() {
+      this.compilerTimeoutID = -1
+      this.tryCompiling()
     },
     tryCompiling() {
       if (game) {

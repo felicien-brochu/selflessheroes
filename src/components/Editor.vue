@@ -138,6 +138,7 @@ window.addEventListener("resize", resizeCodeMirror)
         right: 0;
         z-index: 20;
         background: #282c3444;
+        pointer-events: none;
     }
 
     #editor-text {
