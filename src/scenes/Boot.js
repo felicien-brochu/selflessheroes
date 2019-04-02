@@ -21,14 +21,8 @@ export default class extends Phaser.Scene {
         families: ['Bangers']
       },
       custom: {
-        families: [
-          'Menlo',
-          'Consolas'
-        ],
-        urls: [
-          '//db.onlinewebfonts.com/c/9f94dc20bb2a09c15241d3a880b7ad01?family=Menlo',
-          '//db.onlinewebfonts.com/c/1db29588408eadbd4406aae9238555eb?family=Consolas'
-        ]
+        families: ['Menlo', 'Consolas', 'Monaco'],
+        urls: ['/assets/fonts/fonts.css']
       },
       active: this.fontsLoaded
     })
