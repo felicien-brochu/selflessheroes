@@ -6,6 +6,7 @@ export function indexOfStringInLines(str, lines) {
   let regexp = new RegExp(escapeStringRegexp(str), 'g')
   let matches = []
   let match
+
   while ((match = regexp.exec(joinedLines)) !== null) {
     matches.push(match)
   }
@@ -110,30 +111,32 @@ export function createUnitExpression(code, expressionClasses, line, column) {
 
 export function extractParams(paramsJoinedCode, functionCode, line, column) {
   let params = []
-  let position = indexOfStringInLines(paramsJoinedCode, functionCode)
-  let code = subCode(functionCode, position[0].start.line, position[0].start.column, position[0].end.line, position[0].end.column)
-  let codeSplit = [{}, {
-    code: code,
-    line: line + position[0].start.line,
-    column: line + position[0].start.line === 0 ? column + position[0].start.column : position[0].start.column
-  }]
+  if (paramsJoinedCode.trim().length > 0) {
+    let position = indexOfStringInLines(paramsJoinedCode, functionCode)
+    let code = subCode(functionCode, position[0].start.line, position[0].start.column, position[0].end.line, position[0].end.column)
+    let codeSplit = [{}, {
+      code: code,
+      line: line + position[0].start.line,
+      column: line + position[0].start.line === 0 ? column + position[0].start.column : position[0].start.column
+    }]
 
-  while (codeSplit[1].code.join(' ').includes(',')) {
-    codeSplit = splitCode(codeSplit[1].code, ',', codeSplit[1].line, codeSplit[1].column)
+    while (codeSplit[1].code.join(' ').includes(',')) {
+      codeSplit = splitCode(codeSplit[1].code, ',', codeSplit[1].line, codeSplit[1].column)
 
-    params.push({
-      code: codeSplit[0].code,
-      line: codeSplit[0].line,
-      column: codeSplit[0].column
-    })
-  }
+      params.push({
+        code: codeSplit[0].code,
+        line: codeSplit[0].line,
+        column: codeSplit[0].column
+      })
+    }
 
-  if (codeSplit[1].code.join(' ').trim().length > 0) {
-    params.push({
-      code: codeSplit[1].code,
-      line: codeSplit[1].line,
-      column: codeSplit[1].column
-    })
+    if (codeSplit[1].code.join(' ').trim().length > 0) {
+      params.push({
+        code: codeSplit[1].code,
+        line: codeSplit[1].line,
+        column: codeSplit[1].column
+      })
+    }
   }
 
   return params

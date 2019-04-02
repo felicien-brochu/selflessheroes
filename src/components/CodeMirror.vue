@@ -5,8 +5,10 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import 'codemirror/lib/codemirror.css'
 import CodeMirror from 'codemirror'
+import 'codemirror/addon/display/autorefresh'
 import js from 'codemirror/mode/javascript/javascript'
 
 export default {
@@ -19,32 +21,26 @@ export default {
       type: Object,
       default: function() {
         return {
-          mode: 'text/javascript',
+          mode: 'javascript',
           lineNumbers: true,
-          lineWrapping: true
+          theme: 'one-dark',
+          viewportMargin: Infinity
         }
       }
     },
+    worldReady: {
+      type: Boolean,
+      default: false
+    },
+    compilerException: {
+      type: Error,
+      default: null
+    }
   },
   data: function() {
     return {
       skipNextChangeEvent: false
     }
-  },
-  ready: function() {
-    var _this = this
-    this.editor = CodeMirror.fromTextArea(this.$el.querySelector('textarea'), this.options)
-    this.editor.setValue(this.value)
-    this.editor.on('change', function(cm) {
-      if (_this.skipNextChangeEvent) {
-        _this.skipNextChangeEvent = false
-        return
-      }
-      _this.value = cm.getValue()
-      if (!!_this.$emit) {
-        _this.$emit('change', cm.getValue())
-      }
-    })
   },
   mounted: function() {
     var _this = this
@@ -62,7 +58,7 @@ export default {
     })
   },
   watch: {
-    'value': function(newVal, oldVal) {
+    value: function(newVal, oldVal) {
       var editorValue = this.editor.getValue()
       if (newVal !== editorValue) {
         this.skipNextChangeEvent = true
@@ -71,12 +67,50 @@ export default {
         this.editor.scrollTo(scrollInfo.left, scrollInfo.top)
       }
     },
-    'options': function(newOptions, oldVal) {
+    options: function(newOptions, oldOptions) {
       if (typeof newOptions === 'object') {
         for (var optionName in newOptions) {
           if (newOptions.hasOwnProperty(optionName)) {
             this.editor.setOption(optionName, newOptions[optionName])
           }
+        }
+      }
+    },
+    worldReady: function(isReady, wasReady) {
+      // Refresh when ready for fonts lazy-loading
+      this.editor.refresh()
+    },
+    compilerException: function(newException, oldException) {
+      if (this.errorTimeout >= 0) {
+        clearTimeout(this.errorTimeout)
+        this.errorTimeout = -1
+      }
+
+      if (this.exceptionMarker) {
+        this.exceptionMarker.clear()
+      }
+      if (newException) {
+        this.errorTimeout = setTimeout(() => {
+          if (this.exceptionMarker) {
+            this.exceptionMarker.clear()
+          }
+          if (this.compilerException) {
+            let boundaries = newException.statement.getTrimedCodeBoundaries()
+            this.exceptionMarker = this.editor.markText({
+              line: boundaries.start.line,
+              ch: boundaries.start.column
+            }, {
+              line: boundaries.end.line,
+              ch: boundaries.end.column + 1
+            }, {
+              className: 'compiler-exception'
+            })
+          }
+        }, 3000)
+      }
+      else {
+        if (this.exceptionMarker) {
+          this.exceptionMarker.clear()
         }
       }
     }
@@ -90,8 +124,11 @@ export default {
 </script>
 
 <style>
-.CodeMirror-code {
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+.compiler-exception {
+  text-decoration: underline;
+  text-decoration-style: double;
+  text-decoration-skip: spaces;
+  text-decoration-color: rgb(159, 49, 49);
 }
 
 /*
@@ -101,8 +138,9 @@ export default {
 	*/
 /* basic */
 
+
 .cm-s-one-dark {
-  font-family: Consolas, Menlo, monaco, 'DejaVu Sans Mono', monospace;
+  font-family: Consolas, 'DejaVu Sans Mono', monospace;
   font-weight: 250;
   font-size: 14px;
   color: #abb2bf;

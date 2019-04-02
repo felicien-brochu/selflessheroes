@@ -3,7 +3,8 @@
   <world @world-state-change="worldState = $event" @ready="handleWorldReady" />
   <resize-split-pane split-to="columns" @resize="handleResize" :allow-resize="true" :size="400" :min-size="352" units="pixels" resizerColor="#4b5261" primary="second">
     <div slot="firstPane" />
-    <editor slot="secondPane" :worldState="worldState" :worldReady="worldReady" @run-ai="handleRunAI" @play-pause="handlePlayPause" @speed-change="handleSpeedChange" @step="handleStep" @stop="handleStop" v-model="code" />
+    <editor slot="secondPane" v-model="code" :worldState="worldState" :worldReady="worldReady" :compilerException="compilerException" @change="handleCodeChange" @run-ai="handleRunAI" @play-pause="handlePlayPause" @speed-change="handleSpeedChange"
+      @step="handleStep" @stop="handleStop" />
   </resize-split-pane>
 </div>
 </template>
@@ -25,7 +26,8 @@ export default {
     return {
       code: 'a:  \nb:\nstep(n)\na = dir(s)\n\t \n  if b == 3 &&\n\t 4 < \n\n3\n\t ||1>dir( n ):\nelse\n\na = 9\n\tstep(n, s)\n\njump b\n\nendif',
       worldState: {},
-      worldReady: false
+      worldReady: false,
+      compilerException: null
     }
   },
   methods: {
@@ -34,15 +36,19 @@ export default {
       this.worldState = worldState
       this.worldReady = true
     },
+    handleCodeChange() {
+      if (game) {
+        this.compilerException = game.compileAI(this.code)
+      }
+    },
     handleResize(e) {
-      console.log("resize")
       if (game) {
         game.handleResizeCamera(e)
       }
     },
     handleRunAI() {
       if (game) {
-        game.runAI(this.$data.code)
+        game.runAI(this.code)
       }
     },
     handlePlayPause(play) {

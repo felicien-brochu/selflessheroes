@@ -256,6 +256,12 @@ export default class extends Phaser.Scene {
     }
   }
 
+  compileAI(code) {
+    let compiler = new Compiler(code)
+    let aiFactory = compiler.compile()
+    return compiler.exception
+  }
+
   runAI(code) {
     this.restartWorld(code)
     this.runner.pause()

@@ -12,10 +12,10 @@ import InvalidStatement from './statements/InvalidStatement'
 export default class Compiler {
   constructor(code, config = CompilerConfig.getDefaultConfig(), deleteEmptyStatements = true) {
     this.code = code
-    // this.code = 'a:  \nb:\nstep(n)\na = dir(s)\n\t \n  if b == 3 &&\n\t 4 < \n\n3\n\t ||1>dir( n ):\nelse\n\na = 9\n\tstep(n, s)\n\njump c\n\nendif'
     this.config = config
     this.deleteEmptyStatements = deleteEmptyStatements
     this.statements = []
+    this.exception = null
   }
 
   compile() {
@@ -24,8 +24,9 @@ export default class Compiler {
     try {
       this.compileStatements()
       this.compileStatementLinks()
-    } catch (e) {
-      console.error(e)
+    } catch (exception) {
+      console.error(exception)
+      this.exception = exception
       return null
     }
 
@@ -48,14 +49,14 @@ export default class Compiler {
       }
 
       if (currentStatement === null) {
-        currentStatement = new InvalidStatement(i)
+        currentStatement = new InvalidStatement(i, 0)
       }
 
       currentStatement.pushLine(line)
       if (currentStatement.isCodeComplete()) {
         currentStatement.compile(this.config)
         if (!this.deleteEmptyStatements || currentStatement.type !== 'EmptyStatement') {
-          console.log(currentStatement)
+          // console.log(currentStatement)
           this.statements.push(currentStatement)
         }
         currentStatement = null

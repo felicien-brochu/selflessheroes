@@ -29,6 +29,7 @@ export default class StepFunction extends ActionFunction {
     }
 
     let paramsJoinedCode = res[2]
+    console.log("####stepFunc", this.line, this.column)
     let params = extractParams(paramsJoinedCode, this.code, this.line, this.column)
 
     if (params.length < 1) {

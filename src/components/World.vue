@@ -36,9 +36,10 @@ export default {
 <style lang="scss">
 #world-content {
     z-index: 10;
-    right: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
     height: 100%;
-    position: absolute;
 
     canvas {
         width: 100%;

@@ -1,6 +1,6 @@
 <template>
 <div id="editor">
-  <code-mirror id="editor-text" :value="code" :options="codeMirrorConfig" @change="$emit('change', $event)" />
+  <code-mirror id="editor-text" :value="code" :worldReady="worldReady" :compilerException="compilerException" @change="$emit('change', $event)" />
   <div id="bottom-bar">
     <button class="run-button" @click="$emit('run-ai')" :disabled="!worldReady || code.length === 0" />
     <play-pause-button @play-pause="$emit('play-pause', $event)" :paused="worldState.paused" :disabled="!worldReady || worldState.gameOver" />
@@ -34,6 +34,10 @@ export default {
     'worldReady': {
       type: Boolean,
       default: false
+    },
+    'compilerException': {
+      type: Error,
+      default: null
     }
   },
   model: {
@@ -41,13 +45,7 @@ export default {
     event: 'change'
   },
   data: function() {
-    return {
-      codeMirrorConfig: {
-        lineNumbers: true,
-        mode: 'javascript',
-        theme: 'one-dark'
-      },
-    }
+    return {}
   },
   mounted: () => {
     resizeCodeMirror()

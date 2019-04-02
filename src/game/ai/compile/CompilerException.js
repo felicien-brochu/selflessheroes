@@ -16,6 +16,7 @@ export default class CompilerException extends Error {
 class StatementException extends CompilerException {
   constructor(type, message, statement) {
     super(type, message, statement.line, statement.column, statement.code)
+    this.statement = statement
   }
 }
 
