@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="9" height="2" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="1">
+ <tileset firstgid="1" source="../tiles/DungeonTileset.tsx"/>
+ <layer id="12" name="regions" width="9" height="2">
+  <data encoding="csv">
+70,0,80,0,70,80,0,80,70,
+80,0,70,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="15" name="input_types" width="9" height="2">
+  <data encoding="csv">
+70,0,80,0,70,80,0,80,70,
+80,0,70,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="16" name="output1_ground" width="9" height="2" visible="0">
+  <data encoding="csv">
+3,0,33,0,11,22,0,25,16,
+13,0,43,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="17" name="output2_ground" width="9" height="2" visible="0">
+  <data encoding="csv">
+2,0,33,0,11,22,0,25,16,
+13,0,42,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="18" name="output3_ground" width="9" height="2" visible="0">
+  <data encoding="csv">
+4,0,34,0,21,22,0,25,26,
+14,0,52,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="19" name="output4_ground" width="9" height="2" visible="0">
+  <data encoding="csv">
+5,0,34,0,21,22,0,25,26,
+14,0,53,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

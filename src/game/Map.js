@@ -13,13 +13,13 @@ export default class Map {
     let pathLayer = null,
       objectsLayer = null
     for (let layer of this.config.layers) {
-      if (layer.name === 'path') {
+      if (layer.name === 'types') {
         pathLayer = layer
       }
     }
 
     if (!pathLayer) {
-      throw new Error("path layer is missing from the map object: " + JSON.stringify(this.config))
+      throw new Error("types layer is missing from the map object: " + JSON.stringify(this.config))
     }
 
     let terrains = {}
@@ -34,7 +34,7 @@ export default class Map {
     if (!Object.values(terrains).includes(TerrainType.floor) ||
       !Object.values(terrains).includes(TerrainType.wall) ||
       !Object.values(terrains).includes(TerrainType.hole)) {
-      throw new Error("One of the required terrains are missing from the map object: " + JSON.stringify(this.config))
+      throw new Error("one of the required terrains are missing from the map object: " + JSON.stringify(this.config))
     }
 
     for (let i = 0; i < pathLayer.data.length; i++) {

@@ -3,3 +3,7 @@ rule2.tmx
 rule3.tmx
 rule4.tmx
 rule5.tmx
+rule6.tmx
+rule7.tmx
+rule8.tmx
+rule9.tmx

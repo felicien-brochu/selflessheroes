@@ -1,74 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="3" height="1" tilewidth="32" tileheight="32" infinite="0" nextlayerid="36" nextobjectid="1">
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="32" tileheight="32" infinite="0" nextlayerid="41" nextobjectid="1">
  <tileset firstgid="1" source="../tiles/DungeonTileset.tsx"/>
- <layer id="22" name="regions" width="3" height="1">
+ <layer id="38" name="regions" width="1" height="1">
   <data encoding="csv">
-80,0,79
+79
 </data>
  </layer>
- <layer id="23" name="input_path" width="3" height="1">
+ <layer id="39" name="input_background" width="1" height="1" visible="0">
   <data encoding="csv">
-80,0,79
+79
 </data>
  </layer>
- <layer id="24" name="output1_ground" width="3" height="1">
+ <layer id="40" name="output_types" width="1" height="1" visible="0">
   <data encoding="csv">
-7,0,79
-</data>
- </layer>
- <layer id="25" name="output2_ground" width="3" height="1">
-  <data encoding="csv">
-8,0,79
-</data>
- </layer>
- <layer id="26" name="output3_ground" width="3" height="1">
-  <data encoding="csv">
-9,0,79
-</data>
- </layer>
- <layer id="27" name="output4_ground" width="3" height="1">
-  <data encoding="csv">
-10,0,79
-</data>
- </layer>
- <layer id="28" name="output5_ground" width="3" height="1">
-  <data encoding="csv">
-17,0,79
-</data>
- </layer>
- <layer id="29" name="output6_ground" width="3" height="1">
-  <data encoding="csv">
-18,0,79
-</data>
- </layer>
- <layer id="30" name="output7_ground" width="3" height="1">
-  <data encoding="csv">
-19,0,79
-</data>
- </layer>
- <layer id="31" name="output8_ground" width="3" height="1">
-  <data encoding="csv">
-20,0,79
-</data>
- </layer>
- <layer id="32" name="output9_ground" width="3" height="1">
-  <data encoding="csv">
-27,0,79
-</data>
- </layer>
- <layer id="33" name="output10_ground" width="3" height="1">
-  <data encoding="csv">
-28,0,79
-</data>
- </layer>
- <layer id="34" name="output11_ground" width="3" height="1">
-  <data encoding="csv">
-29,0,79
-</data>
- </layer>
- <layer id="35" name="output12_ground" width="3" height="1">
-  <data encoding="csv">
-30,0,79
+79
 </data>
  </layer>
 </map>

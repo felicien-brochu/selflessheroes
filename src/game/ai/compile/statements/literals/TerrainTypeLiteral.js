@@ -6,16 +6,16 @@ import {
 } from '../../CompilerException'
 import TerrainType from '../../../../TerrainType'
 
-export default class ObjectTypeLiteral extends Expression {
+export default class TerrainTypeLiteral extends Expression {
   constructor(line, column) {
-    super('ObjectTypeLiteral', line, column)
+    super('TerrainTypeLiteral', line, column)
     this.name = null
     this.value = null
   }
 
   compile(config) {
     let joinedCode = this.code.join(' ')
-    let res = joinedCode.match(ObjectTypeLiteral.codeRegExp)
+    let res = joinedCode.match(TerrainTypeLiteral.codeRegExp)
     if (!res) {
       throw new MismatchStatementException('you try to compile as a type literal a statement which is not one', this)
     }
@@ -31,12 +31,12 @@ export default class ObjectTypeLiteral extends Expression {
 
   static isValid(code) {
     let name = code.trim()
-    return !!name.match(ObjectTypeLiteral.codeRegExp) && !!TerrainType[name]
+    return !!name.match(TerrainTypeLiteral.codeRegExp) && !!TerrainType[name]
   }
 
   computeValue(context) {
-    return ExpressionValue.terrainType()
+    return ExpressionValue.terrainType(this.value)
   }
 }
 
-ObjectTypeLiteral.codeRegExp = /^\s*(\w+)\s*$/
+TerrainTypeLiteral.codeRegExp = /^\s*(\w+)\s*$/

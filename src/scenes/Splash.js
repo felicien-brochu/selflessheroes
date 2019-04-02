@@ -113,8 +113,8 @@ export default class extends Phaser.Scene {
     })
     this.load.image('follow_cursor', 'assets/images/follow_cursor.png')
     this.load.image('tiles', 'assets/tilemaps/tiles/DungeonTileset.png')
-    this.load.tilemapTiledJSON('map', 'assets/tilemaps/maps/map1.json')
-    this.load.json('map_object', 'assets/tilemaps/maps/map1.json')
+    this.load.tilemapTiledJSON('map', 'assets/tilemaps/maps/map2.json')
+    this.load.json('map_object', 'assets/tilemaps/maps/map2.json')
   }
 
   create() {

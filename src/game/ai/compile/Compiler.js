@@ -20,8 +20,8 @@ export default class Compiler {
   }
 
   compile() {
-    console.log("COMPILE CODE: \n", this.code)
-    console.log("With config: \n", this.config)
+    // console.log("COMPILE CODE: \n", this.code)
+    // console.log("With config: \n", this.config)
     try {
       this.compileStatements()
       this.compileStatementLinks()
