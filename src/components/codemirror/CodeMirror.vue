@@ -142,7 +142,7 @@ export default {
 .cm-s-one-dark {
   font-family: Consolas, 'DejaVu Sans Mono', monospace;
   font-weight: 250;
-  font-size: 14px;
+  font-size: 16px;
   color: #abb2bf;
   background-color: #282c34;
 }

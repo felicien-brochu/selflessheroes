@@ -2,11 +2,10 @@
 <div id="editor">
   <code-mirror id="editor-text" :value="code" :worldReady="worldReady" :compilerException="compilerException" @change="$emit('change', $event)" />
   <div id="bottom-bar">
-    <button class="run-button" @click="$emit('run-ai')" :disabled="!worldReady || code.length === 0" />
-    <play-pause-button @play-pause="$emit('play-pause', $event)" :paused="worldState.paused" :disabled="!worldReady || worldState.gameOver" />
+    <play-pause-button @play-pause="$emit('play-pause', $event)" :paused="worldState.paused" :disabled="!worldReady || !worldState.aiReady || worldState.gameOver" />
     <speed-range @change="$emit('speed-change', $event)" />
-    <button class="step-button" @click="$emit('step')" :disabled="!worldReady || worldState.gameOver" />
-    <button class="stop-button" @click="$emit('stop')" :disabled="!worldReady || worldState.steps < 1" />
+    <button class="step-button" @click="$emit('step')" :disabled="!worldReady || !worldState.aiReady || worldState.gameOver" />
+    <button class="stop-button" @click="$emit('stop')" :disabled="!worldReady || !worldState.aiReady || worldState.steps < 1" />
   </div>
 </div>
 </template>
@@ -93,7 +92,7 @@ window.addEventListener("resize", resizeCodeMirror)
             height: 40px;
             border-radius: 20px;
             box-shadow: 0 1px 6px 0 black;
-            margin: 0 5px;
+            margin: 0 7px;
 
             &:hover {
                 box-shadow: 0 1px 6px 0 #656565;
@@ -110,10 +109,6 @@ window.addEventListener("resize", resizeCodeMirror)
                 &:active {
                     background-color: inherit;
                 }
-            }
-
-            &.run-button {
-                background-image: url("/assets/images/run-button.png");
             }
             &.step-button {
                 background-image: url("/assets/images/step-button.png");

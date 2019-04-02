@@ -4,10 +4,10 @@ import lang from '../lang'
 import AnimationBuilder from './AnimationBuilder'
 import WorldRunner from './WorldRunner'
 import Speeds from './Speeds'
-import World from '../game/World'
-import Compiler from '../game/ai/compile/Compiler'
-import HeroS from '../sprites/HeroS'
-import ObjectiveS from '../sprites/ObjectiveS'
+import World from '../world/World'
+import Compiler from '../world/ai/compile/Compiler'
+import HeroS from './sprites/HeroS'
+import ObjectiveS from './sprites/ObjectiveS'
 
 
 export default class extends Phaser.Scene {
@@ -15,20 +15,16 @@ export default class extends Phaser.Scene {
     super({
       key: 'GameScene'
     })
-    this.aiCode = ''
+    this.aiFactory = null
     this.onSceneReady = null
     this.followHeroIndex = -1
-    this.runner = new WorldRunner()
+    this.runner = new WorldRunner(this)
   }
 
   init(data) {
-    this.aiCode = ''
     this.onSceneReady = null
 
     if (data) {
-      if (data.aiCode) {
-        this.aiCode = data.aiCode
-      }
       this.onSceneReady = data.onGameSceneReady
     }
   }
@@ -79,9 +75,7 @@ export default class extends Phaser.Scene {
   }
 
   createWorld() {
-    let compiler = new Compiler(this.aiCode)
-    let aiFactory = compiler.compile()
-    this.world = new World(this.mapConfig, aiFactory)
+    this.world = new World(this.mapConfig, this.aiFactory)
     this.heros = []
     this.objectives = []
 
@@ -204,7 +198,21 @@ export default class extends Phaser.Scene {
     this.cameras.main.setViewport(0, 0, window.innerWidth - this.editorWidth, window.innerHeight)
   }
 
+  compileAI(code) {
+    let compiler = new Compiler(code)
+    let oldAIFactory = this.aiFactory
+    this.aiFactory = compiler.compile()
+
+    if ((!!this.aiFactory && !oldAIFactory) || (!this.aiFactory && !!oldAIFactory)) {
+      this.runner.emitStateChange()
+    }
+    return compiler.exception
+  }
+
   play() {
+    if (this.runner.steps === 0) {
+      this.restartWorld()
+    }
     this.runner.play()
   }
 
@@ -212,9 +220,8 @@ export default class extends Phaser.Scene {
     this.runner.pause()
   }
 
-  restartWorld(aiCode = this.aiCode) {
+  restartWorld() {
     this.runner.pause()
-    this.aiCode = aiCode
     this.destroySprites()
     this.createWorld()
     this.runner.restart(this.world)
@@ -237,6 +244,31 @@ export default class extends Phaser.Scene {
 
   setWorldStateListener(listener) {
     this.runner.setStateListener(listener)
+  }
+
+  aiReady() {
+    return !!this.aiFactory
+  }
+
+  setSpeed(speed) {
+    this.runner.setSpeed(speed)
+  }
+
+  getWorldState() {
+    return this.runner ? this.runner.getObservableState() : {}
+  }
+
+  step() {
+    if (this.runner.isPaused()) {
+      this.runner.doOneStep()
+    } else {
+      this.runner.pause()
+    }
+  }
+
+  stop() {
+    this.restartWorld()
+    this.runner.pause()
   }
 
   handleResize(width, height, ratio) {
@@ -263,35 +295,11 @@ export default class extends Phaser.Scene {
     }
   }
 
-  compileAI(code) {
-    let compiler = new Compiler(code)
-    let aiFactory = compiler.compile()
-    return compiler.exception
-  }
-
-  runAI(code) {
-    this.restartWorld(code)
-    this.runner.pause()
-  }
-
-  setSpeed(speed) {
-    this.runner.setSpeed(speed)
-  }
-
-  getWorldState() {
-    return this.runner ? this.runner.getObservableState() : {}
-  }
-
-  step() {
-    if (this.runner.isPaused()) {
-      this.runner.doOneStep()
+  handlePlayPause(play) {
+    if (play) {
+      this.play()
     } else {
-      this.runner.pause()
+      this.pause()
     }
-  }
-
-  stop() {
-    this.restartWorld()
-    this.runner.pause()
   }
 }
