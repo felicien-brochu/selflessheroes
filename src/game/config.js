@@ -1,8 +1,8 @@
 import Phaser from 'phaser'
 
-import BootScene from './scenes/Boot'
-import SplashScene from './scenes/Splash'
-import GameScene from './scenes/Game'
+import BootScene from './Boot'
+import SplashScene from './Splash'
+import GameScene from './Game'
 import MouseWheelToUpDownPlugin from 'phaser3-rex-plugins/plugins/mousewheeltoupdown-plugin.js';
 
 

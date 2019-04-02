@@ -3,7 +3,7 @@ import LossCondition from './LossCondition'
 
 import {
   propertiesToObject
-} from '../../utils'
+} from '../utils'
 
 export default class RuleSet {
   static build(configJSON, world) {

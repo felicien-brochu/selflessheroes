@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Speeds from '../scenes/Speeds'
+import Speeds from '../game/Speeds'
 import TouchRange from './TouchRange'
 import lang from '../lang'
 

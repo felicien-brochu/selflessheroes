@@ -5,7 +5,7 @@
 <script>
 import Phaser from 'phaser'
 
-import gameConfig from '../config'
+import gameConfig from '../game/config'
 
 class Game extends Phaser.Game {
   constructor(gameSceneConfig) {
