@@ -30,7 +30,7 @@ export default class DirFunction extends ValueFunction {
     let params = extractParams(paramsJoinedCode, this.code, this.line, this.column)
 
     if (params.length !== 1) {
-      throw new InvalidNumberOfParamsException('\'dir\' function requires exactly 1 parameter', this)
+      throw new InvalidNumberOfParamsException('\'dir\' function requires exactly 1 direction parameter', this)
     }
     params.forEach((param, index) => this.compileParam(param, index, config))
   }
@@ -40,7 +40,7 @@ export default class DirFunction extends ValueFunction {
     this.params.push(param)
 
     if (param.type === 'InvalidExpression') {
-      throw new InvalidFunctionParamsException(`the function 'dir()' only accept one direction literal as parameter`, param)
+      throw new InvalidFunctionParamsException(`\'dir\' function requires exactly 1 direction parameter`, param)
     }
     param.compile(config)
   }

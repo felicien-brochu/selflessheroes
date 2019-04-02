@@ -130,13 +130,11 @@ export function extractParams(paramsJoinedCode, functionCode, line, column) {
       })
     }
 
-    if (codeSplit[1].code.join(' ').trim().length > 0) {
-      params.push({
-        code: codeSplit[1].code,
-        line: codeSplit[1].line,
-        column: codeSplit[1].column
-      })
-    }
+    params.push({
+      code: codeSplit[1].code,
+      line: codeSplit[1].line,
+      column: codeSplit[1].column
+    })
   }
 
   return params

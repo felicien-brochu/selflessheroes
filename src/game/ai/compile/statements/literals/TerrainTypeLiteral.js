@@ -10,6 +10,7 @@ export default class ObjectTypeLiteral extends Expression {
   constructor(line, column) {
     super('ObjectTypeLiteral', line, column)
     this.name = null
+    this.value = null
   }
 
   compile(config) {
@@ -24,6 +25,8 @@ export default class ObjectTypeLiteral extends Expression {
     if (!config.terrainTypes.some(type => this.name === type)) {
       throw new ForbiddenTerrainTypeLiteralException(`the terrain type literal '${this.name}' is forbidden. You may use the following terrain types: ${config.terrainTypes}`, this)
     }
+
+    this.value = TerrainType[this.name]
   }
 
   static isValid(code) {
@@ -32,7 +35,7 @@ export default class ObjectTypeLiteral extends Expression {
   }
 
   computeValue(context) {
-    return ExpressionValue.TerrainType(TerrainType[this.name])
+    return ExpressionValue.terrainType()
   }
 }
 

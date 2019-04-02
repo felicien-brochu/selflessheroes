@@ -26,6 +26,7 @@ export class InvalidStatementException extends StatementException {
   }
 }
 
+// Compiler level exceptions
 export class IfWithoutEndIfException extends StatementException {
   constructor(message, statement) {
     super('IfWithoutEndIfException', message, statement)
@@ -52,11 +53,19 @@ export class JumpToUnknownAnchorException extends StatementException {
 
 export class DuplicateAnchorException extends StatementException {
   constructor(message, statement) {
-    super('JumpToUnknownAnchorException', message, statement)
+    super('DuplicateAnchorException', message, statement)
+  }
+}
+
+export class OpenStatementException extends StatementException {
+  constructor(message, statement) {
+    super('OpenStatementException', message, statement)
   }
 }
 
 
+
+// Statement level exceptions
 export class MismatchStatementException extends StatementException {
   constructor(message, statement) {
     super('MismatchStatementException', message, statement)

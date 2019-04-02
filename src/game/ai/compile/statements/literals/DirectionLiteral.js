@@ -10,6 +10,7 @@ export default class DirectionLiteral extends Expression {
   constructor(line, column) {
     super('DirectionLiteral', line, column)
     this.name = null
+    this.value = null
   }
 
   compile(config) {
@@ -20,6 +21,7 @@ export default class DirectionLiteral extends Expression {
     }
 
     this.name = joinedCode.trim()
+    this.value = Direction[this.name]
   }
 
   static isValid(code) {
@@ -28,7 +30,7 @@ export default class DirectionLiteral extends Expression {
   }
 
   computeValue(context) {
-    return ExpressionValue.direction(Direction[this.name])
+    return ExpressionValue.direction(this.value)
   }
 }
 

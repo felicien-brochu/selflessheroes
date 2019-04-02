@@ -29,18 +29,12 @@ export default class StepFunction extends ActionFunction {
     }
 
     let paramsJoinedCode = res[2]
-    console.log("####stepFunc", this.line, this.column)
     let params = extractParams(paramsJoinedCode, this.code, this.line, this.column)
 
     if (params.length < 1) {
       throw new InvalidNumberOfParamsException('\'step\' function requires at least 1 parameter', this)
     }
 
-    // Check uniqueness
-    let paramsCode = params.map(param => param.code.join(' ').trim())
-    if (paramsCode.some(param => (paramsCode.indexOf(param) !== paramsCode.lastIndexOf(param)))) {
-      throw new InvalidFunctionParamsException(`you cannot pass the same parameter twice`, this)
-    }
     params.forEach((param, index) => this.compileParam(param, index, config))
   }
 
@@ -49,9 +43,14 @@ export default class StepFunction extends ActionFunction {
     this.params.push(param)
 
     if (param.type === 'InvalidExpression') {
-      throw new InvalidFunctionParamsException(`the function 'step()' only accept direction literals as parameter`, param)
+      throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid direction literal`, param)
     }
+
     param.compile(config)
+
+    if (this.params.some((p, index) => index < this.params.length - 1 && p.name === param.name)) {
+      throw new InvalidFunctionParamsException(`you cannot pass the same parameter twice`, param)
+    }
   }
 
   execute(context) {

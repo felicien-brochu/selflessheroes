@@ -1,5 +1,6 @@
 import Expression from './Expression'
 import ObjectTypeLiteral from './literals/ObjectTypeLiteral'
+import TerrainTypeLiteral from './literals/TerrainTypeLiteral'
 import IntegerLiteral from './literals/IntegerLiteral'
 import ValueFunctions from './functions/ValueFunctions'
 import VariableIdentifier from './VariableIdentifier'
@@ -32,16 +33,17 @@ const gtOperator = '>'
 const geOperator = '>='
 
 const compOperators = [
-  eqOperator,
   neOperator,
-  ltOperator,
+  eqOperator,
   leOperator,
-  gtOperator,
-  geOperator
+  ltOperator,
+  geOperator,
+  gtOperator
 ]
 
 const unitExpressions = [
   ObjectTypeLiteral,
+  TerrainTypeLiteral,
   IntegerLiteral,
   VariableIdentifier,
   ...Object.values(ValueFunctions)
@@ -69,11 +71,10 @@ export default class BooleanExpression extends Expression {
 
   compileComposite(config) {
     this.operator = null
-    let operatorPosition
+    let joinedCode = this.code.join(' ')
 
     for (let operator of boolOperators) {
-      operatorPosition = indexOfStringInLines(operator, this.code)
-      if (operatorPosition.length > 0) {
+      if (joinedCode.indexOf(operator) >= 0) {
         this.operator = operator
         break
       }
@@ -96,11 +97,10 @@ export default class BooleanExpression extends Expression {
 
   compileSimple(config) {
     this.operator = null
-    let operatorPosition
+    let joinedCode = this.code.join(' ')
 
     for (let operator of compOperators) {
-      operatorPosition = indexOfStringInLines(operator, this.code)
-      if (operatorPosition.length > 0) {
+      if (joinedCode.indexOf(operator) >= 0) {
         this.operator = operator
         break
       }
@@ -110,17 +110,11 @@ export default class BooleanExpression extends Expression {
       throw new InvalidBooleanExpressionException('no comparison operator found in this boolean expression', this)
     }
 
-    operatorPosition = operatorPosition[0]
     this.composite = false
 
-    let expression1Code = this.code.slice(0, operatorPosition.start.line + 1)
-    let expression2Code = this.code.slice(operatorPosition.start.line)
-
-    expression1Code[expression1Code.length - 1] = expression1Code[expression1Code.length - 1].substring(0, operatorPosition.start.column)
-    expression2Code[0] = expression2Code[0].substring(operatorPosition.end.column)
-
-    this.expression1 = createUnitExpression(expression1Code, unitExpressions, this.line, this.column)
-    this.expression2 = createUnitExpression(expression2Code, unitExpressions, this.line + operatorPosition.end.line, operatorPosition.end.column)
+    let codeSplit = splitCode(this.code, this.operator, this.line, this.column)
+    this.expression1 = createUnitExpression(codeSplit[0].code, unitExpressions, codeSplit[0].line, codeSplit[0].column)
+    this.expression2 = createUnitExpression(codeSplit[1].code, unitExpressions, codeSplit[1].line, codeSplit[1].column)
   }
 
   computeValue(context) {

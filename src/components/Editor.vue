@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import CodeMirror from './CodeMirror'
+import CodeMirror from './codemirror/CodeMirror'
 import SpeedRange from './SpeedRange'
 import PlayPauseButton from './PlayPauseButton'
 

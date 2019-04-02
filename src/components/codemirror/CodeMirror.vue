@@ -1,5 +1,5 @@
 <template>
-<div class="vue-codemirror-wrap">
+<div class='vue-codemirror-wrap'>
   <textarea></textarea>
 </div>
 </template>
@@ -8,8 +8,7 @@
 import Vue from 'vue'
 import 'codemirror/lib/codemirror.css'
 import CodeMirror from 'codemirror'
-import 'codemirror/addon/display/autorefresh'
-import js from 'codemirror/mode/javascript/javascript'
+import './aiworldmode'
 
 export default {
   props: {
@@ -21,7 +20,7 @@ export default {
       type: Object,
       default: function() {
         return {
-          mode: 'javascript',
+          mode: 'aiworld',
           lineNumbers: true,
           theme: 'one-dark',
           viewportMargin: Infinity
@@ -96,6 +95,7 @@ export default {
           }
           if (this.compilerException) {
             let boundaries = newException.statement.getTrimedCodeBoundaries()
+            // console.log("####BOUND;", boundaries, `'${newException.statement.code.join('')}'`, newException.statement)
             this.exceptionMarker = this.editor.markText({
               line: boundaries.start.line,
               ch: boundaries.start.column
@@ -261,6 +261,10 @@ export default {
   color: #c678dd;
 }
 
+.cm-s-one-dark .cm-function {
+  color: hsl(207, 82%, 66%);
+}
+
 .cm-s-one-dark .cm-def {
   color: #e5c07b;
 }
@@ -306,6 +310,7 @@ export default {
 
 .cm-s-one-dark .cm-bracket {
   color: #abb2bf;
+  font-style: italic;
 }
 
 .cm-s-one-dark .cm-comment {

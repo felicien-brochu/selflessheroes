@@ -5,7 +5,8 @@ import {
   ElseWithoutIfException,
   EndIfWithoutIfException,
   DuplicateAnchorException,
-  JumpToUnknownAnchorException
+  JumpToUnknownAnchorException,
+  OpenStatementException
 } from './CompilerException'
 import InvalidStatement from './statements/InvalidStatement'
 
@@ -53,14 +54,18 @@ export default class Compiler {
       }
 
       currentStatement.pushLine(line)
+      console.log(currentStatement)
       if (currentStatement.isCodeComplete()) {
         currentStatement.compile(this.config)
         if (!this.deleteEmptyStatements || currentStatement.type !== 'EmptyStatement') {
-          // console.log(currentStatement)
           this.statements.push(currentStatement)
         }
         currentStatement = null
       }
+    }
+
+    if (currentStatement !== null) {
+      throw new OpenStatementException(`this statement must be closed`, currentStatement)
     }
   }
 
