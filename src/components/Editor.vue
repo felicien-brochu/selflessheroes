@@ -1,10 +1,13 @@
 <template>
 <div id="editor">
-  <code-mirror id="editor-text" :value="code" :worldReady="worldReady" :compilerException="compilerException" @change="$emit('change', $event)" />
+  <div>
+    <code-mirror id="editor-text" :value="code" :worldReady="worldReady" :compilerException="compilerException" :disabled="playing" @change="$emit('change', $event)" />
+    <div class="editor-readonly-overlay" :style="{ display: playing ? 'initial' : 'none'}"></div>
+  </div>
   <div id="bottom-bar">
-    <play-pause-button @play-pause="$emit('play-pause', $event)" :paused="worldState.paused" :disabled="!worldReady || !worldState.aiReady || worldState.gameOver" />
+    <play-pause-button @play-pause="$emit('play-pause', $event)" :paused="worldState.paused" :disabled="readyToPlay" />
     <speed-range @change="$emit('speed-change', $event)" />
-    <button class="step-button" @click="$emit('step')" :disabled="!worldReady || !worldState.aiReady || worldState.gameOver" />
+    <button class="step-button" @click="$emit('step')" :disabled="readyToPlay" />
     <button class="stop-button" @click="$emit('stop')" :disabled="!worldReady || !worldState.aiReady || worldState.steps < 1" />
   </div>
 </div>
@@ -45,6 +48,14 @@ export default {
   },
   data: function() {
     return {}
+  },
+  computed: {
+    playing: function() {
+      return !this.worldReady || this.worldState.steps > 0
+    },
+    readyToPlay: function() {
+      return !this.worldReady || !this.worldState.aiReady || this.worldState.gameOver
+    }
   },
   mounted: () => {
     resizeCodeMirror()
@@ -117,6 +128,16 @@ window.addEventListener("resize", resizeCodeMirror)
                 background-image: url("/assets/images/stop-button.png");
             }
         }
+    }
+
+    .editor-readonly-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 20;
+        background: #282c3444;
     }
 
     #editor-text {

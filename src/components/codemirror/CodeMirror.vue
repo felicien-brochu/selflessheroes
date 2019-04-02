@@ -27,6 +27,10 @@ export default {
         }
       }
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     worldReady: {
       type: Boolean,
       default: false
@@ -75,8 +79,11 @@ export default {
         }
       }
     },
+    disabled: function(disabled, wasDisabled) {
+      this.editor.setOption('readOnly', disabled ? 'nocursor' : false)
+    },
     worldReady: function(isReady, wasReady) {
-      // Refresh when ready for fonts lazy-loading
+      // Refresh when ready after fonts lazy-loading
       this.editor.refresh()
     },
     compilerException: function(newException, oldException) {
@@ -127,7 +134,6 @@ export default {
 .compiler-exception {
   text-decoration: underline;
   text-decoration-style: double;
-  text-decoration-skip: spaces;
   text-decoration-color: rgb(159, 49, 49);
 }
 
