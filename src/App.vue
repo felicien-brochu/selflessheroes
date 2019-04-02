@@ -1,7 +1,7 @@
 <template>
 <div id="app">
   <world @world-state-change="worldState = $event" @ready="handleWorldReady" />
-  <resize-split-pane split-to="columns" @resize="handleResize" :allow-resize="true" :size="400" :min-size="352" units="pixels" resizerColor="#4b5261" primary="second">
+  <resize-split-pane split-to="columns" @resize="handleEditorResize" :allow-resize="true" :size="400" :min-size="352" units="pixels" resizerColor="#4b5261" primary="second">
     <div slot="firstPane" />
     <editor slot="secondPane" v-model="code" :worldState="worldState" :worldReady="worldReady" :compilerException="compilerException" @change="handleCodeChange" @run-ai="handleRunAI" @play-pause="handlePlayPause" @speed-change="handleSpeedChange"
       @step="handleStep" @stop="handleStop" />
@@ -35,15 +35,16 @@ export default {
       game = gameScene
       this.worldState = worldState
       this.worldReady = true
+      this.handleEditorResize(400)
     },
     handleCodeChange() {
       if (game) {
         this.compilerException = game.compileAI(this.code)
       }
     },
-    handleResize(e) {
+    handleEditorResize(e) {
       if (game) {
-        game.handleResizeCamera(e)
+        game.handleEditorResize(e)
       }
     },
     handleRunAI() {
@@ -86,7 +87,7 @@ html {
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #a99ea2;
+    background-color: black;
     font-family: Consolas, Arial, sans-serif;
 }
 

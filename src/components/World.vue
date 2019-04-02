@@ -14,6 +14,19 @@ class Game extends Phaser.Game {
   }
 }
 
+function resize() {
+  // var canvas = document.querySelector("#world-content canvas");
+  var windowWidth = window.innerWidth
+  var windowHeight = window.innerHeight
+  if (window.game) {
+    window.game.scale.resize(windowWidth, windowHeight)
+  }
+}
+
+window.onload = function() {
+  resize()
+  window.addEventListener("resize", resize, false)
+}
 
 export default {
   mounted: function() {
@@ -40,10 +53,6 @@ export default {
     top: 0;
     left: 0;
     height: 100%;
-
-    canvas {
-        width: 100%;
-        height: 100%;
-    }
+    width: 100%;
 }
 </style>

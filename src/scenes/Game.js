@@ -110,8 +110,6 @@ export default class extends Phaser.Scene {
     let camera = this.cameras.main
     camera.setBounds(-xMargin, -yMargin, this.map.widthInPixels + 2 * xMargin, this.map.heightInPixels + 2 * yMargin)
     camera.setZoom(1)
-    // adapt camera viewport according to the editor width
-    this.handleResizeCamera(400)
     // center camera
     camera.setScroll(this.map.widthInPixels / 2 - (camera.width / 2), this.map.heightInPixels / 2 - (camera.height / 2))
     this.mouseWheelToUpDown = this.plugins.get('rexMouseWheelToUpDown').add(this)
@@ -141,6 +139,7 @@ export default class extends Phaser.Scene {
 
   initEvents() {
     this.input.on('pointerdown', this.handleClickOutside, this)
+    this.scale.on('resize', this.handleResize.bind(this))
   }
 
   startFollowHero(sprite) {
@@ -201,6 +200,10 @@ export default class extends Phaser.Scene {
     }
   }
 
+  resizeCameraViewport() {
+    this.cameras.main.setViewport(0, 0, window.innerWidth - this.editorWidth, window.innerHeight)
+  }
+
   play() {
     this.runner.play()
   }
@@ -236,9 +239,13 @@ export default class extends Phaser.Scene {
     this.runner.setStateListener(listener)
   }
 
-  handleResizeCamera(e) {
-    this.cameras.main.setViewport(0, 0,
-      window.innerWidth - e, window.innerHeight)
+  handleResize(width, height, ratio) {
+    this.resizeCameraViewport()
+  }
+
+  handleEditorResize(editorWidth) {
+    this.editorWidth = editorWidth
+    this.resizeCameraViewport()
   }
 
   handleSpeedChange(speedIndex) {

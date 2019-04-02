@@ -1,12 +1,12 @@
 @font-face {
 	font-family: "Menlo";
-	src: url("/assets/fonts/Menlo/Menlo.eot") format("embedded-opentype"), url("/assets/fonts/Menlo/Menlo.woff2") format("woff2"), url("/assets/fonts/Menlo/Menlo.woff") format("woff"), url("/assets/fonts/Menlo/Menlo.ttf") format("truetype"), url("/assets/fonts/Menlo/Menlo.svg") format("svg"))));
+	src: url("/assets/fonts/Menlo/Menlo.eot") format("embedded-opentype"), url("/assets/fonts/Menlo/Menlo.woff2") format("woff2"), url("/assets/fonts/Menlo/Menlo.woff") format("woff"), url("/assets/fonts/Menlo/Menlo.ttf") format("truetype"), url("/assets/fonts/Menlo/Menlo.svg") format("svg");
 }
 @font-face {
 	font-family: "Consolas";
-	src: url("/assets/fonts/Consolas/Consolas.eot") format("embedded-opentype"), url("/assets/fonts/Consolas/Consolas.woff2") format("woff2"), url("/assets/fonts/Consolas/Consolas.woff") format("woff"), url("/assets/fonts/Consolas/Consolas.ttf") format("truetype"), url("/assets/fonts/Consolas/Consolas.svg") format("svg"))));
+	src: url("/assets/fonts/Consolas/Consolas.eot") format("embedded-opentype"), url("/assets/fonts/Consolas/Consolas.woff2") format("woff2"), url("/assets/fonts/Consolas/Consolas.woff") format("woff"), url("/assets/fonts/Consolas/Consolas.ttf") format("truetype"), url("/assets/fonts/Consolas/Consolas.svg") format("svg");
 }
 @font-face {
 	font-family: "Monaco";
-	src: url("/assets/fonts/Monaco/Monaco.eot") format("embedded-opentype"), url("/assets/fonts/Monaco/Monaco.woff2") format("woff2"), url("/assets/fonts/Monaco/Monaco.woff") format("woff"), url("/assets/fonts/Monaco/Monaco.ttf") format("truetype"), url("/assets/fonts/Monaco/Monaco.svg") format("svg"))));
+	src: url("/assets/fonts/Monaco/Monaco.eot") format("embedded-opentype"), url("/assets/fonts/Monaco/Monaco.woff2") format("woff2"), url("/assets/fonts/Monaco/Monaco.woff") format("woff"), url("/assets/fonts/Monaco/Monaco.ttf") format("truetype"), url("/assets/fonts/Monaco/Monaco.svg") format("svg");
 }
