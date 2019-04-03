@@ -12,10 +12,10 @@ import {
 } from '../../utils'
 
 export default class ValueFunction extends Expression {
-  constructor(type, identifier, line, column) {
-    super(type, line, column)
+  constructor(type, parent, keyword, line, column) {
+    super(type, parent, line, column)
     this.params = []
-    this.identifier = identifier
+    this.keyword = keyword
   }
 
   compile(config) {
@@ -25,9 +25,9 @@ export default class ValueFunction extends Expression {
       throw new MismatchStatementException('you try to compile as a value function a statement which is not one', this)
     }
 
-    let allowedTypes = config.valueFunctions
-    if (!allowedTypes.some(allowedType => allowedType === this.identifier)) {
-      throw new ForbiddenValueFunctionException(`the function ${this.identifier} is forbidden. You may use the following functions: ${allowedTypes}`, this)
+    let allowedTypes = config.getValueFunctionsForParent(this.parent)
+    if (!allowedTypes.some(allowedType => this instanceof allowedType)) {
+      throw new ForbiddenValueFunctionException(`the function ${this.keyword} is forbidden. You may use the following functions: ${allowedTypes}`, this)
     }
   }
 }

@@ -13,8 +13,8 @@ import {
 } from '../../utils'
 
 export default class DirFunction extends ValueFunction {
-  constructor(line, column) {
-    super('DirFunction', 'dir', line, column)
+  constructor(parent, line, column) {
+    super('DirFunction', parent, 'dir', line, column)
   }
 
   compile(config) {
@@ -36,7 +36,7 @@ export default class DirFunction extends ValueFunction {
   }
 
   compileParam(paramCode, index, config) {
-    let param = createUnitExpression(paramCode.code, [DirectionLiteral], paramCode.line, paramCode.column)
+    let param = createUnitExpression(paramCode.code, [DirectionLiteral], this, paramCode.line, paramCode.column)
     this.params.push(param)
 
     if (param.type === 'InvalidExpression') {

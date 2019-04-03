@@ -10,8 +10,9 @@ import {
 } from '../utils'
 
 export default class IfStatement extends PrimaryStatement {
-  constructor(line, column = 0) {
-    super('IfStatement', line, column)
+  constructor(parent, line, column = 0) {
+    super('IfStatement', parent, line, column)
+    this.keyword = 'if'
     this.condition = null
     this.elseStatement = null
     this.endIfStatement = null
@@ -43,7 +44,7 @@ export default class IfStatement extends PrimaryStatement {
     let conditionStr = groups[1]
     let position = indexOfStringInLines(conditionStr, this.code)[0]
 
-    this.condition = new BooleanExpression(this.line + position.start.line, position.start.column)
+    this.condition = new BooleanExpression(this, this.line + position.start.line, position.start.column)
     let subcode = subCode(this.code, position.start.line, position.start.column, position.end.line, position.end.column)
     this.condition.pushLines(subcode)
 

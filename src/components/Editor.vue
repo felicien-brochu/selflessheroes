@@ -118,7 +118,6 @@ window.addEventListener("resize", resizeCodeMirror)
 
         #graph-editor {
             // display: none;
-            color: white;
             // position: relative;
         }
     }

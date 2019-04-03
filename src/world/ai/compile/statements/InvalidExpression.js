@@ -4,8 +4,8 @@ import {
 } from '../CompilerException'
 
 export default class InvalidExpression extends Expression {
-  constructor(line, column) {
-    super('InvalidExpression', line, column)
+  constructor(parent, line, column) {
+    super('InvalidExpression', parent, line, column)
   }
 
   compile(config) {

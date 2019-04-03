@@ -7,8 +7,8 @@ import {
 import Direction from '../../../../Direction'
 
 export default class DirectionLiteral extends Expression {
-  constructor(line, column) {
-    super('DirectionLiteral', line, column)
+  constructor(parent, line, column) {
+    super('DirectionLiteral', parent, line, column)
     this.name = null
     this.value = null
   }

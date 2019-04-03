@@ -2,8 +2,8 @@ import PrimaryStatement from './PrimaryStatement'
 
 export default class EmptyStatement extends PrimaryStatement {
 
-  constructor(line, column = 0) {
-    super('EmptyStatement', line, column)
+  constructor(parent, line, column = 0) {
+    super('EmptyStatement', parent, line, column)
   }
 
   isCodeComplete() {

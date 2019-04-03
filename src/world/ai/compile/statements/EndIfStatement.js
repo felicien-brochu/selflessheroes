@@ -5,8 +5,8 @@ import {
 
 export default class EndIfStatement extends PrimaryStatement {
 
-  constructor(line, column = 0) {
-    super('EndIfStatement', line, column)
+  constructor(parent, line, column = 0) {
+    super('EndIfStatement', parent, line, column)
   }
 
   isCodeComplete() {

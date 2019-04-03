@@ -1,14 +1,19 @@
 <template>
 <div class="graph-editor">
 
+  <palette :compilerConfig="compilerConfig" />
   GRAPH EDITOR
 
 </div>
 </template>
 
 <script>
+import Palette from './Palette'
+
 export default {
-  components: {},
+  components: {
+    Palette
+  },
   props: {
     'code': {
       type: String,
@@ -55,7 +60,18 @@ export default {
 
 <style lang="scss">
 .graph-editor {
+    color: white;
     width: 100%;
     height: 100%;
+    position: relative;
+    overflow: visible;
+
+    .palette {
+        position: absolute;
+        left: -122px;
+        top: 0;
+        z-index: -1;
+        margin: 40px 0 0;
+    }
 }
 </style>

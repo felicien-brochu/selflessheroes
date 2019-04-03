@@ -5,8 +5,8 @@ import {
 
 export default class AnchorStatement extends PrimaryStatement {
 
-  constructor(line, column = 0) {
-    super('AnchorStatement', line, column)
+  constructor(parent, line, column = 0) {
+    super('AnchorStatement', parent, line, column)
     this.name = null
   }
 

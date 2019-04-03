@@ -7,8 +7,8 @@ import {
 import ObjectType from '../../../../ObjectType'
 
 export default class ObjectTypeLiteral extends Expression {
-  constructor(line, column) {
-    super('ObjectTypeLiteral', line, column)
+  constructor(parent, line, column) {
+    super('ObjectTypeLiteral', parent, line, column)
     this.name = null
     this.value = null
   }

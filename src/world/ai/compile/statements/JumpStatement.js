@@ -5,8 +5,9 @@ import {
 
 export default class JumpStatement extends PrimaryStatement {
 
-  constructor(line, column = 0) {
-    super('JumpStatement', line, column)
+  constructor(parent, line, column = 0) {
+    super('JumpStatement', parent, line, column)
+    this.keyword = 'jump'
     this.anchor = null
     this.anchorStatement = null
   }

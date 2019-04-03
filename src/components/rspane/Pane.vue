@@ -15,7 +15,7 @@ export default {
 
 <style scoped>
 .Pane {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .Pane .columns {

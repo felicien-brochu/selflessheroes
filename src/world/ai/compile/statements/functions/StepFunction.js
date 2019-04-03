@@ -15,8 +15,8 @@ import {
 const identifier = 'step'
 
 export default class StepFunction extends ActionFunction {
-  constructor(line, column) {
-    super('StepFunction', 'step', line, column)
+  constructor(parent, line, column) {
+    super('StepFunction', parent, 'step', line, column)
   }
 
   compile(config) {
@@ -39,7 +39,7 @@ export default class StepFunction extends ActionFunction {
   }
 
   compileParam(paramCode, index, config) {
-    let param = createUnitExpression(paramCode.code, [DirectionLiteral], paramCode.line, paramCode.column)
+    let param = createUnitExpression(paramCode.code, [DirectionLiteral], this, paramCode.line, paramCode.column)
     this.params.push(param)
 
     if (param.type === 'InvalidExpression') {

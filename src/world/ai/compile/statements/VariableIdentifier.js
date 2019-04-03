@@ -5,8 +5,8 @@ import {
 } from '../CompilerException'
 
 export default class VariableIdentifier extends Expression {
-  constructor(line, column) {
-    super('VariableIdentifier', line, column)
+  constructor(parent, line, column) {
+    super('VariableIdentifier', parent, line, column)
     this.name = null
   }
 

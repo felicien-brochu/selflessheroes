@@ -1,6 +1,7 @@
 export default class Statement {
-  constructor(type, line, column = 0) {
+  constructor(type, parent, line, column = 0) {
     this.type = type
+    this.parent = parent
     this.line = line
     this.column = column
     this.code = []

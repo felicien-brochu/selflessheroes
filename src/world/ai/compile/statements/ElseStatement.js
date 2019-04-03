@@ -5,8 +5,9 @@ import {
 
 export default class ElseStatement extends PrimaryStatement {
 
-  constructor(line, column = 0) {
-    super('ElseStatement', line, column)
+  constructor(parent, line, column = 0) {
+    super('ElseStatement', parent, line, column)
+    this.keyword = 'else'
     this.endIfStatement = null
   }
 

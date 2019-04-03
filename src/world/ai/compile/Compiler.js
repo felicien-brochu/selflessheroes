@@ -43,14 +43,14 @@ export default class Compiler {
       if (!currentStatement) {
         for (let statementClass of this.config.getPrimaryStatements()) {
           if (statementClass.matchLine(lines[i])) {
-            currentStatement = new statementClass(i)
+            currentStatement = new statementClass(null, i, 0)
             break
           }
         }
       }
 
       if (currentStatement === null) {
-        currentStatement = new InvalidStatement(i, 0)
+        currentStatement = new InvalidStatement(null, i, 0)
       }
 
       currentStatement.pushLine(line)

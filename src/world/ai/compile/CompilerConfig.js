@@ -5,7 +5,8 @@ import ElseStatement from './statements/ElseStatement'
 import EndIfStatement from './statements/EndIfStatement'
 import JumpStatement from './statements/JumpStatement'
 import AnchorStatement from './statements/AnchorStatement'
-import ActionFunctions from './statements/functions/ActionFunctions'
+import DirFunction from './statements/functions/DirFunction'
+import StepFunction from './statements/functions/StepFunction'
 import ObjectType from '../../ObjectType'
 import TerrainType from '../../TerrainType'
 
@@ -13,7 +14,6 @@ import TerrainType from '../../TerrainType'
 export default class CompilerConfig {
   constructor() {
     this.statements = []
-    this.expressions = []
   }
 
   static getDefaultConfig() {
@@ -33,12 +33,16 @@ export default class CompilerConfig {
     config.objectTypes = Object.keys(ObjectType)
     config.terrainTypes = Object.keys(TerrainType)
 
-    config.valueFunctions = [
-      'dir'
+    config.assignValueFunctions = [
+      DirFunction
+    ]
+
+    config.comparisonValueFunctions = [
+      DirFunction
     ]
 
     config.actionFunctions = [
-      'step'
+      StepFunction
     ]
 
     return config
@@ -53,6 +57,16 @@ export default class CompilerConfig {
   }
 
   getPrimaryStatements() {
-    return this.statements.concat(this.actionFunctions.map(key => ActionFunctions[key]))
+    return this.statements.concat(this.actionFunctions)
+  }
+
+  getValueFunctionsForParent(parent) {
+    if (parent instanceof AssignStatement) {
+      return this.assignValueFunctions
+    } else if (parent instanceof BooleanExpression) {
+      return this.comparisonValueFunctions
+    } else {
+      return []
+    }
   }
 }

@@ -17,7 +17,7 @@ import InvalidExpression from './InvalidExpression'
 const assignOperator = '='
 
 export default class AssignStatement extends PrimaryStatement {
-  constructor(line, column = 0) {
+  constructor(parent, line, column = 0) {
     super('AssignStatement', line, column)
 
     this.variable = null
@@ -45,7 +45,7 @@ export default class AssignStatement extends PrimaryStatement {
     variableCode[variableCode.length - 1] = variableCode[variableCode.length - 1].substring(0, operatorPosition.start.column)
     valueCode[0] = valueCode[0].substring(operatorPosition.end.column)
 
-    this.variable = createUnitExpression(variableCode, [VariableIdentifier], this.line, this.column)
+    this.variable = createUnitExpression(variableCode, [VariableIdentifier], this, this.line, this.column)
 
     if (this.variable.type === 'InvalidExpression') {
       throw new InvalidVariableIdentifierException('this identifier is not a valid variable identifier', this.variable)
@@ -54,7 +54,7 @@ export default class AssignStatement extends PrimaryStatement {
     this.variable.compile(config)
 
     this.value = createUnitExpression(valueCode, [IntegerLiteral, VariableIdentifier, ...Object.values(ValueFunctions)],
-      this.line + operatorPosition.end.line, operatorPosition.end.column)
+      this, this.line + operatorPosition.end.line, operatorPosition.end.column)
 
     if (this.value.type === 'InvalidExpression') {
       throw new InvalidExpressionException('this identifier is neither a value function, an integer literal or a valid variable identifier', this.value)

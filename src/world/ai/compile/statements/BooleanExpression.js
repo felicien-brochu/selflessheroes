@@ -51,8 +51,8 @@ const unitExpressions = [
 
 
 export default class BooleanExpression extends Expression {
-  constructor(line, column) {
-    super('BooleanExpression', line, column)
+  constructor(parent, line, column) {
+    super('BooleanExpression', parent, line, column)
 
     this.expression1 = null
     this.expression2 = null
@@ -87,8 +87,8 @@ export default class BooleanExpression extends Expression {
     let codeSplit = splitCode(this.code, this.operator, this.line, this.column)
 
     this.composite = true
-    this.expression1 = new BooleanExpression(codeSplit[0].line, codeSplit[0].column)
-    this.expression2 = new BooleanExpression(codeSplit[1].line, codeSplit[1].column)
+    this.expression1 = new BooleanExpression(this, codeSplit[0].line, codeSplit[0].column)
+    this.expression2 = new BooleanExpression(this, codeSplit[1].line, codeSplit[1].column)
     this.expression1.pushLines(codeSplit[0].code)
     this.expression2.pushLines(codeSplit[1].code)
 
@@ -113,8 +113,8 @@ export default class BooleanExpression extends Expression {
     this.composite = false
 
     let codeSplit = splitCode(this.code, this.operator, this.line, this.column)
-    this.expression1 = createUnitExpression(codeSplit[0].code, unitExpressions, codeSplit[0].line, codeSplit[0].column)
-    this.expression2 = createUnitExpression(codeSplit[1].code, unitExpressions, codeSplit[1].line, codeSplit[1].column)
+    this.expression1 = createUnitExpression(codeSplit[0].code, unitExpressions, this, codeSplit[0].line, codeSplit[0].column)
+    this.expression2 = createUnitExpression(codeSplit[1].code, unitExpressions, this, codeSplit[1].line, codeSplit[1].column)
   }
 
   computeValue(context) {

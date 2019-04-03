@@ -7,9 +7,9 @@ import {
 } from '../../CompilerException'
 
 export default class ActionFunction extends PrimaryStatement {
-  constructor(type, identifier, line, column) {
-    super(type, line, column)
-    this.identifier = identifier
+  constructor(type, parent, keyword, line, column) {
+    super(type, parent, line, column)
+    this.keyword = keyword
     this.params = []
   }
 
@@ -25,10 +25,8 @@ export default class ActionFunction extends PrimaryStatement {
     }
 
     let allowedTypes = config.actionFunctions
-    this.identifier = res[2]
-
-    if (!allowedTypes.some(allowedType => allowedType === this.identifier)) {
-      throw new ForbiddenActionFunctionException(`the function ${this.identifier} is forbidden. You may use the following functions: ${allowedTypes}`, this)
+    if (!allowedTypes.some(allowedType => this instanceof allowedType)) {
+      throw new ForbiddenActionFunctionException(`the function ${this.keyword} is forbidden. You may use the following functions: ${allowedTypes}`, this)
     }
   }
 }

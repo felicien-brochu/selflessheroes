@@ -7,8 +7,8 @@ import {
 import TerrainType from '../../../../TerrainType'
 
 export default class TerrainTypeLiteral extends Expression {
-  constructor(line, column) {
-    super('TerrainTypeLiteral', line, column)
+  constructor(parent, line, column) {
+    super('TerrainTypeLiteral', parent, line, column)
     this.name = null
     this.value = null
   }

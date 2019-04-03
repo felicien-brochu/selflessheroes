@@ -91,18 +91,18 @@ export function subCode(code, startLine, startColumn, endLine, endColumn) {
   return subcode
 }
 
-export function createUnitExpression(code, expressionClasses, line, column) {
+export function createUnitExpression(code, expressionClasses, parent, line, column) {
   let expression = null
   let joinedCode = code.join(' ')
   for (let expressionClass of expressionClasses) {
     if (expressionClass.isValid(joinedCode)) {
-      expression = new expressionClass(line, column)
+      expression = new expressionClass(parent, line, column)
       break
     }
   }
 
   if (!expression) {
-    expression = new InvalidExpression(line, column)
+    expression = new InvalidExpression(parent, line, column)
   }
 
   expression.pushLines(code)

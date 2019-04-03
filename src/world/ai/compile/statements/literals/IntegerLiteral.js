@@ -5,8 +5,8 @@ import {
 } from '../../CompilerException'
 
 export default class IntegerLiteral extends Expression {
-  constructor(line, column) {
-    super('IntegerLiteral', line, column)
+  constructor(parent, line, column) {
+    super('IntegerLiteral', parent, line, column)
     this.value = 0
   }
 
