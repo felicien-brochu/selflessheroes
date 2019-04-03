@@ -50,11 +50,11 @@ export default class CameraControl extends Phaser.Cameras.Controls.FixedKeyContr
 
   setInitialZoom() {
     let zoom = 1
-    if (zoom * this.mapWidth > this.visibleWidth - 2 * xMargin) {
-      zoom = (this.visibleWidth - 2 * xMargin) / this.mapWidth
+    if (zoom * (this.mapWidth + 2 * xMargin) > this.visibleWidth) {
+      zoom = this.visibleWidth / (this.mapWidth + 2 * xMargin)
     }
-    if (zoom * this.mapHeight > this.visibleHeight - 2 * yMargin) {
-      zoom = (this.visibleHeight - 2 * yMargin) / this.mapHeight
+    if (zoom * (this.mapHeight + 2 * yMargin) > this.visibleHeight) {
+      zoom = this.visibleHeight / (this.mapHeight + 2 * yMargin)
     }
     zoom = Math.max(zoom, minZoom)
     this.camera.setZoom(zoom)
@@ -73,7 +73,6 @@ export default class CameraControl extends Phaser.Cameras.Controls.FixedKeyContr
     if (mapWidth !== this.mapWidth || mapHeight !== this.mapHeight) {
       this.mapWidth = mapWidth
       this.mapHeight = mapHeight
-      this.resizeCameraViewport()
       this.resizeBounds()
     }
   }
@@ -108,20 +107,20 @@ export default class CameraControl extends Phaser.Cameras.Controls.FixedKeyContr
     let x
     let y
 
-    if (camera.zoom * mapWidth + 2 * xMargin < this.visibleWidth) {
+    if (camera.zoom * minWidth < this.visibleWidth) {
       x = -((this.visibleWidth / camera.zoom) - mapWidth) / 2
       width = this.visibleWidth / camera.zoom
     } else {
-      x = -xMargin / camera.zoom
-      width = mapWidth + (2 * xMargin / camera.zoom)
+      x = -xMargin
+      width = minWidth
     }
 
-    if (camera.zoom * mapHeight + 2 * yMargin < this.visibleHeight) {
+    if (camera.zoom * minHeight < this.visibleHeight) {
       y = -((this.visibleHeight / camera.zoom) - mapHeight) / 2
       height = this.visibleHeight / camera.zoom
     } else {
-      y = -yMargin / camera.zoom
-      height = mapHeight + (2 * yMargin / camera.zoom)
+      y = -yMargin
+      height = minHeight
     }
     camera.setBounds(x, y, width, height)
   }
