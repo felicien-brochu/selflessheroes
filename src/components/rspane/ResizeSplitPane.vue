@@ -1,12 +1,27 @@
 <template>
-<div class="pane-rs root" :class="classObject" :style="paneStyle" @mousemove="onMouseMove" @mouseup="onMouseUp">
-  <pane-comp ref="pane1" :class="{column: splitTo === 'columns', row: splitTo === 'rows'}" :style="iStyleFirst">
+<div class="pane-rs root"
+  :class="classObject"
+  :style="paneStyle"
+  @mousemove="onMouseMove"
+  @mouseup="onMouseUp">
+  <pane-comp ref="pane1"
+    :class="{column: splitTo === 'columns', row: splitTo === 'rows'}"
+    :style="iStyleFirst">
     <slot name='firstPane'></slot>
   </pane-comp>
-  <resizer-comp @mousedown.native="onMouseDown" v-if="allowResize" :splitTo="splitTo" :resizerColor="resizerColor" :resizerBorderColor="resizerBorderColor" :resizerThickness="resizerThickness" :resizerBorderThickness="resizerBorderThickness" :class="{
+  <resizer-comp @mousedown.native="onMouseDown"
+    v-if="allowResize"
+    :splitTo="splitTo"
+    :resizerColor="resizerColor"
+    :resizerBorderColor="resizerBorderColor"
+    :resizerThickness="resizerThickness"
+    :resizerBorderThickness="resizerBorderThickness"
+    :class="{
           rowsres: splitTo === 'rows',
           columnsres: splitTo === 'columns'}"></resizer-comp>
-  <pane-comp ref="pane2" :class="{column: splitTo === 'columns', row: splitTo === 'rows'}" :style="iStyleSecond">
+  <pane-comp ref="pane2"
+    :class="{column: splitTo === 'columns', row: splitTo === 'rows'}"
+    :style="iStyleSecond">
     <slot name='secondPane'></slot>
   </pane-comp>
 </div>

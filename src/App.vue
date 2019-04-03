@@ -1,9 +1,34 @@
 <template>
 <div id="app">
-  <world @world-state-change="worldState = $event" @ready="handleWorldReady" />
-  <resize-split-pane split-to="columns" @resize="handleEditorResize" :allow-resize="true" :size="editorWidth" :min-size="320" units="pixels" resizerColor="#4b5261" primary="second">
+
+  <world @world-state-change="worldState = $event"
+    @ai-state-change="aiReady = $event"
+    @ready="handleWorldReady" />
+
+
+  <resize-split-pane split-to="columns"
+    @resize="handleEditorResize"
+    :allow-resize="true"
+    :size="editorWidth"
+    :min-size="320"
+    units="pixels"
+    resizerColor="#4b5261"
+    primary="second">
+
     <div slot="firstPane" />
-    <editor slot="secondPane" v-model="code" :worldState="worldState" :worldReady="worldReady" :compilerException="compilerException" @change="handleCodeChange" @play-pause="handlePlayPause" @speed-change="handleSpeedChange" @step="handleStep" @stop="handleStop" />
+
+    <editor slot="secondPane"
+      v-model="code"
+      :worldState="worldState"
+      :worldReady="worldReady"
+      :aiReady="aiReady"
+      :compilerException="compilerException"
+      @change="handleCodeChange"
+      @play-pause="handlePlayPause"
+      @speed-change="handleSpeedChange"
+      @step="handleStep"
+      @stop="handleStop" />
+
   </resize-split-pane>
 </div>
 </template>
@@ -26,8 +51,9 @@ export default {
       code: 'b:\nstep(n)\na = 1\n\nif b == 3 &&\n dir(s) > 3 ||\n dir(n) == wall:\n\tstep(e,w)\nelse\n\ta = 9\n\tstep(n, s)\nendif\n\njump b',
       worldState: {},
       worldReady: false,
+      aiReady: false,
       compilerException: null,
-      editorWidth: 400
+      editorWidth: 360
     }
   },
   beforeCreate: function() {
@@ -42,7 +68,7 @@ export default {
       this.tryCompiling()
     },
     handleCodeChange() {
-      if (!this.worldState.aiReady) {
+      if (!this.aiReady) {
         if (this.compilerTimeoutID >= 0) {
           clearTimeout(this.compilerTimeoutID)
         }

@@ -1,5 +1,8 @@
 <template>
-  <span @mouseover="isMouseOver = true" @mouseout="isMouseOver = false" class="Resizer" :style="resStyle"> </span>    
+<span @mouseover="isMouseOver = true"
+  @mouseout="isMouseOver = false"
+  class="Resizer"
+  :style="resStyle"> </span>
 </template>
 
 <script>
@@ -31,9 +34,16 @@ export default {
     },
     rBorder() {
       if (this.splitTo === 'rows') {
-        return { border1: 'top', border2: 'bottom' }
-      } else {
-        return { border1: 'left', border2: 'right' }
+        return {
+          border1: 'top',
+          border2: 'bottom'
+        }
+      }
+      else {
+        return {
+          border1: 'left',
+          border2: 'right'
+        }
       }
     },
     resStyle: function() {
@@ -45,7 +55,8 @@ export default {
         tmpStyle.height = this.resizerTotalThickness + 'px'
         tmpStyle.margin = '-' + this.margin + 'px 0'
         tmpStyle.padding = '0 ' + this.resizerBorderThickness + 'px'
-      } else {
+      }
+      else {
         tmpStyle.width = this.resizerTotalThickness + 'px'
         tmpStyle.margin = '0 ' + '-' + this.margin + 'px'
         tmpStyle.padding = this.resizerBorderThickness + 'px 0'
@@ -53,16 +64,17 @@ export default {
 
       if (this.isMouseOver) {
         tmpStyle[`border-${this.rBorder.border1}`] = tmpStyle[
-          `border-${this.rBorder.border2}`
-        ] =
+            `border-${this.rBorder.border2}`
+          ] =
           this.resizerBorderColor +
           ' solid ' +
           this.resizerBorderThickness +
           'px'
-      } else {
+      }
+      else {
         tmpStyle[`border-${this.rBorder.border1}`] = tmpStyle[
-          `border-${this.rBorder.border2}`
-        ] =
+            `border-${this.rBorder.border2}`
+          ] =
           'transparent solid ' + this.resizerBorderThickness + 'px'
       }
 

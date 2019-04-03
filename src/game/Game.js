@@ -18,8 +18,10 @@ export default class extends Phaser.Scene {
     this.aiFactory = null
     this.onSceneReady = null
     this.followHeroIndex = -1
-    this.runner = new WorldRunner(this)
+    this.runner = new WorldRunner()
     this.editorWidth = 400
+
+    this.aiStateListener = null
   }
 
   init(data) {
@@ -65,7 +67,7 @@ export default class extends Phaser.Scene {
     this.followCursor.setVisible(false)
 
     this.gameOverText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, lang.text('game_over'), {
-      font: '64px Bangers',
+      font: '64px Menlo',
       fill: '#7b804f',
       padding: 30
     })
@@ -161,7 +163,7 @@ export default class extends Phaser.Scene {
     this.aiFactory = compiler.compile()
 
     if ((!!this.aiFactory && !oldAIFactory) || (!this.aiFactory && !!oldAIFactory)) {
-      this.runner.emitStateChange()
+      this.emitAiStateChange()
     }
     return compiler.exception
   }
@@ -201,6 +203,16 @@ export default class extends Phaser.Scene {
 
   setWorldStateListener(listener) {
     this.runner.setStateListener(listener)
+  }
+
+  setAiStateListener(listener) {
+    this.aiStateListener = listener
+  }
+
+  emitAiStateChange() {
+    if (this.aiStateListener) {
+      this.aiStateListener(this.aiReady())
+    }
   }
 
   aiReady() {

@@ -37,10 +37,14 @@ export default {
   methods: {
     handleGameReady(gameScene) {
       gameScene.setWorldStateListener(this.handleWorldStateChange)
+      gameScene.setAiStateListener(this.handleAiStateChange)
       this.$emit('ready', gameScene.getWorldState(), gameScene)
     },
     handleWorldStateChange(worldState) {
       this.$emit('world-state-change', worldState)
+    },
+    handleAiStateChange(aiReady) {
+      this.$emit('ai-state-change', aiReady)
     }
   }
 }

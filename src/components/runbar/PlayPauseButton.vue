@@ -1,5 +1,10 @@
 <template>
-<button @click="toggle" :class="'play-pause-button ' + (!paused ? 'pause-button' : 'play-button')" />
+<button @click="toggle"
+  :class="{
+		'play-pause-button': true,
+		'pause-button': !paused,
+		'play-button': paused
+		}" />
 </template>
 
 <script>

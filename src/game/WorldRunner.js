@@ -1,8 +1,7 @@
 import Speeds from './Speeds'
 
 export default class WorldRunner {
-  constructor(gameScene) {
-    this.gameScene = gameScene
+  constructor() {
     this.world = null
     this.stepInterval = 200
     this.speed = Speeds.values[Speeds.default]
@@ -80,7 +79,6 @@ export default class WorldRunner {
 
   getObservableState() {
     return {
-      aiReady: this.gameScene.aiReady(),
       speed: this.speed,
       hasWon: this.world.hasWon,
       hasLost: this.world.hasLost,

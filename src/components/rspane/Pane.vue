@@ -1,7 +1,7 @@
 <template>
-  <div class="Pane">
-    <slot>Content</slot>
-  </div>
+<div class="Pane">
+  <slot>Content</slot>
+</div>
 </template>
 
 <script>

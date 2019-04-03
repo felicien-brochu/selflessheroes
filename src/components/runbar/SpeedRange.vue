@@ -1,18 +1,27 @@
 <template>
 <div class="speed-range">
-  <touch-range :value="speed" :min="0" :max="maxSpeed" step="1" @input="$emit('change', $event)" v-model="speed" />
+
+  <touch-range :value="speed"
+    :min="0"
+    :max="maxSpeed"
+    step="1"
+    @input="$emit('change', $event)"
+    v-model="speed" />
+
   <ul class="speed-list">
-    <li v-for="speedItem in speeds" :class="speedItem.value == speed ? 'selected' : ''">
+    <li v-for="speedItem in speeds"
+      :class="speedItem.value == speed ? 'selected' : ''">
       {{ speedItem.name }}
     </li>
   </ul>
+
 </div>
 </template>
 
 <script>
-import Speeds from '../game/Speeds'
+import Speeds from '../../game/Speeds'
 import TouchRange from './TouchRange'
-import lang from '../lang'
+import lang from '../../lang'
 
 export default {
   components: {

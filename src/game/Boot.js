@@ -17,9 +17,6 @@ export default class extends Phaser.Scene {
     this.load.image('loaderBar', './assets/images/loader-bar.png')
 
     WebFont.load({
-      google: {
-        families: ['Bangers']
-      },
       custom: {
         families: ['Menlo', 'Consolas', 'Monaco'],
         urls: ['/assets/fonts/fonts.css']
