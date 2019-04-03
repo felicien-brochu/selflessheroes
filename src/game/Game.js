@@ -7,6 +7,7 @@ import CameraControl from './CameraControl'
 import Speeds from './Speeds'
 import World from '../world/World'
 import Compiler from '../world/ai/compile/Compiler'
+import CompilerConfig from '../world/ai/compile/CompilerConfig'
 import HeroS from './sprites/HeroS'
 import ObjectiveS from './sprites/ObjectiveS'
 
@@ -16,6 +17,7 @@ export default class extends Phaser.Scene {
       key: 'GameScene'
     })
     this.aiFactory = null
+    this.compilerConfig = CompilerConfig.getDefaultConfig()
     this.onSceneReady = null
     this.followHeroIndex = -1
     this.runner = new WorldRunner()
@@ -158,7 +160,7 @@ export default class extends Phaser.Scene {
   }
 
   compileAI(code) {
-    let compiler = new Compiler(code)
+    let compiler = new Compiler(code, this.compilerConfig)
     let oldAIFactory = this.aiFactory
     this.aiFactory = compiler.compile()
 
@@ -225,6 +227,10 @@ export default class extends Phaser.Scene {
 
   getWorldState() {
     return this.runner ? this.runner.getObservableState() : {}
+  }
+
+  getCompilerConfig() {
+    return this.compilerConfig
   }
 
   step() {

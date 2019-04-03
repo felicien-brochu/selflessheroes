@@ -1,12 +1,15 @@
 <template>
-<div id="editor">
-  <div>
-    <code-mirror id="editor-text"
+<div id="editor-container">
+  <div id="editors">
+    <code-mirror id="code-editor"
       :value="code"
       :worldReady="worldReady"
       :compilerException="compilerException"
       :disabled="playing"
       @change="$emit('change', $event)" />
+    <graph-editor id="graph-editor"
+      :code="code"
+      :compilerConfig="compilerConfig" />
     <div class="editor-readonly-overlay"
       :style="{ display: playing ? 'initial' : 'none'}"></div>
   </div>
@@ -23,17 +26,23 @@
 
 <script>
 import CodeMirror from './codemirror/CodeMirror'
+import GraphEditor from './grapheditor/GraphEditor'
 import RunBar from './runbar/RunBar'
 
 export default {
   components: {
     CodeMirror,
+    GraphEditor,
     RunBar
   },
   props: {
     'code': {
       type: String,
       default: ''
+    },
+    'compilerConfig': {
+      type: Object,
+      default: null
     },
     'worldState': {
       type: Object,
@@ -77,29 +86,40 @@ window.addEventListener("resize", resizeCodeMirror)
 </script>
 
 <style lang="scss">
-#editor {
+#editor-container {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    // justify-content: center;
     background-color: #282c34;
 
-    .editor-readonly-overlay {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 20;
-        background: #282c3444;
-        pointer-events: none;
-    }
-
-    #editor-text {
-        position: relative;
+    #editors {
         flex-grow: 1;
-        .CodeMirror {
-            padding-top: 20px;
+        .editor-readonly-overlay {
             width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 20;
+            background: #282c3444;
+            pointer-events: none;
+        }
+
+        #code-editor {
+            display: none;
+            position: relative;
+            flex-grow: 1;
+            .CodeMirror {
+                padding-top: 20px;
+                width: 100%;
+            }
+        }
+
+        #graph-editor {
+            // display: none;
+            color: white;
+            // position: relative;
         }
     }
 

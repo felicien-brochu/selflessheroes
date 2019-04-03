@@ -19,6 +19,7 @@
 
     <editor slot="secondPane"
       v-model="code"
+      :compilerConfig="compilerConfig"
       :worldState="worldState"
       :worldReady="worldReady"
       :aiReady="aiReady"
@@ -38,8 +39,6 @@ import World from './components/World'
 import Editor from './components/Editor'
 import ResizeSplitPane from './components/rspane/ResizeSplitPane'
 
-let game = null
-
 export default {
   components: {
     World,
@@ -48,7 +47,9 @@ export default {
   },
   data: function() {
     return {
-      code: 'b:\nstep(n)\na = 1\n\nif b == 3 &&\n dir(s) > 3 ||\n dir(n) == wall:\n\tstep(e,w)\nelse\n\ta = 9\n\tstep(n, s)\nendif\n\njump b',
+      // code: 'b:\nstep(n)\na = 1\n\nif b == 3 &&\n dir(s) > 3 ||\n dir(n) == wall:\n\tstep(e,w)\nelse\n\ta = 9\n\tstep(n, s)\nendif\n\njump b',
+      code: '',
+      compilerConfig: null,
       worldState: {},
       worldReady: false,
       aiReady: false,
@@ -60,9 +61,10 @@ export default {
     this.compilerTimeoutID = -1
   },
   methods: {
-    handleWorldReady(worldState, gameScene) {
-      game = gameScene
+    handleWorldReady(gameScene, worldState, compilerConfig) {
+      this.gameScene = gameScene
       this.worldState = worldState
+      this.compilerConfig = compilerConfig
       this.worldReady = true
       this.handleEditorResize(this.editorWidth)
       this.tryCompiling()
@@ -79,28 +81,28 @@ export default {
       }
     },
     handleEditorResize(editorWidth) {
-      if (game) {
-        game.handleEditorResize(editorWidth)
+      if (this.gameScene) {
+        this.gameScene.handleEditorResize(editorWidth)
       }
     },
     handlePlayPause(play) {
-      if (game) {
-        game.handlePlayPause(play)
+      if (this.gameScene) {
+        this.gameScene.handlePlayPause(play)
       }
     },
     handleSpeedChange(speed) {
-      if (game) {
-        game.handleSpeedChange(speed)
+      if (this.gameScene) {
+        this.gameScene.handleSpeedChange(speed)
       }
     },
     handleStep() {
-      if (game) {
-        game.step()
+      if (this.gameScene) {
+        this.gameScene.step()
       }
     },
     handleStop() {
-      if (game) {
-        game.stop()
+      if (this.gameScene) {
+        this.gameScene.stop()
       }
     },
     tryCompilingAsync() {
@@ -108,8 +110,8 @@ export default {
       this.tryCompiling()
     },
     tryCompiling() {
-      if (game) {
-        this.compilerException = game.compileAI(this.code)
+      if (this.gameScene) {
+        this.compilerException = this.gameScene.compileAI(this.code)
       }
     }
   }
