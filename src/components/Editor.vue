@@ -90,7 +90,6 @@ window.addEventListener("resize", resizeCodeMirror)
     height: 100vh;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     background-color: #282c34;
 
     #editors {
@@ -102,7 +101,8 @@ window.addEventListener("resize", resizeCodeMirror)
             top: 0;
             right: 0;
             z-index: 20;
-            background: #282c3444;
+            // background: #282c3444;
+            background: none;
             pointer-events: none;
         }
 
@@ -118,7 +118,6 @@ window.addEventListener("resize", resizeCodeMirror)
 
         #graph-editor {
             // display: none;
-            // position: relative;
         }
     }
 

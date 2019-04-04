@@ -1,17 +1,24 @@
 <template>
 <div class="graph-editor">
 
-  <palette :compilerConfig="compilerConfig" />
-  GRAPH EDITOR
-
+  <drag-and-drop-layer :startDragEvent="startDragEvent"
+    @drop="handleDrop" />
+  <div class="editor-container">
+    <palette :compilerConfig="compilerConfig"
+      :chosenStatement="chosenPaletteStatement"
+      @drag-start="handlePaletteDragStart" />
+    <div class="graph-code">GRAPH EDITOR</div>
+  </div>
 </div>
 </template>
 
 <script>
+import DragAndDropLayer from './DragAndDropLayer'
 import Palette from './Palette'
 
 export default {
   components: {
+    DragAndDropLayer,
     Palette
   },
   props: {
@@ -33,7 +40,10 @@ export default {
     event: 'change'
   },
   data: function() {
-    return {}
+    return {
+      startDragEvent: null,
+      chosenPaletteStatement: null
+    }
   },
   computed: {
     playing: function() {
@@ -53,25 +63,60 @@ export default {
     }
   },
   methods: {
-
+    handlePaletteDragStart(e) {
+      this.startDragEvent = {
+        ...e,
+        isNew: true
+      }
+      console.log("#######STATEMENT", e.statement)
+      this.chosenPaletteStatement = e.statement
+    },
+    handleDrop(e) {
+      console.log("###GraphEditor drop", e)
+      this.startDragEvent = null
+      this.chosenPaletteStatement = null
+    }
   }
 }
 </script>
 
 <style lang="scss">
+.Pane {
+    position: static !important;
+}
 .graph-editor {
+    z-index: 10;
     color: white;
     width: 100%;
     height: 100%;
-    position: relative;
     overflow: visible;
 
-    .palette {
-        position: absolute;
-        left: -122px;
+    .drag-and-drop-layer {
+        position: fixed;
+        left: 0;
         top: 0;
-        z-index: -1;
-        margin: 40px 0 0;
+        z-index: 100000000;
+    }
+
+    .editor-container {
+        z-index: 5;
+        position: relative;
+        height: 100%;
+
+        .palette {
+            z-index: 5;
+            position: absolute;
+            left: -90px;
+            top: 0;
+            margin: 40px 0 0;
+        }
+
+        .graph-code {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            background-color: #282c34;
+        }
     }
 }
 </style>

@@ -132,8 +132,4 @@ html {
     margin: 0 auto;
     height: 100vh;
 }
-
-.pane-rs .Pane:last-child {
-    z-index: 20;
-}
 </style>

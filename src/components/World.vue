@@ -52,7 +52,7 @@ export default {
 
 <style lang="scss">
 #world-content {
-    z-index: 10;
+    // z-index: 10;
     position: fixed;
     top: 0;
     left: 0;
