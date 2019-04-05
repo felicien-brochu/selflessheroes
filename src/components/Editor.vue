@@ -103,7 +103,6 @@ export default {
             top: 0;
             right: 0;
             z-index: 20;
-            // background: #282c3444;
             background: none;
             pointer-events: none;
         }

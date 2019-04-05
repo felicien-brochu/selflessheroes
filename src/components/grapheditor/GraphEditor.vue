@@ -122,7 +122,7 @@ export default {
         .graph-code {
             position: relative;
             z-index: 10;
-            height: 100%;
+            height: min-content;
             background-color: #282c34;
         }
     }

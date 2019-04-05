@@ -15,7 +15,6 @@ class Game extends Phaser.Game {
 }
 
 function resize() {
-  // var canvas = document.querySelector("#world-content canvas");
   var windowWidth = window.innerWidth
   var windowHeight = window.innerHeight
   if (window.game) {
@@ -52,7 +51,7 @@ export default {
 
 <style lang="scss">
 #world-content {
-    // z-index: 10;
+    z-index: 5;
     position: fixed;
     top: 0;
     left: 0;
