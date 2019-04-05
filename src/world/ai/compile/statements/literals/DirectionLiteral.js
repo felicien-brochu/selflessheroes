@@ -30,7 +30,18 @@ export default class DirectionLiteral extends Expression {
   }
 
   computeValue(context) {
-    return ExpressionValue.direction(this.value)
+    let res = []
+    let direction = this.value
+    let x = context.character.x + direction.dx
+    let y = context.character.y + direction.dy
+
+    let terrainType = context.world.map.getTerrainTypeAt(x, y)
+    res.push(ExpressionValue.terrainType(terrainType))
+
+    let worldObjects = context.world.getWorldObjectsAt(x, y)
+    worldObjects.forEach(obj => res.push(ExpressionValue.objectType(obj.getObjectType())))
+
+    return ExpressionValue.composite(res)
   }
 }
 

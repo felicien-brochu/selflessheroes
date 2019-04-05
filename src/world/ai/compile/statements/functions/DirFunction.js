@@ -1,5 +1,6 @@
 import ValueFunction from './ValueFunction'
 import ExpressionValue from '../ExpressionValue'
+import ExpressionTypes from '../ExpressionTypes'
 import DirectionLiteral from '../literals/DirectionLiteral'
 import Direction from '../../../../Direction'
 import {
@@ -62,3 +63,7 @@ export default class DirFunction extends ValueFunction {
 }
 
 DirFunction.codeRegExp = /^\s*(dir\s*\((.*)\))\s*$/
+DirFunction.paramType = {
+  multiple: false,
+  type: ExpressionTypes.direction
+}

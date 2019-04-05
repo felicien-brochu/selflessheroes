@@ -12,6 +12,7 @@ import {
 import VariableIdentifier from './VariableIdentifier'
 import ValueFunctions from './functions/ValueFunctions'
 import IntegerLiteral from './literals/IntegerLiteral'
+import DirectionLiteral from './literals/DirectionLiteral'
 import InvalidExpression from './InvalidExpression'
 
 const assignOperator = '='
@@ -53,7 +54,7 @@ export default class AssignStatement extends PrimaryStatement {
 
     this.variable.compile(config)
 
-    this.value = createUnitExpression(valueCode, [IntegerLiteral, VariableIdentifier, ...Object.values(ValueFunctions)],
+    this.value = createUnitExpression(valueCode, [IntegerLiteral, DirectionLiteral, VariableIdentifier, ...Object.values(ValueFunctions)],
       this, this.line + operatorPosition.end.line, operatorPosition.end.column)
 
     if (this.value.type === 'InvalidExpression') {

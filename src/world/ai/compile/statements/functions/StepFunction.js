@@ -1,5 +1,6 @@
 import ActionFunction from './ActionFunction'
 import DirectionLiteral from '../literals/DirectionLiteral'
+import ExpressionTypes from '../ExpressionTypes'
 import Direction from '../../../../Direction'
 import StepAction from '../../../../actions/StepAction'
 import {
@@ -58,7 +59,7 @@ export default class StepFunction extends ActionFunction {
     let dir = Direction.here
     for (let i = 0; i < this.params.length; i++) {
       if (r < 1 * ((i + 1) / this.params.length)) {
-        dir = this.params[i].computeValue(context).value
+        dir = this.params[i].value
         break
       }
     }
@@ -73,3 +74,7 @@ export default class StepFunction extends ActionFunction {
 
 StepFunction.startLineRegExp = /^\s*(step\s*\((.*)\))\s*/
 StepFunction.codeRegExp = /^\s*(step\s*\((.*)\))\s*$/
+StepFunction.paramType = {
+  multiple: true,
+  type: ExpressionTypes.direction
+}

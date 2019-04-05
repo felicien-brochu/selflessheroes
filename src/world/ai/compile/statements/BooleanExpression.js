@@ -2,6 +2,7 @@ import Expression from './Expression'
 import ObjectTypeLiteral from './literals/ObjectTypeLiteral'
 import TerrainTypeLiteral from './literals/TerrainTypeLiteral'
 import IntegerLiteral from './literals/IntegerLiteral'
+import DirectionLiteral from './literals/DirectionLiteral'
 import ValueFunctions from './functions/ValueFunctions'
 import VariableIdentifier from './VariableIdentifier'
 import InvalidExpression from './InvalidExpression'
@@ -45,6 +46,7 @@ const unitExpressions = [
   ObjectTypeLiteral,
   TerrainTypeLiteral,
   IntegerLiteral,
+  DirectionLiteral,
   VariableIdentifier,
   ...Object.values(ValueFunctions)
 ]
