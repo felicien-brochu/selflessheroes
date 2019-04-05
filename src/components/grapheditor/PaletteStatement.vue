@@ -57,32 +57,30 @@ export default {
 </script>
 
 <style lang="scss">
+@import 'constants';
+
 .palette-statement {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    padding: 5px 10px 6px 7px;
-    border-radius: 5px;
-    cursor: grab;
-    display: inline;
+    @extend %node;
+
+    transition-property: padding, border-width;
+    transition-duration: 0.1s;
 }
 
 .place-holder {
     background: none !important;
-    padding: 3px 8px 4px 5px;
-    border: 2px dashed rgba(#abb2bf, 0.3);
-    color: #282c34;
+    padding: $node-padding-top - 3px $node-padding-right - 3px $node-padding-bottom - 3px $node-padding-left - 3px;
+    border: 3px dashed rgba(#abb2bf, 0.3);
+    color: #282c34 !important;
+    transition-property: none;
+    box-shadow: none;
 }
 .assign-statement {
-    background-color: #c99d2e;
+    @include node-color($assign-color);
 }
 .action-statement {
-    background-color: #3f88c5;
+    @include node-color($action-color);
 }
 .branching-statement {
-    background-color: #65a83e;
+    @include node-color($branching-color);
 }
 </style>

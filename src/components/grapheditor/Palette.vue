@@ -39,7 +39,6 @@ const paletteStatements = [
   ...actionFunctions
 ]
 
-
 export default {
   components: {
     PaletteStatement

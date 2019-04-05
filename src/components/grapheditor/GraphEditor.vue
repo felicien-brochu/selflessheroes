@@ -4,10 +4,13 @@
   <drag-and-drop-layer :startDragEvent="startDragEvent"
     @drop="handleDrop" />
   <div class="editor-container">
-    <palette :compilerConfig="compilerConfig"
+    <palette ref="palette"
+      :compilerConfig="compilerConfig"
       :chosenStatement="chosenPaletteStatement"
       @drag-start="handlePaletteDragStart" />
-    <div class="graph-code">GRAPH EDITOR</div>
+    <graph-code :code="code"
+      :compilerConfig="compilerConfig"
+      :worldReady="worldReady" />
   </div>
 </div>
 </template>
@@ -15,11 +18,13 @@
 <script>
 import DragAndDropLayer from './DragAndDropLayer'
 import Palette from './Palette'
+import GraphCode from './GraphCode'
 
 export default {
   components: {
     DragAndDropLayer,
-    Palette
+    Palette,
+    GraphCode
   },
   props: {
     'code': {
@@ -54,12 +59,10 @@ export default {
 
   },
   watch: {
-    code: function(newCode, oldCode) {
-
-    },
-    compilerConfig: function(config, oldConfig) {
-      // TODO: create available elements in the list
-      console.log(config)
+    worldReady: function(worldReady) {
+      if (worldReady) {
+        this.$refs.palette.$el.style.left = "-100px"
+      }
     }
   },
   methods: {
@@ -85,6 +88,8 @@ export default {
     position: static !important;
 }
 .graph-editor {
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
     z-index: 10;
     color: white;
     width: 100%;
@@ -106,9 +111,12 @@ export default {
         .palette {
             z-index: 5;
             position: absolute;
-            left: -90px;
+            left: 0;
             top: 0;
             margin: 40px 0 0;
+
+            transition-property: left;
+            transition-duration: 0.8s;
         }
 
         .graph-code {

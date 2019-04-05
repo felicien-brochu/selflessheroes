@@ -47,8 +47,8 @@ export default {
   },
   data: function() {
     return {
-      // code: 'b:\nstep(n)\na = 1\n\nif b == 3 &&\n dir(s) > 3 ||\n dir(n) == wall:\n\tstep(e,w)\nelse\n\ta = 9\n\tstep(n, s)\nendif\n\njump b',
-      code: '',
+      code: 'b:\nstep(n)\na = 1\n\nif b == 3 &&\n dir(s) > 3 ||\n dir(n) == wall:\n\tstep(e,w)\n\tstep(s)\n\tif dir(n) == wall:\n\t\tc:\n\t\tstep(nw)\n\tendif\nelse\n\ta = 9\n\tstep(n, s)\nendif\n\njump b\nstep(n)\nif dir(n) == wall:\n\t\tstep(nw)\n\tjump c\n\tendif\nstep(n)\nstep(n)\nstep(n)\nstep(n)',
+      // code: '',
       compilerConfig: null,
       worldState: {},
       worldReady: false,
@@ -125,7 +125,7 @@ html {
     margin: 0;
     padding: 0;
     background-color: black;
-    font-family: Consolas, Arial, sans-serif;
+    font-family: Consolas, Monaco, Menlo, Arial, sans-serif;
 }
 
 #app {

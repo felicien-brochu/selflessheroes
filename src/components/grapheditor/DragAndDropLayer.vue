@@ -28,7 +28,6 @@ export default {
     startDragEvent: function(event, oldEvent) {
       if (!oldEvent && !!event) {
         if (event.isNew) {
-          console.log("###Layer CREATE ghost from Palette", event)
           let ComponentClass = Vue.extend(PaletteStatement)
           let instance = new ComponentClass({
             propsData: {
@@ -36,32 +35,36 @@ export default {
             }
           })
           instance.$mount()
-          console.log(this.$refs.dragContainer)
           this.$refs.dragContainer.appendChild(instance.$el)
           let targetPosition = event.event.target.getBoundingClientRect()
           this.offsetX = event.event.clientX - targetPosition.left
           this.offsetY = event.event.clientY - targetPosition.top
-          // instance.$el.style = "left: " + targetPosition.left + "px; top: " + targetPosition.top + "px;"
-          console.log(this.offsetX, this.offsetY)
-          this.$refs.dragContainer.style = `left: ${ targetPosition.left }px; top: ${ targetPosition.top }px;`
+
+          this.$refs.dragContainer.style.left = `${ targetPosition.left }px`
+          this.$refs.dragContainer.style.top = `${ targetPosition.top }px`
         }
       }
     }
   },
   methods: {
     handleDragOver(e) {
-      // console.log('###dragover layer', e, e.x + this.offsetX)
-      this.$refs.dragContainer.style = `left: ${ e.x - this.offsetX }px; top: ${ e.y - this.offsetY }px;`
+      this.$refs.dragContainer.style.left = `${ e.x - this.offsetX }px`
+      this.$refs.dragContainer.style.top = `${ e.y - this.offsetY }px`
       e.preventDefault()
     },
     handleDrop(e) {
-      // console.log('###drop layer', e)
-      this.$refs.dragContainer.innerHTML = ''
+      this.clearDragContainer()
       this.$emit('drop', e)
     },
     handleDragOut(e) {
-      this.$refs.dragContainer.innerHTML = ''
-      this.$emit('drop', e)
+      this.clearDragContainer()
+      this.$emit('drop', null)
+    },
+    clearDragContainer() {
+      let container = this.$refs.dragContainer
+      while (container.firstChild) {
+        container.removeChild(container.firstChild)
+      }
     }
   }
 }

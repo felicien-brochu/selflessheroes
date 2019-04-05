@@ -9,7 +9,8 @@
       @change="$emit('change', $event)" />
     <graph-editor id="graph-editor"
       :code="code"
-      :compilerConfig="compilerConfig" />
+      :compilerConfig="compilerConfig"
+      :worldReady="worldReady" />
     <div class="editor-readonly-overlay"
       :style="{ display: playing ? 'initial' : 'none'}"></div>
   </div>
@@ -28,6 +29,13 @@
 import CodeMirror from './codemirror/CodeMirror'
 import GraphEditor from './grapheditor/GraphEditor'
 import RunBar from './runbar/RunBar'
+
+function resizeCodeMirror() {
+  let height = window.innerHeight - 93
+  // document.getElementsByClassName("CodeMirror")[0].style.height = `${height}px`
+  document.getElementById("editors").style.height = `${height}px`
+}
+window.addEventListener("resize", resizeCodeMirror)
 
 export default {
   components: {
@@ -77,12 +85,6 @@ export default {
     resizeCodeMirror()
   }
 }
-
-function resizeCodeMirror() {
-  let height = window.innerHeight - 86
-  document.getElementsByClassName("CodeMirror")[0].style = "height: " + height + "px;"
-}
-window.addEventListener("resize", resizeCodeMirror)
 </script>
 
 <style lang="scss">
