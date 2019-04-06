@@ -38,7 +38,7 @@ $node-padding-left: 7px;
 	flex-direction: column;
 	align-items: flex-start;
 
-	& > li:not(.if-node) {
+	& > li {
 		margin-bottom: $line-margin;
 
 		&:last-child {

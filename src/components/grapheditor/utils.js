@@ -1,6 +1,5 @@
 import AnchorNode from './nodes/AnchorNode'
 import AssignNode from './nodes/AssignNode'
-import ElseNode from './nodes/ElseNode'
 import IfNode from './nodes/IfNode'
 import JumpNode from './nodes/JumpNode'
 import ActionNode from './nodes/ActionNode'
@@ -15,24 +14,26 @@ function getLineNumbersFromNodeGraph(nodes) {
       lineNumbers.push(' ')
     } else if (node.nodes !== undefined) {
       // TODO: Count 'empty' lines of the ifNode condition
-      lineNumbers.push(line.toString())
-      line++
 
-      let subNumbers = getLineNumbersFromNodeGraph(node.nodes)
-      let max = 0
-      subNumbers.forEach(num => {
-        if (max < num) {
-          max = parseInt(num)
-        }
-      })
+      for (let i = 0; i < node.nodes.length; i++) {
+        lineNumbers.push(line.toString())
+        line++
 
-      subNumbers = subNumbers.map(num => num === ' ' ? ' ' : (parseInt(num) + line - 1).toString())
-      lineNumbers = [
-        ...lineNumbers,
-        ...subNumbers
-      ]
-      line += max
+        let subNumbers = getLineNumbersFromNodeGraph(node.nodes[i])
+        let max = 0
+        subNumbers.forEach(num => {
+          if (max < num) {
+            max = parseInt(num)
+          }
+        })
 
+        subNumbers = subNumbers.map(num => num === ' ' ? ' ' : (parseInt(num) + line - 1).toString())
+        lineNumbers = [
+          ...lineNumbers,
+          ...subNumbers
+        ]
+        line += max
+      }
     } else {
       lineNumbers.push(line.toString())
       line++

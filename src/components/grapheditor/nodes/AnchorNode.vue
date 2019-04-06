@@ -1,5 +1,6 @@
 <template>
-<li class="node branching-node anchor-node">
+<li class="node branching-node anchor-node"
+  @mousedown="handleDragStart">
   &nbsp;
 </li>
 </template>

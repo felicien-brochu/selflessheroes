@@ -2,7 +2,6 @@ import Vue from 'vue'
 
 import AnchorNode from './AnchorNode'
 import AssignNode from './AssignNode'
-import ElseNode from './ElseNode'
 import IfNode from './IfNode'
 import JumpNode from './JumpNode'
 import ActionNode from './ActionNode'
@@ -25,26 +24,22 @@ export default class NodeBuilder {
     let containerStatements
     let containerStack = []
     let containerClass = null
+    let subContainerIndex = 0
 
     for (let statement of this.statements) {
       let nodeClass = null
       let isContainerStart = false
-      let isContainerEnd = false
 
       if (containerStack.length === 0) {
+        if (statement instanceof IfStatement) {
+          nodeClass = Vue.extend(IfNode)
+          isContainerStart = true
+        } else
         if (statement instanceof AnchorStatement) {
           nodeClass = Vue.extend(AnchorNode)
         } else
         if (statement instanceof AssignStatement) {
           nodeClass = Vue.extend(AssignNode)
-        } else
-        if (statement instanceof ElseStatement) {
-          nodeClass = Vue.extend(ElseNode)
-          isContainerStart = true
-        } else
-        if (statement instanceof IfStatement) {
-          nodeClass = Vue.extend(IfNode)
-          isContainerStart = true
         } else
         if (statement instanceof JumpStatement) {
           nodeClass = Vue.extend(JumpNode)
@@ -55,7 +50,10 @@ export default class NodeBuilder {
 
         if (!!nodeClass) {
           if (isContainerStart) {
-            containerStatements = []
+            containerStatements = [
+              []
+            ]
+            subContainerIndex = 0
             containerClass = nodeClass
             containerStack.push(statement)
           } else {
@@ -70,10 +68,11 @@ export default class NodeBuilder {
           }
         }
       } else {
+        let isContainerEnd = false
+        let isContainerDivider = false
+
         if (statement instanceof ElseStatement) {
-          isContainerStart = true
-          isContainerEnd = true
-          nodeClass = Vue.extend(ElseNode)
+          isContainerDivider = true
         } else
         if (statement instanceof EndIfStatement) {
           isContainerEnd = true
@@ -83,13 +82,18 @@ export default class NodeBuilder {
           nodeClass = Vue.extend(IfNode)
         }
 
+        if (containerStack.length === 1 && isContainerDivider) {
+          subContainerIndex++
+          containerStatements.push([])
+        }
+
         let containerStatement = null
         if (isContainerEnd) {
           containerStatement = containerStack.pop()
         }
 
         if (containerStack.length > 0) {
-          containerStatements.push(statement)
+          containerStatements[subContainerIndex].push(statement)
         } else {
           let container = new(Vue.extend(containerClass))({
             propsData: {
@@ -103,10 +107,6 @@ export default class NodeBuilder {
         }
 
         if (isContainerStart) {
-          if (containerStack.length === 0) {
-            containerStatements = []
-            containerClass = nodeClass
-          }
           containerStack.push(statement)
         }
       }

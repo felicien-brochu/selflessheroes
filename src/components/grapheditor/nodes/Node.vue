@@ -14,6 +14,14 @@ export default {
       type: Object,
       default: null
     }
+  },
+  methods: {
+    handleDragStart(e) {
+      this.$emit('drag-start', {
+        event: e,
+        node: this
+      })
+    }
   }
 }
 </script>

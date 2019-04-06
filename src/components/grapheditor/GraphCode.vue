@@ -78,7 +78,13 @@ export default {
       let container = this.$refs.nodeContainer
       for (let node of nodes) {
         container.appendChild(node.$el)
+        node.$on('drag-start', this.handleNodeDragStart)
+        node.$on('node-drag-start', this.handleNodeDragStart)
       }
+    },
+    handleNodeDragStart(e) {
+      console.log("#######handleNodeDragStart", e)
+      this.$emit('node-drag-start', e)
     }
   }
 }

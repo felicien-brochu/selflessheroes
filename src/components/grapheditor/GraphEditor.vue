@@ -10,7 +10,8 @@
       @drag-start="handlePaletteDragStart" />
     <graph-code :code="code"
       :compilerConfig="compilerConfig"
-      :worldReady="worldReady" />
+      :worldReady="worldReady"
+      @node-drag-start="handleNodeDragStart" />
   </div>
 </div>
 </template>
@@ -73,6 +74,12 @@ export default {
       }
       console.log("#######STATEMENT", e.statement)
       this.chosenPaletteStatement = e.statement
+    },
+    handleNodeDragStart(e) {
+      this.startDragEvent = {
+        ...e,
+        isNew: false
+      }
     },
     handleDrop(e) {
       console.log("###GraphEditor drop", e)
