@@ -19,6 +19,11 @@ $node-padding-left: 7px;
 	-ms-user-select: none;
 	user-select: none;
 }
+@mixin animate-margin {
+	transition-property: margin;
+	transition-duration: 100ms;
+	transition-timing-function: ease;
+}
 
 %node {
 	@include no-select;

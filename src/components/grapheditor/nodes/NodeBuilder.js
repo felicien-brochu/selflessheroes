@@ -12,7 +12,9 @@ import ElseStatement from '../../../world/ai/compile/statements/ElseStatement'
 import EndIfStatement from '../../../world/ai/compile/statements/EndIfStatement'
 import IfStatement from '../../../world/ai/compile/statements/IfStatement'
 import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'
+import VariableIdentifier from '../../../world/ai/compile/statements/VariableIdentifier'
 import ActionFunction from '../../../world/ai/compile/statements/functions/ActionFunction'
+import ValueFunction from '../../../world/ai/compile/statements/functions/ValueFunction'
 
 export default class NodeBuilder {
   constructor(statements) {
@@ -114,5 +116,39 @@ export default class NodeBuilder {
     }
 
     return this.nodes
+  }
+
+  static buildNewNode(statementClass, compilerConfig) {
+    let statement = new statementClass(null, -1, -1)
+    let nodeClass = null
+    if (statement instanceof IfStatement) {
+      nodeClass = Vue.extend(IfNode)
+    } else
+    if (statement instanceof ValueFunction) {
+      let assignStatement = new AssignStatement(null, -1, -1)
+      assignStatement.value = statement
+      assignStatement.value.parent = assignStatement
+      let variable = new VariableIdentifier(assignStatement, -1, -1)
+      variable.name = compilerConfig.getAllowedVariableIdentifiers()[0]
+      assignStatement.variable = variable
+      statement = assignStatement
+      nodeClass = Vue.extend(AssignNode)
+    } else
+    if (statement instanceof JumpStatement) {
+      nodeClass = Vue.extend(JumpNode)
+    } else
+    if (statement instanceof ActionFunction) {
+      nodeClass = Vue.extend(ActionNode)
+    }
+
+    console.log(statement, nodeClass)
+    let node = new nodeClass({
+      propsData: {
+        statement: statement
+      }
+    })
+    node.$mount()
+
+    return node
   }
 }

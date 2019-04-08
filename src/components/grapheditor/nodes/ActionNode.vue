@@ -1,5 +1,6 @@
 <template>
-<li class="node action-node">
+<li class="node action-node"
+  @mousedown="handleDragStart">
   {{statement.keyword}}
 </li>
 </template>

@@ -92,10 +92,10 @@ export default {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #282c34;
 
     #editors {
         flex-grow: 1;
+
         .editor-readonly-overlay {
             width: 100%;
             height: 100%;

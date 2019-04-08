@@ -1,5 +1,9 @@
 <template>
-<div class="node">
+<div :class="{
+	'node': true,
+	'drag-over-top': dragOverTop,
+	'drag-over-bottom': dragOverBottom
+}">
 </div>
 </template>
 
@@ -15,12 +19,23 @@ export default {
       default: null
     }
   },
+  data: function() {
+    return {}
+  },
   methods: {
     handleDragStart(e) {
       this.$emit('drag-start', {
         event: e,
         node: this
       })
+    },
+
+    handleDragOver(event) {},
+    handleDragOut() {},
+    handleDragOutGraph() {},
+
+    getDraggableElement() {
+      return this.$el
     }
   }
 }
@@ -31,6 +46,7 @@ export default {
 
 .node {
     @extend %node;
+    @include animate-margin;
 }
 
 .assign-node {

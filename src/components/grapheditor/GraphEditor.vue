@@ -2,13 +2,16 @@
 <div class="graph-editor">
 
   <drag-and-drop-layer :startDragEvent="startDragEvent"
-    @drop="handleDrop" />
+    @drop="handleDrop"
+    @drag-over="$refs.graphCode.handleDragOver($event)" />
   <div class="editor-container">
     <palette ref="palette"
       :compilerConfig="compilerConfig"
       :chosenStatement="chosenPaletteStatement"
       @drag-start="handlePaletteDragStart" />
-    <graph-code :code="code"
+    <graph-code ref="graphCode"
+      :code="code"
+      :statements="statements"
       :compilerConfig="compilerConfig"
       :worldReady="worldReady"
       @node-drag-start="handleNodeDragStart" />
@@ -20,6 +23,8 @@
 import DragAndDropLayer from './DragAndDropLayer'
 import Palette from './Palette'
 import GraphCode from './GraphCode'
+import NodeBuilder from './nodes/NodeBuilder'
+import Compiler from '../../world/ai/compile/Compiler'
 
 export default {
   components: {
@@ -47,6 +52,7 @@ export default {
   },
   data: function() {
     return {
+      statements: [],
       startDragEvent: null,
       chosenPaletteStatement: null
     }
@@ -63,26 +69,45 @@ export default {
     worldReady: function(worldReady) {
       if (worldReady) {
         this.$refs.palette.$el.style.left = "-100px"
+        this.compileCode()
       }
+    },
+    code: function(code, oldCode) {
+      this.compileCode()
     }
   },
   methods: {
+    compileCode() {
+      console.log("####COMPILE code", this.code)
+      let compiler = new Compiler(this.code, this.compilerConfig)
+      compiler.compile()
+      this.statements = compiler.statements
+    },
+
     handlePaletteDragStart(e) {
       this.startDragEvent = {
-        ...e,
+        event: e.event,
+        node: NodeBuilder.buildNewNode(e.statement.clazz, this.compilerConfig),
         isNew: true
       }
-      console.log("#######STATEMENT", e.statement)
+      console.log("#######STATEMENT", e.statement, this.startDragEvent.node)
       this.chosenPaletteStatement = e.statement
     },
+
     handleNodeDragStart(e) {
       this.startDragEvent = {
         ...e,
         isNew: false
       }
     },
+
+    handleDragOver(e) {
+      this.$refs.graphCode.handleDragOver(e)
+    },
+
     handleDrop(e) {
       console.log("###GraphEditor drop", e)
+      this.$refs.graphCode.handleDrop(e)
       this.startDragEvent = null
       this.chosenPaletteStatement = null
     }

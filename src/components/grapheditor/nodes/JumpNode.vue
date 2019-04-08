@@ -1,5 +1,6 @@
 <template>
-<li class="node branching-node jump-node">
+<li class="node branching-node jump-node"
+  @mousedown="handleDragStart">
   {{statement.keyword}}
 </li>
 </template>
