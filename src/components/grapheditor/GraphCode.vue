@@ -48,11 +48,13 @@ export default {
     }
   },
   mounted() {
-    this.autoScroll = new AutoScroll(this.$refs.scroll, this.applyDragOver)
+    this.autoScroll = new AutoScroll(this.$refs.scroll, null)
 
     this.dragEvent = null
+    this.dragHandler = null
     this.dragOverIndex = -1
     this.dragTransitionStart = -1
+    this.afterTransitionTimeout = -1
   },
   watch: {
     nodes: function(nodes) {
@@ -106,7 +108,7 @@ export default {
 
     applyDragOver() {
       let event = this.dragEvent
-      let handled = false
+      let handler = null
 
       let above = -1
       let bellow = -1
@@ -121,32 +123,58 @@ export default {
             above = i
           }
         }
-        handled = node.handleDragOver(event)
+        let subHandler = node.handleDragOver(event)
+        if (!!subHandler && !handler) {
+          handler = subHandler
+        }
       }
 
-      if (above === bellow && Date.now() > this.dragTransitionStart + 100) {
-        let afterIndex = this.dragOverIndex
-        if (above !== this.dragOverIndex) {
-          afterIndex = above
-        }
-        else if (bellow + 1 !== this.dragOverIndex) {
-          afterIndex = bellow + 1
+      let needRecall = false
+      if (handler === null) {
+        if (Date.now() > this.dragTransitionStart + 100) {
+          let afterIndex = above
+          if (above === bellow) {
+            if (above !== this.dragOverIndex) {
+              afterIndex = above
+            }
+            else if (bellow + 1 !== this.dragOverIndex) {
+              afterIndex = bellow + 1
+            }
+          }
+
+          if (afterIndex < 0) {
+            afterIndex = this.nodes.length
+          }
+
+          needRecall = afterIndex !== this.dragOverIndex
+          this.placeDragOver(afterIndex)
         }
 
+        handler = {
+          node: this,
+          insertIndex: this.dragOverIndex,
+          needRecall: needRecall
+        }
+      }
+      else {
+        this.clearDragOver()
+      }
 
-        this.placeDragOver(afterIndex)
+      this.dragHandler = handler
+      if (handler.needRecall) {
+        this.programDragOverRecall()
       }
     },
 
     placeDragOver(afterIndex) {
       if (afterIndex !== this.dragOverIndex) {
-        this.clearDragOver()
         if (afterIndex < this.nodes.length) {
           this.nodes[afterIndex].$el.style.marginTop = '40px'
         }
         else {
           this.nodes[this.nodes.length - 1].$el.style.marginBottom = '40px'
         }
+        this.clearDragOver()
         this.dragOverIndex = afterIndex
         this.dragTransitionStart = Date.now()
       }
@@ -161,10 +189,20 @@ export default {
           this.nodes[this.nodes.length - 1].$el.style.marginBottom = null
         }
         this.dragOverIndex = -1
+        this.dragTransitionStart = Date.now()
       }
     },
 
+    programDragOverRecall() {
+      let callback = function() {
+        this.afterTransitionTimeout = -1
+        this.applyDragOver()
+      }
+      this.afterTransitionTimeout = setTimeout(callback.bind(this), 80)
+    },
+
     handleDragOut() {
+      this.dragHandler = null
       this.autoScroll.stop()
       this.clearDragOver()
       for (let node of this.nodes) {
@@ -173,7 +211,12 @@ export default {
     },
 
     handleDrop(e) {
+      console.log("DROP handler", this.dragHandler)
       this.autoScroll.stop()
+      this.clearDragOver()
+      for (let node of this.nodes) {
+        node.handleDrop(e)
+      }
     }
   }
 }

@@ -1,7 +1,6 @@
 <template>
 <li class="if-node">
-  <div v-if="statements[0].length > 0 || (statements.length > 1 && statements[1].length > 0)"
-    class="group-line" />
+  <div class="group-line" />
   <div class="if-content">
     <ul class="condition-list"
       ref="conditionList">
@@ -48,15 +47,15 @@ export default {
   },
   data: function() {
     return {
-      nodes: [
-        []
-      ],
       draggedOver: false
     }
   },
   mounted() {
     this.dragOverIndex = -1
     this.dragTransitionStart = -1
+    this.nodes = [
+      []
+    ]
 
     for (let i = 0; i < this.statements.length; i++) {
       this.populateNodeContainer(i)
@@ -70,8 +69,8 @@ export default {
       }
     }
   },
-  computed: {
-    dragNodes: function() {
+  methods: {
+    getDragNodes() {
       let mapping = node => {
         return {
           node: node,
@@ -79,20 +78,23 @@ export default {
           draggable: node.getDraggableElement()
         }
       }
+
       let nodes = this.nodes[0].map(mapping)
-      if (this.nodes.length > 1) {
+
+      if (!!this.$refs.elseNode) {
         // Insert else node
         nodes.push({
           node: null,
           el: this.$refs.elseNode,
           draggable: this.$refs.elseNode
         })
+      }
+
+      if (this.nodes.length > 1) {
         nodes = nodes.concat(this.nodes[1].map(mapping))
       }
       return nodes
-    }
-  },
-  methods: {
+    },
     clearNodeContainer(index) {
       let container = this.getNodeContainer(index)
       while (container.firstChild) {
@@ -124,18 +126,27 @@ export default {
 
     handleDragOver(event) {
       let bounds = this.$el.getBoundingClientRect()
-      if (event.y + event.height >= bounds.top && event.y <= bounds.top + bounds.height) {
+      let conditionBox = this.getDraggableElement().getBoundingClientRect()
+      let thisBox = this.$el.getBoundingClientRect()
+      if (event.y + event.height >= bounds.top &&
+        event.y <= bounds.top + bounds.height &&
+        event.y > conditionBox.top + conditionBox.height - 2 &&
+        event.y + event.height < thisBox.top + thisBox.height + 20) {
         this.draggedOver = true
-        let nodes = this.dragNodes
-        let handled = false
+        let nodes = this.getDragNodes()
+        let handler = null
 
         let above = -1
         let bellow = -1
+
         for (let i = 0; i < nodes.length; i++) {
           let node = nodes[i]
           let nodeBox = node.draggable.getBoundingClientRect()
           if (!!node.node) {
-            handled = node.node.handleDragOver(event)
+            let subHandler = node.node.handleDragOver(event)
+            if (!!subHandler && !handler) {
+              handler = subHandler
+            }
           }
           if (event.y + event.height >= nodeBox.top + 21) {
             bellow = i
@@ -147,21 +158,42 @@ export default {
           }
         }
 
-        if (above === bellow && Date.now() > this.dragTransitionStart + 100) {
-          let afterIndex = this.dragOverIndex
-          if (above !== this.dragOverIndex) {
-            afterIndex = above
-          }
-          else if (bellow + 1 !== this.dragOverIndex) {
-            afterIndex = bellow + 1
+        let needRecall = false
+        if (handler === null) {
+          if (Date.now() > this.dragTransitionStart + 100) {
+            let afterIndex = above
+            if (above === bellow) {
+              if (above !== this.dragOverIndex) {
+                afterIndex = above
+              }
+              else if (bellow + 1 !== this.dragOverIndex) {
+                afterIndex = bellow + 1
+              }
+            }
+            else if (above < 0 && bellow === nodes.length - 1) {
+              afterIndex = nodes.length
+            }
+
+            needRecall = afterIndex !== this.dragOverIndex
+            this.placeDragOver(afterIndex)
           }
 
-          this.placeDragOver(afterIndex)
-
+          if (this.dragOverIndex >= 0) {
+            handler = {
+              node: this,
+              insertIndex: this.dragOverIndex,
+              needRecall: needRecall
+            }
+          }
         }
+        else {
+          this.clearDragOver()
+        }
+        return handler
       }
       else {
         this.handleDragOut()
+        return null
       }
     },
 
@@ -184,17 +216,19 @@ export default {
           node.handleDragOutGraph()
         }
       }
-
     },
 
     placeDragOver(afterIndex) {
       if (afterIndex !== this.dragOverIndex) {
         this.clearDragOver()
-        if (afterIndex < this.dragNodes.length) {
-          this.dragNodes[afterIndex].el.style.marginTop = '40px'
+        let nodes = this.getDragNodes()
+        if (afterIndex < nodes.length) {
+          if (this.dragOverIndex > 0 || this.nodes[0].length > 0) {
+            nodes[afterIndex].el.style.marginTop = '40px'
+          }
         }
-        else {
-          this.dragNodes[this.dragNodes.length - 1].el.style.marginBottom = '40px'
+        else if (this.dragOverIndex > 0 && this.dragOverIndex > this.nodes[0].length) {
+          nodes[nodes.length - 1].el.style.marginBottom = '40px'
         }
         this.dragOverIndex = afterIndex
         this.dragTransitionStart = Date.now()
@@ -203,12 +237,15 @@ export default {
 
     clearDragOver() {
       if (this.dragOverIndex >= 0) {
-        if (this.dragOverIndex < this.dragNodes.length) {
-          this.dragNodes[this.dragOverIndex].el.style.marginTop = null
+        let nodes = this.getDragNodes()
+        if (this.dragOverIndex < nodes.length) {
+          nodes[this.dragOverIndex].el.style.marginTop = null
         }
         else {
-          this.dragNodes[this.dragNodes.length - 1].el.style.marginBottom = null
+          nodes[nodes.length - 1].el.style.marginBottom = null
         }
+        this.dragOverIndex = -1
+        this.dragTransitionStart = Date.now()
       }
     },
 
@@ -218,6 +255,17 @@ export default {
 
     getDraggableElement() {
       return this.$refs.conditionList
+    },
+
+    handleDrop(e) {
+      this.clearDragOver()
+      this.draggedOver = false
+
+      for (let nodes of this.nodes) {
+        for (let node of nodes) {
+          node.handleDrop(e)
+        }
+      }
     }
   }
 }
@@ -267,7 +315,11 @@ export default {
         margin-top: $line-margin;
 
         &.dragged-over {
-            padding-bottom: 29px;
+            margin-bottom: 29px;
+
+            & > li:last-child {
+                margin-bottom: $line-margin;
+            }
         }
     }
 }

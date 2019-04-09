@@ -1,5 +1,5 @@
 export default class AutoScroll {
-  constructor(scroll, callback = null, callbackSpeed = 2, zoneHeight = 45, minSpeed = 20, maxSpeed = 400, updateInterval = 16) {
+  constructor(scroll, callback = null, callbackSpeed = 2, zoneHeight = 55, minSpeed = 200, maxSpeed = 1000, updateInterval = 20) {
     this.scroll = scroll
     this.callback = callback
     this.callbackSpeed = callbackSpeed
@@ -21,7 +21,7 @@ export default class AutoScroll {
     let bottomPosition = this.zoneHeight - ((scrollBounds.top + scrollBounds.height) - e.y)
 
     if (topPosition >= 0) {
-      this.speed = -(topPosition / this.zoneHeight) * (this.maxSpeed - this.minSpeed) + this.minSpeed
+      this.speed = -(topPosition / this.zoneHeight) * (this.maxSpeed - this.minSpeed) - this.minSpeed
     } else if (bottomPosition >= 0) {
       this.speed = (bottomPosition / this.zoneHeight) * (this.maxSpeed - this.minSpeed) + this.minSpeed
     } else if (this.timerID >= 0) {

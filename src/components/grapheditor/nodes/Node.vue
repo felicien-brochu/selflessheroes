@@ -30,9 +30,12 @@ export default {
       })
     },
 
-    handleDragOver(event) {},
+    handleDragOver(event) {
+      return null
+    },
     handleDragOut() {},
     handleDragOutGraph() {},
+    handleDrop(e) {},
 
     getDraggableElement() {
       return this.$el
