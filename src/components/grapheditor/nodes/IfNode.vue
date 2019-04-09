@@ -141,6 +141,10 @@ export default {
 
         for (let i = 0; i < nodes.length; i++) {
           let node = nodes[i]
+          if (!!node.node && node.node === event.node) {
+            continue
+          }
+
           let nodeBox = node.draggable.getBoundingClientRect()
           if (!!node.node) {
             let subHandler = node.node.handleDragOver(event)
@@ -168,6 +172,11 @@ export default {
               }
               else if (bellow + 1 !== this.dragOverIndex) {
                 afterIndex = bellow + 1
+                if (afterIndex < nodes.length &&
+                  !!nodes[afterIndex].node &&
+                  nodes[afterIndex].node === event.node) {
+                  afterIndex++
+                }
               }
             }
             else if (above < 0 && bellow === nodes.length - 1) {

@@ -114,6 +114,10 @@ export default {
       let bellow = -1
       for (let i = 0; i < this.nodes.length; i++) {
         let node = this.nodes[i]
+        if (node === event.node) {
+          continue
+        }
+
         let nodeBox = node.getDraggableElement().getBoundingClientRect()
         if (event.y + event.height >= nodeBox.top + 21) {
           bellow = i

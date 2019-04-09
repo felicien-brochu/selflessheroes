@@ -37,6 +37,10 @@ export default {
         this.offsetX = event.event.clientX - targetPosition.left
         this.offsetY = event.event.clientY - targetPosition.top
         this.createDraggedElement()
+
+        Vue.nextTick(function() {
+          this.handleDragOver(event.event)
+        }, this)
       }
     }
   },
