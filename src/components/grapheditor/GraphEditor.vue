@@ -14,7 +14,8 @@
       :statements="statements"
       :compilerConfig="compilerConfig"
       :worldReady="worldReady"
-      @node-drag-start="handleNodeDragStart" />
+      @node-drag-start="handleNodeDragStart"
+      @drop-node="handleDropNode" />
   </div>
 </div>
 </template>
@@ -90,7 +91,6 @@ export default {
         node: NodeBuilder.buildNewNode(e.statement.clazz, this.compilerConfig),
         isNew: true
       }
-      console.log("#######STATEMENT", e.statement, this.startDragEvent.node)
       this.chosenPaletteStatement = e.statement
     },
 
@@ -106,8 +106,18 @@ export default {
     },
 
     handleDrop(e) {
-      console.log("###GraphEditor drop", e)
       this.$refs.graphCode.handleDrop(e)
+    },
+
+    handleDropNode(dropHandler) {
+      if (this.startDragEvent) {
+        if (dropHandler) {
+          this.statements = NodeBuilder.insertStatement(this.statements, dropHandler, this.startDragEvent.node.statement, this.startDragEvent.isNew)
+        }
+        else {
+          this.statements = NodeBuilder.removeStatement(this.statements, this.startDragEvent.node.statement)
+        }
+      }
       this.startDragEvent = null
       this.chosenPaletteStatement = null
     }

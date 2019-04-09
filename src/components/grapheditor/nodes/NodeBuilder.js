@@ -6,6 +6,7 @@ import IfNode from './IfNode'
 import JumpNode from './JumpNode'
 import ActionNode from './ActionNode'
 
+import Linter from '../../../world/ai/compile/Linter'
 import AnchorStatement from '../../../world/ai/compile/statements/AnchorStatement'
 import AssignStatement from '../../../world/ai/compile/statements/AssignStatement'
 import ElseStatement from '../../../world/ai/compile/statements/ElseStatement'
@@ -141,7 +142,6 @@ export default class NodeBuilder {
       nodeClass = Vue.extend(ActionNode)
     }
 
-    console.log(statement, nodeClass)
     let node = new nodeClass({
       propsData: {
         statement: statement
@@ -150,5 +150,131 @@ export default class NodeBuilder {
     node.$mount()
 
     return node
+  }
+
+  static insertStatement(statements, dragHandler, insertStatement, isNew) {
+    statements = statements.slice(0)
+    let {
+      insertIndex,
+      node
+    } = dragHandler
+
+    let handlerIndex = 0
+    if (node !== this) {
+      handlerIndex = statements.indexOf(node.statement)
+    }
+
+    // find the real insert index
+
+    let index = insertIndex
+    let handlerStatement = node.statement
+    let handlerStatements
+    if (handlerStatement) {
+      if (handlerStatement instanceof IfStatement) {
+        let endIndex = !!handlerStatement.elseStatement ? statements.indexOf(handlerStatement.elseStatement) : statements.indexOf(handlerStatement.endIfStatement)
+        handlerStatements = statements.slice(handlerIndex + 1, statements.indexOf(handlerStatement.endIfStatement))
+      }
+    } else {
+      handlerStatements = statements.slice(0)
+    }
+
+
+    // Remove sub-statements
+    for (let i = 0; i < handlerStatements.length; i++) {
+      let currentStatement = handlerStatements[i]
+      if (currentStatement instanceof IfStatement) {
+        handlerStatements.splice(i + 1, handlerStatements.indexOf(currentStatement.endIfStatement) - i)
+      }
+    }
+
+
+    if (handlerStatement) {
+      if (handlerStatement instanceof IfStatement) {
+        if (insertIndex > handlerStatements.length) {
+          // Create Else statement
+          let elseStatement = new ElseStatement(null)
+          elseStatement.endIfStatement = handlerStatement.endIfStatement
+          handlerStatement.elseStatement = elseStatement
+          statements.splice(statements.indexOf(handlerStatement.endIfStatement), 0, elseStatement)
+          index = statements.indexOf(elseStatement) + 1
+        } else if (insertIndex === handlerStatements.length) {
+          index = statements.indexOf(handlerStatement.endIfStatement)
+        } else {
+          index = statements.indexOf(handlerStatements[insertIndex])
+        }
+      }
+    } else {
+      if (insertIndex >= handlerStatements.length) {
+        index = statements.length
+      } else {
+        index = statements.indexOf(handlerStatements[insertIndex])
+      }
+    }
+
+
+    let insertStatements
+    if (isNew) {
+      if (insertStatement instanceof JumpStatement) {
+        // Add matching AnchorNode
+        let anchor = new AnchorStatement(null)
+        anchor.name = AnchorStatement.getAvailableName(statements)
+
+        insertStatement.anchor = anchor.name
+        insertStatement.anchorStatement = anchor
+
+        insertStatements = [anchor, insertStatement]
+      } else if (insertStatement instanceof IfStatement) {
+        // Add matching endif
+        let endIfStatement = new EndIfStatement(null)
+        insertStatement.endIfStatement = endIfStatement
+
+        insertStatements = [insertStatement, endIfStatement]
+      } else {
+        insertStatements = [insertStatement]
+      }
+    } else {
+      let numberOfStatements = 1
+      let oldIndex = statements.indexOf(insertStatement)
+      if (insertStatement instanceof IfStatement) {
+        numberOfStatements = 1 + statements.indexOf(insertStatement.endIfStatement) - statements.indexOf(insertStatement)
+      }
+      insertStatements = statements.slice(oldIndex, oldIndex + numberOfStatements)
+      statements.splice(oldIndex, numberOfStatements)
+      if (oldIndex < index) {
+        index -= numberOfStatements
+      }
+    }
+
+    statements.splice(index, 0, ...insertStatements)
+    statements = Linter.removeEmptyElse(statements)
+
+    return statements
+  }
+
+  static removeStatement(statements, toRemove) {
+    statements = statements.slice(0)
+    let numberOfStatements = 1
+    let index = statements.indexOf(toRemove)
+    if (toRemove instanceof IfStatement) {
+      numberOfStatements = 1 + statements.indexOf(toRemove.endIfStatement) - statements.indexOf(toRemove)
+    } else if (toRemove instanceof JumpStatement) {
+      let anchorIndex = statements.indexOf(toRemove.anchorStatement)
+      if (anchorIndex < index) {
+        index--
+      }
+      statements.splice(anchorIndex, 1)
+    } else if (toRemove instanceof AnchorStatement) {
+      let jumpStatements = toRemove.findPointingJumpStatements(statements)
+      for (let jumpStatement of jumpStatements) {
+        let jumpIndex = statements.indexOf(jumpStatement)
+        if (jumpIndex < index) {
+          index--
+        }
+        statements.splice(jumpIndex, 1)
+      }
+    }
+    statements.splice(index, numberOfStatements)
+
+    return statements
   }
 }

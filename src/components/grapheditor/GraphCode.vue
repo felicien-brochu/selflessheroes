@@ -86,7 +86,6 @@ export default {
     },
 
     handleNodeDragStart(e) {
-      console.log("#######handleNodeDragStart", e)
       this.$emit('node-drag-start', e)
     },
 
@@ -143,6 +142,11 @@ export default {
             }
             else if (bellow + 1 !== this.dragOverIndex) {
               afterIndex = bellow + 1
+              if (afterIndex < this.nodes.length &&
+                this.nodes[afterIndex] &&
+                this.nodes[afterIndex] === event.node) {
+                afterIndex++
+              }
             }
           }
 
@@ -175,7 +179,7 @@ export default {
         if (afterIndex < this.nodes.length) {
           this.nodes[afterIndex].$el.style.marginTop = '40px'
         }
-        else {
+        else if (this.nodes.length > 0) {
           this.nodes[this.nodes.length - 1].$el.style.marginBottom = '40px'
         }
         this.clearDragOver()
@@ -189,7 +193,7 @@ export default {
         if (this.dragOverIndex < this.nodes.length) {
           this.nodes[this.dragOverIndex].$el.style.marginTop = null
         }
-        else {
+        else if (this.nodes.length > 0) {
           this.nodes[this.nodes.length - 1].$el.style.marginBottom = null
         }
         this.dragOverIndex = -1
@@ -215,12 +219,17 @@ export default {
     },
 
     handleDrop(e) {
-      console.log("DROP handler", this.dragHandler)
+      if (this.afterTransitionTimeout >= 0) {
+        clearTimeout(this.afterTransitionTimeout)
+        this.afterTransitionTimeout = -1
+      }
       this.autoScroll.stop()
       this.clearDragOver()
       for (let node of this.nodes) {
         node.handleDrop(e)
       }
+
+      this.$emit('drop-node', this.dragHandler)
     }
   }
 }

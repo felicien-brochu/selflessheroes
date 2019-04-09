@@ -18,6 +18,9 @@ function getLineNumbersFromNodeGraph(nodes) {
       for (let i = 0; i < node.nodes.length; i++) {
         lineNumbers.push(line.toString())
         line++
+        if (i === 0 && node.nodes[i].length === 0) {
+          lineNumbers.push(' ')
+        }
 
         let subNumbers = getLineNumbersFromNodeGraph(node.nodes[i])
         let max = 0

@@ -1,7 +1,7 @@
 <template>
 <li class="node branching-node anchor-node"
   @mousedown="handleDragStart">
-  &nbsp;
+  &nbsp;{{statement.name}}:
 </li>
 </template>
 

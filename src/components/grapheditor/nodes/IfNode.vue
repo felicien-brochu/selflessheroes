@@ -15,9 +15,8 @@
 
     <div v-if="statements.length >= 2 || draggedOver"
       class="else-content">
-      <div class="node branching-node"
-        ref="elseNode"
-        @mousedown="handleDragStart">
+      <div class="node branching-node else-node"
+        ref="elseNode">
         else
       </div>
       <ul :class="{
@@ -173,13 +172,13 @@ export default {
               else if (bellow + 1 !== this.dragOverIndex) {
                 afterIndex = bellow + 1
                 if (afterIndex < nodes.length &&
-                  !!nodes[afterIndex].node &&
+                  nodes[afterIndex].node &&
                   nodes[afterIndex].node === event.node) {
                   afterIndex++
                 }
               }
             }
-            else if (above < 0 && bellow === nodes.length - 1) {
+            else if (above < 0 && (bellow === nodes.length - 1 || bellow === nodes.length - 2)) {
               afterIndex = nodes.length
             }
 
@@ -319,6 +318,10 @@ export default {
     @extend %node-list;
 
     margin-top: $line-margin;
+
+    .else-node {
+        cursor: initial;
+    }
 
     & > .node-container {
         margin-top: $line-margin;
