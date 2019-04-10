@@ -89,7 +89,7 @@ export default {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  z-index: 10000;
+  z-index: 5;
   -moz-background-clip: padding-box;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
@@ -106,7 +106,7 @@ export default {
 }
 
 .Resizer.columnsres {
-  height: 100%;
+  height: 100vh;
   cursor: col-resize;
 }
 </style>

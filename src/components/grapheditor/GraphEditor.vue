@@ -190,7 +190,7 @@ export default {
         position: fixed;
         left: 0;
         top: 0;
-        z-index: 6;
+        z-index: 7;
     }
 
     .editor-container {
@@ -199,7 +199,7 @@ export default {
         height: 100%;
 
         .palette {
-            z-index: 5;
+            z-index: -1;
             position: absolute;
             left: 0;
             top: 0;
@@ -209,11 +209,8 @@ export default {
             transition-duration: 0.8s;
         }
 
-        .graph-code {
-            position: relative;
+        .graph-scroll {
             z-index: 10;
-            height: min-content;
-            background-color: #282c34;
         }
     }
 }

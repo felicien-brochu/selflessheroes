@@ -5,7 +5,8 @@
     <ul class="condition-list"
       ref="conditionList">
       <li class="node branching-node condition-node"
-        @mousedown="handleDragStart">
+        @mousedown="handleDragStart"
+        @touchstart="handleDragStart">
         if
       </li>
     </ul>

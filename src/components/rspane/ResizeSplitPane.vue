@@ -3,14 +3,17 @@
   :class="classObject"
   :style="paneStyle"
   @mousemove="onMouseMove"
-  @mouseup="onMouseUp">
+  @touchmove="onTouchMove"
+  @mouseup="onMouseUp"
+  @touchend="onMouseUp">
   <pane-comp ref="pane1"
     :class="{column: splitTo === 'columns', row: splitTo === 'rows'}"
     :style="iStyleFirst">
     <slot name='firstPane'></slot>
   </pane-comp>
-  <resizer-comp @mousedown.native="onMouseDown"
-    v-if="allowResize"
+  <resizer-comp v-if="allowResize"
+    @mousedown.native="onMouseDown"
+    @touchstart.native="onTouchStart"
     :splitTo="splitTo"
     :resizerColor="resizerColor"
     :resizerBorderColor="resizerBorderColor"
@@ -328,7 +331,7 @@ export default {
 }
 
 .root {
-  height: 100%;
+  height: min-content;
   width: 100%;
 }
 
@@ -349,8 +352,6 @@ export default {
 .pane-rs {
   display: flex;
   flex: 1;
-  /*align-items: stretch;
-  align-content: stretch;*/
   position: absolute;
   outline: none;
   overflow: hidden;

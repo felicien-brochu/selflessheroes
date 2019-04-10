@@ -24,6 +24,12 @@ export default {
   },
   methods: {
     handleDragStart(e) {
+      if (e.type === 'touchstart') {
+        if (e.touches.length !== 1) {
+          return
+        }
+        e.preventDefault()
+      }
       this.$emit('drag-start', {
         event: e,
         node: this

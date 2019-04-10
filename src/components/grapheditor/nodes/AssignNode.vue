@@ -1,6 +1,7 @@
 <template>
 <li class="node assign-node"
-  @mousedown="handleDragStart">
+  @mousedown="handleDragStart"
+  @touchstart="handleDragStart">
   {{ `${statement.variable.name} = ` }}
 </li>
 </template>

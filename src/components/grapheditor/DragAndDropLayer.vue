@@ -4,8 +4,11 @@
 	'disabled': !startDragEvent
 	}"
   @mouseup="handleDrop"
+  @touchend="handleDrop"
   @mousemove="handleDragOver"
-  @mouseleave="handleDragOut">
+  @touchmove="handleDragOver"
+  @mouseleave="handleDragOut"
+  @touchcancel="handleDragOut">
 
   <div class="drag-container"
     ref="dragContainer" />
@@ -32,23 +35,38 @@ export default {
   watch: {
     startDragEvent: function(event, oldEvent) {
       if (!oldEvent && !!event) {
-        // Record offset of click on target
-        let targetPosition = event.event.target.getBoundingClientRect()
-        this.offsetX = event.event.clientX - targetPosition.left
-        this.offsetY = event.event.clientY - targetPosition.top
+        if (event.event.type === 'touchstart' && event.event.touches.length !== 1) {
+          return
+        }
         this.createDraggedElement()
 
         Vue.nextTick(function() {
           this.handleDragOver(event.event)
         }, this)
+        event.event.preventDefault()
       }
     }
   },
+
+  mounted() {
+    this.touchEventProxySource = null
+    this.touchEventProxy = null
+  },
+
   methods: {
     handleDragOver(e) {
-      this.$refs.dragContainer.style.left = `${ e.x - this.offsetX }px`
-      this.$refs.dragContainer.style.top = `${ e.y - this.offsetY }px`
-      e.preventDefault()
+      let eventPosition = e
+
+      if (e.type === 'touchmove' || e.type === 'touchstart') {
+        e.preventDefault()
+        if (e.touches.length !== 1) {
+          return
+        }
+        eventPosition = e.touches[0]
+      }
+
+      this.$refs.dragContainer.style.left = `${ eventPosition.clientX - this.offsetX }px`
+      this.$refs.dragContainer.style.top = `${ eventPosition.clientY - this.offsetY }px`
 
       let draggableElement = this.startDragEvent.node.getDraggableElement()
       let draggableBox = draggableElement.getBoundingClientRect()
@@ -62,7 +80,11 @@ export default {
     },
 
     handleDrop(e) {
+      if (e.type === 'touchend') {
+        e.preventDefault()
+      }
       this.clearDragContainer()
+      this.destroyTouchEventProxy()
       this.$emit('drop', e)
     },
 
@@ -79,20 +101,45 @@ export default {
       this.elementCreated = false
     },
 
+    createTouchEventProxy(source, target) {
+      this.touchEventProxy = function(e) {
+        e.preventDefault()
+        target.dispatchEvent(new TouchEvent(e.type, e));
+      }
+      source.addEventListener('touchmove', this.touchEventProxy)
+      source.addEventListener('touchend', this.touchEventProxy)
+      this.touchEventProxySource = source
+    },
+
+    destroyTouchEventProxy() {
+      if (this.touchEventProxy) {
+        this.touchEventProxySource.removeEventListener('touchmove', this.touchEventProxy)
+        this.touchEventProxySource.removeEventListener('touchend', this.touchEventProxy)
+        this.touchEventProxySource = null
+        this.touchEventProxy = null
+      }
+    },
+
     createDraggedElement() {
       let dragContainer = this.$refs.dragContainer
       let event = this.startDragEvent
 
+      let eventPosition = event.event
+      if (event.event.type === 'touchstart') {
+        eventPosition = event.event.touches[0]
+      }
+
       let targetPosition
       if (event.isNew) {
-        targetPosition = event.event.target.getBoundingClientRect()
+        targetPosition = eventPosition.target.getBoundingClientRect()
+        this.createTouchEventProxy(eventPosition.target, event.node.$el)
       }
       else {
         targetPosition = event.node.$el.getBoundingClientRect()
       }
 
-      this.offsetX = event.event.clientX - targetPosition.left
-      this.offsetY = event.event.clientY - targetPosition.top
+      this.offsetX = eventPosition.clientX - targetPosition.left
+      this.offsetY = eventPosition.clientY - targetPosition.top
 
       dragContainer.style.left = `${ targetPosition.left }px`
       dragContainer.style.top = `${ targetPosition.top }px`

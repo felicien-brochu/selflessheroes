@@ -244,11 +244,10 @@ export default {
     height: 100%;
     width: 100%;
     background-color: #282c34;
-    position: relative;
 
     .graph-code {
         display: flex;
-        position: absolute;
+        height: min-content;
 
         & > .node-container {
             padding-top: 10px;

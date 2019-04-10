@@ -92,6 +92,7 @@ export default {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-left: 1px;
 
     #editors {
         flex-grow: 1;

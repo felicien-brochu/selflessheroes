@@ -11,6 +11,7 @@
     :allow-resize="true"
     :size="editorWidth"
     :min-size="320"
+    :resizerThickness="2"
     units="pixels"
     resizerColor="#4b5261"
     primary="second">
