@@ -1,7 +1,7 @@
 <template>
 <div id="editor-container">
   <div id="editors">
-    <code-mirror id="code-editor"
+    <code-mirror class="code-editor"
       :value="code"
       :worldReady="worldReady"
       :compilerException="compilerException"
@@ -108,18 +108,20 @@ export default {
             pointer-events: none;
         }
 
-        #code-editor {
-            display: none;
+        .code-editor {
+            // display: none;
+            z-index: 5;
+            height: 100%;
             position: relative;
             flex-grow: 1;
             .CodeMirror {
-                padding-top: 20px;
                 width: 100%;
+                height: 100%;
             }
         }
 
         #graph-editor {
-            // display: none;
+            display: none;
         }
     }
 
