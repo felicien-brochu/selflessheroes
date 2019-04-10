@@ -1,7 +1,9 @@
 <template>
 <div class="graph-scroll"
-  ref="scroll">
+  ref="scroll"
+  @scroll="$emit('scroll', $event)">
   <div class="graph-code">
+    <slot></slot>
     <line-numbers :numbers="lineNumbers" />
     <ul class="node-container"
       ref="nodeContainer">
@@ -54,11 +56,11 @@ export default {
     this.dragHandler = null
     this.dragOverIndex = -1
     this.dragTransitionStart = -1
-    this.afterTransitionTimeout = -1
   },
   watch: {
     nodes: function(nodes) {
       this.lineNumbers = getLineNumbersFromNodeGraph(nodes)
+      this.$emit('nodes-change', this.nodes)
     },
 
     statements: function(statements) {
@@ -170,7 +172,7 @@ export default {
 
       this.dragHandler = handler
       if (handler.needRecall) {
-        this.programDragOverRecall()
+        this.$parent.programDragOverRecall()
       }
     },
 
@@ -201,14 +203,6 @@ export default {
       }
     },
 
-    programDragOverRecall() {
-      let callback = function() {
-        this.afterTransitionTimeout = -1
-        this.applyDragOver()
-      }
-      this.afterTransitionTimeout = setTimeout(callback.bind(this), 80)
-    },
-
     handleDragOut() {
       this.dragHandler = null
       this.autoScroll.stop()
@@ -219,10 +213,6 @@ export default {
     },
 
     handleDrop(e) {
-      if (this.afterTransitionTimeout >= 0) {
-        clearTimeout(this.afterTransitionTimeout)
-        this.afterTransitionTimeout = -1
-      }
       this.autoScroll.stop()
       this.clearDragOver()
       for (let node of this.nodes) {
@@ -262,6 +252,8 @@ export default {
 
         & > .node-container {
             padding-top: 10px;
+            padding-bottom: 39px;
+            z-index: 10;
         }
 
         .code-lines {

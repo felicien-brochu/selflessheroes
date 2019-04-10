@@ -277,4 +277,51 @@ export default class NodeBuilder {
 
     return statements
   }
+
+  static makeNodesIterable(rootNodes) {
+    rootNodes[Symbol.iterator] = function() {
+      return {
+        next: function() {
+          let nodes = this._nodeStack[this._index]
+          let index = this._indexStack[this._index]
+
+          while (index === nodes.length) {
+            if (this._nodeStack.length <= 1) {
+              return {
+                done: true
+              }
+            }
+            this._nodeStack.pop()
+            this._indexStack.pop()
+            this._index--
+            nodes = this._nodeStack[this._index]
+            index = this._indexStack[this._index]
+          }
+
+          let node = nodes[index]
+          this._indexStack[this._index]++
+
+          if (node.nodes) {
+            let subNodes = []
+            for (let subs of node.nodes) {
+              subNodes = subNodes.concat(subs)
+            }
+            if (subNodes.length > 0) {
+              this._nodeStack.push(subNodes)
+              this._indexStack.push(0)
+              this._index++
+            }
+          }
+
+          return {
+            value: node,
+            done: false
+          }
+        },
+        _nodeStack: [rootNodes],
+        _indexStack: [0],
+        _index: 0
+      }
+    }
+  }
 }

@@ -3,7 +3,7 @@
 
   <drag-and-drop-layer :startDragEvent="startDragEvent"
     @drop="handleDrop"
-    @drag-over="$refs.graphCode.handleDragOver($event)" />
+    @drag-over="handleDragOver" />
   <div class="editor-container">
     <palette ref="palette"
       :compilerConfig="compilerConfig"
@@ -15,7 +15,11 @@
       :compilerConfig="compilerConfig"
       :worldReady="worldReady"
       @node-drag-start="handleNodeDragStart"
-      @drop-node="handleDropNode" />
+      @drop-node="handleDropNode">
+
+      <jump-link-layer ref="jumpLinkLayer" />
+
+    </graph-code>
   </div>
 </div>
 </template>
@@ -24,6 +28,7 @@
 import DragAndDropLayer from './DragAndDropLayer'
 import Palette from './Palette'
 import GraphCode from './GraphCode'
+import JumpLinkLayer from './JumpLinkLayer'
 import NodeBuilder from './nodes/NodeBuilder'
 import Compiler from '../../world/ai/compile/Compiler'
 
@@ -31,7 +36,8 @@ export default {
   components: {
     DragAndDropLayer,
     Palette,
-    GraphCode
+    GraphCode,
+    JumpLinkLayer
   },
   props: {
     'code': {
@@ -64,7 +70,9 @@ export default {
     }
   },
   mounted: function() {
-
+    this.dragEvent = null
+    this.afterTransitionTimeout = -1
+    this.transitionTimerID = -1
   },
   watch: {
     worldReady: function(worldReady) {
@@ -102,10 +110,43 @@ export default {
     },
 
     handleDragOver(e) {
-      this.$refs.graphCode.handleDragOver(e)
+      this.dragEvent = e
+      this.applyDragOver()
+    },
+
+    applyDragOver(animationOnly = false) {
+      if (!animationOnly) {
+        this.$refs.graphCode.handleDragOver(this.dragEvent)
+      }
+      this.$refs.jumpLinkLayer.handleDragOver(this.dragEvent)
+    },
+
+    programDragOverRecall() {
+      let afterCallback = function() {
+        this.applyDragOver()
+      }
+      this.afterTransitionTimeout = setTimeout(afterCallback.bind(this), 80)
+
+      if (this.transitionTimerID < 0) {
+        let transitionCallback = function() {
+          this.applyDragOver(true)
+        }
+        let afterAnimationCallback = function() {
+          if (this.transitionTimerID >= 0) {
+            clearInterval(this.transitionTimerID)
+            this.transitionTimerID = -1
+          }
+        }
+        this.transitionTimerID = setInterval(transitionCallback.bind(this), 10)
+        setTimeout(afterAnimationCallback.bind(this), 120)
+      }
     },
 
     handleDrop(e) {
+      if (this.afterTransitionTimeout >= 0) {
+        clearTimeout(this.afterTransitionTimeout)
+        this.afterTransitionTimeout = -1
+      }
       this.$refs.graphCode.handleDrop(e)
     },
 
@@ -143,6 +184,13 @@ export default {
         left: 0;
         top: 0;
         z-index: 100000000;
+    }
+
+    .jump-link-layer {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 6;
     }
 
     .editor-container {
