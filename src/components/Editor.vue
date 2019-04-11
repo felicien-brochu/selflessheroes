@@ -109,7 +109,7 @@ export default {
         }
 
         .code-editor {
-            // display: none;
+            display: none;
             z-index: 5;
             height: 100%;
             position: relative;
@@ -121,7 +121,7 @@ export default {
         }
 
         #graph-editor {
-            display: none;
+            // display: none;
         }
     }
 

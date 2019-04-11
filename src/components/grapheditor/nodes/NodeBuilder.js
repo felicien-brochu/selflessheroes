@@ -13,6 +13,8 @@ import ElseStatement from '../../../world/ai/compile/statements/ElseStatement'
 import EndIfStatement from '../../../world/ai/compile/statements/EndIfStatement'
 import IfStatement from '../../../world/ai/compile/statements/IfStatement'
 import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'
+import BooleanExpression from '../../../world/ai/compile/statements/BooleanExpression'
+import SimpleBooleanExpression from '../../../world/ai/compile/statements/SimpleBooleanExpression'
 import VariableIdentifier from '../../../world/ai/compile/statements/VariableIdentifier'
 import ActionFunction from '../../../world/ai/compile/statements/functions/ActionFunction'
 import ValueFunction from '../../../world/ai/compile/statements/functions/ValueFunction'
@@ -123,6 +125,8 @@ export default class NodeBuilder {
     let statement = new statementClass(null, -1, -1)
     let nodeClass = null
     if (statement instanceof IfStatement) {
+      statement.condition = new BooleanExpression(statement, -1, -1)
+      statement.condition.expressions.push(new SimpleBooleanExpression(statement.condition, -1, -1))
       nodeClass = Vue.extend(IfNode)
     } else
     if (statement instanceof ValueFunction) {
@@ -159,10 +163,8 @@ export default class NodeBuilder {
       node
     } = dragHandler
 
-    let handlerIndex = 0
-    if (node !== this) {
-      handlerIndex = statements.indexOf(node.statement)
-    }
+    let handlerIndex = statements.indexOf(node.statement)
+
 
     // find the real insert index
 
@@ -171,7 +173,6 @@ export default class NodeBuilder {
     let handlerStatements
     if (handlerStatement) {
       if (handlerStatement instanceof IfStatement) {
-        let endIndex = !!handlerStatement.elseStatement ? statements.indexOf(handlerStatement.elseStatement) : statements.indexOf(handlerStatement.endIfStatement)
         handlerStatements = statements.slice(handlerIndex + 1, statements.indexOf(handlerStatement.endIfStatement))
       }
     } else {
@@ -185,6 +186,12 @@ export default class NodeBuilder {
       if (currentStatement instanceof IfStatement) {
         handlerStatements.splice(i + 1, handlerStatements.indexOf(currentStatement.endIfStatement) - i)
       }
+    }
+
+
+    let indexInHandler = handlerStatements.indexOf(insertStatement)
+    if (indexInHandler >= 0 && indexInHandler <= insertIndex) {
+      insertIndex++
     }
 
 
@@ -274,6 +281,7 @@ export default class NodeBuilder {
       }
     }
     statements.splice(index, numberOfStatements)
+    statements = Linter.removeEmptyElse(statements)
 
     return statements
   }

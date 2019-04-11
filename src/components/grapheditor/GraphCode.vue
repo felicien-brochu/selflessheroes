@@ -14,6 +14,7 @@
 
 <script>
 import NodeBuilder from './nodes/NodeBuilder'
+import DragTree from './DragTree'
 import LineNumbers from './LineNumbers'
 import AutoScroll from './AutoScroll'
 import {
@@ -53,19 +54,19 @@ export default {
     this.autoScroll = new AutoScroll(this.$refs.scroll, null)
 
     this.dragEvent = null
-    this.dragHandler = null
-    this.dragOverIndex = -1
-    this.dragTransitionStart = -1
+    this.dragTree = null
+    this.dragPlaceholderIndex = -1
+    this.dropHandler = null
   },
   watch: {
     nodes: function(nodes) {
       this.lineNumbers = getLineNumbersFromNodeGraph(nodes)
-      this.$emit('nodes-change', this.nodes)
     },
 
     statements: function(statements) {
       this.clearNodeContainer()
       this.populateNodeContainer()
+      this.$emit('nodes-change', this.nodes)
     }
   },
   methods: {
@@ -82,9 +83,15 @@ export default {
       let container = this.$refs.nodeContainer
       for (let node of this.nodes) {
         container.appendChild(node.$el)
-        node.$on('drag-start', this.handleNodeDragStart)
+        node.$parent = this
+        node.$on('drag-start', this.handleOwnNodeDragStart)
         node.$on('node-drag-start', this.handleNodeDragStart)
       }
+    },
+
+    handleOwnNodeDragStart(e) {
+      this.nodes.splice(this.nodes.indexOf(e.node), 1)
+      this.handleNodeDragStart(e)
     },
 
     handleNodeDragStart(e) {
@@ -108,118 +115,63 @@ export default {
     },
 
     applyDragOver() {
-      let event = this.dragEvent
-      let handler = null
-
-      let above = -1
-      let bellow = -1
-      for (let i = 0; i < this.nodes.length; i++) {
-        let node = this.nodes[i]
-        if (node === event.node) {
-          continue
-        }
-
-        let nodeBox = node.getDraggableElement().getBoundingClientRect()
-        if (event.y + event.height >= nodeBox.top + 21) {
-          bellow = i
-        }
-        if (event.y <= nodeBox.top + nodeBox.height - 2) {
-          if (above < 0) {
-            above = i
-          }
-        }
-        let subHandler = node.handleDragOver(event)
-        if (!!subHandler && !handler) {
-          handler = subHandler
-        }
+      if (!this.dragTree) {
+        this.generateDragTree()
       }
+      let res = this.dragTree.handleDragOver(this.dragEvent, this.$el.getBoundingClientRect(), this.$refs.scroll)
+      this.dropHandler = res.dropHandler
+      if (res.dragPositionChanged) {
+        this.$parent.startDragOverChangeAnimation()
+      }
+    },
 
-      let needRecall = false
-      if (handler === null) {
-        if (Date.now() > this.dragTransitionStart + 100) {
-          let afterIndex = above
-          if (above === bellow) {
-            if (above !== this.dragOverIndex) {
-              afterIndex = above
-            }
-            else if (bellow + 1 !== this.dragOverIndex) {
-              afterIndex = bellow + 1
-              if (afterIndex < this.nodes.length &&
-                this.nodes[afterIndex] &&
-                this.nodes[afterIndex] === event.node) {
-                afterIndex++
-              }
-            }
-          }
+    generateDragTree() {
+      this.dragTree = new DragTree(this, this.nodes, 39)
+    },
 
-          if (afterIndex < 0) {
-            afterIndex = this.nodes.length
-          }
-
-          needRecall = afterIndex !== this.dragOverIndex
-          this.placeDragOver(afterIndex)
-        }
-
-        handler = {
-          node: this,
-          insertIndex: this.dragOverIndex,
-          needRecall: needRecall
-        }
+    showDragPlaceholderAt(index, placeholderHeight) {
+      this.hideDragPlaceholder()
+      if (index < this.nodes.length) {
+        this.nodes[index].$el.style.marginTop = `${placeholderHeight + 10}px`
       }
       else {
-        this.clearDragOver()
+        if (this.nodes.length > 0) {
+          this.nodes[index - 1].$el.style.marginBottom = `${placeholderHeight + 10}px`
+        }
       }
-
-      this.dragHandler = handler
-      if (handler.needRecall) {
-        this.$parent.programDragOverRecall()
-      }
+      this.dragPlaceholderIndex = index
     },
 
-    placeDragOver(afterIndex) {
-      if (afterIndex !== this.dragOverIndex) {
-        if (afterIndex < this.nodes.length) {
-          this.nodes[afterIndex].$el.style.marginTop = '40px'
+    hideDragPlaceholder() {
+      if (this.dragPlaceholderIndex >= 0) {
+        if (this.dragPlaceholderIndex < this.nodes.length) {
+          this.nodes[this.dragPlaceholderIndex].$el.style.marginTop = null
         }
-        else if (this.nodes.length > 0) {
-          this.nodes[this.nodes.length - 1].$el.style.marginBottom = '40px'
+        else {
+          if (this.nodes.length > 0) {
+            this.nodes[this.dragPlaceholderIndex - 1].$el.style.marginBottom = null
+          }
         }
-        this.clearDragOver()
-        this.dragOverIndex = afterIndex
-        this.dragTransitionStart = Date.now()
-      }
-    },
-
-    clearDragOver() {
-      if (this.dragOverIndex >= 0) {
-        if (this.dragOverIndex < this.nodes.length) {
-          this.nodes[this.dragOverIndex].$el.style.marginTop = null
-        }
-        else if (this.nodes.length > 0) {
-          this.nodes[this.nodes.length - 1].$el.style.marginBottom = null
-        }
-        this.dragOverIndex = -1
-        this.dragTransitionStart = Date.now()
+        this.dragPlaceholderIndex = -1
       }
     },
 
     handleDragOut() {
-      this.dragHandler = null
-      this.autoScroll.stop()
-      this.clearDragOver()
-      for (let node of this.nodes) {
-        node.handleDragOutGraph()
+      if (this.dragTree) {
+        this.dragTree.handleDragOut()
       }
+      this.dropHandler = null
+      this.autoScroll.stop()
     },
 
     handleDrop(e) {
-      this.autoScroll.stop()
-      this.clearDragOver()
-      for (let node of this.nodes) {
-        node.handleDrop(e)
-      }
+      this.$emit('drop-node', this.dropHandler)
 
-      this.$emit('drop-node', this.dragHandler)
+      this.autoScroll.stop()
+      this.dragEvent = null
+      this.dragTree = null
+      this.dragPlaceholderIndex = -1
+      this.dropHandler = null
     }
   }
 }

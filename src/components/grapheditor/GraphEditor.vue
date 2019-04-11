@@ -71,8 +71,7 @@ export default {
   },
   mounted: function() {
     this.dragEvent = null
-    this.afterTransitionTimeout = -1
-    this.transitionTimerID = -1
+    this.dragOverChangeAnimationID = -1
   },
   watch: {
     worldReady: function(worldReady) {
@@ -111,42 +110,27 @@ export default {
 
     handleDragOver(e) {
       this.dragEvent = e
-      this.applyDragOver()
+      this.$refs.graphCode.handleDragOver(this.dragEvent)
+      this.$refs.jumpLinkLayer.updateLinkPaths()
     },
 
-    applyDragOver(animationOnly = false) {
-      if (!animationOnly) {
-        this.$refs.graphCode.handleDragOver(this.dragEvent)
-      }
-      this.$refs.jumpLinkLayer.handleDragOver(this.dragEvent)
-    },
-
-    programDragOverRecall() {
-      let afterCallback = function() {
-        this.applyDragOver()
-      }
-      this.afterTransitionTimeout = setTimeout(afterCallback.bind(this), 80)
-
-      if (this.transitionTimerID < 0) {
+    startDragOverChangeAnimation() {
+      if (this.dragOverChangeAnimationID < 0) {
+        let millis = Date.now()
         let transitionCallback = function() {
-          this.applyDragOver(true)
-        }
-        let afterAnimationCallback = function() {
-          if (this.transitionTimerID >= 0) {
-            clearInterval(this.transitionTimerID)
-            this.transitionTimerID = -1
+          if (this.$refs.jumpLinkLayer && Date.now() < millis + 200) {
+            this.$refs.jumpLinkLayer.updateLinkPaths()
+          }
+          else {
+            clearInterval(this.dragOverChangeAnimationID)
+            this.dragOverChangeAnimationID = -1
           }
         }
-        this.transitionTimerID = setInterval(transitionCallback.bind(this), 10)
-        setTimeout(afterAnimationCallback.bind(this), 120)
+        this.dragOverChangeAnimationID = setInterval(transitionCallback.bind(this), 10)
       }
     },
 
     handleDrop(e) {
-      if (this.afterTransitionTimeout >= 0) {
-        clearTimeout(this.afterTransitionTimeout)
-        this.afterTransitionTimeout = -1
-      }
       this.$refs.graphCode.handleDrop(e)
     },
 

@@ -4,17 +4,19 @@
   <div class="if-content">
     <ul class="condition-list"
       ref="conditionList">
-      <li class="node branching-node condition-node"
-        @mousedown="handleDragStart"
-        @touchstart="handleDragStart">
-        if
-      </li>
+      <condition-node v-for="(condition, index) in conditions"
+        :key="index"
+        :expression="condition.expression"
+        :operator="condition.operator"
+        :isFirst="index === 0"
+        @mousedown.native="handleDragStart"
+        @touchstart.native="handleDragStart" />
     </ul>
     <ul class="node-container"
       ref="nodeContainer">
     </ul>
 
-    <div v-if="statements.length >= 2 || draggedOver"
+    <div v-if="elseDeployed"
       class="else-content">
       <div class="node branching-node else-node"
         ref="elseNode">
@@ -34,9 +36,13 @@
 <script>
 import Node from './Node'
 import NodeBuilder from './NodeBuilder'
+import ConditionNode from './ConditionNode'
 
 export default {
   extends: Node,
+  components: {
+    ConditionNode
+  },
   props: {
     'statements': {
       type: Array,
@@ -53,12 +59,29 @@ export default {
   mounted() {
     this.dragOverIndex = -1
     this.dragTransitionStart = -1
+    this.dragOverMarked = false
+    this.dragPlaceholderIndex = -1
     this.nodes = [
       []
     ]
 
     for (let i = 0; i < this.statements.length; i++) {
       this.populateNodeContainer(i)
+    }
+  },
+  computed: {
+    elseDeployed: function() {
+      return this.statements.length >= 2 || this.draggedOver
+    },
+    conditions: function() {
+      let conditions = []
+      for (let i = 0; i < this.statement.condition.expressions.length; i++) {
+        conditions.push({
+          expression: this.statement.condition.expressions[i],
+          operator: i < this.statement.condition.operators.length ? this.statement.condition.operators[i] : null,
+        })
+      }
+      return conditions
     }
   },
   watch: {
@@ -70,31 +93,6 @@ export default {
     }
   },
   methods: {
-    getDragNodes() {
-      let mapping = node => {
-        return {
-          node: node,
-          el: node.$el,
-          draggable: node.getDraggableElement()
-        }
-      }
-
-      let nodes = this.nodes[0].map(mapping)
-
-      if (!!this.$refs.elseNode) {
-        // Insert else node
-        nodes.push({
-          node: null,
-          el: this.$refs.elseNode,
-          draggable: this.$refs.elseNode
-        })
-      }
-
-      if (this.nodes.length > 1) {
-        nodes = nodes.concat(this.nodes[1].map(mapping))
-      }
-      return nodes
-    },
     clearNodeContainer(index) {
       let container = this.getNodeContainer(index)
       while (container.firstChild) {
@@ -109,7 +107,8 @@ export default {
       let container = this.getNodeContainer(index)
       for (let node of nodes) {
         container.appendChild(node.$el)
-        node.$on('drag-start', this.handleNodeDragStart)
+        node.$parent = this
+        node.$on('drag-start', this.handleOwnNodeDragStart)
         node.$on('node-drag-start', this.handleNodeDragStart)
       }
     },
@@ -124,157 +123,130 @@ export default {
       return null
     },
 
-    handleDragOver(event) {
-      let bounds = this.$el.getBoundingClientRect()
-      let conditionBox = this.getDraggableElement().getBoundingClientRect()
-      let thisBox = this.$el.getBoundingClientRect()
-      if (event.y + event.height >= bounds.top &&
-        event.y <= bounds.top + bounds.height &&
-        event.y > conditionBox.top + conditionBox.height - 2 &&
-        event.y + event.height < thisBox.top + thisBox.height + 20) {
-        this.draggedOver = true
-        let nodes = this.getDragNodes()
-        let handler = null
 
-        let above = -1
-        let bellow = -1
-
-        for (let i = 0; i < nodes.length; i++) {
-          let node = nodes[i]
-          if (!!node.node && node.node === event.node) {
-            continue
-          }
-
-          let nodeBox = node.draggable.getBoundingClientRect()
-          if (!!node.node) {
-            let subHandler = node.node.handleDragOver(event)
-            if (!!subHandler && !handler) {
-              handler = subHandler
-            }
-          }
-          if (event.y + event.height >= nodeBox.top + 21) {
-            bellow = i
-          }
-          if (event.y <= nodeBox.top + nodeBox.height - 2) {
-            if (above < 0) {
-              above = i
-            }
-          }
-        }
-
-        let needRecall = false
-        if (handler === null) {
-          if (Date.now() > this.dragTransitionStart + 100) {
-            let afterIndex = above
-            if (above === bellow) {
-              if (above !== this.dragOverIndex) {
-                afterIndex = above
-              }
-              else if (bellow + 1 !== this.dragOverIndex) {
-                afterIndex = bellow + 1
-                if (afterIndex < nodes.length &&
-                  nodes[afterIndex].node &&
-                  nodes[afterIndex].node === event.node) {
-                  afterIndex++
-                }
-              }
-            }
-            else if (above < 0 && (bellow === nodes.length - 1 || bellow === nodes.length - 2)) {
-              afterIndex = nodes.length
-            }
-
-            needRecall = afterIndex !== this.dragOverIndex
-            this.placeDragOver(afterIndex)
-          }
-
-          if (this.dragOverIndex >= 0) {
-            handler = {
-              node: this,
-              insertIndex: this.dragOverIndex,
-              needRecall: needRecall
-            }
-          }
-        }
-        else {
-          this.clearDragOver()
-        }
-        return handler
+    getDragNodes() {
+      let nodes = []
+      // Count empty space for empty if
+      if (this.nodes[0].length === 0) {
+        nodes.push(null)
       }
       else {
-        this.handleDragOut()
-        return null
-      }
-    },
-
-    handleDragOut(e) {
-      this.clearDragOver()
-
-      for (let nodes of this.nodes) {
-        for (let node of nodes) {
-          node.handleDragOut()
+        for (let node of this.nodes[0]) {
+          nodes.push(node)
         }
       }
-    },
 
-    handleDragOutGraph() {
-      this.clearDragOver()
-      this.draggedOver = false
+      if (this.elseDeployed) {
+        nodes.push(null)
 
-      for (let nodes of this.nodes) {
-        for (let node of nodes) {
-          node.handleDragOutGraph()
-        }
-      }
-    },
-
-    placeDragOver(afterIndex) {
-      if (afterIndex !== this.dragOverIndex) {
-        this.clearDragOver()
-        let nodes = this.getDragNodes()
-        if (afterIndex < nodes.length) {
-          if (this.dragOverIndex > 0 || this.nodes[0].length > 0) {
-            nodes[afterIndex].el.style.marginTop = '40px'
+        if (this.nodes.length >= 2 && this.nodes[1].length > 0) {
+          for (let node of this.nodes[1]) {
+            nodes.push(node)
           }
         }
-        else if (this.dragOverIndex > 0 && this.dragOverIndex > this.nodes[0].length) {
-          nodes[nodes.length - 1].el.style.marginBottom = '40px'
+
+        // Count empty space at the end of else
+        if (this.draggedOver) {
+          nodes.push(null)
         }
-        this.dragOverIndex = afterIndex
-        this.dragTransitionStart = Date.now()
+      }
+
+      return nodes
+    },
+
+    handleDragOver() {
+      let changed = false
+      if (!this.draggedOver) {
+        this.draggedOver = true
+        changed = true
+      }
+      return changed
+    },
+
+    getHeaderLineNumber() {
+      return this.statement.condition.expressions.length
+    },
+
+    showDragPlaceholderAt(index, placeholderHeight) {
+      this.hideDragPlaceholder()
+      let position = this.getDragPlaceholderPosition(index)
+      if (position.node) {
+        if (position.top) {
+          position.node.$el.style.marginTop = `${placeholderHeight + 10}px`
+        }
+        else {
+          position.node.$el.style.marginBottom = `${placeholderHeight + 10}px`
+        }
+      }
+      this.dragPlaceholderIndex = index
+    },
+
+    hideDragPlaceholder() {
+      if (this.dragPlaceholderIndex >= 0) {
+        let position = this.getDragPlaceholderPosition(this.dragPlaceholderIndex)
+        if (position.node) {
+          if (position.top) {
+            position.node.$el.style.marginTop = null
+          }
+          else {
+            position.node.$el.style.marginBottom = null
+          }
+        }
+        this.dragPlaceholderIndex = -1
       }
     },
 
-    clearDragOver() {
-      if (this.dragOverIndex >= 0) {
-        let nodes = this.getDragNodes()
-        if (this.dragOverIndex < nodes.length) {
-          nodes[this.dragOverIndex].el.style.marginTop = null
+    getDragPlaceholderPosition(index) {
+      let node = null
+      let top = true
+
+      if (index < this.nodes[0].length) {
+        if (this.nodes[0].length > 0) {
+          node = this.nodes[0][index]
         }
-        else {
-          nodes[nodes.length - 1].el.style.marginBottom = null
-        }
-        this.dragOverIndex = -1
-        this.dragTransitionStart = Date.now()
       }
+      else if (index === this.nodes[0].length) {
+        if (this.nodes[0].length > 0) {
+          node = this.nodes[0][this.nodes[0].length - 1]
+          top = false
+        }
+      }
+      else {
+        if (this.nodes.length >= 2) {
+          let index2 = index - this.nodes[0].length - 1
+
+          if (index2 < this.nodes[1].length) {
+            node = this.nodes[1][index2]
+          }
+        }
+      }
+
+      return {
+        node: node,
+        top: top
+      }
+    },
+
+    handleOwnNodeDragStart(e) {
+      loop: for (let subNodes of this.nodes) {
+        for (let i = 0; i < subNodes.length; i++) {
+          if (subNodes[i] === e.node) {
+            subNodes.splice(i, 1)
+            break loop
+          }
+        }
+      }
+
+      this.handleNodeDragStart(e)
     },
 
     handleNodeDragStart(e) {
+      this.draggedOver = true
       this.$emit('node-drag-start', e)
     },
 
     getDraggableElement() {
       return this.$refs.conditionList
-    },
-
-    handleDrop(e) {
-      this.clearDragOver()
-      this.draggedOver = false
-
-      for (let nodes of this.nodes) {
-        for (let node of nodes) {
-          node.handleDrop(e)
-        }
-      }
     }
   }
 }

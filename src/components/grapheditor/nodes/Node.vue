@@ -36,9 +36,17 @@ export default {
       })
     },
 
-    handleDragOver(event) {
-      return null
+    getHeaderLineNumber() {
+      return 1
     },
+
+    handleDragOver() {
+      return false
+    },
+
+    showDragPlaceholderAt(index, placeholderHeight) {},
+    hideDragPlaceholder() {},
+
     handleDragOut() {},
     handleDragOutGraph() {},
     handleDrop(e) {},
