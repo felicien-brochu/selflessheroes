@@ -1,11 +1,12 @@
 $assign-color: #bca058;
 $action-color: #87aa72;
 $branching-color: #6991b2;
+$drop-down-color: #d9b8c4;
 $text-darken: 38%;
 $line-margin: 10px;
-$node-padding-top: 5px;
+$node-padding-top: 0;
 $node-padding-right: 18px;
-$node-padding-bottom: 5px;
+$node-padding-bottom: 0;
 $node-padding-left: 7px;
 @mixin node-color($background-color) {
 	background-color: $background-color;
@@ -19,6 +20,9 @@ $node-padding-left: 7px;
 	-ms-user-select: none;
 	user-select: none;
 }
+@mixin node-shadow {
+	box-shadow: 0 2px 3px 0 rgba(#000000, 0.65);
+}
 @mixin animate-margin {
 	transition-property: margin;
 	transition-duration: 100ms;
@@ -27,12 +31,14 @@ $node-padding-left: 7px;
 
 %node {
 	@include no-select;
+	@include node-shadow;
 	padding: $node-padding-top $node-padding-right $node-padding-bottom $node-padding-left;
 	border-radius: 3px;
-	cursor: grab;
 	display: inline;
+	font-size: 18px;
+	height: 29px;
+	line-height: 29px;
 	font-weight: 500;
-	box-shadow: 0 2px 3px 0 rgba(#000000, 0.65);
 }
 
 %node-list {

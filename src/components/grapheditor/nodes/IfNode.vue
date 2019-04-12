@@ -9,6 +9,7 @@
         :expression="condition.expression"
         :operator="condition.operator"
         :isFirst="index === 0"
+        :compilerConfig="compilerConfig"
         @mousedown.native="handleDragStart"
         @touchstart.native="handleDragStart" />
     </ul>
@@ -49,6 +50,9 @@ export default {
       default: () => [
         []
       ]
+    },
+    'compilerConfig': {
+      type: Object
     }
   },
   data: function() {
@@ -93,6 +97,16 @@ export default {
     }
   },
   methods: {
+    isDraggableElement(element) {
+      for (let conditionNode of this.$refs.conditionList.children) {
+        if (element === conditionNode) {
+          return true
+        }
+      }
+      return false
+    },
+
+
     clearNodeContainer(index) {
       let container = this.getNodeContainer(index)
       while (container.firstChild) {

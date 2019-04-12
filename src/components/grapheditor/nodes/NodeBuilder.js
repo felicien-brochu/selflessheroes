@@ -124,10 +124,14 @@ export default class NodeBuilder {
   static buildNewNode(statementClass, compilerConfig) {
     let statement = new statementClass(null, -1, -1)
     let nodeClass = null
+    let props = {}
     if (statement instanceof IfStatement) {
       statement.condition = new BooleanExpression(statement, -1, -1)
       statement.condition.expressions.push(new SimpleBooleanExpression(statement.condition, -1, -1))
       nodeClass = Vue.extend(IfNode)
+      props = {
+        compilerConfig: compilerConfig
+      }
     } else
     if (statement instanceof ValueFunction) {
       let assignStatement = new AssignStatement(null, -1, -1)
@@ -148,7 +152,8 @@ export default class NodeBuilder {
 
     let node = new nodeClass({
       propsData: {
-        statement: statement
+        statement: statement,
+        ...props
       }
     })
     node.$mount()

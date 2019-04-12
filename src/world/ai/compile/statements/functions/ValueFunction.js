@@ -25,7 +25,7 @@ export default class ValueFunction extends Expression {
       throw new MismatchStatementException('you try to compile as a value function a statement which is not one', this)
     }
 
-    let allowedTypes = config.getValueFunctionsForParent(this.parent)
+    let allowedTypes = config.valueFunctions
     if (!allowedTypes.some(allowedType => this instanceof allowedType)) {
       throw new ForbiddenValueFunctionException(`the function ${this.keyword} is forbidden. You may use the following functions: ${allowedTypes}`, this)
     }

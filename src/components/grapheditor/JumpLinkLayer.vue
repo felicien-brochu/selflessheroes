@@ -46,11 +46,11 @@ export default {
     this.rsPane.$on('update:size', this.updateLinkPaths)
     window.addEventListener('resize', this.updateLinkPaths)
   },
-  destroy() {
-    this.graphCode.$off('nodes-change')
-    this.graphCode.$off('scroll')
-    this.rsPane.$off('resize')
-    this.rsPane.$off('update:size')
+  beforeDestroy() {
+    this.graphCode.$off('nodes-change', this.handleNodesChange)
+    this.graphCode.$off('scroll', this.updateLinkPaths)
+    this.rsPane.$off('resize', this.updateLinkPaths)
+    this.rsPane.$off('update:size', this.updateLinkPaths)
     window.removeEventListener('resize', this.updateLinkPaths)
   },
 

@@ -25,22 +25,13 @@ const leOperator = '<='
 const gtOperator = '>'
 const geOperator = '>='
 
-const compOperators = [
-  neOperator,
+export const compOperators = [
   eqOperator,
+  neOperator,
   leOperator,
   ltOperator,
   geOperator,
   gtOperator
-]
-
-const unitExpressions = [
-  ObjectTypeLiteral,
-  TerrainTypeLiteral,
-  IntegerLiteral,
-  DirectionLiteral,
-  VariableIdentifier,
-  ...Object.values(ValueFunctions)
 ]
 
 
@@ -48,8 +39,8 @@ export default class SimpleBooleanExpression extends Expression {
   constructor(parent, line, column) {
     super('SimpleBooleanExpression', parent, line, column)
 
-    this.expression1 = null
-    this.expression2 = null
+    this.leftExpression = null
+    this.rightExpression = null
     this.operator = null
   }
 
@@ -69,16 +60,16 @@ export default class SimpleBooleanExpression extends Expression {
     }
 
     let codeSplit = splitCode(this.code, this.operator, this.line, this.column)
-    this.expression1 = createUnitExpression(codeSplit[0].code, unitExpressions, this, codeSplit[0].line, codeSplit[0].column)
-    this.expression2 = createUnitExpression(codeSplit[1].code, unitExpressions, this, codeSplit[1].line, codeSplit[1].column)
+    this.leftExpression = createUnitExpression(codeSplit[0].code, config.leftComparisonExpressions, this, codeSplit[0].line, codeSplit[0].column)
+    this.rightExpression = createUnitExpression(codeSplit[1].code, config.rightComparisonExpressions, this, codeSplit[1].line, codeSplit[1].column)
 
-    this.expression1.compile(config)
-    this.expression2.compile(config)
+    this.leftExpression.compile(config)
+    this.rightExpression.compile(config)
   }
 
   computeValue(context) {
-    let value1 = this.expression1.computeValue(context)
-    let value2 = this.expression2.computeValue(context)
+    let value1 = this.leftExpression.computeValue(context)
+    let value2 = this.rightExpression.computeValue(context)
     let value = false
 
     if (this.operator === eqOperator) {

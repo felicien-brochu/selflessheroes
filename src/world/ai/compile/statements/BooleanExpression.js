@@ -13,6 +13,11 @@ import {
 const andOperator = '&&'
 const orOperator = '||'
 
+export const boolOperators = [
+  andOperator,
+  orOperator
+]
+
 export default class BooleanExpression extends Expression {
   constructor(parent, line, column) {
     super('BooleanExpression', parent, line, column)

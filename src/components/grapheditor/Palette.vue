@@ -65,7 +65,7 @@ export default {
         return
       }
 
-      let primaryStatements = [...config.getPrimaryStatements(), ...config.assignValueFunctions]
+      let primaryStatements = [...config.getPrimaryStatements(), ...config.valueFunctions]
       this.statementClasses = primaryStatements.filter(statementClass => paletteStatements.indexOf(statementClass) >= 0)
     }
   },

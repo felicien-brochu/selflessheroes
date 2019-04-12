@@ -8,9 +8,13 @@ import AnchorStatement from './statements/AnchorStatement'
 import BooleanExpression from './statements/BooleanExpression'
 import DirFunction from './statements/functions/DirFunction'
 import StepFunction from './statements/functions/StepFunction'
+import VariableIdentifier from './statements/VariableIdentifier'
+import ObjectTypeLiteral from './statements/literals/ObjectTypeLiteral'
+import TerrainTypeLiteral from './statements/literals/TerrainTypeLiteral'
+import DirectionLiteral from './statements/literals/DirectionLiteral'
+import IntegerLiteral from './statements/literals/IntegerLiteral'
 import ObjectType from '../../ObjectType'
 import TerrainType from '../../TerrainType'
-
 
 export default class CompilerConfig {
   constructor() {
@@ -34,12 +38,20 @@ export default class CompilerConfig {
     config.objectTypes = Object.keys(ObjectType)
     config.terrainTypes = Object.keys(TerrainType)
 
-    config.assignValueFunctions = [
+    config.valueFunctions = [
       DirFunction
     ]
 
-    config.comparisonValueFunctions = [
-      DirFunction
+    config.leftComparisonExpressions = [
+      DirectionLiteral,
+      VariableIdentifier,
+    ]
+    config.rightComparisonExpressions = [
+      DirectionLiteral,
+      ObjectTypeLiteral,
+      TerrainTypeLiteral,
+      IntegerLiteral,
+      VariableIdentifier,
     ]
 
     config.actionFunctions = [
@@ -59,15 +71,5 @@ export default class CompilerConfig {
 
   getPrimaryStatements() {
     return this.statements.concat(this.actionFunctions)
-  }
-
-  getValueFunctionsForParent(parent) {
-    if (parent instanceof AssignStatement) {
-      return this.assignValueFunctions
-    } else if (parent instanceof BooleanExpression) {
-      return this.comparisonValueFunctions
-    } else {
-      return []
-    }
   }
 }

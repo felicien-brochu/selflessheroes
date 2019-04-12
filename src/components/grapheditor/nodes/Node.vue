@@ -30,10 +30,16 @@ export default {
         }
         e.preventDefault()
       }
-      this.$emit('drag-start', {
-        event: e,
-        node: this
-      })
+      if (this.isDraggableElement(e.target)) {
+        this.$emit('drag-start', {
+          event: e,
+          node: this
+        })
+      }
+    },
+
+    isDraggableElement(element) {
+      return element === this.$el
     },
 
     getHeaderLineNumber() {

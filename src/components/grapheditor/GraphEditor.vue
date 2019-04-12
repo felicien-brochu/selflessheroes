@@ -4,12 +4,15 @@
   <drag-and-drop-layer :startDragEvent="startDragEvent"
     @drop="handleDrop"
     @drag-over="handleDragOver" />
+  <drop-down-layer id="drop-down-layer"
+    :compilerConfig="compilerConfig" />
   <div class="editor-container">
     <palette ref="palette"
       :compilerConfig="compilerConfig"
       :chosenStatement="chosenPaletteStatement"
       @drag-start="handlePaletteDragStart" />
     <graph-code ref="graphCode"
+      id="graph-code"
       :code="code"
       :statements="statements"
       :compilerConfig="compilerConfig"
@@ -29,12 +32,14 @@ import DragAndDropLayer from './DragAndDropLayer'
 import Palette from './Palette'
 import GraphCode from './GraphCode'
 import JumpLinkLayer from './JumpLinkLayer'
+import DropDownLayer from './nodes/DropDownLayer'
 import NodeBuilder from './nodes/NodeBuilder'
 import Compiler from '../../world/ai/compile/Compiler'
 
 export default {
   components: {
     DragAndDropLayer,
+    DropDownLayer,
     Palette,
     GraphCode,
     JumpLinkLayer
@@ -175,6 +180,12 @@ export default {
         left: 0;
         top: 0;
         z-index: 7;
+    }
+
+    #drop-down-layer {
+        left: 0;
+        top: 0;
+        z-index: 100000000;
     }
 
     .editor-container {
