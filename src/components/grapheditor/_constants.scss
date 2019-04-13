@@ -21,7 +21,7 @@ $node-padding-left: 7px;
 	user-select: none;
 }
 @mixin node-shadow {
-	box-shadow: 0 2px 3px 0 rgba(#000000, 0.65);
+	box-shadow: 0 1px 3px 0 rgba(#000000, 0.65);
 }
 @mixin animate-margin {
 	transition-property: margin;

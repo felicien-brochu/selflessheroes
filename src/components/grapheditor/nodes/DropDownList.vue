@@ -25,9 +25,6 @@ import {
 }
 from '../../../world/ai/compile/statements/SimpleBooleanExpression'
 
-const verticalPadding = 10
-const horizontalPadding = 8
-
 export default {
   props: {
     'value': {
@@ -70,7 +67,7 @@ export default {
       }
     },
 
-    updatePosition() {
+    updatePosition(horizontalPadding, verticalPadding) {
       let anchorBox = this.anchor.getBoundingClientRect()
       let frameBox = this.frame.getBoundingClientRect()
       let thisBox = this.$el.getBoundingClientRect()

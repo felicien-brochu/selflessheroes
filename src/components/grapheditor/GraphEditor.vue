@@ -4,7 +4,7 @@
   <drag-and-drop-layer :startDragEvent="startDragEvent"
     @drop="handleDrop"
     @drag-over="handleDragOver" />
-  <drop-down-layer id="drop-down-layer"
+  <popup-layer id="popup-layer"
     :compilerConfig="compilerConfig" />
   <div class="editor-container">
     <palette ref="palette"
@@ -29,17 +29,17 @@
 
 <script>
 import DragAndDropLayer from './DragAndDropLayer'
+import PopupLayer from './nodes/PopupLayer'
 import Palette from './Palette'
 import GraphCode from './GraphCode'
 import JumpLinkLayer from './JumpLinkLayer'
-import DropDownLayer from './nodes/DropDownLayer'
 import NodeBuilder from './nodes/NodeBuilder'
 import Compiler from '../../world/ai/compile/Compiler'
 
 export default {
   components: {
     DragAndDropLayer,
-    DropDownLayer,
+    PopupLayer,
     Palette,
     GraphCode,
     JumpLinkLayer
@@ -182,7 +182,7 @@ export default {
         z-index: 7;
     }
 
-    #drop-down-layer {
+    #popup-layer {
         left: 0;
         top: 0;
         z-index: 100000000;

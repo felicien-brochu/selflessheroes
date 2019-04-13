@@ -2,15 +2,17 @@
 <div :class="{
 	'drop-down-button': true,
 	'no-background': isDirection
-	}"
-  @mousedown="$emit('click', $event)">
+	}">
   <direction-value v-if="isDirection"
-    :values="[value]" />
-  <span v-else
-    class="drop-down-label">
+    :values="[value]"
+    @click.native="$emit('edit-position', $event)" />
+  <div v-else
+    class="drop-down-label"
+    @click="$emit('drop-down', $event)">
     {{computedLabel}}
-  </span>
-  <div class="button-icon">⯆</div>
+  </div>
+  <div class="button-icon"
+    @click="$emit('drop-down', $event)">⯆</div>
 </div>
 </template>
 
@@ -70,30 +72,36 @@ export default {
 
 <style lang="scss">
 .drop-down-button {
-    position: relative;
     align-items: center;
-    justify-content: center;
     display: flex;
     background-color: transparentize(white, 0.8);
     color: inherit;
     height: 23px;
-    min-width: 23px;
     border-radius: 2px;
-    padding-left: 3px;
-    padding-right: 16px;
     cursor: default;
 
     &.no-background {
         background: none;
     }
 
-    .drop-down-label {}
+    .direction-value {
+        padding-left: 1px;
+    }
+
+    .drop-down-label {
+        min-width: 23px;
+        height: 23px;
+        line-height: 23px;
+        text-align: center;
+        padding-left: 3px;
+    }
 
     .button-icon {
-        position: absolute;
+        text-align: center;
+        width: 13px;
         font-size: 11px;
         right: 0;
-        margin-right: 3px;
+        padding-left: 3px;
     }
 }
 </style>

@@ -1,28 +1,19 @@
 <template>
-<table class="direction-value">
+<table class="direction-values">
   <tr>
-    <td ref="nw"
-      :class="{'selected': directions.includes('nw')}" />
-    <td ref="n"
-      :class="{'selected': directions.includes('n')}" />
-    <td ref="ne"
-      :class="{'selected': directions.includes('ne')}" />
+    <td :class="{'selected': directions.includes('nw')}" />
+    <td :class="{'selected': directions.includes('n')}" />
+    <td :class="{'selected': directions.includes('ne')}" />
   </tr>
   <tr>
-    <td ref="w"
-      :class="{'selected': directions.includes('w')}" />
-    <td ref="here"
-      :class="{'selected': directions.includes('here')}" />
-    <td ref="e"
-      :class="{'selected': directions.includes('e')}" />
+    <td :class="{'selected': directions.includes('w')}" />
+    <td :class="{'selected': directions.includes('here')}" />
+    <td :class="{'selected': directions.includes('e')}" />
   </tr>
   <tr>
-    <td ref="sw"
-      :class="{'selected': directions.includes('sw')}" />
-    <td ref="s"
-      :class="{'selected': directions.includes('s')}" />
-    <td ref="se"
-      :class="{'selected': directions.includes('se')}" />
+    <td :class="{'selected': directions.includes('sw')}" />
+    <td :class="{'selected': directions.includes('s')}" />
+    <td :class="{'selected': directions.includes('se')}" />
   </tr>
 </table>
 </template>
@@ -49,11 +40,10 @@ export default {
 <style lang="scss">
 @import '../constants';
 
-.direction-value {
+.direction-values {
     border-collapse: separate;
     border-spacing: 1px;
     tr {
-
         td {
             width: 7px;
             height: 7px;
@@ -62,7 +52,7 @@ export default {
             background-color: transparentize(white, 0.7);
 
             &.selected {
-                background: transparentize(white, 0.3);
+                background: transparentize(white, 0.4);
             }
         }
     }

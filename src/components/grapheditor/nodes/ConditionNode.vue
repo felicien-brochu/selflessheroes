@@ -3,14 +3,15 @@
 
   <drop-down-button ref="leftExpression"
     :value="expression.leftExpression"
-    @click="handleClickLeftExpression" />
+    @drop-down="handleDropDownLeftExpression"
+    @edit-position="handleEditLeftPosition" />
   <drop-down-button ref="operator"
     :value="expression.operator"
     :label="comparisonOperator"
-    @click="handleClickOperator" />
+    @drop-down="handleDropDownOperator" />
   <drop-down-button ref="rightExpression"
     :value="expression.rightExpression"
-    @click="handleClickRightExpression" />
+    @drop-down="handleDropDownRightExpression" />
 
   <div v-if="isFirst"
     class="if-label">
@@ -31,6 +32,7 @@ import {
   booleanOperators
 }
 from './operators'
+import DirectionLiteral from '../../../world/ai/compile/statements/literals/DirectionLiteral'
 
 export default {
   components: {
@@ -63,14 +65,14 @@ export default {
 
   mounted() {
     this.dropDownList = null
-    this.dropDownLayer = document.getElementById("drop-down-layer").__vue__
+    this.popupLayer = document.getElementById("popup-layer").__vue__
   },
 
   beforeDestroy() {},
 
   methods: {
 
-    handleClickLeftExpression(e) {
+    handleDropDownLeftExpression(e) {
       this.openDropDownList(
         this.compilerConfig.leftComparisonExpressions,
         this.expression.leftExpression,
@@ -79,7 +81,15 @@ export default {
       )
     },
 
-    handleClickRightExpression(e) {
+    handleEditLeftPosition(e) {
+      console.log("####EDIT")
+      this.openDirectionPopup(
+        this.expression.leftExpression,
+        this.$refs.leftExpression,
+        this.handleSelectLeftDirection)
+    },
+
+    handleDropDownRightExpression(e) {
       this.openDropDownList(
         this.compilerConfig.rightComparisonExpressions,
         this.expression.rightExpression,
@@ -88,7 +98,7 @@ export default {
       )
     },
 
-    handleClickOperator(e) {
+    handleDropDownOperator(e) {
       this.openDropDownList(
         ['comparisonOperator'],
         this.expression.operator,
@@ -98,8 +108,22 @@ export default {
     },
 
     setLeftExpressionValue(value) {
-      this.expression.leftExpression = value
+      if (value === DirectionLiteral) {
+        this.openDirectionPopup(
+          null,
+          this.$refs.leftExpression,
+          this.handleSelectLeftDirection)
+      }
+      else {
+        this.expression.leftExpression = value
+      }
     },
+
+    handleSelectLeftDirection(directions) {
+      console.log("######handleSelectLeftDirection", directions)
+      this.expression.leftExpression = directions[0]
+    },
+
     setRightExpressionValue(value) {
       this.expression.rightExpression = value
     },
@@ -108,12 +132,21 @@ export default {
     },
 
     openDropDownList(types, value, anchorComp, onSelectValue) {
-      let dropDownList = this.dropDownLayer.createDropDownList({
+      let dropDownList = this.popupLayer.createDropDownList({
         anchor: anchorComp.$el,
         types: types,
         value: value
       })
       dropDownList.$on('select-value', onSelectValue)
+    },
+
+    openDirectionPopup(direction, anchorComp, onSelectValue) {
+      let directionPopup = this.popupLayer.createDirectionPopup({
+        anchor: anchorComp.$el,
+        directions: direction ? [direction] : [],
+        multiple: false
+      })
+      directionPopup.$on('select-value', onSelectValue)
     }
   }
 }
