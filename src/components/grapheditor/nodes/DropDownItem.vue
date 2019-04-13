@@ -49,24 +49,23 @@ export default {
     @include no-select;
     display: flex;
     align-items: center;
-    color: darken($drop-down-color, 50%);
-    font-size: 16px;
-    line-height: 20px;
+    color: darken($drop-down-color, $text-darken);
+    min-width: 21px;
+    font-size: 18px;
+    line-height: 22px;
     font-weight: 500;
     padding: 4px 9px 4px 10px;
 
     &:nth-child(odd) {
-        background-color: $drop-down-color;
-        &.selected,
+        background-color: lighten($drop-down-color, 4%);
         &:hover {
-            background-color: lighten($drop-down-color, 8%);
+            background-color: lighten($drop-down-color, 12%);
         }
     }
     &:nth-child(even) {
-        background-color: darken($drop-down-color, 3%);
-        &.selected,
+        background-color: lighten($drop-down-color, 7%);
         &:hover {
-            background-color: lighten($drop-down-color, 8%);
+            background-color: lighten($drop-down-color, 10%);
         }
     }
 }

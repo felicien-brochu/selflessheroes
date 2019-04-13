@@ -1,19 +1,21 @@
 <template>
 <li class="node branching-node condition-node">
-  <div v-if="isFirst"
-    class="if-label">
-    if
-  </div>
 
   <drop-down-button ref="leftExpression"
     :value="expression.leftExpression"
     @click="handleClickLeftExpression" />
   <drop-down-button ref="operator"
     :value="expression.operator"
+    :label="comparisonOperator"
     @click="handleClickOperator" />
   <drop-down-button ref="rightExpression"
     :value="expression.rightExpression"
     @click="handleClickRightExpression" />
+
+  <div v-if="isFirst"
+    class="if-label">
+    if
+  </div>
 
 </li>
 </template>
@@ -24,6 +26,11 @@ import {
   createDropDownList
 }
 from './DropDownList'
+import {
+  comparisonOperators,
+  booleanOperators
+}
+from './operators'
 
 export default {
   components: {
@@ -47,6 +54,11 @@ export default {
   },
   data: function() {
     return {}
+  },
+  computed: {
+    comparisonOperator: function() {
+      return comparisonOperators[this.expression.operator]
+    }
   },
 
   mounted() {
@@ -76,11 +88,23 @@ export default {
       )
     },
 
+    handleClickOperator(e) {
+      this.openDropDownList(
+        ['comparisonOperator'],
+        this.expression.operator,
+        this.$refs.operator,
+        this.setOperatorValue
+      )
+    },
+
     setLeftExpressionValue(value) {
       this.expression.leftExpression = value
     },
     setRightExpressionValue(value) {
       this.expression.rightExpression = value
+    },
+    setOperatorValue(value) {
+      this.expression.operator = value
     },
 
     openDropDownList(types, value, anchorComp, onSelectValue) {
@@ -90,24 +114,28 @@ export default {
         value: value
       })
       dropDownList.$on('select-value', onSelectValue)
-    },
-
-    handleClickOperator(e) {},
+    }
   }
 }
 </script>
 
 <style lang="scss">
 .condition-node {
+    position: relative;
     display: flex;
     align-items: center;
 
     .if-label {
+        position: absolute;
         pointer-events: none;
     }
 
     .drop-down-button {
-        margin-right: 5px;
+
+        margin-left: 5px;
+        &:first-child {
+            margin-left: 20px;
+        }
     }
 }
 </style>

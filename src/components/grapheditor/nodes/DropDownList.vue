@@ -7,6 +7,11 @@
 <script>
 import Vue from 'vue'
 import DropDownItem from './DropDownItem'
+import IntegerDropDownItem from './IntegerDropDownItem'
+import {
+  comparisonOperators
+}
+from './operators'
 
 import VariableIdentifier from '../../../world/ai/compile/statements/VariableIdentifier'
 import ObjectTypeLiteral from '../../../world/ai/compile/statements/literals/ObjectTypeLiteral'
@@ -15,6 +20,10 @@ import DirectionLiteral from '../../../world/ai/compile/statements/literals/Dire
 import IntegerLiteral from '../../../world/ai/compile/statements/literals/IntegerLiteral'
 import ObjectType from '../../../world/ObjectType'
 import TerrainType from '../../../world/TerrainType'
+import {
+  compOperators
+}
+from '../../../world/ai/compile/statements/SimpleBooleanExpression'
 
 const verticalPadding = 10
 const horizontalPadding = 8
@@ -42,9 +51,9 @@ export default {
   },
 
   mounted() {
-    this.createItems()
     this.cancelled = false
     this.valueSelected = false
+    this.createItems()
   },
 
   methods: {
@@ -97,6 +106,9 @@ export default {
         if (type === DirectionLiteral) {
           items.push(this.createDirectionItem())
         }
+        else if (type === IntegerLiteral) {
+          items.push(this.createIntegerLiteralItem())
+        }
         else if (type === VariableIdentifier) {
           items = items.concat(this.createVariableItems())
         }
@@ -105,6 +117,9 @@ export default {
         }
         else if (type === TerrainTypeLiteral) {
           items = items.concat(this.createTerrainTypeItems())
+        }
+        else if (type === 'comparisonOperator') {
+          items = items.concat(this.createComparisonOperatorItems())
         }
       }
       for (let item of items) {
@@ -121,6 +136,17 @@ export default {
           label: 'direction',
           value: DirectionLiteral,
           selected: this.value instanceof DirectionLiteral
+        }
+      })
+      return item
+    },
+
+    createIntegerLiteralItem() {
+      let value = this.value instanceof IntegerLiteral ? this.value : null
+      let item = new(Vue.extend(IntegerDropDownItem))({
+        propsData: {
+          value: value,
+          selected: this.value instanceof IntegerLiteral
         }
       })
       return item
@@ -177,7 +203,24 @@ export default {
         items.push(item)
       }
       return items
+    },
+
+    createComparisonOperatorItems() {
+      let items = []
+
+      for (let operator of compOperators) {
+        let item = new(Vue.extend(DropDownItem))({
+          propsData: {
+            label: comparisonOperators[operator],
+            value: operator,
+            selected: this.value === operator
+          }
+        })
+        items.push(item)
+      }
+      return items
     }
+
   }
 
 }

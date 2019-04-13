@@ -18,7 +18,7 @@ import DragTree from './DragTree'
 import LineNumbers from './LineNumbers'
 import AutoScroll from './AutoScroll'
 import {
-  getLineNumbersFromNodeGraph
+  getLineNumbersFromStatements
 }
 from './utils'
 
@@ -59,11 +59,8 @@ export default {
     this.dropHandler = null
   },
   watch: {
-    nodes: function(nodes) {
-      this.lineNumbers = getLineNumbersFromNodeGraph(nodes)
-    },
-
     statements: function(statements) {
+      this.lineNumbers = getLineNumbersFromStatements(statements)
       this.clearNodeContainer()
       this.populateNodeContainer()
       this.$emit('nodes-change', this.nodes)

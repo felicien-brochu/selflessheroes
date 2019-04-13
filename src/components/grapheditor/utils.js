@@ -1,55 +1,36 @@
-import AnchorNode from './nodes/AnchorNode'
-import AssignNode from './nodes/AssignNode'
-import IfNode from './nodes/IfNode'
-import JumpNode from './nodes/JumpNode'
-import ActionNode from './nodes/ActionNode'
 import IfStatement from '../../world/ai/compile/statements/IfStatement'
-import Vue from 'vue'
+import EndIfStatement from '../../world/ai/compile/statements/EndIfStatement'
+import AnchorStatement from '../../world/ai/compile/statements/AnchorStatement'
 
-function getLineNumbersFromNodeGraph(nodes) {
+function getLineNumbersFromStatements(statements) {
   let lineNumbers = []
   let line = 1
-
-  for (let node of nodes) {
-    if (node instanceof Vue.extend(AnchorNode)) {
+  for (let statement of statements) {
+    if (statement instanceof AnchorStatement) {
       lineNumbers.push(' ')
-    } else if (node.statement instanceof IfStatement) {
-
-      for (let i = 0; i < node.nodes.length; i++) {
-        lineNumbers.push(line.toString())
-        line++
-
-        for (let j = 0; j < node.statement.condition.expressions.length - 1; j++) {
-          lineNumbers.push(' ')
-        }
-
-        if (i === 0 && node.nodes[i].length === 0) {
-          lineNumbers.push(' ')
-        }
-
-        let subNumbers = getLineNumbersFromNodeGraph(node.nodes[i])
-        let max = 0
-        subNumbers.forEach(num => {
-          if (max < num) {
-            max = parseInt(num)
-          }
-        })
-
-        subNumbers = subNumbers.map(num => num === ' ' ? ' ' : (parseInt(num) + line - 1).toString())
-        lineNumbers = [
-          ...lineNumbers,
-          ...subNumbers
-        ]
-        line += max
-      }
+    } else if (statement instanceof EndIfStatement) {
+      continue
     } else {
       lineNumbers.push(line.toString())
       line++
+
+      // Insert empty lines for condition nodes
+      if (statement instanceof IfStatement) {
+        for (let i = 0; i < statement.condition.expressions.length - 1; i++) {
+          lineNumbers.push(' ')
+        }
+
+        // Insert line for empty if with else and empty if
+        if ((statement.elseStatement && statements.indexOf(statement.elseStatement) - statements.indexOf(statement) === 1) ||
+          statements.indexOf(statement.endIfStatement) - statements.indexOf(statement) === 1) {
+          lineNumbers.push(' ')
+        }
+      }
     }
   }
   return lineNumbers
 }
 
 export {
-  getLineNumbersFromNodeGraph
+  getLineNumbersFromStatements
 }

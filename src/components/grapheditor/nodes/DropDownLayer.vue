@@ -45,6 +45,7 @@ export default {
 
   methods: {
     createDropDownList({
+      type,
       anchor,
       types,
       value
@@ -53,6 +54,7 @@ export default {
 
       this.dropDownList = new(Vue.extend(DropDownList))({
         propsData: {
+          type: type,
           types: types,
           value: value,
           anchor: anchor,
@@ -66,7 +68,8 @@ export default {
       this.dropDownList.$on('select-value', this.closeDropDownList)
 
       this.$el.appendChild(this.dropDownList.$el)
-      this.updateDropDownPosition()
+      this.$nextTick(this.updateDropDownPosition)
+
       return this.dropDownList
     },
 
