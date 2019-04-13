@@ -1,21 +1,17 @@
 <template>
-<table class="direction-values">
-  <tr>
-    <td :class="{'selected': directions.includes('nw')}" />
-    <td :class="{'selected': directions.includes('n')}" />
-    <td :class="{'selected': directions.includes('ne')}" />
-  </tr>
-  <tr>
-    <td :class="{'selected': directions.includes('w')}" />
-    <td :class="{'selected': directions.includes('here')}" />
-    <td :class="{'selected': directions.includes('e')}" />
-  </tr>
-  <tr>
-    <td :class="{'selected': directions.includes('sw')}" />
-    <td :class="{'selected': directions.includes('s')}" />
-    <td :class="{'selected': directions.includes('se')}" />
-  </tr>
-</table>
+<ul class="direction-values"
+  @touchstart="$event.preventDefault(); $emit('click', $event)"
+  @mousedown="$emit('click', $event)">
+  <li :class="{'selected': directions.includes('nw')}" />
+  <li :class="{'selected': directions.includes('n')}" />
+  <li :class="{'selected': directions.includes('ne')}" />
+  <li :class="{'selected': directions.includes('w')}" />
+  <li :class="{'selected': directions.includes('here')}" />
+  <li :class="{'selected': directions.includes('e')}" />
+  <li :class="{'selected': directions.includes('sw')}" />
+  <li :class="{'selected': directions.includes('s')}" />
+  <li :class="{'selected': directions.includes('se')}" />
+</ul>
 </template>
 
 <script>
@@ -41,19 +37,26 @@ export default {
 @import '../constants';
 
 .direction-values {
-    border-collapse: separate;
-    border-spacing: 1px;
-    tr {
-        td {
-            width: 7px;
-            height: 7px;
-            padding: 0;
-            border-radius: 1px;
-            background-color: transparentize(white, 0.7);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+    width: 23px;
+    height: 23px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 
-            &.selected {
-                background: transparentize(white, 0.4);
-            }
+    li {
+        width: 7px;
+        height: 7px;
+        padding: 0;
+        border-radius: 1px;
+        background-color: transparentize(white, 0.75);
+
+        &.selected {
+            background: transparentize(white, 0.4);
         }
     }
 }

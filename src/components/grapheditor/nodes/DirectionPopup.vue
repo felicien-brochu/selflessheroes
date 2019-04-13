@@ -1,60 +1,46 @@
 <template>
-<div class="direction-popup">
-  <table class="direction-values">
-    <tr>
-      <td :class="{'selected': directionNames.includes('nw')}"
-        @click="select('nw')" />
-      <td :class="{'selected': directionNames.includes('n')}"
-        @click="select('n')" />
-      <td :class="{'selected': directionNames.includes('ne')}"
-        @click="select('ne')" />
-    </tr>
-    <tr>
-      <td :class="{'selected': directionNames.includes('w')}"
-        @click="select('w')" />
-      <td :class="{'selected': directionNames.includes('here')}"
-        @click="select('here')" />
-      <td :class="{'selected': directionNames.includes('e')}"
-        @click="select('e')" />
-    </tr>
-    <tr>
-      <td :class="{'selected': directionNames.includes('sw')}"
-        @click="select('sw')" />
-      <td :class="{'selected': directionNames.includes('s')}"
-        @click="select('s')" />
-      <td :class="{'selected': directionNames.includes('se')}"
-        @click="select('se')" />
-    </tr>
+<div class="popup direction-popup">
+  <ul class="direction-values">
+    <li v-for="dir in directionNames"
+      :class="{'selected': selectedDirectionNames.includes(dir)}"
+      @click="select(dir)">
+      <div class="tile" />
+    </li>
+  </ul>
   </table>
 </div>
 </template>
 
 <script>
+import Popup from './Popup'
 import DirectionLiteral from '../../../world/ai/compile/statements/literals/DirectionLiteral'
 import Direction from '../../../world/Direction'
 
 export default {
+  extends: Popup,
   props: {
     'directions': {
       type: Array
     },
     'multiple': {
       type: Boolean
-    },
-    'anchor': {
-      type: Element
-    },
-    'frame': {
-      type: Element
-    },
+    }
   },
   data: function() {
+    const directionNames = ['nw', 'n', 'ne', 'w', 'here', 'e', 'sw', 's', 'se']
+
     return {
-      selectedDirections: this.directions
+      selectedDirections: this.directions,
+      directionNames: directionNames,
+
+      centeredX: true,
+      centeredY: true,
+      offsetX: -8,
+      offsetY: 0
     }
   },
   computed: {
-    directionNames: function() {
+    selectedDirectionNames: function() {
       return this.selectedDirections.map(direction => direction.name)
     }
   },
@@ -90,31 +76,6 @@ export default {
         this.valueSelected = true
         this.$emit('select-value', this.selectedDirections)
       }
-    },
-
-    updatePosition(horizontalPadding, verticalPadding) {
-      let anchorBox = this.anchor.getBoundingClientRect()
-      let frameBox = this.frame.getBoundingClientRect()
-      let thisBox = this.$el.getBoundingClientRect()
-      let x = anchorBox.x + (anchorBox.width / 2) - (thisBox.width / 2) - 8
-      let y = anchorBox.y + (anchorBox.height / 2) - (thisBox.height / 2)
-
-      // Keep the drop down list in the frame if possible
-      if (x < frameBox.left + horizontalPadding) {
-        x = frameBox.left + horizontalPadding
-      }
-      if (x + thisBox.width > frameBox.right - horizontalPadding) {
-        x = frameBox.right - thisBox.width - horizontalPadding
-      }
-      if (y + thisBox.height > frameBox.bottom - verticalPadding) {
-        y = frameBox.bottom - thisBox.height - verticalPadding
-      }
-      if (y < frameBox.top + verticalPadding) {
-        y = frameBox.top + verticalPadding
-      }
-
-      this.$el.style.left = `${x}px`
-      this.$el.style.top = `${y}px`
     }
   }
 
@@ -125,24 +86,55 @@ export default {
 @import '../constants';
 
 .direction-popup {
-    @include node-shadow;
-    position: absolute;
-    padding: 6px;
-    border-radius: 3px;
-    background: $drop-down-color;
-    width: 50px;
-    height: 50px;
+    border-radius: 5px;
 
     .direction-values {
-        border-spacing: 2px;
-        tr {
-            td {
-                width: 14px;
-                height: 14px;
-                border-radius: 1px;
+        width: 92px;
+        height: 92px;
+        li {
 
-                &:hover:not(.selected) {
+            background: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+            width: 30px;
+
+            &:nth-child(3n) {
+                width: 31px;
+                justify-content: flex-start;
+            }
+            &:nth-child(3n + 1) {
+                width: 31px;
+                justify-content: flex-end;
+            }
+            &:nth-child(-n + 3) {
+                height: 31px;
+                align-items: flex-end;
+            }
+            &:nth-child(n + 7) {
+                height: 31px;
+                align-items: flex-start;
+            }
+
+            .tile {
+                background-color: transparentize(white, 0.75);
+                width: 24px;
+                height: 24px;
+                border-radius: 3px;
+            }
+
+            &:hover:not(.selected) {
+                .tile {
                     background-color: transparentize(white, 0.6);
+                }
+            }
+
+            &.selected,
+            &:active {
+                background: none;
+                .tile {
+                    background-color: transparentize(white, 0.2);
                 }
             }
         }

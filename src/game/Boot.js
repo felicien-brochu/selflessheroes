@@ -18,7 +18,7 @@ export default class extends Phaser.Scene {
 
     WebFont.load({
       custom: {
-        families: ['Menlo', 'Consolas', 'Monaco', 'Roboto'],
+        families: ['Noto', 'Menlo', 'Consolas', 'Monaco', 'Roboto'],
         urls: ['/assets/fonts/fonts.css']
       },
       active: this.fontsLoaded

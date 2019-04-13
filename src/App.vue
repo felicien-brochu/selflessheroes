@@ -128,7 +128,7 @@ html {
     margin: 0;
     padding: 0;
     background-color: black;
-    font-family: Consolas, Monaco, Menlo, Arial, sans-serif;
+    font-family: Roboto, Arial, sans-serif;
 }
 
 #app {

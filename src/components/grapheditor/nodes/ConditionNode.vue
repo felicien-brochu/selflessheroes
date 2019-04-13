@@ -4,14 +4,17 @@
   <drop-down-button ref="leftExpression"
     :value="expression.leftExpression"
     @drop-down="handleDropDownLeftExpression"
-    @edit-position="handleEditLeftPosition" />
+    @edit-position="handleEditLeftPosition"
+    @edit-integer="handleEditLeftInteger" />
   <drop-down-button ref="operator"
     :value="expression.operator"
     :label="comparisonOperator"
     @drop-down="handleDropDownOperator" />
   <drop-down-button ref="rightExpression"
     :value="expression.rightExpression"
-    @drop-down="handleDropDownRightExpression" />
+    @drop-down="handleDropDownRightExpression"
+    @edit-position="handleEditRightPosition"
+    @edit-integer="handleEditRightInteger" />
 
   <div v-if="isFirst"
     class="if-label">
@@ -33,6 +36,7 @@ import {
 }
 from './operators'
 import DirectionLiteral from '../../../world/ai/compile/statements/literals/DirectionLiteral'
+import IntegerLiteral from '../../../world/ai/compile/statements/literals/IntegerLiteral'
 
 export default {
   components: {
@@ -81,14 +85,6 @@ export default {
       )
     },
 
-    handleEditLeftPosition(e) {
-      console.log("####EDIT")
-      this.openDirectionPopup(
-        this.expression.leftExpression,
-        this.$refs.leftExpression,
-        this.handleSelectLeftDirection)
-    },
-
     handleDropDownRightExpression(e) {
       this.openDropDownList(
         this.compilerConfig.rightComparisonExpressions,
@@ -107,26 +103,114 @@ export default {
       )
     },
 
+    handleEditLeftPosition(e) {
+      this.openDirectionPopup(
+        this.expression.leftExpression,
+        this.$refs.leftExpression,
+        this.handleSelectLeftDirection)
+    },
+
+    handleEditRightPosition(e) {
+      this.openDirectionPopup(
+        this.expression.rightExpression,
+        this.$refs.rightExpression,
+        this.handleSelectRightDirection)
+    },
+
+    handleEditRightInteger(e) {
+      this.openIntegerPopup(
+        this.expression.rightExpression,
+        this.$refs.rightExpression,
+        this.handleSelectRightInteger)
+    },
+    handleEditLeftInteger(e) {
+      this.openIntegerPopup(
+        this.expression.leftExpression,
+        this.$refs.leftExpression,
+        this.handleSelectLeftInteger)
+    },
+
+
     setLeftExpressionValue(value) {
       if (value === DirectionLiteral) {
+        let direction = null
+        if (this.expression.leftExpression instanceof DirectionLiteral) {
+          direction = this.expression.leftExpression
+        }
         this.openDirectionPopup(
-          null,
+          direction,
           this.$refs.leftExpression,
           this.handleSelectLeftDirection)
       }
+      else if (value === IntegerLiteral) {
+        let integer = null
+        if (this.expression.leftExpression instanceof IntegerLiteral) {
+          integer = this.expression.leftExpression
+        }
+        this.openIntegerPopup(
+          integer,
+          this.$refs.leftExpression,
+          this.handleSelectLeftInteger)
+      }
       else {
+        value.parent = this.expression
+        this.expression.leftExpression = value
+      }
+    },
+    handleSelectLeftDirection(directions) {
+      if (directions.length >= 1) {
+        let value = directions[0]
+        value.parent = this.expression
         this.expression.leftExpression = value
       }
     },
 
-    handleSelectLeftDirection(directions) {
-      console.log("######handleSelectLeftDirection", directions)
-      this.expression.leftExpression = directions[0]
+    setRightExpressionValue(value) {
+      if (value === DirectionLiteral) {
+        let direction = null
+        if (this.expression.rightExpression instanceof DirectionLiteral) {
+          direction = this.expression.rightExpression
+        }
+        this.openDirectionPopup(
+          direction,
+          this.$refs.rightExpression,
+          this.handleSelectRightDirection)
+      }
+      else if (value === IntegerLiteral) {
+        let integer = null
+        if (this.expression.rightExpression instanceof IntegerLiteral) {
+          integer = this.expression.rightExpression
+        }
+        this.openIntegerPopup(
+          integer,
+          this.$refs.rightExpression,
+          this.handleSelectRightInteger)
+      }
+      else {
+        value.parent = this.expression
+        this.expression.rightExpression = value
+      }
+    },
+    handleSelectRightDirection(directions) {
+      if (directions.length >= 1) {
+        let value = directions[0]
+        value.parent = this.expression
+        this.expression.rightExpression = value
+      }
+    },
+    handleSelectLeftInteger(integerLiteral) {
+      if (integerLiteral) {
+        integerLiteral.parent = this.expression
+        this.expression.leftExpression = integerLiteral
+      }
+    },
+    handleSelectRightInteger(integerLiteral) {
+      if (integerLiteral) {
+        integerLiteral.parent = this.expression
+        this.expression.rightExpression = integerLiteral
+      }
     },
 
-    setRightExpressionValue(value) {
-      this.expression.rightExpression = value
-    },
     setOperatorValue(value) {
       this.expression.operator = value
     },
@@ -147,6 +231,14 @@ export default {
         multiple: false
       })
       directionPopup.$on('select-value', onSelectValue)
+    },
+
+    openIntegerPopup(integer, anchorComp, onSelectValue) {
+      let integerPopup = this.popupLayer.createIntegerPopup({
+        anchor: anchorComp.$el,
+        integer: integer
+      })
+      integerPopup.$on('select-value', onSelectValue)
     }
   }
 }

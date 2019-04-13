@@ -1,13 +1,13 @@
 <template>
-<ul class="drop-down-list">
+<ul class="popup drop-down-list">
 
 </ul>
 </template>
 
 <script>
 import Vue from 'vue'
+import Popup from './Popup'
 import DropDownItem from './DropDownItem'
-import IntegerDropDownItem from './IntegerDropDownItem'
 import {
   comparisonOperators
 }
@@ -26,6 +26,7 @@ import {
 from '../../../world/ai/compile/statements/SimpleBooleanExpression'
 
 export default {
+  extends: Popup,
   props: {
     'value': {
       type: [Object, String]
@@ -33,18 +34,17 @@ export default {
     'types': {
       type: Array
     },
-    'anchor': {
-      type: Element
-    },
-    'frame': {
-      type: Element
-    },
     'compilerConfig': {
       type: Object
     }
   },
   data: function() {
-    return {}
+    return {
+      centeredX: false,
+      centeredY: false,
+      offsetX: 0,
+      offsetY: 0
+    }
   },
 
   mounted() {
@@ -65,31 +65,6 @@ export default {
         this.cancelled = true
         this.$emit('cancel', this.value)
       }
-    },
-
-    updatePosition(horizontalPadding, verticalPadding) {
-      let anchorBox = this.anchor.getBoundingClientRect()
-      let frameBox = this.frame.getBoundingClientRect()
-      let thisBox = this.$el.getBoundingClientRect()
-      let x = anchorBox.x
-      let y = anchorBox.y
-
-      // Keep the drop down list in the frame if possible
-      if (x < frameBox.left + horizontalPadding) {
-        x = frameBox.left + horizontalPadding
-      }
-      if (x + thisBox.width > frameBox.right - horizontalPadding) {
-        x = frameBox.right - thisBox.width - horizontalPadding
-      }
-      if (y + thisBox.height > frameBox.bottom - verticalPadding) {
-        y = frameBox.bottom - thisBox.height - verticalPadding
-      }
-      if (y < frameBox.top + verticalPadding) {
-        y = frameBox.top + verticalPadding
-      }
-
-      this.$el.style.left = `${x}px`
-      this.$el.style.top = `${y}px`
     },
 
     handleItemSelectValue(value) {
@@ -139,10 +114,10 @@ export default {
     },
 
     createIntegerLiteralItem() {
-      let value = this.value instanceof IntegerLiteral ? this.value : null
-      let item = new(Vue.extend(IntegerDropDownItem))({
+      let item = new(Vue.extend(DropDownItem))({
         propsData: {
-          value: value,
+          label: 'number',
+          value: IntegerLiteral,
           selected: this.value instanceof IntegerLiteral
         }
       })
@@ -227,8 +202,6 @@ export default {
 @import '../constants';
 
 .drop-down-list {
-    @include node-shadow;
-    position: absolute;
     list-style: none;
     padding: 0;
     margin: 0;

@@ -38,3 +38,10 @@
 	font-weight: 900;
 	font-style: normal;
 }
+@font-face {
+	font-family: 'Noto';
+	src: url("./Noto/NotoSansSymbols2-Regular.ttf");
+	src: url("./Noto/NotoSansSymbols2-Regular.ttf") format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}

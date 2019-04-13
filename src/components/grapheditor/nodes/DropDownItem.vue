@@ -8,9 +8,7 @@
     class="drop-down-item-icon"
     :src="icon"
     :alt="label" />
-  <span class="drop-down-item-label">
-    {{ label }}
-  </span>
+  <span class="drop-down-item-label">{{ label }}</span>
 </li>
 </template>
 
@@ -49,7 +47,7 @@ export default {
     @include no-select;
     display: flex;
     align-items: center;
-    color: darken($drop-down-color, $text-darken);
+    color: darken($popup-color, $text-darken);
     min-width: 21px;
     font-size: 18px;
     line-height: 22px;
@@ -57,15 +55,15 @@ export default {
     padding: 4px 9px 4px 10px;
 
     &:nth-child(odd) {
-        background-color: lighten($drop-down-color, 4%);
+        background-color: lighten($popup-color, 4%);
         &:hover {
-            background-color: lighten($drop-down-color, 12%);
+            background-color: lighten($popup-color, 12%);
         }
     }
     &:nth-child(even) {
-        background-color: lighten($drop-down-color, 7%);
+        background-color: lighten($popup-color, 7%);
         &:hover {
-            background-color: lighten($drop-down-color, 10%);
+            background-color: lighten($popup-color, 10%);
         }
     }
 }

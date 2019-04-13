@@ -48,9 +48,9 @@ export default class CompilerConfig {
     ]
     config.rightComparisonExpressions = [
       DirectionLiteral,
+      IntegerLiteral,
       ObjectTypeLiteral,
       TerrainTypeLiteral,
-      IntegerLiteral,
       VariableIdentifier,
     ]
 

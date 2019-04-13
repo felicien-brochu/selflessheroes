@@ -10,6 +10,7 @@
 import Vue from 'vue'
 import DropDownList from './DropDownList'
 import DirectionPopup from './DirectionPopup'
+import IntegerPopup from './IntegerPopup'
 
 const verticalPadding = 10
 const horizontalPadding = 8
@@ -39,12 +40,14 @@ export default {
 
     window.addEventListener('resize', this.updatePopupPosition)
     window.addEventListener('mousedown', this.handleWindowClick)
+    window.addEventListener('touchstart', this.handleWindowClick)
   },
 
   beforeDestroy() {
     this.graphCode.$off('scroll', this.updatePopupPosition)
     window.removeEventListener('resize', this.updatePopupPosition)
     window.removeEventListener('mousedown', this.handleWindowClick)
+    window.removeEventListener('touchstart', this.handleWindowClick)
   },
 
   methods: {
@@ -85,7 +88,24 @@ export default {
           frame: this.graphCode.$el
         }
       })
+      this.attachPopup()
 
+      return this.popup
+    },
+
+    createIntegerPopup({
+      anchor,
+      integer
+    }) {
+      this.closePopup()
+
+      this.popup = new(Vue.extend(IntegerPopup))({
+        propsData: {
+          value: integer,
+          anchor: anchor,
+          frame: this.graphCode.$el
+        }
+      })
       this.attachPopup()
 
       return this.popup
@@ -102,7 +122,6 @@ export default {
 
     handleWindowClick(e) {
       if (this.active) {
-        console.log("###TAGET", e.target)
         let isDropDownButton = false
         let isTarget = false
         let node = e.target

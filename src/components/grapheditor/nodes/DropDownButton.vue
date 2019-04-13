@@ -3,16 +3,26 @@
 	'drop-down-button': true,
 	'no-background': isDirection
 	}">
-  <direction-value v-if="isDirection"
-    :values="[value]"
-    @click.native="$emit('edit-position', $event)" />
-  <div v-else
-    class="drop-down-label"
-    @click="$emit('drop-down', $event)">
-    {{computedLabel}}
+  <div class="button-label">
+    <direction-value v-if="isDirection"
+      :values="[value]"
+      @click="$emit('edit-position', $event)" />
+    <div v-else-if="isInteger"
+      class="drop-down-label"
+      @mousedown="$emit('edit-integer', $event)"
+      @touchstart="$emit('edit-integer', $event); $event.preventDefault()">
+      {{computedLabel}}
+    </div>
+    <div v-else
+      class="drop-down-label"
+      @mousedown="$emit('drop-down', $event)"
+      @touchstart="$emit('drop-down', $event); $event.preventDefault()">
+      {{computedLabel}}
+    </div>
   </div>
   <div class="button-icon"
-    @click="$emit('drop-down', $event)">⯆</div>
+    @mousedown="$emit('drop-down', $event)"
+    @touchstart="$emit('drop-down', $event); $event.preventDefault()">⯆</div>
 </div>
 </template>
 
@@ -65,6 +75,16 @@ export default {
     },
     isDirection: function() {
       return this.value instanceof DirectionLiteral
+    },
+    isInteger: function() {
+      return this.value instanceof IntegerLiteral
+    }
+  },
+
+  methods: {
+    handleTouchDirectionValue(e) {
+      e.preventDefault()
+      this.$emit('edit-position', e)
     }
   }
 }
@@ -84,24 +104,26 @@ export default {
         background: none;
     }
 
-    .direction-value {
-        padding-left: 1px;
-    }
-
-    .drop-down-label {
+    .button-label {
         min-width: 23px;
-        height: 23px;
-        line-height: 23px;
-        text-align: center;
-        padding-left: 3px;
+        .direction-value {}
+
+        .drop-down-label {
+            height: 23px;
+            line-height: 23px;
+            padding-left: 3px;
+            text-align: center;
+        }
     }
 
     .button-icon {
+        font-family: Noto;
         text-align: center;
-        width: 13px;
+        width: 10px;
         font-size: 11px;
         right: 0;
         padding-left: 3px;
+        padding-right: 3px;
     }
 }
 </style>
