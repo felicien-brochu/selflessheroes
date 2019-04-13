@@ -1,7 +1,13 @@
 <template>
-<div class="drop-down-button"
+<div :class="{
+	'drop-down-button': true,
+	'no-background': isDirection
+	}"
   @mousedown="$emit('click', $event)">
-  <span class="drop-down-label">
+  <direction-value v-if="isDirection"
+    :values="[value]" />
+  <span v-else
+    class="drop-down-label">
     {{computedLabel}}
   </span>
   <div class="button-icon">⯆</div>
@@ -9,6 +15,7 @@
 </template>
 
 <script>
+import DirectionValue from './DirectionValue'
 import VariableIdentifier from '../../../world/ai/compile/statements/VariableIdentifier'
 import ObjectTypeLiteral from '../../../world/ai/compile/statements/literals/ObjectTypeLiteral'
 import TerrainTypeLiteral from '../../../world/ai/compile/statements/literals/TerrainTypeLiteral'
@@ -18,6 +25,9 @@ import ObjectType from '../../../world/ObjectType'
 import TerrainType from '../../../world/TerrainType'
 
 export default {
+  components: {
+    DirectionValue
+  },
   props: {
     'value': {
       type: [Object, String]
@@ -50,6 +60,9 @@ export default {
       else if (this.value instanceof TerrainTypeLiteral) {
         return this.value.name
       }
+    },
+    isDirection: function() {
+      return this.value instanceof DirectionLiteral
     }
   }
 }
@@ -64,11 +77,15 @@ export default {
     background-color: transparentize(white, 0.8);
     color: inherit;
     height: 23px;
-    min-width: 27px;
+    min-width: 23px;
     border-radius: 2px;
     padding-left: 3px;
-    padding-right: 12px;
+    padding-right: 16px;
     cursor: default;
+
+    &.no-background {
+        background: none;
+    }
 
     .drop-down-label {}
 
