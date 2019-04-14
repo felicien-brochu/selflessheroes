@@ -219,6 +219,7 @@ export default {
 
         .label {
             padding-left: 5px;
+            height: 26px;
             text-align: center;
         }
     }
