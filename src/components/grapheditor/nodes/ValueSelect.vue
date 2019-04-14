@@ -199,7 +199,6 @@ export default {
 
 <style lang="scss">
 .value-select {
-    margin-left: 5px;
     align-items: center;
     display: flex;
     background-color: transparentize(white, 0.8);
