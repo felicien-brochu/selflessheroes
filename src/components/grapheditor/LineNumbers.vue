@@ -24,7 +24,7 @@ export default {
 @import 'constants';
 
 .line-numbers {
-    width: 30px;
+    width: 35px;
     padding: 10px 0 0;
     margin: 0;
     height: min-content;
@@ -36,9 +36,10 @@ export default {
         text-align: center;
         margin: auto;
         font-weight: bold;
+        font-size: 20px;
         color: lighten(#282c34, 10%);
-        height: 39px;
-        line-height: 28px;
+        height: 46px;
+        line-height: 33px;
     }
 }
 </style>

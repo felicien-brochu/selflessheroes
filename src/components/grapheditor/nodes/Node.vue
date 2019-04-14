@@ -71,13 +71,6 @@ export default {
     @extend %node;
     @include animate-margin;
 }
-
-.assign-node {
-    @include node-color($assign-color);
-}
-.action-node {
-    @include node-color($action-color);
-}
 .branching-node {
     @include node-color($branching-color);
 }

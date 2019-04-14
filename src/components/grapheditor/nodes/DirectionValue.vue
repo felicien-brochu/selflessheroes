@@ -55,15 +55,15 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: space-between;
-    width: 23px;
-    height: 23px;
+    width: 26px;
+    height: 26px;
     list-style: none;
     padding: 0;
     margin: 0;
 
     li {
-        width: 7px;
-        height: 7px;
+        width: 8px;
+        height: 8px;
         padding: 0;
         border-radius: 1px;
         background-color: transparentize(white, 0.75);

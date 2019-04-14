@@ -37,7 +37,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../constants';
+
 .action-node {
+    @include node-color($action-color);
     display: flex;
     align-items: center;
     padding-right: 10px;

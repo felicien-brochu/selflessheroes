@@ -7,6 +7,7 @@
     @select="handleSelectLeftExpression"
     parentType="branching" />
   <value-select ref="comparisonOperator"
+    class="comparison-operator"
     :value="expression.operator"
     :types="comparisonOperatorTypes"
     :labelFunc="comparisonOperatorLabelFunc"
@@ -113,9 +114,13 @@ export default {
     }
 
     .value-select {
-        margin-left: 5px;
+        margin-left: 7px;
         &:first-child {
             margin-left: 26px;
+        }
+
+        &.comparison-operator {
+            font-size: 24px;
         }
     }
 }

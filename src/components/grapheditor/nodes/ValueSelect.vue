@@ -203,8 +203,10 @@ export default {
     display: flex;
     background-color: transparentize(white, 0.8);
     color: inherit;
-    height: 23px;
-    border-radius: 2px;
+    height: 26px;
+    border-radius: 3px;
+    line-height: 26px;
+    font-size: 20px;
     cursor: default;
 
     &.no-background {
@@ -216,9 +218,7 @@ export default {
         .direction-value {}
 
         .label {
-            height: 23px;
-            line-height: 23px;
-            padding-left: 3px;
+            padding-left: 5px;
             text-align: center;
         }
     }

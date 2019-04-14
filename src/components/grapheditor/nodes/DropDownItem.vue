@@ -45,11 +45,14 @@ export default {
 
 .drop-down-item {
     @include no-select;
+
     display: flex;
     align-items: center;
-    min-width: 21px;
+
+    height: 26px;
+    min-width: 23px;
     font-size: 18px;
-    line-height: 22px;
+    line-height: 26px;
     font-weight: 500;
     padding: 4px 9px 4px 10px;
 

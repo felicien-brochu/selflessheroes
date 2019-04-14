@@ -8,16 +8,22 @@
     parentType="assign"
     @select="handleSelectVariable" />
 
-  <div class="function-label">
-    {{`= ${statement.value.keyword}`}}
-  </div>
+  <div class="function-container">
 
-  <value-select v-for="(param, index) in params"
-    :key="index"
-    :types="param.types"
-    :value="param.value"
-    parentType="assign"
-    @select="handleSelectParam(index, $event)" />
+    <div class="assign-arrow" />
+
+    <div class="function-label">
+      {{statement.value.keyword}}
+    </div>
+
+    <value-select v-for="(param, index) in params"
+      :key="index"
+      :types="param.types"
+      :value="param.value"
+      parentType="assign"
+      @select="handleSelectParam(index, $event)" />
+
+  </div>
 
 </li>
 </template>
@@ -64,15 +70,47 @@ export default {
     display: flex;
     align-items: center;
     padding-left: 5px;
-    padding-right: 5px;
+    padding-right: 0;
+    box-shadow: none;
+    // background-color: #6d707a;
+    color: darken($assign-color, $text-darken);
 
-    .function-label {
-        margin-right: 10px;
-        pointer-events: none;
+    & > .value-select {
+        background-color: $assign-color;
+        @include node-shadow;
     }
 
-    .value-select {
-        margin-right: 5px;
+    .assign-arrow {
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: -17px;
+        border-right: solid 17px $assign-color;
+        border-top: solid 17px transparent;
+        border-bottom: solid 17px transparent;
+    }
+
+    .function-container {
+        @include node-color($assign-color);
+        @include node-shadow;
+        pointer-events: none;
+        position: relative;
+        padding-right: 5px;
+        padding-left: 3px;
+        margin-left: 25px;
+        display: flex;
+        align-items: center;
+        border-radius: 0 4px 4px 0;
+
+        .function-label {
+            margin-right: 10px;
+            pointer-events: none;
+        }
+
+        .value-select {
+            margin-right: 5px;
+            pointer-events: all;
+        }
     }
 }
 </style>

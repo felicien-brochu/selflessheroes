@@ -119,8 +119,8 @@ export default {
 
 <style lang="scss">
 .palette {
-    width: 70px;
-    padding: 15px 15px 30px;
+    width: 90px;
+    padding: 7px 15px 30px;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
     background-color: #282c34;
@@ -132,7 +132,7 @@ export default {
     align-items: flex-start;
 
     .palette-statement {
-        margin-top: 5px;
+        margin-top: 8px;
     }
 }
 </style>

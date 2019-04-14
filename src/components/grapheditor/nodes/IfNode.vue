@@ -186,10 +186,10 @@ export default {
       let position = this.getDragPlaceholderPosition(index)
       if (position.node) {
         if (position.top) {
-          position.node.$el.style.marginTop = `${placeholderHeight + 10}px`
+          position.node.$el.style.marginTop = `${placeholderHeight + 12}px`
         }
         else {
-          position.node.$el.style.marginBottom = `${placeholderHeight + 10}px`
+          position.node.$el.style.marginBottom = `${placeholderHeight + 12}px`
         }
       }
       this.dragPlaceholderIndex = index
@@ -273,9 +273,9 @@ export default {
     position: absolute;
     z-index: -1;
     height: auto;
-    width: 4px;
+    width: 5px;
     background-color: transparentize($branching-color, 0.7);
-    left: 3px;
+    left: 5px;
     top: 0;
     bottom: -3px;
 }
@@ -296,7 +296,7 @@ export default {
         margin-top: $line-margin;
 
         &:empty {
-            padding-top: 29px;
+            padding-top: 34px;
         }
     }
 }
@@ -314,7 +314,7 @@ export default {
         margin-top: $line-margin;
 
         &.dragged-over {
-            margin-bottom: 29px;
+            margin-bottom: 34px;
 
             & > li:last-child {
                 margin-bottom: $line-margin;

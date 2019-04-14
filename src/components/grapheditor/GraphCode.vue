@@ -123,7 +123,7 @@ export default {
     },
 
     generateDragTree() {
-      this.dragTree = new DragTree(this, this.nodes, 39)
+      this.dragTree = new DragTree(this, this.nodes, 46)
     },
 
     showDragPlaceholderAt(index, placeholderHeight) {
@@ -178,7 +178,7 @@ export default {
 @import 'constants';
 .node-container {
     @extend %node-list;
-    padding-left: 15px;
+    padding-left: 20px;
 }
 
 .drag-placeholder {

@@ -81,7 +81,7 @@ export default {
   watch: {
     worldReady: function(worldReady) {
       if (worldReady) {
-        this.$refs.palette.$el.style.left = "-100px"
+        this.$refs.palette.$el.style.left = "-115px"
         this.compileCode()
       }
     },
@@ -144,7 +144,7 @@ export default {
         if (dropHandler) {
           this.statements = NodeBuilder.insertStatement(this.statements, dropHandler, this.startDragEvent.node.statement, this.startDragEvent.isNew)
         }
-        else {
+        else if (!this.startDragEvent.isNew) {
           this.statements = NodeBuilder.removeStatement(this.statements, this.startDragEvent.node.statement)
         }
       }

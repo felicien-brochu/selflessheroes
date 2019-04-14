@@ -1,12 +1,12 @@
-$assign-color: #c4a14e;
-$action-color: #7c9b69;
+$assign-color: #b28e47;
+$action-color: #779666;
 $branching-color: #6991b2;
 $text-darken: 38%;
-$line-margin: 10px;
+$line-margin: 12px;
 $node-padding-top: 0;
-$node-padding-right: 18px;
+$node-padding-right: 19px;
 $node-padding-bottom: 0;
-$node-padding-left: 7px;
+$node-padding-left: 9px;
 @mixin node-color($background-color) {
 	background-color: $background-color;
 	color: darken($background-color, $text-darken);
@@ -20,7 +20,7 @@ $node-padding-left: 7px;
 	user-select: none;
 }
 @mixin node-shadow {
-	box-shadow: 0 1px 3px 0 rgba(#000000, 0.65);
+	box-shadow: -2px 2px 6px 0 rgba(#0f1114, 0.8);
 }
 @mixin animate-margin {
 	transition-property: margin;
@@ -32,11 +32,11 @@ $node-padding-left: 7px;
 	@include no-select;
 	@include node-shadow;
 	padding: $node-padding-top $node-padding-right $node-padding-bottom $node-padding-left;
-	border-radius: 3px;
+	border-radius: 4px;
 	display: inline;
-	font-size: 18px;
-	height: 29px;
-	line-height: 29px;
+	font-size: 21px;
+	height: 34px;
+	line-height: 34px;
 	font-weight: 500;
 }
 
