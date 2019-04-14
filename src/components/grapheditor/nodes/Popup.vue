@@ -72,6 +72,8 @@ export default {
 
 .popup {
     @include node-shadow;
+    @include no-select;
+
     position: absolute;
     background-color: $popup-color;
     color: darken($popup-color, $text-darken);

@@ -122,7 +122,7 @@ export default {
 
     handleWindowClick(e) {
       if (this.active) {
-        let isDropDownButton = false
+        let isValueSelect = false
         let isTarget = false
         let node = e.target
         while (node !== document) {
@@ -130,14 +130,14 @@ export default {
             isTarget = true
             break
           }
-          if (node.classList.contains('drop-down-button')) {
-            isDropDownButton = true
+          if (node.classList.contains('value-select')) {
+            isValueSelect = true
             break
           }
           node = node.parentNode
         }
 
-        if (!isTarget && !isDropDownButton) {
+        if (!isTarget && !isValueSelect) {
           this.closePopup()
         }
       }
