@@ -281,7 +281,6 @@ export default {
 }
 
 .if-node {
-    @include animate-margin;
     position: relative;
 }
 
@@ -315,11 +314,20 @@ export default {
 
         &.dragged-over {
             margin-bottom: 34px;
+            animation: open-node-margin-bottom 0.15s ease;
 
             & > li:last-child {
                 margin-bottom: $line-margin;
             }
         }
+    }
+}
+@keyframes open-node-margin-bottom {
+    0% {
+        margin-bottom: 0;
+    }
+    100% {
+        margin-bottom: 34px;
     }
 }
 </style>

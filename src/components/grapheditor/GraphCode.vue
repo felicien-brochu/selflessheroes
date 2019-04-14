@@ -1,5 +1,8 @@
 <template>
-<div class="graph-scroll"
+<div :class="{
+	'graph-scroll': true,
+	'animate-margin': !!dragEvent
+	}"
   ref="scroll"
   @scroll="$emit('scroll', $event)">
   <div class="graph-code">
@@ -47,13 +50,13 @@ export default {
   data: function() {
     return {
       lineNumbers: [],
-      nodes: []
+      nodes: [],
+      dragEvent: null
     }
   },
   mounted() {
     this.autoScroll = new AutoScroll(this.$refs.scroll, null)
 
-    this.dragEvent = null
     this.dragTree = null
     this.dragPlaceholderIndex = -1
     this.dropHandler = null
@@ -97,7 +100,8 @@ export default {
 
     handleDragOver(e) {
       let scrollBounds = this.$refs.scroll.getBoundingClientRect()
-      if (e.x + e.width >= scrollBounds.left &&
+      if (e.x >= scrollBounds.left - 40 &&
+        e.x + e.width >= scrollBounds.left &&
         e.y + e.height >= scrollBounds.top &&
         e.x <= scrollBounds.left + scrollBounds.width &&
         e.y <= scrollBounds.top + scrollBounds.height) {

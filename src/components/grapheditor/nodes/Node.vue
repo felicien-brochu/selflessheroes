@@ -67,9 +67,14 @@ export default {
 <style lang="scss">
 @import '../constants';
 
+.animate-margin {
+    .if-node,
+    .node {
+        @include animate-margin;
+    }
+}
 .node {
     @extend %node;
-    @include animate-margin;
 }
 .branching-node {
     @include node-color($branching-color);

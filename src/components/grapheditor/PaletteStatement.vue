@@ -62,14 +62,14 @@ export default {
 
 .palette-statement {
     @extend %node;
-
     transition-property: padding, border-width;
-    transition-duration: 0.1s;
+    transition-duration: 0.07s;
 }
 
 .place-holder {
     background: none !important;
-    padding: $node-padding-top - 3px $node-padding-right - 3px $node-padding-bottom - 3px $node-padding-left - 3px;
+    padding: 0 16px 0 6px;
+    height: 34px - 6px;
     border: 3px dashed rgba(#abb2bf, 0.3);
     color: #282c34 !important;
     transition-property: none;
