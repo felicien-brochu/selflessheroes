@@ -4,16 +4,19 @@
   <value-select ref="leftExpression"
     :value="expression.leftExpression"
     :types="leftExpressionTypes"
-    @select="handleSelectLeftExpression" />
+    @select="handleSelectLeftExpression"
+    parentType="branching" />
   <value-select ref="comparisonOperator"
     :value="expression.operator"
     :types="comparisonOperatorTypes"
     :labelFunc="comparisonOperatorLabelFunc"
-    @select="handleSelectComparisonOperator" />
+    @select="handleSelectComparisonOperator"
+    parentType="branching" />
   <value-select ref="rightExpression"
     :value="expression.rightExpression"
     :types="rightExpressionTypes"
-    @select="handleSelectRightExpression" />
+    @select="handleSelectRightExpression"
+    parentType="branching" />
 
   <div v-if="isFirst"
     class="if-label">

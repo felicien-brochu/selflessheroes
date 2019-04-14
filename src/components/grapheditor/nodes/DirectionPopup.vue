@@ -1,5 +1,5 @@
 <template>
-<div class="popup direction-popup">
+<div :class="['popup', 'direction-popup', colorClass]">
   <ul class="direction-values">
     <li v-for="dir in directionNames"
       :class="{'selected': selectedDirectionNames.includes(dir)}"

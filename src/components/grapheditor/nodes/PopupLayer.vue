@@ -54,7 +54,8 @@ export default {
     createDropDownList({
       anchor,
       types,
-      value
+      value,
+      parentType
     }) {
       this.closePopup()
 
@@ -64,7 +65,8 @@ export default {
           value: value,
           anchor: anchor,
           frame: this.graphCode.$el,
-          compilerConfig: this.compilerConfig
+          compilerConfig: this.compilerConfig,
+          parentType: parentType
         }
       })
 
@@ -76,7 +78,8 @@ export default {
     createDirectionPopup({
       anchor,
       directions,
-      multiple
+      multiple,
+      parentType
     }) {
       this.closePopup()
 
@@ -85,7 +88,8 @@ export default {
           directions: directions,
           multiple: multiple,
           anchor: anchor,
-          frame: this.graphCode.$el
+          frame: this.graphCode.$el,
+          parentType: parentType
         }
       })
       this.attachPopup()
@@ -95,7 +99,8 @@ export default {
 
     createIntegerPopup({
       anchor,
-      integer
+      integer,
+      parentType
     }) {
       this.closePopup()
 
@@ -103,7 +108,8 @@ export default {
         propsData: {
           value: integer,
           anchor: anchor,
-          frame: this.graphCode.$el
+          frame: this.graphCode.$el,
+          parentType: parentType
         }
       })
       this.attachPopup()

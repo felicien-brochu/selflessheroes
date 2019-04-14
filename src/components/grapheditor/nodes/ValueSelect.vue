@@ -53,6 +53,13 @@ export default {
     },
     'labelFunc': {
       type: Function
+    },
+    'parentType': {
+      type: String,
+      validator: value => {
+        return ['branching', 'action', 'assign'].includes(value)
+      },
+      default: 'branching'
     }
   },
   data: function() {
@@ -148,7 +155,8 @@ export default {
       let dropDownList = this.popupLayer.createDropDownList({
         anchor: this.$el,
         types: this.types.map(type => type.type),
-        value: this.value
+        value: this.value,
+        parentType: this.parentType
       })
       dropDownList.$on('select-value', this.handleSelectDropDownItem)
     },
@@ -167,7 +175,8 @@ export default {
       let directionPopup = this.popupLayer.createDirectionPopup({
         anchor: this.$el,
         directions: directions,
-        multiple: directionType.multiple
+        multiple: directionType.multiple,
+        parentType: this.parentType
       })
       directionPopup.$on('select-value', this.handleSelectDirection)
     },
@@ -179,7 +188,8 @@ export default {
       }
       let integerPopup = this.popupLayer.createIntegerPopup({
         anchor: this.$el,
-        integer: integer
+        integer: integer,
+        parentType: this.parentType
       })
       integerPopup.$on('select-value', this.handleSelectInteger)
     }

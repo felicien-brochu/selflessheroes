@@ -1,6 +1,11 @@
 <template>
-<ul class="popup drop-down-list">
-
+<ul :class="['popup', 'drop-down-list', colorClass]">
+  <drop-down-item v-for="(item, index) in items"
+    :key="index"
+    :value="item.value"
+    :label="item.label"
+    :selected="item.selected"
+    @select-value="handleItemSelectValue" />
 </ul>
 </template>
 
@@ -27,6 +32,9 @@ from '../../../world/ai/compile/statements/SimpleBooleanExpression'
 
 export default {
   extends: Popup,
+  components: {
+    DropDownItem
+  },
   props: {
     'value': {
       type: [Object, String, Array]
@@ -40,39 +48,15 @@ export default {
   },
   data: function() {
     return {
-      centeredX: false,
+      centeredX: true,
       centeredY: false,
       offsetX: 0,
       offsetY: 0
     }
   },
 
-  mounted() {
-    this.cancelled = false
-    this.valueSelected = false
-    this.createItems()
-  },
-
-  methods: {
-    close() {
-      if (!this.valueSelected) {
-        this.cancel()
-      }
-    },
-
-    cancel() {
-      if (!this.cancelled) {
-        this.cancelled = true
-        this.$emit('cancel', this.value)
-      }
-    },
-
-    handleItemSelectValue(value) {
-      this.valueSelected = true
-      this.$emit('select-value', value)
-    },
-
-    createItems() {
+  computed: {
+    items: function() {
       let items = []
       for (let type of this.types) {
         if (type === DirectionLiteral) {
@@ -94,34 +78,48 @@ export default {
           items = items.concat(this.createComparisonOperatorItems())
         }
       }
-      for (let item of items) {
-        item.$mount()
-        item.$parent = this
-        item.$on('select-value', this.handleItemSelectValue)
-        this.$el.appendChild(item.$el)
+      return items
+    }
+  },
+
+  mounted() {
+    this.cancelled = false
+    this.valueSelected = false
+  },
+
+  methods: {
+    close() {
+      if (!this.valueSelected) {
+        this.cancel()
       }
     },
 
+    cancel() {
+      if (!this.cancelled) {
+        this.cancelled = true
+        this.$emit('cancel', this.value)
+      }
+    },
+
+    handleItemSelectValue(value) {
+      this.valueSelected = true
+      this.$emit('select-value', value)
+    },
+
     createDirectionItem() {
-      let item = new(Vue.extend(DropDownItem))({
-        propsData: {
-          label: 'direction',
-          value: DirectionLiteral,
-          selected: this.value instanceof DirectionLiteral
-        }
-      })
-      return item
+      return {
+        label: 'direction',
+        value: DirectionLiteral,
+        selected: this.value instanceof DirectionLiteral
+      }
     },
 
     createIntegerLiteralItem() {
-      let item = new(Vue.extend(DropDownItem))({
-        propsData: {
-          label: 'number',
-          value: IntegerLiteral,
-          selected: this.value instanceof IntegerLiteral
-        }
-      })
-      return item
+      return {
+        label: 'number',
+        value: IntegerLiteral,
+        selected: this.value instanceof IntegerLiteral
+      }
     },
 
     createVariableItems() {
@@ -129,14 +127,11 @@ export default {
       for (let identifier of this.compilerConfig.getAllowedVariableIdentifiers()) {
         let variable = new VariableIdentifier(null)
         variable.name = identifier
-        let item = new(Vue.extend(DropDownItem))({
-          propsData: {
-            label: variable.name,
-            value: variable,
-            selected: this.value instanceof VariableIdentifier && this.value.name === variable.name
-          }
+        items.push({
+          label: variable.name,
+          value: variable,
+          selected: this.value instanceof VariableIdentifier && this.value.name === variable.name
         })
-        items.push(item)
       }
       return items
     },
@@ -147,14 +142,11 @@ export default {
         let literal = new ObjectTypeLiteral(null)
         literal.name = objectType
         literal.value = ObjectType[objectType]
-        let item = new(Vue.extend(DropDownItem))({
-          propsData: {
-            label: literal.name,
-            value: literal,
-            selected: this.value instanceof ObjectTypeLiteral && this.value.value === literal.value
-          }
+        items.push({
+          label: literal.name,
+          value: literal,
+          selected: this.value instanceof ObjectTypeLiteral && this.value.value === literal.value
         })
-        items.push(item)
       }
       return items
     },
@@ -165,14 +157,11 @@ export default {
         let literal = new TerrainTypeLiteral(null)
         literal.name = terrainType
         literal.value = TerrainType[terrainType]
-        let item = new(Vue.extend(DropDownItem))({
-          propsData: {
-            label: literal.name,
-            value: literal,
-            selected: this.value instanceof TerrainTypeLiteral && this.value.value === literal.value
-          }
+        items.push({
+          label: literal.name,
+          value: literal,
+          selected: this.value instanceof TerrainTypeLiteral && this.value.value === literal.value
         })
-        items.push(item)
       }
       return items
     },
@@ -181,14 +170,11 @@ export default {
       let items = []
 
       for (let operator of compOperators) {
-        let item = new(Vue.extend(DropDownItem))({
-          propsData: {
-            label: comparisonOperators[operator],
-            value: operator,
-            selected: this.value === operator
-          }
+        items.push({
+          label: comparisonOperators[operator],
+          value: operator,
+          selected: this.value === operator
         })
-        items.push(item)
       }
       return items
     }
@@ -206,7 +192,7 @@ export default {
     padding: 0;
     margin: 0;
 
-    border-radius: 3px;
+    border-radius: 5px;
     overflow: hidden;
 }
 </style>

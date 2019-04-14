@@ -11,6 +11,7 @@
     :key="index"
     :types="param.types"
     :value="param.value"
+    parentType="action"
     @select="handleSelectParam(index, $event)" />
 
 </li>

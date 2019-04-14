@@ -47,7 +47,6 @@ export default {
     @include no-select;
     display: flex;
     align-items: center;
-    color: darken($popup-color, $text-darken);
     min-width: 21px;
     font-size: 18px;
     line-height: 22px;
@@ -55,16 +54,10 @@ export default {
     padding: 4px 9px 4px 10px;
 
     &:nth-child(odd) {
-        background-color: lighten($popup-color, 4%);
-        &:hover {
-            background-color: lighten($popup-color, 12%);
-        }
+        background-color: transparentize(white, 0.96);
     }
     &:nth-child(even) {
-        background-color: lighten($popup-color, 7%);
-        &:hover {
-            background-color: lighten($popup-color, 10%);
-        }
+        background-color: transparentize(white, 0.93);
     }
 }
 </style>

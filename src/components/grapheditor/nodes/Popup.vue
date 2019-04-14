@@ -1,5 +1,5 @@
 <template>
-<div class="popup" />
+<div :class="['popup', colorClass]" />
 </template>
 
 <script>
@@ -12,6 +12,13 @@ export default {
     },
     'frame': {
       type: Element
+    },
+    'parentType': {
+      type: String,
+      validator: value => {
+        return ['branching', 'action', 'assign'].includes(value)
+      },
+      default: 'branching'
     }
   },
 
@@ -21,6 +28,20 @@ export default {
       centeredY: true,
       offsetX: 0,
       offsetY: 0
+    }
+  },
+
+  computed: {
+    colorClass: function() {
+      if (this.parentType === 'branching') {
+        return 'branching'
+      }
+      else if (this.parentType === 'action') {
+        return 'action'
+      }
+      else if (this.parentType === 'assign') {
+        return 'assign'
+      }
     }
   },
 
@@ -75,7 +96,21 @@ export default {
     @include no-select;
 
     position: absolute;
-    background-color: $popup-color;
-    color: darken($popup-color, $text-darken);
+
+    &.branching {
+        $popup-branching-color: lighten($branching-color, 5%);
+        background-color: $popup-branching-color;
+        color: darken($popup-branching-color, $text-darken);
+    }
+    &.action {
+        $popup-action-color: lighten($action-color, 5%);
+        background-color: $popup-action-color;
+        color: darken($popup-action-color, $text-darken);
+    }
+    &.assign {
+        $popup-assign-color: lighten($assign-color, 5%);
+        background-color: $popup-assign-color;
+        color: darken($popup-assign-color, $text-darken);
+    }
 }
 </style>

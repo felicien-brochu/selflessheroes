@@ -1,5 +1,5 @@
 <template>
-<div class="popup integer-popup">
+<div :class="['popup', 'integer-popup', colorClass]">
   <div class="integer-input">
 
     <button class="minus-button"
