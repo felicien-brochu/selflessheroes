@@ -6,7 +6,7 @@
 
   <div class="label-container">
     <direction-value v-if="isDirection"
-      :values="[value]"
+      :value="value"
       @click="handleEditPosition" />
     <div v-else-if="isInteger"
       class="label"
@@ -21,7 +21,8 @@
       {{label}}
     </div>
   </div>
-  <div class="button-icon"
+  <div v-if="hasDropDown"
+    class="button-icon"
     @mousedown="handleDropDown"
     @touchstart="handleDropDown">⯆</div>
 
@@ -45,7 +46,7 @@ export default {
   },
   props: {
     'value': {
-      type: [Object, String]
+      type: [Object, String, Array]
     },
     'types': {
       type: Array
@@ -79,10 +80,15 @@ export default {
       }
     },
     isDirection: function() {
-      return this.value instanceof DirectionLiteral
+      return this.value instanceof DirectionLiteral ||
+        (Array.isArray(this.value) && this.value.length >= 1 && this.value[0] instanceof DirectionLiteral) ||
+        (this.types.length === 1 && this.types[0].type === DirectionLiteral)
     },
     isInteger: function() {
       return this.value instanceof IntegerLiteral
+    },
+    hasDropDown: function() {
+      return !(this.types.length === 1 && (this.types[0].type === DirectionLiteral || this.types[0].type === IntegerLiteral))
     }
   },
 
@@ -123,9 +129,12 @@ export default {
     },
 
     handleSelectDirection(directions) {
-      if (directions.length >= 1) {
-        let direction = directions[0]
-        this.setValue(direction)
+      let directionType = this.types.find(type => type.type === DirectionLiteral)
+      if (directionType.multiple) {
+        this.setValue(directions)
+      }
+      else if (directions.length >= 1) {
+        this.setValue(directions[0])
       }
     },
 
@@ -138,7 +147,7 @@ export default {
     openDropDownList() {
       let dropDownList = this.popupLayer.createDropDownList({
         anchor: this.$el,
-        types: this.types,
+        types: this.types.map(type => type.type),
         value: this.value
       })
       dropDownList.$on('select-value', this.handleSelectDropDownItem)
@@ -146,13 +155,19 @@ export default {
 
     openDirectionPopup() {
       let directions = []
-      if (this.value instanceof DirectionLiteral) {
-        directions = [this.value]
+      if (this.isDirection) {
+        if (Array.isArray(this.value)) {
+          directions = this.value
+        }
+        else if (this.value) {
+          directions = [this.value]
+        }
       }
+      let directionType = this.types.find(type => type.type === DirectionLiteral)
       let directionPopup = this.popupLayer.createDirectionPopup({
         anchor: this.$el,
         directions: directions,
-        multiple: false
+        multiple: directionType.multiple
       })
       directionPopup.$on('select-value', this.handleSelectDirection)
     },

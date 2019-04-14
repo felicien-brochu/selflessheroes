@@ -29,7 +29,7 @@ export default {
   extends: Popup,
   props: {
     'value': {
-      type: [Object, String]
+      type: [Object, String, Array]
     },
     'types': {
       type: Array

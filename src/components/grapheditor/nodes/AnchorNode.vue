@@ -2,7 +2,7 @@
 <li class="node branching-node anchor-node"
   @mousedown="handleDragStart"
   @touchstart="handleDragStart">
-  &nbsp;{{statement.name}}:
+  &nbsp;
 </li>
 </template>
 

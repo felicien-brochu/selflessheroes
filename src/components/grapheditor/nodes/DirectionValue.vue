@@ -2,32 +2,45 @@
 <ul class="direction-values"
   @touchstart="$event.preventDefault(); $emit('click', $event)"
   @mousedown="$emit('click', $event)">
-  <li :class="{'selected': directions.includes('nw')}" />
-  <li :class="{'selected': directions.includes('n')}" />
-  <li :class="{'selected': directions.includes('ne')}" />
-  <li :class="{'selected': directions.includes('w')}" />
-  <li :class="{'selected': directions.includes('here')}" />
-  <li :class="{'selected': directions.includes('e')}" />
-  <li :class="{'selected': directions.includes('sw')}" />
-  <li :class="{'selected': directions.includes('s')}" />
-  <li :class="{'selected': directions.includes('se')}" />
+  <li :class="{'selected': directionNames.includes('nw')}" />
+  <li :class="{'selected': directionNames.includes('n')}" />
+  <li :class="{'selected': directionNames.includes('ne')}" />
+  <li :class="{'selected': directionNames.includes('w')}" />
+  <li :class="{'selected': directionNames.includes('here')}" />
+  <li :class="{'selected': directionNames.includes('e')}" />
+  <li :class="{'selected': directionNames.includes('sw')}" />
+  <li :class="{'selected': directionNames.includes('s')}" />
+  <li :class="{'selected': directionNames.includes('se')}" />
 </ul>
 </template>
 
 <script>
+import DirectionLiteral from '../../../world/ai/compile/statements/literals/DirectionLiteral'
+
 export default {
   props: {
-    'values': {
-      type: Array,
+    'value': {
+      type: [Array, Object],
       default: () => []
     }
   },
-  data: function() {
-    return {}
-  },
   computed: {
     directions: function() {
-      return this.values.map(literal => literal.name)
+      let directions = []
+      if (this.value instanceof DirectionLiteral) {
+        directions = [this.value]
+      }
+      else if (Array.isArray(this.value)) {
+        directions = this.value
+      }
+      return directions
+    },
+    directionNames: function() {
+      let names = []
+      if (this.directions) {
+        names = this.directions.map(literal => literal.name)
+      }
+      return names
     }
   }
 }

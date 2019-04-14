@@ -20,6 +20,15 @@ export default class StepFunction extends ActionFunction {
     super('StepFunction', parent, 'step', line, column)
   }
 
+  getParamTypes() {
+    return [
+      [{
+        type: DirectionLiteral,
+        multiple: true
+      }]
+    ]
+  }
+
   compile(config) {
     super.compile(config)
 
@@ -36,6 +45,7 @@ export default class StepFunction extends ActionFunction {
       throw new InvalidNumberOfParamsException('\'step\' function requires at least 1 parameter', this)
     }
 
+    this.params = []
     params.forEach((param, index) => this.compileParam(param, index, config))
   }
 

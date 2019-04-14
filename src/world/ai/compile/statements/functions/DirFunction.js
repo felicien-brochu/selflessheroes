@@ -18,6 +18,15 @@ export default class DirFunction extends ValueFunction {
     super('DirFunction', parent, 'dir', line, column)
   }
 
+  getParamTypes() {
+    return [
+      [{
+        type: DirectionLiteral,
+        multiple: false
+      }]
+    ]
+  }
+
   compile(config) {
     super.compile(config)
 
@@ -33,6 +42,7 @@ export default class DirFunction extends ValueFunction {
     if (params.length !== 1) {
       throw new InvalidNumberOfParamsException('\'dir\' function requires exactly 1 direction parameter', this)
     }
+    this.params = []
     params.forEach((param, index) => this.compileParam(param, index, config))
   }
 

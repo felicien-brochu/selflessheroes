@@ -55,17 +55,27 @@ export default {
     return {}
   },
   computed: {
-    comparisonOperator: function() {
-      return comparisonOperators[this.expression.operator]
-    },
     leftExpressionTypes: function() {
-      return this.compilerConfig.leftComparisonExpressions
+      return this.compilerConfig.leftComparisonExpressions.map(type => {
+        return {
+          type: type,
+          multiple: false
+        }
+      })
     },
     rightExpressionTypes: function() {
-      return this.compilerConfig.rightComparisonExpressions
+      return this.compilerConfig.rightComparisonExpressions.map(type => {
+        return {
+          type: type,
+          multiple: false
+        }
+      })
     },
     comparisonOperatorTypes: function() {
-      return ['comparisonOperator']
+      return [{
+        type: 'comparisonOperator',
+        multiple: false
+      }]
     }
   },
 

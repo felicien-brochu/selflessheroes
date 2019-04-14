@@ -3,8 +3,8 @@
   <ul class="direction-values">
     <li v-for="dir in directionNames"
       :class="{'selected': selectedDirectionNames.includes(dir)}"
-      @click="select(dir)">
-      <div class="tile" />
+      @click="handleDirectionClick(dir)">
+      <button class="tile" />
     </li>
   </ul>
   </table>
@@ -58,7 +58,7 @@ export default {
       }
     },
 
-    select(dirName) {
+    handleDirectionClick(dirName) {
       if (!this.selectedDirections.some(direction => direction.name === dirName)) {
         let directionLiteral = new DirectionLiteral(null)
         directionLiteral.value = Direction[dirName]
@@ -70,6 +70,9 @@ export default {
         }
         directions.push(directionLiteral)
         this.selectedDirections = directions
+      }
+      else if (this.multiple) {
+        this.selectedDirections = this.selectedDirections.filter(dir => dir.name !== dirName)
       }
 
       if (!this.multiple) {
@@ -121,7 +124,8 @@ export default {
                 background-color: transparentize(white, 0.75);
                 width: 24px;
                 height: 24px;
-                border-radius: 3px;
+                border-radius: 2px;
+                border: none;
             }
 
             &:hover:not(.selected) {

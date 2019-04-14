@@ -131,6 +131,10 @@ html {
     font-family: Roboto, Arial, sans-serif;
 }
 
+:focus {
+    outline: none;
+}
+
 #app {
     margin: 0 auto;
     height: 100vh;
