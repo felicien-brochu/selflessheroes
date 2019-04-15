@@ -11,7 +11,16 @@
   @touchcancel="handleDragOut">
 
   <div class="drag-container"
-    ref="dragContainer" />
+    ref="dragContainer">
+
+    <component v-if="node"
+      ref="draggedNode"
+      :is="node.component"
+      :statement="node.statement"
+      :statements="node.statements"
+      :compilerConfig="compilerConfig" />
+
+  </div>
 
 </div>
 </template>
@@ -19,21 +28,37 @@
 <script>
 import PaletteStatement from './PaletteStatement'
 import Vue from 'vue'
+import NodeBuilder from './nodes/NodeBuilder'
 
 export default {
   props: {
     startDragEvent: {
       type: Object,
       default: null
+    },
+    compilerConfig: {
+      type: Object
     }
   },
   data: function() {
     return {
-      elementCreated: false
+      statements: null
+    }
+  },
+  computed: {
+    node: function() {
+      let nodes = NodeBuilder.buildNodeList(this.statements)
+      if (nodes.length === 0) {
+        return null
+      }
+      else {
+        return nodes[0]
+      }
     }
   },
   watch: {
     startDragEvent: function(event, oldEvent) {
+      console.log("#####startDragEvent watch", event)
       if (!oldEvent && !!event) {
         if (event.event.type === 'touchstart' && event.event.touches.length !== 1) {
           return
@@ -68,7 +93,7 @@ export default {
       this.$refs.dragContainer.style.left = `${ eventPosition.clientX - this.offsetX }px`
       this.$refs.dragContainer.style.top = `${ eventPosition.clientY - this.offsetY }px`
 
-      let draggableElement = this.startDragEvent.node.getDraggableElement()
+      let draggableElement = this.$refs.draggedNode.getDraggableElement()
       let draggableBox = draggableElement.getBoundingClientRect()
       this.$emit('drag-over', {
         x: draggableBox.x,
@@ -83,40 +108,34 @@ export default {
       if (e.type === 'touchend') {
         e.preventDefault()
       }
-      this.clearDragContainer()
+      this.statements = null
       this.destroyTouchEventProxy()
       this.$emit('drop', e)
     },
 
     handleDragOut(e) {
-      this.clearDragContainer()
+      this.statements = null
       this.$emit('drop', null)
     },
 
-    clearDragContainer() {
-      let container = this.$refs.dragContainer
-      while (container.firstChild) {
-        container.removeChild(container.firstChild)
-      }
-      this.elementCreated = false
-    },
-
-    createTouchEventProxy(source, target) {
-      this.touchEventProxy = function(e) {
-        e.preventDefault()
-        target.dispatchEvent(new TouchEvent(e.type, e));
-      }
+    createTouchEventProxy(source) {
       source.addEventListener('touchmove', this.touchEventProxy)
       source.addEventListener('touchend', this.touchEventProxy)
       this.touchEventProxySource = source
     },
 
+    touchEventProxy(e) {
+      e.preventDefault()
+      if (this.$refs.draggedNode) {
+        this.$refs.draggedNode.$el.dispatchEvent(new TouchEvent(e.type, e))
+      }
+    },
+
     destroyTouchEventProxy() {
-      if (this.touchEventProxy) {
+      if (this.touchEventProxySource) {
         this.touchEventProxySource.removeEventListener('touchmove', this.touchEventProxy)
         this.touchEventProxySource.removeEventListener('touchend', this.touchEventProxy)
         this.touchEventProxySource = null
-        this.touchEventProxy = null
       }
     },
 
@@ -132,10 +151,10 @@ export default {
       let targetPosition
       if (event.isNew) {
         targetPosition = eventPosition.target.getBoundingClientRect()
-        this.createTouchEventProxy(eventPosition.target, event.node.$el)
+        this.createTouchEventProxy(eventPosition.target)
       }
       else {
-        targetPosition = event.node.$el.getBoundingClientRect()
+        targetPosition = event.draggedElement.getBoundingClientRect()
       }
 
       this.offsetX = eventPosition.clientX - targetPosition.left
@@ -143,9 +162,7 @@ export default {
 
       dragContainer.style.left = `${ targetPosition.left }px`
       dragContainer.style.top = `${ targetPosition.top }px`
-      dragContainer.appendChild(event.node.$el)
-
-      this.elementCreated = true
+      this.statements = event.statements
     }
   }
 }

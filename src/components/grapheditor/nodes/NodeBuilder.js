@@ -23,56 +23,54 @@ import ActionFunction from '../../../world/ai/compile/statements/functions/Actio
 import ValueFunction from '../../../world/ai/compile/statements/functions/ValueFunction'
 
 export default class NodeBuilder {
-  constructor(statements) {
-    this.statements = statements
-    this.nodes = []
-  }
 
-  build(compilerConfig) {
+  static buildNodeList(statements) {
+    if (!statements) {
+      return []
+    }
+
+    let nodes = []
     let containerStatements
     let containerStack = []
-    let containerClass = null
+    let containerComponent = null
     let subContainerIndex = 0
 
-    for (let statement of this.statements) {
-      let nodeClass = null
+    for (let statement of statements) {
+      let component = null
       let isContainerStart = false
 
       if (containerStack.length === 0) {
         if (statement instanceof IfStatement) {
-          nodeClass = Vue.extend(IfNode)
+          component = IfNode
           isContainerStart = true
         } else
         if (statement instanceof AnchorStatement) {
-          nodeClass = Vue.extend(AnchorNode)
+          component = AnchorNode
         } else
         if (statement instanceof AssignStatement) {
-          nodeClass = Vue.extend(AssignNode)
+          component = AssignNode
         } else
         if (statement instanceof JumpStatement) {
-          nodeClass = Vue.extend(JumpNode)
+          component = JumpNode
         } else
         if (statement instanceof ActionFunction) {
-          nodeClass = Vue.extend(ActionNode)
+          component = ActionNode
         }
 
-        if (!!nodeClass) {
+        if (!!component) {
           if (isContainerStart) {
             containerStatements = [
               []
             ]
             subContainerIndex = 0
-            containerClass = nodeClass
+            containerComponent = component
             containerStack.push(statement)
           } else {
-            let node = new nodeClass({
-              propsData: {
-                statement: statement,
-                compilerConfig: compilerConfig
-              }
-            })
-            node.$mount()
-            this.nodes.push(node)
+            let node = {
+              component: component,
+              statement: statement
+            }
+            nodes.push(node)
           }
         }
       } else {
@@ -87,7 +85,7 @@ export default class NodeBuilder {
         } else
         if (statement instanceof IfStatement) {
           isContainerStart = true
-          nodeClass = Vue.extend(IfNode)
+          component = IfNode
         }
 
         if (containerStack.length === 1 && isContainerDivider) {
@@ -103,15 +101,12 @@ export default class NodeBuilder {
         if (containerStack.length > 0) {
           containerStatements[subContainerIndex].push(statement)
         } else {
-          let container = new(Vue.extend(containerClass))({
-            propsData: {
-              statement: containerStatement,
-              statements: containerStatements,
-              compilerConfig: compilerConfig
-            }
-          })
-          container.$mount()
-          this.nodes.push(container)
+          let container = {
+            component: containerComponent,
+            statement: containerStatement,
+            statements: containerStatements
+          }
+          nodes.push(container)
         }
 
         if (isContainerStart) {
@@ -121,22 +116,24 @@ export default class NodeBuilder {
 
     }
 
-    return this.nodes
+    return nodes
   }
 
-  static buildNewNode(statementClass, compilerConfig) {
+  static buildNewStatements(statementClass, compilerConfig) {
+    let statements = []
     let statement = new statementClass(null, -1, -1)
-    let nodeClass = null
-    let props = {}
-    if (statement instanceof IfStatement) {
-      statement.condition = new BooleanExpression(statement, -1, -1)
-      let expression = new SimpleBooleanExpression(statement.condition, -1, -1)
+
+    if (statementClass === IfStatement) {
+      let ifStatement = statement
+      ifStatement.condition = new BooleanExpression(ifStatement, -1, -1)
+      let expression = new SimpleBooleanExpression(ifStatement.condition, -1, -1)
       expression.operator = compOperators[0]
-      statement.condition.expressions.push(expression)
-      nodeClass = Vue.extend(IfNode)
-      props = {
-        compilerConfig: compilerConfig
-      }
+      ifStatement.condition.expressions.push(expression)
+
+      let endIfStatement = new EndIfStatement(null, -1, -1)
+      ifStatement.endIfStatement = endIfStatement
+      statements.push(ifStatement)
+      statements.push(endIfStatement)
     } else
     if (statement instanceof ValueFunction) {
       let assignStatement = new AssignStatement(null, -1, -1)
@@ -145,40 +142,25 @@ export default class NodeBuilder {
       let variable = new VariableIdentifier(assignStatement, -1, -1)
       variable.name = compilerConfig.getAllowedVariableIdentifiers()[0]
       assignStatement.variable = variable
-      statement = assignStatement
-      nodeClass = Vue.extend(AssignNode)
-    } else
-    if (statement instanceof JumpStatement) {
-      nodeClass = Vue.extend(JumpNode)
-    } else
-    if (statement instanceof ActionFunction) {
-      nodeClass = Vue.extend(ActionNode)
+      statements.push(assignStatement)
+    } else {
+      statements.push(statement)
     }
 
-    let node = new nodeClass({
-      propsData: {
-        statement: statement,
-        ...props
-      }
-    })
-    node.$mount()
-
-    return node
+    return statements
   }
 
-  static insertStatement(statements, dragHandler, insertStatement, isNew) {
+  static insertStatements(statements, dragHandler, insertStatements, isNew) {
     let {
       insertIndex,
       node
     } = dragHandler
 
-    let handlerIndex = statements.indexOf(node.statement)
-
-
     // find the real insert index
 
     let index = insertIndex
     let handlerStatement = node.statement
+    let handlerIndex = statements.indexOf(handlerStatement)
     let handlerStatements
     if (handlerStatement) {
       if (handlerStatement instanceof IfStatement) {
@@ -198,7 +180,7 @@ export default class NodeBuilder {
     }
 
 
-    let indexInHandler = handlerStatements.indexOf(insertStatement)
+    let indexInHandler = -1
     if (indexInHandler >= 0 && indexInHandler <= insertIndex) {
       insertIndex++
     }
@@ -227,37 +209,16 @@ export default class NodeBuilder {
       }
     }
 
-
-    let insertStatements
     if (isNew) {
-      if (insertStatement instanceof JumpStatement) {
+      if (insertStatements[0] instanceof JumpStatement) {
         // Add matching AnchorNode
         let anchor = new AnchorStatement(null)
         anchor.name = AnchorStatement.getAvailableName(statements)
 
-        insertStatement.anchor = anchor.name
-        insertStatement.anchorStatement = anchor
+        insertStatements[0].anchor = anchor.name
+        insertStatements[0].anchorStatement = anchor
 
-        insertStatements = [anchor, insertStatement]
-      } else if (insertStatement instanceof IfStatement) {
-        // Add matching endif
-        let endIfStatement = new EndIfStatement(null)
-        insertStatement.endIfStatement = endIfStatement
-
-        insertStatements = [insertStatement, endIfStatement]
-      } else {
-        insertStatements = [insertStatement]
-      }
-    } else {
-      let numberOfStatements = 1
-      let oldIndex = statements.indexOf(insertStatement)
-      if (insertStatement instanceof IfStatement) {
-        numberOfStatements = 1 + statements.indexOf(insertStatement.endIfStatement) - statements.indexOf(insertStatement)
-      }
-      insertStatements = statements.slice(oldIndex, oldIndex + numberOfStatements)
-      statements.splice(oldIndex, numberOfStatements)
-      if (oldIndex < index) {
-        index -= numberOfStatements
+        insertStatements = [anchor, insertStatements[0]]
       }
     }
 
@@ -265,29 +226,31 @@ export default class NodeBuilder {
     Linter.removeEmptyElse(statements)
   }
 
-  static removeStatement(statements, toRemove) {
+  static removeStatement(statements, toRemove, removeLinkedJump = true) {
     let numberOfStatements = 1
     let index = statements.indexOf(toRemove)
     if (toRemove instanceof IfStatement) {
       numberOfStatements = 1 + statements.indexOf(toRemove.endIfStatement) - statements.indexOf(toRemove)
-    } else if (toRemove instanceof JumpStatement) {
-      let anchorIndex = statements.indexOf(toRemove.anchorStatement)
-      if (anchorIndex < index) {
-        index--
-      }
-      statements.splice(anchorIndex, 1)
-    } else if (toRemove instanceof AnchorStatement) {
-      let jumpStatements = toRemove.findPointingJumpStatements(statements)
-      for (let jumpStatement of jumpStatements) {
-        let jumpIndex = statements.indexOf(jumpStatement)
-        if (jumpIndex < index) {
+    } else if (removeLinkedJump) {
+      if (toRemove instanceof JumpStatement) {
+        let anchorIndex = statements.indexOf(toRemove.anchorStatement)
+        if (anchorIndex < index) {
           index--
         }
-        statements.splice(jumpIndex, 1)
+        statements.splice(anchorIndex, 1)
+      } else if (toRemove instanceof AnchorStatement) {
+        let jumpStatements = toRemove.findPointingJumpStatements(statements)
+        for (let jumpStatement of jumpStatements) {
+          let jumpIndex = statements.indexOf(jumpStatement)
+          if (jumpIndex < index) {
+            index--
+          }
+          statements.splice(jumpIndex, 1)
+        }
       }
     }
     statements.splice(index, numberOfStatements)
-    statements = Linter.removeEmptyElse(statements)
+    Linter.removeEmptyElse(statements)
   }
 
   static makeNodesIterable(rootNodes) {

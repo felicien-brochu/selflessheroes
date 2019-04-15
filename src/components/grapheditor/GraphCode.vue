@@ -10,6 +10,15 @@
     <line-numbers :numbers="lineNumbers" />
     <ul class="node-container"
       ref="nodeContainer">
+
+      <li v-for="node in nodeList"
+        :is="node.component"
+        ref="nodes"
+        :statement="node.statement"
+        :statements="node.statements"
+        :compilerConfig="compilerConfig"
+        @drag-start="handleOwnNodeDragStart($event, node.statement)"
+        @node-drag-start="handleNodeDragStart" />
     </ul>
   </div>
 </div>
@@ -50,9 +59,13 @@ export default {
   data: function() {
     return {
       lineNumbers: [],
-      nodes: [],
       dragEvent: null,
       animateDragAndDrop: false
+    }
+  },
+  computed: {
+    nodeList: function() {
+      return NodeBuilder.buildNodeList(this.statements)
     }
   },
   mounted() {
@@ -65,12 +78,12 @@ export default {
   watch: {
     statements: function(statements) {
       this.lineNumbers = getLineNumbersFromStatements(statements)
-      this.clearNodeContainer()
-      this.populateNodeContainer()
-      this.$emit('nodes-change', this.nodes)
+      if (this.$refs.nodes) {
+        this.$emit('nodes-change', this.$refs.nodes)
+      }
     },
     dragEvent: function(dragEvent, oldEvent) {
-      // Wait for last render of dom to make it animated
+      // Wait for next render of dom to make it animated
       if (!dragEvent !== !oldEvent) {
         setTimeout(function() {
           this.animateDragAndDrop = !!dragEvent
@@ -79,28 +92,13 @@ export default {
     }
   },
   methods: {
-    clearNodeContainer() {
-      let container = this.$refs.nodeContainer
-      while (container.firstChild) {
-        container.removeChild(container.firstChild)
-      }
-    },
 
-    populateNodeContainer() {
-      let nodeBuilder = new NodeBuilder(this.statements)
-      this.nodes = nodeBuilder.build(this.compilerConfig)
-      let container = this.$refs.nodeContainer
-      for (let node of this.nodes) {
-        container.appendChild(node.$el)
-        node.$parent = this
-        node.$on('drag-start', this.handleOwnNodeDragStart)
-        node.$on('node-drag-start', this.handleNodeDragStart)
-      }
-    },
-
-    handleOwnNodeDragStart(e) {
-      this.nodes.splice(this.nodes.indexOf(e.node), 1)
-      this.handleNodeDragStart(e)
+    handleOwnNodeDragStart(e, statement) {
+      this.handleNodeDragStart({
+        event: e.event,
+        draggedElement: e.node.getDraggableElement(),
+        statement: statement
+      })
     },
 
     handleNodeDragStart(e) {
@@ -125,9 +123,9 @@ export default {
     },
 
     applyDragOver() {
-      if (!this.dragTree) {
-        this.generateDragTree()
-      }
+      // if (!this.dragTree) {
+      this.generateDragTree()
+      // }
       let res = this.dragTree.handleDragOver(this.dragEvent, this.$el.getBoundingClientRect(), this.$refs.scroll)
       this.dropHandler = res.dropHandler
       if (res.dragPositionChanged) {
@@ -136,17 +134,17 @@ export default {
     },
 
     generateDragTree() {
-      this.dragTree = new DragTree(this, this.nodes, 46)
+      this.dragTree = new DragTree(this, this.$refs.nodes, 46)
     },
 
     showDragPlaceholderAt(index, placeholderHeight) {
       this.hideDragPlaceholder()
-      if (index < this.nodes.length) {
-        this.nodes[index].$el.style.marginTop = `${placeholderHeight + 12}px`
+      if (index < this.$refs.nodes.length) {
+        this.$refs.nodes[index].$el.style.marginTop = `${placeholderHeight + 12}px`
       }
       else {
-        if (this.nodes.length > 0) {
-          this.nodes[index - 1].$el.style.marginBottom = `${placeholderHeight + 12}px`
+        if (this.$refs.nodes.length > 0) {
+          this.$refs.nodes[index - 1].$el.style.marginBottom = `${placeholderHeight + 12}px`
         }
       }
       this.dragPlaceholderIndex = index
@@ -154,12 +152,12 @@ export default {
 
     hideDragPlaceholder() {
       if (this.dragPlaceholderIndex >= 0) {
-        if (this.dragPlaceholderIndex < this.nodes.length) {
-          this.nodes[this.dragPlaceholderIndex].$el.style.marginTop = null
+        if (this.dragPlaceholderIndex < this.$refs.nodes.length) {
+          this.$refs.nodes[this.dragPlaceholderIndex].$el.style.marginTop = null
         }
         else {
-          if (this.nodes.length > 0) {
-            this.nodes[this.dragPlaceholderIndex - 1].$el.style.marginBottom = null
+          if (this.$refs.nodes.length > 0) {
+            this.$refs.nodes[this.dragPlaceholderIndex - 1].$el.style.marginBottom = null
           }
         }
         this.dragPlaceholderIndex = -1
@@ -176,6 +174,11 @@ export default {
 
     handleDrop(e) {
       this.$emit('drop-node', this.dropHandler)
+
+      this.hideDragPlaceholder()
+      for (let node of this.$refs.nodes) {
+        node.handleDrop(e)
+      }
 
       this.autoScroll.stop()
       this.dragEvent = null

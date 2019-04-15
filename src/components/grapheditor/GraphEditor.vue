@@ -2,6 +2,7 @@
 <div class="graph-editor">
 
   <drag-and-drop-layer :startDragEvent="startDragEvent"
+    :compilerConfig="compilerConfig"
     @drop="handleDrop"
     @drag-over="handleDragOver" />
   <popup-layer id="popup-layer"
@@ -35,6 +36,7 @@ import GraphCode from './GraphCode'
 import JumpLinkLayer from './JumpLinkLayer'
 import NodeBuilder from './nodes/NodeBuilder'
 import Compiler from '../../world/ai/compile/Compiler'
+import IfStatement from '../../world/ai/compile/statements/IfStatement'
 
 export default {
   components: {
@@ -100,17 +102,34 @@ export default {
     handlePaletteDragStart(e) {
       this.startDragEvent = {
         event: e.event,
-        node: NodeBuilder.buildNewNode(e.statement.clazz, this.compilerConfig),
+        statements: NodeBuilder.buildNewStatements(e.statement.clazz, this.compilerConfig),
+        draggedElement: e.target,
         isNew: true
       }
+      this.oldStatements = this.statements.slice(0)
       this.chosenPaletteStatement = e.statement
     },
 
     handleNodeDragStart(e) {
+      let index = this.statements.indexOf(e.statement)
+      let statements
+
+      if (e.statement instanceof IfStatement) {
+        statements = this.statements.slice(index, this.statements.indexOf(e.statement.endIfStatement) + 1)
+      }
+      else {
+        statements = [e.statement]
+      }
       this.startDragEvent = {
-        ...e,
+        index: index,
+        statements: statements,
+        event: e.event,
+        draggedElement: e.draggedElement,
         isNew: false
       }
+
+      this.oldStatements = this.statements.slice(0)
+      NodeBuilder.removeStatement(this.statements, e.statement, false)
     },
 
     handleDragOver(e) {
@@ -142,14 +161,17 @@ export default {
     handleDropNode(dropHandler) {
       if (this.startDragEvent) {
         if (dropHandler) {
-          NodeBuilder.insertStatement(this.statements, dropHandler, this.startDragEvent.node.statement, this.startDragEvent.isNew)
+          NodeBuilder.insertStatements(this.statements, dropHandler, this.startDragEvent.statements, this.startDragEvent.isNew)
         }
         else if (!this.startDragEvent.isNew) {
-          NodeBuilder.removeStatement(this.statements, this.startDragEvent.node.statement)
+          // NodeBuilder.removeOrphanJumps(this.statements, this.startDragEvent.statements[0])
         }
       }
       this.startDragEvent = null
       this.chosenPaletteStatement = null
+      this.oldStatements = null
+      console.log("######AFTER drop", this.statements.map(s => s.type))
+      console.log("######AFTER drop", this.statements)
     }
   }
 }

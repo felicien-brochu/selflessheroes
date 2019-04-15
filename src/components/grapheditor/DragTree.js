@@ -63,6 +63,8 @@ export default class DragTree {
       parent.showDragPlaceholderAt(parentTree.indexOf(overNode), event.height)
     }
 
+    this.dragOverNode = dragOverNode
+
     // Fix empty spots for empty if statements with else
     let insertIndex = dragOverNode.index
     let emptySpots = 0
@@ -74,6 +76,7 @@ export default class DragTree {
     if (emptySpots >= 2) {
       insertIndex--
     }
+    console.log("###Dragtree over", dragOverNode.parent._uid, insertIndex)
     return {
       dropHandler: {
         node: dragOverNode.parent,

@@ -19,6 +19,15 @@
     </ul>
     <ul class="node-container"
       ref="nodeContainer">
+
+      <component v-for="node in ifNodeList"
+        :is="node.component"
+        ref="ifNodes"
+        :statement="node.statement"
+        :statements="node.statements"
+        :compilerConfig="compilerConfig"
+        @drag-start="handleOwnNodeDragStart($event, node.statement)"
+        @node-drag-start="handleNodeDragStart" />
     </ul>
 
     <div v-if="elseDeployed"
@@ -32,6 +41,15 @@
 				'dragged-over': draggedOver
 				}"
         ref="elseNodeContainer">
+
+        <component v-for="node in elseNodeList"
+          :is="node.component"
+          ref="elseNodes"
+          :statement="node.statement"
+          :statements="node.statements"
+          :compilerConfig="compilerConfig"
+          @drag-start="handleOwnNodeDragStart($event, node.statement)"
+          @node-drag-start="handleNodeDragStart" />
       </ul>
     </div>
   </div>
@@ -78,13 +96,13 @@ export default {
     this.dragTransitionStart = -1
     this.dragOverMarked = false
     this.dragPlaceholderIndex = -1
-    this.nodes = [
-      []
-    ]
-
-    for (let i = 0; i < this.statements.length; i++) {
-      this.populateNodeContainer(i)
-    }
+    this.ifNodes = []
+    this.elseNodes = []
+    console.log("###MOUNTED", this.ifNodes, this.elseNodes)
+  },
+  updated() {
+    this.ifNodes = this.$refs.ifNodes ? this.$refs.ifNodes : []
+    this.elseNodes = this.$refs.elseNodes ? this.$refs.elseNodes : []
   },
   computed: {
     elseDeployed: function() {
@@ -98,14 +116,13 @@ export default {
             operator: i < this.statement.condition.operators.length ? this.statement.condition.operators[i] : null
           }
         })
-    }
-  },
-  watch: {
-    statements: function(statements) {
-      for (let i = 0; i < this.statements.length; i++) {
-        this.clearNodeContainer(i)
-        this.populateNodeContainer(i)
-      }
+    },
+    ifNodeList: function() {
+      console.log("###ifNodeList")
+      return NodeBuilder.buildNodeList(this.statements[0])
+    },
+    elseNodeList: function() {
+      return NodeBuilder.buildNodeList(this.statements[1])
     }
   },
   methods: {
@@ -116,27 +133,6 @@ export default {
         }
       }
       return false
-    },
-
-
-    clearNodeContainer(index) {
-      let container = this.getNodeContainer(index)
-      while (container.firstChild) {
-        container.removeChild(container.firstChild)
-      }
-    },
-
-    populateNodeContainer(index) {
-      let nodeBuilder = new NodeBuilder(this.statements[index])
-      let nodes = nodeBuilder.build(this.compilerConfig)
-      this.nodes[index] = nodes
-      let container = this.getNodeContainer(index)
-      for (let node of nodes) {
-        container.appendChild(node.$el)
-        node.$parent = this
-        node.$on('drag-start', this.handleOwnNodeDragStart)
-        node.$on('node-drag-start', this.handleNodeDragStart)
-      }
     },
 
     getNodeContainer(index) {
@@ -153,11 +149,11 @@ export default {
     getDragNodes() {
       let nodes = []
       // Count empty space for empty if
-      if (this.nodes[0].length === 0) {
+      if (this.ifNodes.length === 0) {
         nodes.push(null)
       }
       else {
-        for (let node of this.nodes[0]) {
+        for (let node of this.ifNodes) {
           nodes.push(node)
         }
       }
@@ -165,10 +161,8 @@ export default {
       if (this.elseDeployed) {
         nodes.push(null)
 
-        if (this.nodes.length >= 2 && this.nodes[1].length > 0) {
-          for (let node of this.nodes[1]) {
-            nodes.push(node)
-          }
+        for (let node of this.elseNodes) {
+          nodes.push(node)
         }
 
         // Count empty space at the end of else
@@ -196,6 +190,7 @@ export default {
     showDragPlaceholderAt(index, placeholderHeight) {
       this.hideDragPlaceholder()
       let position = this.getDragPlaceholderPosition(index)
+      console.log("###ifNod show", position)
       if (position.node) {
         if (position.top) {
           position.node.$el.style.marginTop = `${placeholderHeight + 12}px`
@@ -208,6 +203,7 @@ export default {
     },
 
     hideDragPlaceholder() {
+      console.log("###ifNod hide")
       if (this.dragPlaceholderIndex >= 0) {
         let position = this.getDragPlaceholderPosition(this.dragPlaceholderIndex)
         if (position.node) {
@@ -226,23 +222,27 @@ export default {
       let node = null
       let top = true
 
-      if (index < this.nodes[0].length) {
-        if (this.nodes[0].length > 0) {
-          node = this.nodes[0][index]
+      console.log("##length", index, this.ifNodes.length, this.elseNodes.length)
+      if (index < this.ifNodes.length) {
+        if (this.ifNodes.length > 0) {
+          node = this.ifNodes[index]
         }
       }
-      else if (index === this.nodes[0].length) {
-        if (this.nodes[0].length > 0) {
-          node = this.nodes[0][this.nodes[0].length - 1]
+      else if (index === this.ifNodes.length) {
+        if (this.ifNodes.length > 0) {
+          node = this.ifNodes[this.ifNodes.length - 1]
           top = false
         }
       }
       else {
-        if (this.nodes.length >= 2) {
-          let index2 = index - this.nodes[0].length - 1
+        if (this.elseNodes) {
+          let index2 = index - this.ifNodes.length - 1
+          if (index2 === 1 && this.ifNodes.length === 0) {
+            index2--
+          }
 
-          if (index2 < this.nodes[1].length) {
-            node = this.nodes[1][index2]
+          if (index2 < this.elseNodes.length) {
+            node = this.elseNodes[index2]
           }
         }
       }
@@ -253,22 +253,33 @@ export default {
       }
     },
 
-    handleOwnNodeDragStart(e) {
-      loop: for (let subNodes of this.nodes) {
-        for (let i = 0; i < subNodes.length; i++) {
-          if (subNodes[i] === e.node) {
-            subNodes.splice(i, 1)
-            break loop
-          }
-        }
-      }
-
-      this.handleNodeDragStart(e)
+    handleOwnNodeDragStart(e, statement) {
+      console.log("###handleOwnNodeDragStart ifnode", statement, e)
+      this.handleNodeDragStart({
+        event: e.event,
+        draggedElement: e.node.getDraggableElement(),
+        statement: statement
+      })
+      this.draggedOver = true
     },
 
     handleNodeDragStart(e) {
-      this.draggedOver = true
       this.$emit('node-drag-start', e)
+      this.draggedOver = true
+    },
+
+    handleDrop(e) {
+      this.hideDragPlaceholder()
+      console.log("### if HANDLE drop")
+      for (let node of this.ifNodes) {
+        console.log("### ifnodes HANDLE drop")
+        node.handleDrop(e)
+      }
+      for (let node of this.elseNodes) {
+        console.log("### elsenodes HANDLE drop")
+        node.handleDrop(e)
+      }
+      this.draggedOver = false
     },
 
     getDraggableElement() {
