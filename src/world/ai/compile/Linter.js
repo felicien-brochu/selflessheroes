@@ -2,8 +2,6 @@ import IfStatement from './statements/IfStatement'
 
 export default class Linter {
   static removeEmptyElse(statements) {
-    statements = statements.slice(0)
-
     for (let i = 0; i < statements.length; i++) {
       let statement = statements[i]
       if (statement instanceof IfStatement && statement.elseStatement && statements.indexOf(statement.elseStatement) === statements.indexOf(statement.endIfStatement) - 1) {
@@ -11,7 +9,5 @@ export default class Linter {
         statement.elseStatement = null
       }
     }
-
-    return statements
   }
 }

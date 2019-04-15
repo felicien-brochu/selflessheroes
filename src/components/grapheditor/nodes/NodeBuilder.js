@@ -15,6 +15,9 @@ import IfStatement from '../../../world/ai/compile/statements/IfStatement'
 import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'
 import BooleanExpression from '../../../world/ai/compile/statements/BooleanExpression'
 import SimpleBooleanExpression from '../../../world/ai/compile/statements/SimpleBooleanExpression'
+import {
+  compOperators
+} from '../../../world/ai/compile/statements/SimpleBooleanExpression'
 import VariableIdentifier from '../../../world/ai/compile/statements/VariableIdentifier'
 import ActionFunction from '../../../world/ai/compile/statements/functions/ActionFunction'
 import ValueFunction from '../../../world/ai/compile/statements/functions/ValueFunction'
@@ -127,7 +130,9 @@ export default class NodeBuilder {
     let props = {}
     if (statement instanceof IfStatement) {
       statement.condition = new BooleanExpression(statement, -1, -1)
-      statement.condition.expressions.push(new SimpleBooleanExpression(statement.condition, -1, -1))
+      let expression = new SimpleBooleanExpression(statement.condition, -1, -1)
+      expression.operator = compOperators[0]
+      statement.condition.expressions.push(expression)
       nodeClass = Vue.extend(IfNode)
       props = {
         compilerConfig: compilerConfig
@@ -162,7 +167,6 @@ export default class NodeBuilder {
   }
 
   static insertStatement(statements, dragHandler, insertStatement, isNew) {
-    statements = statements.slice(0)
     let {
       insertIndex,
       node
@@ -258,13 +262,10 @@ export default class NodeBuilder {
     }
 
     statements.splice(index, 0, ...insertStatements)
-    statements = Linter.removeEmptyElse(statements)
-
-    return statements
+    Linter.removeEmptyElse(statements)
   }
 
   static removeStatement(statements, toRemove) {
-    statements = statements.slice(0)
     let numberOfStatements = 1
     let index = statements.indexOf(toRemove)
     if (toRemove instanceof IfStatement) {
@@ -287,8 +288,6 @@ export default class NodeBuilder {
     }
     statements.splice(index, numberOfStatements)
     statements = Linter.removeEmptyElse(statements)
-
-    return statements
   }
 
   static makeNodesIterable(rootNodes) {

@@ -53,14 +53,29 @@ export default {
     min-width: 23px;
     font-size: 18px;
     line-height: 26px;
-    font-weight: 500;
+    font-weight: 400;
     padding: 4px 9px 4px 10px;
 
     &:nth-child(odd) {
         background-color: transparentize(white, 0.96);
     }
     &:nth-child(even) {
-        background-color: transparentize(white, 0.93);
+        background-color: transparentize(white, 0.88);
+    }
+
+    &.boolean-operator,
+    &.comparison-operator {
+        font-weight: 500;
+        padding: 4px 9px;
+        display: flex;
+        justify-content: center;
+    }
+
+    &.comparison-operator {
+        font-size: 24px;
+    }
+    &.boolean-operator {
+        font-size: 20px;
     }
 }
 </style>

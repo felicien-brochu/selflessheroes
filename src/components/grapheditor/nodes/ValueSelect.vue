@@ -1,5 +1,5 @@
 <template>
-<div :class="{
+<button :class="{
 	'value-select': true,
 	'no-background': isDirection
 	}">
@@ -26,7 +26,7 @@
     @mousedown="handleDropDown"
     @touchstart="handleDropDown">⯆</div>
 
-</div>
+</button>
 </template>
 
 <script>
@@ -95,7 +95,7 @@ export default {
       return this.value instanceof IntegerLiteral
     },
     hasDropDown: function() {
-      return !(this.types.length === 1 && (this.types[0].type === DirectionLiteral || this.types[0].type === IntegerLiteral))
+      return !(this.types.length === 1 && (this.types[0].type === DirectionLiteral || this.types[0].type === IntegerLiteral || this.types[0].type === 'booleanOperator' || this.types[0].type === 'newBooleanOperator'))
     }
   },
 
@@ -198,16 +198,43 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../constants';
+
 .value-select {
     align-items: center;
     display: flex;
-    background-color: transparentize(white, 0.8);
+
+    @include node-button;
     color: inherit;
     height: 26px;
-    border-radius: 3px;
     line-height: 26px;
     font-size: 20px;
+    font-weight: 400;
     cursor: default;
+
+    &.dark {
+        background: none;
+
+        &:hover {
+            background-color: transparentize(black, 0.94);
+        }
+        &:active {
+            background-color: transparentize(black, 0.90);
+        }
+
+        .label-container {
+            .label {
+                padding: 0;
+            }
+        }
+    }
+
+    &.bright {
+        background-color: transparentize(white, 0.8);
+        &:active {
+            background-color: transparentize(white, 0.6);
+        }
+    }
 
     &.no-background {
         background: none;
@@ -215,7 +242,6 @@ export default {
 
     .label-container {
         min-width: 23px;
-        .direction-value {}
 
         .label {
             padding-left: 5px;
@@ -225,7 +251,7 @@ export default {
     }
 
     .button-icon {
-        font-family: Noto;
+        font-family: 'Noto';
         text-align: center;
         width: 10px;
         font-size: 11px;

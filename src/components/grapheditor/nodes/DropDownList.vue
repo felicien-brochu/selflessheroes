@@ -2,6 +2,10 @@
 <ul :class="['popup', 'drop-down-list', colorClass]">
   <drop-down-item v-for="(item, index) in items"
     :key="index"
+    :class="{
+			'comparison-operator': !!item.comparisonOperator,
+			'boolean-operator': !!item.booleanOperator
+		}"
     :value="item.value"
     :label="item.label"
     :selected="item.selected"
@@ -14,7 +18,8 @@ import Vue from 'vue'
 import Popup from './Popup'
 import DropDownItem from './DropDownItem'
 import {
-  comparisonOperators
+  comparisonOperators,
+  booleanOperators
 }
 from './operators'
 
@@ -29,6 +34,10 @@ import {
   compOperators
 }
 from '../../../world/ai/compile/statements/SimpleBooleanExpression'
+import {
+  boolOperators
+}
+from '../../../world/ai/compile/statements/BooleanExpression'
 
 export default {
   extends: Popup,
@@ -76,6 +85,12 @@ export default {
         }
         else if (type === 'comparisonOperator') {
           items = items.concat(this.createComparisonOperatorItems())
+        }
+        else if (type === 'booleanOperator') {
+          items = items.concat(this.createBooleanOperatorItems())
+        }
+        else if (type === 'newBooleanOperator') {
+          items = items.concat(this.createNewBooleanOperatorItems())
         }
       }
       return items
@@ -170,11 +185,50 @@ export default {
       let items = []
 
       for (let operator of compOperators) {
-        items.push({
+        let item = {
           label: comparisonOperators[operator],
           value: operator,
-          selected: this.value === operator
-        })
+          selected: this.value === operator,
+          comparisonOperator: true
+        }
+
+        if (!item.selected || items.length === 0) {
+          items.push(item)
+        }
+        else {
+          items.splice(0, 0, item)
+        }
+      }
+      return items
+    },
+
+    createBooleanOperatorItems() {
+      let items = this.createNewBooleanOperatorItems()
+      items.push({
+        label: 'delete',
+        value: 'delete',
+        selected: false
+      })
+      return items
+    },
+
+    createNewBooleanOperatorItems() {
+      let items = []
+
+      for (let operator of boolOperators) {
+        let item = {
+          label: booleanOperators[operator],
+          value: operator,
+          selected: this.value === operator,
+          booleanOperator: true
+        }
+
+        if (!item.selected || items.length === 0) {
+          items.push(item)
+        }
+        else {
+          items.splice(0, 0, item)
+        }
       }
       return items
     }

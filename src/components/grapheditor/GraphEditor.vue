@@ -142,10 +142,10 @@ export default {
     handleDropNode(dropHandler) {
       if (this.startDragEvent) {
         if (dropHandler) {
-          this.statements = NodeBuilder.insertStatement(this.statements, dropHandler, this.startDragEvent.node.statement, this.startDragEvent.isNew)
+          NodeBuilder.insertStatement(this.statements, dropHandler, this.startDragEvent.node.statement, this.startDragEvent.isNew)
         }
         else if (!this.startDragEvent.isNew) {
-          this.statements = NodeBuilder.removeStatement(this.statements, this.startDragEvent.node.statement)
+          NodeBuilder.removeStatement(this.statements, this.startDragEvent.node.statement)
         }
       }
       this.startDragEvent = null

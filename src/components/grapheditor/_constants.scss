@@ -27,6 +27,13 @@ $node-padding-left: 9px;
 	transition-duration: 100ms;
 	transition-timing-function: ease;
 }
+@mixin node-button {
+	border-radius: 3px;
+	border: none;
+	font-family: inherit;
+	color: inherit;
+	padding: 0;
+}
 
 %node {
 	@include no-select;

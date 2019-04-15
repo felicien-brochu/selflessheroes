@@ -2,22 +2,50 @@
 <li class="node branching-node condition-node">
 
   <value-select ref="leftExpression"
+    class="bright"
     :value="expression.leftExpression"
     :types="leftExpressionTypes"
     @select="handleSelectLeftExpression"
     parentType="branching" />
+
   <value-select ref="comparisonOperator"
-    class="comparison-operator"
+    class="comparison-operator bright"
     :value="expression.operator"
     :types="comparisonOperatorTypes"
     :labelFunc="comparisonOperatorLabelFunc"
     @select="handleSelectComparisonOperator"
     parentType="branching" />
+
   <value-select ref="rightExpression"
+    class="bright"
     :value="expression.rightExpression"
     :types="rightExpressionTypes"
     @select="handleSelectRightExpression"
     parentType="branching" />
+
+  <div class="operator-container">
+    <value-select v-if="isLast && isFirst"
+      class="add-button dark"
+      :value="operator"
+      :types="newBooleanOperatorTypes"
+      :labelFunc="newBooleanOperatorLabelFunc"
+      @select="$emit('add-condition', $event)"
+      parentType="branching" />
+    <value-select v-else-if="isLast && !isFirst"
+      class="add-button dark"
+      :value="operator"
+      :types="booleanOperatorTypes"
+      :labelFunc="newBooleanOperatorLabelFunc"
+      @select="handleAddOrDeleteBooleanOperator"
+      parentType="branching" />
+    <value-select v-else="operator !== null"
+      class="boolean-operator dark"
+      :value="operator"
+      :types="booleanOperatorTypes"
+      :labelFunc="booleanOperatorLabelFunc"
+      @select="handleSelectOrDeleteBooleanOperator"
+      parentType="branching" />
+  </div>
 
   <div v-if="isFirst"
     class="if-label">
@@ -51,6 +79,10 @@ export default {
       type: Boolean,
       default: false
     },
+    'isLast': {
+      type: Boolean,
+      default: false
+    },
     'compilerConfig': {
       type: Object
     }
@@ -80,6 +112,18 @@ export default {
         type: 'comparisonOperator',
         multiple: false
       }]
+    },
+    booleanOperatorTypes: function() {
+      return [{
+        type: 'booleanOperator',
+        multiple: false
+      }]
+    },
+    newBooleanOperatorTypes: function() {
+      return [{
+        type: 'newBooleanOperator',
+        multiple: false
+      }]
     }
   },
 
@@ -94,33 +138,92 @@ export default {
     handleSelectComparisonOperator(value) {
       this.expression.operator = value
     },
+    handleSelectOrDeleteBooleanOperator(value) {
+      if (value === 'delete') {
+        this.$emit('delete')
+      }
+      else if (value !== this.operator) {
+        this.$emit('operator-change', value)
+      }
+    },
+    handleAddOrDeleteBooleanOperator(value) {
+      if (value === 'delete') {
+        this.$emit('delete')
+      }
+      else {
+        this.$emit('add-condition', value)
+      }
+    },
 
     comparisonOperatorLabelFunc(operator) {
       return comparisonOperators[operator]
+    },
+    booleanOperatorLabelFunc(operator) {
+      return booleanOperators[operator]
+    },
+    newBooleanOperatorLabelFunc(operator) {
+      return '+'
     }
   }
 }
 </script>
 
 <style lang="scss">
+@import '../constants';
+
 .condition-node {
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: justify-content;
+    width: 100%;
+    padding: 0;
 
     .if-label {
         position: absolute;
+        left: 9px;
         pointer-events: none;
     }
 
-    .value-select {
+    & > .value-select {
         margin-left: 7px;
+        flex-grow: 0;
         &:first-child {
-            margin-left: 26px;
+            margin-left: 34px;
         }
 
         &.comparison-operator {
             font-size: 24px;
+            font-weight: 500;
+        }
+    }
+
+    .operator-container {
+        margin-left: 8px;
+        display: flex;
+        justify-content: flex-end;
+        flex-grow: 1;
+        padding-right: 4px;
+
+        .boolean-operator {
+            font-weight: 500;
+        }
+
+        .value-select.boolean-operator .label-container {
+            padding: 0 4px;
+        }
+
+        .add-button {
+            font-size: 26px;
+            line-height: 26px;
+            text-align: center;
+            margin-left: 2px;
+
+            .label-container {
+                .label {
+                    width: 26px;
+                }
+            }
         }
     }
 }

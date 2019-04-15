@@ -9,9 +9,13 @@
         :expression="condition.expression"
         :operator="condition.operator"
         :isFirst="index === 0"
+        :isLast="index === conditions.length - 1"
         :compilerConfig="compilerConfig"
         @mousedown.native="handleDragStart"
-        @touchstart.native="handleDragStart" />
+        @touchstart.native="handleDragStart"
+        @operator-change="handleConditionOperatorChange(condition.expression, $event)"
+        @delete="handleDeleteCondition(condition.expression)"
+        @add-condition="handleAddCondition" />
     </ul>
     <ul class="node-container"
       ref="nodeContainer">
@@ -38,6 +42,15 @@
 import Node from './Node'
 import NodeBuilder from './NodeBuilder'
 import ConditionNode from './ConditionNode'
+import {
+  boolOperators
+}
+from '../../../world/ai/compile/statements/BooleanExpression'
+import {
+  compOperators
+}
+from '../../../world/ai/compile/statements/SimpleBooleanExpression'
+import SimpleBooleanExpression from '../../../world/ai/compile/statements/SimpleBooleanExpression'
 
 export default {
   extends: Node,
@@ -78,14 +91,13 @@ export default {
       return this.statements.length >= 2 || this.draggedOver
     },
     conditions: function() {
-      let conditions = []
-      for (let i = 0; i < this.statement.condition.expressions.length; i++) {
-        conditions.push({
-          expression: this.statement.condition.expressions[i],
-          operator: i < this.statement.condition.operators.length ? this.statement.condition.operators[i] : null,
+      return this.statement.condition.expressions.map(
+        (expression, i) => {
+          return {
+            expression: expression,
+            operator: i < this.statement.condition.operators.length ? this.statement.condition.operators[i] : null
+          }
         })
-      }
-      return conditions
     }
   },
   watch: {
@@ -261,6 +273,28 @@ export default {
 
     getDraggableElement() {
       return this.$refs.conditionList
+    },
+
+    handleConditionOperatorChange(expression, operator) {
+      let index = this.statement.condition.expressions.indexOf(expression)
+      if (index >= 0) {
+        this.$set(this.statement.condition.operators, index, operator)
+      }
+    },
+
+    handleDeleteCondition(expression) {
+      let index = this.statement.condition.expressions.indexOf(expression)
+      if (index >= 0) {
+        this.statement.condition.operators.splice(index - 1, 1)
+        this.statement.condition.expressions.splice(index, 1)
+      }
+    },
+
+    handleAddCondition(operator) {
+      this.statement.condition.operators.push(operator)
+      let expression = new SimpleBooleanExpression(this.statement.condition)
+      expression.operator = compOperators[0]
+      this.statement.condition.expressions.push(expression)
     }
   }
 }
