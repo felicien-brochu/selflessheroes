@@ -1,7 +1,7 @@
 <template>
 <div :class="{
 	'graph-scroll': true,
-	'animate-margin': !!dragEvent
+	'animate-margin': animateDragAndDrop
 	}"
   ref="scroll"
   @scroll="$emit('scroll', $event)">
@@ -51,7 +51,8 @@ export default {
     return {
       lineNumbers: [],
       nodes: [],
-      dragEvent: null
+      dragEvent: null,
+      animateDragAndDrop: false
     }
   },
   mounted() {
@@ -67,6 +68,14 @@ export default {
       this.clearNodeContainer()
       this.populateNodeContainer()
       this.$emit('nodes-change', this.nodes)
+    },
+    dragEvent: function(dragEvent, oldEvent) {
+      // Wait for last render of dom to make it animated
+      if (!dragEvent !== !oldEvent) {
+        setTimeout(function() {
+          this.animateDragAndDrop = !!dragEvent
+        }.bind(this), 0)
+      }
     }
   },
   methods: {
@@ -133,11 +142,11 @@ export default {
     showDragPlaceholderAt(index, placeholderHeight) {
       this.hideDragPlaceholder()
       if (index < this.nodes.length) {
-        this.nodes[index].$el.style.marginTop = `${placeholderHeight + 10}px`
+        this.nodes[index].$el.style.marginTop = `${placeholderHeight + 12}px`
       }
       else {
         if (this.nodes.length > 0) {
-          this.nodes[index - 1].$el.style.marginBottom = `${placeholderHeight + 10}px`
+          this.nodes[index - 1].$el.style.marginBottom = `${placeholderHeight + 12}px`
         }
       }
       this.dragPlaceholderIndex = index
@@ -203,8 +212,8 @@ export default {
         height: min-content;
 
         & > .node-container {
-            padding-top: 10px;
-            padding-bottom: 39px;
+            padding-top: 12px;
+            padding-bottom: 46px;
             z-index: 10;
         }
 
