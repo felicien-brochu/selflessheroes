@@ -58,6 +58,7 @@ export default {
     handleSelectVariable(variable) {
       variable.parent = this.statement
       this.statement.variable = variable
+      this.$emit('change', this)
     }
   }
 }

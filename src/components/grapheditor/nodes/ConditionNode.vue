@@ -131,12 +131,15 @@ export default {
 
     handleSelectLeftExpression(value) {
       this.expression.leftExpression = value
+      this.$emit('change')
     },
     handleSelectRightExpression(value) {
       this.expression.rightExpression = value
+      this.$emit('change')
     },
     handleSelectComparisonOperator(value) {
       this.expression.operator = value
+      this.$emit('change')
     },
     handleSelectOrDeleteBooleanOperator(value) {
       if (value === 'delete') {

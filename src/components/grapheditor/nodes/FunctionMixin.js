@@ -48,6 +48,7 @@ export default {
       }
 
       this.func.params = params
+      this.$emit('change', this)
     }
   }
 }

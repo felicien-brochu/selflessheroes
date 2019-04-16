@@ -15,7 +15,8 @@
         @touchstart.native="handleDragStart"
         @operator-change="handleConditionOperatorChange(condition.expression, $event)"
         @delete="handleDeleteCondition(condition.expression)"
-        @add-condition="handleAddCondition" />
+        @add-condition="handleAddCondition"
+        @change="handleConditionChange" />
     </ul>
     <ul class="node-container"
       ref="nodeContainer">
@@ -141,6 +142,7 @@ export default {
         node.$parent = this
         node.$on('drag-start', this.handleOwnNodeDragStart)
         node.$on('node-drag-start', this.handleNodeDragStart)
+        node.$on('change', this.handleNodeChange)
       }
     },
 
@@ -283,10 +285,15 @@ export default {
       return this.$refs.conditionList
     },
 
+    handleConditionChange() {
+      this.$emit('change', this)
+    },
+
     handleConditionOperatorChange(expression, operator) {
       let index = this.statement.condition.expressions.indexOf(expression)
       if (index >= 0) {
         this.$set(this.statement.condition.operators, index, operator)
+        this.$emit('change', this)
       }
     },
 
@@ -295,6 +302,7 @@ export default {
       if (index >= 0) {
         this.statement.condition.operators.splice(index - 1, 1)
         this.statement.condition.expressions.splice(index, 1)
+        this.$emit('change', this)
       }
     },
 
@@ -303,6 +311,7 @@ export default {
       let expression = new SimpleBooleanExpression(this.statement.condition)
       expression.operator = compOperators[0]
       this.statement.condition.expressions.push(expression)
+      this.$emit('change', this)
     }
   }
 }

@@ -127,6 +127,7 @@ export default {
 
     #run-bar {
         z-index: 100;
+        box-shadow: 0 2px 8px 0 rgba(15, 17, 20, 0.7);
     }
 }
 </style>

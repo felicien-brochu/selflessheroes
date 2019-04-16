@@ -20,7 +20,7 @@
     <div slot="firstPane" />
 
     <editor slot="secondPane"
-      v-model="code"
+      :code="code"
       :compilerConfig="compilerConfig"
       :worldState="worldState"
       :worldReady="worldReady"

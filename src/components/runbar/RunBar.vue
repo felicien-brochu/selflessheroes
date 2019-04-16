@@ -62,7 +62,7 @@ export default {
     display: flex;
     justify-content: center;
     padding: $padding-v $padding-h;
-    background-color: #191c21;
+    background-color: #252930;
 
     .speed-range {
         align-self: center;

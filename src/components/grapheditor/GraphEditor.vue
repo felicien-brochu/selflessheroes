@@ -18,7 +18,8 @@
       :compilerConfig="compilerConfig"
       :worldReady="worldReady"
       @node-drag-start="handleNodeDragStart"
-      @drop-node="handleDropNode">
+      @drop-node="handleDropNode"
+      @node-change="handleNodeChange">
 
       <jump-link-layer ref="jumpLinkLayer" />
 
@@ -44,6 +45,7 @@ export default {
     GraphCode,
     JumpLinkLayer
   },
+
   props: {
     'code': {
       type: String,
@@ -58,10 +60,7 @@ export default {
       default: false
     }
   },
-  model: {
-    prop: 'code',
-    event: 'change'
-  },
+
   data: function() {
     return {
       statements: [],
@@ -69,15 +68,18 @@ export default {
       chosenPaletteStatement: null
     }
   },
+
   computed: {
     playing: function() {
       return !this.worldReady || this.worldState.steps > 0
     }
   },
+
   mounted: function() {
     this.dragEvent = null
     this.dragOverChangeAnimationID = -1
   },
+
   watch: {
     worldReady: function(worldReady) {
       if (worldReady) {
@@ -85,10 +87,16 @@ export default {
         this.compileCode()
       }
     },
+
     code: function(code, oldCode) {
       this.compileCode()
     }
   },
+
+  updated() {
+    this.$refs.jumpLinkLayer.updateLinkPaths()
+  },
+
   methods: {
     compileCode() {
       console.log("####COMPILE code", this.code)
@@ -155,6 +163,13 @@ export default {
 
       this.startDragEvent = null
       this.chosenPaletteStatement = null
+    },
+
+    handleNodeChange(e) {
+      console.log("####node change", e.statement.type)
+      this.$nextTick(function() {
+        this.$refs.jumpLinkLayer.updateLinkPaths()
+      })
     }
   }
 }

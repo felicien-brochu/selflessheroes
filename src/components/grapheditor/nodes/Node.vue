@@ -19,10 +19,16 @@ export default {
       default: null
     }
   },
+
+
   data: function() {
     return {}
   },
   methods: {
+    handleNodeChange(e) {
+      this.$emit('change', e)
+    },
+
     handleDragStart(e) {
       if (e.type === 'touchstart') {
         if (e.touches.length !== 1) {

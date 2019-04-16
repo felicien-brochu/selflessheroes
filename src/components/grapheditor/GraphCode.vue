@@ -30,11 +30,6 @@ import {
 }
 from './nodes/NodeBuilder'
 
-export {
-  lineMargin,
-  lineHeight
-}
-
 export default {
   components: {
     LineNumbers
@@ -87,7 +82,7 @@ export default {
     },
 
     dragEvent: function(dragEvent, oldEvent) {
-      // Wait for last render of dom to make it animated
+      // Wait for next render of dom to make it animated
       if (!dragEvent !== !oldEvent) {
         setTimeout(function() {
           this.animateDragAndDrop = !!dragEvent
@@ -113,7 +108,12 @@ export default {
         node.$parent = this
         node.$on('drag-start', this.handleOwnNodeDragStart)
         node.$on('node-drag-start', this.handleNodeDragStart)
+        node.$on('change', this.handleNodeChange)
       }
+    },
+
+    handleNodeChange(e) {
+      this.$emit('node-change', e)
     },
 
     handleOwnNodeDragStart(e) {
