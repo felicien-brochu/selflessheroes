@@ -1,4 +1,5 @@
 import Expression from '../Expression'
+import FunctionMixin from './FunctionMixin'
 import {
   MismatchStatementException,
   ForbiddenValueFunctionException,
@@ -11,7 +12,7 @@ import {
   indexOfStringInLines
 } from '../../utils'
 
-export default class ValueFunction extends Expression {
+class ValueFunction extends Expression {
   constructor(type, parent, keyword, line, column) {
     super(type, parent, line, column)
     this.params = this.getParamTypes().map(type => null)
@@ -30,27 +31,10 @@ export default class ValueFunction extends Expression {
       throw new ForbiddenValueFunctionException(`the function ${this.keyword} is forbidden. You may use the following functions: ${allowedTypes}`, this)
     }
   }
-
-  getParamTypes() {
-    throw new Error('Needs subclass implementation.')
-  }
-
-  getParamCurrentType(index) {
-    return this.getParamTypeAt(this.params[index], index)
-  }
-
-  getParamTypeAt(param, index) {
-    let types = this.getParamTypes()
-    let paramTypes
-    if (index >= types.length) {
-      paramTypes = types[types.length - 1]
-    } else {
-      paramTypes = types[index]
-    }
-
-    let paramType = paramTypes.find(type => param instanceof type.type)
-    return paramType
-  }
 }
 
 ValueFunction.codeRegExp = /^\s*((\w+)\s*\((.*)\))\s*$/
+
+Object.assign(ValueFunction.prototype, FunctionMixin);
+
+export default ValueFunction

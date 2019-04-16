@@ -1,4 +1,5 @@
 import PrimaryStatement from '../PrimaryStatement'
+import FunctionMixin from './FunctionMixin'
 import {
   MismatchStatementException,
   ForbiddenActionFunctionException,
@@ -6,7 +7,7 @@ import {
   InvalidFunctionParamsException
 } from '../../CompilerException'
 
-export default class ActionFunction extends PrimaryStatement {
+class ActionFunction extends PrimaryStatement {
   constructor(type, parent, keyword, line, column) {
     super(type, parent, line, column)
     this.keyword = keyword
@@ -30,27 +31,11 @@ export default class ActionFunction extends PrimaryStatement {
     }
   }
 
-  getParamTypes() {
-    throw new Error('Needs subclass implementation.')
-  }
-
-  getParamCurrentType(index) {
-    return this.getParamTypeAt(this.params[index], index)
-  }
-
-  getParamTypeAt(param, index) {
-    let types = this.getParamTypes()
-    let paramTypes
-    if (index >= types.length) {
-      paramTypes = types[types.length - 1]
-    } else {
-      paramTypes = types[index]
-    }
-
-    let paramType = paramTypes.find(type => param instanceof type.type || (Array.isArray(param) && type.multiple && param[0] instanceof type.type))
-    return paramType
-  }
 }
 
 ActionFunction.startLineRegExp = /^\s*((\w+)\s*\((.*)\))/
 ActionFunction.codeRegExp = /^\s*((\w+)\s*\((.*)\))\s*$/
+
+Object.assign(ActionFunction.prototype, FunctionMixin);
+
+export default ActionFunction
