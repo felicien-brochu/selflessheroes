@@ -9,6 +9,7 @@ export default class DragTree {
     this.rootNodes.push(null)
     this.tree = buildTree(this.rootNodes, null)
 
+    this.dropHandler = null
     this.dragOverNode = {
       parent: null,
       index: -1
@@ -61,6 +62,7 @@ export default class DragTree {
       }
       this.rootNode.hideDragPlaceholder()
       parent.showDragPlaceholderAt(parentTree.indexOf(overNode), event.height)
+      this.dragOverNode = dragOverNode
     }
 
     // Fix empty spots for empty if statements with else
@@ -74,13 +76,12 @@ export default class DragTree {
     if (emptySpots >= 2) {
       insertIndex--
     }
-    return {
-      dropHandler: {
-        node: dragOverNode.parent,
-        insertIndex: insertIndex
-      },
-      dragPositionChanged: dragPositionChanged
+    this.dropHandler = {
+      line: line,
+      node: dragOverNode.parent,
+      insertIndex: insertIndex
     }
+    return dragPositionChanged
   }
 
   handleDragOut() {
@@ -103,6 +104,40 @@ export default class DragTree {
       }
     }
     return node
+  }
+
+  getLines() {
+    let lines = 0
+
+    for (let node of this) {
+      lines += node.lines
+    }
+
+    return lines
+  }
+
+  getScrollTopDelta(droppedStatement, rootNode, rootNodes, scrollTop, dropScrollTop) {
+    let newDragTree = new DragTree(rootNode, rootNodes, this.lineHeight)
+    let dropLine = newDragTree.getStatementLine(droppedStatement)
+
+    let topDelta = dropLine - this.dropHandler.line
+    let delta = topDelta * this.lineHeight + (dropScrollTop - scrollTop)
+
+    return delta
+  }
+
+  getStatementLine(statement) {
+    let line = 0
+
+    let node
+    for (node of this) {
+      if (node.node && node.node.statement === statement) {
+        break
+      }
+      line += node.lines
+    }
+
+    return line
   }
 
   [Symbol.iterator]() {

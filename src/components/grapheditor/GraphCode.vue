@@ -25,10 +25,13 @@ import {
 }
 from './utils'
 
+const lineHeight = 46
+
 export default {
   components: {
     LineNumbers
   },
+
   props: {
     'code': {
       type: String,
@@ -47,6 +50,7 @@ export default {
       default: false
     }
   },
+
   data: function() {
     return {
       lineNumbers: [],
@@ -55,13 +59,16 @@ export default {
       animateDragAndDrop: false
     }
   },
+
   mounted() {
     this.autoScroll = new AutoScroll(this.$refs.scroll, null)
 
     this.dragTree = null
     this.dragPlaceholderIndex = -1
     this.dropHandler = null
+    this.dropScrollTop = 0
   },
+
   watch: {
     statements: function(statements) {
       this.lineNumbers = getLineNumbersFromStatements(statements)
@@ -69,6 +76,7 @@ export default {
       this.populateNodeContainer()
       this.$emit('nodes-change', this.nodes)
     },
+
     dragEvent: function(dragEvent, oldEvent) {
       // Wait for last render of dom to make it animated
       if (!dragEvent !== !oldEvent) {
@@ -78,6 +86,7 @@ export default {
       }
     }
   },
+
   methods: {
     clearNodeContainer() {
       let container = this.$refs.nodeContainer
@@ -128,15 +137,15 @@ export default {
       if (!this.dragTree) {
         this.generateDragTree()
       }
-      let res = this.dragTree.handleDragOver(this.dragEvent, this.$el.getBoundingClientRect(), this.$refs.scroll)
-      this.dropHandler = res.dropHandler
-      if (res.dragPositionChanged) {
+      let dragPositionChanged = this.dragTree.handleDragOver(this.dragEvent, this.$el.getBoundingClientRect(), this.$refs.scroll)
+      this.dropHandler = this.dragTree.dropHandler
+      if (dragPositionChanged) {
         this.$parent.startDragOverChangeAnimation()
       }
     },
 
     generateDragTree() {
-      this.dragTree = new DragTree(this, this.nodes, 46)
+      this.dragTree = new DragTree(this, this.nodes, lineHeight)
     },
 
     showDragPlaceholderAt(index, placeholderHeight) {
@@ -175,13 +184,28 @@ export default {
     },
 
     handleDrop(e) {
+      this.dropScrollTop = this.$refs.scroll.scrollTop
       this.$emit('drop-node', this.dropHandler)
 
       this.autoScroll.stop()
+    },
+
+    handleStatementDropped(statement) {
+      if (this.dropHandler) {
+        let scrollTopDelta = this.dragTree.getScrollTopDelta(
+          statement,
+          this,
+          this.nodes,
+          this.$refs.scroll.scrollTop,
+          this.dropScrollTop)
+
+        this.$refs.scroll.scrollTop += scrollTopDelta
+      }
+
+      this.dropHandler = null
       this.dragEvent = null
       this.dragTree = null
       this.dragPlaceholderIndex = -1
-      this.dropHandler = null
     }
   }
 }
