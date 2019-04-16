@@ -273,24 +273,11 @@ export default class NodeBuilder {
     let index = statements.indexOf(toRemove)
     if (toRemove instanceof IfStatement) {
       numberOfStatements = 1 + statements.indexOf(toRemove.endIfStatement) - statements.indexOf(toRemove)
-    } else if (toRemove instanceof JumpStatement) {
-      let anchorIndex = statements.indexOf(toRemove.anchorStatement)
-      if (anchorIndex < index) {
-        index--
-      }
-      statements.splice(anchorIndex, 1)
-    } else if (toRemove instanceof AnchorStatement) {
-      let jumpStatements = toRemove.findPointingJumpStatements(statements)
-      for (let jumpStatement of jumpStatements) {
-        let jumpIndex = statements.indexOf(jumpStatement)
-        if (jumpIndex < index) {
-          index--
-        }
-        statements.splice(jumpIndex, 1)
-      }
     }
     statements.splice(index, numberOfStatements)
-    statements = Linter.removeEmptyElse(statements)
+    Linter.removeOrphanJumps(statements)
+    Linter.removeOrphanAnchors(statements)
+    Linter.removeEmptyElse(statements)
   }
 
   static makeNodesIterable(rootNodes) {
