@@ -199,7 +199,6 @@ export default {
     },
 
     showDragPlaceholderAt(index, placeholderHeight) {
-      console.log("###", lineMargin)
       this.hideDragPlaceholder()
       let position = this.getDragPlaceholderPosition(index)
       if (position.node) {

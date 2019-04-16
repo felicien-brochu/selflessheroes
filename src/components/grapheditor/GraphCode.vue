@@ -75,6 +75,7 @@ export default {
     this.dragPlaceholderIndex = -1
     this.dropHandler = null
     this.dropScrollTop = 0
+    this.dragStartScrollTop = -1
   },
 
   watch: {
@@ -121,7 +122,15 @@ export default {
     },
 
     handleNodeDragStart(e) {
+      this.dragStartScrollTop = this.$refs.scroll.scrollTop
       this.$emit('node-drag-start', e)
+
+      // Fix scrolling
+      setTimeout(function() {
+        this.$refs.scroll.scrollTop = this.dragStartScrollTop
+        this.dragStartScrollTop = -1
+        this.applyDragOver()
+      }.bind(this), 0)
     },
 
     handleDragOver(e) {
