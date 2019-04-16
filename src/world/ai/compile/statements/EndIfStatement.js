@@ -21,6 +21,14 @@ export default class EndIfStatement extends PrimaryStatement {
     }
   }
 
+  decompile(indent, line, column) {
+    super.decompile(indent, line, column)
+    this.code = ['endif']
+    this.indentCode(indent)
+
+    return true
+  }
+
   execute(context) {
     return {
       step: false,
@@ -28,6 +36,10 @@ export default class EndIfStatement extends PrimaryStatement {
       goto: null,
       action: null
     }
+  }
+
+  getBeforeIndent() {
+    return -1
   }
 }
 

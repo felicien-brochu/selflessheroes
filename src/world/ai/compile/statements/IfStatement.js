@@ -3,6 +3,9 @@ import BooleanExpression from './BooleanExpression'
 import {
   MismatchStatementException
 } from '../CompilerException'
+import {
+  NotDecompilableStatementException
+} from '../DecompilerException'
 
 import {
   indexOfStringInLines,
@@ -51,6 +54,32 @@ export default class IfStatement extends PrimaryStatement {
     this.condition.compile(config)
   }
 
+  decompile(indent, line, column) {
+    super.decompile(indent, line, column)
+
+    let executable = true
+    let code = 'if '
+
+    if (!this.condition) {
+      throw new NotDecompilableStatementException('this if statement has no condition', this)
+    }
+
+    executable &= this.condition.decompile(indent, line, this.column + indent + code.length)
+
+    this.code = []
+    for (let i = 0; i < this.condition.code.length; i++) {
+      let line = i === 0 ? code : ''
+      line += this.condition.code[i]
+      if (i === this.condition.code.length - 1) {
+        line += ' :'
+      }
+      this.code.push(line)
+    }
+    this.indentCode(indent)
+
+    return executable
+  }
+
   execute(context) {
     let goto = null
     if (!this.condition.computeValue(context).value) {
@@ -62,6 +91,10 @@ export default class IfStatement extends PrimaryStatement {
       goto: goto,
       action: null
     }
+  }
+
+  getAfterIndent() {
+    return 1
   }
 }
 

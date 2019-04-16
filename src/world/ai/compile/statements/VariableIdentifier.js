@@ -3,6 +3,9 @@ import {
   MismatchStatementException,
   ForbiddenVariableIdentifierException
 } from '../CompilerException'
+import {
+  NotDecompilableStatementException
+} from '../DecompilerException'
 
 export default class VariableIdentifier extends Expression {
   constructor(parent, line, column) {
@@ -23,6 +26,17 @@ export default class VariableIdentifier extends Expression {
     if (!allowedNames.some(allowedName => allowedName === this.name)) {
       throw new ForbiddenVariableIdentifierException(`the variable name ''${this.name}' is forbidden. You may choose between the following names: ${allowedNames}`, this)
     }
+  }
+
+  decompile(indent, line, column) {
+    super.decompile(indent, line, column)
+
+    if (!this.name) {
+      throw new NotDecompilableStatementException('this variable identifier has no name', this)
+    }
+    this.code = [this.name]
+
+    return true
   }
 
   computeValue(context) {

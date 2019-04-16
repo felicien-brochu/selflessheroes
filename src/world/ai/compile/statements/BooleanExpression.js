@@ -5,6 +5,9 @@ import ExpressionValue from './ExpressionValue'
 import {
   InvalidBooleanExpressionException
 } from '../CompilerException'
+import {
+  NotDecompilableStatementException
+} from '../DecompilerException'
 
 import {
   splitCode
@@ -17,6 +20,8 @@ export const boolOperators = [
   andOperator,
   orOperator
 ]
+
+const indentStr = '  '
 
 export default class BooleanExpression extends Expression {
   constructor(parent, line, column) {
@@ -67,6 +72,34 @@ export default class BooleanExpression extends Expression {
     for (let expression of this.expressions) {
       expression.compile(config)
     }
+  }
+
+  decompile(indent, line, column) {
+    super.decompile(indent, line, column)
+
+    let executable = true
+
+    if (this.expressions.length === 0) {
+      throw new NotDecompilableStatementException('this BooleanExpression has no expression', this)
+    }
+
+    this.code = []
+    for (let i = 0; i < this.expressions.length && i - 1 < this.operators.length; i++) {
+      let expression = this.expressions[i]
+      let column = i === 0 ? this.column : indent + indentStr.length
+      executable &= expression.decompile(indent, line, column)
+
+      let line = i > 0 ? indentStr : ''
+      line += expression.code[0]
+
+      if (i < this.operators.length) {
+        line += ` ${this.operators[i]}`
+      }
+
+      this.code.push(line)
+    }
+
+    return executable
   }
 
   computeValue(context) {

@@ -4,6 +4,9 @@ import {
   MismatchStatementException,
   ForbiddenObjectTypeLiteralException
 } from '../../CompilerException'
+import {
+  NotDecompilableStatementException
+} from '../../DecompilerException'
 import ObjectType from '../../../../ObjectType'
 
 export default class ObjectTypeLiteral extends Expression {
@@ -27,6 +30,17 @@ export default class ObjectTypeLiteral extends Expression {
     }
 
     this.value = ObjectType[this.name]
+  }
+
+  decompile(indent, line, column) {
+    super.decompile(indent, line, column)
+
+    if (!this.name) {
+      throw new NotDecompilableStatementException('this object type literal has no name', this)
+    }
+    this.code = [this.name]
+
+    return true
   }
 
   static isValid(code) {

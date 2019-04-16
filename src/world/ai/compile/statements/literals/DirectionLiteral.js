@@ -4,6 +4,9 @@ import {
   MismatchStatementException,
   ForbiddenObjectTypeLiteralException
 } from '../../CompilerException'
+import {
+  NotDecompilableStatementException
+} from '../../DecompilerException'
 import Direction from '../../../../Direction'
 
 export default class DirectionLiteral extends Expression {
@@ -22,6 +25,17 @@ export default class DirectionLiteral extends Expression {
 
     this.name = joinedCode.trim()
     this.value = Direction[this.name]
+  }
+
+  decompile(indent, line, column) {
+    super.decompile(indent, line, column)
+
+    if (!this.name) {
+      throw new NotDecompilableStatementException('this direction literal has no name', this)
+    }
+    this.code = [this.name]
+
+    return true
   }
 
   static isValid(code) {

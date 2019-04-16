@@ -2,6 +2,9 @@ import PrimaryStatement from './PrimaryStatement'
 import {
   MismatchStatementException
 } from '../CompilerException'
+import {
+  NotDecompilableStatementException
+} from '../DecompilerException'
 
 export default class JumpStatement extends PrimaryStatement {
 
@@ -28,6 +31,19 @@ export default class JumpStatement extends PrimaryStatement {
     }
 
     this.anchor = res[1]
+  }
+
+  decompile(indent, line, column) {
+    super.decompile(line, column)
+
+    if (!this.anchor) {
+      throw new NotDecompilableStatementException('this jump statement has no anchor', this)
+    }
+
+    this.code = [`jump ${this.anchor}:`]
+    this.indentCode(indent)
+
+    return true
   }
 
   execute(context) {

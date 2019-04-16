@@ -27,6 +27,14 @@ export default class ElseStatement extends PrimaryStatement {
     }
   }
 
+  decompile(indent, line, column) {
+    super.decompile(indent, line, column)
+    this.code = ['else']
+    this.indentCode(indent)
+
+    return true
+  }
+
   execute(context) {
     return {
       step: false,
@@ -34,6 +42,14 @@ export default class ElseStatement extends PrimaryStatement {
       goto: null,
       action: null
     }
+  }
+
+  getBeforeIndent() {
+    return -1
+  }
+
+  getAfterIndent() {
+    return 1
   }
 }
 

@@ -99,7 +99,14 @@ export default class Statement {
     throw new Error('Needs subclass implementation')
   }
 
+  decompile(indent, line, column) {
+    this.line = line
+    this.column = column
+  }
+
   static isValid(code) {
     return this.codeRegExp.test(code.trim())
   }
 }
+
+Statement.undefinedCode = 'undefined'

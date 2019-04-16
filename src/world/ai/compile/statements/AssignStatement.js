@@ -5,6 +5,9 @@ import {
   InvalidExpressionException
 } from '../CompilerException'
 import {
+  NotDecompilableStatementException
+} from '../DecompilerException'
+import {
   indexOfStringInLines,
   createUnitExpression
 } from '../utils'
@@ -61,6 +64,41 @@ export default class AssignStatement extends PrimaryStatement {
       throw new InvalidExpressionException('this identifier is neither a value function, an integer literal or a valid variable identifier', this.value)
     }
     this.value.compile(config)
+  }
+
+  decompile(indent, line, column) {
+    super.decompile(indent, line, column)
+
+    let executable = true
+    let code = ''
+
+    if (!this.value) {
+      throw new NotDecompilableStatementException('this assign statement has no value', this)
+    }
+
+    let variable = this.undefinedCode
+    if (this.variable) {
+      executable &= this.variable.decompile(indent, line, this.column + indent + code.length)
+      variable = this.variable.code[0]
+    } else {
+      executable = false
+    }
+
+    code += `${variable} = `
+
+    let value = this.undefinedCode
+    if (this.value) {
+      executable &= this.value.decompile(indent, line, this.column + indent + code.length)
+      value = this.value.code[0]
+    } else {
+      executable = false
+    }
+
+    code += value
+    this.code = [code]
+    this.indentCode(indent)
+
+    return executable
   }
 
   execute(context) {

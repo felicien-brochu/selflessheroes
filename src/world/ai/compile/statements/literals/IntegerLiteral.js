@@ -20,6 +20,14 @@ export default class IntegerLiteral extends Expression {
     this.value = parseInt(res[1], 10)
   }
 
+  decompile(indent, line, column) {
+    super.decompile(indent, line, column)
+
+    this.code = [`${this.value}`]
+
+    return true
+  }
+
   computeValue(context) {
     return ExpressionValue.integer(this.value)
   }

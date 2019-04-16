@@ -4,6 +4,9 @@ import {
   MismatchStatementException,
   ForbiddenObjectTypeLiteralException
 } from '../../CompilerException'
+import {
+  NotDecompilableStatementException
+} from '../../DecompilerException'
 import TerrainType from '../../../../TerrainType'
 
 export default class TerrainTypeLiteral extends Expression {
@@ -27,6 +30,17 @@ export default class TerrainTypeLiteral extends Expression {
     }
 
     this.value = TerrainType[this.name]
+  }
+
+  decompile(indent, line, column) {
+    super.decompile(indent, line, column)
+
+    if (!this.name) {
+      throw new NotDecompilableStatementException('this terrain type literal has no name', this)
+    }
+    this.code = [this.name]
+
+    return true
   }
 
   static isValid(code) {

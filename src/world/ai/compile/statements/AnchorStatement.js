@@ -3,6 +3,9 @@ import JumpStatement from './JumpStatement'
 import {
   MismatchStatementException
 } from '../CompilerException'
+import {
+  NotDecompilableStatementException
+} from '../DecompilerException'
 
 export default class AnchorStatement extends PrimaryStatement {
 
@@ -25,6 +28,19 @@ export default class AnchorStatement extends PrimaryStatement {
     this.name = res[1]
   }
 
+  decompile(indent, line, column) {
+    super.decompile(line, column)
+
+    if (!this.name) {
+      throw new NotDecompilableStatementException('this anchor has no name', this)
+    }
+
+    this.code = [`${this.name}:`]
+    this.indentCode(indent)
+
+    return true
+  }
+
   execute(context) {
     return {
       step: false,
@@ -37,6 +53,8 @@ export default class AnchorStatement extends PrimaryStatement {
   findPointingJumpStatements(statements) {
     return statements.filter(statement => statement instanceof JumpStatement && statement.anchorStatement === this)
   }
+
+
 
   static getAvailableName(statements) {
     let names = statements.filter(statement => statement instanceof AnchorStatement)
@@ -62,6 +80,9 @@ export default class AnchorStatement extends PrimaryStatement {
         char += 0xA
       } else {
         char += 0x31
+      }
+      if (number26.length > 1 && i < number26.length - 1) {
+        char--
       }
       name += String.fromCharCode(char)
     }

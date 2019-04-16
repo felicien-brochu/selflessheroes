@@ -11,6 +11,9 @@ import ExpressionValue from './ExpressionValue'
 import {
   InvalidBooleanExpressionException
 } from '../CompilerException'
+import {
+  NotDecompilableStatementException
+} from '../DecompilerException'
 
 import {
   indexOfStringInLines,
@@ -65,6 +68,40 @@ export default class SimpleBooleanExpression extends Expression {
 
     this.leftExpression.compile(config)
     this.rightExpression.compile(config)
+  }
+
+  decompile(indent, line, column) {
+    super.decompile(indent, line, column)
+
+    let executable = true
+    let code = ''
+
+    if (!this.operator) {
+      throw new NotDecompilableStatementException('this simple boolean expression has no operator', this)
+    }
+
+    let leftExpression = this.undefinedCode
+    if (this.leftExpression) {
+      executable &= this.leftExpression.decompile(indent, line, this.column + code.length)
+      leftExpression = this.leftExpression.code[0]
+    } else {
+      executable = false
+    }
+
+    code += `${leftExpression} ${this.operator} `
+
+    let rightExpression = this.undefinedCode
+    if (this.rightExpression) {
+      executable &= this.rightExpression.decompile(indent, line, this.column + code.length)
+      rightExpression = this.rightExpression.code[0]
+    } else {
+      executable = false
+    }
+
+    code += rightExpression
+    this.code = [code]
+
+    return executable
   }
 
   computeValue(context) {

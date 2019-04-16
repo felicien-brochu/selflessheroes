@@ -30,4 +30,26 @@ export default class PrimaryStatement extends Statement {
     }
     throw new Error('Needs subclass implementation.')
   }
+
+  getBeforeIndent() {
+    return 0
+  }
+
+  getAfterIndent() {
+    return 0
+  }
+
+  indentCode(indent) {
+    for (let i = 0; i < this.code.length; i++) {
+      this.code[i] = PrimaryStatement.indentString(indent) + this.code[i]
+    }
+  }
+
+  static indentString(indent) {
+    let str = ''
+    for (let i = 0; i < indent; i++) {
+      str += '\t'
+    }
+    return str
+  }
 }

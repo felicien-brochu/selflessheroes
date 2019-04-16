@@ -36,6 +36,7 @@ import GraphCode from './GraphCode'
 import JumpLinkLayer from './JumpLinkLayer'
 import NodeBuilder from './nodes/NodeBuilder'
 import Compiler from '../../world/ai/compile/Compiler'
+import Decompiler from '../../world/ai/compile/Decompiler'
 
 export default {
   components: {
@@ -166,10 +167,13 @@ export default {
     },
 
     handleNodeChange(e) {
-      console.log("####node change", e.statement.type)
       this.$nextTick(function() {
         this.$refs.jumpLinkLayer.updateLinkPaths()
       })
+
+      let decompiler = new Decompiler(this.statements, this.compilerConfig)
+      decompiler.decompile()
+      console.log("###DECOMPILE", decompiler.exception, decompiler.executable, decompiler.code)
     }
   }
 }
