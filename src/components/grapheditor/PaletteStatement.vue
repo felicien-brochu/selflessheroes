@@ -69,7 +69,7 @@ export default {
 .place-holder {
     background: none !important;
     padding: 0 16px 0 6px;
-    height: 34px - 6px;
+    height: $node-line-height - 6px;
     border: 3px dashed rgba(#abb2bf, 0.3);
     color: #282c34 !important;
     transition-property: none;

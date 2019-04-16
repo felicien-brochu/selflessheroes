@@ -38,7 +38,7 @@ export default {
         font-weight: bold;
         font-size: 20px;
         color: lighten(#282c34, 10%);
-        height: 46px;
+        height: $node-line-height + $line-margin;
         line-height: 33px;
     }
 }

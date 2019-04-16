@@ -24,8 +24,16 @@ import {
   getLineNumbersFromStatements
 }
 from './utils'
+import {
+  lineMargin,
+  lineHeight
+}
+from './nodes/NodeBuilder'
 
-const lineHeight = 46
+export {
+  lineMargin,
+  lineHeight
+}
 
 export default {
   components: {
@@ -151,11 +159,11 @@ export default {
     showDragPlaceholderAt(index, placeholderHeight) {
       this.hideDragPlaceholder()
       if (index < this.nodes.length) {
-        this.nodes[index].$el.style.marginTop = `${placeholderHeight + 12}px`
+        this.nodes[index].$el.style.marginTop = `${placeholderHeight + lineMargin}px`
       }
       else {
         if (this.nodes.length > 0) {
-          this.nodes[index - 1].$el.style.marginBottom = `${placeholderHeight + 12}px`
+          this.nodes[index - 1].$el.style.marginBottom = `${placeholderHeight + lineMargin}px`
         }
       }
       this.dragPlaceholderIndex = index
@@ -236,8 +244,8 @@ export default {
         height: min-content;
 
         & > .node-container {
-            padding-top: 12px;
-            padding-bottom: 46px;
+            padding-top: $line-margin;
+            padding-bottom: $node-line-height + $line-margin + 10;
             z-index: 10;
         }
 

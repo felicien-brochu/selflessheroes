@@ -22,6 +22,9 @@ import VariableIdentifier from '../../../world/ai/compile/statements/VariableIde
 import ActionFunction from '../../../world/ai/compile/statements/functions/ActionFunction'
 import ValueFunction from '../../../world/ai/compile/statements/functions/ValueFunction'
 
+export const lineMargin = 12
+export const lineHeight = 46
+
 export default class NodeBuilder {
   constructor(statements) {
     this.statements = statements

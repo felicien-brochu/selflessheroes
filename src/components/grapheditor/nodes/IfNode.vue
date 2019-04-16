@@ -40,6 +40,11 @@
 
 <script>
 import Node from './Node'
+import {
+  lineMargin,
+  lineHeight
+}
+from './NodeBuilder'
 import NodeBuilder from './NodeBuilder'
 import ConditionNode from './ConditionNode'
 import {
@@ -194,14 +199,15 @@ export default {
     },
 
     showDragPlaceholderAt(index, placeholderHeight) {
+      console.log("###", lineMargin)
       this.hideDragPlaceholder()
       let position = this.getDragPlaceholderPosition(index)
       if (position.node) {
         if (position.top) {
-          position.node.$el.style.marginTop = `${placeholderHeight + 12}px`
+          position.node.$el.style.marginTop = `${placeholderHeight + lineMargin}px`
         }
         else {
-          position.node.$el.style.marginBottom = `${placeholderHeight + 12}px`
+          position.node.$el.style.marginBottom = `${placeholderHeight + lineMargin}px`
         }
       }
       this.dragPlaceholderIndex = index
@@ -332,7 +338,7 @@ export default {
         margin-top: $line-margin;
 
         &:empty {
-            padding-top: 34px;
+            padding-top: $node-line-height;
         }
     }
 }
@@ -350,7 +356,7 @@ export default {
         margin-top: $line-margin;
 
         &.dragged-over {
-            margin-bottom: 34px;
+            margin-bottom: $node-line-height;
             animation: open-node-margin-bottom 0.15s ease;
 
             & > li:last-child {
@@ -364,7 +370,7 @@ export default {
         margin-bottom: 0;
     }
     100% {
-        margin-bottom: 34px;
+        margin-bottom: $node-line-height;
     }
 }
 </style>

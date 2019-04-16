@@ -189,7 +189,7 @@ export default {
         margin-left: 7px;
         flex-grow: 0;
         &:first-child {
-            margin-left: 34px;
+            margin-left: $node-line-height;
         }
 
         &.comparison-operator {
