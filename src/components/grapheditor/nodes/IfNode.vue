@@ -240,6 +240,9 @@ export default {
       else {
         if (this.nodes.length >= 2) {
           let index2 = index - this.nodes[0].length - 1
+          if (this.nodes[0].length === 0 && index2 > 0) {
+            index2--
+          }
 
           if (index2 < this.nodes[1].length) {
             node = this.nodes[1][index2]
