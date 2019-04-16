@@ -18,7 +18,7 @@ export default class AutoScroll {
   update(e) {
     let scrollBounds = this.scroll.getBoundingClientRect()
     let topPosition = this.zoneHeight - (e.y - scrollBounds.top)
-    let bottomPosition = this.zoneHeight - ((scrollBounds.top + scrollBounds.height) - e.y)
+    let bottomPosition = this.zoneHeight - ((scrollBounds.top + scrollBounds.height) - (e.y + e.height))
 
     if (topPosition >= 0) {
       this.speed = -(topPosition / this.zoneHeight) * (this.maxSpeed - this.minSpeed) - this.minSpeed
