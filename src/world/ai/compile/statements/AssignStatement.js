@@ -57,7 +57,6 @@ export default class AssignStatement extends PrimaryStatement {
 
     this.variable.compile(config, context)
 
-    console.log("###ASSIGN", this)
     this.value = createUnitExpression(valueCode, [IntegerLiteral, DirectionLiteral, VariableIdentifier, ...Object.values(ValueFunctions)],
       this, this.line + operatorPosition.end.line, operatorPosition.end.column)
 

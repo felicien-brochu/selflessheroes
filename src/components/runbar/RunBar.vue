@@ -1,5 +1,9 @@
 <template>
-<div class="run-bar">
+<div :class="{
+	'run-bar': true,
+	'ready': readyToPlay,
+	'playing': worldStarted
+}">
 
   <play-pause-button @play-pause="$emit('play-pause', $event)"
     :paused="worldState.paused"
@@ -15,26 +19,21 @@
 
   <speed-range @change="$emit('speed-change', $event)" />
 
-  <switch-editor-button :editorType="editorType"
-    @switch-editor="$emit('switch-editor', $event)" />
 </div>
 </template>
 
 <script>
 import SpeedRange from './SpeedRange'
 import PlayPauseButton from './PlayPauseButton'
-import SwitchEditorButton from './SwitchEditorButton'
 
 export default {
   components: {
     SpeedRange,
-    PlayPauseButton,
-    SwitchEditorButton
+    PlayPauseButton
   },
   props: {
     'worldState': {
-      type: Object,
-      default: {}
+      type: Object
     },
     'worldReady': {
       type: Boolean,
@@ -65,13 +64,25 @@ export default {
 
 <style lang="scss">
 .run-bar {
-    $padding-v: 12px;
-    $padding-h: 5px;
+    &.ready {
+        // left: -122px;
+    }
+    &.playing {
+        // left: -308px;
+    }
+
+    border-radius: 6px;
 
     display: flex;
     justify-content: center;
-    padding: $padding-v $padding-h;
-    background-color: #252930;
+    padding: 12px 5px;
+    background-color: transparent;
+
+    &:hover {
+        transition: background-color 200ms ease;
+        background-color: #252930;
+        opacity: 1;
+    }
 
     .speed-range {
         align-self: center;

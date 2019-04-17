@@ -29,9 +29,10 @@ export default class Compiler {
     // console.log("COMPILE CODE: \n", this.code)
     // console.log("With config: \n", this.config)
     this.compileStatements()
+    this.exceptions.undefinedLiterals = this.context.undefinedLiterals
     this.compileStatementLinks()
 
-    if (this.exceptions.fatal.length > 0) {
+    if (this.exceptions.fatal.length > 0 || this.exceptions.undefinedLiterals.length > 0) {
       return null
     }
 
@@ -74,7 +75,7 @@ export default class Compiler {
     }
 
     if (currentStatement !== null) {
-      throw new OpenStatementException(`this statement must be closed`, currentStatement)
+      this.exceptions.fatal.push(new OpenStatementException(`this statement must be closed`, currentStatement))
     }
   }
 

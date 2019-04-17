@@ -19,23 +19,19 @@
         :style="{ display: playing ? 'initial' : 'none'}"></div>
     </template>
   </div>
-  <run-bar id="run-bar"
-    :worldReady="worldReady"
-    :aiReady="aiReady"
-    :worldState="worldState"
+
+  <editor-bar :worldReady="worldReady"
     :editorType="editorType"
-    @play-pause="$emit('play-pause', $event)"
-    @speed-change="$emit('speed-change', $event)"
-    @step="$emit('step')"
-    @stop="$emit('stop')"
+    :compilerExceptions="compilerExceptions"
     @switch-editor="handleSwitchEditor" />
+</div>
 </div>
 </template>
 
 <script>
 import CodeMirror from './codemirror/CodeMirror'
 import GraphEditor from './grapheditor/GraphEditor'
-import RunBar from './runbar/RunBar'
+import EditorBar from './editorbar/EditorBar'
 
 function resizeCodeMirror() {
   let height = window.innerHeight - 93
@@ -48,7 +44,7 @@ export default {
   components: {
     CodeMirror,
     GraphEditor,
-    RunBar
+    EditorBar
   },
   props: {
     'code': {
@@ -59,31 +55,21 @@ export default {
       type: Object,
       default: null
     },
-    'worldState': {
-      type: Object,
-      default: {}
-    },
     'worldReady': {
       type: Boolean,
       default: false
     },
-    'aiReady': {
+    'playing': {
       type: Boolean,
       default: false
     },
     'compilerExceptions': {
-      type: Object,
-      default: null
+      type: Object
     }
   },
   data: function() {
     return {
       editorType: 'graph'
-    }
-  },
-  computed: {
-    playing: function() {
-      return !this.worldReady || this.worldState.steps > 0
     }
   },
   mounted: () => {
@@ -107,6 +93,7 @@ export default {
     display: flex;
     flex-direction: column;
     padding-left: 1px;
+    background-color: #282c34;
 
     #editors {
         flex-grow: 1;
@@ -136,7 +123,7 @@ export default {
         #graph-editor {}
     }
 
-    #run-bar {
+    .editor-bar {
         z-index: 100;
         box-shadow: 0 2px 8px 0 rgba(15, 17, 20, 0.7);
     }

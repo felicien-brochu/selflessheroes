@@ -5,7 +5,6 @@
     @ai-state-change="aiReady = $event"
     @ready="handleWorldReady" />
 
-
   <resize-split-pane id="rs-pane"
     split-to="columns"
     @resize="handleEditorResize"
@@ -17,20 +16,24 @@
     resizerColor="#4b5261"
     primary="second">
 
-    <div slot="firstPane" />
+    <div slot="firstPane"
+      class="left-panel">
+      <run-bar :worldReady="worldReady"
+        :aiReady="aiReady"
+        :worldState="worldState"
+        @play-pause="handlePlayPause"
+        @speed-change="handleSpeedChange"
+        @step="handleStep"
+        @stop="handleStop" />
+    </div>
 
     <editor slot="secondPane"
       :code="code"
       :compilerConfig="compilerConfig"
-      :worldState="worldState"
       :worldReady="worldReady"
-      :aiReady="aiReady"
+      :playing="playing"
       :compilerExceptions="compilerExceptions"
-      @change="handleCodeChange"
-      @play-pause="handlePlayPause"
-      @speed-change="handleSpeedChange"
-      @step="handleStep"
-      @stop="handleStop" />
+      @change="handleCodeChange" />
 
   </resize-split-pane>
 </div>
@@ -39,19 +42,21 @@
 <script>
 import World from './components/World'
 import Editor from './components/Editor'
+import RunBar from './components/runbar/RunBar'
 import ResizeSplitPane from './components/rspane/ResizeSplitPane'
 
 export default {
   components: {
     World,
     Editor,
+    RunBar,
     ResizeSplitPane
   },
   data: function() {
     return {
-      // code: 'b:\nstep(e)\na = dir(n)\n\nif b == 3 &&\n s > 3 ||\n n == wall:\n\tstep(e,w)\n\tstep(s)\n\tif n == wall:\n\t\tc:\n\t\tstep(sw)\n\tendif\nelse\n\ta = dir(sw)\n\tstep(n, s)\nendif\n\njump b\nstep(n)\nif n == wall:\n\t\tstep(nw)\n\tjump c\n\tendif\nstep(n)\nif n == s:\nendif\nstep(n)\nstep(n)\nstep(n)',
+      code: 'b:\nstep(e)\na = dir(n)\n\nif b == 3 &&\n s > 3 ||\n n == wall:\n\tstep(e,w)\n\tstep(s)\n\tif n == wall:\n\t\tc:\n\t\tstep(sw)\n\tendif\nelse\n\ta = dir(sw)\n\tstep(n, s)\nendif\n\njump b\nstep(n)\nif n == wall:\n\t\tstep(nw)\n\tjump c\n\tendif\nstep(n)\nif n == s:\nendif\nstep(n)\nstep(n)\nstep(n)',
       // code: 'if s == s:\nelse\nif s == s:\nendif\nendif',
-      code: '',
+      // code: '',
       compilerConfig: null,
       worldState: {},
       worldReady: false,
@@ -65,6 +70,11 @@ export default {
   },
   beforeCreate: function() {
     this.compilerTimeoutID = -1
+  },
+  computed: {
+    playing: function() {
+      return !this.worldReady || this.worldState.steps > 0
+    }
   },
   methods: {
     handleWorldReady(gameScene, worldState, compilerConfig) {
@@ -132,7 +142,7 @@ html {
     margin: 0;
     padding: 0;
     background-color: black;
-    font-family: Roboto, Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
 }
 
 :focus {
@@ -142,5 +152,35 @@ html {
 #app {
     margin: 0 auto;
     height: 100vh;
+
+    #rs-pane {
+        z-index: 5;
+        pointer-events: none;
+
+        & > * {
+            pointer-events: all;
+        }
+
+        .Pane:first-child {
+            pointer-events: none;
+            .left-panel {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                .run-bar {
+                    z-index: 5;
+                    position: absolute;
+                    width: 308px;
+                    bottom: 20px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    left: 0;
+                    right: 0;
+                    pointer-events: all;
+                    box-shadow: 0 2px 8px 0 rgba(15, 17, 20, 0.7);
+                }
+            }
+        }
+    }
 }
 </style>
