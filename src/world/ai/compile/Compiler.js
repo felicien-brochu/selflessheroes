@@ -104,20 +104,22 @@ export default class Compiler {
 
   compileIfLinks() {
     let ifStack = []
-    let elseFound = false
 
     for (let i = 0; i < this.statements.length; i++) {
       let statement = this.statements[i]
       let type = statement.type
 
       if (type === 'ElseStatement') {
-        if (ifStack.length === 0 || elseFound) {
+        if (ifStack.length === 0) {
           throw new ElseWithoutIfException('else without if before', statement)
         }
 
         let ifStatement = ifStack[ifStack.length - 1]
+        if (ifStatement.elseStatement) {
+          throw new ElseWithoutIfException('else without if before', statement)
+        }
+
         ifStatement.setElseStatement(statement)
-        elseFound = true
       } else if (type === 'EndIfStatement') {
         if (ifStack.length === 0) {
           throw new EndIfWithoutIfException('endif without if before', statement)
@@ -125,7 +127,6 @@ export default class Compiler {
 
         let ifStatement = ifStack.pop()
         ifStatement.setEndIfStatement(statement)
-        elseFound = false
       } else if (type === 'IfStatement') {
         ifStack.push(statement)
       }
