@@ -85,6 +85,7 @@ export default class IfStatement extends PrimaryStatement {
     if (!this.condition.computeValue(context).value) {
       goto = this.elseStatement ? this.elseStatement : this.endIfStatement
     }
+
     return {
       step: true,
       complete: true,

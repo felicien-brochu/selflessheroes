@@ -103,7 +103,7 @@ export default class BooleanExpression extends Expression {
   }
 
   computeValue(context) {
-    let values = this.expressions.map(expr => expr.computeValue(context))
+    let values = this.expressions.map(expr => expr.computeValue(context).value)
     let operators = this.operators.slice(0)
     let andPosition
     while ((andPosition = operators.indexOf(andOperator)) >= 0) {
