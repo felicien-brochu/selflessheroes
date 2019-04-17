@@ -3,6 +3,10 @@
   <button :class="['code-state', codeState]"
     :title="codeStateToolTip" />
 
+  <button class="delete-code-button"
+    :disabled="code.length === 0"
+    @click="$emit('remove-code')">Remove Code</button>
+
   <switch-editor-button :editorType="editorType"
     @switch-editor="$emit('switch-editor', $event)" />
 </div>
@@ -16,6 +20,10 @@ export default {
     SwitchEditorButton
   },
   props: {
+    'code': {
+      type: String,
+      default: ''
+    },
     'worldState': {
       type: Object
     },
@@ -63,7 +71,9 @@ export default {
       }
       this.codeState = state
     }
-  }
+  },
+
+  methods: {}
 }
 </script>
 
@@ -114,16 +124,10 @@ export default {
     }
 
     button {
-        background: none;
-        color: inherit;
-        border: none;
-        padding: 0;
         font: inherit;
         cursor: pointer;
         outline: inherit;
-        width: 40px;
         height: 40px;
-        border-radius: 20px;
         box-shadow: 0 1px 6px 0 black;
         margin: 0 7px;
 

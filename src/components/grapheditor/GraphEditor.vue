@@ -13,10 +13,8 @@
       @drag-start="handlePaletteDragStart" />
     <graph-code ref="graphCode"
       id="graph-code"
-      :code="code"
       :statements="statements"
       :compilerConfig="compilerConfig"
-      :worldReady="worldReady"
       @node-drag-start="handleNodeDragStart"
       @drop-node="handleDropNode"
       @node-change="handleNodeChange">
@@ -70,26 +68,26 @@ export default {
     }
   },
 
-  computed: {
-    playing: function() {
-      return !this.worldReady || this.worldState.steps > 0
-    }
-  },
-
   mounted: function() {
     this.dragEvent = null
     this.dragOverChangeAnimationID = -1
-    if (this.worldReady) {
+    if (this.compilerConfig) {
       this.compileCode()
     }
   },
 
   watch: {
-    worldReady: function(worldReady) {
-      if (worldReady && this.statements.length === 0 && this.code !== '') {
+    compilerConfig: function() {
+      if (this.compilerConfig) {
         this.compileCode()
       }
     },
+
+    code: function() {
+      if (this.compilerConfig) {
+        this.compileCode()
+      }
+    }
   },
 
   updated() {

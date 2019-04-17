@@ -22,8 +22,10 @@
 
   <editor-bar :worldReady="worldReady"
     :editorType="editorType"
+    :code="code"
     :compilerExceptions="compilerExceptions"
-    @switch-editor="handleSwitchEditor" />
+    @remove-code="removeCode"
+    @switch-editor="switchEditor" />
 </div>
 </div>
 </template>
@@ -77,10 +79,14 @@ export default {
   },
   methods: {
     handleGraphCodeChange(code) {
-      this.$emit('change', code)
+      this.$emit('code-change', code)
     },
 
-    handleSwitchEditor(editorType) {
+    removeCode() {
+      this.$emit('code-change', '')
+    },
+
+    switchEditor(editorType) {
       this.editorType = editorType
     }
   }

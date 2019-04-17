@@ -36,10 +36,6 @@ export default {
   },
 
   props: {
-    'code': {
-      type: String,
-      default: ''
-    },
     'statements': {
       type: Array,
       default: () => []
@@ -47,10 +43,6 @@ export default {
     'compilerConfig': {
       type: Object,
       default: null
-    },
-    'worldReady': {
-      type: Boolean,
-      default: false
     }
   },
 

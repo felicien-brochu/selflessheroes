@@ -1,3 +1,5 @@
+import UndefinedLiteral from '../../../world/ai/compile/statements/literals/UndefinedLiteral'
+
 export default {
   computed: {
     params: function() {
@@ -7,6 +9,9 @@ export default {
         let types = this.func.getParamTypes()
         for (let i = 0; i < this.func.params.length || i < types.length; i++) {
           let value = this.func.params[i]
+          if (value instanceof UndefinedLiteral) {
+            value = null
+          }
           let currentType = this.func.getParamCurrentType(i)
           if (i < types.length) {
             if (currentType && currentType.multiple) {
@@ -29,6 +34,7 @@ export default {
 
   methods: {
     handleSelectParam(index, value) {
+      console.log("###SELECT param", index, value, this)
       let types = this.func.getParamTypes()
       let params = this.func.params.slice(0)
       if (Array.isArray(value)) {

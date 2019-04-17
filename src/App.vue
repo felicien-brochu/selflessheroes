@@ -33,7 +33,7 @@
       :worldReady="worldReady"
       :playing="playing"
       :compilerExceptions="compilerExceptions"
-      @change="handleCodeChange" />
+      @code-change="handleCodeChange" />
 
   </resize-split-pane>
 </div>
