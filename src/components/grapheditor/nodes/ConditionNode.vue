@@ -23,6 +23,8 @@
     @select="handleSelectRightExpression"
     parentType="branching" />
 
+  <div class="spacer" />
+
   <div class="operator-container">
     <value-select v-if="isLast && isFirst"
       class="add-button dark"
@@ -201,11 +203,15 @@ export default {
         }
     }
 
+    .spacer {
+        flex-grow: 1;
+        visibility: hidden;
+    }
+
     .operator-container {
         margin-left: 8px;
         display: flex;
         justify-content: flex-end;
-        flex-grow: 1;
         padding-right: 4px;
 
         .boolean-operator {
