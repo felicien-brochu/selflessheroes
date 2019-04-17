@@ -11,6 +11,12 @@ export default class CustomAI extends AI {
     this.cursor = 0
     this.variables = {}
     this.initVariables()
+    this.context = {
+      world: this.world,
+      character: this.character,
+      variables: this.variables,
+      lastGoto: null
+    }
   }
 
   initVariables() {
@@ -30,11 +36,12 @@ export default class CustomAI extends AI {
       } = statement.execute(this.getContext())
 
       if (goto) {
+        this.context.lastGoto = goto
         this.cursor = this.statements.indexOf(goto)
       } else if (complete) {
         this.cursor++
       }
-      // console.log("STEP", this)
+
       if (step) {
         return action
       }
@@ -42,10 +49,6 @@ export default class CustomAI extends AI {
   }
 
   getContext() {
-    return {
-      world: this.world,
-      character: this.character,
-      variables: this.variables
-    }
+    return this.context
   }
 }

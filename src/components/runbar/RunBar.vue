@@ -76,7 +76,7 @@ export default {
     display: flex;
     justify-content: center;
     padding: 12px 5px;
-    background-color: transparent;
+    background-color: rgba(#252930, 0.65);
 
     &:hover {
         transition: background-color 200ms ease;

@@ -155,12 +155,15 @@ export default {
           NodeBuilder.removeStatement(this.statements, this.startDragEvent.node.statement)
         }
       }
-      let statement = this.startDragEvent.node.statement
-      this.$nextTick(function() {
-        this.$refs.graphCode.handleStatementDropped(statement)
-      })
 
-      this.startDragEvent = null
+      if (this.startDragEvent) {
+        let statement = this.startDragEvent.node.statement
+        this.$nextTick(function() {
+          this.$refs.graphCode.handleStatementDropped(statement)
+        })
+        this.startDragEvent = null
+      }
+
       this.chosenPaletteStatement = null
 
       this.decompile()

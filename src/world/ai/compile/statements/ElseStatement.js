@@ -36,10 +36,14 @@ export default class ElseStatement extends PrimaryStatement {
   }
 
   execute(context) {
+    let goto = null
+    if (context.lastGoto !== this) {
+      goto = this.endIfStatement
+    }
     return {
       step: false,
       complete: true,
-      goto: null,
+      goto: goto,
       action: null
     }
   }
