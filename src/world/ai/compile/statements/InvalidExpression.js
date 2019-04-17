@@ -11,7 +11,7 @@ export default class InvalidExpression extends Expression {
     super('InvalidExpression', parent, line, column)
   }
 
-  compile(config) {
+  compile(config, context) {
     throw new InvalidExpressionException('invalid expression', this)
   }
 

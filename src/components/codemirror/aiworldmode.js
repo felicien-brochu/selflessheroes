@@ -19,6 +19,24 @@ CodeMirror.defineSimpleMode('aiworld', {
       regex: /(jump)(\s+)([a-zA-Z]+\w*)/,
       token: ['keyword', null, 'bracket']
     },
+
+    // indent and dedent properties guide autoindentation
+    {
+      regex: /if\b/,
+      token: 'keyword',
+      indent: true
+    },
+    {
+      regex: /else\b/,
+      token: 'keyword',
+      dedent: true,
+      indent: true
+    },
+    {
+      regex: /endif\b/,
+      token: 'keyword',
+      dedent: true
+    },
     // Rules are matched in the order in which they appear, so there is
     // no ambiguity between this one and the one above
     {
@@ -28,6 +46,10 @@ CodeMirror.defineSimpleMode('aiworld', {
     {
       regex: /(?:n|e|s|w|ne|se|sw|nw|here|floor|wall|hole|hero|objective)\b/,
       token: 'atom'
+    },
+    {
+      regex: /undefined\b/,
+      token: 'undefined-literal'
     },
     {
       regex: /0x[a-f\d]+|[-+]?(?:\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/i,
@@ -55,29 +77,9 @@ CodeMirror.defineSimpleMode('aiworld', {
       regex: /[-+\/*=<>!]+|&&|\|\|/,
       token: 'operator'
     },
-    // indent and dedent properties guide autoindentation
-    {
-      regex: /[\{\[\(]/,
-      indent: true
-    },
-    {
-      regex: /[\}\]\)]/,
-      dedent: true
-    },
     {
       regex: /[a-z$][\w$]*/,
       token: 'variable'
-    },
-    // You can embed other modes with the mode property. This rule
-    // causes all code between << and >> to be highlighted with the XML
-    // mode.
-    {
-      regex: /<</,
-      token: 'meta',
-      mode: {
-        spec: 'xml',
-        end: />>/
-      }
     }
   ],
   // The multi-line comment state.
@@ -97,6 +99,7 @@ CodeMirror.defineSimpleMode('aiworld', {
   // specific to simple modes.
   meta: {
     dontIndentStates: ['comment'],
-    lineComment: '//'
+    lineComment: '//',
+    electricInput: /^\s*(?:endif|else)$/
   }
 })

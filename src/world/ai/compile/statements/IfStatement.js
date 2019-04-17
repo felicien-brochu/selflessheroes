@@ -13,8 +13,8 @@ import {
 } from '../utils'
 
 export default class IfStatement extends PrimaryStatement {
-  constructor(parent, line, column = 0) {
-    super('IfStatement', parent, line, column)
+  constructor(line, column) {
+    super('IfStatement', line, column)
     this.keyword = 'if'
     this.condition = null
     this.elseStatement = null
@@ -37,7 +37,7 @@ export default class IfStatement extends PrimaryStatement {
     }
   }
 
-  compile(config) {
+  compile(config, context) {
     let joinedCode = this.code.join(' ')
     let groups = joinedCode.match(IfStatement.codeRegExp)
     if (!groups) {
@@ -51,7 +51,7 @@ export default class IfStatement extends PrimaryStatement {
     let subcode = subCode(this.code, position.start.line, position.start.column, position.end.line, position.end.column)
     this.condition.pushLines(subcode)
 
-    this.condition.compile(config)
+    this.condition.compile(config, context)
   }
 
   decompile(indent, line, column) {

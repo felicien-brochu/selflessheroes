@@ -128,7 +128,7 @@ export default class NodeBuilder {
   }
 
   static buildNewNode(statementClass, compilerConfig) {
-    let statement = new statementClass(null, -1, -1)
+    let statement = new statementClass(-1, -1)
     let nodeClass = null
     let props = {}
     if (statement instanceof IfStatement) {
@@ -142,7 +142,7 @@ export default class NodeBuilder {
       }
     } else
     if (statement instanceof ValueFunction) {
-      let assignStatement = new AssignStatement(null, -1, -1)
+      let assignStatement = new AssignStatement(-1, -1)
       assignStatement.value = statement
       assignStatement.value.parent = assignStatement
       let variable = new VariableIdentifier(assignStatement, -1, -1)
@@ -211,7 +211,7 @@ export default class NodeBuilder {
       if (handlerStatement instanceof IfStatement) {
         if (insertIndex > handlerStatements.length) {
           // Create Else statement
-          let elseStatement = new ElseStatement(null)
+          let elseStatement = new ElseStatement(-1, -1)
           elseStatement.endIfStatement = handlerStatement.endIfStatement
           handlerStatement.elseStatement = elseStatement
           statements.splice(statements.indexOf(handlerStatement.endIfStatement), 0, elseStatement)
@@ -235,7 +235,7 @@ export default class NodeBuilder {
     if (isNew) {
       if (insertStatement instanceof JumpStatement) {
         // Add matching AnchorNode
-        let anchor = new AnchorStatement(null)
+        let anchor = new AnchorStatement(-1, -1)
         anchor.name = AnchorStatement.getAvailableName(statements)
 
         insertStatement.anchor = anchor.name
@@ -244,7 +244,7 @@ export default class NodeBuilder {
         insertStatements = [anchor, insertStatement]
       } else if (insertStatement instanceof IfStatement) {
         // Add matching endif
-        let endIfStatement = new EndIfStatement(null)
+        let endIfStatement = new EndIfStatement(-1, -1)
         insertStatement.endIfStatement = endIfStatement
 
         insertStatements = [insertStatement, endIfStatement]

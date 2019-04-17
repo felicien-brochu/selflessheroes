@@ -2,15 +2,15 @@ import PrimaryStatement from './PrimaryStatement'
 
 export default class EmptyStatement extends PrimaryStatement {
 
-  constructor(parent, line, column = 0) {
-    super('EmptyStatement', parent, line, column)
+  constructor(line, column) {
+    super('EmptyStatement', line, column)
   }
 
   isCodeComplete() {
     return this.code.length >= 1
   }
 
-  compile(config) {}
+  compile(config, context) {}
 
   decompile(indent, line, column) {
     super.decompile(indent, line, column)

@@ -31,7 +31,7 @@ export default class BooleanExpression extends Expression {
     this.operators = []
   }
 
-  compile(config) {
+  compile(config, context) {
     let joinedCode = this.code.join(' ')
     let remainingCode = {
       line: this.line,
@@ -70,7 +70,7 @@ export default class BooleanExpression extends Expression {
     }
 
     for (let expression of this.expressions) {
-      expression.compile(config)
+      expression.compile(config, context)
     }
   }
 

@@ -95,7 +95,7 @@ export default class Statement {
     this.code = this.code.concat(lines)
   }
 
-  compile(config) {
+  compile(config, context) {
     throw new Error('Needs subclass implementation')
   }
 

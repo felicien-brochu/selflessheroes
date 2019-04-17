@@ -27,8 +27,8 @@ export default class DirFunction extends ValueFunction {
     ]
   }
 
-  compile(config) {
-    super.compile(config)
+  compile(config, context) {
+    super.compile(config, context)
 
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(DirFunction.codeRegExp)
@@ -43,17 +43,17 @@ export default class DirFunction extends ValueFunction {
       throw new InvalidNumberOfParamsException('\'dir\' function requires exactly 1 direction parameter', this)
     }
     this.params = []
-    params.forEach((param, index) => this.compileParam(param, index, config))
+    params.forEach((param, index) => this.compileParam(param, index, config, context))
   }
 
-  compileParam(paramCode, index, config) {
+  compileParam(paramCode, index, config, context) {
     let param = createUnitExpression(paramCode.code, [DirectionLiteral], this, paramCode.line, paramCode.column)
     this.params.push(param)
 
     if (param.type === 'InvalidExpression') {
       throw new InvalidFunctionParamsException(`\'dir\' function requires exactly 1 direction parameter`, param)
     }
-    param.compile(config)
+    param.compile(config, context)
   }
 
   computeValue(context) {

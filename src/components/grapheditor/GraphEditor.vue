@@ -79,19 +79,17 @@ export default {
   mounted: function() {
     this.dragEvent = null
     this.dragOverChangeAnimationID = -1
+    if (this.worldReady) {
+      this.compileCode()
+    }
   },
 
   watch: {
     worldReady: function(worldReady) {
-      if (worldReady) {
-        this.$refs.palette.$el.style.left = "-115px"
+      if (worldReady && this.statements.length === 0 && this.code !== '') {
         this.compileCode()
       }
     },
-
-    code: function(code, oldCode) {
-      this.compileCode()
-    }
   },
 
   updated() {
@@ -164,6 +162,8 @@ export default {
 
       this.startDragEvent = null
       this.chosenPaletteStatement = null
+
+      this.decompile()
     },
 
     handleNodeChange(e) {
@@ -171,9 +171,18 @@ export default {
         this.$refs.jumpLinkLayer.updateLinkPaths()
       })
 
+      this.decompile()
+    },
+
+    decompile() {
       let decompiler = new Decompiler(this.statements, this.compilerConfig)
       decompiler.decompile()
       console.log("###DECOMPILE", decompiler.exception, decompiler.executable, decompiler.code)
+      if (decompiler.exception) {
+        throw decompiler.exception
+      }
+
+      this.$emit('code-change', decompiler.code)
     }
   }
 }
@@ -218,14 +227,26 @@ export default {
         height: 100%;
 
         .palette {
+            @keyframes slide-out {
+                from {
+                    left: 0;
+                }
+
+                to {
+                    left: -115px;
+                }
+            }
+            animation-duration: 0.8s;
+            animation-name: slide-out;
+
             z-index: -1;
             position: absolute;
-            left: 0;
+            left: -115px;
             top: 0;
             margin: 40px 0 0;
 
-            transition-property: left;
-            transition-duration: 0.8s;
+            // transition-property: left;
+            // transition-duration: 0.8s;
         }
 
         .graph-scroll {

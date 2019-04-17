@@ -5,15 +5,15 @@ import {
 
 export default class EndIfStatement extends PrimaryStatement {
 
-  constructor(parent, line, column = 0) {
-    super('EndIfStatement', parent, line, column)
+  constructor(line, column) {
+    super('EndIfStatement', line, column)
   }
 
   isCodeComplete() {
     return this.code.length >= 1
   }
 
-  compile(config) {
+  compile(config, context) {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(EndIfStatement.codeRegExp)
     if (!res) {

@@ -16,7 +16,7 @@ export default class DirectionLiteral extends Expression {
     this.value = null
   }
 
-  compile(config) {
+  compile(config, context) {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(DirectionLiteral.codeRegExp)
     if (!res) {

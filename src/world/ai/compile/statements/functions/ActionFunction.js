@@ -18,7 +18,7 @@ class ActionFunction extends PrimaryStatement {
     return this.code.length >= 1
   }
 
-  compile(config) {
+  compile(config, context) {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(ActionFunction.codeRegExp)
     if (!res) {

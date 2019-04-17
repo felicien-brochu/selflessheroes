@@ -1,8 +1,8 @@
 import Statement from './Statement'
 
 export default class PrimaryStatement extends Statement {
-  constructor(type, parent, line, column = 0) {
-    super(type, parent, line, column)
+  constructor(type, line, column) {
+    super(type, null, line, column)
   }
 
   static get startLineRegExp() {

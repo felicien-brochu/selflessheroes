@@ -11,15 +11,11 @@
     <div v-else-if="isInteger"
       class="label"
       @mousedown="handleEditInteger"
-      @touchstart="handleEditInteger">
-      {{label}}
-    </div>
+      @touchstart="handleEditInteger">{{label}}</div>
     <div v-else
       class="label"
       @mousedown="handleDropDown"
-      @touchstart="handleDropDown">
-      {{label}}
-    </div>
+      @touchstart="handleDropDown">{{label}}</div>
   </div>
   <div v-if="hasDropDown"
     class="button-icon"

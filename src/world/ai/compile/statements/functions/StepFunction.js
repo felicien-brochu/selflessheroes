@@ -29,8 +29,8 @@ export default class StepFunction extends ActionFunction {
     ]
   }
 
-  compile(config) {
-    super.compile(config)
+  compile(config, context) {
+    super.compile(config, context)
 
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(StepFunction.codeRegExp)
@@ -46,10 +46,10 @@ export default class StepFunction extends ActionFunction {
     }
 
     this.params = []
-    params.forEach((param, index) => this.compileParam(param, index, config))
+    params.forEach((param, index) => this.compileParam(param, index, config, context))
   }
 
-  compileParam(paramCode, index, config) {
+  compileParam(paramCode, index, config, context) {
     let param = createUnitExpression(paramCode.code, [DirectionLiteral], this, paramCode.line, paramCode.column)
     this.params.push(param)
 
@@ -57,7 +57,7 @@ export default class StepFunction extends ActionFunction {
       throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid direction literal`, param)
     }
 
-    param.compile(config)
+    param.compile(config, context)
 
     if (this.params.some((p, index) => index < this.params.length - 1 && p.name === param.name)) {
       throw new InvalidFunctionParamsException(`you cannot pass the same parameter twice`, param)

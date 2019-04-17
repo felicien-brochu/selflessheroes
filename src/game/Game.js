@@ -167,7 +167,7 @@ export default class extends Phaser.Scene {
     if ((!!this.aiFactory && !oldAIFactory) || (!this.aiFactory && !!oldAIFactory)) {
       this.emitAiStateChange()
     }
-    return compiler.exception
+    return compiler.exceptions
   }
 
   play() {

@@ -1,27 +1,34 @@
 <template>
 <div id="editor-container">
   <div id="editors">
-    <code-mirror class="code-editor"
-      :value="code"
-      :worldReady="worldReady"
-      :compilerException="compilerException"
-      :disabled="playing"
-      @change="$emit('change', $event)" />
-    <graph-editor id="graph-editor"
-      :code="code"
-      :compilerConfig="compilerConfig"
-      :worldReady="worldReady" />
-    <div class="editor-readonly-overlay"
-      :style="{ display: playing ? 'initial' : 'none'}"></div>
+    <template v-if="this.worldReady">
+      <code-mirror v-if="editorType === 'code'"
+        class="code-editor"
+        :code="code"
+        :worldReady="worldReady"
+        :compilerExceptions="compilerExceptions"
+        :disabled="playing"
+        @change="$emit('change', $event)" />
+      <graph-editor v-else-if="editorType === 'graph'"
+        id="graph-editor"
+        :code="code"
+        :compilerConfig="compilerConfig"
+        :worldReady="worldReady"
+        @code-change="handleGraphCodeChange" />
+      <div class="editor-readonly-overlay"
+        :style="{ display: playing ? 'initial' : 'none'}"></div>
+    </template>
   </div>
   <run-bar id="run-bar"
     :worldReady="worldReady"
     :aiReady="aiReady"
     :worldState="worldState"
+    :editorType="editorType"
     @play-pause="$emit('play-pause', $event)"
     @speed-change="$emit('speed-change', $event)"
     @step="$emit('step')"
-    @stop="$emit('stop')" />
+    @stop="$emit('stop')"
+    @switch-editor="handleSwitchEditor" />
 </div>
 </template>
 
@@ -64,17 +71,15 @@ export default {
       type: Boolean,
       default: false
     },
-    'compilerException': {
-      type: Error,
+    'compilerExceptions': {
+      type: Object,
       default: null
     }
   },
-  model: {
-    prop: 'code',
-    event: 'change'
-  },
   data: function() {
-    return {}
+    return {
+      editorType: 'graph'
+    }
   },
   computed: {
     playing: function() {
@@ -83,6 +88,15 @@ export default {
   },
   mounted: () => {
     resizeCodeMirror()
+  },
+  methods: {
+    handleGraphCodeChange(code) {
+      this.$emit('change', code)
+    },
+
+    handleSwitchEditor(editorType) {
+      this.editorType = editorType
+    }
   }
 }
 </script>
@@ -109,7 +123,6 @@ export default {
         }
 
         .code-editor {
-            display: none;
             z-index: 5;
             height: 100%;
             position: relative;
@@ -120,9 +133,7 @@ export default {
             }
         }
 
-        #graph-editor {
-            // display: none;
-        }
+        #graph-editor {}
     }
 
     #run-bar {

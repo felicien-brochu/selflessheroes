@@ -10,7 +10,7 @@ export default class IntegerLiteral extends Expression {
     this.value = 0
   }
 
-  compile(config) {
+  compile(config, context) {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(IntegerLiteral.codeRegExp)
     if (!res) {

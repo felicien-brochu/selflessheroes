@@ -47,7 +47,7 @@ export default class SimpleBooleanExpression extends Expression {
     this.operator = null
   }
 
-  compile(config) {
+  compile(config, context) {
     this.operator = null
     let joinedCode = this.code.join(' ')
 
@@ -66,8 +66,8 @@ export default class SimpleBooleanExpression extends Expression {
     this.leftExpression = createUnitExpression(codeSplit[0].code, config.leftComparisonExpressions, this, codeSplit[0].line, codeSplit[0].column)
     this.rightExpression = createUnitExpression(codeSplit[1].code, config.rightComparisonExpressions, this, codeSplit[1].line, codeSplit[1].column)
 
-    this.leftExpression.compile(config)
-    this.rightExpression.compile(config)
+    this.leftExpression.compile(config, context)
+    this.rightExpression.compile(config, context)
   }
 
   decompile(indent, line, column) {

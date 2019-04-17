@@ -19,7 +19,7 @@ class ValueFunction extends Expression {
     this.keyword = keyword
   }
 
-  compile(config) {
+  compile(config, context) {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(ValueFunction.codeRegExp)
     if (!res) {

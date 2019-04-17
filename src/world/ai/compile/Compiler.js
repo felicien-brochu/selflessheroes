@@ -16,18 +16,22 @@ export default class Compiler {
     this.config = config
     this.deleteEmptyStatements = deleteEmptyStatements
     this.statements = []
-    this.exception = null
+    this.exceptions = {
+      fatal: [],
+      undefinedLiterals: []
+    }
+    this.context = {
+      undefinedLiterals: []
+    }
   }
 
   compile() {
     // console.log("COMPILE CODE: \n", this.code)
     // console.log("With config: \n", this.config)
-    try {
-      this.compileStatements()
-      this.compileStatementLinks()
-    } catch (exception) {
-      console.error(exception)
-      this.exception = exception
+    this.compileStatements()
+    this.compileStatementLinks()
+
+    if (this.exceptions.fatal.length > 0) {
       return null
     }
 
@@ -43,7 +47,7 @@ export default class Compiler {
       if (!currentStatement) {
         for (let statementClass of this.config.getPrimaryStatements()) {
           if (statementClass.matchLine(lines[i])) {
-            currentStatement = new statementClass(null, i, 0)
+            currentStatement = new statementClass(i, 0)
             break
           }
         }
@@ -54,9 +58,14 @@ export default class Compiler {
       }
 
       currentStatement.pushLine(line)
-      console.log(currentStatement)
       if (currentStatement.isCodeComplete()) {
-        currentStatement.compile(this.config)
+        try {
+          currentStatement.compile(this.config, this.context)
+        } catch (exception) {
+          console.error(exception)
+          this.exceptions.fatal.push(exception)
+        }
+
         if (!this.deleteEmptyStatements || currentStatement.type !== 'EmptyStatement') {
           this.statements.push(currentStatement)
         }
@@ -70,9 +79,26 @@ export default class Compiler {
   }
 
   compileStatementLinks() {
-    this.compileIfLinks()
-    this.checkAnchorsUniqueness()
-    this.compileJumpLinks()
+    try {
+      this.compileIfLinks()
+    } catch (exception) {
+      console.error(exception)
+      this.exceptions.fatal.push(exception)
+    }
+
+    try {
+      this.checkAnchorsUniqueness()
+    } catch (exception) {
+      console.error(exception)
+      this.exceptions.fatal.push(exception)
+    }
+
+    try {
+      this.compileJumpLinks()
+    } catch (exception) {
+      console.error(exception)
+      this.exceptions.fatal.push(exception)
+    }
   }
 
   compileIfLinks() {

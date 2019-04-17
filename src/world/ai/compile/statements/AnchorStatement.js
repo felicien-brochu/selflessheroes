@@ -9,8 +9,8 @@ import {
 
 export default class AnchorStatement extends PrimaryStatement {
 
-  constructor(parent, line, column = 0) {
-    super('AnchorStatement', parent, line, column)
+  constructor(line, column) {
+    super('AnchorStatement', line, column)
     this.name = null
   }
 
@@ -18,7 +18,7 @@ export default class AnchorStatement extends PrimaryStatement {
     return this.code.length >= 1
   }
 
-  compile(config) {
+  compile(config, context) {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(AnchorStatement.codeRegExp)
     if (!res) {

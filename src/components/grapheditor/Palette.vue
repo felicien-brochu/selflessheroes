@@ -43,6 +43,7 @@ export default {
   components: {
     PaletteStatement
   },
+
   props: {
     'compilerConfig': {
       type: Object,
@@ -53,33 +54,30 @@ export default {
       default: null
     }
   },
+
   data: function() {
     return {
       statementClasses: []
     }
   },
-  mounted: function() {},
-  watch: {
-    compilerConfig: function(config, oldConfig) {
-      if (!config) {
-        return
-      }
 
-      let primaryStatements = [...config.getPrimaryStatements(), ...config.valueFunctions]
-      this.statementClasses = primaryStatements.filter(statementClass => paletteStatements.indexOf(statementClass) >= 0)
-    }
-  },
   computed: {
     statements: function() {
-      let statements = this.statementClasses.map(statementClass => {
+      if (!this.compilerConfig) {
+        return []
+      }
+
+      let primaryStatements = [...this.compilerConfig.getPrimaryStatements(), ...this.compilerConfig.valueFunctions]
+      let statementClasses = primaryStatements.filter(statementClass => paletteStatements.indexOf(statementClass) >= 0)
+      let statements = statementClasses.map(statementClass => {
         return {
           keyword: (new statementClass()).keyword,
           clazz: statementClass
         }
       })
-      let assign = this.statementClasses.filter(statementClass => assignFunctions.indexOf(statementClass) >= 0)
-      let actions = this.statementClasses.filter(statementClass => actionFunctions.indexOf(statementClass) >= 0)
-      let branching = this.statementClasses.filter(statementClass => branchingStatements.indexOf(statementClass) >= 0)
+      let assign = statementClasses.filter(statementClass => assignFunctions.indexOf(statementClass) >= 0)
+      let actions = statementClasses.filter(statementClass => actionFunctions.indexOf(statementClass) >= 0)
+      let branching = statementClasses.filter(statementClass => branchingStatements.indexOf(statementClass) >= 0)
       assign = assign.map(statementClass => {
         return {
           statementType: assignStatementType,
@@ -109,6 +107,7 @@ export default {
       ]
     }
   },
+
   methods: {
     handleDragStart(event) {
       this.$emit('drag-start', event)

@@ -12,7 +12,7 @@ import './aiworldmode'
 
 export default {
   props: {
-    value: {
+    code: {
       type: String,
       default: ''
     },
@@ -23,7 +23,12 @@ export default {
           mode: 'aiworld',
           lineNumbers: true,
           theme: 'one-dark',
-          viewportMargin: Infinity
+          viewportMargin: Infinity,
+
+          indentUnit: 2,
+          indentWithTabs: true,
+          smartIndent: true,
+          tabSize: 2
         }
       }
     },
@@ -35,9 +40,8 @@ export default {
       type: Boolean,
       default: false
     },
-    compilerException: {
-      type: Error,
-      default: null
+    compilerExceptions: {
+      type: Object
     }
   },
   data: function() {
@@ -45,10 +49,15 @@ export default {
       skipNextChangeEvent: false
     }
   },
+
+  beforeCreate: function() {
+    this.exceptionMarkers = []
+  },
+
   mounted: function() {
     var _this = this
     this.editor = CodeMirror.fromTextArea(this.$el.querySelector('textarea'), this.options)
-    this.editor.setValue(this.value)
+    this.editor.setValue(this.code)
     this.editor.on('change', function(cm) {
       if (_this.skipNextChangeEvent) {
         _this.skipNextChangeEvent = false
@@ -60,8 +69,15 @@ export default {
       }
     })
   },
+
+  beforeDestroy: function() {
+    if (this.editor) {
+      this.editor.toTextArea()
+    }
+  },
+
   watch: {
-    value: function(newVal, oldVal) {
+    code: function(newVal, oldVal) {
       var editorValue = this.editor.getValue()
       if (newVal !== editorValue) {
         this.skipNextChangeEvent = true
@@ -86,45 +102,41 @@ export default {
       // Refresh when ready after fonts lazy-loading
       this.editor.refresh()
     },
-    compilerException: function(newException, oldException) {
+    compilerExceptions: function() {
       if (this.errorTimeout >= 0) {
         clearTimeout(this.errorTimeout)
         this.errorTimeout = -1
       }
 
-      if (this.exceptionMarker) {
-        this.exceptionMarker.clear()
-      }
-      if (newException) {
+      this.clearExceptionMarkers()
+      if (this.compilerExceptions.fatal.length > 0) {
         this.errorTimeout = setTimeout(() => {
-          if (this.exceptionMarker) {
-            this.exceptionMarker.clear()
-          }
-          if (this.compilerException) {
+          this.clearExceptionMarkers()
+
+          for (let newException of this.compilerExceptions.fatal) {
             let boundaries = newException.statement.getTrimedCodeBoundaries()
             // console.log("####BOUND;", boundaries, `'${newException.statement.code.join('')}'`, newException.statement)
-            this.exceptionMarker = this.editor.markText({
+
+            this.exceptionMarkers.push(this.editor.markText({
               line: boundaries.start.line,
               ch: boundaries.start.column
             }, {
               line: boundaries.end.line,
               ch: boundaries.end.column + 1
             }, {
-              className: 'compiler-exception'
-            })
+              className: 'cm-compiler-exception'
+            }))
           }
         }, 3000)
       }
-      else {
-        if (this.exceptionMarker) {
-          this.exceptionMarker.clear()
-        }
-      }
     }
   },
-  beforeDestroy: function() {
-    if (this.editor) {
-      this.editor.toTextArea()
+
+  methods: {
+    clearExceptionMarkers() {
+      while (this.exceptionMarkers.length > 0) {
+        this.exceptionMarkers.pop().clear()
+      }
     }
   }
 }
@@ -144,10 +156,14 @@ export default {
     padding-left: 12px;
 }
 
-.compiler-exception {
-    text-decoration: underline;
-    text-decoration-style: double;
-    text-decoration-color: rgb(159, 49, 49);
+.cm-s-one-dark .cm-undefined-literal {
+    border-bottom: 2px #4f5e7b solid;
+    text-decoration-color: #4f5e7b;
+    color: #d19a66;
+}
+
+.cm-s-one-dark .cm-compiler-exception {
+    border-bottom: 2px #9f3131 solid;
 }
 
 /*
@@ -160,7 +176,8 @@ export default {
 .cm-s-one-dark {
     font-family: Consolas, 'DejaVu Sans Mono', monospace;
     font-weight: 250;
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 26px;
     color: #abb2bf;
     background-color: #282c34;
 }
@@ -287,7 +304,6 @@ export default {
     color: #e5c07b;
 }
 
-/* original:  #d19a66; */
 .cm-s-one-dark .cm-atom {
     color: #d19a66;
 }
@@ -321,7 +337,6 @@ export default {
     color: #56b6c2;
 }
 
-/* original: #abb2bf */
 .cm-s-one-dark .cm-meta {
     color: #abb2bf;
 }

@@ -14,17 +14,22 @@
     :disabled="!worldStarted" />
 
   <speed-range @change="$emit('speed-change', $event)" />
+
+  <switch-editor-button :editorType="editorType"
+    @switch-editor="$emit('switch-editor', $event)" />
 </div>
 </template>
 
 <script>
 import SpeedRange from './SpeedRange'
 import PlayPauseButton from './PlayPauseButton'
+import SwitchEditorButton from './SwitchEditorButton'
 
 export default {
   components: {
     SpeedRange,
-    PlayPauseButton
+    PlayPauseButton,
+    SwitchEditorButton
   },
   props: {
     'worldState': {
@@ -38,6 +43,10 @@ export default {
     'aiReady': {
       type: Boolean,
       default: false
+    },
+    'editorType': {
+      type: String,
+      validator: type => ['graph', 'code'].includes(type)
     }
   },
   data: function() {

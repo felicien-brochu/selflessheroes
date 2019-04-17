@@ -16,7 +16,7 @@ export default class TerrainTypeLiteral extends Expression {
     this.value = null
   }
 
-  compile(config) {
+  compile(config, context) {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(TerrainTypeLiteral.codeRegExp)
     if (!res) {

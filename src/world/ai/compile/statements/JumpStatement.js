@@ -8,8 +8,8 @@ import {
 
 export default class JumpStatement extends PrimaryStatement {
 
-  constructor(parent, line, column = 0) {
-    super('JumpStatement', parent, line, column)
+  constructor(line, column) {
+    super('JumpStatement', line, column)
     this.keyword = 'jump'
     this.anchor = null
     this.anchorStatement = null
@@ -23,7 +23,7 @@ export default class JumpStatement extends PrimaryStatement {
     this.anchorStatement = anchorStatement
   }
 
-  compile(config) {
+  compile(config, context) {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(JumpStatement.codeRegExp)
     if (!res) {
@@ -40,7 +40,7 @@ export default class JumpStatement extends PrimaryStatement {
       throw new NotDecompilableStatementException('this jump statement has no anchor', this)
     }
 
-    this.code = [`jump ${this.anchor}:`]
+    this.code = [`jump ${this.anchor}`]
     this.indentCode(indent)
 
     return true

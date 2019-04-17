@@ -13,7 +13,7 @@ export default class VariableIdentifier extends Expression {
     this.name = null
   }
 
-  compile(config) {
+  compile(config, context) {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(VariableIdentifier.codeRegExp)
     if (!res) {

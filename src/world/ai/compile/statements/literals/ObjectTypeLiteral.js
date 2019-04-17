@@ -16,7 +16,7 @@ export default class ObjectTypeLiteral extends Expression {
     this.value = null
   }
 
-  compile(config) {
+  compile(config, context) {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(ObjectTypeLiteral.codeRegExp)
     if (!res) {

@@ -5,8 +5,8 @@ import {
 
 export default class ElseStatement extends PrimaryStatement {
 
-  constructor(parent, line, column = 0) {
-    super('ElseStatement', parent, line, column)
+  constructor(line, column) {
+    super('ElseStatement', line, column)
     this.keyword = 'else'
     this.endIfStatement = null
   }
@@ -19,7 +19,7 @@ export default class ElseStatement extends PrimaryStatement {
     this.endIfStatement = endIfStatement
   }
 
-  compile(config) {
+  compile(config, context) {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(ElseStatement.codeRegExp)
     if (!res) {

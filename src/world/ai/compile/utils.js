@@ -1,5 +1,6 @@
 import escapeStringRegexp from 'escape-string-regexp'
 import InvalidExpression from './statements/InvalidExpression'
+import UndefinedLiteral from './statements/literals/UndefinedLiteral'
 
 export function indexOfStringInLines(str, lines) {
   let joinedLines = lines.join(' ')
@@ -92,6 +93,9 @@ export function subCode(code, startLine, startColumn, endLine, endColumn) {
 }
 
 export function createUnitExpression(code, expressionClasses, parent, line, column) {
+  expressionClasses = expressionClasses.slice(0)
+  expressionClasses.push(UndefinedLiteral)
+
   let expression = null
   let joinedCode = code.join(' ')
   for (let expressionClass of expressionClasses) {

@@ -25,7 +25,7 @@
       :worldState="worldState"
       :worldReady="worldReady"
       :aiReady="aiReady"
-      :compilerException="compilerException"
+      :compilerExceptions="compilerExceptions"
       @change="handleCodeChange"
       @play-pause="handlePlayPause"
       @speed-change="handleSpeedChange"
@@ -49,14 +49,17 @@ export default {
   },
   data: function() {
     return {
-      code: 'b:\nstep(e)\na = dir(n)\n\nif b == 3 &&\n s > 3 ||\n n == wall:\n\tstep(e,w)\n\tstep(s)\n\tif n == wall:\n\t\tc:\n\t\tstep(sw)\n\tendif\nelse\n\ta = dir(sw)\n\tstep(n, s)\nendif\n\njump b\nstep(n)\nif n == wall:\n\t\tstep(nw)\n\tjump c\n\tendif\nstep(n)\nif n == s:\nendif\nstep(n)\nstep(n)\nstep(n)',
+      // code: 'b:\nstep(e)\na = dir(n)\n\nif b == 3 &&\n s > 3 ||\n n == wall:\n\tstep(e,w)\n\tstep(s)\n\tif n == wall:\n\t\tc:\n\t\tstep(sw)\n\tendif\nelse\n\ta = dir(sw)\n\tstep(n, s)\nendif\n\njump b\nstep(n)\nif n == wall:\n\t\tstep(nw)\n\tjump c\n\tendif\nstep(n)\nif n == s:\nendif\nstep(n)\nstep(n)\nstep(n)',
       // code: 'if s == s:\nelse\nif s == s:\nendif\nendif',
-      // code: '',
+      code: '',
       compilerConfig: null,
       worldState: {},
       worldReady: false,
       aiReady: false,
-      compilerException: null,
+      compilerExceptions: {
+        fatal: [],
+        undefinedLiterals: []
+      },
       editorWidth: 360
     }
   },
@@ -72,7 +75,8 @@ export default {
       this.handleEditorResize(this.editorWidth)
       this.tryCompiling()
     },
-    handleCodeChange() {
+    handleCodeChange(code) {
+      this.code = code
       if (!this.aiReady) {
         if (this.compilerTimeoutID >= 0) {
           clearTimeout(this.compilerTimeoutID)
@@ -114,7 +118,7 @@ export default {
     },
     tryCompiling() {
       if (this.gameScene) {
-        this.compilerException = this.gameScene.compileAI(this.code)
+        this.compilerExceptions = this.gameScene.compileAI(this.code)
       }
     }
   }
