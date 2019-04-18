@@ -89,6 +89,7 @@ export default {
       anchor,
       directions,
       multiple,
+      notHere,
       parentType
     }) {
       this.closePopup()
@@ -97,6 +98,7 @@ export default {
         propsData: {
           directions: directions,
           multiple: multiple,
+          notHere: notHere,
           anchor: anchor,
           frame: this.graphCode.$el,
           parentType: parentType

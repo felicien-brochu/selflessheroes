@@ -2,7 +2,7 @@
 <div :class="['popup', 'direction-popup', colorClass]">
   <ul class="direction-values">
     <li v-for="dir in directionNames"
-      :class="{'selected': selectedDirectionNames.includes(dir)}"
+      :class="{'selected': selectedDirectionNames.includes(dir), 'no-value': notHere && dir === 'here'}"
       @click="handleDirectionClick(dir)">
       <button class="tile" />
     </li>
@@ -24,6 +24,10 @@ export default {
     },
     'multiple': {
       type: Boolean
+    },
+    'notHere': {
+      type: Boolean,
+      default: false
     }
   },
   data: function() {
@@ -59,6 +63,9 @@ export default {
     },
 
     handleDirectionClick(dirName) {
+      if (this.notHere && dirName === 'here') {
+        return
+      }
       if (!this.selectedDirections.some(direction => direction.name === dirName)) {
         let directionLiteral = new DirectionLiteral(null)
         directionLiteral.value = Direction[dirName]
@@ -102,6 +109,10 @@ export default {
             align-items: center;
             height: 30px;
             width: 30px;
+
+            &.no-value .tile {
+                background: none !important;
+            }
 
             &:nth-child(3n) {
                 width: 31px;

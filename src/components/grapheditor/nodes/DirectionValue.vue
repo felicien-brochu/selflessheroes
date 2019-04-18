@@ -6,7 +6,7 @@
   <li :class="{'selected': directionNames.includes('n')}" />
   <li :class="{'selected': directionNames.includes('ne')}" />
   <li :class="{'selected': directionNames.includes('w')}" />
-  <li :class="{'selected': directionNames.includes('here')}" />
+  <li :class="{'selected': directionNames.includes('here'), 'no-value': notHere}" />
   <li :class="{'selected': directionNames.includes('e')}" />
   <li :class="{'selected': directionNames.includes('sw')}" />
   <li :class="{'selected': directionNames.includes('s')}" />
@@ -22,6 +22,10 @@ export default {
     'value': {
       type: [Array, Object],
       default: () => []
+    },
+    'notHere': {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -70,6 +74,11 @@ export default {
 
         &.selected {
             background: transparentize(white, 0.4);
+        }
+
+        &.no-value,
+        &.no-value.selected {
+            background: none;
         }
     }
 }

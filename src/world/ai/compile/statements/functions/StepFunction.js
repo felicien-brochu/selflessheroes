@@ -24,7 +24,8 @@ export default class StepFunction extends ActionFunction {
     return [
       [{
         type: DirectionLiteral,
-        multiple: true
+        multiple: true,
+        notHere: true
       }]
     ]
   }

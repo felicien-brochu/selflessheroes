@@ -7,6 +7,7 @@
   <div class="label-container">
     <direction-value v-if="isDirection"
       :value="value"
+      :notHere="directionNotHere"
       @click="handleEditPosition" />
     <div v-else-if="isInteger"
       class="label"
@@ -86,6 +87,18 @@ export default {
       return this.value instanceof DirectionLiteral ||
         (Array.isArray(this.value) && this.value.length >= 1 && this.value[0] instanceof DirectionLiteral) ||
         (this.types.length === 1 && this.types[0].type === DirectionLiteral)
+    },
+    directionNotHere: function() {
+      return (this.value instanceof DirectionLiteral &&
+          this.types.some(type => type.type === DirectionLiteral &&
+            type.notHere)) ||
+        (Array.isArray(this.value) &&
+          this.value.length >= 1 &&
+          this.value[0] instanceof DirectionLiteral &&
+          this.types.some(type => type.type === DirectionLiteral && type.notHere)) ||
+        (this.types.length === 1 &&
+          this.types[0].type === DirectionLiteral &&
+          this.types[0].notHere)
     },
     isInteger: function() {
       return this.value instanceof IntegerLiteral
@@ -172,6 +185,7 @@ export default {
         anchor: this.$el,
         directions: directions,
         multiple: directionType.multiple,
+        notHere: directionType.notHere,
         parentType: this.parentType
       })
       directionPopup.$on('select-value', this.handleSelectDirection)

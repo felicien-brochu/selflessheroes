@@ -13,7 +13,7 @@
 
   <button class="delete-code-button"
     :disabled="code.length === 0"
-    @click="handleRemoveCodeClick">Remove Code</button>
+    @click="handleRemoveCodeClick">Clear</button>
 
   <switch-editor-button :editorType="editorType"
     @switch-editor="$emit('switch-editor', $event)" />
