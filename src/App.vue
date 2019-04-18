@@ -1,5 +1,6 @@
 <template>
-<div id="app">
+<div id="app"
+  v-hotkey="keymap">
 
   <world @world-state-change="worldState = $event"
     @ai-state-change="aiReady = $event"
@@ -44,6 +45,7 @@ import World from './components/World'
 import Editor from './components/Editor'
 import RunBar from './components/runbar/RunBar'
 import ResizeSplitPane from './components/rspane/ResizeSplitPane'
+import CodeHistory from './game/CodeHistory'
 
 export default {
   components: {
@@ -53,10 +55,11 @@ export default {
     ResizeSplitPane
   },
   data: function() {
+
     return {
       // code: 'b:\nstep(e)\na = dir(n)\n\nif b == 3 &&\n s > 3 ||\n n == wall:\n\tstep(e,w)\n\tstep(s)\n\tif n == wall:\n\t\tc:\n\t\tstep(sw)\n\tendif\nelse\n\ta = dir(sw)\n\tstep(n, s)\nendif\n\njump b\nstep(n)\nif n == wall:\n\t\tstep(nw)\n\tjump c\n\tendif\nstep(n)\nif n == s:\nendif\nstep(n)\nstep(n)\nstep(n)',
       // code: 'if s == s:\nelse\nif s == s:\nendif\nendif',
-      code: '',
+      code: this.codeHistory.getCode(),
       compilerConfig: null,
       worldState: {},
       worldReady: false,
@@ -69,11 +72,19 @@ export default {
     }
   },
   beforeCreate: function() {
+    this.codeHistory = CodeHistory.loadOrCreate('codeHistory')
     this.compilerTimeoutID = -1
   },
   computed: {
     playing: function() {
       return !this.worldReady || this.worldState.steps > 0
+    },
+    keymap: function() {
+      return {
+        'ctrl+z': this.undo,
+        'ctrl+y': this.redo,
+        'ctrl+shift+z': this.redo
+      }
     }
   },
   methods: {
@@ -85,7 +96,23 @@ export default {
       this.handleEditorResize(this.editorWidth)
       this.tryCompiling()
     },
+
+    undo() {
+      console.log("###UNDO")
+      if (this.codeHistory.canUndo()) {
+        this.code = this.codeHistory.undo()
+      }
+    },
+
+    redo() {
+      console.log("###REDO")
+      if (this.codeHistory.canRedo()) {
+        this.code = this.codeHistory.redo()
+      }
+    },
+
     handleCodeChange(code) {
+      this.codeHistory.push(code)
       this.code = code
       if (!this.aiReady) {
         if (this.compilerTimeoutID >= 0) {
@@ -97,35 +124,42 @@ export default {
         this.tryCompiling()
       }
     },
+
     handleEditorResize(editorWidth) {
       if (this.gameScene) {
         this.gameScene.handleEditorResize(editorWidth)
       }
     },
+
     handlePlayPause(play) {
       if (this.gameScene) {
         this.gameScene.handlePlayPause(play)
       }
     },
+
     handleSpeedChange(speed) {
       if (this.gameScene) {
         this.gameScene.handleSpeedChange(speed)
       }
     },
+
     handleStep() {
       if (this.gameScene) {
         this.gameScene.step()
       }
     },
+
     handleStop() {
       if (this.gameScene) {
         this.gameScene.stop()
       }
     },
+
     tryCompilingAsync() {
       this.compilerTimeoutID = -1
       this.tryCompiling()
     },
+
     tryCompiling() {
       if (this.gameScene) {
         this.compilerExceptions = this.gameScene.compileAI(this.code)

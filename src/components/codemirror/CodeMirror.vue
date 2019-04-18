@@ -28,7 +28,9 @@ export default {
           indentUnit: 2,
           indentWithTabs: true,
           smartIndent: true,
-          tabSize: 2
+          tabSize: 2,
+
+          historyEventDelay: 1000
         }
       }
     },
@@ -55,19 +57,12 @@ export default {
   },
 
   mounted: function() {
-    var _this = this
     this.editor = CodeMirror.fromTextArea(this.$el.querySelector('textarea'), this.options)
+    CodeMirror.commands.undo = function() {}
+    CodeMirror.commands.redo = function() {}
+
     this.editor.setValue(this.code)
-    this.editor.on('change', function(cm) {
-      if (_this.skipNextChangeEvent) {
-        _this.skipNextChangeEvent = false
-        return
-      }
-      if (!!_this.$emit) {
-        _this.$emit('change', cm.getValue())
-        _this.$emit('input', cm.getValue())
-      }
-    })
+    this.editor.on('changes', this.handleEditorChange)
   },
 
   beforeDestroy: function() {
@@ -103,6 +98,30 @@ export default {
       this.editor.refresh()
     },
     compilerExceptions: function() {
+      this.updateExceptionMarkers()
+    },
+  },
+
+  methods: {
+    clearExceptionMarkers() {
+      while (this.exceptionMarkers.length > 0) {
+        this.exceptionMarkers.pop().clear()
+      }
+    },
+
+    handleEditorChange(cm, change) {
+      console.log("###change", change)
+      if (this.skipNextChangeEvent) {
+        this.skipNextChangeEvent = false
+        return
+      }
+      if (!!this.$emit) {
+        this.$emit('change', cm.getValue())
+        this.$emit('input', cm.getValue())
+      }
+    },
+
+    updateExceptionMarkers() {
       if (this.errorTimeout >= 0) {
         clearTimeout(this.errorTimeout)
         this.errorTimeout = -1
@@ -115,7 +134,6 @@ export default {
 
           for (let newException of this.compilerExceptions.fatal) {
             let boundaries = newException.statement.getTrimedCodeBoundaries()
-            // console.log("####BOUND;", boundaries, `'${newException.statement.code.join('')}'`, newException.statement)
 
             this.exceptionMarkers.push(this.editor.markText({
               line: boundaries.start.line,
@@ -130,14 +148,7 @@ export default {
         }, 3000)
       }
     }
-  },
 
-  methods: {
-    clearExceptionMarkers() {
-      while (this.exceptionMarkers.length > 0) {
-        this.exceptionMarkers.pop().clear()
-      }
-    }
   }
 }
 </script>
@@ -148,7 +159,7 @@ export default {
 }
 
 .CodeMirror-lines {
-    padding-top: 30px;
+    padding-top: 12px;
     padding-bottom: 30px;
 }
 

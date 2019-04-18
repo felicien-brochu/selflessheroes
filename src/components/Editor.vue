@@ -8,7 +8,7 @@
         :worldReady="worldReady"
         :compilerExceptions="compilerExceptions"
         :disabled="playing"
-        @change="$emit('change', $event)" />
+        @change="$emit('code-change', $event)" />
       <graph-editor v-else-if="editorType === 'graph'"
         id="graph-editor"
         :code="code"
@@ -16,7 +16,7 @@
         :worldReady="worldReady"
         @code-change="handleGraphCodeChange" />
       <div class="editor-readonly-overlay"
-        :style="{ display: playing ? 'initial' : 'none'}"></div>
+        v-show="playing"></div>
     </template>
   </div>
 
@@ -37,7 +37,6 @@ import EditorBar from './editorbar/EditorBar'
 
 function resizeCodeMirror() {
   let height = window.innerHeight - 93
-  // document.getElementsByClassName("CodeMirror")[0].style.height = `${height}px`
   document.getElementById("editors").style.height = `${height}px`
 }
 window.addEventListener("resize", resizeCodeMirror)
