@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../constants';
+@import '../../constants';
 
 .direction-values {
     display: flex;

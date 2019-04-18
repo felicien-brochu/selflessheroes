@@ -221,7 +221,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'constants';
+@import '../constants';
 .node-container {
     @extend %node-list;
     padding-left: 20px;

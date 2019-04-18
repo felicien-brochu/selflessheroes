@@ -188,6 +188,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import './components/constants';
+
 body,
 html {
     height: 100vh;
@@ -202,6 +204,7 @@ html {
 }
 
 #app {
+    @include no-select;
     margin: 0 auto;
     height: 100vh;
 

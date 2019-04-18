@@ -86,7 +86,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../constants';
+@import '../../constants';
 
 .direction-popup {
     border-radius: 5px;

@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../constants';
+@import '../../constants';
 
 .action-node {
     @include node-color($action-color);

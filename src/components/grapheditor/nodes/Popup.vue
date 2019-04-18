@@ -89,7 +89,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../constants';
+@import '../../constants';
 
 .popup {
     @include node-shadow;
