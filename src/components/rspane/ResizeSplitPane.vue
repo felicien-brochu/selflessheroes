@@ -1,16 +1,16 @@
 <template>
 <div class="pane-rs root"
   :class="classObject"
-  :style="paneStyle"
-  @mousemove="onMouseMove"
-  @touchmove="onTouchMove"
-  @mouseup="onMouseUp"
-  @touchend="onMouseUp">
+  :style="paneStyle">
+
   <pane-comp ref="pane1"
     :class="{column: splitTo === 'columns', row: splitTo === 'rows'}"
     :style="iStyleFirst">
+
     <slot name='firstPane'></slot>
+
   </pane-comp>
+
   <resizer-comp v-if="allowResize"
     @mousedown.native="onMouseDown"
     @touchstart.native="onTouchStart"
@@ -22,11 +22,15 @@
     :class="{
           rowsres: splitTo === 'rows',
           columnsres: splitTo === 'columns'}"></resizer-comp>
+
   <pane-comp ref="pane2"
     :class="{column: splitTo === 'columns', row: splitTo === 'rows'}"
     :style="iStyleSecond">
+
     <slot name='secondPane'></slot>
+
   </pane-comp>
+
 </div>
 </template>
 
@@ -41,11 +45,8 @@ function unFocus(document, window) {
   else {
     try {
       window.getSelection().removeAllRanges()
-      // eslint-disable-next-line no-empty
     }
-    catch (e) {
-      // console.log(e)
-    }
+    catch (e) {}
   }
 }
 
@@ -102,9 +103,24 @@ export default {
     }, // any css color - #FFF, rgb(0,0,0), rgba(0,0,0,0)
     resizerBorderThickness: {
       type: Number,
-      default: 3
+      default: 12
     }, // in px - border that forms the shadow
   },
+
+  mounted() {
+    window.addEventListener('mousemove', this.onMouseMove)
+    window.addEventListener('touchmove', this.onTouchMove)
+    window.addEventListener('mouseup', this.onMouseUp)
+    window.addEventListener('touchend', this.onMouseUp)
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('mousemove', this.onMouseMove)
+    window.removeEventListener('touchmove', this.onTouchMove)
+    window.removeEventListener('mouseup', this.onMouseUp)
+    window.removeEventListener('touchend', this.onMouseUp)
+  },
+
   data() {
     return {
       active: false,
@@ -112,12 +128,14 @@ export default {
       localSize: this.size,
     }
   },
+
   watch: {
     // whenever question changes, this function will run
     size: function(newSize, oldSize) {
       this.localSize = newSize
     },
   },
+
   computed: {
     classObject() {
       return {
@@ -172,6 +190,7 @@ export default {
       return style
     },
   },
+
   methods: {
     round2Fixed(value) {
       let val = +value
@@ -203,6 +222,7 @@ export default {
         if (typeof this.onDragStarted === 'function') {
           onDragStarted()
         }
+        this.$el.style.pointerEvents = "all"
         this.active = true
         this.position = position
       }
@@ -293,7 +313,6 @@ export default {
       }
     },
     onMouseUp() {
-      // console.log(this)
       const {
         allowResize,
         onDragFinished
@@ -314,6 +333,7 @@ export default {
         }
         this.$emit('update:size', this.localSize)
         this.active = false
+        this.$el.style.pointerEvents = null
       }
     },
   },
@@ -355,6 +375,5 @@ export default {
   position: absolute;
   outline: none;
   overflow: hidden;
-  user-select: text;
 }
 </style>

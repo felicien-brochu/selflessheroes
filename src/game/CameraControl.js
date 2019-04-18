@@ -170,7 +170,7 @@ export default class CameraControl extends Phaser.Cameras.Controls.FixedKeyContr
     }
 
     let zoomChanged = cam.zoom !== zoom
-    // cam.zoom = zoom
+
     if (zoomChanged) {
       cam.zoomTo(zoom, 100, Phaser.Math.Easing.Linear.Linear, false, (cam, progress) => {
         this.resizeBounds()

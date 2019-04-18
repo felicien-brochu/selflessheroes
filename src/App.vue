@@ -212,13 +212,20 @@ html {
 
     #rs-pane {
         z-index: 5;
+        pointer-events: none;
+
+        & > * {
+            pointer-events: all;
+        }
 
         .Pane:first-child {
+            pointer-events: none;
             .left-panel {
                 position: relative;
                 width: 100%;
                 height: 100%;
                 .run-bar {
+                    pointer-events: all;
                     z-index: 5;
                     position: absolute;
                     width: 308px;
