@@ -86,7 +86,7 @@ export default {
     },
 
     removeCode() {
-      this.$emit('code-change', '')
+      this.$emit('code-change', '', 'editor-bar')
     },
 
     switchEditor(editorType) {

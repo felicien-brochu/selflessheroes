@@ -5,7 +5,7 @@
 
   <button class="delete-code-button"
     :disabled="code.length === 0"
-    @click="$emit('remove-code')">Remove Code</button>
+    @click="handleRemoveCodeClick">Remove Code</button>
 
   <switch-editor-button :editorType="editorType"
     @switch-editor="$emit('switch-editor', $event)" />
@@ -73,7 +73,12 @@ export default {
     }
   },
 
-  methods: {}
+  methods: {
+    handleRemoveCodeClick(event) {
+      this.$emit('remove-code')
+      event.target.blur()
+    }
+  }
 }
 </script>
 
@@ -90,6 +95,7 @@ export default {
     .code-state {
         height: 16px;
         width: 16px;
+        margin: 0;
         border: none;
         background: none;
         border-radius: 8px;
@@ -98,7 +104,7 @@ export default {
         right: $margin;
         cursor: pointer;
 
-        transition-property: background-color, width, height, right;
+        transition-property: background-color, width, height, right, border-radius;
         transition-duration: 150ms;
 
         &.code-ok {
@@ -106,6 +112,7 @@ export default {
             width: 0;
             height: 0;
             right: $margin + 8px;
+            border-radius: 0;
         }
         &.code-not-runnable {
             background-color: #b46f37;

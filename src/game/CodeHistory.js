@@ -21,7 +21,6 @@ export default class CodeHistory {
   }
 
   load() {
-    console.log("###HISTORY load", this.activeRevision, this.revisions)
     let historyJson = window.localStorage.getItem(this.localStorageKey)
     if (historyJson === null) {
       return false
@@ -34,7 +33,6 @@ export default class CodeHistory {
   }
 
   save() {
-    console.log("###HISTORY save", this.activeRevision, this.revisions)
     let historyJson = JSON.stringify(this, (key, value) => {
       if (key === 'localStorageKey') {
         return undefined
@@ -58,8 +56,6 @@ export default class CodeHistory {
     if (save) {
       this.save()
     }
-
-    console.log("###HISTORY push", this.activeRevision, this.revisions)
   }
 
   undo(save = true) {

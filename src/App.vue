@@ -118,6 +118,7 @@ export default {
     },
 
     undo() {
+      console.log("###UNDO")
       if (this.codeHistory.canUndo()) {
         this.code = this.codeHistory.undo()
         this.debouncedCompileCode()
@@ -138,9 +139,11 @@ export default {
     handleCodeChange(code, source) {
       this.code = code
 
-      this.debouncedPushHistory()
-      if (source === 'graph') {
-        this.debouncedPushHistory.flush()
+      if (source === 'code-mirror') {
+        this.debouncedPushHistory()
+      }
+      else {
+        this.pushHistory()
       }
       this.debouncedCompileCode()
     },
