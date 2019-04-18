@@ -30,10 +30,13 @@
 
     <editor slot="secondPane"
       :code="code"
+      :codeHistory="codeHistory"
       :compilerConfig="compilerConfig"
       :worldReady="worldReady"
       :playing="playing"
       :compilerExceptions="compilerExceptions"
+      @undo="undo"
+      @redo="redo"
       @code-change="handleCodeChange" />
 
   </resize-split-pane>
@@ -57,10 +60,13 @@ export default {
   },
 
   data: function() {
+    let codeHistory = CodeHistory.loadOrCreate('codeHistory')
+
     return {
       // code: 'b:\nstep(e)\na = dir(n)\n\nif b == 3 &&\n s > 3 ||\n n == wall:\n\tstep(e,w)\n\tstep(s)\n\tif n == wall:\n\t\tc:\n\t\tstep(sw)\n\tendif\nelse\n\ta = dir(sw)\n\tstep(n, s)\nendif\n\njump b\nstep(n)\nif n == wall:\n\t\tstep(nw)\n\tjump c\n\tendif\nstep(n)\nif n == s:\nendif\nstep(n)\nstep(n)\nstep(n)',
       // code: 'if s == s:\nelse\nif s == s:\nendif\nendif',
-      code: this.codeHistory.getCode(),
+      code: codeHistory.getCode(),
+      codeHistory: codeHistory,
       compilerConfig: null,
       worldState: {},
       worldReady: false,
@@ -71,10 +77,6 @@ export default {
       },
       editorWidth: 360
     }
-  },
-
-  beforeCreate() {
-    this.codeHistory = CodeHistory.loadOrCreate('codeHistory')
   },
 
   created() {

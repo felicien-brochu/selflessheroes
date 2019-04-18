@@ -3,6 +3,14 @@
   <button :class="['code-state', codeState]"
     :title="codeStateToolTip" />
 
+  <button class="undo-button"
+    :disabled="!codeHistory.canUndo()"
+    @click="handleUndoClick">Undo</button>
+
+  <button class="redo-button"
+    :disabled="!codeHistory.canRedo()"
+    @click="handleRedoClick">Redo</button>
+
   <button class="delete-code-button"
     :disabled="code.length === 0"
     @click="handleRemoveCodeClick">Remove Code</button>
@@ -23,6 +31,9 @@ export default {
     'code': {
       type: String,
       default: ''
+    },
+    'codeHistory': {
+      type: Object
     },
     'worldState': {
       type: Object
@@ -76,6 +87,14 @@ export default {
   methods: {
     handleRemoveCodeClick(event) {
       this.$emit('remove-code')
+      event.target.blur()
+    },
+    handleUndoClick(event) {
+      this.$emit('undo')
+      event.target.blur()
+    },
+    handleRedoClick(event) {
+      this.$emit('redo')
       event.target.blur()
     }
   }

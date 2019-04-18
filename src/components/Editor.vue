@@ -23,7 +23,10 @@
   <editor-bar :worldReady="worldReady"
     :editorType="editorType"
     :code="code"
+    :codeHistory="codeHistory"
     :compilerExceptions="compilerExceptions"
+    @undo="$emit('undo')"
+    @redo="$emit('redo')"
     @remove-code="removeCode"
     @switch-editor="switchEditor" />
 </div>
@@ -52,9 +55,11 @@ export default {
       type: String,
       default: ''
     },
+    'codeHistory': {
+      type: Object
+    },
     'compilerConfig': {
-      type: Object,
-      default: null
+      type: Object
     },
     'worldReady': {
       type: Boolean,
