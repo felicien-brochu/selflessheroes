@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import _debounce from 'lodash.debounce'
 import World from './components/World'
 import Editor from './components/Editor'
 import RunBar from './components/runbar/RunBar'
@@ -54,8 +55,8 @@ export default {
     RunBar,
     ResizeSplitPane
   },
-  data: function() {
 
+  data: function() {
     return {
       // code: 'b:\nstep(e)\na = dir(n)\n\nif b == 3 &&\n s > 3 ||\n n == wall:\n\tstep(e,w)\n\tstep(s)\n\tif n == wall:\n\t\tc:\n\t\tstep(sw)\n\tendif\nelse\n\ta = dir(sw)\n\tstep(n, s)\nendif\n\njump b\nstep(n)\nif n == wall:\n\t\tstep(nw)\n\tjump c\n\tendif\nstep(n)\nif n == s:\nendif\nstep(n)\nstep(n)\nstep(n)',
       // code: 'if s == s:\nelse\nif s == s:\nendif\nendif',
@@ -71,14 +72,32 @@ export default {
       editorWidth: 360
     }
   },
-  beforeCreate: function() {
+
+  beforeCreate() {
     this.codeHistory = CodeHistory.loadOrCreate('codeHistory')
-    this.compilerTimeoutID = -1
   },
+
+  created() {
+    this.debouncedCompileCode = _debounce(this.compileCode, 250, {
+      leading: true,
+      trailing: true
+    })
+    this.debouncedPushHistory = _debounce(this.pushHistory, 1250, {
+      leading: false,
+      trailing: true
+    })
+  },
+
+  beforeDestroy() {
+    this.debouncedCompileCode.cancel()
+    this.debouncedPushHistory.flush()
+  },
+
   computed: {
     playing: function() {
       return !this.worldReady || this.worldState.steps > 0
     },
+
     keymap: function() {
       return {
         'ctrl+z': this.undo,
@@ -87,6 +106,7 @@ export default {
       }
     }
   },
+
   methods: {
     handleWorldReady(gameScene, worldState, compilerConfig) {
       this.gameScene = gameScene
@@ -94,35 +114,35 @@ export default {
       this.compilerConfig = compilerConfig
       this.worldReady = true
       this.handleEditorResize(this.editorWidth)
-      this.tryCompiling()
+      this.debouncedCompileCode()
     },
 
     undo() {
-      console.log("###UNDO")
       if (this.codeHistory.canUndo()) {
         this.code = this.codeHistory.undo()
+        this.debouncedCompileCode()
       }
     },
 
     redo() {
-      console.log("###REDO")
       if (this.codeHistory.canRedo()) {
         this.code = this.codeHistory.redo()
+        this.debouncedCompileCode()
       }
     },
 
-    handleCodeChange(code) {
-      this.codeHistory.push(code)
+    pushHistory() {
+      this.codeHistory.push(this.code)
+    },
+
+    handleCodeChange(code, source) {
       this.code = code
-      if (!this.aiReady) {
-        if (this.compilerTimeoutID >= 0) {
-          clearTimeout(this.compilerTimeoutID)
-        }
-        this.compilerTimeoutID = setTimeout(this.tryCompilingAsync, 250)
+
+      this.debouncedPushHistory()
+      if (source === 'graph') {
+        this.debouncedPushHistory.flush()
       }
-      else {
-        this.tryCompiling()
-      }
+      this.debouncedCompileCode()
     },
 
     handleEditorResize(editorWidth) {
@@ -155,12 +175,7 @@ export default {
       }
     },
 
-    tryCompilingAsync() {
-      this.compilerTimeoutID = -1
-      this.tryCompiling()
-    },
-
-    tryCompiling() {
+    compileCode() {
       if (this.gameScene) {
         this.compilerExceptions = this.gameScene.compileAI(this.code)
       }

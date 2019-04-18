@@ -8,6 +8,7 @@
 
 <script>
 import Vue from 'vue'
+import _throttle from 'lodash.throttle'
 import DropDownList from './DropDownList'
 import DirectionPopup from './DirectionPopup'
 import IntegerPopup from './IntegerPopup'
@@ -32,6 +33,13 @@ export default {
     }
   },
 
+  created() {
+    this.updatePopupPosition = _throttle(this.updatePopupPosition, 10, {
+      leading: true,
+      trailing: true
+    })
+  },
+
   mounted() {
     this.previousPopup = null
 
@@ -48,6 +56,8 @@ export default {
     window.removeEventListener('resize', this.updatePopupPosition)
     window.removeEventListener('mousedown', this.handleWindowClick)
     window.removeEventListener('touchstart', this.handleWindowClick)
+
+    this.updatePopupPosition.cancel()
   },
 
   methods: {

@@ -23,6 +23,7 @@
 
 <script>
 import Vue from 'vue'
+import _throttle from 'lodash.throttle'
 import NodeBuilder from './nodes/NodeBuilder'
 import AnchorStatement from '../../world/ai/compile/statements/AnchorStatement'
 import JumpStatement from '../../world/ai/compile/statements/JumpStatement'
@@ -37,6 +38,14 @@ export default {
       linkPaths: []
     }
   },
+
+  created() {
+    this.updateLinkPaths = _throttle(this.updateLinkPaths, 10, {
+      leading: true,
+      trailing: true
+    })
+  },
+
   mounted() {
     this.graphCode = this.$parent
     this.graphCode.$on('nodes-change', this.handleNodesChange)
@@ -46,12 +55,15 @@ export default {
     this.rsPane.$on('update:size', this.updateLinkPaths)
     window.addEventListener('resize', this.updateLinkPaths)
   },
+
   beforeDestroy() {
     this.graphCode.$off('nodes-change', this.handleNodesChange)
     this.graphCode.$off('scroll', this.updateLinkPaths)
     this.rsPane.$off('resize', this.updateLinkPaths)
     this.rsPane.$off('update:size', this.updateLinkPaths)
     window.removeEventListener('resize', this.updateLinkPaths)
+
+    this.updateLinkPaths.cancel()
   },
 
   watch: {

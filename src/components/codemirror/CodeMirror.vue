@@ -6,6 +6,7 @@
 
 <script>
 import Vue from 'vue'
+import _debounce from 'lodash.debounce'
 import 'codemirror/lib/codemirror.css'
 import CodeMirror from 'codemirror'
 import './aiworldmode'
@@ -28,9 +29,7 @@ export default {
           indentUnit: 2,
           indentWithTabs: true,
           smartIndent: true,
-          tabSize: 2,
-
-          historyEventDelay: 1000
+          tabSize: 2
         }
       }
     },
@@ -46,17 +45,25 @@ export default {
       type: Object
     }
   },
+
   data: function() {
     return {
       skipNextChangeEvent: false
     }
   },
 
-  beforeCreate: function() {
+  beforeCreate() {
     this.exceptionMarkers = []
   },
 
-  mounted: function() {
+  created() {
+    this.debouncedCreateExceptionMarkers = _debounce(this.createExceptionMarkers, 2500, {
+      leading: false,
+      trailing: true
+    })
+  },
+
+  mounted() {
     this.editor = CodeMirror.fromTextArea(this.$el.querySelector('textarea'), this.options)
     CodeMirror.commands.undo = function() {}
     CodeMirror.commands.redo = function() {}
@@ -65,7 +72,8 @@ export default {
     this.editor.on('changes', this.handleEditorChange)
   },
 
-  beforeDestroy: function() {
+  beforeDestroy() {
+    this.debouncedCreateExceptionMarkers.cancel()
     if (this.editor) {
       this.editor.toTextArea()
     }
@@ -122,30 +130,25 @@ export default {
     },
 
     updateExceptionMarkers() {
-      if (this.errorTimeout >= 0) {
-        clearTimeout(this.errorTimeout)
-        this.errorTimeout = -1
-      }
-
       this.clearExceptionMarkers()
-      if (this.compilerExceptions.fatal.length > 0) {
-        this.errorTimeout = setTimeout(() => {
-          this.clearExceptionMarkers()
+      this.debouncedCreateExceptionMarkers()
+    },
 
-          for (let newException of this.compilerExceptions.fatal) {
-            let boundaries = newException.statement.getTrimedCodeBoundaries()
+    createExceptionMarkers() {
+      this.clearExceptionMarkers()
 
-            this.exceptionMarkers.push(this.editor.markText({
-              line: boundaries.start.line,
-              ch: boundaries.start.column
-            }, {
-              line: boundaries.end.line,
-              ch: boundaries.end.column + 1
-            }, {
-              className: 'cm-compiler-exception'
-            }))
-          }
-        }, 3000)
+      for (let newException of this.compilerExceptions.fatal) {
+        let boundaries = newException.statement.getTrimedCodeBoundaries()
+
+        this.exceptionMarkers.push(this.editor.markText({
+          line: boundaries.start.line,
+          ch: boundaries.start.column
+        }, {
+          line: boundaries.end.line,
+          ch: boundaries.end.column + 1
+        }, {
+          className: 'cm-compiler-exception'
+        }))
       }
     }
 

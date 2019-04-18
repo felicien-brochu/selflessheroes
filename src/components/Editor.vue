@@ -8,7 +8,7 @@
         :worldReady="worldReady"
         :compilerExceptions="compilerExceptions"
         :disabled="playing"
-        @change="$emit('code-change', $event)" />
+        @change="handleCodeMirrorChange" />
       <graph-editor v-else-if="editorType === 'graph'"
         id="graph-editor"
         :code="code"
@@ -77,8 +77,12 @@ export default {
     resizeCodeMirror()
   },
   methods: {
+    handleCodeMirrorChange(code) {
+      this.$emit('code-change', code, 'code-mirror')
+    },
+
     handleGraphCodeChange(code) {
-      this.$emit('code-change', code)
+      this.$emit('code-change', code, 'graph')
     },
 
     removeCode() {
