@@ -3,6 +3,11 @@
   "version": "0.0.1",
   "description": "An AI sandbox game.",
   "author": "Félicien Brochu <felicien.brochu@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felicien-brochu/AIWorld.git"
+  },
+	"license": "Creative Commons - Attribution-NonCommercial 4.0 International",
   "main": "index.js",
   "scripts": {
     "start": "npm run serve:dev",
@@ -10,7 +15,6 @@
     "serve:dev": "cross-env NODE_ENV=development webpack --watch",
     "serve:production": "cross-env NODE_ENV=production webpack --watch"
   },
-  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
@@ -48,7 +52,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "phaser": "^3.16.0",
-    "phaser3-rex-plugins": "git+https://git@github.com/rexrainbow/phaser3-rex-notes.git",
+    "seedrandom": "^3.0.1",
     "v-hotkey": "^0.3.1",
     "vue": "^2.6.10",
     "vue-resize-split-pane": "^0.1.5",
