@@ -212,14 +212,8 @@ html {
 
     #rs-pane {
         z-index: 5;
-        pointer-events: none;
-
-        & > * {
-            pointer-events: all;
-        }
 
         .Pane:first-child {
-            pointer-events: none;
             .left-panel {
                 position: relative;
                 width: 100%;
@@ -233,7 +227,6 @@ html {
                     margin-right: auto;
                     left: 0;
                     right: 0;
-                    pointer-events: all;
                     box-shadow: 0 2px 8px 0 rgba(15, 17, 20, 0.7);
                 }
             }

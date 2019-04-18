@@ -121,7 +121,7 @@ export function extractParams(paramsJoinedCode, functionCode, line, column) {
     let codeSplit = [{}, {
       code: code,
       line: line + position[0].start.line,
-      column: line + position[0].start.line === 0 ? column + position[0].start.column : position[0].start.column
+      column: position[0].start.line === 0 ? column + position[0].start.column : position[0].start.column
     }]
 
     while (codeSplit[1].code.join(' ').includes(',')) {

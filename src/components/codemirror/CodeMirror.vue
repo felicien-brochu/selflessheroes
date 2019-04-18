@@ -70,6 +70,7 @@ export default {
 
     this.editor.setValue(this.code)
     this.editor.on('changes', this.handleEditorChange)
+    this.updateExceptionMarkers(false)
   },
 
   beforeDestroy() {
@@ -129,9 +130,14 @@ export default {
       }
     },
 
-    updateExceptionMarkers() {
+    updateExceptionMarkers(delayed = true) {
       this.clearExceptionMarkers()
-      this.debouncedCreateExceptionMarkers()
+      if (delayed) {
+        this.debouncedCreateExceptionMarkers()
+      }
+      else {
+        this.createExceptionMarkers()
+      }
     },
 
     createExceptionMarkers() {

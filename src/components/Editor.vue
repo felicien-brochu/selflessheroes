@@ -36,7 +36,7 @@
 <script>
 import CodeMirror from './codemirror/CodeMirror'
 import GraphEditor from './grapheditor/GraphEditor'
-import EditorBar from './editorbar/EditorBar'
+import EditorBar from './EditorBar'
 
 function resizeCodeMirror() {
   let height = window.innerHeight - 93
