@@ -22,7 +22,7 @@
       ref="nodeContainer">
     </ul>
 
-    <div v-if="elseDeployed"
+    <div v-show="elseDeployed"
       class="else-content">
       <div class="node branching-node else-node"
         ref="elseNode">
@@ -66,9 +66,7 @@ export default {
   props: {
     'statements': {
       type: Array,
-      default: () => [
-        []
-      ]
+      default: () => []
     },
     'compilerConfig': {
       type: Object
@@ -88,13 +86,11 @@ export default {
       []
     ]
 
-    for (let i = 0; i < this.statements.length; i++) {
-      this.populateNodeContainer(i)
-    }
+    this.populateNodeContainers()
   },
   computed: {
     elseDeployed: function() {
-      return this.statements.length >= 2 || this.draggedOver
+      return this.statement.elseStatement || this.draggedOver
     },
     conditions: function() {
       return this.statement.condition.expressions.map(
@@ -108,10 +104,8 @@ export default {
   },
   watch: {
     statements: function(statements) {
-      for (let i = 0; i < this.statements.length; i++) {
-        this.clearNodeContainer(i)
-        this.populateNodeContainer(i)
-      }
+      this.clearNodeContainers()
+      this.populateNodeContainers()
     }
   },
   methods: {
@@ -124,19 +118,35 @@ export default {
       return false
     },
 
+    clearNodeContainers() {
+      this.clearNodeContainer(this.$refs.nodeContainer)
+      this.clearNodeContainer(this.$refs.elseNodeContainer)
+    },
 
-    clearNodeContainer(index) {
-      let container = this.getNodeContainer(index)
+    clearContainer(container) {
       while (container.firstChild) {
         container.removeChild(container.firstChild)
       }
     },
 
-    populateNodeContainer(index) {
-      let nodeBuilder = new NodeBuilder(this.statements[index])
+    populateNodeContainers() {
+      let ifStatementsEnd = this.statement.elseStatement ?
+        this.statements.indexOf(this.statement.elseStatement) :
+        this.statements.indexOf(this.statement.endIfStatement)
+
+      let ifStatements = this.statements.slice(0, ifStatementsEnd)
+      this.populateNodeContainer(this.$refs.nodeContainer, ifStatements, 0)
+
+      if (this.statement.elseStatement) {
+        let elseStatements = this.statements.slice(ifStatementsEnd + 1, this.statements.indexOf(this.statement.endIfStatement))
+        this.populateNodeContainer(this.$refs.elseNodeContainer, elseStatements, 1)
+      }
+    },
+
+    populateNodeContainer(container, statements, index) {
+      let nodeBuilder = new NodeBuilder(statements)
       let nodes = nodeBuilder.build(this.compilerConfig)
       this.nodes[index] = nodes
-      let container = this.getNodeContainer(index)
       for (let node of nodes) {
         container.appendChild(node.$el)
         node.$parent = this
@@ -145,17 +155,6 @@ export default {
         node.$on('change', this.handleNodeChange)
       }
     },
-
-    getNodeContainer(index) {
-      if (index === 0) {
-        return this.$refs.nodeContainer
-      }
-      else if (index === 1) {
-        return this.$refs.elseNodeContainer
-      }
-      return null
-    },
-
 
     getDragNodes() {
       let nodes = []

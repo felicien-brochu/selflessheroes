@@ -35,7 +35,6 @@ export default class NodeBuilder {
     let containerStatements
     let containerStack = []
     let containerClass = null
-    let subContainerIndex = 0
 
     for (let statement of this.statements) {
       let nodeClass = null
@@ -64,7 +63,6 @@ export default class NodeBuilder {
             containerStatements = [
               []
             ]
-            subContainerIndex = 0
             containerClass = nodeClass
             containerStack.push(statement)
           } else {
@@ -80,11 +78,7 @@ export default class NodeBuilder {
         }
       } else {
         let isContainerEnd = false
-        let isContainerDivider = false
 
-        if (statement instanceof ElseStatement) {
-          isContainerDivider = true
-        } else
         if (statement instanceof EndIfStatement) {
           isContainerEnd = true
         } else
@@ -93,19 +87,14 @@ export default class NodeBuilder {
           nodeClass = Vue.extend(IfNode)
         }
 
-        if (containerStack.length === 1 && isContainerDivider) {
-          subContainerIndex++
-          containerStatements.push([])
-        }
-
         let containerStatement = null
         if (isContainerEnd) {
           containerStatement = containerStack.pop()
         }
 
-        if (containerStack.length > 0) {
-          containerStatements[subContainerIndex].push(statement)
-        } else {
+        containerStatements.push(statement)
+
+        if (containerStack.length === 0) {
           let container = new(Vue.extend(containerClass))({
             propsData: {
               statement: containerStatement,
