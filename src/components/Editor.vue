@@ -1,6 +1,7 @@
 <template>
-<div id="editor-container">
-  <div id="editors">
+<div class="editors-container">
+  <div class="editor"
+    ref="editor">
     <template v-if="this.worldReady">
       <code-mirror v-if="editorType === 'code'"
         class="code-editor"
@@ -38,11 +39,6 @@ import CodeMirror from './codemirror/CodeMirror'
 import GraphEditor from './grapheditor/GraphEditor'
 import EditorBar from './EditorBar'
 
-function resizeCodeMirror() {
-  let height = window.innerHeight - 93
-  document.getElementById("editors").style.height = `${height}px`
-}
-window.addEventListener("resize", resizeCodeMirror)
 
 export default {
   components: {
@@ -73,14 +69,22 @@ export default {
       type: Object
     }
   },
+
   data: function() {
     return {
       editorType: 'graph'
     }
   },
-  mounted: () => {
-    resizeCodeMirror()
+
+  mounted() {
+    this.resizeEditor()
+    window.addEventListener("resize", this.resizeEditor)
   },
+
+  beforeDestroy() {
+    window.removeEventListener("resize", this.resizeEditor)
+  },
+
   methods: {
     handleCodeMirrorChange(code) {
       this.$emit('code-change', code, 'code-mirror')
@@ -88,6 +92,11 @@ export default {
 
     handleGraphCodeChange(code) {
       this.$emit('code-change', code, 'graph')
+    },
+
+    resizeEditor() {
+      let height = window.innerHeight - 93
+      this.$refs.editor.style.height = `${height}px`
     },
 
     removeCode() {
@@ -102,14 +111,14 @@ export default {
 </script>
 
 <style lang="scss">
-#editor-container {
+.editors-container {
     height: 100vh;
     display: flex;
     flex-direction: column;
     padding-left: 1px;
     background-color: #282c34;
 
-    #editors {
+    .editor {
         flex-grow: 1;
 
         .editor-readonly-overlay {
