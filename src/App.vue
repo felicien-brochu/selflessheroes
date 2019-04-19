@@ -135,7 +135,9 @@ export default {
     },
 
     pushHistory() {
-      this.codeHistory.push(this.code)
+      if (this.code !== this.codeHistory.getCode()) {
+        this.codeHistory.push(this.code)
+      }
     },
 
     handleCodeChange(code, source) {
