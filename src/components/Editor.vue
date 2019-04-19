@@ -12,7 +12,8 @@
         @change="handleCodeMirrorChange" />
       <graph-editor v-else-if="editorType === 'graph'"
         id="graph-editor"
-        :code="code"
+        :masterCode="code"
+        :codeSource="codeSource"
         :compilerConfig="compilerConfig"
         :worldReady="worldReady"
         @code-change="handleGraphCodeChange" />
@@ -51,6 +52,9 @@ export default {
       type: String,
       default: ''
     },
+    'codeSource': {
+      type: String
+    },
     'codeHistory': {
       type: Object
     },
@@ -87,7 +91,7 @@ export default {
 
   methods: {
     handleCodeMirrorChange(code) {
-      this.$emit('code-change', code, 'code-mirror')
+      this.$emit('code-change', code, 'code')
     },
 
     handleGraphCodeChange(code) {

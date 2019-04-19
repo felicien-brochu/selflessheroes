@@ -34,7 +34,6 @@ export default {
 
   methods: {
     handleSelectParam(index, value) {
-      console.log("###SELECT param", index, value, this)
       let types = this.func.getParamTypes()
       let params = this.func.params.slice(0)
       if (Array.isArray(value)) {

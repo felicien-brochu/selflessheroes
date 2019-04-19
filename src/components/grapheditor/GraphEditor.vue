@@ -46,9 +46,12 @@ export default {
   },
 
   props: {
-    'code': {
+    'masterCode': {
       type: String,
       default: ''
+    },
+    'codeSource': {
+      type: String
     },
     'compilerConfig': {
       type: Object,
@@ -62,15 +65,17 @@ export default {
 
   data: function() {
     return {
-      statements: [],
+      statements: null,
       startDragEvent: null,
-      chosenPaletteStatement: null
+      chosenPaletteStatement: null,
+      code: this.masterCode
     }
   },
 
   mounted: function() {
     this.dragEvent = null
     this.dragOverChangeAnimationID = -1
+
     if (this.compilerConfig) {
       this.compileCode()
     }
@@ -82,9 +87,9 @@ export default {
         this.compileCode()
       }
     },
-
-    code: function() {
-      if (this.compilerConfig) {
+    masterCode: function() {
+      if (this.compilerConfig && this.codeSource !== 'graph') {
+        this.code = this.masterCode
         this.compileCode()
       }
     }
@@ -146,12 +151,14 @@ export default {
 
     handleDropNode(dropHandler) {
       if (this.startDragEvent) {
+        let statements = this.statements.slice(0)
         if (dropHandler) {
-          NodeBuilder.insertStatement(this.statements, dropHandler, this.startDragEvent.node.statement, this.startDragEvent.isNew)
+          NodeBuilder.insertStatement(statements, dropHandler, this.startDragEvent.node.statement, this.startDragEvent.isNew)
         }
         else if (!this.startDragEvent.isNew) {
-          NodeBuilder.removeStatement(this.statements, this.startDragEvent.node.statement)
+          NodeBuilder.removeStatement(statements, this.startDragEvent.node.statement)
         }
+        this.statements = statements
       }
 
       if (this.startDragEvent) {
@@ -183,6 +190,7 @@ export default {
         throw decompiler.exception
       }
 
+      this.code = decompiler.code
       this.$emit('code-change', decompiler.code)
     }
   }

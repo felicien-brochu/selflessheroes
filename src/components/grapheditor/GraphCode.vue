@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import IfStatement from '../../world/ai/compile/statements/IfStatement'
+import ElseStatement from '../../world/ai/compile/statements/ElseStatement'
 import NodeBuilder from './nodes/NodeBuilder'
 import DragTree from './DragTree'
 import LineNumbers from './LineNumbers'
@@ -38,7 +40,7 @@ export default {
   props: {
     'statements': {
       type: Array,
-      default: () => []
+      default: () => null
     },
     'compilerConfig': {
       type: Object,
@@ -66,10 +68,10 @@ export default {
   },
 
   watch: {
-    statements: function(statements) {
-      this.lineNumbers = getLineNumbersFromStatements(statements)
+    statements: function(statements, oldStatements) {
       this.clearNodeContainer()
       this.populateNodeContainer()
+      this.lineNumbers = getLineNumbersFromStatements(statements)
       this.$emit('nodes-change', this.nodes)
     },
 

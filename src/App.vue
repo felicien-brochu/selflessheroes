@@ -30,6 +30,7 @@
 
     <editor slot="secondPane"
       :code="code"
+      :codeSource="codeSource"
       :codeHistory="codeHistory"
       :compilerConfig="compilerConfig"
       :worldReady="worldReady"
@@ -66,6 +67,7 @@ export default {
       // code: 'b:\nstep(e)\na = dir(n)\n\nif b == 3 &&\n s > 3 ||\n n == wall:\n\tstep(e,w)\n\tstep(s)\n\tif n == wall:\n\t\tc:\n\t\tstep(sw)\n\tendif\nelse\n\ta = dir(sw)\n\tstep(n, s)\nendif\n\njump b\nstep(n)\nif n == wall:\n\t\tstep(nw)\n\tjump c\n\tendif\nstep(n)\nif n == s:\nendif\nstep(n)\nstep(n)\nstep(n)',
       // code: 'if s == s:\nelse\nif s == s:\nendif\nendif',
       code: codeHistory.getCode(),
+      codeSource: 'history',
       codeHistory: codeHistory,
       compilerConfig: null,
       worldState: {},
@@ -120,9 +122,10 @@ export default {
     },
 
     undo() {
-      console.log("###UNDO")
       if (this.codeHistory.canUndo()) {
         this.code = this.codeHistory.undo()
+        this.codeSource = 'history'
+
         this.debouncedCompileCode()
       }
     },
@@ -130,6 +133,8 @@ export default {
     redo() {
       if (this.codeHistory.canRedo()) {
         this.code = this.codeHistory.redo()
+        this.codeSource = 'history'
+
         this.debouncedCompileCode()
       }
     },
@@ -142,8 +147,9 @@ export default {
 
     handleCodeChange(code, source) {
       this.code = code
+      this.codeSource = source
 
-      if (source === 'code-mirror') {
+      if (source === 'code') {
         this.debouncedPushHistory()
       }
       else {

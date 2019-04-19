@@ -119,7 +119,6 @@ export default {
     },
 
     handleEditorChange(cm, change) {
-      console.log("###change", change)
       if (this.skipNextChangeEvent) {
         this.skipNextChangeEvent = false
         return
@@ -193,7 +192,7 @@ export default {
 	*/
 /* basic */
 
-.cm-s-one-dark {
+.CodeMirror.cm-s-one-dark {
     font-family: Consolas, 'DejaVu Sans Mono', monospace;
     font-weight: 250;
     font-size: 18px;
