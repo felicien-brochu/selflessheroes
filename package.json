@@ -11,13 +11,16 @@
   "main": "src/electron.js",
   "scripts": {
     "start": "npm run serve:dev",
+    "build-dev": "cross-env NODE_ENV=development webpack --progress",
     "build": "cross-env NODE_ENV=production webpack --progress",
     "serve:dev": "cross-env NODE_ENV=development webpack-dev-server --open --progress --colors",
     "serve:prod": "cross-env NODE_ENV=production webpack-dev-server --open --progress --colors",
-    "electron:macos": "npm run build && cross-env ELECTRON_BUILDER_CACHE=./.cache/electron-builder/ electron-builder --config electron-builder.json -m --x64",
-    "electron:linux": "npm run build && cross-env ELECTRON_BUILDER_CACHE=./.cache/electron-builder/ electron-builder --config electron-builder.json -l --ia32 --x64",
-    "electron:win32": "npm run build && cross-env ELECTRON_BUILDER_CACHE=./.cache/electron-builder/ electron-builder --config electron-builder.json -w --ia32",
-    "electron:win64": "npm run build && cross-env ELECTRON_BUILDER_CACHE=./.cache/electron-builder/ electron-builder --config electron-builder.json -w --x64"
+		"electron": "node ./build-electron.js",
+		"electron:win64": "node ./build-electron.js win64",
+    "electron:win32": "node ./build-electron.js win32",
+		"electron:linux64": "node ./build-electron.js linux64",
+    "electron:linux32": "node ./build-electron.js linux32",
+		"electron:macos": "node ./build-electron.js macos"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
@@ -37,9 +40,12 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-standard": "^4.0.0",
     "expose-loader": "^0.7.3",
+    "file-loader": "^3.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.11.0",
     "node-sass-magic-importer": "^5.3.1",
+    "resolve-url-loader": "^3.1.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "vue-loader": "^15.7.0",

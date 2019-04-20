@@ -120,10 +120,10 @@ export default {
             }
         }
         &.step-button {
-            background-image: url("/assets/images/step-button.png");
+            background-image: url("./images/step-button.png");
         }
         &.stop-button {
-            background-image: url("/assets/images/stop-button.png");
+            background-image: url("./images/stop-button.png");
         }
     }
 }

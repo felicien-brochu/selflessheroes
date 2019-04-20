@@ -4,6 +4,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const VueLoader = require('vue-loader')
 
@@ -14,10 +15,9 @@ const config = {
     app: [path.resolve(__dirname, 'src/main.js')],
     phaser: ['phaser']
   },
-  // target: 'electron-renderer',
   mode: env,
   output: {
-    publicPath: '/',
+    publicPath: '',
   },
   optimization: {
     splitChunks: {
@@ -33,6 +33,10 @@ const config = {
     rules: [{
         test: /\.vue$/,
         loader: 'vue-loader',
+        include: [
+          path.join(__dirname, 'static', 'assets'),
+          path.join(__dirname, 'src')
+        ]
       },
       {
         test: /\.js$/,
@@ -47,30 +51,53 @@ const config = {
         test: /\.scss$/,
         use: [
           'vue-style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
-        ],
+        ]
       },
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'assets/images/[name].[ext]'
+        }
+      },
+      // {
+      //   test: /\.(eot|svg|ttf|woff2?)$/,
+      //   loader: 'file-loader',
+      //   options: {
+      //     name: 'assets/fonts/[path]/[name].[ext]',
+      //     context: 'src/game/fonts'
+      //   }
+      // }
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
+    new CopyWebpackPlugin([{
+      context: 'src/levels',
+      from: '**',
+      to: 'levels',
+      ignore: 'model/**/*'
+    }, {
+      context: 'src/game/fonts',
+      from: '**/*',
+      to: 'assets/fonts'
+    }]),
+    new MiniCssExtractPlugin(),
     new VueLoader.VueLoaderPlugin(),
-    // new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: path.join(__dirname, 'dist', 'index.html'),
-      template: path.join(__dirname, 'static', 'index.html'),
+      template: path.join(__dirname, 'src', 'index.html'),
       inject: true
-    }),
-    new CopyWebpackPlugin([{
-      from: 'static/assets',
-      to: 'assets'
-    }])
+    })
   ],
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     },
-    extensions: ['*', '.js', '.vue', '.json']
+    extensions: ['*', '.js', '.vue', '.json', ]
   },
 }
 

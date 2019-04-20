@@ -1,6 +1,9 @@
 import Phaser from 'phaser'
 import WebFont from 'webfontloader'
 
+import loader_bg from './images/loader-bg.png'
+import loader_bar from './images/loader-bar.png'
+
 export default class extends Phaser.Scene {
   constructor() {
     super({
@@ -13,25 +16,19 @@ export default class extends Phaser.Scene {
     this.fontsLoaded = this.fontsLoaded.bind(this)
     this.add.text(100, 100, 'loading fonts...')
 
-    this.load.image('loaderBg', './assets/images/loader-bg.png')
-    this.load.image('loaderBar', './assets/images/loader-bar.png')
+    this.load.image('loaderBg', loader_bg)
+    this.load.image('loaderBar', loader_bar)
 
     WebFont.load({
       custom: {
         families: ['Material Icons', 'Noto', 'Menlo', 'Consolas', 'Monaco', 'Roboto'],
-        urls: ['/assets/fonts/fonts.css']
+        urls: ['./assets/fonts/fonts.css']
       },
       active: this.fontsLoaded
     })
   }
 
-  update() {
-    if (this.fontsReady) {
-      this.scene.start('SplashScene')
-    }
-  }
-
   fontsLoaded() {
-    this.fontsReady = true
+    this.scene.start('SplashScene')
   }
 }

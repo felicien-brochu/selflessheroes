@@ -29,10 +29,10 @@ export default {
 <style lang="scss">
 button.play-pause-button {
     &.play-button {
-        background-image: url("/assets/images/play-button.png") !important;
+        background-image: url("./images/play-button.png") !important;
     }
     &.pause-button {
-        background-image: url("/assets/images/pause-button.png") !important;
+        background-image: url("./images/pause-button.png") !important;
     }
 }
 </style>
