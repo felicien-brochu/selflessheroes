@@ -8,12 +8,16 @@
     "url": "git+https://github.com/felicien-brochu/AIWorld.git"
   },
   "license": "Creative Commons - Attribution-NonCommercial 4.0 International",
-  "main": "index.js",
+  "main": "src/electron.js",
   "scripts": {
     "start": "npm run serve:dev",
-    "build": "cross-env NODE_ENV=production webpack",
-    "serve:dev": "cross-env NODE_ENV=development webpack-dev-server --open",
-    "serve:prod": "cross-env NODE_ENV=production webpack-dev-server --open"
+    "build": "cross-env NODE_ENV=production webpack --progress",
+    "serve:dev": "cross-env NODE_ENV=development webpack-dev-server --open --progress --colors",
+    "serve:prod": "cross-env NODE_ENV=production webpack-dev-server --open --progress --colors",
+    "electron:macos": "npm run build && cross-env ELECTRON_BUILDER_CACHE=./.cache/electron-builder/ electron-builder --config electron-builder.json -m --x64",
+    "electron:linux": "npm run build && cross-env ELECTRON_BUILDER_CACHE=./.cache/electron-builder/ electron-builder --config electron-builder.json -l --ia32 --x64",
+    "electron:win32": "npm run build && cross-env ELECTRON_BUILDER_CACHE=./.cache/electron-builder/ electron-builder --config electron-builder.json -w --ia32",
+    "electron:win64": "npm run build && cross-env ELECTRON_BUILDER_CACHE=./.cache/electron-builder/ electron-builder --config electron-builder.json -w --x64"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
@@ -25,6 +29,7 @@
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
     "electron": "^4.1.4",
+    "electron-builder": "^20.39.0",
     "eslint": "^5.15.3",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",

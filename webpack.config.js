@@ -7,12 +7,14 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const VueLoader = require('vue-loader')
 
-const env = process.env.NODE_ENV;
+const env = process.env.NODE_ENV
 
 const config = {
   entry: {
-    app: [path.resolve(__dirname, 'src/main.js')]
+    app: [path.resolve(__dirname, 'src/main.js')],
+    phaser: ['phaser']
   },
+  // target: 'electron-renderer',
   mode: env,
   output: {
     publicPath: '/',
@@ -24,7 +26,8 @@ const config = {
   },
   devtool: env === 'development' ? 'inline-source-map' : undefined,
   devServer: {
-    contentBase: './dist'
+    contentBase: 'dist',
+    port: 3000
   },
   module: {
     rules: [{
@@ -52,7 +55,7 @@ const config = {
   },
   plugins: [
     new VueLoader.VueLoaderPlugin(),
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: path.join(__dirname, 'dist', 'index.html'),
       template: path.join(__dirname, 'static', 'index.html'),
@@ -85,4 +88,4 @@ if (env === 'production') {
   ]
 }
 
-module.exports = config;
+module.exports = config

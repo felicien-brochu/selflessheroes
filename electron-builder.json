@@ -1,0 +1,19 @@
+{
+  "appId": "fr.felicienbrochu.aiworld",
+  "productName": "AIWorld",
+  "copyright": "Copyright © 2019 Félicien Brochu",
+  "compression": "normal",
+  "nsis": {
+    "oneClick": false,
+    "perMachine": true,
+    "allowToChangeInstallationDirectory": true
+  },
+  "files": [
+    "src/electron.js",
+    "dist/index.html",
+    "dist/app.js",
+    "dist/vendors~app.js",
+    "dist/phaser.js",
+		"dist/vendors~app~phaser.js"
+  ]
+}
