@@ -8,6 +8,7 @@
     :compilerConfig="compilerConfig" />
   <div class="editor-container">
     <palette ref="palette"
+      :class="{'hidden': hidePalette}"
       :compilerConfig="compilerConfig"
       :chosenStatement="chosenPaletteStatement"
       @drag-start="handlePaletteDragStart" />
@@ -59,6 +60,10 @@ export default {
       default: null
     },
     'worldReady': {
+      type: Boolean,
+      default: false
+    },
+    'hidePalette': {
       type: Boolean,
       default: false
     }
@@ -242,26 +247,18 @@ export default {
         height: 100%;
 
         .palette {
-            @keyframes slide-out {
-                from {
-                    left: 0;
-                }
-
-                to {
-                    left: -115px;
-                }
-            }
-            animation-duration: 0.8s;
-            animation-name: slide-out;
-
             z-index: -1;
             position: absolute;
-            left: -115px;
+            right: 100%;
             top: 0;
             margin: 40px 0 0;
 
-            // transition-property: left;
-            // transition-duration: 0.8s;
+            animation: slide-left 0.5s ease;
+
+            &.hidden {
+                animation: slide-right 0.15s ease;
+                transform: translate(100%);
+            }
         }
 
         .graph-scroll {

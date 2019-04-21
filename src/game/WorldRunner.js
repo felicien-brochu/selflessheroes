@@ -25,9 +25,7 @@ export default class WorldRunner {
 
       this.world.step()
 
-      if (this.steps === 1 || this.world.gameOver) {
-        this.emitStateChange()
-      }
+      this.emitStateChange()
 
       if (this.world.gameOver) {
         this.pause()
@@ -85,6 +83,7 @@ export default class WorldRunner {
       gameOver: this.world.gameOver,
       paused: this.isPaused(),
       steps: this.steps,
+      debugContext: this.world.getDebugContext()
     }
   }
 }

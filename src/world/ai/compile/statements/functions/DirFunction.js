@@ -57,18 +57,7 @@ export default class DirFunction extends ValueFunction {
   }
 
   computeValue(context) {
-    let res = []
-    let direction = this.params[0].computeValue(context).value
-    let x = context.character.x + direction.dx
-    let y = context.character.y + direction.dy
-
-    let terrainType = context.world.map.getTerrainTypeAt(x, y)
-    res.push(ExpressionValue.terrainType(terrainType))
-
-    let worldObjects = context.world.getWorldObjectsAt(x, y)
-    worldObjects.forEach(obj => res.push(ExpressionValue.objectType(obj.getObjectType())))
-
-    return ExpressionValue.composite(res)
+    return this.params[0].computeValue(context)
   }
 }
 

@@ -2,9 +2,11 @@
 <div id="app"
   v-hotkey="keymap">
 
-  <world @world-state-change="worldState = $event"
+  <world :followHeroIndex="followHeroIndex"
+    @world-state-change="worldState = $event"
     @ai-state-change="aiReady = $event"
-    @ready="handleWorldReady" />
+    @ready="handleWorldReady"
+    @follow-hero-change="followHeroIndex = $event" />
 
   <resize-split-pane id="rs-pane"
     split-to="columns"
@@ -36,6 +38,8 @@
       :worldReady="worldReady"
       :playing="playing"
       :compilerExceptions="compilerExceptions"
+      :debugContext="worldState.debugContext"
+      :followHeroIndex="followHeroIndex"
       @undo="undo"
       @redo="redo"
       @code-change="handleCodeChange" />
@@ -73,6 +77,7 @@ export default {
       worldState: {},
       worldReady: false,
       aiReady: false,
+      followHeroIndex: 0,
       compilerExceptions: {
         fatal: [],
         undefinedLiterals: []
@@ -108,6 +113,13 @@ export default {
         'ctrl+y': this.redo,
         'ctrl+shift+z': this.redo
       }
+    },
+
+    debugContext: function() {
+      if (this.playing) {
+        return {}
+      }
+      return null
     }
   },
 

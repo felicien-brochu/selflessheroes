@@ -19,10 +19,11 @@ export default class extends Phaser.Scene {
     this.aiFactory = null
     this.compilerConfig = CompilerConfig.getDefaultConfig()
     this.onSceneReady = null
-    this.followHeroIndex = -1
+    this.followHeroIndex = 0
     this.runner = new WorldRunner()
     this.editorWidth = 400
 
+    this.followHeroListener = null
     this.aiStateListener = null
   }
 
@@ -46,6 +47,7 @@ export default class extends Phaser.Scene {
     this.initEvents()
 
     this.createStaticElements()
+    this.updateFollowHero()
 
     if (this.onSceneReady) {
       this.onSceneReady(this)
@@ -81,14 +83,14 @@ export default class extends Phaser.Scene {
 
   createWorld() {
     this.world = new World(this.mapConfig, this.aiFactory)
-    this.heros = []
+    this.heroes = []
     this.objectives = []
 
     let heroIndex = 0
 
-    for (let hero of this.world.heros) {
+    for (let hero of this.world.heroes) {
       let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight, heroIndex)
-      this.heros.push(sprite)
+      this.heroes.push(sprite)
       sprite.setOrigin(0.5)
       this.add.existing(sprite);
       sprite.setInteractive()
@@ -116,31 +118,10 @@ export default class extends Phaser.Scene {
     this.scale.on('resize', this.handleResize.bind(this))
   }
 
-  startFollowHero(sprite) {
-    let heroIndex = -1
-    for (let i = 0; i < this.heros.length; i++) {
-      if (sprite === this.heros[i]) {
-        heroIndex = i
-        break
-      }
-    }
-    if (heroIndex >= 0) {
-      this.cameras.main.startFollow(sprite, false, 0.05, 0.05)
-      this.followHeroIndex = heroIndex
-      this.followCursor.setVisible(true)
-    }
-  }
-
-  stopFollowHero() {
-    this.cameras.main.stopFollow()
-    this.followHeroIndex = -1
-    this.followCursor.setVisible(false)
-  }
-
   update(time, delta) {
     this.cameraControl.update(delta)
 
-    for (let sprite of this.heros) {
+    for (let sprite of this.heroes) {
       sprite.update()
     }
     for (let sprite of this.objectives) {
@@ -148,7 +129,7 @@ export default class extends Phaser.Scene {
     }
 
     if (this.followHeroIndex >= 0) {
-      let hero = this.heros[this.followHeroIndex]
+      let hero = this.heroes[this.followHeroIndex]
       this.followCursor.x = hero.x
       this.followCursor.y = hero.y + 6
       this.followCursor.depth = hero.depth - 1
@@ -181,26 +162,71 @@ export default class extends Phaser.Scene {
     this.runner.pause()
   }
 
+  step() {
+    if (this.runner.steps === 0) {
+      this.restartWorld()
+    }
+    this.runner.doOneStep()
+  }
+
+  stop() {
+    this.restartWorld()
+    this.runner.pause()
+  }
+
   restartWorld() {
     this.runner.pause()
     this.destroySprites()
     this.createWorld()
     this.runner.restart(this.world)
 
-    if (this.followHeroIndex >= 0) {
-      this.startFollowHero(this.heros[this.followHeroIndex])
-    }
-
     this.gameOverText.setVisible(false)
   }
 
+  startFollowHero(sprite) {
+    let heroIndex = -1
+    for (let i = 0; i < this.heroes.length; i++) {
+      if (sprite === this.heroes[i]) {
+        heroIndex = i
+        break
+      }
+    }
+    this.emitFollowHeroChange(heroIndex)
+  }
+
+  stopFollowHero() {
+    this.emitFollowHeroChange(-1)
+  }
+
+  setFollowHero(heroIndex) {
+    if (heroIndex !== this.followHeroIndex) {
+      this.followHeroIndex = heroIndex
+      this.updateFollowHero()
+    }
+  }
+
+  updateFollowHero() {
+    if (this.followHeroIndex >= 0) {
+      let sprite = this.heroes[this.followHeroIndex]
+      this.cameras.main.startFollow(sprite, false, 0.05, 0.05)
+      this.followCursor.setVisible(true)
+    } else {
+      this.cameras.main.stopFollow()
+      this.followCursor.setVisible(false)
+    }
+  }
+
   destroySprites() {
-    for (let hero of this.heros) {
+    for (let hero of this.heroes) {
       hero.destroy()
     }
     for (let objective of this.objectives) {
       objective.destroy()
     }
+  }
+
+  setFollowHeroListener(listener) {
+    this.followHeroListener = listener
   }
 
   setWorldStateListener(listener) {
@@ -209,6 +235,12 @@ export default class extends Phaser.Scene {
 
   setAiStateListener(listener) {
     this.aiStateListener = listener
+  }
+
+  emitFollowHeroChange(followIndex) {
+    if (this.followHeroListener) {
+      this.followHeroListener(followIndex)
+    }
   }
 
   emitAiStateChange() {
@@ -231,19 +263,6 @@ export default class extends Phaser.Scene {
 
   getCompilerConfig() {
     return this.compilerConfig
-  }
-
-  step() {
-    if (this.runner.isPaused()) {
-      this.runner.doOneStep()
-    } else {
-      this.runner.pause()
-    }
-  }
-
-  stop() {
-    this.restartWorld()
-    this.runner.pause()
   }
 
   handleResize(width, height, ratio) {

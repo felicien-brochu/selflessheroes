@@ -1,18 +1,30 @@
 import WorldObject from './WorldObject'
+import IdleAI from './ai/IdleAI'
 
 export default class Character extends WorldObject {
-  constructor(config, tileWidth, tileHeight) {
+  constructor(config, aiFactory, tileWidth, tileHeight, world) {
     super(config, tileWidth, tileHeight)
+
+    if (aiFactory) {
+      this.ai = aiFactory.buildAI(world, this)
+    } else {
+      this.ai = new IdleAI(world, this)
+    }
 
     this.lastAction = null
   }
 
   step() {
-    throw new Error('Needs subclass implementation')
+    this.lastAction = this.ai.step()
+    return this.lastAction
   }
 
   move(direction) {
     this.x += direction.dx
     this.y += direction.dy
+  }
+
+  getDebugContext() {
+    return this.ai.getDebugContext()
   }
 }

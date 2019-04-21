@@ -51,4 +51,11 @@ export default class CustomAI extends AI {
   getContext() {
     return this.context
   }
+
+  getDebugContext() {
+    return {
+      ...this.context,
+      cursor: this.cursor
+    }
+  }
 }

@@ -1,4 +1,4 @@
-export default {
+const types = {
   boolean: Symbol('booleanType'),
   integer: Symbol('integerType'),
   objectType: Symbol('objectTypeType'),
@@ -6,3 +6,6 @@ export default {
   direction: Symbol('directionType'),
   composite: Symbol('compositeType')
 }
+Object.freeze(types)
+
+export default types

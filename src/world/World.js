@@ -10,7 +10,7 @@ export default class World {
 
     this.map = new Map(config)
     this.characters = []
-    this.heros = []
+    this.heroes = []
     this.objectives = []
     this.parseObjects()
 
@@ -54,7 +54,7 @@ export default class World {
     switch (config.type) {
       case 'hero':
         let hero = new Hero(config, this.aiFactory, tileWidth, tileHeight, this)
-        this.heros.push(hero)
+        this.heroes.push(hero)
         this.characters.push(hero)
         break;
       case 'objective':
@@ -66,8 +66,8 @@ export default class World {
   step() {
     this.steps++
     try {
-      for (var i = 0; i < this.heros.length; i++) {
-        let hero = this.heros[i]
+      for (var i = 0; i < this.heroes.length; i++) {
+        let hero = this.heroes[i]
         let action = hero.step()
         if (action) {
           if (action.type === 'StepAction' && !this.collideWall(hero, action.direction)) {
@@ -102,7 +102,7 @@ export default class World {
   }
 
   getWorldObjects() {
-    return [].concat(this.heros).concat(this.objectives)
+    return [].concat(this.heroes).concat(this.objectives)
   }
 
   declareWin() {
@@ -117,5 +117,12 @@ export default class World {
 
   declareGameOver() {
     this.gameOver = true
+  }
+
+  getDebugContext() {
+    let context = {
+      heroes: this.heroes.map(hero => hero.getDebugContext())
+    }
+    return context
   }
 }

@@ -64,3 +64,21 @@ $node-padding-left: 9px;
 		}
 	}
 }
+@keyframes slide-left {
+	from {
+		transform: translate(100%);
+	}
+
+	to {
+		transform: translate(0);
+	}
+}
+@keyframes slide-right {
+	from {
+		transform: translate(0);
+	}
+
+	to {
+		transform: translate(100%);
+	}
+}

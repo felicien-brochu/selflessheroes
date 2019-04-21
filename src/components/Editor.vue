@@ -3,6 +3,10 @@
   <div class="editor"
     ref="editor">
     <template v-if="this.worldReady">
+
+      <variable-debugger :class="{'hidden': !playing || followHeroIndex < 0}"
+        :variables="followHeroVariables" />
+
       <code-mirror v-if="editorType === 'code'"
         class="code-editor"
         :code="code"
@@ -10,15 +14,19 @@
         :compilerExceptions="compilerExceptions"
         :disabled="playing"
         @change="handleCodeMirrorChange" />
+
       <graph-editor v-else-if="editorType === 'graph'"
         id="graph-editor"
         :masterCode="code"
         :codeSource="codeSource"
         :compilerConfig="compilerConfig"
         :worldReady="worldReady"
+        :hidePalette="playing"
         @code-change="handleGraphCodeChange" />
+
       <div class="editor-readonly-overlay"
-        v-show="playing"></div>
+        v-show="playing" />
+
     </template>
   </div>
 
@@ -39,13 +47,15 @@
 import CodeMirror from './codemirror/CodeMirror'
 import GraphEditor from './grapheditor/GraphEditor'
 import EditorBar from './EditorBar'
+import VariableDebugger from './variabledebugger/VariableDebugger'
 
 
 export default {
   components: {
     CodeMirror,
     GraphEditor,
-    EditorBar
+    EditorBar,
+    VariableDebugger
   },
   props: {
     'code': {
@@ -69,6 +79,13 @@ export default {
       type: Boolean,
       default: false
     },
+    'debugContext': {
+      type: Object
+    },
+    'followHeroIndex': {
+      type: Number,
+      default: -1
+    },
     'compilerExceptions': {
       type: Object
     }
@@ -77,6 +94,16 @@ export default {
   data: function() {
     return {
       editorType: 'graph'
+    }
+  },
+
+  computed: {
+    followHeroVariables: function() {
+      let variables = null
+      if (this.followHeroIndex >= 0 && this.debugContext) {
+        variables = this.debugContext.heroes[this.followHeroIndex].variables
+      }
+      return variables
     }
   },
 
@@ -116,14 +143,18 @@ export default {
 </script>
 
 <style lang="scss">
+@import './constants';
+
 .editors-container {
     height: 100vh;
     display: flex;
     flex-direction: column;
     padding-left: 1px;
+    color: #abb2bf;
     background-color: #282c34;
 
     .editor {
+        position: relative;
         flex-grow: 1;
 
         .editor-readonly-overlay {
@@ -135,6 +166,19 @@ export default {
             z-index: 20;
             background: none;
             pointer-events: none;
+        }
+
+        .variable-debugger {
+            animation: slide-left 0.5s ease;
+            position: absolute;
+            top: 0;
+            right: 100%;
+            margin: 40px 0 0;
+
+            &.hidden {
+                animation: slide-right 0.15s ease;
+                transform: translate(100%);
+            }
         }
 
         .code-editor {

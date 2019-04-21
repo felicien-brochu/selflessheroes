@@ -18,4 +18,8 @@ export default class WorldObject {
   getObjectType() {
     throw new Error('Needs subclass implementation')
   }
+
+  getDebugContext() {
+    throw new Error('Needs subclass implementation')
+  }
 }

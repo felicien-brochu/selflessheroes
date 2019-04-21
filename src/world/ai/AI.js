@@ -7,4 +7,11 @@ export default class AI {
   step() {
     throw new Error('Needs subclass implementation')
   }
+
+  getDebugContext() {
+    return {
+      world: this.world,
+      character: this.character
+    }
+  }
 }

@@ -9,7 +9,6 @@
 </template>
 
 <script>
-// import PaletteStatement from './PaletteStatement'
 import PaletteStatement from './PaletteStatement'
 import {
   assignStatementType,
@@ -118,8 +117,7 @@ export default {
 
 <style lang="scss">
 .palette {
-    width: 90px;
-    padding: 7px 15px 30px;
+    padding: 7px 20px 30px 15px;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
     background-color: #282c34;

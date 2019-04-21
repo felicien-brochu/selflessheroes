@@ -14,36 +14,61 @@ class Game extends Phaser.Game {
   }
 }
 
-function resize() {
-  var windowWidth = window.innerWidth
-  var windowHeight = window.innerHeight
-  if (window.game) {
-    window.game.scale.resize(windowWidth, windowHeight)
-  }
-}
-
-window.onload = function() {
-  resize()
-  window.addEventListener("resize", resize, false)
-}
-
 export default {
-  mounted: function() {
-    window.game = new Game({
+  props: {
+    "followHeroIndex": {
+      type: Number
+    }
+  },
+
+  mounted() {
+    this.game = new Game({
       onGameSceneReady: this.handleGameReady
     })
+    window.addEventListener("resize", this.resizeGame, false)
   },
+
+  beforeDestroy() {
+    window.removeEventListener("resize", this.resizeGame)
+  },
+
+  watch: {
+    followHeroIndex: function() {
+      if (this.gameScene) {
+        this.gameScene.setFollowHero(this.followHeroIndex)
+      }
+    }
+  },
+
   methods: {
     handleGameReady(gameScene) {
-      gameScene.setWorldStateListener(this.handleWorldStateChange)
-      gameScene.setAiStateListener(this.handleAiStateChange)
-      this.$emit('ready', gameScene, gameScene.getWorldState(), gameScene.getCompilerConfig())
+      this.gameScene = gameScene
+
+      this.gameScene.setWorldStateListener(this.handleWorldStateChange)
+      this.gameScene.setAiStateListener(this.handleAiStateChange)
+      this.gameScene.setFollowHeroListener(this.handleFollowHeroChange)
+      this.gameScene.setFollowHero(this.followHeroIndex)
+
+      this.$emit('ready', this.gameScene, this.gameScene.getWorldState(), this.gameScene.getCompilerConfig())
     },
+
     handleWorldStateChange(worldState) {
       this.$emit('world-state-change', worldState)
     },
+
     handleAiStateChange(aiReady) {
       this.$emit('ai-state-change', aiReady)
+    },
+
+    handleFollowHeroChange(heroIndex) {
+      this.$emit('follow-hero-change', heroIndex)
+    },
+
+
+    resizeGame() {
+      var windowWidth = window.innerWidth
+      var windowHeight = window.innerHeight
+      this.game.scale.resize(windowWidth, windowHeight)
     }
   }
 }

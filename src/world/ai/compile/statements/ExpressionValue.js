@@ -11,13 +11,34 @@ export default class ExpressionValue {
   }
 
   getFirstValueType(type) {
-    let value
+    let value = null
     if (this.type === type) {
       value = this.value
     } else if (this.type === ExpressionTypes.composite) {
       value = this.value.find(val => val.type === type)
       if (value) {
         value = value.value
+      }
+    }
+    return value
+  }
+
+  getDominantValue() {
+    let value = this
+    let typeDominance = [
+      ExpressionTypes.objectType,
+      ExpressionTypes.terrainType,
+      ExpressionTypes.direction,
+      ExpressionTypes.integer,
+      ExpressionTypes.boolean,
+    ]
+
+    if (this.type === ExpressionTypes.composite) {
+      for (let type of typeDominance) {
+        value = this.getFirstValueType(type)
+        if (value) {
+          break
+        }
       }
     }
     return value
