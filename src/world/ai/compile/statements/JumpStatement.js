@@ -21,6 +21,7 @@ export default class JumpStatement extends PrimaryStatement {
 
   setAnchorStatement(anchorStatement) {
     this.anchorStatement = anchorStatement
+    this.anchor = anchorStatement.name
   }
 
   compile(config, context) {

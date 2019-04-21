@@ -140,9 +140,11 @@ export default {
     },
 
     pushHistory() {
-      if (this.code !== this.codeHistory.getCode()) {
-        this.codeHistory.push(this.code)
-      }
+      this.codeHistory.push(this.code)
+    },
+
+    insertHistoryCorrection() {
+      this.codeHistory.insert(this.code)
     },
 
     handleCodeChange(code, source) {
@@ -151,6 +153,9 @@ export default {
 
       if (source === 'code') {
         this.debouncedPushHistory()
+      }
+      else if (source === 'graph-correction') {
+        this.insertHistoryCorrection()
       }
       else {
         this.pushHistory()

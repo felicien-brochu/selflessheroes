@@ -35,6 +35,7 @@ import JumpLinkLayer from './JumpLinkLayer'
 import NodeBuilder from './nodes/NodeBuilder'
 import Compiler from '../../world/ai/compile/Compiler'
 import Decompiler from '../../world/ai/compile/Decompiler'
+import Linter from '../../world/ai/compile/Linter'
 
 export default {
   components: {
@@ -88,7 +89,7 @@ export default {
       }
     },
     masterCode: function() {
-      if (this.compilerConfig && this.codeSource !== 'graph') {
+      if (this.compilerConfig && this.codeSource !== 'graph' && this.codeSource !== 'graph-linter') {
         this.code = this.masterCode
         this.compileCode()
       }
@@ -104,7 +105,12 @@ export default {
       console.log("####COMPILE code", this.code)
       let compiler = new Compiler(this.code, this.compilerConfig)
       compiler.compile()
-      this.statements = compiler.statements
+      let statements = compiler.statements.slice(0)
+      let hasCorrection = Linter.correctForGraph(statements)
+      this.statements = statements
+      if (hasCorrection) {
+        this.decompile(true)
+      }
     },
 
     handlePaletteDragStart(e) {
@@ -182,7 +188,7 @@ export default {
       this.decompile()
     },
 
-    decompile() {
+    decompile(correction = false) {
       let decompiler = new Decompiler(this.statements, this.compilerConfig)
       decompiler.decompile()
       console.log("###DECOMPILE", decompiler.exception, decompiler.executable, decompiler.code)
@@ -191,7 +197,7 @@ export default {
       }
 
       this.code = decompiler.code
-      this.$emit('code-change', decompiler.code)
+      this.$emit('code-change', decompiler.code, correction)
     }
   }
 }

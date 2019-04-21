@@ -44,17 +44,46 @@ export default class CodeHistory {
   }
 
   push(code, save = true) {
-    this.activeRevision++
-    this.revisions.splice(this.activeRevision, this.revisions.length - this.activeRevision, code)
+    let changed = false
+    if (code !== this.getCode()) {
+      this.activeRevision++
+      this.revisions.splice(this.activeRevision, this.revisions.length - this.activeRevision, code)
 
+      this.removeTail()
+
+      if (save) {
+        this.save()
+      }
+      changed = true
+    }
+    return changed
+  }
+
+  insert(code, save = true) {
+    let changed = false
+    if (code !== this.getCode() && code !== this.getCode(1)) {
+      this.activeRevision++
+      this.revisions.splice(this.activeRevision, 0, code)
+
+      this.removeTail()
+      changed = true
+    } else if (code === this.getCode(1)) {
+      this.activeRevision++
+      changed = true
+    }
+
+    if (save && changed) {
+      this.save()
+    }
+
+    return changed
+  }
+
+  removeTail() {
     if (this.revisions.length > maxDepth) {
       let newStart = this.revisions.length - maxDepth
       this.activeRevision -= newStart
       this.revisions = this.revisions.slice(newStart)
-    }
-
-    if (save) {
-      this.save()
     }
   }
 

@@ -94,8 +94,9 @@ export default {
       this.$emit('code-change', code, 'code')
     },
 
-    handleGraphCodeChange(code) {
-      this.$emit('code-change', code, 'graph')
+    handleGraphCodeChange(code, correction) {
+      let source = correction ? 'graph-correction' : 'graph'
+      this.$emit('code-change', code, source)
     },
 
     resizeEditor() {
