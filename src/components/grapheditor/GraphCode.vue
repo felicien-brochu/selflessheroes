@@ -1,16 +1,23 @@
 <template>
 <div :class="{
-	'graph-scroll': true,
-	'animate-margin': animateDragAndDrop
+		'graph-scroll': true,
+		'animate-margin': animateDragAndDrop
 	}"
   ref="scroll"
   @scroll="$emit('scroll', $event)">
+
   <div class="graph-code">
     <slot></slot>
-    <line-numbers :numbers="lineNumbers" />
+
+    <line-numbers :statements="statements"
+      :playing="playing"
+      :debugContext="debugContext"
+      :followHeroIndex="followHeroIndex" />
+
     <ul class="node-container"
       ref="nodeContainer">
     </ul>
+
   </div>
 </div>
 </template>
@@ -22,10 +29,6 @@ import NodeBuilder from './nodes/NodeBuilder'
 import DragTree from './DragTree'
 import LineNumbers from './LineNumbers'
 import AutoScroll from './AutoScroll'
-import {
-  getLineNumbersFromStatements
-}
-from './utils'
 import {
   lineMargin,
   lineHeight
@@ -45,12 +48,20 @@ export default {
     'compilerConfig': {
       type: Object,
       default: null
+    },
+    'playing': {
+      type: Boolean
+    },
+    'debugContext': {
+      type: Object
+    },
+    'followHeroIndex': {
+      type: Number
     }
   },
 
   data: function() {
     return {
-      lineNumbers: [],
       nodes: [],
       dragEvent: null,
       animateDragAndDrop: false
@@ -71,7 +82,6 @@ export default {
     statements: function(statements, oldStatements) {
       this.clearNodeContainer()
       this.populateNodeContainer()
-      this.lineNumbers = getLineNumbersFromStatements(statements)
       this.$emit('nodes-change', this.nodes)
     },
 
@@ -250,10 +260,6 @@ export default {
             padding-top: $line-margin;
             padding-bottom: $node-line-height + $line-margin + 10;
             z-index: 10;
-        }
-
-        .code-lines {
-            height: auto;
         }
     }
 }

@@ -11,8 +11,11 @@
         class="code-editor"
         :code="code"
         :worldReady="worldReady"
+        :playing="playing"
         :compilerExceptions="compilerExceptions"
         :disabled="playing"
+        :debugContext="debugContext"
+        :followHeroIndex="followHeroIndex"
         @change="handleCodeMirrorChange" />
 
       <graph-editor v-else-if="editorType === 'graph'"
@@ -21,7 +24,10 @@
         :codeSource="codeSource"
         :compilerConfig="compilerConfig"
         :worldReady="worldReady"
+        :playing="playing"
         :hidePalette="playing"
+        :debugContext="debugContext"
+        :followHeroIndex="followHeroIndex"
         @code-change="handleGraphCodeChange" />
 
       <div class="editor-readonly-overlay"

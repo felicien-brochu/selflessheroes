@@ -43,6 +43,15 @@ export default {
     },
     compilerExceptions: {
       type: Object
+    },
+    'playing': {
+      type: Boolean
+    },
+    'debugContext': {
+      type: Object
+    },
+    'followHeroIndex': {
+      type: Number
     }
   },
 

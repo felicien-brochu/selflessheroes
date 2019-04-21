@@ -1,20 +1,166 @@
 <template>
-<ol class="line-numbers">
-  <li v-for="number in numbers"
-    class="line-number">
-    {{ number }}
-  </li>
-</ol>
+<div class="line-numbers-container">
+  <svg class="svg-defs">
+    <defs>
+      <g id="cursor">
+        <path d="M 26, 30 H 5.2 c -2.7, 0 -5 -2.3 -5 -5 V 5 c 0 -2.8, 2.3 -5, 5 -5 H 26 L 40,15 Z" />
+      </g>
+
+      <filter id="dropshadow"
+        width="150%"
+        height="150%">
+        <feGaussianBlur in="SourceAlpha"
+          stdDeviation="3" />
+        <feOffset dx="-1"
+          dy="2"
+          result="offsetblur" />
+        <feComponentTransfer>
+          <feFuncA type="linear"
+            slope="0.8" />
+        </feComponentTransfer>
+        <feMerge>
+          <feMergeNode />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+  </svg>
+
+  <ol class="line-numbers">
+
+    <li v-for="number in numbers"
+      class="line-number">{{ number }}</li>
+
+  </ol>
+
+  <ul class="cursors"
+    v-show="playing">
+
+    <li v-for="cursor in cursors"
+      :key="cursor.heroIndex"
+      :class="{
+				'cursor': true,
+				'selected': cursor.selected
+			}"
+      :style="{
+				top: cursor.top + 'px'
+			}">
+      <svg viewbox="0 0 60 60">
+        <use x="10"
+          y="13"
+          href="#cursor"
+          filter="url(#dropshadow)" />
+      </svg>
+    </li>
+
+  </ul>
+
+</div>
 </template>
 
 <script>
+import IfStatement from '../../world/ai/compile/statements/IfStatement'
+import EndIfStatement from '../../world/ai/compile/statements/EndIfStatement'
+import AnchorStatement from '../../world/ai/compile/statements/AnchorStatement'
+import {
+  lineMargin,
+  lineHeight
+}
+from './nodes/NodeBuilder'
+
 export default {
   props: {
-    'numbers': {
-      type: Array,
-      default: function() {
-        return ['1', '2', '3', '4', '5', '6', '7', '8']
+    'statements': {
+      type: Array
+    },
+    'playing': {
+      type: Boolean
+    },
+    'debugContext': {
+      type: Object
+    },
+    'followHeroIndex': {
+      type: Number
+    }
+  },
+
+  computed: {
+    numbers: function() {
+      let lineNumbers = []
+      let line = 1
+      if (this.statements) {
+        for (let statement of this.statements) {
+          if (statement instanceof AnchorStatement) {
+            lineNumbers.push(null)
+          }
+          else if (statement instanceof EndIfStatement) {
+            continue
+          }
+          else {
+            lineNumbers.push(line)
+            line++
+
+            // Insert empty lines for condition nodes
+            if (statement instanceof IfStatement) {
+              for (let i = 0; i < statement.condition.expressions.length - 1; i++) {
+                lineNumbers.push(null)
+              }
+
+              // Insert line for empty if with else and empty if
+              if ((statement.elseStatement && this.statements.indexOf(statement.elseStatement) - this.statements.indexOf(statement) === 1) ||
+                this.statements.indexOf(statement.endIfStatement) - this.statements.indexOf(statement) === 1) {
+                lineNumbers.push(null)
+              }
+            }
+          }
+        }
       }
+      return lineNumbers
+    },
+
+    cursors: function() {
+      let cursors = []
+      for (let i = 0; this.playing && i < this.debugContext.heroes.length; i++) {
+        let heroContext = this.debugContext.heroes[i]
+        let line = this.getStatementLine(this.statements[heroContext.cursor])
+        console.log("####LINE", line, heroContext.cursor)
+        cursors.push({
+          heroIndex: i,
+          line: line,
+          top: line * lineHeight,
+          selected: i === this.followHeroIndex
+        })
+      }
+
+      return cursors
+    }
+  },
+
+  methods: {
+    getStatementLine(myStatement) {
+      let line = 0
+
+      for (let statement of this.statements) {
+        if (statement === myStatement) {
+          return line
+        }
+
+        if (!(statement instanceof EndIfStatement)) {
+          line++
+
+          // Insert empty lines for condition nodes
+          if (statement instanceof IfStatement) {
+            line += statement.condition.expressions.length - 1
+
+            // Insert line for empty if with else and empty if
+            if ((statement.elseStatement && this.statements.indexOf(statement.elseStatement) - this.statements.indexOf(statement) === 1) ||
+              this.statements.indexOf(statement.endIfStatement) - this.statements.indexOf(statement) === 1) {
+              line++
+            }
+          }
+        }
+      }
+      return -1
     }
   }
 }
@@ -23,23 +169,79 @@ export default {
 <style lang="scss">
 @import '../constants';
 
-.line-numbers {
-    width: 35px;
-    padding: 10px 0 0;
-    margin: 0;
-    height: min-content;
-    background-color: lighten(#282c34, 3%);
-    list-style: none;
+.svg-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
 
-    li {
-        @include no-select;
-        text-align: center;
-        margin: auto;
-        font-weight: bold;
-        font-size: 20px;
-        color: lighten(#282c34, 10%);
-        height: $node-line-height + $line-margin;
-        line-height: 33px;
+.line-numbers-container {
+    position: relative;
+
+    .line-numbers {
+        width: 35px;
+        padding: 10px 0 0;
+        margin: 0;
+        height: min-content;
+        background-color: lighten(#282c34, 3%);
+        list-style: none;
+
+        li {
+            @include no-select;
+            text-align: center;
+            margin: auto;
+            font-weight: bold;
+            font-size: 20px;
+            color: lighten(#282c34, 10%);
+            height: $node-line-height + $line-margin;
+            line-height: 36px;
+        }
+    }
+
+    .cursors {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        .cursor {
+            position: absolute;
+            width: 100px;
+            left: -7px;
+
+            transition-property: top;
+            transition-duration: 200ms;
+
+            svg {
+                height: 60px;
+                width: 60px;
+            }
+
+            &.selected {
+                z-index: 20;
+                svg use {
+                    fill: #5D84C7;
+                }
+            }
+
+            svg use {
+                transition: opacity 50ms ease;
+                fill: lighten(#282c34, 10%);
+                opacity: 0.6;
+            }
+
+            &.selected svg use,
+            svg use {
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
     }
 }
 </style>

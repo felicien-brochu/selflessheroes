@@ -4,18 +4,25 @@
   <drag-and-drop-layer :startDragEvent="startDragEvent"
     @drop="handleDrop"
     @drag-over="handleDragOver" />
+
   <popup-layer id="popup-layer"
     :compilerConfig="compilerConfig" />
+
   <div class="editor-container">
+
     <palette ref="palette"
       :class="{'hidden': hidePalette}"
       :compilerConfig="compilerConfig"
       :chosenStatement="chosenPaletteStatement"
       @drag-start="handlePaletteDragStart" />
+
     <graph-code ref="graphCode"
       id="graph-code"
       :statements="statements"
       :compilerConfig="compilerConfig"
+      :playing="playing"
+      :debugContext="debugContext"
+      :followHeroIndex="followHeroIndex"
       @node-drag-start="handleNodeDragStart"
       @drop-node="handleDropNode"
       @node-change="handleNodeChange">
@@ -63,9 +70,18 @@ export default {
       type: Boolean,
       default: false
     },
+    'playing': {
+      type: Boolean
+    },
     'hidePalette': {
       type: Boolean,
       default: false
+    },
+    'debugContext': {
+      type: Object
+    },
+    'followHeroIndex': {
+      type: Number
     }
   },
 

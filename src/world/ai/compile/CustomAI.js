@@ -1,5 +1,7 @@
 import AI from '../AI'
 import ExpressionValue from './statements/ExpressionValue'
+import AnchorStatement from './statements/AnchorStatement'
+import EmptyStatement from './statements/EmptyStatement'
 
 export default class CustomAI extends AI {
   constructor(statements, compilerConfig, world, character) {
@@ -9,6 +11,7 @@ export default class CustomAI extends AI {
     this.compilerConfig = compilerConfig
 
     this.cursor = 0
+    this.lastActionCursor = 0
     this.variables = {}
     this.initVariables()
     this.context = {
@@ -26,6 +29,7 @@ export default class CustomAI extends AI {
   }
 
   step() {
+    let res = null
     while (this.cursor < this.statements.length) {
       let statement = this.statements[this.cursor]
       let {
@@ -35,6 +39,10 @@ export default class CustomAI extends AI {
         action
       } = statement.execute(this.getContext())
 
+      if (step) {
+        this.lastActionCursor = this.cursor
+      }
+
       if (goto) {
         this.context.lastGoto = goto
         this.cursor = this.statements.indexOf(goto)
@@ -43,9 +51,12 @@ export default class CustomAI extends AI {
       }
 
       if (step) {
-        return action
+        res = action
+        break
       }
     }
+
+    return res
   }
 
   getContext() {
@@ -55,7 +66,7 @@ export default class CustomAI extends AI {
   getDebugContext() {
     return {
       ...this.context,
-      cursor: this.cursor
+      cursor: this.lastActionCursor
     }
   }
 }
