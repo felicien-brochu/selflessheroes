@@ -43,7 +43,8 @@
 				'selected': cursor.selected
 			}"
       :style="{
-				top: cursor.top + 'px'
+				top: cursor.top + 'px',
+				transform: `rotate(${cursor.rotate}deg)`
 			}">
       <svg viewbox="0 0 60 60">
         <use x="10"
@@ -120,16 +121,43 @@ export default {
 
     cursors: function() {
       let cursors = []
+      let lineSet = []
       for (let i = 0; this.playing && i < this.debugContext.heroes.length; i++) {
         let heroContext = this.debugContext.heroes[i]
         let line = this.getStatementLine(this.statements[heroContext.cursor])
-        console.log("####LINE", line, heroContext.cursor)
         cursors.push({
           heroIndex: i,
           line: line,
           top: line * lineHeight,
+          rotate: 0,
           selected: i === this.followHeroIndex
         })
+
+        if (!lineSet.includes(line)) {
+          lineSet.push(line)
+        }
+      }
+
+
+      // Space and rotation between the cursors
+      // when there are more than one on the same line
+      const maxSpaced = 5
+      const maxHeight = 30
+      const maxRotate = 20
+
+      for (let line of lineSet) {
+        let lineCursors = cursors.filter(cursor => cursor.line === line)
+        if (lineCursors.length > 1) {
+          let nbSpaced = Math.min(lineCursors.length, maxSpaced)
+
+          for (let i = 0; i < lineCursors.length; i++) {
+            let subIndex = i % nbSpaced
+            let ratio = ((subIndex + 1) / (nbSpaced + 1)) - 0.5
+            let cursor = lineCursors[i]
+            cursor.top += ratio * maxHeight
+            cursor.rotate = -ratio * maxRotate
+          }
+        }
       }
 
       return cursors
@@ -214,7 +242,7 @@ export default {
             width: 100px;
             left: -7px;
 
-            transition-property: top;
+            transition-property: top, transform;
             transition-duration: 200ms;
 
             svg {
