@@ -7,9 +7,7 @@
 	'branching-statement': isBranchingStatement
 }"
   @mousedown="handleMouseDown"
-  @touchstart="handleMouseDown">
-  {{statement.keyword}}
-</li>
+  @touchstart="handleMouseDown">{{statement.keyword}}</li>
 </template>
 
 <script>
