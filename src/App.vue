@@ -3,7 +3,7 @@
   v-hotkey="keymap">
 
   <world :followHeroIndex="followHeroIndex"
-    @world-state-change="worldState = $event"
+    @world-state-change="handleWorldStateChange"
     @ai-state-change="aiReady = $event"
     @ready="handleWorldReady"
     @follow-hero-change="followHeroIndex = $event" />
@@ -51,6 +51,7 @@
 
 <script>
 import _debounce from 'lodash.debounce'
+import _throttle from 'lodash.throttle'
 import World from './components/World'
 import Editor from './components/Editor'
 import RunBar from './components/runbar/RunBar'
@@ -88,6 +89,10 @@ export default {
   },
 
   created() {
+    this.debouncedSetWorldState = _throttle(this.setWorldState, 50, {
+      leading: true,
+      trailing: true
+    })
     this.debouncedCompileCode = _debounce(this.compileCode, 250, {
       leading: true,
       trailing: true
@@ -99,6 +104,7 @@ export default {
   },
 
   beforeDestroy() {
+    this.debouncedSetWorldState.flush()
     this.debouncedCompileCode.cancel()
     this.debouncedPushHistory.flush()
   },
@@ -132,6 +138,14 @@ export default {
       this.worldReady = true
       this.handleEditorResize(this.editorWidth)
       this.debouncedCompileCode()
+    },
+
+    handleWorldStateChange(worldState) {
+      this.debouncedSetWorldState(worldState)
+    },
+
+    setWorldState(worldState) {
+      this.worldState = worldState
     },
 
     undo() {
