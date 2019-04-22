@@ -89,6 +89,21 @@ export default {
     }
   },
 
+  data: function() {
+    return {
+      followHeroCursorLine: 0
+    }
+  },
+
+  watch: {
+    debugContext: function() {
+      this.updateFollowHeroCursorLine()
+    },
+    followHeroIndex: function() {
+      this.updateFollowHeroCursorLine()
+    }
+  },
+
   computed: {
     numbers: function() {
       let lineNumbers = []
@@ -129,12 +144,14 @@ export default {
       for (let i = 0; this.playing && i < this.debugContext.heroes.length; i++) {
         let heroContext = this.debugContext.heroes[i]
         let line = this.getStatementLine(this.statements[heroContext.cursor])
+        let selected = i === this.followHeroIndex
+
         cursors.push({
           heroIndex: i,
           line: line,
           top: line * lineHeight,
           rotate: 0,
-          selected: i === this.followHeroIndex
+          selected: selected
         })
 
         if (!lineSet.includes(line)) {
@@ -193,6 +210,16 @@ export default {
         }
       }
       return -1
+    },
+
+    updateFollowHeroCursorLine() {
+      let cursor = this.debugContext.heroes[this.followHeroIndex].cursor
+      let line = this.getStatementLine(this.statements[cursor])
+
+      if (line !== this.followHeroCursorLine) {
+        this.setFollowHeroCursorLine = line
+        this.$emit('follow-hero-cursor-line-change', line)
+      }
     }
   }
 }

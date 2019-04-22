@@ -31,7 +31,8 @@
         :playing="playing"
         :debugContext="debugContext"
         :followHeroIndex="followHeroIndex"
-        @select-follow-hero="$emit('select-follow-hero', $event)" />
+        @select-follow-hero="$emit('select-follow-hero', $event)"
+        @follow-hero-cursor-line-change="handleFollowHeroCursorLineChange" />
 
     </graph-code>
   </div>
@@ -225,6 +226,10 @@ export default {
 
       this.code = decompiler.code
       this.$emit('code-change', decompiler.code, correction)
+    },
+
+    handleFollowHeroCursorLineChange(line) {
+      this.$refs.graphCode.handleFollowHeroCursorLineChange(line)
     }
   }
 }

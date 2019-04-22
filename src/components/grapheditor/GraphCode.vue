@@ -23,6 +23,7 @@ import ElseStatement from '../../world/ai/compile/statements/ElseStatement'
 import NodeBuilder from './nodes/NodeBuilder'
 import DragTree from './DragTree'
 import AutoScroll from './AutoScroll'
+import ScrollAnimator from './ScrollAnimator'
 import {
   lineMargin,
   lineHeight
@@ -51,6 +52,7 @@ export default {
 
   mounted() {
     this.autoScroll = new AutoScroll(this.$refs.scroll, null)
+    this.scrollAnimator = new ScrollAnimator(this.$refs.scroll, lineHeight)
 
     this.dragTree = null
     this.dragPlaceholderIndex = -1
@@ -208,6 +210,10 @@ export default {
       this.dragEvent = null
       this.dragTree = null
       this.dragPlaceholderIndex = -1
+    },
+
+    handleFollowHeroCursorLineChange(line) {
+      this.scrollAnimator.showLine(line)
     }
   }
 }
