@@ -17,7 +17,9 @@ export default class ScrollAnimator {
     if (line !== this.line) {
       this.line = line
 
-      let scrollHeight = this.scroll.getBoundingClientRect().height
+      let paddingBottom = window.getComputedStyle(this.scroll, null).getPropertyValue('padding-bottom')
+      paddingBottom = paddingBottom.substring(0, paddingBottom.indexOf('px'))
+      let scrollHeight = this.scroll.getBoundingClientRect().height - paddingBottom
       let scrollTop = this.scroll.scrollTop
       let top = this.line * this.lineHeight - scrollTop
       let bottom = (this.line + 1) * this.lineHeight - scrollTop - scrollHeight
@@ -40,6 +42,7 @@ export default class ScrollAnimator {
         const minScrollDuration = 50
         duration = Math.min(duration, maxScrollDuration)
         duration = Math.max(duration, minScrollDuration)
+
         this.tween = new Tween(duration, this.update, from, to, this.updateInterval)
         this.tween.start()
       }

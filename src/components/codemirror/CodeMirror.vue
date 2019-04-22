@@ -1,5 +1,11 @@
 <template>
 <div class='vue-codemirror-wrap'>
+  <line-cursors v-show="playing"
+    ref='lineCursors'
+    :debugContext="debugContext"
+    :followHeroIndex="followHeroIndex"
+    @select-follow-hero="$emit('select-follow-hero', $event)"
+    @follow-hero-cursor-line-change="handleFollowHeroCursorLineChange" />
   <textarea></textarea>
 </div>
 </template>
@@ -10,8 +16,14 @@ import _debounce from 'lodash.debounce'
 import 'codemirror/lib/codemirror.css'
 import CodeMirror from 'codemirror'
 import './aiworldmode'
+import LineCursors from './LineCursors'
+import ScrollAnimator from '../util/ScrollAnimator'
 
 export default {
+  components: {
+    LineCursors
+  },
+
   props: {
     code: {
       type: String,
@@ -80,6 +92,10 @@ export default {
     this.editor.setValue(this.code)
     this.editor.on('changes', this.handleEditorChange)
     this.updateExceptionMarkers(false)
+
+    let scroll = document.getElementsByClassName('CodeMirror-scroll')[0]
+    this.scrollAnimator = new ScrollAnimator(scroll, 26)
+    scroll.appendChild(this.$refs.lineCursors.$el)
   },
 
   beforeDestroy() {
@@ -164,6 +180,10 @@ export default {
           className: 'cm-compiler-exception'
         }))
       }
+    },
+
+    handleFollowHeroCursorLineChange(line) {
+      this.scrollAnimator.showLine(line)
     }
 
   }
@@ -173,6 +193,13 @@ export default {
 <style lang="scss">
 .CodeMirror {
     cursor: text;
+
+    .line-cursors-container {
+        z-index: 10;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
 }
 
 .CodeMirror-lines {

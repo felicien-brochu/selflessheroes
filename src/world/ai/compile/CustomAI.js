@@ -12,6 +12,7 @@ export default class CustomAI extends AI {
 
     this.cursor = 0
     this.lastActionCursor = 0
+    this.lastActionStatement = null
     this.variables = {}
     this.initVariables()
     this.context = {
@@ -41,6 +42,7 @@ export default class CustomAI extends AI {
 
       if (step) {
         this.lastActionCursor = this.cursor
+        this.lastActionStatement = statement
       }
 
       if (goto) {
@@ -66,7 +68,8 @@ export default class CustomAI extends AI {
   getDebugContext() {
     return {
       ...this.context,
-      cursor: this.lastActionCursor
+      cursor: this.lastActionCursor,
+      cursorStatement: this.lastActionStatement
     }
   }
 }

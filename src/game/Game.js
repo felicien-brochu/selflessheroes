@@ -131,7 +131,7 @@ export default class extends Phaser.Scene {
     if (this.followHeroIndex >= 0) {
       let hero = this.heroes[this.followHeroIndex]
       this.followCursor.x = hero.x
-      this.followCursor.y = hero.y + 6
+      this.followCursor.y = hero.y + 12
       this.followCursor.depth = hero.depth - 1
     }
 

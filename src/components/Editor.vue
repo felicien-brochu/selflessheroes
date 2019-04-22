@@ -16,7 +16,8 @@
         :disabled="playing"
         :debugContext="debugContext"
         :followHeroIndex="followHeroIndex"
-        @change="handleCodeMirrorChange" />
+        @change="handleCodeMirrorChange"
+        @select-follow-hero="$emit('select-follow-hero', $event)" />
 
       <graph-editor v-else-if="editorType === 'graph'"
         id="graph-editor"

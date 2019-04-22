@@ -23,7 +23,7 @@ import ElseStatement from '../../world/ai/compile/statements/ElseStatement'
 import NodeBuilder from './nodes/NodeBuilder'
 import DragTree from './DragTree'
 import AutoScroll from './AutoScroll'
-import ScrollAnimator from './ScrollAnimator'
+import ScrollAnimator from '../util/ScrollAnimator'
 import {
   lineMargin,
   lineHeight
