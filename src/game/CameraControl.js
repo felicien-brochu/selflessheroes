@@ -6,7 +6,7 @@ const xMargin = 64
 const yMargin = 64
 
 export default class CameraControl extends Phaser.Cameras.Controls.FixedKeyControl {
-  constructor(scene, camera, visibleWidth, visibleHeight, mapWidth, mapHeight) {
+  constructor(scene, camera, visibleWidth, visibleHeight, mapWidth, mapHeight, mapFrame, margin) {
     scene.mouseWheelToUpDown = scene.plugins.get('rexMouseWheelToUpDown').add(scene)
     var cursorKeys = scene.mouseWheelToUpDown.createCursorKeys()
     var cursors = scene.input.keyboard.addKeys({
@@ -38,6 +38,8 @@ export default class CameraControl extends Phaser.Cameras.Controls.FixedKeyContr
     this.visibleHeight = visibleHeight
     this.mapWidth = mapWidth
     this.mapHeight = mapHeight
+    this.mapFrame = mapFrame
+    this.margin = margin
     this.origDragPoint = null
   }
 
@@ -45,17 +47,23 @@ export default class CameraControl extends Phaser.Cameras.Controls.FixedKeyContr
     this.setInitialZoom()
     this.resizeCameraViewport()
     this.resizeBounds()
-    this.camera.centerOn(this.mapWidth / 2, this.mapHeight / 2)
+    this.centerFrame()
+  }
+
+  centerFrame() {
+    let marginLeft = this.margin.left / this.camera.zoom
+    let marginRight = this.margin.right / this.camera.zoom
+    let marginTop = this.margin.top / this.camera.zoom
+    let marginBottom = this.margin.bottom / this.camera.zoom
+    let centerX = this.mapFrame.x - marginLeft + ((this.mapFrame.width + marginLeft + marginRight) / 2)
+    let centerY = this.mapFrame.y - marginTop + ((this.mapFrame.height + marginTop + marginBottom) / 2)
+    this.camera.centerOn(centerX, centerY)
   }
 
   setInitialZoom() {
-    let zoom = 1
-    if (zoom * (this.mapWidth + 2 * xMargin) > this.visibleWidth) {
-      zoom = this.visibleWidth / (this.mapWidth + 2 * xMargin)
-    }
-    if (zoom * (this.mapHeight + 2 * yMargin) > this.visibleHeight) {
-      zoom = this.visibleHeight / (this.mapHeight + 2 * yMargin)
-    }
+    let hZoom = (this.visibleWidth - (this.margin.left + this.margin.right)) / this.mapFrame.width
+    let vZoom = (this.visibleHeight - (this.margin.top + this.margin.bottom)) / this.mapFrame.height
+    let zoom = Math.min(hZoom, vZoom)
     zoom = Math.max(zoom, minZoom)
     this.camera.setZoom(zoom)
   }

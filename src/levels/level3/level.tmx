@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="85" nextobjectid="12">
+ <properties>
+  <property name="frameHeight" type="int" value="704"/>
+  <property name="frameWidth" type="int" value="832"/>
+  <property name="frameX" type="int" value="224"/>
+  <property name="frameY" type="int" value="128"/>
+ </properties>
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="100" columns="10">
   <image source="tileset.png" trans="000000" width="340" height="340"/>
   <terraintypes>

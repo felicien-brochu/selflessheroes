@@ -19,9 +19,9 @@ export default class extends Phaser.Scene {
     this.aiFactory = null
     this.compilerConfig = CompilerConfig.getDefaultConfig()
     this.onSceneReady = null
-    this.followHeroIndex = 0
+    this.followHeroIndex = -1
     this.runner = new WorldRunner()
-    this.editorWidth = 400
+    this.editorWidth = 360
 
     this.followHeroListener = null
     this.aiStateListener = null
@@ -65,6 +65,22 @@ export default class extends Phaser.Scene {
     this.groundLayer = this.map.createDynamicLayer('ground', this.tilesetImage, 0, 0)
     this.aboveCharacterLayer = this.map.createDynamicLayer('above_characters', this.tilesetImage, 0, 0)
     this.aboveCharacterLayer.depth = 1000000
+
+    this.mapFrame = {
+      x: this.getMapProperty('frameX', 0),
+      y: this.getMapProperty('frameY', 0),
+      width: this.getMapProperty('frameWidth', this.map.width),
+      height: this.getMapProperty('frameHeight', this.map.height)
+    }
+  }
+
+  getMapProperty(name, defaultValue) {
+    let value = defaultValue
+    let property = this.map.properties.find(prop => prop.name === name)
+    if (property) {
+      value = property.value
+    }
+    return value
   }
 
   createStaticElements() {
@@ -73,7 +89,7 @@ export default class extends Phaser.Scene {
 
     this.gameOverText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, lang.text('game_over'), {
       font: '64px Roboto',
-      fill: '#C49262',
+      fill: '#f5e3d3',
       padding: 30
     })
     this.gameOverText.setVisible(false)
@@ -108,9 +124,20 @@ export default class extends Phaser.Scene {
 
   initCamera() {
     let camera = this.cameras.main
-    this.cameraControl = new CameraControl(this, camera,
-      window.innerWidth - 400, window.innerHeight,
-      this.map.widthInPixels, this.map.heightInPixels)
+    this.cameraControl = new CameraControl(
+      this,
+      camera,
+      window.innerWidth - 360,
+      window.innerHeight,
+      this.map.widthInPixels,
+      this.map.heightInPixels,
+      this.mapFrame, {
+        top: 60,
+        right: 112 + 20,
+        bottom: 87 + 40,
+        left: 20
+      })
+
     this.cameraControl.init()
   }
 

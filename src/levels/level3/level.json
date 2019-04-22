@@ -211,6 +211,27 @@
  "nextlayerid":85,
  "nextobjectid":12,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"frameHeight",
+         "type":"int",
+         "value":704
+        }, 
+        {
+         "name":"frameWidth",
+         "type":"int",
+         "value":832
+        }, 
+        {
+         "name":"frameX",
+         "type":"int",
+         "value":224
+        }, 
+        {
+         "name":"frameY",
+         "type":"int",
+         "value":128
+        }],
  "renderorder":"right-down",
  "tiledversion":"2019.03.13",
  "tileheight":32,
@@ -218,7 +239,7 @@
         {
          "columns":10,
          "firstgid":1,
-         "image":"..\/model\/tileset.png",
+         "image":"tileset.png",
          "imageheight":340,
          "imagewidth":340,
          "margin":1,

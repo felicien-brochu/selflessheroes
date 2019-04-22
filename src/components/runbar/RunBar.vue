@@ -64,13 +64,6 @@ export default {
 
 <style lang="scss">
 .run-bar {
-    &.ready {
-        // left: -122px;
-    }
-    &.playing {
-        // left: -308px;
-    }
-
     border-radius: 6px;
 
     display: flex;
