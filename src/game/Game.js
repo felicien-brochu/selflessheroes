@@ -60,7 +60,7 @@ export default class extends Phaser.Scene {
     })
     // The first parameter is the name of the tileset in Tiled and the second parameter is the key
     // of the tileset image used when loading the file in preload.
-    this.tiles = this.map.addTilesetImage('DungeonTileset', 'tiles')
+    this.tiles = this.map.addTilesetImage('tileset', 'tiles')
     // You can load a layer from the map using the layer name from Tiled, or by using the layer index
     this.mapLayer = this.map.createDynamicLayer('ground', this.tiles, 1, 2)
   }

@@ -194,65 +194,11 @@
         {
          "columns":10,
          "firstgid":1,
-         "image":"..\/tiles\/DungeonTileset.png",
+         "image":"tileset.png",
          "imageheight":340,
          "imagewidth":340,
          "margin":1,
-         "name":"DungeonTileset",
-         "spacing":2,
-         "terrains":[
-                {
-                 "name":"floor",
-                 "tile":79
-                }, 
-                {
-                 "name":"wall",
-                 "tile":69
-                }, 
-                {
-                 "name":"hole",
-                 "tile":78
-                }],
-         "tilecount":100,
-         "tileheight":32,
-         "tilewidth":32,
-         "transparentcolor":"#000000"
-        }, 
-        {
-         "columns":10,
-         "firstgid":101,
-         "image":"..\/tiles\/DungeonTileset.png",
-         "imageheight":340,
-         "imagewidth":340,
-         "margin":1,
-         "name":"DungeonTileset",
-         "spacing":2,
-         "terrains":[
-                {
-                 "name":"floor",
-                 "tile":79
-                }, 
-                {
-                 "name":"wall",
-                 "tile":69
-                }, 
-                {
-                 "name":"hole",
-                 "tile":78
-                }],
-         "tilecount":100,
-         "tileheight":32,
-         "tilewidth":32,
-         "transparentcolor":"#000000"
-        }, 
-        {
-         "columns":10,
-         "firstgid":201,
-         "image":"..\/tiles\/DungeonTileset.png",
-         "imageheight":340,
-         "imagewidth":340,
-         "margin":1,
-         "name":"DungeonTileset",
+         "name":"tileset",
          "spacing":2,
          "terrains":[
                 {
