@@ -25,7 +25,8 @@
       :followHeroIndex="followHeroIndex"
       @node-drag-start="handleNodeDragStart"
       @drop-node="handleDropNode"
-      @node-change="handleNodeChange">
+      @node-change="handleNodeChange"
+      @select-follow-hero="$emit('select-follow-hero', $event)">
 
       <jump-link-layer ref="jumpLinkLayer" />
 

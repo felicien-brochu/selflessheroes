@@ -12,7 +12,8 @@
     <line-numbers :statements="statements"
       :playing="playing"
       :debugContext="debugContext"
-      :followHeroIndex="followHeroIndex" />
+      :followHeroIndex="followHeroIndex"
+      @select-follow-hero="$emit('select-follow-hero', $event)" />
 
     <ul class="node-container"
       ref="nodeContainer">

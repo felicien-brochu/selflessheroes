@@ -28,7 +28,8 @@
         :hidePalette="playing"
         :debugContext="debugContext"
         :followHeroIndex="followHeroIndex"
-        @code-change="handleGraphCodeChange" />
+        @code-change="handleGraphCodeChange"
+        @select-follow-hero="$emit('select-follow-hero', $event)" />
 
       <div class="editor-readonly-overlay"
         v-show="playing" />

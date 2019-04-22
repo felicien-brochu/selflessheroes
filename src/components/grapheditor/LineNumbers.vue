@@ -17,6 +17,9 @@
         <feComponentTransfer>
           <feFuncA type="linear"
             slope="0.8" />
+          <feFuncB type="linear"
+            slope="1"
+            intercept="0.01" />
         </feComponentTransfer>
         <feMerge>
           <feMergeNode />
@@ -50,7 +53,8 @@
         <use x="10"
           y="13"
           href="#cursor"
-          filter="url(#dropshadow)" />
+          filter="url(#dropshadow)"
+          @click="$emit('select-follow-hero', cursor.heroIndex)" />
       </svg>
     </li>
 
@@ -240,10 +244,11 @@ export default {
         .cursor {
             position: absolute;
             width: 100px;
-            left: -7px;
+            left: -4px;
 
             transition-property: top, transform;
             transition-duration: 200ms;
+            pointer-events: none;
 
             svg {
                 height: 60px;
@@ -260,7 +265,8 @@ export default {
             svg use {
                 transition: opacity 50ms ease;
                 fill: lighten(#282c34, 10%);
-                opacity: 0.6;
+                opacity: 0.8;
+                pointer-events: fill;
             }
 
             &.selected svg use,

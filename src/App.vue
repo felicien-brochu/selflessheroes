@@ -42,7 +42,8 @@
       :followHeroIndex="followHeroIndex"
       @undo="undo"
       @redo="redo"
-      @code-change="handleCodeChange" />
+      @code-change="handleCodeChange"
+      @select-follow-hero="followHeroIndex = $event" />
 
   </resize-split-pane>
 </div>
