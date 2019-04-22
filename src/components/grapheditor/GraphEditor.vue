@@ -20,15 +20,18 @@
       id="graph-code"
       :statements="statements"
       :compilerConfig="compilerConfig"
-      :playing="playing"
-      :debugContext="debugContext"
-      :followHeroIndex="followHeroIndex"
       @node-drag-start="handleNodeDragStart"
       @drop-node="handleDropNode"
       @node-change="handleNodeChange"
       @select-follow-hero="$emit('select-follow-hero', $event)">
 
       <jump-link-layer ref="jumpLinkLayer" />
+
+      <line-numbers :statements="statements"
+        :playing="playing"
+        :debugContext="debugContext"
+        :followHeroIndex="followHeroIndex"
+        @select-follow-hero="$emit('select-follow-hero', $event)" />
 
     </graph-code>
   </div>
@@ -41,6 +44,7 @@ import PopupLayer from './nodes/PopupLayer'
 import Palette from './Palette'
 import GraphCode from './GraphCode'
 import JumpLinkLayer from './JumpLinkLayer'
+import LineNumbers from './LineNumbers'
 import NodeBuilder from './nodes/NodeBuilder'
 import Compiler from '../../world/ai/compile/Compiler'
 import Decompiler from '../../world/ai/compile/Decompiler'
@@ -52,7 +56,8 @@ export default {
     PopupLayer,
     Palette,
     GraphCode,
-    JumpLinkLayer
+    JumpLinkLayer,
+    LineNumbers
   },
 
   props: {

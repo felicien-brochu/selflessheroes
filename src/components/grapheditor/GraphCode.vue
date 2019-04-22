@@ -9,12 +9,6 @@
   <div class="graph-code">
     <slot></slot>
 
-    <line-numbers :statements="statements"
-      :playing="playing"
-      :debugContext="debugContext"
-      :followHeroIndex="followHeroIndex"
-      @select-follow-hero="$emit('select-follow-hero', $event)" />
-
     <ul class="node-container"
       ref="nodeContainer">
     </ul>
@@ -28,7 +22,6 @@ import IfStatement from '../../world/ai/compile/statements/IfStatement'
 import ElseStatement from '../../world/ai/compile/statements/ElseStatement'
 import NodeBuilder from './nodes/NodeBuilder'
 import DragTree from './DragTree'
-import LineNumbers from './LineNumbers'
 import AutoScroll from './AutoScroll'
 import {
   lineMargin,
@@ -37,10 +30,6 @@ import {
 from './nodes/NodeBuilder'
 
 export default {
-  components: {
-    LineNumbers
-  },
-
   props: {
     'statements': {
       type: Array,
@@ -49,15 +38,6 @@ export default {
     'compilerConfig': {
       type: Object,
       default: null
-    },
-    'playing': {
-      type: Boolean
-    },
-    'debugContext': {
-      type: Object
-    },
-    'followHeroIndex': {
-      type: Number
     }
   },
 

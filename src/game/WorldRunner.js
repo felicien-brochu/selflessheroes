@@ -1,12 +1,17 @@
 import Speeds from './Speeds'
 
+const defaultStepInterval = 600
+
 export default class WorldRunner {
   constructor() {
     this.world = null
-    this.stepInterval = 200
     this.speed = Speeds.values[Speeds.default]
     this.timerID = -1
     this.steps = 0
+  }
+
+  get stepInterval() {
+    return defaultStepInterval / this.speed
   }
 
   init(world) {
@@ -35,7 +40,7 @@ export default class WorldRunner {
 
   play() {
     if (this.isPaused() && !this.world.gameOver) {
-      this.timerID = setInterval(this.step.bind(this), this.stepInterval / this.speed)
+      this.timerID = setInterval(this.step.bind(this), this.stepInterval)
       this.emitStateChange()
     }
   }

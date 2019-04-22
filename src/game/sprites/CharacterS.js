@@ -31,7 +31,7 @@ export default class CharacterS extends Phaser.GameObjects.Sprite {
   updateState() {
     let newState = stateIdle
     if (this.character.lastAction) {
-      if (this.character.lastAction.type === 'move') {
+      if (this.character.lastAction.type === 'StepAction') {
         newState = stateRun
       }
     }
@@ -49,12 +49,20 @@ export default class CharacterS extends Phaser.GameObjects.Sprite {
       } else if (this.lastTileX > this.character.x) {
         this.setFlipX(true)
       }
+
+      const maxDuration = 500
+      let duration = Math.min(this.scene.runner.stepInterval, maxDuration)
+      let ease = 'Expo.easeOut'
+      if (duration <= 200) {
+        ease = 'Quad.easeInOut'
+      }
       this.scene.tweens.add({
         targets: this,
         x: (this.character.x + 0.5) * this.tileWidth + this.offsetX,
         y: (this.character.y + 0.5) * this.tileHeight + this.offsetY,
-        duration: this.scene.runner.stepInterval,
-        ease: 'Power2',
+        duration: duration,
+        delay: duration,
+        ease: ease
       })
       this.lastTileX = this.character.x
       this.lastTileY = this.character.y

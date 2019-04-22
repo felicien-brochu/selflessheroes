@@ -9,9 +9,17 @@ export default class ObjectiveS extends Phaser.GameObjects.Sprite {
     this.tileWidth = tileWidth
     this.tileHeight = tileHeight
     this.objective = objective
+    this.enabled = this.objective.isEnabled()
   }
 
   update() {
-    this.setFrame(this.objective.isEnabled() ? 1 : 0)
+    if (this.objective.isEnabled() !== this.enabled) {
+      this.enabled = this.objective.isEnabled()
+
+      let duration = this.scene.runner.stepInterval
+      setTimeout(() => {
+        this.setFrame(this.enabled ? 1 : 0)
+      }, duration)
+    }
   }
 }
