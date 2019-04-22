@@ -70,7 +70,7 @@ export default class World {
         let hero = this.heroes[i]
         let action = hero.step()
         if (action) {
-          if (action.type === 'StepAction' && !this.collideWall(hero, action.direction)) {
+          if (action.type === 'StepAction' && !this.collides(hero, action.direction)) {
             hero.move(action.direction)
 
             for (let objective of this.objectives) {
@@ -93,16 +93,29 @@ export default class World {
     }
   }
 
-  collideWall(character, direction) {
-    return this.map.isWall(character.x + direction.dx, character.y + direction.dy)
+  collides(character, direction) {
+    let x = character.x + direction.dx
+    let y = character.y + direction.dy
+    let collidesWall = this.map.isWall(x, y)
+    let collidesCharacter = this.getCharactersAt(x, y).length > 0
+
+    return collidesWall || collidesCharacter
   }
 
   getWorldObjectsAt(x, y) {
     return this.getWorldObjects().filter(o => o.x === x && o.y === y)
   }
 
+  getCharactersAt(x, y) {
+    return this.getCharacters().filter(c => c.x === x && c.y === y)
+  }
+
   getWorldObjects() {
     return [].concat(this.heroes).concat(this.objectives)
+  }
+
+  getCharacters() {
+    return this.heroes
   }
 
   declareWin() {
