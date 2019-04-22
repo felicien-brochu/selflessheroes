@@ -7,3 +7,4 @@ rules/rule6.tmx
 rules/rule7.tmx
 rules/rule8.tmx
 rules/rule9.tmx
+rules/rule10.tmx

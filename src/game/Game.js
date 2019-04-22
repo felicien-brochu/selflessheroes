@@ -60,19 +60,20 @@ export default class extends Phaser.Scene {
     })
     // The first parameter is the name of the tileset in Tiled and the second parameter is the key
     // of the tileset image used when loading the file in preload.
-    this.tiles = this.map.addTilesetImage('tileset', 'tiles')
+    this.tilesetImage = this.map.addTilesetImage('tileset', 'tileset_image')
     // You can load a layer from the map using the layer name from Tiled, or by using the layer index
-    this.mapLayer = this.map.createDynamicLayer('ground', this.tiles, 1, 2)
+    this.groundLayer = this.map.createDynamicLayer('ground', this.tilesetImage, 0, 0)
+    this.aboveCharacterLayer = this.map.createDynamicLayer('above_characters', this.tilesetImage, 0, 0)
+    this.aboveCharacterLayer.depth = 1000000
   }
 
   createStaticElements() {
     this.followCursor = this.add.image(0, 0, 'follow_cursor')
-    this.followCursor.setAlpha(0.7)
     this.followCursor.setVisible(false)
 
     this.gameOverText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, lang.text('game_over'), {
-      font: '64px Menlo',
-      fill: '#7b804f',
+      font: '64px Roboto',
+      fill: '#C49262',
       padding: 30
     })
     this.gameOverText.setVisible(false)
@@ -131,7 +132,7 @@ export default class extends Phaser.Scene {
     if (this.followHeroIndex >= 0) {
       let hero = this.heroes[this.followHeroIndex]
       this.followCursor.x = hero.x
-      this.followCursor.y = hero.y + 12
+      this.followCursor.y = hero.y + 10
       this.followCursor.depth = hero.depth - 1
     }
 

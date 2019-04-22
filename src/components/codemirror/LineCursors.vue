@@ -46,7 +46,8 @@
           y="13"
           href="#code-cursor"
           filter="url(#code-cursor-dropshadow)"
-          @click="$emit('select-follow-hero', cursor.heroIndex)" />
+          @mousedown="$emit('select-follow-hero', cursor.heroIndex)"
+          @touchstart="$emit('select-follow-hero', cursor.heroIndex)" />
       </svg>
     </li>
 

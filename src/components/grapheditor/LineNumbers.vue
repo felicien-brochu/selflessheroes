@@ -54,7 +54,8 @@
           y="13"
           href="#graph-cursor"
           filter="url(#graph-cursor-dropshadow)"
-          @click="$emit('select-follow-hero', cursor.heroIndex)" />
+          @mousedown="$emit('select-follow-hero', cursor.heroIndex)"
+          @touchstart="$emit('select-follow-hero', cursor.heroIndex)" />
       </svg>
     </li>
 
@@ -217,12 +218,15 @@ export default {
     },
 
     updateFollowHeroCursorLine() {
-      let cursor = this.debugContext.heroes[this.followHeroIndex].cursor
-      let line = this.getStatementLine(this.statements[cursor])
+      let heroContext = this.debugContext.heroes[this.followHeroIndex]
+      if (heroContext) {
+        let cursor = this.debugContext.heroes[this.followHeroIndex].cursor
+        let line = this.getStatementLine(this.statements[cursor])
 
-      if (line !== this.followHeroCursorLine) {
-        this.setFollowHeroCursorLine = line
-        this.$emit('follow-hero-cursor-line-change', line)
+        if (line !== this.followHeroCursorLine) {
+          this.setFollowHeroCursorLine = line
+          this.$emit('follow-hero-cursor-line-change', line)
+        }
       }
     }
   }
