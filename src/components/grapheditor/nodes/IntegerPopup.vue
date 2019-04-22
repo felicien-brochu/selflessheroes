@@ -1,16 +1,22 @@
 <template>
 <div :class="['popup', 'integer-popup', colorClass]">
-  <div class="integer-input">
+  <div ref="input"
+    class="integer-input"
+    @mousedown="handlePopupClick"
+    @touchstart="handlePopupTouchStart">
 
     <button class="minus-button"
-      @mousedown="decrement"><span class="icon">-</span></button>
+      @mousedown="decrement"
+      @touchstart="decrement"><i class="material-icons">remove</i></button>
     <!--⯆-->
-    <span class="number">
+    <span ref="number"
+      class="number">
       {{integer}}
     </span>
 
     <button class="plus-button"
-      @mousedown="increment"><span class="icon">+</span></button>
+      @mousedown="increment"
+      @touchstart="increment"><i class="material-icons">add</i></button>
     <!--⯅-->
 
   </div>
@@ -76,6 +82,17 @@ export default {
         number = this.max
       }
       this.integer = number
+    },
+
+    handlePopupTouchStart(e) {
+      e.preventDefault()
+      this.handlePopupClick(e)
+    },
+
+    handlePopupClick(e) {
+      if (e.target === this.$refs.input || e.target === this.$refs.number) {
+        this.close()
+      }
     }
   }
 
@@ -107,20 +124,26 @@ export default {
             height: 30px;
             background-color: transparentize(white, 0.7);
             border: none;
-            font-size: 20px;
             font-weight: 900;
             padding: 0;
             color: inherit;
             text-align: center;
             border-radius: 5px;
 
-            .icon {
-                text-align: center;
-                vertical-align: middle;
+            i {
+                line-height: 30px;
             }
+
             &:active {
-                background-color: transparentize(white, 0.3);
+                background-color: transparentize(white, 0.6);
             }
+        }
+
+        .minus-button i {
+            font-size: 20px;
+        }
+        .plus-button i {
+            font-size: 24px;
         }
     }
 }
