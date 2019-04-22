@@ -4,7 +4,7 @@
   <touch-range :value="speed"
     :min="0"
     :max="maxSpeed"
-    step="1"
+    :step="1"
     @input="$emit('change', $event)"
     v-model="speed" />
 
