@@ -236,10 +236,10 @@ export default class extends Phaser.Scene {
   updateFollowHero() {
     if (this.followHeroIndex >= 0) {
       let sprite = this.heroes[this.followHeroIndex]
-      this.cameras.main.startFollow(sprite, false, 0.05, 0.05)
+      this.cameraControl.startFollow(sprite)
       this.followCursor.setVisible(true)
     } else {
-      this.cameras.main.stopFollow()
+      this.cameraControl.stopFollow()
       this.followCursor.setVisible(false)
     }
   }

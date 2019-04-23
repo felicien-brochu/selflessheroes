@@ -19,6 +19,7 @@ export default class CharacterS extends Phaser.GameObjects.Sprite {
 
     this.lastTileX = character.x
     this.lastTileY = character.y
+    this.depth = this.y
     this.lastStepAction = null
 
     this.actionState = stateIdle

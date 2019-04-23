@@ -85,6 +85,14 @@ export default class CameraControl extends Phaser.Cameras.Controls.FixedKeyContr
     }
   }
 
+  startFollow(sprite) {
+    this.camera.startFollow(sprite, false, 0.05, 0.05)
+  }
+
+  stopFollow() {
+    this.camera.stopFollow()
+  }
+
   updateDrag(delta) {
     let cam = this.camera
     let activePointer = this.scene.input.activePointer
