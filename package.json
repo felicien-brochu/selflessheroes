@@ -15,12 +15,12 @@
     "build": "cross-env NODE_ENV=production webpack --progress",
     "serve:dev": "cross-env NODE_ENV=development webpack-dev-server --open --progress --colors",
     "serve:prod": "cross-env NODE_ENV=production webpack-dev-server --open --progress --colors",
-		"electron": "node ./build-electron.js",
-		"electron:win64": "node ./build-electron.js win64",
+    "electron": "node ./build-electron.js",
+    "electron:win64": "node ./build-electron.js win64",
     "electron:win32": "node ./build-electron.js win32",
-		"electron:linux64": "node ./build-electron.js linux64",
+    "electron:linux64": "node ./build-electron.js linux64",
     "electron:linux32": "node ./build-electron.js linux32",
-		"electron:macos": "node ./build-electron.js macos"
+    "electron:macos": "node ./build-electron.js macos"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
@@ -67,6 +67,7 @@
     "vue": "^2.6.10",
     "vue-js-toggle-button": "^1.3.2",
     "vue-resize-split-pane": "^0.1.5",
+    "vue-router": "^3.0.6",
     "webfontloader": "^1.6.28"
   }
 }

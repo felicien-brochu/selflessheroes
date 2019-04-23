@@ -69,16 +69,18 @@ export default class extends Phaser.Scene {
     this.mapFrame = {
       x: this.getMapProperty('frameX', 0),
       y: this.getMapProperty('frameY', 0),
-      width: this.getMapProperty('frameWidth', this.map.width),
-      height: this.getMapProperty('frameHeight', this.map.height)
+      width: this.getMapProperty('frameWidth', this.map.widthInPixels),
+      height: this.getMapProperty('frameHeight', this.map.heightInPixels)
     }
   }
 
   getMapProperty(name, defaultValue) {
     let value = defaultValue
-    let property = this.map.properties.find(prop => prop.name === name)
-    if (property) {
-      value = property.value
+    if (Array.isArray(this.map.properties)) {
+      let property = this.map.properties.find(prop => prop.name === name)
+      if (property) {
+        value = property.value
+      }
     }
     return value
   }

@@ -27,7 +27,8 @@ const config = {
   devtool: env === 'development' ? 'inline-source-map' : undefined,
   devServer: {
     contentBase: 'dist',
-    port: 3000
+    port: 3000,
+    historyApiFallback: true
   },
   module: {
     rules: [{

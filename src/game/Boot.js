@@ -22,7 +22,7 @@ export default class extends Phaser.Scene {
     WebFont.load({
       custom: {
         families: ['Material Icons', 'Noto', 'Menlo', 'Consolas', 'Monaco', 'Roboto'],
-        urls: ['./assets/fonts/fonts.css']
+        urls: ['../assets/fonts/fonts.css']
       },
       active: this.fontsLoaded
     })

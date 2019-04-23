@@ -1,0 +1,12 @@
+body,
+html {
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	background-color: black;
+	font-family: 'Roboto', Arial, sans-serif;
+}
+
+:focus {
+	outline: none;
+}
