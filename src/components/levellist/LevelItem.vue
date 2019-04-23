@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     url: function() {
-      return `/level/${this.level.id}`
+      return `level/${this.level.id}`
     }
   }
 }

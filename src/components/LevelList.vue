@@ -9,15 +9,26 @@
 <script>
 import levels from '../levels/levels'
 import LevelItem from './levellist/LevelItem'
+import storage from '../game/storage/Storage'
 
 export default {
   components: {
     LevelItem
   },
-  props: {},
+  props: {
+    careerID: {
+      type: Number
+    }
+  },
   computed: {
     levels: function() {
       return levels
+    }
+  },
+  mounted() {
+    let career = storage.getCareer(this.careerID)
+    if (!career) {
+      this.$router.replace('/')
     }
   }
 }

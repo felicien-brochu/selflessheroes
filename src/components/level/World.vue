@@ -34,6 +34,7 @@ export default {
 
   beforeDestroy() {
     window.removeEventListener("resize", this.resizeGame)
+    this.game.destroy(true)
   },
 
   watch: {

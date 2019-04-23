@@ -58,7 +58,8 @@ import World from './level/World'
 import Editor from './level/Editor'
 import RunBar from './level/runbar/RunBar'
 import ResizeSplitPane from './level/rspane/ResizeSplitPane'
-import CodeHistory from '../game/CodeHistory'
+import storage from '../game/storage/Storage'
+import CodeHistory from '../game/storage/CodeHistory'
 
 export default {
   components: {
@@ -69,20 +70,21 @@ export default {
   },
 
   props: {
+    careerID: {
+      type: Number
+    },
     levelID: {
       type: Number
     }
   },
 
   data: function() {
-    let codeHistory = CodeHistory.loadOrCreate('codeHistory')
-
     return {
       // code: 'b:\nstep(e)\na = dir(n)\n\nif b == 3 &&\n s > 3 ||\n n == wall:\n\tstep(e,w)\n\tstep(s)\n\tif n == wall:\n\t\tc:\n\t\tstep(sw)\n\tendif\nelse\n\ta = dir(sw)\n\tstep(n, s)\nendif\n\njump b\nstep(n)\nif n == wall:\n\t\tstep(nw)\n\tjump c\n\tendif\nstep(n)\nif n == s:\nendif\nstep(n)\nstep(n)\nstep(n)',
       // code: 'if s == s:\nelse\nif s == s:\nendif\nendif',
-      code: codeHistory.getCode(),
+      code: '',
       codeSource: 'history',
-      codeHistory: codeHistory,
+      codeHistory: new CodeHistory(),
       compilerConfig: null,
       worldState: {},
       worldReady: false,
@@ -97,6 +99,23 @@ export default {
   },
 
   created() {
+    let career = storage.getCareer(this.careerID)
+    if (!career) {
+      this.$router.replace('/')
+    }
+    else {
+      let level = career.getLevel(this.levelID)
+      level = career.createLevel(this.levelID)
+      if (!level) {
+        this.$router.replace('/')
+      }
+      else {
+        this.solution = level.getCurrentSolution()
+        this.code = this.solution.codeHistory.getCode()
+        this.codeHistory = this.solution.codeHistory
+      }
+    }
+
     this.debouncedSetWorldState = _throttle(this.setWorldState, 50, {
       leading: true,
       trailing: true
@@ -167,6 +186,7 @@ export default {
       if (this.codeHistory.canUndo()) {
         let code = this.codeHistory.undo()
         this.setCode(code, 'history')
+        this.solution.save()
       }
     },
 
@@ -174,15 +194,20 @@ export default {
       if (this.codeHistory.canRedo()) {
         let code = this.codeHistory.redo()
         this.setCode(code, 'history')
+        this.solution.save()
       }
     },
 
     pushHistory() {
-      this.codeHistory.push(this.code)
+      if (this.codeHistory.push(this.code)) {
+        this.solution.save()
+      }
     },
 
     insertHistoryCorrection() {
-      this.codeHistory.insert(this.code)
+      if (this.codeHistory.insert(this.code)) {
+        this.solution.save()
+      }
     },
 
     handleCodeChange(code, source) {
@@ -193,9 +218,11 @@ export default {
       }
       else if (source === 'graph-correction') {
         this.insertHistoryCorrection()
+        this.solution.save()
       }
       else {
         this.pushHistory()
+        this.solution.save()
       }
     },
 
