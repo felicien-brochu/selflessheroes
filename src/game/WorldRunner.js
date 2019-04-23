@@ -82,12 +82,12 @@ export default class WorldRunner {
 
   getObservableState() {
     return {
+      steps: this.steps,
       speed: this.speed,
       hasWon: this.world.hasWon,
       hasLost: this.world.hasLost,
       gameOver: this.world.gameOver,
       paused: this.isPaused(),
-      steps: this.steps,
       debugContext: this.world.getDebugContext()
     }
   }

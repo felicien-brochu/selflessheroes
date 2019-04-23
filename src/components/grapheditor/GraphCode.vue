@@ -96,6 +96,7 @@ export default {
         node.$on('drag-start', this.handleOwnNodeDragStart)
         node.$on('node-drag-start', this.handleNodeDragStart)
         node.$on('change', this.handleNodeChange)
+        node.$on('start-edit', this.handleStartEdit)
       }
     },
 
@@ -146,6 +147,10 @@ export default {
       if (dragPositionChanged) {
         this.$parent.startDragOverChangeAnimation()
       }
+    },
+
+    handleStartEdit() {
+      this.$emit('start-edit')
     },
 
     generateDragTree() {

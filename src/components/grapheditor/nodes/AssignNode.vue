@@ -6,7 +6,8 @@
   <value-select :types="variableTypes"
     :value="statement.variable"
     parentType="assign"
-    @select="handleSelectVariable" />
+    @select="handleSelectVariable"
+    @start-edit="$emit('start-edit')" />
 
   <div class="function-container">
 
@@ -21,7 +22,8 @@
       :types="param.types"
       :value="param.value"
       parentType="assign"
-      @select="handleSelectParam(index, $event)" />
+      @select="handleSelectParam(index, $event)"
+      @start-edit="$emit('start-edit')" />
 
   </div>
 

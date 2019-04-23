@@ -190,7 +190,7 @@ export default class extends Phaser.Scene {
     this.runner.pause()
   }
 
-  step() {
+  stepOnce() {
     if (this.runner.steps === 0) {
       this.restartWorld()
     }

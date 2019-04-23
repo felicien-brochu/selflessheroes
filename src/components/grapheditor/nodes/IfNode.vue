@@ -16,7 +16,8 @@
         @operator-change="handleConditionOperatorChange(condition.expression, $event)"
         @delete="handleDeleteCondition(condition.expression)"
         @add-condition="handleAddCondition"
-        @change="handleConditionChange" />
+        @change="handleConditionChange"
+        @start-edit="handleStartEdit" />
     </ul>
     <ul class="node-container"
       ref="nodeContainer">
@@ -153,6 +154,7 @@ export default {
         node.$on('drag-start', this.handleOwnNodeDragStart)
         node.$on('node-drag-start', this.handleNodeDragStart)
         node.$on('change', this.handleNodeChange)
+        node.$on('start-edit', this.handleStartEdit)
       }
     },
 
@@ -311,6 +313,10 @@ export default {
       expression.operator = compOperators[0]
       this.statement.condition.expressions.push(expression)
       this.$emit('change', this)
+    },
+
+    handleStartEdit() {
+      this.$emit('start-edit')
     }
   }
 }

@@ -25,11 +25,11 @@ export default {
   },
 
   props: {
-    code: {
+    'code': {
       type: String,
       default: ''
     },
-    options: {
+    'options': {
       type: Object,
       default: function() {
         return {
@@ -45,15 +45,15 @@ export default {
         }
       }
     },
-    disabled: {
+    'disabled': {
       type: Boolean,
       default: false
     },
-    worldReady: {
+    'worldReady': {
       type: Boolean,
       default: false
     },
-    compilerExceptions: {
+    'compilerExceptions': {
       type: Object
     },
     'playing': {

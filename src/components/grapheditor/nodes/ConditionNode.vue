@@ -3,50 +3,58 @@
 
   <value-select ref="leftExpression"
     class="bright"
+    parentType="branching"
     :value="expression.leftExpression"
     :types="leftExpressionTypes"
     @select="handleSelectLeftExpression"
-    parentType="branching" />
+    @start-edit="$emit('start-edit')" />
 
   <value-select ref="comparisonOperator"
     class="comparison-operator bright"
+    parentType="branching"
     :value="expression.operator"
     :types="comparisonOperatorTypes"
     :labelFunc="comparisonOperatorLabelFunc"
     @select="handleSelectComparisonOperator"
-    parentType="branching" />
+    @start-edit="$emit('start-edit')" />
 
   <value-select ref="rightExpression"
     class="bright"
+    parentType="branching"
     :value="expression.rightExpression"
     :types="rightExpressionTypes"
     @select="handleSelectRightExpression"
-    parentType="branching" />
+    @start-edit="$emit('start-edit')" />
 
   <div class="spacer" />
 
   <div class="operator-container">
     <value-select v-if="isLast && isFirst"
       class="add-button dark"
+      parentType="branching"
       :value="operator"
       :types="newBooleanOperatorTypes"
       :labelFunc="newBooleanOperatorLabelFunc"
       @select="$emit('add-condition', $event)"
-      parentType="branching" />
+      @start-edit="$emit('start-edit')" />
+
     <value-select v-else-if="isLast && !isFirst"
       class="add-button dark"
+      parentType="branching"
       :value="operator"
       :types="booleanOperatorTypes"
       :labelFunc="newBooleanOperatorLabelFunc"
       @select="handleAddOrDeleteBooleanOperator"
-      parentType="branching" />
+      @start-edit="$emit('start-edit')" />
+
     <value-select v-else="operator !== null"
       class="boolean-operator dark"
+      parentType="branching"
       :value="operator"
       :types="booleanOperatorTypes"
       :labelFunc="booleanOperatorLabelFunc"
       @select="handleSelectOrDeleteBooleanOperator"
-      parentType="branching" />
+      @start-edit="$emit('start-edit')" />
   </div>
 
   <div v-if="isFirst"

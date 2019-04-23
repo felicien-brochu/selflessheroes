@@ -13,7 +13,6 @@
         :worldReady="worldReady"
         :playing="playing"
         :compilerExceptions="compilerExceptions"
-        :disabled="playing"
         :debugContext="debugContext"
         :followHeroIndex="followHeroIndex"
         @change="handleCodeMirrorChange"
@@ -30,10 +29,8 @@
         :debugContext="debugContext"
         :followHeroIndex="followHeroIndex"
         @code-change="handleGraphCodeChange"
-        @select-follow-hero="$emit('select-follow-hero', $event)" />
-
-      <div class="editor-readonly-overlay"
-        v-show="playing" />
+        @select-follow-hero="$emit('select-follow-hero', $event)"
+        @start-edit="$emit('start-edit')" />
 
     </template>
   </div>
@@ -164,17 +161,6 @@ export default {
     .editor {
         position: relative;
         flex-grow: 1;
-
-        .editor-readonly-overlay {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            right: 0;
-            z-index: 20;
-            background: none;
-            pointer-events: none;
-        }
 
         .variable-debugger {
             animation: slide-left 0.5s ease;

@@ -23,6 +23,7 @@
       @node-drag-start="handleNodeDragStart"
       @drop-node="handleDropNode"
       @node-change="handleNodeChange"
+      @start-edit="$emit('start-edit')"
       @select-follow-hero="$emit('select-follow-hero', $event)">
 
       <jump-link-layer ref="jumpLinkLayer" />
@@ -142,6 +143,8 @@ export default {
     },
 
     handlePaletteDragStart(e) {
+      this.$emit('start-edit')
+
       this.startDragEvent = {
         event: e.event,
         node: NodeBuilder.buildNewNode(e.statement.clazz, this.compilerConfig),
@@ -151,6 +154,8 @@ export default {
     },
 
     handleNodeDragStart(e) {
+      this.$emit('start-edit')
+
       this.startDragEvent = {
         ...e,
         isNew: false

@@ -12,7 +12,8 @@
     :types="param.types"
     :value="param.value"
     parentType="action"
-    @select="handleSelectParam(index, $event)" />
+    @select="handleSelectParam(index, $event)"
+    @start-edit="$emit('start-edit')" />
 
 </li>
 </template>

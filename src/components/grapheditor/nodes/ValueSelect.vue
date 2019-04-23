@@ -121,14 +121,17 @@ export default {
     },
 
     handleDropDown(e) {
+      this.$emit('start-edit')
       this.openDropDownList()
     },
 
     handleEditPosition(e) {
+      this.$emit('start-edit')
       this.openDirectionPopup()
     },
 
     handleEditInteger(e) {
+      this.$emit('start-edit')
       this.openIntegerPopup()
     },
 

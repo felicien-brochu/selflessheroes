@@ -25,9 +25,9 @@
         :aiReady="aiReady"
         :worldState="worldState"
         @play-pause="handlePlayPause"
-        @speed-change="handleSpeedChange"
-        @step="handleStep"
-        @stop="handleStop" />
+        @speed-change="setSpeed"
+        @step="stepOnce"
+        @stop="stop" />
     </div>
 
     <editor slot="secondPane"
@@ -43,6 +43,7 @@
       @undo="undo"
       @redo="redo"
       @code-change="handleCodeChange"
+      @start-edit="handleStartEdit"
       @select-follow-hero="followHeroIndex = $event" />
 
   </resize-split-pane>
@@ -111,7 +112,7 @@ export default {
 
   computed: {
     playing: function() {
-      return !this.worldReady || this.worldState.steps > 0
+      return this.worldReady && this.worldState && this.worldState.steps > 0
     },
 
     keymap: function() {
@@ -120,13 +121,6 @@ export default {
         'ctrl+y': this.redo,
         'ctrl+shift+z': this.redo
       }
-    },
-
-    debugContext: function() {
-      if (this.playing) {
-        return {}
-      }
-      return null
     }
   },
 
@@ -148,21 +142,31 @@ export default {
       this.worldState = worldState
     },
 
+    setCode(code, source, debounceCompile = true) {
+      this.code = code
+      this.codeSource = source
+
+      this.handleStartEdit()
+
+      if (debounceCompile) {
+        this.debouncedCompileCode()
+      }
+      else {
+        this.compileCode()
+      }
+    },
+
     undo() {
       if (this.codeHistory.canUndo()) {
-        this.code = this.codeHistory.undo()
-        this.codeSource = 'history'
-
-        this.debouncedCompileCode()
+        let code = this.codeHistory.undo()
+        this.setCode(code, 'history')
       }
     },
 
     redo() {
       if (this.codeHistory.canRedo()) {
-        this.code = this.codeHistory.redo()
-        this.codeSource = 'history'
-
-        this.debouncedCompileCode()
+        let code = this.codeHistory.redo()
+        this.setCode(code, 'history')
       }
     },
 
@@ -175,8 +179,7 @@ export default {
     },
 
     handleCodeChange(code, source) {
-      this.code = code
-      this.codeSource = source
+      this.setCode(code, source)
 
       if (source === 'code') {
         this.debouncedPushHistory()
@@ -187,7 +190,12 @@ export default {
       else {
         this.pushHistory()
       }
-      this.debouncedCompileCode()
+    },
+
+    handleStartEdit() {
+      if (this.playing) {
+        this.stop()
+      }
     },
 
     handleEditorResize(editorWidth) {
@@ -202,19 +210,19 @@ export default {
       }
     },
 
-    handleSpeedChange(speed) {
+    setSpeed(speed) {
       if (this.gameScene) {
-        this.gameScene.handleSpeedChange(speed)
+        this.gameScene.setSpeed(speed)
       }
     },
 
-    handleStep() {
+    stepOnce() {
       if (this.gameScene) {
-        this.gameScene.step()
+        this.gameScene.stepOnce()
       }
     },
 
-    handleStop() {
+    stop() {
       if (this.gameScene) {
         this.gameScene.stop()
       }
