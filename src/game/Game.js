@@ -69,6 +69,10 @@ export default class extends Phaser.Scene {
     this.aboveCharacterLayer = this.map.createDynamicLayer('above_characters', this.tilesetImage, 0, 0)
     this.aboveCharacterLayer.depth = 1000000
 
+    this.extractMapFrame()
+  }
+
+  extractMapFrame() {
     const objectLayers = namedObjectListToObject(this.map.objects)
     if (!objectLayers.config) {
       throw new Error('there is no "config" object layer in the Tiled json')
@@ -140,10 +144,10 @@ export default class extends Phaser.Scene {
       this.map.widthInPixels,
       this.map.heightInPixels,
       this.mapFrame, {
-        top: 60,
-        right: 112 + 20,
-        bottom: 87 + 40,
-        left: 20
+        top: 80,
+        right: 112 + 50,
+        bottom: 87 + 80,
+        left: 50
       })
 
     this.cameraControl.init()
