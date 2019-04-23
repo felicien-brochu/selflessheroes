@@ -6,6 +6,9 @@ import WorldRunner from './WorldRunner'
 import CameraControl from './CameraControl'
 import Speeds from './Speeds'
 import World from '../world/World'
+import {
+  namedObjectListToObject
+} from '../world/utils'
 import Compiler from '../world/ai/compile/Compiler'
 import CompilerConfig from '../world/ai/compile/CompilerConfig'
 import HeroS from './sprites/HeroS'
@@ -66,23 +69,26 @@ export default class extends Phaser.Scene {
     this.aboveCharacterLayer = this.map.createDynamicLayer('above_characters', this.tilesetImage, 0, 0)
     this.aboveCharacterLayer.depth = 1000000
 
-    this.mapFrame = {
-      x: this.getMapProperty('frameX', 0),
-      y: this.getMapProperty('frameY', 0),
-      width: this.getMapProperty('frameWidth', this.map.widthInPixels),
-      height: this.getMapProperty('frameHeight', this.map.heightInPixels)
+    const objectLayers = namedObjectListToObject(this.map.objects)
+    if (!objectLayers.config) {
+      throw new Error('there is no "config" object layer in the Tiled json')
     }
-  }
-
-  getMapProperty(name, defaultValue) {
-    let value = defaultValue
-    if (Array.isArray(this.map.properties)) {
-      let property = this.map.properties.find(prop => prop.name === name)
-      if (property) {
-        value = property.value
+    const config = namedObjectListToObject(objectLayers.config.objects)
+    if (config.frame) {
+      this.mapFrame = {
+        x: config.frame.x,
+        y: config.frame.y,
+        width: config.frame.width,
+        height: config.frame.height
+      }
+    } else {
+      this.mapFrame = {
+        x: 0,
+        y: 0,
+        width: this.map.widthInPixels,
+        height: this.map.heightInPixels
       }
     }
-    return value
   }
 
   createStaticElements() {

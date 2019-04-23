@@ -87,7 +87,7 @@ export default {
       worldState: {},
       worldReady: false,
       aiReady: false,
-      followHeroIndex: 0,
+      followHeroIndex: -1,
       compilerExceptions: {
         fatal: [],
         undefinedLiterals: []

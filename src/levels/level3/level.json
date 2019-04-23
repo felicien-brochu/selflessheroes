@@ -40,12 +40,12 @@
         {
          "draworder":"topdown",
          "id":14,
-         "name":"rules",
+         "name":"config",
          "objects":[
                 {
                  "height":0,
                  "id":7,
-                 "name":"rules",
+                 "name":"ruleset",
                  "point":true,
                  "properties":[
                         {
@@ -59,11 +59,22 @@
                          "value":"all_objectives"
                         }],
                  "rotation":0,
-                 "type":"ruleSet",
+                 "type":"ruleset",
                  "visible":true,
                  "width":0,
                  "x":148,
                  "y":213
+                }, 
+                {
+                 "height":685,
+                 "id":12,
+                 "name":"frame",
+                 "rotation":0,
+                 "type":"rectangle",
+                 "visible":true,
+                 "width":794,
+                 "x":242,
+                 "y":130
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -209,29 +220,8 @@
          "y":0
         }],
  "nextlayerid":85,
- "nextobjectid":12,
+ "nextobjectid":13,
  "orientation":"orthogonal",
- "properties":[
-        {
-         "name":"frameHeight",
-         "type":"int",
-         "value":704
-        }, 
-        {
-         "name":"frameWidth",
-         "type":"int",
-         "value":832
-        }, 
-        {
-         "name":"frameX",
-         "type":"int",
-         "value":224
-        }, 
-        {
-         "name":"frameY",
-         "type":"int",
-         "value":128
-        }],
  "renderorder":"right-down",
  "tiledversion":"2019.03.13",
  "tileheight":32,

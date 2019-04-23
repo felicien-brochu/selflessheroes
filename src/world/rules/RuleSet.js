@@ -2,12 +2,12 @@ import WinCondition from './WinCondition'
 import LossCondition from './LossCondition'
 
 import {
-  propertiesToObject
+  namedPropertiesToObject
 } from '../utils'
 
 export default class RuleSet {
   static build(configJSON, world) {
-    let config = propertiesToObject(configJSON.properties)
+    let config = namedPropertiesToObject(configJSON.properties)
 
     return new RuleSet(config, world)
   }

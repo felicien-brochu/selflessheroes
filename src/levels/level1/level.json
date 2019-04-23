@@ -40,12 +40,12 @@
         {
          "draworder":"topdown",
          "id":14,
-         "name":"rules",
+         "name":"config",
          "objects":[
                 {
                  "height":0,
                  "id":7,
-                 "name":"rules",
+                 "name":"ruleset",
                  "point":true,
                  "properties":[
                         {
@@ -59,11 +59,22 @@
                          "value":"all_objectives"
                         }],
                  "rotation":0,
-                 "type":"ruleSet",
+                 "type":"ruleset",
                  "visible":true,
                  "width":0,
                  "x":78,
                  "y":99
+                }, 
+                {
+                 "height":594,
+                 "id":12,
+                 "name":"frame",
+                 "rotation":0,
+                 "type":"rectangle",
+                 "visible":false,
+                 "width":1014,
+                 "x":240,
+                 "y":610
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -163,7 +174,7 @@
                  "type":"objective",
                  "visible":true,
                  "width":0,
-                 "x":1297.33333333333,
+                 "x":1297.33,
                  "y":436
                 }],
          "opacity":1,
@@ -197,7 +208,7 @@
          "y":0
         }],
  "nextlayerid":37,
- "nextobjectid":12,
+ "nextobjectid":13,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2019.03.13",
@@ -206,7 +217,7 @@
         {
          "columns":10,
          "firstgid":1,
-         "image":"..\/model\/tileset.png",
+         "image":"tileset.png",
          "imageheight":340,
          "imagewidth":340,
          "margin":1,

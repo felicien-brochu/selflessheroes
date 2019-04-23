@@ -28,12 +28,12 @@
         {
          "draworder":"topdown",
          "id":14,
-         "name":"rules",
+         "name":"config",
          "objects":[
                 {
                  "height":0,
                  "id":7,
-                 "name":"rules",
+                 "name":"ruleset",
                  "point":true,
                  "properties":[
                         {
@@ -47,15 +47,26 @@
                          "value":"all_objectives"
                         }],
                  "rotation":0,
-                 "type":"ruleSet",
+                 "type":"ruleset",
                  "visible":true,
                  "width":0,
                  "x":148,
                  "y":213
+                }, 
+                {
+                 "height":686,
+                 "id":69,
+                 "name":"frame",
+                 "rotation":0,
+                 "type":"rectangle",
+                 "visible":false,
+                 "width":797,
+                 "x":241,
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -827,7 +838,7 @@
          "y":0
         }],
  "nextlayerid":87,
- "nextobjectid":66,
+ "nextobjectid":70,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2019.03.13",
