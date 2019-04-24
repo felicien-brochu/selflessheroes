@@ -202,6 +202,14 @@ export default class extends Phaser.Scene {
     this.runner.pause()
   }
 
+  togglePlayPause() {
+    if (this.runner.isPaused()) {
+      this.play()
+    } else {
+      this.pause()
+    }
+  }
+
   stepOnce() {
     if (this.runner.steps === 0) {
       this.restartWorld()
@@ -319,21 +327,15 @@ export default class extends Phaser.Scene {
   }
 
   handleClick(target) {
-    this.startFollowHero(target)
+    if (target instanceof HeroS) {
+      this.startFollowHero(target)
+    }
     return false
   }
 
   handleClickOutside(pointer, currentlyOver) {
     if (currentlyOver.length === 0) {
       this.stopFollowHero()
-    }
-  }
-
-  handlePlayPause(play) {
-    if (play) {
-      this.play()
-    } else {
-      this.pause()
     }
   }
 }

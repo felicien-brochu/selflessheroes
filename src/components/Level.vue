@@ -133,7 +133,13 @@ export default {
       return {
         'ctrl+z': this.undo,
         'ctrl+y': this.redo,
-        'ctrl+shift+z': this.redo
+        'ctrl+shift+z': this.redo,
+        'ctrl+space': this.togglePlayPause,
+        'pause': this.pause,
+        'ctrl+enter': this.stepOnce,
+        'ctrl+s': function noop(e) {
+          e.preventDefault()
+        }
       }
     }
   },
@@ -254,7 +260,30 @@ export default {
 
     handlePlayPause(play) {
       if (this.gameScene) {
-        this.gameScene.handlePlayPause(play)
+        if (play) {
+          this.play()
+        }
+        else {
+          this.pause()
+        }
+      }
+    },
+
+    play() {
+      if (this.gameScene) {
+        this.gameScene.play()
+      }
+    },
+
+    pause() {
+      if (this.gameScene) {
+        this.gameScene.pause()
+      }
+    },
+
+    togglePlayPause() {
+      if (this.gameScene) {
+        this.gameScene.togglePlayPause()
       }
     },
 
