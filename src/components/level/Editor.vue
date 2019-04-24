@@ -43,7 +43,7 @@
     @undo="$emit('undo')"
     @redo="$emit('redo')"
     @remove-code="removeCode"
-    @switch-editor="switchEditor" />
+    @switch-editor="$emit('change-type', $event)" />
 </div>
 </div>
 </template>
@@ -93,12 +93,9 @@ export default {
     },
     'compilerExceptions': {
       type: Object
-    }
-  },
-
-  data: function() {
-    return {
-      editorType: 'graph'
+    },
+    'editorType': {
+      type: String
     }
   },
 
@@ -138,10 +135,6 @@ export default {
 
     removeCode() {
       this.$emit('code-change', '', 'editor-bar')
-    },
-
-    switchEditor(editorType) {
-      this.editorType = editorType
     }
   }
 }

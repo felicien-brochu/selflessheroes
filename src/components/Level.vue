@@ -33,6 +33,7 @@
 
     <editor slot="secondPane"
       :code="code"
+      :editorType="editorType"
       :codeSource="codeSource"
       :codeHistory="codeHistory"
       :compilerConfig="compilerConfig"
@@ -45,7 +46,8 @@
       @redo="redo"
       @code-change="handleCodeChange"
       @start-edit="handleStartEdit"
-      @select-follow-hero="followHeroIndex = $event" />
+      @select-follow-hero="followHeroIndex = $event"
+      @change-type="handleEditorTypeChange" />
 
   </resize-split-pane>
 </div>
@@ -84,6 +86,7 @@ export default {
       // code: 'if s == s:\nelse\nif s == s:\nendif\nendif',
       code: '',
       codeSource: 'history',
+      editorType: 'graph',
       codeHistory: new CodeHistory(),
       compilerConfig: null,
       worldState: {},
@@ -99,22 +102,7 @@ export default {
   },
 
   created() {
-    let career = storage.getCareer(this.careerID)
-    if (!career) {
-      this.$router.replace('/')
-    }
-    else {
-      let level = career.getLevel(this.levelID)
-      level = career.createLevel(this.levelID)
-      if (!level) {
-        this.$router.replace('/')
-      }
-      else {
-        this.solution = level.getCurrentSolution()
-        this.code = this.solution.codeHistory.getCode()
-        this.codeHistory = this.solution.codeHistory
-      }
-    }
+    this.loadSolution()
 
     this.debouncedSetWorldState = _throttle(this.setWorldState, 50, {
       leading: true,
@@ -151,6 +139,26 @@ export default {
   },
 
   methods: {
+    loadSolution() {
+      let career = storage.getCareer(this.careerID)
+      if (!career) {
+        this.$router.replace('/')
+      }
+      else {
+        let level = career.getLevel(this.levelID)
+        level = career.createLevel(this.levelID)
+        if (!level) {
+          this.$router.replace('/')
+        }
+        else {
+          this.solution = level.getCurrentSolution()
+          this.code = this.solution.codeHistory.getCode()
+          this.codeHistory = this.solution.codeHistory
+          this.editorType = this.solution.editorType
+        }
+      }
+    },
+
     handleWorldReady(gameScene, worldState, compilerConfig) {
       this.gameScene = gameScene
       this.worldState = worldState
@@ -224,6 +232,12 @@ export default {
         this.pushHistory()
         this.solution.save()
       }
+    },
+
+    handleEditorTypeChange(editorType) {
+      this.editorType = editorType
+      this.solution.editorType = editorType
+      this.solution.save()
     },
 
     handleStartEdit() {

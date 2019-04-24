@@ -19,7 +19,7 @@ export default class LevelSolutions extends StorageWrapper {
     this.score = new LevelScore()
   }
 
-  createSolution(name) {
+  createDefaultSolution(name) {
     const id = StorageWrapper.getAvailableID(this.solutions)
     let solution = new Solution(`${this.storageKey}.solutions[${id}]`)
     solution.set(id, name)

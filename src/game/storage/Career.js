@@ -28,7 +28,7 @@ export default class Career extends StorageWrapper {
 
     level = new LevelSolutions(`${this.storageKey}.levels[${id}]`)
     level.set(id)
-    level.createSolution()
+    level.createDefaultSolution()
     level.save(false)
     this.levels.push(level)
     this.save(false)
