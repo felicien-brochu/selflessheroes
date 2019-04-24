@@ -64,14 +64,14 @@ const config = {
           name: 'assets/images/[name].[ext]'
         }
       },
-      // {
-      //   test: /\.(eot|svg|ttf|woff2?)$/,
-      //   loader: 'file-loader',
-      //   options: {
-      //     name: 'assets/fonts/[path]/[name].[ext]',
-      //     context: 'src/game/fonts'
-      //   }
-      // }
+      {
+        test: /\.(eot|svg|ttf|woff2?)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'assets/fonts/[path]/[name].[ext]',
+          context: 'src/components/fonts'
+        }
+      }
     ],
   },
   plugins: [
@@ -81,10 +81,6 @@ const config = {
       from: '**',
       to: 'levels',
       ignore: 'model/**/*'
-    }, {
-      context: 'src/game/fonts',
-      from: '**/*',
-      to: 'assets/fonts'
     }]),
     new MiniCssExtractPlugin(),
     new VueLoader.VueLoaderPlugin(),

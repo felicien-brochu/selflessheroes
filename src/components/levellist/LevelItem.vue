@@ -1,9 +1,7 @@
 <template>
-<router-link class="level-item"
-  tag="li"
-  :to="url">{{
-		level.name
-	}}</router-link>
+<li class="level-item">{{
+	level.name
+}}</li>
 </template>
 
 <script>
@@ -23,5 +21,5 @@ export default {
 </script>
 
 <style lang="scss">
-.home {}
+.level-item {}
 </style>

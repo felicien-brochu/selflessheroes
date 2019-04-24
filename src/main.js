@@ -3,6 +3,7 @@ import Vue from 'vue'
 import Home from './components/Home'
 import LevelList from './components/LevelList'
 import Level from './components/Level'
+import App from './components/App'
 import VueRouter from 'vue-router'
 import VueHotkey from 'v-hotkey'
 
@@ -12,20 +13,27 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [{
     path: '/',
-    component: Home
-  }, {
-    path: '/c/:careerID',
-    component: LevelList,
-    props: route => ({
-      careerID: Number(route.params.careerID)
-    })
-  }, {
-    path: '/c/:careerID/level/:levelID',
-    component: Level,
-    props: route => ({
-      careerID: Number(route.params.careerID),
-      levelID: Number(route.params.levelID)
-    })
+    component: App,
+    children: [{
+      path: '',
+      component: Home,
+      name: 'home'
+    }, {
+      path: 'c/:careerID',
+      component: LevelList,
+      name: 'level-list',
+      props: route => ({
+        careerID: Number(route.params.careerID)
+      })
+    }, {
+      path: 'c/:careerID/level/:levelID',
+      component: Level,
+      name: 'level',
+      props: route => ({
+        careerID: Number(route.params.careerID),
+        levelID: Number(route.params.levelID)
+      })
+    }]
   }]
 })
 

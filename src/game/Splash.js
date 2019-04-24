@@ -143,7 +143,7 @@ export default class extends Phaser.Scene {
     this.load.image('follow_cursor', follow_cursor)
 
     const levelID = this.game.gameSceneConfig.levelID
-    const levelPath = `../levels/level${levelID}/`
+    const levelPath = `levels/level${levelID}/`
     this.load.image('tileset_image', `${levelPath}tileset.png`)
     this.load.tilemapTiledJSON('map', `${levelPath}level.json`)
     this.load.json('map_object', `${levelPath}level.json`)

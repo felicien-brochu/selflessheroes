@@ -22,6 +22,12 @@
 
     <div slot="firstPane"
       class="left-panel">
+
+      <button class="back-button material-icons"
+        type="button"
+        @mousedown="goBack"
+        @touchstart="goBack">arrow_back_ios</button>
+
       <run-bar :worldReady="worldReady"
         :aiReady="aiReady"
         :worldState="worldState"
@@ -29,6 +35,7 @@
         @speed-change="setSpeed"
         @step="stepOnce"
         @stop="stop" />
+
     </div>
 
     <editor slot="secondPane"
@@ -146,18 +153,21 @@ export default {
 
   methods: {
     loadSolution() {
-      let career = storage.getCareer(this.careerID)
-      if (!career) {
-        this.$router.replace('/')
+      this.career = storage.getCareer(this.careerID)
+      if (!this.career) {
+        this.$router.replace({
+          name: 'home'
+        })
       }
       else {
-        let level = career.getLevel(this.levelID)
-        level = career.createLevel(this.levelID)
-        if (!level) {
-          this.$router.replace('/')
+        this.level = this.career.getLevel(this.levelID)
+        if (!this.level) {
+          this.$router.replace({
+            name: 'home'
+          })
         }
         else {
-          this.solution = level.getCurrentSolution()
+          this.solution = this.level.getCurrentSolution()
           this.code = this.solution.codeHistory.getCode()
           this.codeHistory = this.solution.codeHistory
           this.editorType = this.solution.editorType
@@ -309,6 +319,15 @@ export default {
       if (this.gameScene) {
         this.compilerExceptions = this.gameScene.compileAI(this.code)
       }
+    },
+
+    goBack() {
+      this.$router.push({
+        name: 'level-list',
+        params: {
+          careerID: this.career.id
+        }
+      })
     }
   }
 }
@@ -337,6 +356,24 @@ export default {
                 position: relative;
                 width: 100%;
                 height: 100%;
+
+                .back-button {
+                    color: transparentize(white, 0.2);
+                    background: none;
+                    border: none;
+                    outline: none;
+                    pointer-events: all;
+                    font-size: 36px;
+                    z-index: 5;
+                    position: absolute;
+                    left: 20px;
+                    top: 16px;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
 
                 .run-bar {
                     pointer-events: all;
