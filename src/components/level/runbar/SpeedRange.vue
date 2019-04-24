@@ -5,7 +5,7 @@
     :min="0"
     :max="maxSpeed"
     :step="1"
-    @input="$emit('change', $event)"
+    @input="setSpeed"
     v-model="speed" />
 
   <ul class="speed-list">
@@ -28,20 +28,29 @@ export default {
     TouchRange
   },
   data: function() {
-    let speeds = []
-    for (let i = 0; i < Speeds.values.length; i++) {
-      speeds.push({
-        name: new String(Speeds.values[i] + "x"),
-        value: i
-      })
-    }
+
     return {
       speed: Speeds.default,
-      speeds: speeds,
       maxSpeed: Speeds.values.length - 1
     }
   },
-  methods: {}
+  computed: {
+    speeds: function() {
+      let speeds = []
+      for (let i = 0; i < Speeds.values.length; i++) {
+        speeds.push({
+          name: new String(Speeds.values[i] + "x"),
+          value: i
+        })
+      }
+      return speeds
+    }
+  },
+  methods: {
+    setSpeed(index) {
+      this.$emit('change', Speeds.values[index])
+    }
+  }
 }
 </script>
 
