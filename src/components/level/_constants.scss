@@ -64,21 +64,29 @@ $node-padding-left: 9px;
 		}
 	}
 }
-@keyframes slide-left {
-	from {
-		transform: translate(100%);
-	}
 
-	to {
-		transform: translate(0);
-	}
+.slide-enter-active {
+	transition: transform 0.5s ease;
 }
-@keyframes slide-right {
-	from {
-		transform: translate(0);
-	}
 
-	to {
-		transform: translate(100%);
-	}
+.slide-leave-active {
+	transition: transform 0.2s ease;
+}
+
+.slide-enter,
+.slide-leave-to {
+	transform: translate(100%);
+}
+
+.switch-enter-active {
+	transition: opacity 0.5s ease;
+}
+
+.switch-leave-active {
+	transition: opacity 0.2s ease;
+}
+
+.switch-enter,
+.switch-leave-to {
+	opacity: 0;
 }

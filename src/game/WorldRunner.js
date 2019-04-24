@@ -40,8 +40,9 @@ export default class WorldRunner {
 
   play() {
     if (this.isPaused() && !this.world.gameOver) {
-      this.timerID = setInterval(this.step.bind(this), this.stepInterval)
       this.emitStateChange()
+      this.step()
+      this.timerID = setInterval(this.step.bind(this), this.stepInterval)
     }
   }
 

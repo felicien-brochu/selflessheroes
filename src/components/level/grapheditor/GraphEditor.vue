@@ -10,11 +10,17 @@
 
   <div class="editor-container">
 
-    <palette ref="palette"
-      :class="{'hidden': hidePalette}"
-      :compilerConfig="compilerConfig"
-      :chosenStatement="chosenPaletteStatement"
-      @drag-start="handlePaletteDragStart" />
+    <transition name="slide"
+      :duration="{ enter: 500, leave: 300 }"
+      appear>
+
+      <palette ref="palette"
+        v-show="!hidePalette"
+        :compilerConfig="compilerConfig"
+        :chosenStatement="chosenPaletteStatement"
+        @drag-start="handlePaletteDragStart" />
+
+    </transition>
 
     <graph-code ref="graphCode"
       id="graph-code"
@@ -244,6 +250,7 @@ export default {
 .Pane {
     position: static !important;
 }
+
 .graph-editor {
     font-family: Roboto, sans-serif;
     font-size: 16px;
@@ -273,6 +280,25 @@ export default {
         z-index: 100000000;
     }
 
+    &.switch-enter-active {
+        .palette {
+            transition: transform 0.5s ease;
+        }
+    }
+
+    &.switch-leave-active {
+        .palette {
+            transition: transform 0.2s ease;
+        }
+    }
+
+    &.switch-enter,
+    &.switch-leave-to {
+        .palette {
+            transform: translate(100%);
+        }
+    }
+
     .editor-container {
         z-index: 5;
         position: relative;
@@ -284,13 +310,6 @@ export default {
             right: 100%;
             top: 0;
             margin: 40px 0 0;
-
-            animation: slide-left 0.5s ease;
-
-            &.hidden {
-                animation: slide-right 0.15s ease;
-                transform: translate(100%);
-            }
         }
 
         .graph-scroll {

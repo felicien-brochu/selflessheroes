@@ -98,11 +98,8 @@ export default {
     scroll.appendChild(this.$refs.lineCursors.$el)
   },
 
-  beforeDestroy() {
+  destroyed() {
     this.debouncedCreateExceptionMarkers.cancel()
-    if (this.editor) {
-      this.editor.toTextArea()
-    }
   },
 
   watch: {

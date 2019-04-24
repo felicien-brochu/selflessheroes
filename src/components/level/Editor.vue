@@ -4,33 +4,40 @@
     ref="editor">
     <template v-if="this.worldReady">
 
-      <variable-debugger :class="{'hidden': !playing || followHeroIndex < 0}"
-        :variables="followHeroVariables" />
+      <transition name="slide"
+        appear>
+        <variable-debugger v-if="playing && followHeroIndex >= 0"
+          :variables="followHeroVariables" />
+      </transition>
 
-      <code-mirror v-if="editorType === 'code'"
-        class="code-editor"
-        :code="code"
-        :worldReady="worldReady"
-        :playing="playing"
-        :compilerExceptions="compilerExceptions"
-        :debugContext="debugContext"
-        :followHeroIndex="followHeroIndex"
-        @change="handleCodeMirrorChange"
-        @select-follow-hero="$emit('select-follow-hero', $event)" />
+      <transition name="switch"
+        appear>
+        <code-mirror v-if="editorType === 'code'"
+          key="code-editor"
+          :code="code"
+          :worldReady="worldReady"
+          :playing="playing"
+          :compilerExceptions="compilerExceptions"
+          :debugContext="debugContext"
+          :followHeroIndex="followHeroIndex"
+          @change="handleCodeMirrorChange"
+          @select-follow-hero="$emit('select-follow-hero', $event)" />
 
-      <graph-editor v-else-if="editorType === 'graph'"
-        id="graph-editor"
-        :masterCode="code"
-        :codeSource="codeSource"
-        :compilerConfig="compilerConfig"
-        :worldReady="worldReady"
-        :playing="playing"
-        :hidePalette="playing"
-        :debugContext="debugContext"
-        :followHeroIndex="followHeroIndex"
-        @code-change="handleGraphCodeChange"
-        @select-follow-hero="$emit('select-follow-hero', $event)"
-        @start-edit="$emit('start-edit')" />
+        <graph-editor v-else-if="editorType === 'graph'"
+          ref="graphEditor"
+          key="graph-editor"
+          :masterCode="code"
+          :codeSource="codeSource"
+          :compilerConfig="compilerConfig"
+          :worldReady="worldReady"
+          :playing="playing"
+          :hidePalette="playing"
+          :debugContext="debugContext"
+          :followHeroIndex="followHeroIndex"
+          @code-change="handleGraphCodeChange"
+          @select-follow-hero="$emit('select-follow-hero', $event)"
+          @start-edit="$emit('start-edit')" />
+      </transition>
 
     </template>
   </div>
@@ -156,19 +163,13 @@ export default {
         flex-grow: 1;
 
         .variable-debugger {
-            animation: slide-left 0.5s ease;
             position: absolute;
             top: 0;
             right: 100%;
             margin: 40px 0 0;
-
-            &.hidden {
-                animation: slide-right 0.15s ease;
-                transform: translate(100%);
-            }
         }
 
-        .code-editor {
+        .vue-codemirror-wrap {
             z-index: 5;
             height: 100%;
             position: relative;
@@ -179,7 +180,10 @@ export default {
             }
         }
 
-        #graph-editor {}
+        .graph-editor {
+            position: absolute;
+            top: 0;
+        }
     }
 
     .editor-bar {
