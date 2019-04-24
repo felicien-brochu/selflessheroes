@@ -4,7 +4,7 @@ const assets = ['button_blue', 'button_red']
 
 export default class ObjectiveS extends Phaser.GameObjects.Sprite {
   constructor(scene, objective, tileWidth, tileHeight) {
-    super(scene, (objective.x + 0.5) * tileWidth + 1, (objective.y + 0.5) * tileHeight + 3, assets[objective.color])
+    super(scene, (objective.x + 0.5) * tileWidth, (objective.y + 0.5) * tileHeight, assets[objective.color])
 
     this.tileWidth = tileWidth
     this.tileHeight = tileHeight
