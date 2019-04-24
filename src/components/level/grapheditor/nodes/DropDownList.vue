@@ -245,6 +245,7 @@ export default {
     list-style: none;
     padding: 0;
     margin: 0;
+    transform-origin: top;
 
     border-radius: 5px;
     overflow: hidden;

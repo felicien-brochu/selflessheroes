@@ -3,6 +3,17 @@
 	'popup-layer': true,
 	'active': active
 }">
+
+  <transition name="pop"
+    appear>
+    <component ref="popup"
+      :is="popupComponent"
+      :key="popupID"
+      v-bind="popupProps"
+      @select-value="handleSelectValue"
+      :horizontalPadding="horizontalPadding"
+      :verticalPadding="verticalPadding" />
+  </transition>
 </div>
 </template>
 
@@ -15,6 +26,7 @@ import IntegerPopup from './IntegerPopup'
 
 const verticalPadding = 10
 const horizontalPadding = 8
+let popupID = 0
 
 export default {
   props: {
@@ -24,12 +36,16 @@ export default {
   },
   data: function() {
     return {
-      'popup': null
+      popupComponent: null,
+      popupProps: {},
+      horizontalPadding: horizontalPadding,
+      verticalPadding: verticalPadding,
+      popupID: 0
     }
   },
   computed: {
     active: function() {
-      return !!this.popup
+      return !!this.popupComponent
     }
   },
 
@@ -61,31 +77,36 @@ export default {
   },
 
   methods: {
+    getPopup() {
+      return this.$refs.popup
+    },
+
     createDropDownList({
+      listener,
       anchor,
       types,
       value,
       parentType
     }) {
       this.closePopup()
+      this.popupID++
 
-      this.popup = new(Vue.extend(DropDownList))({
-        propsData: {
-          types: types,
-          value: value,
-          anchor: anchor,
-          frame: this.graphCode.$el,
-          compilerConfig: this.compilerConfig,
-          parentType: parentType
-        }
-      })
-
-      this.attachPopup()
-
-      return this.popup
+      this.popupProps = {
+        types: types,
+        value: value,
+        anchor: anchor,
+        frame: this.graphCode.$el,
+        compilerConfig: this.compilerConfig,
+        parentType: parentType
+      }
+      this.popupComponent = DropDownList
+      this.selectValueListener = listener
     },
 
+
+
     createDirectionPopup({
+      listener,
       anchor,
       directions,
       multiple,
@@ -93,49 +114,36 @@ export default {
       parentType
     }) {
       this.closePopup()
+      this.popupID++
 
-      this.popup = new(Vue.extend(DirectionPopup))({
-        propsData: {
-          directions: directions,
-          multiple: multiple,
-          notHere: notHere,
-          anchor: anchor,
-          frame: this.graphCode.$el,
-          parentType: parentType
-        }
-      })
-      this.attachPopup()
-
-      return this.popup
+      this.popupProps = {
+        directions: directions,
+        multiple: multiple,
+        notHere: notHere,
+        anchor: anchor,
+        frame: this.graphCode.$el,
+        parentType: parentType
+      }
+      this.popupComponent = DirectionPopup
+      this.selectValueListener = listener
     },
 
     createIntegerPopup({
+      listener,
       anchor,
       integer,
       parentType
     }) {
-      this.closePopup()
+      this.popupID++
 
-      this.popup = new(Vue.extend(IntegerPopup))({
-        propsData: {
-          value: integer,
-          anchor: anchor,
-          frame: this.graphCode.$el,
-          parentType: parentType
-        }
-      })
-      this.attachPopup()
-
-      return this.popup
-    },
-
-    attachPopup() {
-      this.popup.$parent = this
-      this.popup.$mount()
-      this.popup.$on('select-value', this.closePopup)
-
-      this.$el.appendChild(this.popup.$el)
-      this.$nextTick(this.updatePopupPosition)
+      this.popupProps = {
+        value: integer,
+        anchor: anchor,
+        frame: this.graphCode.$el,
+        parentType: parentType
+      }
+      this.popupComponent = IntegerPopup
+      this.selectValueListener = listener
     },
 
     handleWindowClick(e) {
@@ -144,7 +152,7 @@ export default {
         let isTarget = false
         let node = e.target
         while (node !== document) {
-          if (node === this.popup.$el || (this.previousPopup && node === this.previousPopup.$el)) {
+          if ((this.$refs.popup && node === this.$refs.popup.$el) || (this.previousPopup && node === this.previousPopup.$el)) {
             isTarget = true
             break
           }
@@ -162,20 +170,22 @@ export default {
     },
 
     updatePopupPosition() {
-      if (this.popup) {
-        this.popup.updatePosition(horizontalPadding, verticalPadding)
+      if (this.$refs.popup) {
+        this.$refs.popup.updatePosition()
       }
     },
 
     closePopup() {
-      if (this.popup) {
-        this.previousPopup = this.popup
-        let popup = this.popup
-        this.popup = null
-        popup.close()
-        popup.$destroy()
-        this.$el.removeChild(popup.$el)
+      if (this.$refs.popup) {
+        this.$refs.popup.close()
+        this.previousPopup = this.$refs.popup
+        this.popupComponent = null
       }
+    },
+
+    handleSelectValue(value) {
+      this.closePopup()
+      this.selectValueListener(value)
     }
 
   }
@@ -183,6 +193,19 @@ export default {
 </script>
 
 <style lang="scss">
+.pop-enter-active {
+    transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pop-leave-active {
+    transition: transform 0.15s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.pop-enter,
+.pop-leave-to {
+    transform: scale(0);
+}
+
 .popup-layer {
     display: none;
     position: fixed;

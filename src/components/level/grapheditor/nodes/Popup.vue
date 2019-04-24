@@ -19,6 +19,14 @@ export default {
         return ['branching', 'action', 'assign'].includes(value)
       },
       default: 'branching'
+    },
+    'verticalPadding': {
+      type: Number,
+      default: 0
+    },
+    'horizontalPadding': {
+      type: Number,
+      default: 0
     }
   },
 
@@ -29,6 +37,10 @@ export default {
       offsetX: 0,
       offsetY: 0
     }
+  },
+
+  mounted() {
+    this.updatePosition(0, 0)
   },
 
   computed: {
@@ -46,20 +58,20 @@ export default {
   },
 
   methods: {
-    updatePosition(horizontalPadding, verticalPadding) {
+    updatePosition() {
       let anchorBox = this.anchor.getBoundingClientRect()
       let frameBox = this.frame.getBoundingClientRect()
       let thisBox = this.$el.getBoundingClientRect()
       let x
       let y
       if (this.centeredX) {
-        x = anchorBox.x + (anchorBox.width / 2) - (thisBox.width / 2) + this.offsetX
+        x = anchorBox.x + (anchorBox.width / 2) - (this.$el.offsetWidth / 2) + this.offsetX
       }
       else {
         x = anchorBox.x + this.offsetX
       }
       if (this.centeredY) {
-        y = anchorBox.y + (anchorBox.height / 2) - (thisBox.height / 2) + this.offsetY
+        y = anchorBox.y + (anchorBox.height / 2) - (this.$el.offsetHeight / 2) + this.offsetY
       }
       else {
         y = anchorBox.y + this.offsetY
@@ -67,17 +79,17 @@ export default {
 
 
       // Keep the drop down list in the frame if possible
-      if (x < frameBox.left + horizontalPadding) {
-        x = frameBox.left + horizontalPadding
+      if (x < frameBox.left + this.horizontalPadding) {
+        x = frameBox.left + this.horizontalPadding
       }
-      if (x + thisBox.width > frameBox.right - horizontalPadding) {
-        x = frameBox.right - thisBox.width - horizontalPadding
+      if (x + this.$el.offsetWidth > frameBox.right - this.horizontalPadding) {
+        x = frameBox.right - this.$el.offsetWidth - this.horizontalPadding
       }
-      if (y + thisBox.height > frameBox.bottom - verticalPadding) {
-        y = frameBox.bottom - thisBox.height - verticalPadding
+      if (y + this.$el.offsetHeight > frameBox.bottom - this.verticalPadding) {
+        y = frameBox.bottom - this.$el.offsetHeight - this.verticalPadding
       }
-      if (y < frameBox.top + verticalPadding) {
-        y = frameBox.top + verticalPadding
+      if (y < frameBox.top + this.verticalPadding) {
+        y = frameBox.top + this.verticalPadding
       }
 
       this.$el.style.left = `${x}px`

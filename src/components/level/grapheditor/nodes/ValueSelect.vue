@@ -164,13 +164,13 @@ export default {
     },
 
     openDropDownList() {
-      let dropDownList = this.popupLayer.createDropDownList({
+      this.popupLayer.createDropDownList({
+        listener: this.handleSelectDropDownItem,
         anchor: this.$el,
         types: this.types.map(type => type.type),
         value: this.value,
         parentType: this.parentType
       })
-      dropDownList.$on('select-value', this.handleSelectDropDownItem)
     },
 
     openDirectionPopup() {
@@ -184,14 +184,14 @@ export default {
         }
       }
       let directionType = this.types.find(type => type.type === DirectionLiteral)
-      let directionPopup = this.popupLayer.createDirectionPopup({
+      this.popupLayer.createDirectionPopup({
+        listener: this.handleSelectDirection,
         anchor: this.$el,
         directions: directions,
         multiple: directionType.multiple,
         notHere: directionType.notHere,
         parentType: this.parentType
       })
-      directionPopup.$on('select-value', this.handleSelectDirection)
     },
 
     openIntegerPopup() {
@@ -199,12 +199,12 @@ export default {
       if (this.value instanceof IntegerLiteral) {
         integer = this.value
       }
-      let integerPopup = this.popupLayer.createIntegerPopup({
+      this.popupLayer.createIntegerPopup({
+        listener: this.handleSelectInteger,
         anchor: this.$el,
         integer: integer,
         parentType: this.parentType
       })
-      integerPopup.$on('select-value', this.handleSelectInteger)
     }
   }
 }
