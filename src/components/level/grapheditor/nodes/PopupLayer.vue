@@ -193,25 +193,25 @@ export default {
 </script>
 
 <style lang="scss">
-.pop-enter-active {
-    transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.pop-leave-active {
-    transition: transform 0.15s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-}
-
-.pop-enter,
-.pop-leave-to {
-    transform: scale(0);
-}
-
 .popup-layer {
     display: none;
     position: fixed;
 
     &.active {
         display: block;
+    }
+
+    .pop-enter-active {
+        transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .pop-leave-active {
+        transition: transform 0.15s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    }
+
+    .pop-enter,
+    .pop-leave-to {
+        transform: scale(0);
     }
 }
 </style>

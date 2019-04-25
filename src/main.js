@@ -4,11 +4,13 @@ import Home from './components/Home'
 import LevelList from './components/LevelList'
 import Level from './components/Level'
 import App from './components/App'
+import lang from './lang'
 import VueRouter from 'vue-router'
 import VueHotkey from 'v-hotkey'
 
 Vue.use(VueHotkey)
 Vue.use(VueRouter)
+Vue.prototype.$text = lang.text.bind(lang)
 
 const router = new VueRouter({
   routes: [{

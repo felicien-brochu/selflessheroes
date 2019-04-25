@@ -42,24 +42,22 @@
   </div>
 
 
-  <toggle-button v-model="isCodeEditor"
+  <toggle-button :value="isCodeEditor"
     :switchColor="{checked: '#252930', unchecked: '#252930', disabled: '#252930'}"
     :color="{checked: '#5d84c7', unchecked: '#FFFFFF', disabled: '#CCCCCC'}"
     :sync="true"
+    :slave="true"
     :font-size="12"
     :width="30"
     :height="18"
-    :labels="false" />
+    :labels="false"
+    @change="$emit('switch-editor', editorType === 'code' ? 'graph' : 'code')" />
 
 </div>
 </template>
 
 <script>
-import lang from '../../lang'
-import {
-  ToggleButton
-}
-from 'vue-js-toggle-button'
+import ToggleButton from './ToggleButton'
 
 export default {
   components: {
@@ -88,49 +86,28 @@ export default {
       type: String,
       validator: type => ['graph', 'code'].includes(type)
     },
-    'compilerExceptions': {
-      type: Object
+    'codeState': {
+      type: String
     }
   },
-  data: function() {
-    return {
-      codeState: 'code-ok'
-    }
-  },
+
   computed: {
     codeStateToolTip: function() {
       let tip = ''
 
       if (this.codeState === 'code-ok') {
-        tip = lang.text('code_state_ok_tooltip')
+        tip = this.$text('code_state_ok_tooltip')
       }
       else if (this.codeState === 'code-not-runnable') {
-        tip = lang.text('code_state_not_runnable_tooltip')
+        tip = this.$text('code_state_not_runnable_tooltip')
       }
       else if (this.codeState === 'code-not-compilable') {
-        tip = lang.text('code_state_not_compilable_tooltip')
+        tip = this.$text('code_state_not_compilable_tooltip')
       }
       return tip
     },
-    isCodeEditor: {
-      get() {
-        return this.editorType === 'code'
-      },
-      set(isCodeEditor) {
-        this.$emit('switch-editor', this.editorType === 'code' ? 'graph' : 'code')
-      }
-    }
-  },
-  watch: {
-    compilerExceptions: function() {
-      let state = 'code-ok'
-      if (!this.compilerExceptions || this.compilerExceptions.fatal.length > 0) {
-        state = 'code-not-compilable'
-      }
-      else if (this.compilerExceptions && this.compilerExceptions.undefinedLiterals.length > 0) {
-        state = 'code-not-runnable'
-      }
-      this.codeState = state
+    isCodeEditor: function() {
+      return this.editorType === 'code'
     }
   },
 

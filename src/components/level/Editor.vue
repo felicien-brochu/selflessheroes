@@ -2,8 +2,10 @@
 <div class="editors-container">
   <div class="editor"
     ref="editor">
-    <template v-if="this.worldReady">
 
+    <modal-layer ref="modalLayer" />
+
+    <template v-if="this.worldReady">
       <transition name="slide"
         appear>
         <variable-debugger v-if="playing && followHeroIndex >= 0"
@@ -46,11 +48,11 @@
     :editorType="editorType"
     :code="code"
     :codeHistory="codeHistory"
-    :compilerExceptions="compilerExceptions"
+    :codeState="codeState"
     @undo="$emit('undo')"
     @redo="$emit('redo')"
     @remove-code="removeCode"
-    @switch-editor="$emit('change-type', $event)" />
+    @switch-editor="handleSwitchEditor" />
 </div>
 </div>
 </template>
@@ -58,8 +60,10 @@
 <script>
 import CodeMirror from './codemirror/CodeMirror'
 import GraphEditor from './grapheditor/GraphEditor'
-import EditorBar from './EditorBar'
+import EditorBar from './editorbar/EditorBar'
 import VariableDebugger from './variabledebugger/VariableDebugger'
+import ModalLayer from './modal/ModalLayer'
+import Modal from './modal/Modal'
 
 
 export default {
@@ -67,7 +71,8 @@ export default {
     CodeMirror,
     GraphEditor,
     EditorBar,
-    VariableDebugger
+    VariableDebugger,
+    ModalLayer
   },
   props: {
     'code': {
@@ -103,6 +108,25 @@ export default {
     },
     'editorType': {
       type: String
+    }
+  },
+
+  data: function() {
+    return {
+      codeState: 'code-ok'
+    }
+  },
+
+  watch: {
+    compilerExceptions: function() {
+      let state = 'code-ok'
+      if (!this.compilerExceptions || this.compilerExceptions.fatal.length > 0) {
+        state = 'code-not-compilable'
+      }
+      else if (this.compilerExceptions && this.compilerExceptions.undefinedLiterals.length > 0) {
+        state = 'code-not-runnable'
+      }
+      this.codeState = state
     }
   },
 
@@ -142,6 +166,30 @@ export default {
 
     removeCode() {
       this.$emit('code-change', '', 'editor-bar')
+    },
+
+    handleSwitchEditor(editorType) {
+      if (editorType === 'graph' && this.codeState === 'code-not-compilable') {
+        this.$refs.modalLayer.addModal({
+          component: Modal,
+          key: 'switch-editor-warning',
+          props: {
+            text: this.$text('switch_editor_warning'),
+            cancelable: true,
+            confirmValue: editorType
+          },
+          handlers: {
+            confirm: this.confirmSwitchEditor
+          }
+        })
+      }
+      else {
+        this.$emit('change-type', editorType)
+      }
+    },
+
+    confirmSwitchEditor(editorType) {
+      this.$emit('change-type', editorType)
     }
   }
 }
