@@ -32,7 +32,14 @@
       @start-edit="$emit('start-edit')"
       @select-follow-hero="$emit('select-follow-hero', $event)">
 
-      <jump-link-layer ref="jumpLinkLayer" />
+      <transition :duration="{enter: 1000, leave: 0}"
+        appear
+        @enter="handleJumpLinkTransitionStart"
+        @after-enter="handleJumpLinkTransitionEnd"
+        @enter-cancelled="handleJumpLinkTransitionEnd"
+        name="jump-link">
+        <jump-link-layer ref="jumpLinkLayer" />
+      </transition>
 
       <line-numbers :statements="statements"
         :playing="playing"
@@ -241,6 +248,23 @@ export default {
 
     handleFollowHeroCursorLineChange(line) {
       this.$refs.graphCode.handleFollowHeroCursorLineChange(line)
+    },
+
+    handleJumpLinkTransitionStart() {
+      this.transitionTimer = setInterval(() => {
+        if (this.$refs.jumpLinkLayer) {
+          this.$refs.jumpLinkLayer.updateLinkPaths()
+        }
+      }, 10)
+    },
+
+    handleJumpLinkTransitionEnd() {
+      if (this.transitionTimer !== undefined && this.transitionTimer >= 0) {
+        clearInterval(this.transitionTimer)
+      }
+      if (this.$refs.jumpLinkLayer) {
+        this.$refs.jumpLinkLayer.updateLinkPaths()
+      }
     }
   }
 }

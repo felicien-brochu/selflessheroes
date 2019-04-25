@@ -39,6 +39,7 @@
     </div>
 
     <editor slot="secondPane"
+      ref="editor"
       :code="code"
       :editorType="editorType"
       :codeSource="codeSource"

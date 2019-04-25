@@ -1,7 +1,16 @@
 <template>
 <div class="app">
   <transition :name="transitionName"
-    mode="out-in">
+    mode="out-in"
+    @before-enter="handleTransition('onTransitionBeforeEnter', $event)"
+    @enter="handleTransition('onTransitionEnter', $event)"
+    @after-enter="handleTransition('onTransitionAfterEnter', $event)"
+    @enter-cancelled="handleTransition('onTransitionEnterCancelled', $event)"
+    @before-leave="handleTransition('onTransitionBeforeLeave', $event)"
+    @leave="handleTransition('onTransitionLeave', $event)"
+    @after-leave="handleTransition('onTransitionAfterLeave', $event)"
+    @leave-cancelled="handleTransition('onTransitionLeaveCancelled', $event)">
+
     <router-view class="child-view"></router-view>
   </transition>
 </div>
@@ -23,6 +32,15 @@ export default {
     const fromDepth = from.path.split('/').length
     this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
     next()
+  },
+
+  methods: {
+    handleTransition(handler, el) {
+      // If there is a corresponding handler on a child, we call it
+      if (el.__vue__ && el.__vue__[handler] && {}.toString.call(el.__vue__[handler]) === '[object Function]') {
+        el.__vue__[handler]()
+      }
+    }
   }
 }
 </script>
