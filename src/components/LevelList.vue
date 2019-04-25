@@ -72,11 +72,9 @@ export default {
 .level-list {
     margin: 0 auto;
     height: 100vh;
+    padding: 80px 40px;
     color: #ABB2BF;
     background-color: #282C34;
-    display: flex;
-    list-style: none;
-    padding: 0;
 
     .back-button {
         color: transparentize(white, 0.2);
@@ -93,6 +91,24 @@ export default {
 
         &:hover {
             color: white;
+        }
+    }
+
+    .list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin-left: 20px;
+            transition: transform 0.2s ease;
+
+            &:hover {
+                transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                transform-origin: 66% 50%;
+                transform: rotate(-1.5deg);
+            }
         }
     }
 }

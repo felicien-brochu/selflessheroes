@@ -14,6 +14,7 @@ export default {
   type: Phaser.AUTO,
   parent: 'world-content',
   localStorageName: 'aiworld',
+  backgroundColor: '#000000',
   plugins: {
     global: [{
       key: 'rexMouseWheelToUpDown',
