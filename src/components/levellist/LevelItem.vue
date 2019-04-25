@@ -21,21 +21,18 @@ export default {
 </script>
 
 <style lang="scss">
-.level-item {
-    width: 200px;
-    height: 100px;
-    border-radius: 20px;
-    background-color: #488286;
-    color: darken(#488286, 25%);
-    font-size: 24px;
-    text-align: center;
-    line-height: 100px;
-    font-weight: 500;
-    box-shadow: 0 0 10px 5px #13161aaa;
-    cursor: pointer;
+@import '../main';
 
-    &:hover {
-        background-color: #488286;
-    }
+.level-item {
+    @include home-card;
+    padding: 49px 60px 30px;
+    width: 160px;
+    height: 230px;
+    flex-direction: column;
+    font-size: 60px;
+    margin-right: 20px;
+    display: flex;
+    text-align: center;
+    font-weight: 500;
 }
 </style>

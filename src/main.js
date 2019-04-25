@@ -1,4 +1,3 @@
-import './components/main.scss'
 import Vue from 'vue'
 import Home from './components/Home'
 import LevelList from './components/LevelList'

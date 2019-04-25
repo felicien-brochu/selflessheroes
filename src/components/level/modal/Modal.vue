@@ -59,7 +59,6 @@ export default {
 
 <style lang="scss">
 $main-color: #583455;
-// $color: darken($main-color, 15%);
 $color: white;
 .modal {
     position: relative;

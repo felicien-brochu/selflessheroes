@@ -35,7 +35,8 @@
             v-model="name"
             type="text"
             name="name"
-            autofocus />
+            autofocus
+            autocomplete="off" />
           <button class="material-icons"
             type="submit">arrow_forward</button>
         </p>
@@ -98,6 +99,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import './main';
 .home {
     button {
         background: none;
@@ -118,29 +120,24 @@ export default {
         list-style: none;
         margin: 0;
         padding: 0;
+        height: max-content;
 
         .career-item {
-            width: 200px;
-            height: 250px;
+            @include home-card;
+            padding: 49px 60px 30px;
+            width: 160px;
+            height: 230px;
+            flex-direction: column;
+            font-size: 60px;
             margin-right: 20px;
-            border-radius: 10px;
-            background-color: #c4a14e;
-            color: darken(#c4a14e, 38%);
-            font-size: 24px;
+            display: flex;
             text-align: center;
-            line-height: 100px;
             font-weight: 500;
-            box-shadow: 0 0 10px 5px transparentize(#21252B, 0);
-            cursor: pointer;
-
-            &:hover {
-                background-color: #e8be5c;
-            }
         }
 
         .add-button-wrapper {
-            height: 250px;
-            width: 200px;
+            width: 160px;
+            height: 230px;
             display: flex;
             align-items: center;
             justify-content: center;

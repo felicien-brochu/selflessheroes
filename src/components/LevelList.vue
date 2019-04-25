@@ -102,13 +102,6 @@ export default {
 
         li {
             margin-left: 20px;
-            transition: transform 0.2s ease;
-
-            &:hover {
-                transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                transform-origin: 66% 50%;
-                transform: rotate(-1.5deg);
-            }
         }
     }
 }
