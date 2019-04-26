@@ -13,7 +13,7 @@
         :is="modal.component"
         v-bind="modal.props"
         v-on="modal.handlers"
-        @close="removeModal(index)" />
+        @close="removeModal(index)"></component>
     </transition>
 
   </div>

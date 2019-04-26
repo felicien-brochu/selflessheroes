@@ -1,11 +1,15 @@
 <template>
 <div class='vue-codemirror-wrap'>
+
+  <modal-layer ref="modalLayer" />
+
   <line-cursors v-show="playing"
     ref='lineCursors'
     :debugContext="debugContext"
     :followHeroIndex="followHeroIndex"
     @select-follow-hero="$emit('select-follow-hero', $event)"
     @follow-hero-cursor-line-change="handleFollowHeroCursorLineChange" />
+
   <textarea></textarea>
 </div>
 </template>
@@ -18,10 +22,14 @@ import CodeMirror from 'codemirror'
 import './aiworldmode'
 import LineCursors from './LineCursors'
 import ScrollAnimator from '../util/ScrollAnimator'
+import ModalLayer from '../../modal/ModalLayer'
+import Modal from '../../modal/Modal'
+import CodeModal from '../../modal/CodeModal'
 
 export default {
   components: {
-    LineCursors
+    LineCursors,
+    ModalLayer
   },
 
   props: {
@@ -181,6 +189,32 @@ export default {
 
     handleFollowHeroCursorLineChange(line) {
       this.scrollAnimator.showLine(line)
+    },
+
+    showCodeStateDetails(codeState) {
+      if (codeState === 'code-ok') {
+        this.$refs.modalLayer.addModal({
+          component: Modal,
+          key: 'code_state_ok_modal',
+          props: {
+            text: this.$text('code_state_ok_modal'),
+            cancelable: false,
+          },
+        })
+      }
+      else if (codeState === 'code-not-runnable') {
+        this.$refs.modalLayer.addModal({
+          component: CodeModal,
+          key: 'code_state_not_runnable_modal',
+          props: {
+            text: this.$text('code_state_not_runnable_modal'),
+            cancelable: false,
+          },
+        })
+      }
+      else if (codeState === 'code-not-compilable') {
+        console.log("###NO modal yet")
+      }
     }
 
   }

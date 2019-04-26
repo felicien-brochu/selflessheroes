@@ -15,6 +15,7 @@
       <transition name="switch"
         appear>
         <code-mirror v-if="editorType === 'code'"
+          ref="codeEditor"
           key="code-editor"
           :code="code"
           :worldReady="worldReady"
@@ -52,7 +53,8 @@
     @undo="$emit('undo')"
     @redo="$emit('redo')"
     @remove-code="removeCode"
-    @switch-editor="handleSwitchEditor" />
+    @switch-editor="handleSwitchEditor"
+    @code-state-click="handleCodeStateClick" />
 </div>
 </div>
 </template>
@@ -190,6 +192,10 @@ export default {
 
     confirmSwitchEditor(editorType) {
       this.$emit('change-type', editorType)
+    },
+
+    handleCodeStateClick(codeState) {
+      this.$refs.codeEditor.showCodeStateDetails(codeState)
     }
   }
 }

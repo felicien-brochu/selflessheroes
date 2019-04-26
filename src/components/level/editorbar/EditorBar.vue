@@ -6,7 +6,8 @@
 		'hidden': !isCodeEditor
 	}">
     <button :class="['code-state', codeState]"
-      :title="codeStateToolTip" />
+      :title="codeStateToolTip"
+      @click="handleCodeStateClick" />
   </div>
 
   <div class="center-container">
@@ -123,6 +124,9 @@ export default {
     handleRedoClick(event) {
       this.$emit('redo')
       event.target.blur()
+    },
+    handleCodeStateClick() {
+      this.$emit('code-state-click', this.codeState)
     }
   }
 }

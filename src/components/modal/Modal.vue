@@ -6,7 +6,11 @@
     @click="cancel"
     @touchstart="cancel">close</button>
 
-  <div class="modal-content">{{text}}</div>
+  <div class="modal-content">
+    <slot>{{text}}</slot>
+  </div>
+  <!-- <code-template class="modal-content"
+    :template="text" /> -->
 
   <div class="button-container">
     <button type="submit"
@@ -28,18 +32,23 @@
 </template>
 
 <script>
+import CodeTemplate from './CodeTemplate'
+
 export default {
+  components: {
+    CodeTemplate
+  },
   props: {
+    'text': {
+      type: String,
+      default: 'no-text'
+    },
     'cancelable': {
       type: Boolean,
       default: true
     },
     'confirmValue': {
       default: true
-    },
-    'text': {
-      type: String,
-      default: ''
     }
   },
 
