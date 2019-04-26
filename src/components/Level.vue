@@ -68,6 +68,9 @@ import World from './level/World'
 import Editor from './level/Editor'
 import RunBar from './level/runbar/RunBar'
 import ResizeSplitPane from './level/rspane/ResizeSplitPane'
+import Compiler from '../world/ai/compile/Compiler'
+import Decompiler from '../world/ai/compile/Decompiler'
+import Linter from '../world/ai/compile/Linter'
 import storage from '../game/storage/Storage'
 import CodeHistory from '../game/storage/CodeHistory'
 
@@ -210,6 +213,27 @@ export default {
     undo() {
       if (this.codeHistory.canUndo()) {
         let code = this.codeHistory.undo()
+        // For the graph editor the code must be compilable
+        // Skip all uncompilable code
+        if (this.editorType === 'graph') {
+          while (this.codeHistory.canUndo()) {
+            let compiler = new Compiler(code, this.compilerConfig)
+            compiler.compile()
+
+            if (compiler.exceptions.fatal.length === 0) {
+              let statements = compiler.statements
+              let hasCorrection = Linter.correctForGraph(statements, compiler.exceptions, this.compilerConfig)
+              let decompiler = new Decompiler(statements, this.compilerConfig)
+              decompiler.decompile()
+
+              if (decompiler.code !== this.codeHistory.getCode(1)) {
+                break
+              }
+            }
+            code = this.codeHistory.undo()
+          }
+        }
+
         this.setCode(code, 'history')
         this.solution.save()
       }

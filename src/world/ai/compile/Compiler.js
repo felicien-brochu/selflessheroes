@@ -26,8 +26,6 @@ export default class Compiler {
   }
 
   compile() {
-    // console.log("COMPILE CODE: \n", this.code)
-    // console.log("With config: \n", this.config)
     this.compileStatements()
     this.exceptions.undefinedLiterals = this.context.undefinedLiterals
     this.compileStatementLinks()
@@ -63,7 +61,6 @@ export default class Compiler {
         try {
           currentStatement.compile(this.config, this.context)
         } catch (exception) {
-          console.error(exception)
           this.exceptions.fatal.push(exception)
         }
 
@@ -83,21 +80,18 @@ export default class Compiler {
     try {
       this.compileIfLinks()
     } catch (exception) {
-      console.error(exception)
       this.exceptions.fatal.push(exception)
     }
 
     try {
       this.checkAnchorsUniqueness()
     } catch (exception) {
-      console.error(exception)
       this.exceptions.fatal.push(exception)
     }
 
     try {
       this.compileJumpLinks()
     } catch (exception) {
-      console.error(exception)
       this.exceptions.fatal.push(exception)
     }
   }

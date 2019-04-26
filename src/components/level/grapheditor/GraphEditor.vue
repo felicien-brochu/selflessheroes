@@ -147,8 +147,8 @@ export default {
       console.log("####COMPILE code", this.code)
       let compiler = new Compiler(this.code, this.compilerConfig)
       compiler.compile()
-      let statements = compiler.statements.slice(0)
-      let hasCorrection = Linter.correctForGraph(statements)
+      let statements = compiler.statements
+      let hasCorrection = Linter.correctForGraph(statements, compiler.exceptions, this.compilerConfig)
       this.statements = statements
       if (hasCorrection) {
         this.decompile(true)
