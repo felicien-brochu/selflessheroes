@@ -8,9 +8,15 @@
       class="career-item"
       :key="career.id"
       tag="div"
-      :to="career.url">{{
+      :to="career.url">
+      <div class="career-name"
+        v-text-fit="{
+		      alignHoriz: true,
+		      alignVert: true
+		    }">{{
 				career.name
-			}}</router-link>
+			}}</div>
+    </router-link>
 
     <transition name="fade"
       mode="out-in">
@@ -28,19 +34,32 @@
         @submit="createCareer"
         action="/"
         method="post"
-        class="career-item">
-        <p class="new-career-form">
-          <label for="name">Name:</label>
-          <input id="name"
-            v-model="name"
-            type="text"
-            name="name"
-            autofocus
-            autocomplete="off" />
+        class="career-item new-career-form">
+
+        <h1 v-text-fit="{
+		      alignHoriz: true,
+		      alignVert: true
+		    }">{{$text('new_game')}}</h1>
+
+        <div class="name-input-wrapper">
+
+          <div class="input-wrapper">
+            <input id="name"
+              v-model="name"
+              type="text"
+              name="name"
+              autocomplete="off"
+              v-focus
+              :placeholder="$text('new_game_name_placeholder')" />
+          </div>
+
           <button class="material-icons"
             type="submit">arrow_forward</button>
-        </p>
+
+        </div>
+
       </form>
+
     </transition>
   </div>
 
@@ -53,6 +72,15 @@
 import storage from '../game/storage/Storage'
 
 export default {
+  directives: {
+    focus: {
+      // définition de la directive
+      inserted: function(el) {
+        el.focus()
+      }
+    }
+  },
+
   components: {},
 
   data: function() {
@@ -101,6 +129,7 @@ export default {
 <style lang="scss">
 @import './main';
 .home {
+    @include no-select;
     button {
         background: none;
         border: none;
@@ -123,40 +152,80 @@ export default {
         height: max-content;
 
         .career-item {
-            @include home-card;
-            padding: 49px 60px 30px;
-            width: 160px;
-            height: 230px;
-            flex-direction: column;
-            font-size: 60px;
-            margin-right: 20px;
+            @include home-card($default-card-color);
+            padding: 49px 30px 30px;
             display: flex;
-            text-align: center;
-            font-weight: 500;
+            flex-direction: column;
+
+            .career-name {
+                width: 220px;
+                height: 60px;
+                text-align: center;
+                font-weight: 500;
+            }
         }
 
         .add-button-wrapper {
-            width: 160px;
-            height: 230px;
+            @include card-box;
+            background-color: #282C34;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 200ms ease;
+            cursor: pointer;
 
             button {
-                text-shadow: 0 0 5px transparentize(#21252B, 0);
                 color: transparentize(white, 0.7);
-                font-size: 80px;
-                &:hover {
-                    color: transparentize(white, 0.5);
-                }
+                font-size: 120px;
+            }
+
+            &:hover {
+                background-color: lighten(#282C34, 2%);
             }
         }
 
         .new-career-form {
-            line-height: 26px;
-            button {
-                color: white;
-                font-size: 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-bottom: 80px;
+
+            h1 {
+                font-weight: 500;
+                margin: 0 0 25px;
+                width: 220px;
+                height: 36px;
+                text-transform: capitalize;
+            }
+
+            .name-input-wrapper {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+
+                .input-wrapper {
+                    margin-left: 5px;
+
+                    input[type=text] {
+                        border-radius: 5px;
+                        border: none;
+                        font-size: 24px;
+                        padding: 7px 12px;
+                        box-sizing: border-box;
+                        width: 100%;
+                        font-family: inherit;
+                        font-weight: 500;
+                        color: $default-card-color;
+                    }
+                }
+
+                button {
+                    color: white;
+                    font-size: 44px;
+                    padding: 0;
+                    margin-left: 6px;
+                    flex-shrink: 0;
+                }
             }
         }
     }

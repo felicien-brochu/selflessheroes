@@ -2,6 +2,8 @@ import idiom from "idiom.js"
 
 const lang = idiom({
   'default': {
+    new_game: "new game:",
+    new_game_name_placeholder: "Pseudo",
     welcome: "Welcome to AI World",
     game_over: "Game Over",
 
@@ -17,6 +19,8 @@ const lang = idiom({
 
 
   'fr': {
+    new_game: "nouvelle partie\u00A0:",
+    new_game_name_placeholder: "Pseudo",
     welcome: "Bienvenue dans AI World",
     game_over: "Game Over",
 

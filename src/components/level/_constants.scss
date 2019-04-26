@@ -1,3 +1,4 @@
+@import '../main';
 $assign-color: #c4a14e;
 $action-color: #779666;
 $branching-color: #6991b2;
@@ -11,14 +12,6 @@ $node-padding-left: 9px;
 @mixin node-color($background-color) {
 	background-color: $background-color;
 	color: darken($background-color, $text-darken);
-}
-@mixin no-select {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
 }
 @mixin node-shadow {
 	box-shadow: -2px 2px 6px 0 rgba(#0f1114, 0.8);

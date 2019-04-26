@@ -24,10 +24,8 @@ export default {
 @import '../main';
 
 .level-item {
-    @include home-card;
+    @include home-card($default-card-color);
     padding: 49px 60px 30px;
-    width: 160px;
-    height: 230px;
     flex-direction: column;
     font-size: 60px;
     margin-right: 20px;

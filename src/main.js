@@ -6,7 +6,9 @@ import App from './components/App'
 import lang from './lang'
 import VueRouter from 'vue-router'
 import VueHotkey from 'v-hotkey'
+import TextFitDirective from './components/util/TextFitDirective'
 
+Vue.directive('text-fit', TextFitDirective)
 Vue.use(VueHotkey)
 Vue.use(VueRouter)
 Vue.prototype.$text = lang.text.bind(lang)
