@@ -1,6 +1,4 @@
-import idiom from "idiom.js"
-
-const lang = idiom({
+const messages = {
   'default': {
     home_title: "AI World",
     new_game: "new game:",
@@ -39,6 +37,24 @@ const lang = idiom({
     modal_cancel_button: "annuler",
     modal_close_button: "fermer",
   }
-})
+}
 
-export default lang(window.navigator.language)
+class Idiom {
+  constructor(messages, languages) {
+    this.messages = messages
+    this.languages = languages
+
+    this.currentLanguage = 'default'
+
+    let supportedLanguage = languages.find(lang => !!this.messages[lang])
+    if (supportedLanguage) {
+      this.currentLanguage = supportedLanguage
+    }
+  }
+
+  text(key) {
+    return this.messages[this.currentLanguage][key]
+  }
+}
+
+export default new Idiom(messages, window.navigator.languages)
