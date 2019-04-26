@@ -2,6 +2,7 @@ import idiom from "idiom.js"
 
 const lang = idiom({
   'default': {
+    home_title: "AI World",
     new_game: "new game:",
     new_game_name_placeholder: "Pseudo",
     remove_career_button: "Remove",
@@ -21,6 +22,7 @@ const lang = idiom({
 
 
   'fr': {
+    home_title: "AI World",
     new_game: "nouvelle partie\u00A0:",
     new_game_name_placeholder: "Pseudo",
     remove_career_button: "Supprimer",

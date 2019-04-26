@@ -46,7 +46,9 @@ export default {
 </script>
 
 <style lang="scss">
-.app {}
+.app {
+    overflow: hidden;
+}
 
 .slide-left-enter-active,
 .slide-left-leave-active,

@@ -71,7 +71,8 @@ export default {
 <style lang="scss">
 .level-list {
     margin: 0 auto;
-    height: 100vh;
+    box-sizing: border-box;
+    min-height: 100vh;
     padding: 80px 40px;
     color: #ABB2BF;
     background-color: #282C34;
@@ -96,13 +97,11 @@ export default {
 
     .list {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
         list-style: none;
         margin: 0;
         padding: 0;
-
-        li {
-            margin-left: 20px;
-        }
     }
 }
 </style>

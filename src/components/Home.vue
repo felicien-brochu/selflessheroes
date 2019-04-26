@@ -3,6 +3,8 @@
   @mousedown="handleClickOutside"
   @touchstart="handleClickOutside">
 
+  <h1>{{$text('home_title')}}</h1>
+
   <modal-layer ref="modalLayer" />
 
   <div class="career-list">
@@ -17,7 +19,7 @@
         type="button"
         :title="$text('remove_career_button')"
         @click="removeCareer(career.id, $event)"
-        @touchstart="removeCareer(career.id, $event)">remove_circle_outline</button>
+        @touchstart="removeCareer(career.id, $event)">remove_circle</button>
 
       <div class="career-name"
         v-text-fit="{
@@ -30,16 +32,14 @@
     </router-link>
 
     <transition name="fade"
-      mode="out-in"
-      :key="'add-button'">
+      mode="out-in">
       <div v-if="!newCareer && careers.length > 0"
         class="add-button-wrapper"
-        :key="'add-button-comp'">
+        @mousedown="newCareer = true"
+        @touchstart="newCareer = true">
 
         <button class="material-icons"
-          type="button"
-          @mousedown="newCareer = true"
-          @touchstart="newCareer = true">add_circle_outline</button>
+          type="button">add_circle</button>
 
       </div>
 
@@ -50,10 +50,10 @@
         class="career-item new-career-form"
         key="new-career-form">
 
-        <h1 v-text-fit="{
+        <h3 v-text-fit="{
 		      alignHoriz: true,
 		      alignVert: true
-		    }">{{$text('new_game')}}</h1>
+		    }">{{$text('new_game')}}</h3>
 
         <div class="name-input-wrapper">
 
@@ -170,12 +170,22 @@ export default {
     @include no-select;
 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin: 0 auto;
-    height: 100vh;
-    padding: 80px 40px;
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: 20px 40px;
     color: #ABB2BF;
     background-color: #282C34;
+
+    h1 {
+        font-size: 60px;
+        text-align: center;
+        font-weight: 500;
+        color: white;
+        margin: 40px 0 80px;
+    }
 
     button {
         background: none;
@@ -187,6 +197,8 @@ export default {
 
     .career-list {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         list-style: none;
         margin: 0;
         padding: 0;
@@ -226,20 +238,26 @@ export default {
 
         .add-button-wrapper {
             @include card-box;
-            background-color: #282C34;
+            border: dashed #ffffff1a 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 200ms ease;
+            transition: background-color 0.6s, border-color 0.2s ease;
             cursor: pointer;
 
             button {
-                color: transparentize(white, 0.7);
-                font-size: 120px;
+                transition: opacity 0.5s ease;
+                opacity: 0.09;
+                color: #ffffff;
+                font-size: 90px;
             }
 
             &:hover {
-                background-color: lighten(#282C34, 2%);
+                background-color: lighten(#282C34, 10%);
+                border-color: #ffffff00;
+                button {
+                    opacity: 0.7;
+                }
             }
         }
 
@@ -250,7 +268,7 @@ export default {
             padding-bottom: 80px;
             cursor: default;
 
-            h1 {
+            h3 {
                 font-weight: 500;
                 margin: 0 0 25px;
                 width: 220px;
