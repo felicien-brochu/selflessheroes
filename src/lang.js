@@ -4,7 +4,9 @@ const lang = idiom({
   'default': {
     new_game: "new game:",
     new_game_name_placeholder: "Pseudo",
-    welcome: "Welcome to AI World",
+    remove_career_button: "Remove",
+    remove_career_warning: "Are you really sure to delete this game?\nAll progression will be lost.",
+
     game_over: "Game Over",
 
     code_state_ok_tooltip: "Your code is ready to be run",
@@ -21,7 +23,9 @@ const lang = idiom({
   'fr': {
     new_game: "nouvelle partie\u00A0:",
     new_game_name_placeholder: "Pseudo",
-    welcome: "Bienvenue dans AI World",
+    remove_career_button: "Supprimer",
+    remove_career_warning: "Êtes-vous vraiment sûr de vouloir supprimer cette partie\u00A0?\nToute progression sera perdue.",
+
     game_over: "Game Over",
 
     code_state_ok_tooltip: "Votre code est prêt à être exécuté",

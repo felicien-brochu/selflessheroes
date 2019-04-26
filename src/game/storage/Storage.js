@@ -27,6 +27,13 @@ export class Storage extends StorageWrapper {
     return this.careers.find(c => c.get().id === id)
   }
 
+  removeCareer(careerID) {
+    let career = this.getCareer(careerID)
+    career.clear()
+    this.careers.splice(this.careers.indexOf(career), 1)
+    this.save()
+  }
+
   load(data) {
     this.careers = super.loadIDArray(data.careers, 'careers', Career)
     return true

@@ -58,18 +58,18 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: #583455;
+$modal-color: #583455;
 $color: white;
 .modal {
     position: relative;
     padding: 49px 60px 30px;
     width: max-content;
-    background-color: $main-color;
+    background-color: $modal-color;
     color: $color;
     display: flex;
     flex-direction: column;
     border-radius: 8px;
-    box-shadow: inset 0 0 30px 10px #00000033, 0 0 30px 10px #00000033;
+    box-shadow: inset 0 0 30px 10px #00000033, 0 0 100px 10px #000000aa;
 
     .modal-content {
         max-width: 600px;
@@ -111,13 +111,13 @@ $color: white;
             min-width: 100px;
             font-size: 21px;
             padding: 9px 20px;
-            background-color: lighten($main-color, 10%);
+            background-color: lighten($modal-color, 10%);
             color: $color;
             border-radius: 3px;
             box-shadow: inset 0 0 10px 3px #0003, 0 0 10px 0 #0003;
 
             &:hover:not(:active) {
-                background-color: lighten($main-color, 12%);
+                background-color: lighten($modal-color, 12%);
             }
         }
     }

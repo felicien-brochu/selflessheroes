@@ -48,6 +48,15 @@ export default class StorageWrapper {
     }
   }
 
+  clear(deep = true) {
+    if (deep) {
+      for (let saveableObject of this.getSaveables()) {
+        saveableObject.clear(true)
+      }
+    }
+    window.localStorage.removeItem(this.storageKey)
+  }
+
   toIDArray(array) {
     return array.map(item => item.id)
   }

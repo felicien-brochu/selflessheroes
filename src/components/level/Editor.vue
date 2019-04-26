@@ -62,8 +62,8 @@ import CodeMirror from './codemirror/CodeMirror'
 import GraphEditor from './grapheditor/GraphEditor'
 import EditorBar from './editorbar/EditorBar'
 import VariableDebugger from './variabledebugger/VariableDebugger'
-import ModalLayer from './modal/ModalLayer'
-import Modal from './modal/Modal'
+import ModalLayer from '../modal/ModalLayer'
+import Modal from '../modal/Modal'
 
 
 export default {

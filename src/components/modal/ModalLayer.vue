@@ -70,8 +70,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../constants';
-
 .modal-layer {
     position: fixed;
     left: 0;

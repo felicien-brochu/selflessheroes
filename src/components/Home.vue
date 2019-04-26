@@ -2,13 +2,23 @@
 <div class="home"
   @mousedown="handleClickOutside"
   @touchstart="handleClickOutside">
+
+  <modal-layer ref="modalLayer" />
+
   <div class="career-list">
 
     <router-link v-for="career in careers"
       class="career-item"
-      :key="career.id"
+      :key="`career${career.id}`"
       tag="div"
       :to="career.url">
+
+      <button class="remove-button material-icons"
+        type="button"
+        :title="$text('remove_career_button')"
+        @click="removeCareer(career.id, $event)"
+        @touchstart="removeCareer(career.id, $event)">remove_circle_outline</button>
+
       <div class="career-name"
         v-text-fit="{
 		      alignHoriz: true,
@@ -16,12 +26,15 @@
 		    }">{{
 				career.name
 			}}</div>
+
     </router-link>
 
     <transition name="fade"
-      mode="out-in">
+      mode="out-in"
+      :key="'add-button'">
       <div v-if="!newCareer && careers.length > 0"
-        class="add-button-wrapper">
+        class="add-button-wrapper"
+        :key="'add-button-comp'">
 
         <button class="material-icons"
           type="button"
@@ -34,7 +47,8 @@
         @submit="createCareer"
         action="/"
         method="post"
-        class="career-item new-career-form">
+        class="career-item new-career-form"
+        key="new-career-form">
 
         <h1 v-text-fit="{
 		      alignHoriz: true,
@@ -61,39 +75,42 @@
       </form>
 
     </transition>
+
   </div>
-
-
 
 </div>
 </template>
 
 <script>
+import ModalLayer from './modal/ModalLayer'
+import Modal from './modal/Modal'
 import storage from '../game/storage/Storage'
 
 export default {
   directives: {
     focus: {
-      // définition de la directive
       inserted: function(el) {
         el.focus()
       }
     }
   },
 
-  components: {},
+  components: {
+    ModalLayer
+  },
 
   data: function() {
     return {
       name: null,
-      newCareer: false
+      newCareer: false,
+      storage: storage
     }
   },
 
   computed: {
     careers: function() {
       let careers = []
-      for (let career of storage.careers) {
+      for (let career of this.storage.careers) {
         career.get()
         careers.push({
           id: career.id,
@@ -121,6 +138,27 @@ export default {
       if (e.target === this.$el) {
         this.newCareer = false
       }
+    },
+
+    removeCareer(careerID, e) {
+      e.preventDefault()
+      this.$refs.modalLayer.addModal({
+        component: Modal,
+        key: 'remove-career-warning',
+        props: {
+          text: this.$text('remove_career_warning'),
+          cancelable: true,
+          confirmValue: careerID
+        },
+        handlers: {
+          confirm: this.confirmRemoveCareer
+        }
+      })
+    },
+
+    confirmRemoveCareer(careerID) {
+      console.log("REMOVE career", careerID)
+      storage.removeCareer(careerID)
     }
   }
 }
@@ -130,19 +168,22 @@ export default {
 @import './main';
 .home {
     @include no-select;
-    button {
-        background: none;
-        border: none;
-        outline: none;
-        cursor: pointer;
-    }
 
+    display: flex;
+    justify-content: center;
     margin: 0 auto;
     height: 100vh;
     padding: 80px 40px;
     color: #ABB2BF;
     background-color: #282C34;
-    display: flex;
+
+    button {
+        background: none;
+        border: none;
+        outline: none;
+        padding: 0;
+        cursor: pointer;
+    }
 
     .career-list {
         display: flex;
@@ -156,6 +197,24 @@ export default {
             padding: 49px 30px 30px;
             display: flex;
             flex-direction: column;
+
+            .remove-button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 14px 16px;
+                width: 24px;
+                height: 24px;
+                color: white;
+                opacity: 0;
+                font-size: 24px;
+                line-height: 24px;
+                transition: all 100ms ease;
+                opacity: 0.1;
+                &:hover {
+                    opacity: 0.5;
+                }
+            }
 
             .career-name {
                 width: 220px;
@@ -189,6 +248,7 @@ export default {
             flex-direction: column;
             justify-content: center;
             padding-bottom: 80px;
+            cursor: default;
 
             h1 {
                 font-weight: 500;
