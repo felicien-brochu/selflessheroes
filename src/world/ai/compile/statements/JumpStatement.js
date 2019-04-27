@@ -28,10 +28,10 @@ export default class JumpStatement extends PrimaryStatement {
     let res = joinedCode.match(JumpStatement.correctCodeRegExp)
     if (!res) {
       throw new MismatchStatementException('jump statements must have a target anchor', this, {
-        template: 'exception_mismatch_keyword_template',
+        template: 'level.code.exception_mismatch_keyword_template',
         values: {
           statementType: {
-            template: 'type_jump'
+            template: 'level.code.type_jump'
           }
         }
       })

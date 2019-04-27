@@ -41,10 +41,10 @@ export default class IfStatement extends PrimaryStatement {
     let groups = joinedCode.match(IfStatement.correctCodeRegExp)
     if (!groups) {
       throw new MismatchStatementException('you try to compile as a if statement a statement which is not one', this, {
-        template: 'exception_mismatch_keyword_template',
+        template: 'level.code.exception_mismatch_keyword_template',
         values: {
           statementType: {
-            template: 'type_if'
+            template: 'level.code.type_if'
           }
         }
       })

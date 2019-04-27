@@ -3,7 +3,7 @@
   @mousedown="handleClickOutside"
   @touchstart="handleClickOutside">
 
-  <h1>{{$text('home_title')}}</h1>
+  <h1>{{$text('home.home_title')}}</h1>
 
   <modal-layer ref="modalLayer" />
 
@@ -17,7 +17,7 @@
 
       <button class="remove-button material-icons"
         type="button"
-        :title="$text('remove_career_button')"
+        :title="$text('home.remove_career_button')"
         @click="removeCareer(career.id, $event)"
         @touchstart="removeCareer(career.id, $event)">remove_circle</button>
 
@@ -53,7 +53,7 @@
         <h3 v-text-fit="{
 		      alignHoriz: true,
 		      alignVert: true
-		    }">{{$text('new_game')}}</h3>
+		    }">{{$text('home.new_game')}}</h3>
 
         <div class="name-input-wrapper">
 
@@ -64,7 +64,7 @@
               name="name"
               autocomplete="off"
               v-focus
-              :placeholder="$text('new_game_name_placeholder')" />
+              :placeholder="$text('home.new_game_name_placeholder')" />
           </div>
 
           <button class="material-icons"
@@ -146,7 +146,7 @@ export default {
         component: Modal,
         key: 'remove-career-warning',
         props: {
-          text: this.$text('remove_career_warning'),
+          text: this.$text('home.remove_career_warning'),
           cancelable: true,
           confirmValue: careerID
         },

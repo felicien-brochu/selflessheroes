@@ -60,7 +60,7 @@ export default class SimpleBooleanExpression extends Expression {
 
     if (!this.operator) {
       throw new InvalidBooleanExpressionException('no comparison operator found in this boolean expression', this, {
-        template: 'exception_boolean_no_comparison_operator_template',
+        template: 'level.code.exception_boolean_no_comparison_operator_template',
         values: {
           allowedOperators: compOperators.slice(0)
         }

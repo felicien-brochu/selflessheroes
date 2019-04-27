@@ -37,10 +37,10 @@ export default class AssignStatement extends PrimaryStatement {
     let res = joinedCode.match(AssignStatement.codeRegExp)
     if (!res) {
       throw new MismatchStatementException('you try to compile as an assign statement a statement which is not one', this, {
-        template: 'exception_mismatch_statement_template',
+        template: 'level.code.exception_mismatch_statement_template',
         values: {
           statementType: {
-            template: 'type_assign'
+            template: 'level.code.type_assign'
           }
         }
       })
@@ -59,7 +59,7 @@ export default class AssignStatement extends PrimaryStatement {
     this.variable = createUnitExpression(variableCode, [VariableIdentifier], this, this.line, this.column)
 
     if (this.variable.type === 'InvalidExpression') {
-      let template = config.variables > 0 ? 'exception_invalid_variable_identifier_template' : 'exception_all_forbidden_variable_identifier_template'
+      let template = config.variables > 0 ? 'level.code.exception_invalid_variable_identifier_template' : 'level.code.exception_all_forbidden_variable_identifier_template'
       throw new InvalidVariableIdentifierException('this identifier is not a valid variable identifier', this.variable, {
         template: template,
         values: {
@@ -76,7 +76,7 @@ export default class AssignStatement extends PrimaryStatement {
 
     if (this.value.type === 'InvalidExpression') {
       throw new InvalidExpressionException('this identifier is not a value function', this.value, {
-        template: 'exception_invalid_value_function_template',
+        template: 'level.code.exception_invalid_value_function_template',
         values: {
           code: this.value.code.join(' ').trim(),
           allowedFunctions: config.valueFunctions.map(f => `${f.keyword}()`)

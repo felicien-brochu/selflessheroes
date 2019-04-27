@@ -14,7 +14,7 @@
     <div class="assign-arrow" />
 
     <div class="function-label">
-      {{$text(`function_${statement.value.constructor.keyword}`)}}
+      {{$text(`level.code.function_${statement.value.constructor.keyword}`)}}
     </div>
 
     <value-select v-for="(param, index) in params"

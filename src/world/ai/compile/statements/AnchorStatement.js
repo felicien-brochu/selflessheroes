@@ -23,10 +23,10 @@ export default class AnchorStatement extends PrimaryStatement {
     let res = joinedCode.match(AnchorStatement.codeRegExp)
     if (!res) {
       throw new MismatchStatementException('you try to compile as an anchor statement a statement which is not one', this, {
-        template: 'exception_mismatch_statement_template',
+        template: 'level.code.exception_mismatch_statement_template',
         values: {
           statementType: {
-            template: 'type_anchor'
+            template: 'level.code.type_anchor'
           }
         }
       })

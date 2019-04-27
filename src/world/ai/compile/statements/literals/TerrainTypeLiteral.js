@@ -27,7 +27,7 @@ export default class TerrainTypeLiteral extends Expression {
 
     if (!config.terrainTypes.some(type => this.name === type)) {
       throw new ForbiddenTerrainTypeLiteralException(`the terrain type literal '${this.name}' is forbidden. You may use the following terrain types: ${config.terrainTypes}`, this, {
-        template: 'exception_forbidden_terrain_type_template',
+        template: 'level.code.exception_forbidden_terrain_type_template',
         values: {
           keyword: this.name,
           allowedValues: config.terrainTypes.slice(0)

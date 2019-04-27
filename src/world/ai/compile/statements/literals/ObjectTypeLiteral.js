@@ -27,7 +27,7 @@ export default class ObjectTypeLiteral extends Expression {
 
     if (!config.objectTypes.some(type => this.name === type)) {
       throw new ForbiddenObjectTypeLiteralException(`the object type literal '${this.name}' is forbidden. You may use the following object types: ${config.objectTypes}`, this, {
-        template: 'exception_forbidden_object_type_template',
+        template: 'level.code.exception_forbidden_object_type_template',
         values: {
           keyword: this.name,
           allowedValues: config.objectTypes.slice(0)

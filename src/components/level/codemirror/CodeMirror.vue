@@ -198,7 +198,7 @@ export default {
           component: Modal,
           key: 'code_state_ok_modal',
           props: {
-            text: this.$text('code_state_ok_modal'),
+            text: this.$text('level.code.code_state_ok_modal'),
             cancelable: false,
           },
         })
@@ -208,7 +208,7 @@ export default {
           component: CodeModal,
           key: 'code_state_not_runnable_modal',
           props: {
-            text: this.$text('code_state_not_runnable_modal'),
+            text: this.$text('level.code.code_state_not_runnable_modal'),
             cancelable: false,
           },
         })

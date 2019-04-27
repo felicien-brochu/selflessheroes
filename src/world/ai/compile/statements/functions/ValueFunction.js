@@ -31,10 +31,10 @@ class ValueFunction extends Expression {
     let res = joinedCode.match(ValueFunction.codeRegExp)
     if (!res) {
       throw new MismatchStatementException('you try to compile as a value function a statement which is not one', this, {
-        template: 'exception_mismatch_function_template',
+        template: 'level.code.exception_mismatch_function_template',
         values: {
           keyword: {
-            template: `function_${this.constructor.keyword}`
+            template: `level.code.function_${this.constructor.keyword}`
           }
         }
       })
@@ -43,10 +43,10 @@ class ValueFunction extends Expression {
     let allowedTypes = config.valueFunctions
     if (!allowedTypes.some(allowedType => this instanceof allowedType)) {
       throw new ForbiddenValueFunctionException(`the function ${this.constructor.keyword} is forbidden. You may use the following functions: ${allowedTypes}`, this, {
-        template: 'exception_forbidden_value_function_template',
+        template: 'level.code.exception_forbidden_value_function_template',
         values: {
           keyword: {
-            template: `function_${this.constructor.keyword}`
+            template: `level.code.function_${this.constructor.keyword}`
           },
           allowedFunctions: allowedTypes.map(func => func.keyword)
         }

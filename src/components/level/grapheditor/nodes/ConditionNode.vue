@@ -59,7 +59,7 @@
 
   <div v-if="isFirst"
     class="if-label">{{
-			$text('type_if')
+			$text('level.code.type_if')
 		}}</div>
 
 </li>

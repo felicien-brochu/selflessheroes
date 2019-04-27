@@ -176,7 +176,7 @@ export default {
           component: Modal,
           key: 'switch-editor-warning',
           props: {
-            text: this.$text('switch_editor_warning'),
+            text: this.$text('level.code.switch_editor_warning'),
             cancelable: true,
             confirmValue: editorType
           },

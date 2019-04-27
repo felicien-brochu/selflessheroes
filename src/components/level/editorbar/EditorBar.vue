@@ -97,13 +97,13 @@ export default {
       let tip = ''
 
       if (this.codeState === 'code-ok') {
-        tip = this.$text('code_state_ok_tooltip')
+        tip = this.$text('level.code.code_state_ok_tooltip')
       }
       else if (this.codeState === 'code-not-runnable') {
-        tip = this.$text('code_state_not_runnable_tooltip')
+        tip = this.$text('level.code.code_state_not_runnable_tooltip')
       }
       else if (this.codeState === 'code-not-compilable') {
-        tip = this.$text('code_state_not_compilable_tooltip')
+        tip = this.$text('level.code.code_state_not_compilable_tooltip')
       }
       return tip
     },

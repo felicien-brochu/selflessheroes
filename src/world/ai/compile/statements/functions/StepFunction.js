@@ -37,10 +37,10 @@ export default class StepFunction extends ActionFunction {
     let res = joinedCode.match(StepFunction.correctCodeRegExp)
     if (!res) {
       throw new MismatchStatementException('you try to compile as a step function a statement which is not one', this, {
-        template: 'exception_mismatch_function_template',
+        template: 'level.code.exception_mismatch_function_template',
         values: {
           keyword: {
-            template: `function_${this.constructor.keyword}`
+            template: `level.code.function_${this.constructor.keyword}`
           }
         }
       })
@@ -51,10 +51,10 @@ export default class StepFunction extends ActionFunction {
 
     if (params.length < 1) {
       throw new InvalidNumberOfParamsException('\'step\' function requires at least 1 parameter', this, {
-        template: 'exception_invalid_params_one_more_dir_template',
+        template: 'level.code.exception_invalid_params_one_more_dir_template',
         values: {
           keyword: {
-            template: `function_${this.constructor.keyword}`
+            template: `level.code.function_${this.constructor.keyword}`
           },
           directions: Direction.names.filter(dir => dir !== 'here')
         }
@@ -71,10 +71,10 @@ export default class StepFunction extends ActionFunction {
 
     if (param.type === 'InvalidExpression') {
       throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid direction literal`, param, {
-        template: 'exception_invalid_direction_param_template',
+        template: 'level.code.exception_invalid_direction_param_template',
         values: {
           keyword: {
-            template: `function_${this.constructor.keyword}`
+            template: `level.code.function_${this.constructor.keyword}`
           },
           param: param.code.join(' ').trim(),
           allowedValues: Direction.names.filter(dir => dir !== 'here')
@@ -86,10 +86,10 @@ export default class StepFunction extends ActionFunction {
 
     if (this.params.some((p, index) => index < this.params.length - 1 && p.name === param.name)) {
       throw new InvalidFunctionParamsException(`you cannot pass the same parameter twice`, param, {
-        template: 'exception_duplicate_param_template',
+        template: 'level.code.exception_duplicate_param_template',
         values: {
           keyword: {
-            template: `function_${this.constructor.keyword}`
+            template: `level.code.function_${this.constructor.keyword}`
           },
           param: param.code.join(' ').trim()
         }

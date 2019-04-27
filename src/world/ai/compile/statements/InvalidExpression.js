@@ -13,7 +13,7 @@ export default class InvalidExpression extends Expression {
 
   compile(config, context) {
     throw new InvalidExpressionException('invalid expression', this, {
-      template: 'exception_invalid_expression_template',
+      template: 'level.code.exception_invalid_expression_template',
       values: {
         code: this.code.join(' ').trim()
       }

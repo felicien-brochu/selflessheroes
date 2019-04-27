@@ -98,7 +98,7 @@ export default class extends Phaser.Scene {
     this.followCursor = this.add.image(0, 0, 'follow_cursor')
     this.followCursor.setVisible(false)
 
-    this.gameOverText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, lang.text('game_over'), {
+    this.gameOverText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, lang.text('level.game_over'), {
       font: '64px Roboto',
       fill: '#f5e3d3',
       padding: 30

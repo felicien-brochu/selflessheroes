@@ -7,13 +7,13 @@
   @confirm="$emit('confirm', $event)"
   @cancel="$emit('cancel', $event)">
 
-  <h3>{{$text('errors_modal_title')}}</h3>
+  <h3>{{$text('level.code.errors_modal_title')}}</h3>
   <ul class="error-list">
 
     <li v-for="error in errors">
 
       <div class="error-position">{{
-				$text('code_error_position_template', {
+				$text('level.code.code_error_position_template', {
 					line: error.line
 				})
 			}}</div>

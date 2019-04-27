@@ -22,10 +22,10 @@ class ActionFunction extends PrimaryStatement {
     let res = joinedCode.match(ActionFunction.codeRegExp)
     if (!res) {
       throw new MismatchStatementException('you try to compile as an action function a statement which is not one', this, {
-        template: 'exception_mismatch_function_template',
+        template: 'level.code.exception_mismatch_function_template',
         values: {
           keyword: {
-            template: `function_${this.constructor.keyword}`
+            template: `level.code.function_${this.constructor.keyword}`
           }
         }
       })
@@ -34,10 +34,10 @@ class ActionFunction extends PrimaryStatement {
     let allowedTypes = config.actionFunctions
     if (!allowedTypes.some(allowedType => this instanceof allowedType)) {
       throw new ForbiddenActionFunctionException(`the function ${this.constructor.keyword} is forbidden. You may use the following functions: ${allowedTypes}`, this, {
-        template: 'exception_forbidden_action_function_template',
+        template: 'level.code.exception_forbidden_action_function_template',
         values: {
           keyword: {
-            template: `function_${this.constructor.keyword}`
+            template: `level.code.function_${this.constructor.keyword}`
           },
           allowedFunctions: allowedTypes.map(func => func.keyword)
         }

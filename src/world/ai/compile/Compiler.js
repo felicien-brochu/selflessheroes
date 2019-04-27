@@ -74,10 +74,10 @@ export default class Compiler {
 
     if (currentStatement !== null) {
       this.exceptions.fatal.push(new OpenStatementException(`this statement must be closed`, currentStatement, {
-        template: 'exception_open_statement_template',
+        template: 'level.code.exception_open_statement_template',
         values: {
           keyword: {
-            template: `type_${currentStatement.keyword}`
+            template: `level.code.type_${currentStatement.keyword}`
           }
         }
       }))
@@ -114,13 +114,13 @@ export default class Compiler {
       if (type === 'ElseStatement') {
         if (ifStack.length === 0) {
           throw new ElseWithoutIfException('else without if before', statement, {
-            template: 'exception_else_no_if_template',
+            template: 'level.code.exception_else_no_if_template',
             values: {
               elseKeyword: {
-                template: 'type_else'
+                template: 'level.code.type_else'
               },
               ifKeyword: {
-                template: 'type_if'
+                template: 'level.code.type_if'
               }
             }
           })
@@ -129,13 +129,13 @@ export default class Compiler {
         let ifStatement = ifStack[ifStack.length - 1]
         if (ifStatement.elseStatement) {
           throw new ElseWithoutIfException('else without if before', statement, {
-            template: 'exception_else_no_if_template',
+            template: 'level.code.exception_else_no_if_template',
             values: {
               elseKeyword: {
-                template: 'type_else'
+                template: 'level.code.type_else'
               },
               ifKeyword: {
-                template: 'type_if'
+                template: 'level.code.type_if'
               }
             }
           })
@@ -145,13 +145,13 @@ export default class Compiler {
       } else if (type === 'EndIfStatement') {
         if (ifStack.length === 0) {
           throw new EndIfWithoutIfException('endif without if before', statement, {
-            template: 'exception_endif_no_if_template',
+            template: 'level.code.exception_endif_no_if_template',
             values: {
               endifKeyword: {
-                template: 'type_endif'
+                template: 'level.code.type_endif'
               },
               ifKeyword: {
-                template: 'type_if'
+                template: 'level.code.type_if'
               }
             }
           })
@@ -166,13 +166,13 @@ export default class Compiler {
 
     if (ifStack.length > 0) {
       throw new IfWithoutEndIfException('if without endif to close it', ifStack[ifStack.length - 1], {
-        template: 'exception_if_no_endif_template',
+        template: 'level.code.exception_if_no_endif_template',
         values: {
           endifKeyword: {
-            template: 'type_endif'
+            template: 'level.code.type_endif'
           },
           ifKeyword: {
-            template: 'type_if'
+            template: 'level.code.type_if'
           }
         }
       })
@@ -187,7 +187,7 @@ export default class Compiler {
 
         if (anchorNameSet.some(name => anchorStatement.name === name)) {
           throw new DuplicateAnchorException(`duplicate anchor '${anchorStatement.name}'`, anchorStatement, {
-            template: 'exception_duplicate_anchor_template',
+            template: 'level.code.exception_duplicate_anchor_template',
             values: {
               anchorName: anchorStatement.name
             }
@@ -205,11 +205,11 @@ export default class Compiler {
         let anchorStatement = this.statements.find(s => s.type === 'AnchorStatement' && s.name === jumpStatement.anchor)
         if (!anchorStatement) {
           throw new JumpToUnknownAnchorException(`jump to unknown anchor '${jumpStatement.anchor}'`, jumpStatement, {
-            template: 'exception_jump_to_unknown_anchor_template',
+            template: 'level.code.exception_jump_to_unknown_anchor_template',
             values: {
               anchorName: jumpStatement.anchor,
               jumpKeyword: {
-                template: 'type_jump'
+                template: 'level.code.type_jump'
               }
             }
           })

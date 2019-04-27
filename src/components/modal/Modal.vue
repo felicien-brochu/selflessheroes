@@ -6,7 +6,7 @@
 	}">
   <button class="close-button material-icons"
     type="button"
-    :title="$text('modal_close_button')"
+    :title="$text('modal.modal_close_button')"
     @click="cancel"
     @touchstart="cancel">close</button>
 
@@ -20,18 +20,18 @@
 
   <div class="button-container">
     <button type="submit"
-      :title="$text('modal_confirm_button')"
+      :title="$text('modal.modal_confirm_button')"
       @click="confirm"
       @touchstart="confirm">{{
-				$text('modal_confirm_button')
+				$text('modal.modal_confirm_button')
 		}}</button>
 
     <button v-if="cancelable"
       type="button"
-      :title="$text('modal_cancel_button')"
+      :title="$text('modal.modal_cancel_button')"
       @click="cancel"
       @touchstart="cancel">{{
-				$text('modal_cancel_button')
+				$text('modal.modal_cancel_button')
 		}}</button>
   </div>
 </div>

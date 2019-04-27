@@ -13,7 +13,7 @@ export default class InvalidStatement extends PrimaryStatement {
 
   compile(config, context) {
     throw new InvalidStatementException('invalid statement', this, {
-      template: 'exception_invalid_statement_template',
+      template: 'level.code.exception_invalid_statement_template',
       values: {
         code: this.code.join(' ').trim()
       }

@@ -2,7 +2,7 @@
 <li class="node branching-node jump-node"
   @mousedown="handleDragStart"
   @touchstart="handleDragStart">
-  {{$text('type_jump')}}
+  {{$text('level.code.type_jump')}}
 </li>
 </template>
 
