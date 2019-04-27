@@ -54,7 +54,7 @@ export default class Compiler {
       }
 
       if (currentStatement === null) {
-        currentStatement = new InvalidStatement(null, i, 0)
+        currentStatement = new InvalidStatement(i, 0)
       }
 
       currentStatement.pushLine(line)

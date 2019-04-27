@@ -7,8 +7,8 @@ import {
 } from '../DecompilerException'
 
 export default class InvalidStatement extends PrimaryStatement {
-  constructor(parent, line, column) {
-    super('InvalidStatement', parent, line, column)
+  constructor(line, column) {
+    super('InvalidStatement', line, column)
   }
 
   compile(config, context) {

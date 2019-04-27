@@ -12,7 +12,7 @@ export default class Level {
     lengthTarget
   }) {
     this.id = id
-    this.name = name
+    this.name = name || `level${id}`
     this.objective = objective
     this.startingCode = startingCode
     this.startingEditorType = startingEditorType
