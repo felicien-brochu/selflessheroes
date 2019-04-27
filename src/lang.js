@@ -1,7 +1,9 @@
 import format from 'string-template'
 
 const messages = {
-  'default': {
+  default: 'en',
+
+  'en': {
     home_title: "AI World",
     new_game: "new game:",
     new_game_name_placeholder: "Pseudo",
@@ -125,7 +127,7 @@ class Idiom {
     this.messages = messages
     this.languages = languages
 
-    this.currentLanguage = 'default'
+    this.currentLanguage = messages.default
 
     let supportedLanguage = languages.find(lang => !!this.messages[lang])
     if (supportedLanguage) {
@@ -136,7 +138,7 @@ class Idiom {
   getMessage(key) {
     let message = this.messages[this.currentLanguage][key]
     if (!message) {
-      message = this.messages.default[key]
+      message = this.messages[this.messages.default][key]
 
       if (!message) {
         message = null
