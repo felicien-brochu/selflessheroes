@@ -20,7 +20,7 @@ export default {
       for (let i = 0; i < strings.length; i++) {
         let str = strings[i]
         if (i === nextSegment) {
-          let sepIndex = str.indexOf('%')
+          let sepIndex = str.indexOf('$')
           let type = str.substring(0, sepIndex)
           let code = str.substring(sepIndex + 1)
           segments.push({
