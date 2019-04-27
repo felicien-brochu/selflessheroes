@@ -72,7 +72,6 @@ export default {
             // width: 20px;
             height: 15px;
             line-height: 15px;
-            list-style: none;
             font-size: 10px;
             text-align: center;
 

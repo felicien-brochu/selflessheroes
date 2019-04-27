@@ -9,8 +9,6 @@
   <div class="modal-content">
     <slot>{{text}}</slot>
   </div>
-  <!-- <code-template class="modal-content"
-    :template="text" /> -->
 
   <div class="button-container">
     <button type="submit"
@@ -32,12 +30,7 @@
 </template>
 
 <script>
-import CodeTemplate from './CodeTemplate'
-
 export default {
-  components: {
-    CodeTemplate
-  },
   props: {
     'text': {
       type: String,
@@ -80,15 +73,6 @@ $color: white;
     border-radius: 8px;
     box-shadow: inset 0 0 30px 10px #00000033, 0 0 100px 10px #000000aa;
 
-    .modal-content {
-        max-width: 600px;
-        min-width: 300px;
-        font-size: 24px;
-        text-align: center;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-    }
-
     button {
         background: none;
         border: none;
@@ -130,5 +114,14 @@ $color: white;
             }
         }
     }
+}
+
+.modal-content {
+    max-width: 600px;
+    min-width: 300px;
+    font-size: 24px;
+    text-align: center;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 </style>

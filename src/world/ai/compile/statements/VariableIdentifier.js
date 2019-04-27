@@ -24,7 +24,15 @@ export default class VariableIdentifier extends Expression {
     let allowedNames = config.getAllowedVariableIdentifiers()
 
     if (!allowedNames.some(allowedName => allowedName === this.name)) {
-      throw new ForbiddenVariableIdentifierException(`the variable name ''${this.name}' is forbidden. You may choose between the following names: ${allowedNames}`, this)
+      let template = allowedNames.length === 0 ? 'exception_all_forbidden_variable_identifier_template' : 'exception_forbidden_variable_identifier_template'
+
+      throw new ForbiddenVariableIdentifierException(`the variable name ''${this.name}' is forbidden. You may choose between the following names: ${allowedNames}`, this, {
+        template: template,
+        values: {
+          variable: this.name,
+          allowedNames: allowedNames
+        }
+      })
     }
   }
 

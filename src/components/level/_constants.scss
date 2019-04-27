@@ -42,9 +42,6 @@ $node-padding-left: 9px;
 }
 
 %node-list {
-	padding: 0;
-	margin: 0;
-	list-style: none;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;

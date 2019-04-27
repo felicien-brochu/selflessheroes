@@ -30,6 +30,7 @@ export default class Compiler {
     this.exceptions.undefinedLiterals = this.context.undefinedLiterals
     this.compileStatementLinks()
 
+    this.sortExceptions()
     if (this.exceptions.fatal.length > 0 || this.exceptions.undefinedLiterals.length > 0) {
       return null
     }
@@ -72,7 +73,14 @@ export default class Compiler {
     }
 
     if (currentStatement !== null) {
-      this.exceptions.fatal.push(new OpenStatementException(`this statement must be closed`, currentStatement))
+      this.exceptions.fatal.push(new OpenStatementException(`this statement must be closed`, currentStatement, {
+        template: 'exception_open_statement_template',
+        values: {
+          keyword: {
+            template: `type_${currentStatement.keyword}`
+          }
+        }
+      }))
     }
   }
 
@@ -105,18 +113,48 @@ export default class Compiler {
 
       if (type === 'ElseStatement') {
         if (ifStack.length === 0) {
-          throw new ElseWithoutIfException('else without if before', statement)
+          throw new ElseWithoutIfException('else without if before', statement, {
+            template: 'exception_else_no_if_template',
+            values: {
+              elseKeyword: {
+                template: 'type_else'
+              },
+              ifKeyword: {
+                template: 'type_if'
+              }
+            }
+          })
         }
 
         let ifStatement = ifStack[ifStack.length - 1]
         if (ifStatement.elseStatement) {
-          throw new ElseWithoutIfException('else without if before', statement)
+          throw new ElseWithoutIfException('else without if before', statement, {
+            template: 'exception_else_no_if_template',
+            values: {
+              elseKeyword: {
+                template: 'type_else'
+              },
+              ifKeyword: {
+                template: 'type_if'
+              }
+            }
+          })
         }
 
         ifStatement.setElseStatement(statement)
       } else if (type === 'EndIfStatement') {
         if (ifStack.length === 0) {
-          throw new EndIfWithoutIfException('endif without if before', statement)
+          throw new EndIfWithoutIfException('endif without if before', statement, {
+            template: 'exception_endif_no_if_template',
+            values: {
+              endifKeyword: {
+                template: 'type_endif'
+              },
+              ifKeyword: {
+                template: 'type_if'
+              }
+            }
+          })
         }
 
         let ifStatement = ifStack.pop()
@@ -127,7 +165,17 @@ export default class Compiler {
     }
 
     if (ifStack.length > 0) {
-      throw new IfWithoutEndIfException('if without endif to close it', ifStack[ifStack.length - 1])
+      throw new IfWithoutEndIfException('if without endif to close it', ifStack[ifStack.length - 1], {
+        template: 'exception_if_no_endif_template',
+        values: {
+          endifKeyword: {
+            template: 'type_endif'
+          },
+          ifKeyword: {
+            template: 'type_if'
+          }
+        }
+      })
     }
   }
 
@@ -138,7 +186,12 @@ export default class Compiler {
         let anchorStatement = statement
 
         if (anchorNameSet.some(name => anchorStatement.name === name)) {
-          throw new DuplicateAnchorException(`duplicate anchor '${anchorStatement.name}'`, anchorStatement)
+          throw new DuplicateAnchorException(`duplicate anchor '${anchorStatement.name}'`, anchorStatement, {
+            template: 'exception_duplicate_anchor_template',
+            values: {
+              anchorName: anchorStatement.name
+            }
+          })
         }
         anchorNameSet.push(anchorStatement.name)
       }
@@ -151,12 +204,39 @@ export default class Compiler {
         let jumpStatement = statement
         let anchorStatement = this.statements.find(s => s.type === 'AnchorStatement' && s.name === jumpStatement.anchor)
         if (!anchorStatement) {
-          throw new JumpToUnknownAnchorException(`jump to unknown anchor '${jumpStatement.anchor}'`, jumpStatement)
+          throw new JumpToUnknownAnchorException(`jump to unknown anchor '${jumpStatement.anchor}'`, jumpStatement, {
+            template: 'exception_jump_to_unknown_anchor_template',
+            values: {
+              anchorName: jumpStatement.anchor,
+              jumpKeyword: {
+                template: 'type_jump'
+              }
+            }
+          })
         }
 
         jumpStatement.setAnchorStatement(anchorStatement)
       }
     })
+  }
+
+  sortExceptions() {
+    if (this.exceptions.fatal.length > 0) {
+      this.exceptions.fatal.sort((a, b) => {
+        if (a.statement.line === b.statement.line) {
+          return a.statement.column - b.statement.column
+        }
+        return a.statement.line - b.statement.line
+      })
+    }
+    if (this.exceptions.undefinedLiterals > 0) {
+      this.exceptions.undefinedLiterals.sort((a, b) => {
+        if (a.line === b.line) {
+          return a.column - b.column
+        }
+        return a.line - b.line
+      })
+    }
   }
 
 }

@@ -8,10 +8,17 @@ import {
 } from '../../CompilerException'
 
 class ActionFunction extends PrimaryStatement {
-  constructor(type, parent, keyword, line, column) {
+  constructor(type, parent, line, column) {
     super(type, parent, line, column)
-    this.keyword = keyword
     this.params = this.getParamTypes().map(type => null)
+  }
+
+  static get keyword() {
+    return this.hasOwnProperty('_keyword') ? this._keyword : undefined
+  }
+
+  static set keyword(keyword) {
+    this._keyword = keyword
   }
 
   isCodeComplete() {
@@ -22,12 +29,27 @@ class ActionFunction extends PrimaryStatement {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(ActionFunction.codeRegExp)
     if (!res) {
-      throw new MismatchStatementException('you try to compile as a value function a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as an action function a statement which is not one', this, {
+        template: 'exception_mismatch_function_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          }
+        }
+      })
     }
 
     let allowedTypes = config.actionFunctions
     if (!allowedTypes.some(allowedType => this instanceof allowedType)) {
-      throw new ForbiddenActionFunctionException(`the function ${this.keyword} is forbidden. You may use the following functions: ${allowedTypes}`, this)
+      throw new ForbiddenActionFunctionException(`the function ${this.constructor.keyword} is forbidden. You may use the following functions: ${allowedTypes}`, this, {
+        template: 'exception_forbidden_action_function_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          },
+          allowedFunctions: allowedTypes.map(func => func.keyword)
+        }
+      })
     }
   }
 

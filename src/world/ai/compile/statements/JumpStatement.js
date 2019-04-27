@@ -26,9 +26,16 @@ export default class JumpStatement extends PrimaryStatement {
 
   compile(config, context) {
     let joinedCode = this.code.join(' ')
-    let res = joinedCode.match(JumpStatement.codeRegExp)
+    let res = joinedCode.match(JumpStatement.correctCodeRegExp)
     if (!res) {
-      throw new MismatchStatementException('jump statements must have a target anchor', this)
+      throw new MismatchStatementException('jump statements must have a target anchor', this, {
+        template: 'exception_mismatch_keyword_template',
+        values: {
+          statementType: {
+            template: 'type_jump'
+          }
+        }
+      })
     }
 
     this.anchor = res[1]
@@ -58,4 +65,5 @@ export default class JumpStatement extends PrimaryStatement {
 }
 
 JumpStatement.startLineRegExp = /^\s*jump/
-JumpStatement.codeRegExp = /^\s*jump\s+(\w+)\s*$/
+JumpStatement.correctCodeRegExp = /^\s*jump\s+(\w+)\s*$/
+JumpStatement.codeRegExp = /^\s*jump\s+(\w+).*$/

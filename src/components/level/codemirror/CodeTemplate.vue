@@ -2,9 +2,7 @@
 <span class="code-template">
   <span v-for="(segment, index) in segments"
     :key="index"
-    :class="segment.classNames">{{
-	segment.text
-}}</span>
+    :class="segment.classNames">{{ segment.text }}</span>
 </span>
 </template>
 
@@ -16,21 +14,19 @@ export default {
 
   computed: {
     segments: function() {
-      let strings = this.template.split('%')
+      let strings = this.template.split('%%')
       let segments = []
       let nextSegment = 1
       for (let i = 0; i < strings.length; i++) {
         let str = strings[i]
         if (i === nextSegment) {
-          if (str.length !== 0) {
-            segments.push({
-              text: str,
-              classNames: ['code-segment', `keyword-${str}`]
-            })
-          }
-          else if (i < strings.length - 1) {
-            strings[i + 1] = '%' + strings[i + 1]
-          }
+          let sepIndex = str.indexOf('%')
+          let type = str.substring(0, sepIndex)
+          let code = str.substring(sepIndex + 1)
+          segments.push({
+            text: code,
+            classNames: ['code-segment', `type-${type}`]
+          })
           nextSegment += 2
         }
         else {
@@ -54,8 +50,26 @@ export default {
     border-radius: 5px;
 }
 
-.keyword-undefined {
-    // border-bottom: 2px #4f5e7b solid;
+.type-undefined {
     color: #d19a66;
+}
+.type-function {
+    color: hsl(207, 82%, 66%);
+}
+.type-variable {
+    color: #e06c75;
+}
+.type-keyword {
+    color: #c678dd;
+}
+.type-literal {
+    color: #d19a66;
+}
+.type-operator {
+    color: #56b6c2;
+}
+.type-bracket {
+    color: #abb2bf;
+    font-style: italic;
 }
 </style>

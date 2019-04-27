@@ -12,7 +12,12 @@ export default class InvalidExpression extends Expression {
   }
 
   compile(config, context) {
-    throw new InvalidExpressionException('invalid expression', this)
+    throw new InvalidExpressionException('invalid expression', this, {
+      template: 'exception_invalid_expression_template',
+      values: {
+        code: this.code.join(' ').trim()
+      }
+    })
   }
 
   decompile(indent, line, column) {

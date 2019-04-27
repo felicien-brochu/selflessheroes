@@ -242,9 +242,6 @@ export default {
 @import '../../constants';
 
 .drop-down-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     transform-origin: top;
 
     border-radius: 5px;

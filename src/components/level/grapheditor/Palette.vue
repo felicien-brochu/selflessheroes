@@ -66,7 +66,7 @@ export default {
         return []
       }
 
-      let primaryStatements = [...this.compilerConfig.getPrimaryStatements(), ...this.compilerConfig.valueFunctions]
+      let primaryStatements = [...this.compilerConfig.getAllowedPrimaryStatements(), ...this.compilerConfig.valueFunctions]
       let statementClasses = primaryStatements.filter(statementClass => paletteStatements.indexOf(statementClass) >= 0)
       let statements = statementClasses.map(statementClass => {
         return {
@@ -123,7 +123,6 @@ export default {
     background-color: #282c34;
     border: solid 2px rgb(75, 82, 97);
     border-right: none;
-    list-style: none;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

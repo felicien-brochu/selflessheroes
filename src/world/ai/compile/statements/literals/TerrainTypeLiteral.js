@@ -2,7 +2,7 @@ import Expression from '../Expression'
 import ExpressionValue from '../ExpressionValue'
 import {
   MismatchStatementException,
-  ForbiddenObjectTypeLiteralException
+  ForbiddenTerrainTypeLiteralException
 } from '../../CompilerException'
 import {
   NotDecompilableStatementException
@@ -26,7 +26,13 @@ export default class TerrainTypeLiteral extends Expression {
     this.name = joinedCode.trim()
 
     if (!config.terrainTypes.some(type => this.name === type)) {
-      throw new ForbiddenTerrainTypeLiteralException(`the terrain type literal '${this.name}' is forbidden. You may use the following terrain types: ${config.terrainTypes}`, this)
+      throw new ForbiddenTerrainTypeLiteralException(`the terrain type literal '${this.name}' is forbidden. You may use the following terrain types: ${config.terrainTypes}`, this, {
+        template: 'exception_forbidden_terrain_type_template',
+        values: {
+          keyword: this.name,
+          allowedValues: config.terrainTypes.slice(0)
+        }
+      })
     }
 
     this.value = TerrainType[this.name]

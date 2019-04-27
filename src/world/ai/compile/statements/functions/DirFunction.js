@@ -15,7 +15,7 @@ import {
 
 export default class DirFunction extends ValueFunction {
   constructor(parent, line, column) {
-    super('DirFunction', parent, 'dir', line, column)
+    super('DirFunction', parent, line, column)
   }
 
   getParamTypes() {
@@ -31,16 +31,31 @@ export default class DirFunction extends ValueFunction {
     super.compile(config, context)
 
     let joinedCode = this.code.join(' ')
-    let res = joinedCode.match(DirFunction.codeRegExp)
+    let res = joinedCode.match(DirFunction.correctCodeRegExp)
     if (!res) {
-      throw new MismatchStatementException('you try to compile as a dir function a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as a dir function a statement which is not one', this, {
+        template: 'exception_mismatch_function_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          }
+        }
+      })
     }
 
     let paramsJoinedCode = res[2]
     let params = extractParams(paramsJoinedCode, this.code, this.line, this.column)
 
     if (params.length !== 1) {
-      throw new InvalidNumberOfParamsException('\'dir\' function requires exactly 1 direction parameter', this)
+      throw new InvalidNumberOfParamsException('\'dir\' function requires exactly 1 direction parameter', this, {
+        template: 'exception_invalid_params_one_dir_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          },
+          directions: Direction.names.slice(0)
+        }
+      })
     }
     this.params = []
     params.forEach((param, index) => this.compileParam(param, index, config, context))
@@ -51,7 +66,16 @@ export default class DirFunction extends ValueFunction {
     this.params.push(param)
 
     if (param.type === 'InvalidExpression') {
-      throw new InvalidFunctionParamsException(`\'dir\' function requires exactly 1 direction parameter`, param)
+      throw new InvalidFunctionParamsException(`\'dir\' function requires exactly 1 direction parameter`, param, {
+        template: 'exception_invalid_direction_param_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          },
+          param: param.code.join(' ').trim(),
+          allowedValues: Direction.names.slice(0)
+        }
+      })
     }
     param.compile(config, context)
   }
@@ -61,8 +85,6 @@ export default class DirFunction extends ValueFunction {
   }
 }
 
-DirFunction.codeRegExp = /^\s*(dir\s*\((.*)\))\s*$/
-DirFunction.paramType = {
-  multiple: false,
-  type: ExpressionTypes.direction
-}
+DirFunction.keyword = 'dir'
+DirFunction.correctCodeRegExp = /^\s*(dir\s*\((.*)\))\s*$/
+DirFunction.codeRegExp = /^\s*(dir\s*\((.*)\)).*$/

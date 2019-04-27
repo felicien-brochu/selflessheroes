@@ -13,22 +13,44 @@ import {
 } from '../../utils'
 
 class ValueFunction extends Expression {
-  constructor(type, parent, keyword, line, column) {
+  constructor(type, parent, line, column) {
     super(type, parent, line, column)
     this.params = this.getParamTypes().map(type => null)
-    this.keyword = keyword
+  }
+
+  static get keyword() {
+    return this.hasOwnProperty('_keyword') ? this._keyword : undefined
+  }
+
+  static set keyword(keyword) {
+    this._keyword = keyword
   }
 
   compile(config, context) {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(ValueFunction.codeRegExp)
     if (!res) {
-      throw new MismatchStatementException('you try to compile as a value function a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as a value function a statement which is not one', this, {
+        template: 'exception_mismatch_function_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          }
+        }
+      })
     }
 
     let allowedTypes = config.valueFunctions
     if (!allowedTypes.some(allowedType => this instanceof allowedType)) {
-      throw new ForbiddenValueFunctionException(`the function ${this.keyword} is forbidden. You may use the following functions: ${allowedTypes}`, this)
+      throw new ForbiddenValueFunctionException(`the function ${this.constructor.keyword} is forbidden. You may use the following functions: ${allowedTypes}`, this, {
+        template: 'exception_forbidden_value_function_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          },
+          allowedFunctions: allowedTypes.map(func => func.keyword)
+        }
+      })
     }
   }
 }

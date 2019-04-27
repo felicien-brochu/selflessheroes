@@ -8,11 +8,16 @@ import {
 
 export default class InvalidStatement extends Statement {
   constructor(parent, line, column) {
-    super('InvalidExpression', parent, line, column)
+    super('InvalidStatement', parent, line, column)
   }
 
   compile(config, context) {
-    throw new InvalidStatementException('invalid statement', this)
+    throw new InvalidStatementException('invalid statement', this, {
+      template: 'exception_invalid_statement_template',
+      values: {
+        code: this.code.join(' ').trim()
+      }
+    })
   }
 
   isCodeComplete() {

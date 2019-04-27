@@ -39,9 +39,16 @@ export default class IfStatement extends PrimaryStatement {
 
   compile(config, context) {
     let joinedCode = this.code.join(' ')
-    let groups = joinedCode.match(IfStatement.codeRegExp)
+    let groups = joinedCode.match(IfStatement.correctCodeRegExp)
     if (!groups) {
-      throw new MismatchStatementException('you try to compile as a if statement a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as a if statement a statement which is not one', this, {
+        template: 'exception_mismatch_keyword_template',
+        values: {
+          statementType: {
+            template: 'type_if'
+          }
+        }
+      })
     }
 
     let conditionStr = groups[1]
@@ -99,5 +106,7 @@ export default class IfStatement extends PrimaryStatement {
   }
 }
 
-IfStatement.codeRegExp = /^\s*if\s+(.+)\s*:\s*$/
+
+IfStatement.correctCodeRegExp = /^\s*if\s+(.+)\s*:\s*$/
+IfStatement.codeRegExp = /^\s*if\s+(.+)\s*:.*$/
 IfStatement.startLineRegExp = /^\s*if/

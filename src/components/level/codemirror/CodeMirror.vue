@@ -24,7 +24,8 @@ import LineCursors from './LineCursors'
 import ScrollAnimator from '../util/ScrollAnimator'
 import ModalLayer from '../../modal/ModalLayer'
 import Modal from '../../modal/Modal'
-import CodeModal from '../../modal/CodeModal'
+import CodeModal from './CodeModal'
+import ErrorsModal from './ErrorsModal'
 
 export default {
   components: {
@@ -213,7 +214,13 @@ export default {
         })
       }
       else if (codeState === 'code-not-compilable') {
-        console.log("###NO modal yet")
+        this.$refs.modalLayer.addModal({
+          component: ErrorsModal,
+          key: 'code_state_not_compilable_modal',
+          props: {
+            compilerExceptions: this.compilerExceptions
+          },
+        })
       }
     }
 

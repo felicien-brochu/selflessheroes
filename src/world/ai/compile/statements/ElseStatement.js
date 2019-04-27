@@ -23,7 +23,14 @@ export default class ElseStatement extends PrimaryStatement {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(ElseStatement.codeRegExp)
     if (!res) {
-      throw new MismatchStatementException('you try to compile as an else statement a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as an else statement a statement which is not one', this, {
+        template: 'exception_mismatch_keyword_template',
+        values: {
+          statementType: {
+            template: 'type_else'
+          }
+        }
+      })
     }
   }
 

@@ -16,6 +16,10 @@ CodeMirror.defineSimpleMode('aiworld', {
       token: ['function', null]
     },
     {
+      regex: /([a-z])(\s*=\s*)([a-z$][\w$]*)(\s*\()/,
+      token: ['variable', 'operator', 'function', null]
+    },
+    {
       regex: /(jump)(\s+)([a-zA-Z]+\w*)/,
       token: ['keyword', null, 'bracket']
     },

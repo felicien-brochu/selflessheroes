@@ -6,6 +6,7 @@ import EndIfStatement from './statements/EndIfStatement'
 import JumpStatement from './statements/JumpStatement'
 import AnchorStatement from './statements/AnchorStatement'
 import BooleanExpression from './statements/BooleanExpression'
+import ActionFunctions from './statements/functions/ActionFunctions'
 import DirFunction from './statements/functions/DirFunction'
 import StepFunction from './statements/functions/StepFunction'
 import VariableIdentifier from './statements/VariableIdentifier'
@@ -33,7 +34,7 @@ export default class CompilerConfig {
       AnchorStatement
     ]
 
-    config.variables = 3
+    config.variables = 0
 
     config.objectTypes = Object.keys(ObjectType)
     config.terrainTypes = Object.keys(TerrainType)
@@ -69,7 +70,15 @@ export default class CompilerConfig {
     return names
   }
 
-  getPrimaryStatements() {
+  getAllowedPrimaryStatements() {
     return this.statements.concat(this.actionFunctions)
+  }
+
+  getPrimaryStatements() {
+    let functions = []
+    for (let key in ActionFunctions) {
+      functions.push(ActionFunctions[key])
+    }
+    return this.statements.concat(functions)
   }
 }

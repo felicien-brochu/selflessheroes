@@ -31,7 +31,6 @@ export default {
     background-color: #282c34;
     border: solid 2px rgb(75, 82, 97);
     border-right: none;
-    list-style: none;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

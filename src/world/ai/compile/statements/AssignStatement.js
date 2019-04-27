@@ -36,7 +36,14 @@ export default class AssignStatement extends PrimaryStatement {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(AssignStatement.codeRegExp)
     if (!res) {
-      throw new MismatchStatementException('you try to compile as an assign statement a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as an assign statement a statement which is not one', this, {
+        template: 'exception_mismatch_statement_template',
+        values: {
+          statementType: {
+            template: 'type_assign'
+          }
+        }
+      })
     }
 
     let operatorPosition = indexOfStringInLines(assignOperator, this.code)
@@ -52,16 +59,29 @@ export default class AssignStatement extends PrimaryStatement {
     this.variable = createUnitExpression(variableCode, [VariableIdentifier], this, this.line, this.column)
 
     if (this.variable.type === 'InvalidExpression') {
-      throw new InvalidVariableIdentifierException('this identifier is not a valid variable identifier', this.variable)
+      let template = config.variables > 0 ? 'exception_invalid_variable_identifier_template' : 'exception_all_forbidden_variable_identifier_template'
+      throw new InvalidVariableIdentifierException('this identifier is not a valid variable identifier', this.variable, {
+        template: template,
+        values: {
+          variable: this.variable.code.join(' ').trim(),
+          allowedIdentifiers: config.getAllowedVariableIdentifiers()
+        }
+      })
     }
 
     this.variable.compile(config, context)
 
-    this.value = createUnitExpression(valueCode, [IntegerLiteral, DirectionLiteral, VariableIdentifier, ...Object.values(ValueFunctions)],
+    this.value = createUnitExpression(valueCode, [...Object.values(ValueFunctions)],
       this, this.line + operatorPosition.end.line, operatorPosition.end.column)
 
     if (this.value.type === 'InvalidExpression') {
-      throw new InvalidExpressionException('this identifier is neither a value function, an integer literal or a valid variable identifier', this.value)
+      throw new InvalidExpressionException('this identifier is not a value function', this.value, {
+        template: 'exception_invalid_value_function_template',
+        values: {
+          code: this.value.code.join(' ').trim(),
+          allowedFunctions: config.valueFunctions.map(f => `${f.keyword}()`)
+        }
+      })
     }
     this.value.compile(config, context)
   }

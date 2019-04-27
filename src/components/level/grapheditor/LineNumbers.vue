@@ -248,10 +248,8 @@ export default {
     .line-numbers {
         width: 35px;
         padding: 10px 0 0;
-        margin: 0;
         height: min-content;
         background-color: lighten(#282c34, 3%);
-        list-style: none;
 
         li {
             @include no-select;
@@ -271,10 +269,6 @@ export default {
         top: 0;
         width: 100%;
         height: 100%;
-
-        list-style: none;
-        padding: 0;
-        margin: 0;
 
         .cursor {
             position: absolute;

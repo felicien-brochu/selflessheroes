@@ -99,9 +99,6 @@ export default {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
-        list-style: none;
-        margin: 0;
-        padding: 0;
     }
 }
 </style>

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Modal from './Modal'
+import Modal from '../../modal/Modal'
 import CodeTemplate from './CodeTemplate'
 
 export default {
@@ -30,12 +30,6 @@ export default {
     },
     'confirmValue': {
       default: true
-    }
-  },
-
-  methods: {
-    proxyChildEvent(eventName, eventArgs) {
-      this.$emit(eventName, ...eventArgs)
     }
   }
 }

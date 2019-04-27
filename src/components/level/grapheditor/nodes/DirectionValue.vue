@@ -61,9 +61,6 @@ export default {
     align-content: space-between;
     width: 26px;
     height: 26px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
 
     li {
         width: 8px;

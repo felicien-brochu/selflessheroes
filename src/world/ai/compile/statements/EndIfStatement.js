@@ -17,7 +17,14 @@ export default class EndIfStatement extends PrimaryStatement {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(EndIfStatement.codeRegExp)
     if (!res) {
-      throw new MismatchStatementException('you try to compile as an endif statement a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as an endif statement a statement which is not one', this, {
+        template: 'exception_mismatch_keyword_template',
+        values: {
+          statementType: {
+            template: 'type_endif'
+          }
+        }
+      })
     }
   }
 
