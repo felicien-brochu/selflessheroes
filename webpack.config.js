@@ -80,7 +80,7 @@ const config = {
       context: 'src/levels',
       from: '**',
       to: 'levels',
-      ignore: 'model/**/*'
+      ignore: ['model/**/*', '*.js', '*.tmx']
     }]),
     new MiniCssExtractPlugin(),
     new VueLoader.VueLoaderPlugin(),

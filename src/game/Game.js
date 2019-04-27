@@ -1,4 +1,6 @@
 import Phaser from 'phaser'
+import ParseJSONTiled from 'phaser/src/tilemaps/parsers/tiled/ParseJSONTiled'
+import Tilemap from 'phaser/src/tilemaps/Tilemap'
 
 import lang from '../lang'
 import AnimationBuilder from './AnimationBuilder'
@@ -40,7 +42,7 @@ export default class extends Phaser.Scene {
 
   create() {
     AnimationBuilder.build(this)
-    this.mapConfig = this.cache.json.get('map_object')
+    this.mapConfig = this.cache.json.get('map')
     this.createMap()
 
     this.createWorld()
@@ -58,13 +60,9 @@ export default class extends Phaser.Scene {
   }
 
   createMap() {
-    this.map = this.make.tilemap({
-      key: 'map'
-    })
-    // The first parameter is the name of the tileset in Tiled and the second parameter is the key
-    // of the tileset image used when loading the file in preload.
+    this.mapData = ParseJSONTiled('tilemap', this.mapConfig)
+    this.map = new Tilemap(this, this.mapData)
     this.tilesetImage = this.map.addTilesetImage('tileset', 'tileset_image')
-    // You can load a layer from the map using the layer name from Tiled, or by using the layer index
     this.groundLayer = this.map.createDynamicLayer('ground', this.tilesetImage, 0, 0)
     this.aboveCharacterLayer = this.map.createDynamicLayer('above_characters', this.tilesetImage, 0, 0)
     this.aboveCharacterLayer.depth = 1000000
