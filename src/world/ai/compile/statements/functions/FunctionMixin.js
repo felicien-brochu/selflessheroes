@@ -9,7 +9,7 @@ const FunctionMixin = {
     this.column = column
 
     let executable = true
-    let code = `${this.keyword}(`
+    let code = `${this.constructor.keyword}(`
 
     for (let i = 0; i < this.params.length; i++) {
       if (i > 0) {
