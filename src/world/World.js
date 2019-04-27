@@ -1,22 +1,23 @@
 import Map from './Map'
 import Hero from './Hero'
 import Objective from './Objective'
-import RuleSet from './rules/RuleSet'
 import {
   namedObjectListToObject
 } from './utils'
 
 export default class World {
-  constructor(config, aiFactory) {
-    this.config = config
+  constructor(level, mapConfig, aiFactory) {
+    this.level = level
+    this.mapConfig = mapConfig
     this.aiFactory = aiFactory
 
-    this.map = new Map(config)
+    this.map = new Map(mapConfig)
     this.characters = []
     this.heroes = []
     this.objectives = []
     this.parseObjects()
 
+    this.ruleset = this.level.buildRuleset(this)
     this.hasWon = false
     this.hasLost = false
     this.gameOver = false
@@ -24,25 +25,14 @@ export default class World {
   }
 
   parseObjects() {
-    let objectsLayer = null,
-      rulesLayer = null
-    let layers = namedObjectListToObject(this.config.layers)
+    let layers = namedObjectListToObject(this.mapConfig.layers)
 
     if (!layers.objects) {
-      throw new Error("objects layer is missing from the map object: " + JSON.stringify(this.config))
+      throw new Error("objects layer is missing from the map object: " + JSON.stringify(this.mapConfig))
     }
-    if (!layers.config) {
-      throw new Error("config layer is missing from the map object: " + JSON.stringify(this.config))
-    }
-    let config = namedObjectListToObject(layers.config.objects)
-    if (!config.ruleset || config.ruleset.type !== 'ruleset') {
-      throw new Error("ruleset object is missing from the map object: " + JSON.stringify(this.config))
-    }
-
-    this.ruleset = RuleSet.build(config.ruleset, this)
 
     for (var i = 0; i < layers.objects.objects.length; i++) {
-      this.createObject(layers.objects.objects[i], this.config.tilewidth, this.config.tileheight)
+      this.createObject(layers.objects.objects[i], this.mapConfig.tilewidth, this.mapConfig.tileheight)
     }
   }
 
@@ -83,9 +73,10 @@ export default class World {
       this.pause()
     }
 
-    if (this.ruleset.checkWinCondition()) {
+    this.ruleset.step()
+    if (this.ruleset.hasWon()) {
       this.declareWin()
-    } else if (this.ruleset.checkLossCondition()) {
+    } else if (this.ruleset.hasLost()) {
       this.declareLoss()
     }
   }

@@ -16,8 +16,8 @@ class Game extends Phaser.Game {
 
 export default {
   props: {
-    "levelID": {
-      type: Number
+    "level": {
+      type: Object
     },
     "followHeroIndex": {
       type: Number
@@ -27,7 +27,7 @@ export default {
   mounted() {
     this.game = new Game({
       onGameSceneReady: this.handleGameReady,
-      levelID: this.levelID
+      level: this.level
     })
     window.addEventListener("resize", this.resizeGame, false)
   },

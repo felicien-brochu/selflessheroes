@@ -1,27 +1,20 @@
-import WinCondition from './WinCondition'
-import LossCondition from './LossCondition'
+import DefaultRuleset from './DefaultRuleset'
 
-import {
-  namedPropertiesToObject
-} from '../utils'
+export default class Ruleset {
 
-export default class RuleSet {
-  static build(configJSON, world) {
-    let config = namedPropertiesToObject(configJSON.properties)
-
-    return new RuleSet(config, world)
+  constructor(world) {
+    this.world = world
   }
 
-  constructor(config, world) {
-    this.winCondition = WinCondition.build(config.winCondition, world)
-    this.lossCondition = LossCondition.build(config.lossCondition, world)
+  step() {
+
   }
 
-  checkWinCondition() {
-    return this.winCondition.check()
+  hasWon() {
+    return false
   }
 
-  checkLossCondition() {
-    return this.lossCondition.check()
+  hasLost() {
+    return false
   }
 }

@@ -22,7 +22,7 @@ export default class CompilerConfig {
     this.statements = []
   }
 
-  static getDefaultConfig() {
+  static getDefault() {
     let config = new CompilerConfig()
     config.statements = [
       EmptyStatement,

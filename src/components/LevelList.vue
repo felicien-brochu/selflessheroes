@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     levels: function() {
-      return levels
+      return levels.getList()
     }
   },
   mounted() {

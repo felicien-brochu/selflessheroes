@@ -1,7 +1,7 @@
 import CompilerConfig from './CompilerConfig'
 
 export default class Decompiler {
-  constructor(statements, config = CompilerConfig.getDefaultConfig()) {
+  constructor(statements, config = CompilerConfig.getDefault()) {
     this.statements = statements
     this.code = ''
     this.config = config

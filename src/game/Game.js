@@ -22,7 +22,7 @@ export default class extends Phaser.Scene {
       key: 'GameScene'
     })
     this.aiFactory = null
-    this.compilerConfig = CompilerConfig.getDefaultConfig()
+    this.compilerConfig = CompilerConfig.getDefault()
     this.onSceneReady = null
     this.followHeroIndex = -1
     this.runner = new WorldRunner()
@@ -37,6 +37,7 @@ export default class extends Phaser.Scene {
 
     if (data) {
       this.onSceneReady = data.onGameSceneReady
+      this.level = data.level
     }
   }
 
@@ -109,7 +110,7 @@ export default class extends Phaser.Scene {
   }
 
   createWorld() {
-    this.world = new World(this.mapConfig, this.aiFactory)
+    this.world = new World(this.level, this.mapConfig, this.aiFactory)
     this.heroes = []
     this.objectives = []
 

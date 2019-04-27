@@ -11,7 +11,7 @@ import {
 import InvalidStatement from './statements/InvalidStatement'
 
 export default class Compiler {
-  constructor(code, config = CompilerConfig.getDefaultConfig(), deleteEmptyStatements = true) {
+  constructor(code, config = CompilerConfig.getDefault(), deleteEmptyStatements = true) {
     this.code = code
     this.config = config
     this.deleteEmptyStatements = deleteEmptyStatements

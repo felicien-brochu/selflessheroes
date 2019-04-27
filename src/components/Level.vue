@@ -3,7 +3,7 @@
   v-hotkey="keymap">
 
   <world ref="world"
-    :levelID="levelID"
+    :level="level"
     :followHeroIndex="followHeroIndex"
     @world-state-change="handleWorldStateChange"
     @ai-state-change="aiReady = $event"
@@ -74,6 +74,7 @@ import Decompiler from '../world/ai/compile/Decompiler'
 import Linter from '../world/ai/compile/Linter'
 import storage from '../game/storage/Storage'
 import CodeHistory from '../game/storage/CodeHistory'
+import levels from '../levels/levels'
 
 export default {
   components: {
@@ -99,6 +100,7 @@ export default {
       code: '',
       codeSource: 'history',
       editorType: 'graph',
+      level: levels.getLevelByID(this.levelID),
       codeHistory: new CodeHistory(),
       compilerConfig: null,
       worldState: {},
@@ -165,14 +167,14 @@ export default {
         })
       }
       else {
-        this.level = this.career.getLevel(this.levelID)
-        if (!this.level) {
+        this.levelSolutions = this.career.getLevel(this.levelID)
+        if (!this.levelSolutions) {
           this.$router.replace({
             name: 'home'
           })
         }
         else {
-          this.solution = this.level.getCurrentSolution()
+          this.solution = this.levelSolutions.getCurrentSolution()
           this.code = this.solution.codeHistory.getCode()
           this.codeHistory = this.solution.codeHistory
           this.editorType = this.solution.editorType

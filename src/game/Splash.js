@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import levels from '../levels/levels'
 
 import elf_f from './images/elf_f.png'
 import elf_m from './images/elf_m.png'
@@ -141,11 +142,9 @@ export default class extends Phaser.Scene {
     //   frameHeight: 32
     // })
     this.load.image('follow_cursor', follow_cursor)
-
-    const levelID = this.game.gameSceneConfig.levelID
-    const levelPath = `levels/level${levelID}/`
-    this.load.image('tileset_image', `${levelPath}tileset.png`)
-    this.load.json('map', `${levelPath}level.json`)
+    const level = this.game.gameSceneConfig.level
+    this.load.json('map', level.mapPath)
+    this.load.image('tileset_image', level.tilesetImagePath)
   }
 
   create() {
