@@ -26,9 +26,9 @@
     <div v-show="elseDeployed"
       class="else-content">
       <div class="node branching-node else-node"
-        ref="elseNode">
-        else
-      </div>
+        ref="elseNode">{{
+					$text('type_else')
+				}}</div>
       <ul :class="{
 				'node-container': true,
 				'dragged-over': draggedOver

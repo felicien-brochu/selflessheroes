@@ -1,6 +1,8 @@
 <template>
 <modal class="errors-modal"
   :cancelable="false"
+  :frameWidth="frameWidth"
+  :frameHeight="frameHeight"
   @close="$emit('close')"
   @confirm="$emit('confirm', $event)"
   @cancel="$emit('cancel', $event)">
@@ -37,6 +39,14 @@ export default {
   props: {
     'compilerExceptions': {
       type: Object
+    },
+    'frameWidth': {
+      type: Number,
+      default: window.innerWidth
+    },
+    'frameHeight': {
+      type: Number,
+      default: window.innerHeight
     }
   },
   computed: {

@@ -185,7 +185,6 @@ export default {
             transition-duration: 150ms;
 
             &.code-ok {
-                cursor: initial;
                 background-color: #779666;
 
                 &:active,

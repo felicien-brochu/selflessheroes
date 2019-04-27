@@ -1,5 +1,6 @@
 <template>
 <modal v-bind="$props"
+  ref="modal"
   @close="$emit('close')"
   @confirm="$emit('confirm', $event)"
   @cancel="$emit('cancel', $event)">
@@ -30,6 +31,24 @@ export default {
     },
     'confirmValue': {
       default: true
+    },
+    'frameWidth': {
+      type: Number,
+      default: window.innerWidth
+    },
+    'frameHeight': {
+      type: Number,
+      default: window.innerHeight
+    }
+  },
+
+  methods: {
+    confirm() {
+      this.$refs.modal.confirm()
+    },
+
+    cancel() {
+      this.$refs.modal.cancel()
     }
   }
 }

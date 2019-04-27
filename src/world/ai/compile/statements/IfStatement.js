@@ -15,7 +15,6 @@ import {
 export default class IfStatement extends PrimaryStatement {
   constructor(line, column) {
     super('IfStatement', line, column)
-    this.keyword = 'if'
     this.condition = null
     this.elseStatement = null
     this.endIfStatement = null
@@ -110,3 +109,4 @@ export default class IfStatement extends PrimaryStatement {
 IfStatement.correctCodeRegExp = /^\s*if\s+(.+)\s*:\s*$/
 IfStatement.codeRegExp = /^\s*if\s+(.+)\s*:.*$/
 IfStatement.startLineRegExp = /^\s*if/
+IfStatement.keyword = 'if'

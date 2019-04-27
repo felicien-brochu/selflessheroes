@@ -34,7 +34,7 @@ export default class CompilerConfig {
       AnchorStatement
     ]
 
-    config.variables = 0
+    config.variables = 2
 
     config.objectTypes = Object.keys(ObjectType)
     config.terrainTypes = Object.keys(TerrainType)

@@ -13,6 +13,14 @@ export default class PrimaryStatement extends Statement {
     this._startLineRegExp = regexp
   }
 
+  static get keyword() {
+    return this.hasOwnProperty('_keyword') ? this._keyword : undefined
+  }
+
+  static set keyword(keyword) {
+    this._keyword = keyword
+  }
+
   static matchLine(line) {
     return this.startLineRegExp.test(line)
   }

@@ -10,7 +10,6 @@ export default class JumpStatement extends PrimaryStatement {
 
   constructor(line, column) {
     super('JumpStatement', line, column)
-    this.keyword = 'jump'
     this.anchor = null
     this.anchorStatement = null
   }
@@ -67,3 +66,4 @@ export default class JumpStatement extends PrimaryStatement {
 JumpStatement.startLineRegExp = /^\s*jump/
 JumpStatement.correctCodeRegExp = /^\s*jump\s+(\w+)\s*$/
 JumpStatement.codeRegExp = /^\s*jump\s+(\w+).*$/
+JumpStatement.keyword = 'jump'

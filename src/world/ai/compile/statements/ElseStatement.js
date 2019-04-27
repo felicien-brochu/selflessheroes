@@ -7,7 +7,6 @@ export default class ElseStatement extends PrimaryStatement {
 
   constructor(line, column) {
     super('ElseStatement', line, column)
-    this.keyword = 'else'
     this.endIfStatement = null
   }
 
@@ -66,3 +65,4 @@ export default class ElseStatement extends PrimaryStatement {
 
 ElseStatement.startLineRegExp = /^\s*else/
 ElseStatement.codeRegExp = /^\s*else\s*$/
+ElseStatement.keyword = 'else'

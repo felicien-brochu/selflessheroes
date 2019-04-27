@@ -70,7 +70,7 @@ export default {
       let statementClasses = primaryStatements.filter(statementClass => paletteStatements.indexOf(statementClass) >= 0)
       let statements = statementClasses.map(statementClass => {
         return {
-          keyword: (new statementClass()).keyword,
+          keyword: statementClass.keyword,
           clazz: statementClass
         }
       })
@@ -80,21 +80,21 @@ export default {
       assign = assign.map(statementClass => {
         return {
           statementType: assignStatementType,
-          keyword: (new statementClass()).keyword,
+          keyword: statementClass.keyword,
           clazz: statementClass
         }
       })
       actions = actions.map(statementClass => {
         return {
           statementType: actionStatementType,
-          keyword: (new statementClass()).keyword,
+          keyword: statementClass.keyword,
           clazz: statementClass
         }
       })
       branching = branching.map(statementClass => {
         return {
           statementType: branchingStatementType,
-          keyword: (new statementClass()).keyword,
+          keyword: statementClass.keyword,
           clazz: statementClass
         }
       })

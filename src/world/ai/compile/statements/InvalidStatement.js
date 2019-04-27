@@ -1,4 +1,4 @@
-import Statement from './Statement'
+import PrimaryStatement from './PrimaryStatement'
 import {
   InvalidStatementException
 } from '../CompilerException'
@@ -6,7 +6,7 @@ import {
   NotDecompilableStatementException
 } from '../DecompilerException'
 
-export default class InvalidStatement extends Statement {
+export default class InvalidStatement extends PrimaryStatement {
   constructor(parent, line, column) {
     super('InvalidStatement', parent, line, column)
   }

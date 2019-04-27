@@ -13,14 +13,6 @@ class ActionFunction extends PrimaryStatement {
     this.params = this.getParamTypes().map(type => null)
   }
 
-  static get keyword() {
-    return this.hasOwnProperty('_keyword') ? this._keyword : undefined
-  }
-
-  static set keyword(keyword) {
-    this._keyword = keyword
-  }
-
   isCodeComplete() {
     return this.code.length >= 1
   }

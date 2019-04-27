@@ -5,16 +5,18 @@
     @mousedown="handleOutsideClick"
     @touchstart="handleOutsideClick">
 
-    <transition name="pop"
+    <transition-group name="pop"
       appear>
       <component v-for="(modal, index) in modals"
         ref="modals"
         :key="modal.key"
         :is="modal.component"
+        :frameWidth="frameWidth"
+        :frameHeight="frameHeight"
         v-bind="modal.props"
         v-on="modal.handlers"
         @close="removeModal(index)"></component>
-    </transition>
+    </transition-group>
 
   </div>
 </transition>
@@ -22,10 +24,39 @@
 
 <script>
 export default {
+  props: {
+    'horizontalPadding': {
+      type: Number,
+      default: 30
+    },
+    'verticalPadding': {
+      type: Number,
+      default: 20
+    }
+  },
   data: function() {
     return {
-      modals: []
+      modals: [],
+      width: window.innerWidth,
+      height: window.innerHeight
     }
+  },
+
+  computed: {
+    frameWidth: function() {
+      return this.width - 2 * this.horizontalPadding
+    },
+    frameHeight: function() {
+      return this.height - 2 * this.verticalPadding
+    }
+  },
+
+  mounted() {
+    window.addEventListener('resize', this.handleWindowResize)
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleWindowResize)
   },
 
   methods: {
@@ -41,7 +72,13 @@ export default {
     //   }
     // }
     addModal(modalOptions) {
-      this.modals.push(modalOptions)
+      let sameModal = this.modals.find(m => m.key === modalOptions.key)
+      if (sameModal) {
+        this.closeModal(this.modals.indexOf(sameModal))
+      }
+      else {
+        this.modals.push(modalOptions)
+      }
     },
 
     closeModal(index) {
@@ -63,6 +100,11 @@ export default {
       if (target === this.$el) {
         this.closeLastModal()
       }
+    },
+
+    handleWindowResize() {
+      this.width = window.innerWidth
+      this.height = window.innerHeight
     }
   }
 }

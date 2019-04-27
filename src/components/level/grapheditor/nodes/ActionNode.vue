@@ -4,7 +4,7 @@
   @touchstart="handleDragStart">
 
   <div class="function-label">
-    {{statement.keyword}}
+    {{$text(`function_${statement.constructor.keyword}`)}}
   </div>
 
   <value-select v-for="(param, index) in params"

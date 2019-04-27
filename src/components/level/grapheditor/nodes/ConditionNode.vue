@@ -58,9 +58,9 @@
   </div>
 
   <div v-if="isFirst"
-    class="if-label">
-    if
-  </div>
+    class="if-label">{{
+			$text('type_if')
+		}}</div>
 
 </li>
 </template>

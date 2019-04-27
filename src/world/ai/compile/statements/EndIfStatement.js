@@ -52,3 +52,4 @@ export default class EndIfStatement extends PrimaryStatement {
 
 EndIfStatement.startLineRegExp = /^\s*endif/
 EndIfStatement.codeRegExp = /^\s*endif\s*$/
+EndIfStatement.keyword = 'endif'

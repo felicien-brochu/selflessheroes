@@ -1,12 +1,20 @@
 <template>
-<div class="modal">
+<div class="modal"
+  :style="{
+		maxWidth: `${maxWidth}px`,
+		maxHeight: `${maxHeight}px`
+	}">
   <button class="close-button material-icons"
     type="button"
     :title="$text('modal_close_button')"
     @click="cancel"
     @touchstart="cancel">close</button>
 
-  <div class="modal-content">
+  <div class="modal-content"
+    :style="{
+			maxWidth: `${maxWidth - 120}px`,
+			maxHeight: `${maxHeight - 160}px`
+		}">
     <slot>{{text}}</slot>
   </div>
 
@@ -42,6 +50,25 @@ export default {
     },
     'confirmValue': {
       default: true
+    },
+    'frameWidth': {
+      type: Number,
+      default: window.innerWidth
+    },
+    'frameHeight': {
+      type: Number,
+      default: window.innerHeight
+    }
+  },
+
+  computed: {
+    maxWidth: function() {
+      let maxWidth = Math.min(720, this.frameWidth)
+      maxWidth = Math.max(420, maxWidth)
+      return maxWidth
+    },
+    maxHeight: function() {
+      return this.frameHeight
     }
   },
 
@@ -65,6 +92,8 @@ $color: white;
 .modal {
     position: relative;
     padding: 49px 60px 30px;
+    min-width: 420px;
+    box-sizing: border-box;
     width: max-content;
     background-color: $modal-color;
     color: $color;
@@ -117,11 +146,10 @@ $color: white;
 }
 
 .modal-content {
-    max-width: 600px;
-    min-width: 300px;
     font-size: 24px;
     text-align: center;
     white-space: pre-wrap;
     word-wrap: break-word;
+    overflow: auto;
 }
 </style>
