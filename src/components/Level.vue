@@ -2,7 +2,8 @@
 <div class="level"
   v-hotkey="keymap">
 
-  <world :levelID="levelID"
+  <world ref="world"
+    :levelID="levelID"
     :followHeroIndex="followHeroIndex"
     @world-state-change="handleWorldStateChange"
     @ai-state-change="aiReady = $event"
@@ -194,6 +195,10 @@ export default {
 
     setWorldState(worldState) {
       this.worldState = worldState
+    },
+
+    onTransitionAfterEnter() {
+      this.$refs.world.resizeGame()
     },
 
     setCode(code, source, debounceCompile = true) {
