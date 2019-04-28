@@ -60,6 +60,10 @@ export default class extends Phaser.Scene {
     }
   }
 
+  beforeDestroy() {
+    this.runner.pause()
+  }
+
   createMap() {
     this.mapData = ParseJSONTiled('tilemap', this.mapConfig)
     this.map = new Tilemap(this, this.mapData)
@@ -155,6 +159,8 @@ export default class extends Phaser.Scene {
   initEvents() {
     this.input.on('pointerdown', this.handleClickOutside, this)
     this.scale.on('resize', this.handleResize.bind(this))
+    console.log(this.game)
+    this.game.events.on('destroy', this.beforeDestroy.bind(this))
   }
 
   update(time, delta) {
