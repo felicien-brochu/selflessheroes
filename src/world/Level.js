@@ -34,10 +34,10 @@ export default class Level {
   }
 
   get mapPath() {
-    return `${this.getRootPath()}/map.json`
+    return `${this.getRootPath()}/map${this.id}.json`
   }
 
   get tilesetImagePath() {
-    return `${this.getRootPath()}/tileset.png`
+    return `${this.getRootPath()}/tileset${this.id}.png`
   }
 }
