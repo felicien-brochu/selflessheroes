@@ -20,15 +20,26 @@ export default class Career extends StorageWrapper {
     this.levels = []
   }
 
-  createLevel(id) {
-    let level = this.getLevel(id)
+  createUnlockedLevelSolutions(levelLocks) {
+    for (let lock of levelLocks) {
+      if (lock.unlocked) {
+        if (!this.getLevel(lock.level.id)) {
+          this.createLevel(lock.level)
+        }
+      }
+    }
+  }
+
+  createLevel(levelConfig) {
+    let level = this.getLevel(levelConfig.id)
     if (level) {
       return level
     }
 
+    const id = levelConfig.id
     level = new LevelSolutions(`${this.storageKey}.levels[${id}]`)
     level.set(id)
-    level.createDefaultSolution()
+    level.createDefaultSolution(levelConfig)
     level.save(false)
     this.levels.push(level)
     this.save(false)

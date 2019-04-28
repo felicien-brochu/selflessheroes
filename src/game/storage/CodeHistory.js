@@ -1,8 +1,8 @@
 const maxDepth = 200
 
 export default class CodeHistory {
-  constructor() {
-    this.revisions = ['']
+  constructor(firstRevision = '') {
+    this.revisions = [firstRevision]
     this.activeRevision = 0
   }
 

@@ -1,5 +1,15 @@
+@mixin no-select {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
 body,
 html {
+	@include no-select;
 	height: 100vh;
 	width: 100vw;
 	margin: 0;
@@ -18,22 +28,17 @@ ul {
 :focus {
 	outline: none;
 }
-@mixin no-select {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
 $default-card-color: #583455;
 @mixin card-box {
 	box-sizing: border-box;
 	width: 280px;
 	height: 310px;
-	margin-right: 30px;
 	margin-bottom: 30px;
 	border-radius: 8px;
+
+	&:not(:last-child) {
+		margin-right: 30px;
+	}
 }
 @mixin home-card($card-color, $animate: true, $text-color: white) {
 	@include card-box;

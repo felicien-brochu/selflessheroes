@@ -33,15 +33,11 @@ export default {
   },
 
   data: function() {
+    let career = storage.getCareer(this.careerID)
+    let careerLevels = levelManager.getCareerList(career)
     return {
-      career: storage.getCareer(this.careerID)
-    }
-  },
-
-  computed: {
-    careerLevels: function() {
-      let careerLevels = levelManager.getCareerList(this.career)
-      return careerLevels
+      career: career,
+      careerLevels: careerLevels
     }
   },
 
@@ -51,15 +47,14 @@ export default {
         name: 'home'
       })
     }
+
+    this.career.createUnlockedLevelSolutions(this.careerLevels)
   },
 
   methods: {
     selectLevel(id, unlocked) {
       if (unlocked) {
         let level = this.career.getLevel(id)
-        if (!level) {
-          this.career.createLevel(id)
-        }
         this.$router.push({
           name: 'level',
           params: {

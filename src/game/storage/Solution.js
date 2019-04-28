@@ -13,17 +13,14 @@ export default class Solution extends StorageWrapper {
   }
 
   // Do not call directly this method. Call set() instead with the same arguments as this one
-  init(id, name, editorType) {
+  init(id, name, code = '', editorType = 'graph') {
     this.id = id
     this.name = name
     if (!this.name) {
       this.name = `solution${id + 1}`
     }
     this.editorType = editorType
-    if (!this.editorType) {
-      this.editorType = 'graph'
-    }
-    this.codeHistory = new CodeHistory()
+    this.codeHistory = new CodeHistory(code)
     this.score = new SolutionScore()
   }
 
