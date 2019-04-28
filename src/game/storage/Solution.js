@@ -52,9 +52,17 @@ export default class Solution extends StorageWrapper {
 }
 
 class SolutionScore {
-  constructor() {}
+  constructor(won = false, minStep = -1, minLength = -1) {
+    this.won = won
+    this.minStep = minStep
+    this.minLength = minLength
+  }
 
-  static buildFromJSON(o) {
-    return new SolutionScore()
+  static buildFromJSON(jsonObject) {
+    return new SolutionScore(jsonObject.won, jsonObject.minStep, jsonObject.minLength)
+  }
+
+  hasWon() {
+    return this.won
   }
 }

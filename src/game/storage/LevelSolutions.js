@@ -39,6 +39,10 @@ export default class LevelSolutions extends StorageWrapper {
     return this.solutions.find(s => s.get().id === id)
   }
 
+  hasWon() {
+    return this.score.hasWon()
+  }
+
   load(data) {
     this.id = data.id
     this.solutions = super.loadIDArray(data.solutions, 'solutions', Solution)
@@ -61,9 +65,17 @@ export default class LevelSolutions extends StorageWrapper {
 }
 
 class LevelScore {
-  constructor() {}
+  constructor(won = false, minStep = -1, minLength = -1) {
+    this.won = won
+    this.minStep = minStep
+    this.minLength = minLength
+  }
 
   static buildFromJSON(jsonObject) {
-    return new LevelScore()
+    return new LevelScore(jsonObject.won, jsonObject.minStep, jsonObject.minLength)
+  }
+
+  hasWon() {
+    return this.won
   }
 }

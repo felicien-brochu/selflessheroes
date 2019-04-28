@@ -11,6 +11,8 @@ export default class Level1 extends Level {
       speedTarget: 100,
       lengthTarget: 5
     })
+
+    Object.freeze(this)
   }
 
   buildCompilerConfig() {

@@ -74,7 +74,7 @@ import Decompiler from '../world/ai/compile/Decompiler'
 import Linter from '../world/ai/compile/Linter'
 import storage from '../game/storage/Storage'
 import CodeHistory from '../game/storage/CodeHistory'
-import levels from '../levels/levels'
+import levelManager from '../levels/levelManager'
 
 export default {
   components: {
@@ -100,7 +100,7 @@ export default {
       code: '',
       codeSource: 'history',
       editorType: 'graph',
-      level: levels.getLevelByID(this.levelID),
+      level: levelManager.getLevelByID(this.levelID),
       codeHistory: new CodeHistory(),
       compilerConfig: null,
       worldState: {},

@@ -1,5 +1,4 @@
 import Phaser from 'phaser'
-import levels from '../levels/levels'
 
 import elf_f from './images/elf_f.png'
 import elf_m from './images/elf_m.png'

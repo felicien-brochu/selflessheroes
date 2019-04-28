@@ -7,17 +7,18 @@
     @touchstart="goBack">arrow_back_ios</button>
 
   <ul class="list">
-    <level-item v-for="level in levels"
-      :key="level.id"
-      :level="level"
-      @mousedown.native="selectLevel(level.id)"
-      @touchstart.native="selectLevel(level.id)" />
+    <level-item v-for="level in careerLevels"
+      :key="level.level.id"
+      :level="level.level"
+      :locked="!level.unlocked"
+      @mousedown.native="selectLevel(level.level.id, level.unlocked)"
+      @touchstart.native="selectLevel(level.level.id, level.unlocked)" />
   </ul>
 </div>
 </template>
 
 <script>
-import levels from '../levels/levels'
+import levelManager from '../levels/levelManager'
 import LevelItem from './levellist/LevelItem'
 import storage from '../game/storage/Storage'
 
@@ -30,13 +31,21 @@ export default {
       type: Number
     }
   },
-  computed: {
-    levels: function() {
-      return levels.getList()
+
+  data: function() {
+    return {
+      career: storage.getCareer(this.careerID)
     }
   },
-  mounted() {
-    this.career = storage.getCareer(this.careerID)
+
+  computed: {
+    careerLevels: function() {
+      let careerLevels = levelManager.getCareerList(this.career)
+      return careerLevels
+    }
+  },
+
+  created() {
     if (!this.career) {
       this.$router.replace({
         name: 'home'
@@ -45,18 +54,20 @@ export default {
   },
 
   methods: {
-    selectLevel(id) {
-      let level = this.career.getLevel(id)
-      if (!level) {
-        this.career.createLevel(id)
-      }
-      this.$router.push({
-        name: 'level',
-        params: {
-          careerID: this.careerID,
-          levelID: id
+    selectLevel(id, unlocked) {
+      if (unlocked) {
+        let level = this.career.getLevel(id)
+        if (!level) {
+          this.career.createLevel(id)
         }
-      })
+        this.$router.push({
+          name: 'level',
+          params: {
+            careerID: this.careerID,
+            levelID: id
+          }
+        })
+      }
     },
 
     goBack() {
