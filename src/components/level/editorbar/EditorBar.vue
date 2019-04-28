@@ -11,35 +11,38 @@
   </div>
 
   <div class="center-container">
-    <button class="undo-button"
+    <button class="target-button mdi mdi-light mdi-bullseye-arrow"
+      @click="handleObjectiveClick" />
+
+    <button :class="{
+				'undo-button': true,
+				'mdi': true,
+				'mdi-light': true,
+				'mdi-undo': true,
+				'mdi-inactive': !codeHistory.canUndo()
+			}"
       :disabled="!codeHistory.canUndo()"
-      @click="handleUndoClick">
-      <i :class="{
-			'material-icons': true,
-			'md-light': true,
-			'md-inactive': !codeHistory.canUndo()
-			}">undo</i>
-    </button>
+      @click="handleUndoClick" />
 
-    <button class="redo-button"
+    <button :class="{
+				'redo-button': true,
+				'mdi': true,
+				'mdi-light': true,
+				'mdi-redo': true,
+				'mdi-inactive': !codeHistory.canRedo()
+			}"
       :disabled="!codeHistory.canRedo()"
-      @click="handleRedoClick">
-      <i :class="{
-			'material-icons': true,
-			'md-light': true,
-			'md-inactive': !codeHistory.canRedo()
-			}">redo</i>
-    </button>
+      @click="handleRedoClick" />
 
-    <button class="delete-code-button"
+    <button :class=" {
+				'delete-code-button': true,
+				'mdi': true,
+				'mdi-delete': true,
+				'mdi-light': true,
+				'mdi-inactive': code.length === 0
+      }"
       :disabled="code.length === 0"
-      @click="handleRemoveCodeClick">
-      <i :class="{
-			'material-icons': true,
-			'md-light': true,
-			'md-inactive': code.length === 0
-			}">delete</i>
-    </button>
+      @click="handleRemoveCodeClick" />
   </div>
 
 
@@ -127,6 +130,9 @@ export default {
     },
     handleCodeStateClick() {
       this.$emit('code-state-click', this.codeState)
+    },
+    handleObjectiveClick() {
+      this.$emit('objective-click', this.codeState)
     }
   }
 }

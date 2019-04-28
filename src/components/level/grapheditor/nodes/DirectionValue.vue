@@ -1,7 +1,5 @@
 <template>
-<ul class="direction-values"
-  @touchstart="$event.preventDefault(); $emit('click', $event)"
-  @mousedown="$emit('click', $event)">
+<ul class="direction-values">
   <li :class="{'selected': directionNames.includes('nw')}" />
   <li :class="{'selected': directionNames.includes('n')}" />
   <li :class="{'selected': directionNames.includes('ne')}" />

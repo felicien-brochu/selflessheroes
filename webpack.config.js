@@ -46,7 +46,10 @@ const config = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
       },
       {
         test: /\.scss$/,
@@ -61,15 +64,16 @@ const config = {
         test: /\.(jpe?g|png|gif)$/,
         loader: 'file-loader',
         options: {
-          name: 'assets/images/[name].[ext]'
+          name: '[name].[ext]',
+          outputPath: 'assets/images'
         }
       },
       {
         test: /\.(eot|svg|ttf|woff2?)$/,
         loader: 'file-loader',
         options: {
-          name: 'assets/fonts/[path]/[name].[ext]',
-          context: 'src/components/fonts'
+          name: '[name].[ext]',
+          outputPath: 'assets/fonts'
         }
       }
     ],

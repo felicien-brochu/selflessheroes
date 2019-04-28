@@ -15,7 +15,7 @@
     @resize="handleEditorResize"
     :allow-resize="true"
     :size="editorWidth"
-    :min-size="320"
+    :min-size="385"
     :resizerThickness="2"
     units="pixels"
     resizerColor="#4b5261"
@@ -24,10 +24,10 @@
     <div slot="firstPane"
       class="left-panel">
 
-      <button class="back-button material-icons"
+      <button class="back-button mdi mdi-chevron-left"
         type="button"
         @mousedown="goBack"
-        @touchstart="goBack">arrow_back_ios</button>
+        @touchstart="goBack" />
 
       <run-bar :worldReady="worldReady"
         :aiReady="aiReady"
@@ -95,8 +95,6 @@ export default {
 
   data: function() {
     return {
-      // code: 'b:\nstep(e)\na = dir(n)\n\nif b == 3 &&\n s > 3 ||\n n == wall:\n\tstep(e,w)\n\tstep(s)\n\tif n == wall:\n\t\tc:\n\t\tstep(sw)\n\tendif\nelse\n\ta = dir(sw)\n\tstep(n, s)\nendif\n\njump b\nstep(n)\nif n == wall:\n\t\tstep(nw)\n\tjump c\n\tendif\nstep(n)\nif n == s:\nendif\nstep(n)\nstep(n)\nstep(n)',
-      // code: 'if s == s:\nelse\nif s == s:\nendif\nendif',
       code: '',
       codeSource: 'history',
       editorType: 'graph',
@@ -111,7 +109,7 @@ export default {
         fatal: [],
         undefinedLiterals: []
       },
-      editorWidth: 360
+      editorWidth: 385
     }
   },
 
@@ -395,11 +393,13 @@ export default {
                     border: none;
                     outline: none;
                     pointer-events: all;
-                    font-size: 36px;
                     z-index: 5;
                     position: absolute;
-                    left: 20px;
-                    top: 16px;
+                    padding: 0;
+                    font-size: 60px;
+                    line-height: 40px;
+                    left: 4px;
+                    top: 12px;
                     cursor: pointer;
 
                     &:hover {

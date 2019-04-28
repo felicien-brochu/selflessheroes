@@ -1,10 +1,10 @@
 <template>
 <div class="level-list">
 
-  <button class="back-button material-icons"
+  <button class="back-button mdi mdi-chevron-left"
     type="button"
     @mousedown="goBack"
-    @touchstart="goBack">arrow_back_ios</button>
+    @touchstart="goBack" />
 
   <ul class="list">
     <level-item v-for="level in careerLevels"
@@ -85,15 +85,17 @@ export default {
 
     .back-button {
         color: transparentize(white, 0.2);
+        padding: 0;
+        font-size: 60px;
+        line-height: 40px;
+        left: 4px;
+        top: 12px;
+        z-index: 5;
         background: none;
         border: none;
         outline: none;
         pointer-events: all;
-        font-size: 36px;
-        z-index: 5;
         position: absolute;
-        left: 20px;
-        top: 16px;
         cursor: pointer;
 
         &:hover {

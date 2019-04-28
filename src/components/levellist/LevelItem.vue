@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../main';
+@import '../mixins';
 
 .level-item {
     @include card-box;

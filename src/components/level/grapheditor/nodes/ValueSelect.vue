@@ -2,13 +2,17 @@
 <button :class="{
 	'value-select': true,
 	'no-background': isDirection
-	}">
+	}"
+  @mousedown="handleClickContainer"
+  @touchstart="handleClickContainer">
 
-  <div class="label-container">
+  <div ref="labelContainer"
+    class="label-container">
     <direction-value v-if="isDirection"
       :value="value"
       :notHere="directionNotHere"
-      @click="handleEditPosition" />
+      @mousedown.native="handleEditPosition"
+      @touchstart.native="handleEditPosition" />
     <div v-else-if="isInteger"
       class="label"
       @mousedown="handleEditInteger"
@@ -18,10 +22,8 @@
       @mousedown="handleDropDown"
       @touchstart="handleDropDown">{{label}}</div>
   </div>
-  <div v-if="hasDropDown"
-    class="button-icon"
-    @mousedown="handleDropDown"
-    @touchstart="handleDropDown">⯆</div>
+  <i v-if="hasDropDown"
+    class="button-icon mdi mdi-menu-down" />
 
 </button>
 </template>
@@ -118,6 +120,26 @@ export default {
 
     setValue(value) {
       this.$emit('select', value)
+    },
+
+    handleClickContainer(e) {
+      let target = e.target
+      if (e.touches) {
+        target = e.touches[0].target
+      }
+
+      let node = target
+      while (node.parentNode) {
+        if (node && node === this.$refs.labelContainer) {
+          return
+        }
+        if (node === this.$el) {
+          break
+        }
+        node = node.parentNode
+      }
+
+      this.handleDropDown(e)
     },
 
     handleDropDown(e) {
@@ -264,13 +286,11 @@ export default {
     }
 
     .button-icon {
-        font-family: 'Noto';
         text-align: center;
-        width: 10px;
-        font-size: 11px;
-        right: 0;
-        padding-left: 3px;
-        padding-right: 3px;
+        width: 13px;
+        font-size: 22px;
+        padding-right: 6px;
+        margin-left: -3px;
     }
 }
 </style>

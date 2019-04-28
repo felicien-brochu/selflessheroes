@@ -15,11 +15,11 @@
       tag="div"
       :to="career.url">
 
-      <button class="remove-button material-icons"
+      <button class="remove-button mdi mdi-minus-circle"
         type="button"
         :title="$text('remove_career_button')"
         @click="removeCareer(career.id, $event)"
-        @touchstart="removeCareer(career.id, $event)">remove_circle</button>
+        @touchstart="removeCareer(career.id, $event)" />
 
       <div class="career-name"
         v-text-fit="{
@@ -38,8 +38,8 @@
         @mousedown="newCareer = true"
         @touchstart="newCareer = true">
 
-        <button class="material-icons"
-          type="button">add_circle</button>
+        <button class="mdi mdi-plus-circle"
+          type="button" />
 
       </div>
 
@@ -67,8 +67,8 @@
               :placeholder="$text('new_game_name_placeholder')" />
           </div>
 
-          <button class="material-icons"
-            type="submit">arrow_forward</button>
+          <button class="mdi mdi-arrow-right"
+            type="submit" />
 
         </div>
 
@@ -165,7 +165,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import './main';
+@import './mixins';
 .home {
     @include no-select;
 
@@ -299,6 +299,7 @@ export default {
                 button {
                     color: white;
                     font-size: 44px;
+                    line-height: 40px;
                     padding: 0;
                     margin-left: 6px;
                     flex-shrink: 0;

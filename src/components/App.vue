@@ -17,8 +17,6 @@
 </template>
 
 <script>
-import './fonts/fonts.css'
-
 export default {
   components: {},
   props: {},
@@ -54,7 +52,7 @@ export default {
 .slide-left-leave-active,
 .slide-right-enter-active,
 .slide-right-leave-active {
-    transition: all 0.5s cubic-bezier(.55,0,.1,1);
+    transition: all 0.5s cubic-bezier(.55, 0, .1, 1);
 }
 
 .slide-left-enter,
@@ -63,6 +61,7 @@ export default {
     -webkit-transform: translate(30px, 0);
     transform: translate(30px, 0);
 }
+
 .slide-left-leave-active,
 .slide-right-enter {
     opacity: 0;
@@ -70,3 +69,6 @@ export default {
     transform: translate(-30px, 0);
 }
 </style>
+<style lang="scss" src="./main.scss"></style>
+<style lang="css" src="./fonts/fonts.css"/>
+<style lang="css" src="@mdi/font/css/materialdesignicons.css"/>

@@ -26,7 +26,7 @@ export default class extends Phaser.Scene {
     this.onSceneReady = null
     this.followHeroIndex = -1
     this.runner = new WorldRunner()
-    this.editorWidth = 360
+    this.editorWidth = 385
 
     this.followHeroListener = null
     this.aiStateListener = null
@@ -142,7 +142,7 @@ export default class extends Phaser.Scene {
     this.cameraControl = new CameraControl(
       this,
       camera,
-      window.innerWidth - 360,
+      window.innerWidth - 385,
       window.innerHeight,
       this.map.widthInPixels,
       this.map.heightInPixels,
