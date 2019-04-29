@@ -106,7 +106,9 @@ export default {
     .list {
         display: flex;
         flex-wrap: wrap;
-        justify-content: flex-start;
+        justify-content: space-between;
+        align-items: flex-start;
+        align-content: flex-start;
     }
 }
 </style>

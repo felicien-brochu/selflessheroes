@@ -184,7 +184,7 @@ export default {
         text-align: center;
         font-weight: 500;
         color: white;
-        margin: 40px 0 80px;
+        margin: 40px 0 20px;
     }
 
     button {
@@ -198,7 +198,9 @@ export default {
     .career-list {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
+        align-items: center;
+        align-content: flex-start;
         margin: 0;
         padding: 0;
         height: max-content;

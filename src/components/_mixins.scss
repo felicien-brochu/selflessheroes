@@ -11,12 +11,8 @@ $default-card-color: #583455;
 	box-sizing: border-box;
 	width: 280px;
 	height: 310px;
-	margin-bottom: 30px;
+	margin: 15px;
 	border-radius: 8px;
-
-	&:not(:last-child) {
-		margin-right: 30px;
-	}
 }
 @mixin home-card($card-color, $animate: true, $text-color: white) {
 	@include card-box;
