@@ -2,8 +2,9 @@ import DefaultRuleset from './DefaultRuleset'
 
 export default class Ruleset {
 
-  constructor(world) {
+  constructor(world, maxStep = Infinity) {
     this.world = world
+    this.maxStep = maxStep
   }
 
   step() {
@@ -15,6 +16,10 @@ export default class Ruleset {
   }
 
   hasLost() {
-    return false
+    return this.tooManySteps()
+  }
+
+  tooManySteps() {
+    return this.world.steps > this.maxStep
   }
 }

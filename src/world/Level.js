@@ -26,7 +26,7 @@ export default class Level {
   }
 
   buildRuleset(world) {
-    return new DefaultRuleset(world)
+    return new DefaultRuleset(world, this.maxStep)
   }
 
   getRootPath() {

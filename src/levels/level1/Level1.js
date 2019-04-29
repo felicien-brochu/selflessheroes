@@ -7,7 +7,7 @@ export default class Level1 extends Level {
       objective: "level1 objective Do stuff yo",
       startingCode: "step(s)",
       startingEditorType: "graph",
-      maxStep: 500,
+      maxStep: 100,
       speedTarget: 100,
       lengthTarget: 5
     })

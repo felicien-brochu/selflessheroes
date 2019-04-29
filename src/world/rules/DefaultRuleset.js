@@ -2,8 +2,8 @@ import Ruleset from './Ruleset'
 import AllObjectivesWinCondition from './AllObjectivesWinCondition'
 
 export default class DefaultRuleset extends Ruleset {
-  constructor(world) {
-    super(world)
+  constructor(world, maxStep) {
+    super(world, maxStep)
 
     this.winCondition = new AllObjectivesWinCondition(this.world)
   }
@@ -14,9 +14,5 @@ export default class DefaultRuleset extends Ruleset {
 
   hasWon() {
     return this.winCondition.check()
-  }
-
-  hasLost() {
-    return false
   }
 }

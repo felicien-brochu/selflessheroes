@@ -18,7 +18,7 @@ export default class DumbPathFinderAI extends AI {
       direction = new Direction(this.path[this.pathIndex + 1][0] - this.character.x, this.path[this.pathIndex + 1][1] - this.character.y)
       this.pathIndex++
     } else {
-      let r = Math.random()
+      let r = rng()
       direction = r > 0.75 ? Direction.n : r > 0.5 ? Direction.e : r > 0.25 ? Direction.s : Direction.w
     }
     return new StepAction(direction)
