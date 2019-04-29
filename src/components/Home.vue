@@ -241,6 +241,7 @@ export default {
             @include card-box;
             border: dashed #ffffff1a 8px;
             display: flex;
+            align-self: flex-start;
             align-items: center;
             justify-content: center;
             transition: background-color 0.6s, border-color 0.2s ease;
