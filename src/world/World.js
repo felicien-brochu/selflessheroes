@@ -50,12 +50,12 @@ export default class World {
     }
   }
 
-  step() {
+  step(rng) {
     this.steps++
     try {
       for (var i = 0; i < this.heroes.length; i++) {
         let hero = this.heroes[i]
-        let action = hero.step()
+        let action = hero.step(rng)
         if (action) {
           if (action.type === 'StepAction' && !this.collides(hero, action.direction)) {
             hero.move(action.direction)

@@ -6,7 +6,7 @@ export default class IdleAI extends AI {
     super(world, character)
   }
 
-  step() {
+  step(rng) {
     return new WaitAction()
   }
 }

@@ -1,4 +1,5 @@
 import Speeds from './Speeds'
+import seedrandom from 'seedrandom'
 
 const defaultStepInterval = 600
 
@@ -8,6 +9,13 @@ export default class WorldRunner {
     this.speed = Speeds.values[Speeds.default]
     this.timerID = -1
     this.steps = 0
+    let {
+      rng,
+      seed
+    } = WorldRunner.buildRNG()
+
+    this.rng = rng
+    this.rngSeed = seed
   }
 
   get stepInterval() {
@@ -17,6 +25,18 @@ export default class WorldRunner {
   init(world) {
     this.world = world
     this.steps = world.steps
+    this.rng = seedrandom(this.rngSeed)
+  }
+
+  static buildRNG() {
+    return seedrandom(null, {
+      pass: (rng, seed) => {
+        return {
+          rng: rng,
+          seed: seed
+        }
+      }
+    })
   }
 
   restart(world) {
@@ -28,7 +48,7 @@ export default class WorldRunner {
     if (!this.world.gameOver) {
       this.steps++
 
-      this.world.step()
+      this.world.step(this.rng)
 
       this.emitStateChange()
 

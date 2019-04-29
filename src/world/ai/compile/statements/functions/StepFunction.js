@@ -98,7 +98,7 @@ export default class StepFunction extends ActionFunction {
   }
 
   execute(context) {
-    let r = Math.random()
+    let r = context.rng()
     let dir = Direction.here
     for (let i = 0; i < this.params.length; i++) {
       if (r < 1 * ((i + 1) / this.params.length)) {

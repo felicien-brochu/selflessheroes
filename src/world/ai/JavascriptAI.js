@@ -11,7 +11,7 @@ export default class JavascriptAI extends AI {
     this.func = new Function(this.code)
   }
 
-  step() {
+  step(rng) {
     return this.func()
   }
 }

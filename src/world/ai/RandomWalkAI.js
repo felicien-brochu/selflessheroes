@@ -7,8 +7,8 @@ export default class RandomWalkAI extends AI {
     super(world, character)
   }
 
-  step() {
-    let r = Math.random()
+  step(rng) {
+    let r = rng()
     let dir = r > 0.75 ? Direction.n : r > 0.5 ? Direction.e : r > 0.25 ? Direction.s : Direction.w
     return new StepAction(dir)
   }

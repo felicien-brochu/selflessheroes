@@ -4,7 +4,7 @@ export default class AI {
     this.character = character
   }
 
-  step() {
+  step(rng) {
     throw new Error('Needs subclass implementation')
   }
 

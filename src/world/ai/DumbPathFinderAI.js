@@ -12,7 +12,7 @@ export default class DumbPathFinderAI extends AI {
     this.buildPath()
   }
 
-  step() {
+  step(rng) {
     let direction
     if (this.pathIndex < this.path.length - 1) {
       direction = new Direction(this.path[this.pathIndex + 1][0] - this.character.x, this.path[this.pathIndex + 1][1] - this.character.y)

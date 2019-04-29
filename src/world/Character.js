@@ -14,8 +14,8 @@ export default class Character extends WorldObject {
     this.lastAction = null
   }
 
-  step() {
-    this.lastAction = this.ai.step()
+  step(rng) {
+    this.lastAction = this.ai.step(rng)
     return this.lastAction
   }
 

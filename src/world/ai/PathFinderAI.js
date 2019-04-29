@@ -13,7 +13,7 @@ export default class PathFinderAI extends AI {
     this.buildPath()
   }
 
-  step() {
+  step(rng) {
     let action
     if (this.pathIndex < this.path.length - 1) {
       action = new StepAction(new Direction(this.path[this.pathIndex + 1][0] - this.character.x, this.path[this.pathIndex + 1][1] - this.character.y))
