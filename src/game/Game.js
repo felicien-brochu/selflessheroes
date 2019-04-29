@@ -156,6 +156,10 @@ export default class extends Phaser.Scene {
     this.cameraControl.init()
   }
 
+  resetCamera() {
+    this.cameraControl.init()
+  }
+
   initEvents() {
     this.input.on('pointerdown', this.handleClickOutside, this)
     this.scale.on('resize', this.handleResize.bind(this))

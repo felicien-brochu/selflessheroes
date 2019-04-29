@@ -69,6 +69,9 @@ export default {
       this.$emit('follow-hero-change', heroIndex)
     },
 
+    onTransitionAfterEnter() {
+      this.resizeGame()
+    },
 
     resizeGame() {
       var windowWidth = window.innerWidth

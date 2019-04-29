@@ -221,7 +221,7 @@ export default {
     },
 
     onTransitionAfterEnter() {
-      this.$refs.world.resizeGame()
+      this.$refs.world.onTransitionAfterEnter()
     },
 
     setCode(code, source, debounceCompile = true) {
