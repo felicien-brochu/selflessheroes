@@ -10,7 +10,18 @@ const messages = {
     remove_career_button: "Remove",
     remove_career_warning: "Are you really sure to delete this game?\nAll progression will be lost.",
 
+    modal_confirm_button: "ok",
+    modal_cancel_button: "cancel",
+    modal_close_button: "close",
+
     game_over: "Game Over",
+
+    editor_bar_objective_button: "Objective",
+    editor_bar_undo_button: "Undo",
+    editor_bar_redo_button: "Redo",
+    editor_bar_delete_button: "Delete",
+    editor_bar_switch_to_graph: "Switch to graphic editor",
+    editor_bar_switch_to_code: "Switch to code editor",
 
     code_state_ok_tooltip: "Your code is ready to be run",
     code_state_not_runnable_tooltip: "Your instructions are not complete:\nclick me for more details",
@@ -18,6 +29,7 @@ const messages = {
     code_state_ok_modal: "Your code is ready to be run",
     code_state_not_runnable_modal: "Your code contains %%undefined$undefined%% keywords.\nReplace them by correct values before running your code.",
     switch_editor_warning: "There is an error in your code.\nIf you switch to graphic editor now,\nparts of it risk to be erased.",
+
     code_error_position_template: "line {line}",
     errors_modal_title: "Errors",
 
@@ -58,13 +70,6 @@ const messages = {
 
     function_step: "step",
     function_dir: "dir",
-
-
-
-
-    modal_confirm_button: "ok",
-    modal_cancel_button: "cancel",
-    modal_close_button: "close",
   },
 
 
@@ -75,7 +80,18 @@ const messages = {
     remove_career_button: "Supprimer",
     remove_career_warning: "Êtes-vous vraiment sûr de vouloir supprimer cette partie\u00A0?\nToute progression sera perdue.",
 
+    modal_confirm_button: "ok",
+    modal_cancel_button: "annuler",
+    modal_close_button: "fermer",
+
     game_over: "Game Over",
+
+    editor_bar_objective_button: "Objectif",
+    editor_bar_undo_button: "Annuler",
+    editor_bar_redo_button: "Rétablir",
+    editor_bar_delete_button: "Supprimer",
+    editor_bar_switch_to_graph: "Passer à l'éditeur graphique",
+    editor_bar_switch_to_code: "Passer à l'éditeur de code",
 
     code_state_ok_tooltip: "Votre code est prêt à être exécuté",
     code_state_not_runnable_tooltip: "Vos instructions ne sont pas complètes\u00A0:\ncliquez pour plus de détails",
@@ -115,10 +131,6 @@ const messages = {
     type_anchor: "ancre",
     type_assign: "assignation",
     type_direction: "direction",
-
-    modal_confirm_button: "ok",
-    modal_cancel_button: "annuler",
-    modal_close_button: "fermer",
   }
 }
 

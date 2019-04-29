@@ -4,11 +4,11 @@
 		maxWidth: `${maxWidth}px`,
 		maxHeight: `${maxHeight}px`
 	}">
-  <button class="close-button material-icons"
+  <button class="close-button mdi mdi-close"
     type="button"
     :title="$text('modal_close_button')"
     @click="cancel"
-    @touchstart="cancel">close</button>
+    @touchstart="cancel" />
 
   <div class="modal-content"
     :style="{

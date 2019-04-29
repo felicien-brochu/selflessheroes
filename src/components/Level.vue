@@ -2,6 +2,8 @@
 <div class="level"
   v-hotkey="keymap">
 
+  <modal-layer ref="modalLayer" />
+
   <world ref="world"
     :level="level"
     :followHeroIndex="followHeroIndex"
@@ -56,7 +58,8 @@
       @code-change="handleCodeChange"
       @start-edit="handleStartEdit"
       @select-follow-hero="followHeroIndex = $event"
-      @change-type="handleEditorTypeChange" />
+      @change-type="handleEditorTypeChange"
+      @objective-click="showObjectiveModal" />
 
   </resize-split-pane>
 </div>
@@ -69,6 +72,8 @@ import World from './level/World'
 import Editor from './level/Editor'
 import RunBar from './level/runbar/RunBar'
 import ResizeSplitPane from './level/rspane/ResizeSplitPane'
+import ModalLayer from './modal/ModalLayer'
+import Modal from './modal/Modal'
 import Compiler from '../world/ai/compile/Compiler'
 import Decompiler from '../world/ai/compile/Decompiler'
 import Linter from '../world/ai/compile/Linter'
@@ -81,7 +86,8 @@ export default {
     World,
     Editor,
     RunBar,
-    ResizeSplitPane
+    ResizeSplitPane,
+    ModalLayer
   },
 
   props: {
@@ -128,6 +134,14 @@ export default {
       leading: false,
       trailing: true
     })
+  },
+
+  mounted() {
+    if (!this.solution.hasOpen) {
+      this.showObjectiveModal()
+      this.solution.hasOpen = true
+      this.solution.save()
+    }
   },
 
   beforeDestroy() {
@@ -284,6 +298,17 @@ export default {
       this.editorType = editorType
       this.solution.editorType = editorType
       this.solution.save()
+    },
+
+    showObjectiveModal() {
+      this.$refs.modalLayer.addModal({
+        component: Modal,
+        key: 'level_objective_modal',
+        props: {
+          text: this.level.objective,
+          cancelable: false
+        }
+      })
     },
 
     handleStartEdit() {

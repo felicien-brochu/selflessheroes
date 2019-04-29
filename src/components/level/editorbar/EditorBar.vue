@@ -11,7 +11,8 @@
   </div>
 
   <div class="center-container">
-    <button class="target-button mdi mdi-light mdi-bullseye-arrow"
+    <button class="target-button mdi mdi-light mdi-flag-variant"
+      :title="$text('editor_bar_objective_button')"
       @click="handleObjectiveClick" />
 
     <button :class="{
@@ -22,6 +23,7 @@
 				'mdi-inactive': !codeHistory.canUndo()
 			}"
       :disabled="!codeHistory.canUndo()"
+      :title="$text('editor_bar_undo_button')"
       @click="handleUndoClick" />
 
     <button :class="{
@@ -32,6 +34,7 @@
 				'mdi-inactive': !codeHistory.canRedo()
 			}"
       :disabled="!codeHistory.canRedo()"
+      :title="$text('editor_bar_redo_button')"
       @click="handleRedoClick" />
 
     <button :class=" {
@@ -42,6 +45,7 @@
 				'mdi-inactive': code.length === 0
       }"
       :disabled="code.length === 0"
+      :title="$text('editor_bar_delete_button')"
       @click="handleRemoveCodeClick" />
   </div>
 
@@ -55,6 +59,7 @@
     :width="30"
     :height="18"
     :labels="false"
+    :title="$text(`editor_bar_switch_to_${editorType === 'code' ? 'graph' : 'code'}`)"
     @change="$emit('switch-editor', editorType === 'code' ? 'graph' : 'code')" />
 
 </div>
@@ -164,7 +169,11 @@ export default {
         max-width: 400px;
         display: flex;
         justify-content: space-around;
-        margin: 0 18px;
+        margin: 0 18px 0 6px;
+
+        .target-button {
+            margin-right: 10px;
+        }
     }
 
     .code-state-container {

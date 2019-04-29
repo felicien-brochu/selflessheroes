@@ -54,7 +54,8 @@
     @redo="$emit('redo')"
     @remove-code="removeCode"
     @switch-editor="handleSwitchEditor"
-    @code-state-click="handleCodeStateClick" />
+    @code-state-click="handleCodeStateClick"
+    @objective-click="handleObjectiveClick" />
 </div>
 </div>
 </template>
@@ -196,6 +197,10 @@ export default {
 
     handleCodeStateClick(codeState) {
       this.$refs.codeEditor.showCodeStateDetails(codeState)
+    },
+
+    handleObjectiveClick() {
+      this.$emit('objective-click')
     }
   }
 }

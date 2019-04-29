@@ -10,6 +10,7 @@ export default class Solution extends StorageWrapper {
     this.editorType = ''
     this.codeHistory = null
     this.score = null
+    this.hasOpen = false
   }
 
   // Do not call directly this method. Call set() instead with the same arguments as this one
@@ -22,6 +23,7 @@ export default class Solution extends StorageWrapper {
     this.editorType = editorType
     this.codeHistory = new CodeHistory(code)
     this.score = new SolutionScore()
+    this.hasOpen = false
   }
 
   load(data) {
@@ -30,6 +32,7 @@ export default class Solution extends StorageWrapper {
     this.editorType = data.editorType
     this.codeHistory = CodeHistory.buildFromJSON(data.codeHistory)
     this.score = SolutionScore.buildFromJSON(data.score)
+    this.hasOpen = data.hasOpen
 
     return true
   }
@@ -41,7 +44,8 @@ export default class Solution extends StorageWrapper {
       name: this.name,
       editorType: this.editorType,
       codeHistory: this.codeHistory,
-      score: this.score
+      score: this.score,
+      hasOpen: this.hasOpen
     })
 
     return o

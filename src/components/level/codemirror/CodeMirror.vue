@@ -200,7 +200,7 @@ export default {
           props: {
             text: this.$text('code_state_ok_modal'),
             cancelable: false,
-          },
+          }
         })
       }
       else if (codeState === 'code-not-runnable') {
@@ -210,7 +210,7 @@ export default {
           props: {
             text: this.$text('code_state_not_runnable_modal'),
             cancelable: false,
-          },
+          }
         })
       }
       else if (codeState === 'code-not-compilable') {
@@ -219,7 +219,7 @@ export default {
           key: 'code_state_not_compilable_modal',
           props: {
             compilerExceptions: this.compilerExceptions
-          },
+          }
         })
       }
     }

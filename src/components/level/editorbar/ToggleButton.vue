@@ -1,5 +1,6 @@
 <template>
-<label :class="className">
+<label :class="className"
+  :title="title">
 
   <input type="checkbox"
     class="v-switch-input"
@@ -62,6 +63,9 @@ export default {
       default: false
     },
     name: {
+      type: String
+    },
+    title: {
       type: String
     },
     disabled: {
