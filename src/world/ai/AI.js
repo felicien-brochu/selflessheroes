@@ -14,4 +14,8 @@ export default class AI {
       character: this.character
     }
   }
+
+  hasStepAvailable() {
+    return true
+  }
 }

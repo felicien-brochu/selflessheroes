@@ -99,8 +99,14 @@ export default {
       for (let i = 0; i < this.debugContext.heroes.length; i++) {
         let heroContext = this.debugContext.heroes[i]
         let line = 0
-        if (heroContext.cursorStatement) {
-          line = heroContext.cursorStatement.line
+        if (!heroContext.ended) {
+          if (heroContext.cursorStatement) {
+            line = heroContext.cursorStatement.line
+          }
+        }
+        else {
+          let lastStatement = heroContext.cursorStatement
+          line = lastStatement.line + lastStatement.code.length
         }
         let selected = i === this.followHeroIndex
 

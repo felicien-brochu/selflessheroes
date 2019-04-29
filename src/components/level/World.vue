@@ -49,9 +49,9 @@ export default {
     handleGameReady(gameScene) {
       this.gameScene = gameScene
 
-      this.gameScene.setWorldStateListener(this.handleWorldStateChange)
-      this.gameScene.setAiStateListener(this.handleAiStateChange)
-      this.gameScene.setFollowHeroListener(this.handleFollowHeroChange)
+      this.gameScene.customEvents.on('ai-state-change', this.handleAiStateChange)
+      this.gameScene.customEvents.on('follow-hero-change', this.handleFollowHeroChange)
+      this.gameScene.runner.events.on('world-state-change', this.handleWorldStateChange)
       this.gameScene.setFollowHero(this.followHeroIndex)
 
       this.$emit('ready', this.gameScene, this.gameScene.getWorldState(), this.gameScene.getCompilerConfig())

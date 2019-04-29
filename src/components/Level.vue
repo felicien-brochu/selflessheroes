@@ -111,6 +111,8 @@ export default {
       worldReady: false,
       aiReady: false,
       followHeroIndex: -1,
+      lossModalDisplayed: false,
+      winModalDisplayed: false,
       compilerExceptions: {
         fatal: [],
         undefinedLiterals: []
@@ -209,6 +211,13 @@ export default {
 
     setWorldState(worldState) {
       this.worldState = worldState
+
+      if (this.worldState.hasWon) {
+
+      }
+      else if (this.worldState.hasLost) {
+        this.showLossModal()
+      }
     },
 
     onTransitionAfterEnter() {
@@ -226,6 +235,37 @@ export default {
       }
       else {
         this.compileCode()
+      }
+    },
+
+    showObjectiveModal() {
+      this.$refs.modalLayer.addModal({
+        component: Modal,
+        key: 'level_objective_modal',
+        props: {
+          text: this.level.objective,
+          cancelable: false
+        }
+      })
+    },
+
+    showLossModal() {
+      if (!this.lossModalDisplayed) {
+        const lossReason = this.level.getLossReasonTemplate(this.worldState.ruleset.getLossReason())
+        this.lossModalDisplayed = true
+        this.$refs.modalLayer.addModal({
+          component: Modal,
+          key: 'level_loss_modal',
+          props: {
+            text: lossReason,
+            cancelable: false
+          },
+          handlers: {
+            close: () => {
+              this.lossModalDisplayed = false
+            }
+          }
+        })
       }
     },
 
@@ -300,16 +340,6 @@ export default {
       this.solution.save()
     },
 
-    showObjectiveModal() {
-      this.$refs.modalLayer.addModal({
-        component: Modal,
-        key: 'level_objective_modal',
-        props: {
-          text: this.level.objective,
-          cancelable: false
-        }
-      })
-    },
 
     handleStartEdit() {
       if (this.playing) {

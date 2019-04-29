@@ -1,5 +1,6 @@
 import Speeds from './Speeds'
 import seedrandom from 'seedrandom'
+import EventEmitter from 'events'
 
 const defaultStepInterval = 600
 
@@ -8,7 +9,6 @@ export default class WorldRunner {
     this.world = null
     this.speed = Speeds.values[Speeds.default]
     this.timerID = -1
-    this.steps = 0
     let {
       rng,
       seed
@@ -16,6 +16,8 @@ export default class WorldRunner {
 
     this.rng = rng
     this.rngSeed = seed
+
+    this.events = new EventEmitter()
   }
 
   get stepInterval() {
@@ -24,7 +26,6 @@ export default class WorldRunner {
 
   init(world) {
     this.world = world
-    this.steps = world.steps
     this.rng = seedrandom(this.rngSeed)
   }
 
@@ -46,8 +47,6 @@ export default class WorldRunner {
 
   step() {
     if (!this.world.gameOver) {
-      this.steps++
-
       this.world.step(this.rng)
 
       this.emitStateChange()
@@ -96,18 +95,17 @@ export default class WorldRunner {
   }
 
   emitStateChange(state = this.getObservableState()) {
-    if (this.stateListener) {
-      this.stateListener(state)
-    }
+    this.events.emit('world-state-change', state)
   }
 
   getObservableState() {
     return {
-      steps: this.steps,
+      steps: this.world.steps,
       speed: this.speed,
       hasWon: this.world.hasWon,
       hasLost: this.world.hasLost,
       gameOver: this.world.gameOver,
+      ruleset: this.world.ruleset,
       paused: this.isPaused(),
       debugContext: this.world.getDebugContext()
     }

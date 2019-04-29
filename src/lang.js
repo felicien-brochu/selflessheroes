@@ -70,6 +70,10 @@ const messages = {
 
     function_step: "step",
     function_dir: "dir",
+
+
+    loss_reason_too_many_steps: "Your program takes too much time!",
+    loss_reason_all_hero_ended: "Why do you stop now?\nThere is still a lot of work left!",
   },
 
 
@@ -131,6 +135,11 @@ const messages = {
     type_anchor: "ancre",
     type_assign: "assignation",
     type_direction: "direction",
+
+
+
+    loss_reason_too_many_steps: "Votre programme prend trop de temps\u00A0!",
+    loss_reason_all_hero_ended: "Pourquoi vous vous arrêtez maintenant\u00A0?\nIl reste encore beaucoup de boulot\u00A0!",
   }
 }
 

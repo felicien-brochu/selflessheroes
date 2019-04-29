@@ -1,5 +1,6 @@
 import CompilerConfig from './ai/compile/CompilerConfig'
 import DefaultRuleset from './rules/DefaultRuleset'
+import lang from '../lang'
 
 export default class Level {
   constructor(id, {
@@ -27,6 +28,17 @@ export default class Level {
 
   buildRuleset(world) {
     return new DefaultRuleset(world, this.maxStep)
+  }
+
+  getLossReasonTemplate(lossReason) {
+    console.log("###reas", lossReason, DefaultRuleset.lossReasonTooManySteps)
+    if (lossReason === DefaultRuleset.lossReasonTooManySteps) {
+      return lang.text('loss_reason_too_many_steps')
+    } else
+    if (lossReason === DefaultRuleset.lossReasonAllHeroEnded) {
+      return lang.text('loss_reason_all_hero_ended')
+    }
+    return null
   }
 
   getRootPath() {

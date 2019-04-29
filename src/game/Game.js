@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 import ParseJSONTiled from 'phaser/src/tilemaps/parsers/tiled/ParseJSONTiled'
 import Tilemap from 'phaser/src/tilemaps/Tilemap'
+import EventEmitter from 'events'
 
 import lang from '../lang'
 import AnimationBuilder from './AnimationBuilder'
@@ -28,8 +29,7 @@ export default class extends Phaser.Scene {
     this.runner = new WorldRunner()
     this.editorWidth = 385
 
-    this.followHeroListener = null
-    this.aiStateListener = null
+    this.customEvents = new EventEmitter()
   }
 
   init(data) {
@@ -159,7 +159,6 @@ export default class extends Phaser.Scene {
   initEvents() {
     this.input.on('pointerdown', this.handleClickOutside, this)
     this.scale.on('resize', this.handleResize.bind(this))
-    console.log(this.game)
     this.game.events.on('destroy', this.beforeDestroy.bind(this))
   }
 
@@ -191,13 +190,13 @@ export default class extends Phaser.Scene {
     this.aiFactory = compiler.compile()
 
     if ((!!this.aiFactory && !oldAIFactory) || (!this.aiFactory && !!oldAIFactory)) {
-      this.emitAiStateChange()
+      this.customEvents.emit('ai-state-change', this.aiReady())
     }
     return compiler.exceptions
   }
 
   play() {
-    if (this.runner.steps === 0) {
+    if (this.runner.world.steps === 0) {
       this.restartWorld()
     }
     this.runner.play()
@@ -216,7 +215,7 @@ export default class extends Phaser.Scene {
   }
 
   stepOnce() {
-    if (this.runner.steps === 0) {
+    if (this.runner.world.steps === 0) {
       this.restartWorld()
     }
     this.runner.doOneStep()
@@ -278,28 +277,8 @@ export default class extends Phaser.Scene {
     }
   }
 
-  setFollowHeroListener(listener) {
-    this.followHeroListener = listener
-  }
-
-  setWorldStateListener(listener) {
-    this.runner.setStateListener(listener)
-  }
-
-  setAiStateListener(listener) {
-    this.aiStateListener = listener
-  }
-
   emitFollowHeroChange(followIndex) {
-    if (this.followHeroListener) {
-      this.followHeroListener(followIndex)
-    }
-  }
-
-  emitAiStateChange() {
-    if (this.aiStateListener) {
-      this.aiStateListener(this.aiReady())
-    }
+    this.customEvents.emit('follow-hero-change', followIndex)
   }
 
   aiReady() {

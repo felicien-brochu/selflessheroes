@@ -148,7 +148,14 @@ export default {
       let lineSet = []
       for (let i = 0; i < this.debugContext.heroes.length; i++) {
         let heroContext = this.debugContext.heroes[i]
-        let line = this.getStatementLine(this.statements[heroContext.cursor])
+        let line
+        if (!heroContext.ended) {
+          line = this.getStatementLine(this.statements[heroContext.cursor])
+        }
+        else {
+          line = this.getLastLine()
+        }
+
         let selected = i === this.followHeroIndex
 
         cursors.push({
@@ -215,6 +222,29 @@ export default {
         }
       }
       return -1
+    },
+
+    getLastLine() {
+      let line = 0
+
+      for (let statement of this.statements) {
+
+        if (!(statement instanceof EndIfStatement)) {
+          line++
+
+          // Insert empty lines for condition nodes
+          if (statement instanceof IfStatement) {
+            line += statement.condition.expressions.length - 1
+
+            // Insert line for empty if with else and empty if
+            if ((statement.elseStatement && this.statements.indexOf(statement.elseStatement) - this.statements.indexOf(statement) === 1) ||
+              this.statements.indexOf(statement.endIfStatement) - this.statements.indexOf(statement) === 1) {
+              line++
+            }
+          }
+        }
+      }
+      return line
     },
 
     updateFollowHeroCursorLine() {

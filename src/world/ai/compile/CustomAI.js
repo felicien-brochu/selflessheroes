@@ -62,6 +62,10 @@ export default class CustomAI extends AI {
     return res
   }
 
+  hasStepAvailable() {
+    return this.cursor < this.statements.length
+  }
+
   getContext(rng) {
     this.context.rng = rng
     return this.context
@@ -71,7 +75,8 @@ export default class CustomAI extends AI {
     return {
       ...this.context,
       cursor: this.lastActionCursor,
-      cursorStatement: this.lastActionStatement
+      cursorStatement: this.lastActionStatement,
+      ended: !this.hasStepAvailable()
     }
   }
 }
