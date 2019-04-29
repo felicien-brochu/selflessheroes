@@ -1,4 +1,5 @@
 import Level from '../../world/Level'
+import CompilerConfig from '../../world/ai/compile/CompilerConfig'
 
 export default class Level1 extends Level {
   constructor(id) {
@@ -7,7 +8,7 @@ export default class Level1 extends Level {
       objective: "level1 objective Do stuff yo",
       startingCode: "step(s)",
       startingEditorType: "graph",
-      maxStep: 100,
+      maxStep: Infinity,
       speedTarget: 100,
       lengthTarget: 5
     })

@@ -27,7 +27,7 @@ export default class CharacterS extends Phaser.GameObjects.Sprite {
   }
 
   playAnimation() {
-    this.play(this.asset + '_' + this.actionState)
+    this.play(`${this.asset}_${this.actionState}`)
   }
 
   updateState() {

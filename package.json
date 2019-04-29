@@ -53,7 +53,8 @@
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.3.1"
+    "webpack-dev-server": "^3.3.1",
+    "worker-loader": "^2.0.0"
   },
   "dependencies": {
     "@mdi/font": "^3.6.95",

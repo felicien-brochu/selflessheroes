@@ -74,6 +74,7 @@ import RunBar from './level/runbar/RunBar'
 import ResizeSplitPane from './level/rspane/ResizeSplitPane'
 import ModalLayer from './modal/ModalLayer'
 import Modal from './modal/Modal'
+import WinModal from './level/WinModal'
 import Compiler from '../world/ai/compile/Compiler'
 import Decompiler from '../world/ai/compile/Decompiler'
 import Linter from '../world/ai/compile/Linter'
@@ -144,6 +145,8 @@ export default {
       this.solution.hasOpen = true
       this.solution.save()
     }
+
+    this.showWinModal()
   },
 
   beforeDestroy() {
@@ -213,7 +216,7 @@ export default {
       this.worldState = worldState
 
       if (this.worldState.hasWon) {
-
+        this.showWinModal()
       }
       else if (this.worldState.hasLost) {
         this.showLossModal()
@@ -247,6 +250,26 @@ export default {
           cancelable: false
         }
       })
+    },
+
+    showWinModal() {
+      if (!this.winModalDisplayed) {
+        this.winModalDisplayed = true
+        this.$refs.modalLayer.addModal({
+          component: WinModal,
+          key: 'level_loss_modal',
+          props: {
+            cancelable: false,
+            code: this.code,
+            level: this.level
+          },
+          handlers: {
+            close: () => {
+              this.winModalDisplayed = false
+            }
+          }
+        })
+      }
     },
 
     showLossModal() {

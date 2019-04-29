@@ -14,12 +14,12 @@ export default class Level {
   }) {
     this.id = id
     this.name = name || `level${id}`
-    this.objective = objective
-    this.startingCode = startingCode
-    this.startingEditorType = startingEditorType
-    this.maxStep = maxStep
-    this.speedTarget = speedTarget
-    this.lengthTarget = lengthTarget
+    this.objective = objective || 'no-text'
+    this.startingCode = startingCode || ''
+    this.startingEditorType = startingEditorType || 'graph'
+    this.maxStep = maxStep || Infinity
+    this.speedTarget = speedTarget || 40
+    this.lengthTarget = lengthTarget || 10
   }
 
   buildCompilerConfig() {
@@ -31,11 +31,9 @@ export default class Level {
   }
 
   getLossReasonTemplate(lossReason) {
-    console.log("###reas", lossReason, DefaultRuleset.lossReasonTooManySteps)
     if (lossReason === DefaultRuleset.lossReasonTooManySteps) {
       return lang.text('loss_reason_too_many_steps')
-    } else
-    if (lossReason === DefaultRuleset.lossReasonAllHeroEnded) {
+    } else if (lossReason === DefaultRuleset.lossReasonAllHeroEnded) {
       return lang.text('loss_reason_all_hero_ended')
     }
     return null

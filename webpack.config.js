@@ -18,6 +18,7 @@ const config = {
   mode: env,
   output: {
     publicPath: '',
+    filename: '[name].js'
   },
   optimization: {
     splitChunks: {
@@ -43,6 +44,13 @@ const config = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [path.join(__dirname, 'src')],
+      },
+      {
+        test: /\.worker\.js$/,
+        loader: 'worker-loader',
+        options: {
+          name: 'workers/[name].[ext]'
+        }
       },
       {
         test: /\.css$/,

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="37" nextobjectid="13">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="100" columns="10">
-  <image source="tileset.png" trans="000000" width="340" height="340"/>
+  <image source="tileset4.png" trans="000000" width="340" height="340"/>
   <terraintypes>
    <terrain name="floor" tile="79"/>
    <terrain name="wall" tile="69"/>

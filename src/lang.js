@@ -193,5 +193,8 @@ class Idiom {
     return format(template, values)
   }
 }
-
-export default new Idiom(messages, window.navigator.languages)
+let languages = []
+if (typeof window !== 'undefined') {
+  languages = window.navigator.languages
+}
+export default new Idiom(messages, languages)
