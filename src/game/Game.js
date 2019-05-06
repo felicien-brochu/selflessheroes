@@ -101,16 +101,6 @@ export default class extends Phaser.Scene {
   createStaticElements() {
     this.followCursor = this.add.image(0, 0, 'follow_cursor')
     this.followCursor.setVisible(false)
-
-    this.gameOverText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, lang.text('game_over'), {
-      font: '64px Roboto',
-      fill: '#f5e3d3',
-      padding: 30
-    })
-    this.gameOverText.setVisible(false)
-    this.gameOverText.setScrollFactor(0)
-    this.gameOverText.setOrigin(0.5)
-    this.gameOverText.setShadow(0, 1, '#212121', 6)
   }
 
   createWorld() {
@@ -182,10 +172,6 @@ export default class extends Phaser.Scene {
       this.followCursor.y = hero.y + 10
       this.followCursor.depth = hero.depth - 1
     }
-
-    if (this.world.gameOver) {
-      this.gameOverText.setVisible(true)
-    }
   }
 
   compileAI(code) {
@@ -240,8 +226,6 @@ export default class extends Phaser.Scene {
     this.destroySprites()
     this.createWorld()
     this.runner.restart(this.world)
-
-    this.gameOverText.setVisible(false)
   }
 
   startFollowHero(sprite) {

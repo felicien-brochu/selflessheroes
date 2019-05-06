@@ -14,8 +14,6 @@ const messages = {
     modal_cancel_button: "cancel",
     modal_close_button: "close",
 
-    game_over: "Game Over",
-
     editor_bar_objective_button: "Objective",
     editor_bar_undo_button: "Undo",
     editor_bar_redo_button: "Redo",
@@ -100,8 +98,6 @@ const messages = {
     modal_cancel_button: "annuler",
     modal_close_button: "fermer",
 
-    game_over: "Game Over",
-
     editor_bar_objective_button: "Objectif",
     editor_bar_undo_button: "Annuler",
     editor_bar_redo_button: "Rétablir",
@@ -154,7 +150,7 @@ const messages = {
 
 
     loss_reason_too_many_steps: "Votre programme prend trop de temps\u00A0!",
-    loss_reason_all_hero_ended: "Pourquoi vous vous arrêtez maintenant\u00A0?\nIl reste encore beaucoup de boulot\u00A0!",
+    loss_reason_all_hero_ended: "Pourquoi vous vous arrêtez maintenant\u00A0?\nIl reste encore du boulot\u00A0!",
     level_test_failed_modal: "Certains tests ont échoué.\nNous avons reproduit une des situations problématiques.",
 
     win_modal_code_speed: "temps moyen:\u00A0%%score${codeSpeed}%%\u00A0/{speedTarget}",

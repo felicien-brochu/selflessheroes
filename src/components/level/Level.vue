@@ -227,6 +227,7 @@ export default {
         this.showWinModal()
       }
       else if (this.worldState.hasLost) {
+        this.stop()
         this.showLossModal()
       }
     },
