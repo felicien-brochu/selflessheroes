@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import levelManager from '../levels/levelManager'
-import LevelItem from './levellist/LevelItem'
-import storage from '../game/storage/Storage'
+import levelManager from '../../levels/levelManager'
+import LevelItem from './LevelItem'
+import storage from '../../game/storage/Storage'
 
 export default {
   components: {

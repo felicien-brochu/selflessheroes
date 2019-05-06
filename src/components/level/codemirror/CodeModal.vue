@@ -5,19 +5,17 @@
   @confirm="$emit('confirm', $event)"
   @cancel="$emit('cancel', $event)">
 
-  <code-template class="modal-content"
-    :template="text" />
+  <div class="code-modal-content"
+    v-bbcode="'type'">{{text}}</div>
 
 </modal>
 </template>
 
 <script>
 import Modal from '../../modal/Modal'
-import CodeTemplate from './CodeTemplate'
 
 export default {
   components: {
-    CodeTemplate,
     Modal
   },
   props: {
@@ -55,4 +53,12 @@ export default {
 </script>
 
 <style lang="scss">
+.code-modal-content {
+    .code-segment {
+        font-family: Consolas, 'DejaVu Sans Mono', monospace;
+        background-color: #282C34;
+        padding: 2px 4px;
+        border-radius: 5px;
+    }
+}
 </style>

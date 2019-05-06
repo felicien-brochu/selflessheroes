@@ -18,8 +18,8 @@
 				})
 			}}</div>
 
-      <code-template class="error-description"
-        :template="error.message" />
+      <div class="error-description"
+        v-bbcode="'type'">{{error.message}}</div>
       </div>
     </li>
 
@@ -29,11 +29,9 @@
 
 <script>
 import Modal from '../../modal/Modal'
-import CodeTemplate from './CodeTemplate'
 
 export default {
   components: {
-    CodeTemplate,
     Modal
   },
   props: {
@@ -140,6 +138,13 @@ $main-color: #4d2e4a;
                     padding: 10px 12px;
                     text-align: start;
                     white-space: pre-line;
+
+                    .code-segment {
+                        font-family: Consolas, 'DejaVu Sans Mono', monospace;
+                        background-color: #282C34;
+                        padding: 2px 4px;
+                        border-radius: 5px;
+                    }
                 }
             }
         }

@@ -207,7 +207,7 @@ export default class Compiler {
           throw new JumpToUnknownAnchorException(`jump to unknown anchor '${jumpStatement.anchor}'`, jumpStatement, {
             template: 'exception_jump_to_unknown_anchor_template',
             values: {
-              anchorName: jumpStatement.anchor,
+              anchorName: jumpStatement.anchor ? jumpStatement.anchor : '',
               jumpKeyword: {
                 template: 'type_jump'
               }

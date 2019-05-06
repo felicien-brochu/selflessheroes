@@ -74,6 +74,14 @@ const messages = {
 
     loss_reason_too_many_steps: "Your program takes too much time!",
     loss_reason_all_hero_ended: "Why do you stop now?\nThere is still a lot of work left!",
+    level_test_failed_modal: "Some of the tests failed.\nWe reproduced the same situation as in these failed attempts.",
+
+    win_modal_code_speed: "average time:\u00A0%%score${codeSpeed}%%\u00A0/{speedTarget}",
+    win_modal_prior_code_speed: "your shortest one was %%score${minStep}%%",
+    win_modal_code_length: "length:\u00A0%%score${codeLength}%%\u00A0/{lengthTarget}",
+    win_modal_prior_code_length: "your smallest one was %%score${minLength}%% lines long",
+    win_modal_ok_button: "ok",
+    win_modal_continue_edit_button: "keep at it",
   },
 
 
@@ -140,6 +148,14 @@ const messages = {
 
     loss_reason_too_many_steps: "Votre programme prend trop de temps\u00A0!",
     loss_reason_all_hero_ended: "Pourquoi vous vous arrêtez maintenant\u00A0?\nIl reste encore beaucoup de boulot\u00A0!",
+    level_test_failed_modal: "Certains tests ont échoué.\nNous avons reproduit une des situations problématiques.",
+
+    win_modal_code_speed: "temps moyen:\u00A0%%score${codeSpeed}%%\u00A0/{speedTarget}",
+    win_modal_prior_code_speed: "votre meilleur temps était %%score${minStep}%%",
+    win_modal_code_length: "longueur:\u00A0%%score${codeLength}%%\u00A0/{lengthTarget}",
+    win_modal_prior_code_length: "votre solution la plus courte faisait %%score${minLength}%% lignes",
+    win_modal_ok_button: "ok",
+    win_modal_continue_edit_button: "continuer",
   }
 }
 

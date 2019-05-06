@@ -82,9 +82,9 @@
 </template>
 
 <script>
-import ModalLayer from './modal/ModalLayer'
-import Modal from './modal/Modal'
-import storage from '../game/storage/Storage'
+import ModalLayer from '../modal/ModalLayer'
+import Modal from '../modal/Modal'
+import storage from '../../game/storage/Storage'
 
 export default {
   directives: {
@@ -127,8 +127,12 @@ export default {
       if (this.name && this.name.length > 0) {
         let career = storage.createCareer(this.name)
         if (career) {
-          const url = `c/${career.id}/`
-          this.$router.push(url)
+          this.$router.push({
+            name: 'level-list',
+            params: {
+              careerID: career.id
+            }
+          })
         }
       }
       e.preventDefault()
@@ -165,7 +169,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import './mixins';
+@import '../mixins';
 .home {
     @include no-select;
 

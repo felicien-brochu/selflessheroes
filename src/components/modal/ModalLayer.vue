@@ -124,7 +124,7 @@ export default {
         top: 50%;
         left: 50%;
 
-        transform: translate(-50%, -50%) scale(1) rotate(-1deg);
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
 
         &.pop-enter-active {
             transition: all 0.20s cubic-bezier(0.175, 0.885, 0.32, 1.275);

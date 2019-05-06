@@ -43,6 +43,11 @@ export default class LevelSolutions extends StorageWrapper {
     return this.score.hasWon()
   }
 
+  addScore(averageStep, codeLength) {
+    this.score.add(averageStep, codeLength)
+    this.save(false)
+  }
+
   load(data) {
     this.id = data.id
     this.solutions = super.loadIDArray(data.solutions, 'solutions', Solution)
@@ -77,5 +82,15 @@ class LevelScore {
 
   hasWon() {
     return this.won
+  }
+
+  add(averageStep, codeLength) {
+    this.won = true
+    if (this.minStep < 0 || this.minStep > averageStep) {
+      this.minStep = averageStep
+    }
+    if (this.minLength < 0 || this.minLength > codeLength) {
+      this.minLength = codeLength
+    }
   }
 }

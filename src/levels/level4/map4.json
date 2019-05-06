@@ -102,26 +102,8 @@
                  "type":"objective",
                  "visible":true,
                  "width":0,
-                 "x":1106,
-                 "y":596
-                }, 
-                {
-                 "height":0,
-                 "id":2,
-                 "name":"objective",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
-                        }],
-                 "rotation":0,
-                 "type":"objective",
-                 "visible":true,
-                 "width":0,
-                 "x":336,
-                 "y":277
+                 "x":992,
+                 "y":896
                 }, 
                 {
                  "height":0,
@@ -158,24 +140,6 @@
                  "width":0,
                  "x":912,
                  "y":852
-                }, 
-                {
-                 "height":0,
-                 "id":11,
-                 "name":"objective",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
-                        }],
-                 "rotation":0,
-                 "type":"objective",
-                 "visible":true,
-                 "width":0,
-                 "x":1297.33,
-                 "y":436
                 }],
          "opacity":1,
          "type":"objectgroup",

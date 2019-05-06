@@ -230,6 +230,11 @@ export default class extends Phaser.Scene {
     this.runner.pause()
   }
 
+  restartWorldWithRngSeed(rngSeed) {
+    this.restartWorld()
+    this.runner.init(this.world, rngSeed)
+  }
+
   restartWorld() {
     this.runner.pause()
     this.destroySprites()

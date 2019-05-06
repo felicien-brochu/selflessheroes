@@ -39,6 +39,14 @@
         @step="stepOnce"
         @stop="stop" />
 
+      <transition name="slide-down">
+        <win-modal v-if="winModalDisplayed"
+          :code="code"
+          :level="level"
+          :levelSolutions="levelSolutions"
+          @close="handleWinModalClose" />
+      </transition>
+
     </div>
 
     <editor slot="secondPane"
@@ -68,19 +76,19 @@
 <script>
 import _debounce from 'lodash.debounce'
 import _throttle from 'lodash.throttle'
-import World from './level/World'
-import Editor from './level/Editor'
-import RunBar from './level/runbar/RunBar'
-import ResizeSplitPane from './level/rspane/ResizeSplitPane'
-import ModalLayer from './modal/ModalLayer'
-import Modal from './modal/Modal'
-import WinModal from './level/WinModal'
-import Compiler from '../world/ai/compile/Compiler'
-import Decompiler from '../world/ai/compile/Decompiler'
-import Linter from '../world/ai/compile/Linter'
-import storage from '../game/storage/Storage'
-import CodeHistory from '../game/storage/CodeHistory'
-import levelManager from '../levels/levelManager'
+import World from './World'
+import Editor from './Editor'
+import RunBar from './runbar/RunBar'
+import ResizeSplitPane from './rspane/ResizeSplitPane'
+import ModalLayer from '../modal/ModalLayer'
+import Modal from '../modal/Modal'
+import WinModal from './winmodal/WinModal'
+import Compiler from '../../world/ai/compile/Compiler'
+import Decompiler from '../../world/ai/compile/Decompiler'
+import Linter from '../../world/ai/compile/Linter'
+import storage from '../../game/storage/Storage'
+import CodeHistory from '../../game/storage/CodeHistory'
+import levelManager from '../../levels/levelManager'
 
 export default {
   components: {
@@ -88,7 +96,8 @@ export default {
     Editor,
     RunBar,
     ResizeSplitPane,
-    ModalLayer
+    ModalLayer,
+    WinModal
   },
 
   props: {
@@ -101,12 +110,19 @@ export default {
   },
 
   data: function() {
+    let career = storage.get().getCareer(this.careerID)
+    let levelSolutions = career.getLevel(this.levelID)
+    let solution = levelSolutions.getCurrentSolution()
+
     return {
-      code: '',
+      code: solution.codeHistory.getCode(),
       codeSource: 'history',
-      editorType: 'graph',
       level: levelManager.getLevelByID(this.levelID),
-      codeHistory: new CodeHistory(),
+      career: career,
+      levelSolutions: levelSolutions,
+      solution: solution,
+      codeHistory: solution.codeHistory,
+      editorType: solution.editorType,
       compilerConfig: null,
       worldState: {},
       worldReady: false,
@@ -122,9 +138,25 @@ export default {
     }
   },
 
-  created() {
-    this.loadSolution()
+  beforeRouteEnter(to, from, next) {
+    let career = storage.getCareer(Number(to.params.careerID))
+    if (!career) {
+      next({
+        name: 'home'
+      })
+      return
+    }
+    let levelSolutions = career.getLevel(Number(to.params.levelID))
+    if (!levelSolutions) {
+      next({
+        name: 'home'
+      })
+      return
+    }
+    next()
+  },
 
+  created() {
     this.debouncedSetWorldState = _throttle(this.setWorldState, 50, {
       leading: true,
       trailing: true
@@ -145,8 +177,6 @@ export default {
       this.solution.hasOpen = true
       this.solution.save()
     }
-
-    this.showWinModal()
   },
 
   beforeDestroy() {
@@ -176,28 +206,6 @@ export default {
   },
 
   methods: {
-    loadSolution() {
-      this.career = storage.getCareer(this.careerID)
-      if (!this.career) {
-        this.$router.replace({
-          name: 'home'
-        })
-      }
-      else {
-        this.levelSolutions = this.career.getLevel(this.levelID)
-        if (!this.levelSolutions) {
-          this.$router.replace({
-            name: 'home'
-          })
-        }
-        else {
-          this.solution = this.levelSolutions.getCurrentSolution()
-          this.code = this.solution.codeHistory.getCode()
-          this.codeHistory = this.solution.codeHistory
-          this.editorType = this.solution.editorType
-        }
-      }
-    },
 
     handleWorldReady(gameScene, worldState, compilerConfig) {
       this.gameScene = gameScene
@@ -255,21 +263,34 @@ export default {
     showWinModal() {
       if (!this.winModalDisplayed) {
         this.winModalDisplayed = true
-        this.$refs.modalLayer.addModal({
-          component: WinModal,
-          key: 'level_loss_modal',
-          props: {
-            cancelable: false,
-            code: this.code,
-            level: this.level
-          },
-          handlers: {
-            close: () => {
-              this.winModalDisplayed = false
-            }
-          }
-        })
       }
+    },
+
+    handleWinModalClose(e) {
+      this.winModalDisplayed = false
+      if (e.hasWon) {
+        this.solution.addScore(e.averageStep, e.codeLength)
+        this.levelSolutions.addScore(e.averageStep, e.codeLength)
+        if (e.action === 'confirm') {
+          this.goBack()
+        }
+      }
+      else {
+        let failedTest = e.tests.find(test => test.hasLost)
+        this.gameScene.restartWorldWithRngSeed(failedTest.rngSeed)
+        this.showTestFailedModal()
+      }
+    },
+
+    showTestFailedModal() {
+      this.$refs.modalLayer.addModal({
+        component: Modal,
+        key: 'level_test_failed_modal',
+        props: {
+          text: this.$text('level_test_failed_modal'),
+          cancelable: false
+        }
+      })
     },
 
     showLossModal() {
@@ -442,7 +463,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import './level/constants';
+@import './constants';
 
 .level {
     @include no-select;
@@ -496,6 +517,30 @@ export default {
                     left: 0;
                     right: 0;
                     box-shadow: 0 2px 8px 0 rgba(15, 17, 20, 0.7);
+                }
+
+                .win-modal {
+                    pointer-events: all;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 50;
+
+                    &.slide-down-enter-active {
+                        transition: all 0.3s ease;
+                    }
+
+                    &.slide-down-leave-active {
+                        transition: all 0.2s ease;
+                    }
+
+                    &.slide-down-enter,
+                    &.slide-down-leave-to {
+                        opacity: 0.5;
+                        top: 0;
+                        transform: translate(-50%, -100%);
+                    }
                 }
             }
         }

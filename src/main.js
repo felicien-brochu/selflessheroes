@@ -1,14 +1,16 @@
 import Vue from 'vue'
-import Home from './components/Home'
-import LevelList from './components/LevelList'
-import Level from './components/Level'
+import Home from './components/home/Home'
+import LevelList from './components/levellist/LevelList'
+import Level from './components/level/Level'
 import App from './components/App'
 import lang from './lang'
 import VueRouter from 'vue-router'
 import VueHotkey from 'v-hotkey'
 import TextFitDirective from './components/util/TextFitDirective'
+import BBCodeDirective from './components/util/BBCodeDirective'
 
 Vue.directive('text-fit', TextFitDirective)
+Vue.directive('bbcode', BBCodeDirective)
 Vue.use(VueHotkey)
 Vue.use(VueRouter)
 Vue.prototype.$text = lang.text.bind(lang)

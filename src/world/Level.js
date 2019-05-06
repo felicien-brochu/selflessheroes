@@ -17,8 +17,8 @@ export default class Level {
     this.objective = objective || 'no-text'
     this.startingCode = startingCode || ''
     this.startingEditorType = startingEditorType || 'graph'
-    this.maxStep = maxStep || Infinity
-    this.speedTarget = speedTarget || 40
+    this.maxStep = maxStep || 300
+    this.speedTarget = speedTarget || 20
     this.lengthTarget = lengthTarget || 10
   }
 

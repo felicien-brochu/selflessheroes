@@ -24,8 +24,11 @@ export default class WorldRunner {
     return defaultStepInterval / this.speed
   }
 
-  init(world) {
+  init(world, rngSeed) {
     this.world = world
+    if (rngSeed) {
+      this.rngSeed = rngSeed
+    }
     this.rng = seedrandom(this.rngSeed)
   }
 

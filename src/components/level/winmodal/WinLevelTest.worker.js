@@ -1,10 +1,10 @@
-import levelManager from '../../levels/levelManager'
-import World from '../../world/World'
-import Compiler from '../../world/ai/compile/Compiler'
 import seedrandom from 'seedrandom'
 
+import levelManager from '../../../levels/levelManager'
+import World from '../../../world/World'
+import Compiler from '../../../world/ai/compile/Compiler'
+
 self.addEventListener('message', function(e) {
-  console.log('Worker:receive: ')
   const level = levelManager.getLevelByID(e.data.levelID)
   const code = e.data.code
   fetch(`../${level.mapPath}`)
@@ -43,7 +43,6 @@ function testCode(level, mapConfig, code) {
       lossReason: lossReason,
     })
   }
-  console.log("###TIME: ", (Date.now() - t))
   postMessage(tests)
 }
 

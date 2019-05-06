@@ -80,3 +80,32 @@ $node-padding-left: 9px;
 .switch-leave-to {
 	opacity: 0;
 }
+
+.type-undefined {
+	color: #d19a66;
+}
+
+.type-function {
+	color: hsl(207, 82%, 66%);
+}
+
+.type-variable {
+	color: #e06c75;
+}
+
+.type-keyword {
+	color: #c678dd;
+}
+
+.type-literal {
+	color: #d19a66;
+}
+
+.type-operator {
+	color: #56b6c2;
+}
+
+.type-bracket {
+	color: #abb2bf;
+	font-style: italic;
+}

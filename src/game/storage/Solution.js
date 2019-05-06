@@ -26,6 +26,11 @@ export default class Solution extends StorageWrapper {
     this.hasOpen = false
   }
 
+  addScore(averageStep, codeLength) {
+    this.score.add(averageStep, codeLength)
+    this.save(false)
+  }
+
   load(data) {
     this.id = data.id
     this.name = data.name
@@ -65,5 +70,15 @@ class SolutionScore {
 
   hasWon() {
     return this.won
+  }
+
+  add(averageStep, codeLength) {
+    this.won = true
+    if (this.minStep < 0 || this.minStep > averageStep) {
+      this.minStep = averageStep
+    }
+    if (this.minLength < 0 || this.minLength > codeLength) {
+      this.minLength = codeLength
+    }
   }
 }

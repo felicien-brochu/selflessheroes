@@ -12,8 +12,7 @@ const unlockTree = {
   1: [],
   2: [1],
   3: [1],
-  // 4: [2, 'or', 3]
-  4: []
+  4: [2, 'or', 3]
 }
 
 class LevelManager {
