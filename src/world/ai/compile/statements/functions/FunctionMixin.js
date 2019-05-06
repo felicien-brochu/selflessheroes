@@ -13,7 +13,7 @@ const FunctionMixin = {
 
     for (let i = 0; i < this.params.length; i++) {
       if (i > 0) {
-        code += ', '
+        code += ' '
       }
       let param = this.undefinedCode
       if (this.params[i]) {
