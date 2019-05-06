@@ -27,7 +27,7 @@
       class="else-content">
       <div class="node branching-node else-node"
         ref="elseNode">{{
-					$text('type_else')
+					$text('graph_node_else')
 				}}</div>
       <ul :class="{
 				'node-container': true,

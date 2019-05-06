@@ -7,7 +7,7 @@
 	'branching-statement': isBranchingStatement
 }"
   @mousedown="handleMouseDown"
-  @touchstart="handleMouseDown">{{statement.keyword}}</li>
+  @touchstart="handleMouseDown">{{label}}</li>
 </template>
 
 <script>
@@ -31,6 +31,14 @@ export default {
     }
   },
   computed: {
+    label: function() {
+      if (this.isBranchingStatement) {
+        return this.$text(`graph_node_${this.statement.keyword}`)
+      }
+      else {
+        return this.$text(`graph_node_function_${this.statement.keyword}`)
+      }
+    },
     isAssignStatement: function() {
       return this.isOfType(assignStatementType)
     },

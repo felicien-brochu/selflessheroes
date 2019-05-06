@@ -59,7 +59,7 @@
 
   <div v-if="isFirst"
     class="if-label">{{
-			$text('type_if')
+			$text('graph_node_if')
 		}}</div>
 
 </li>

@@ -4,7 +4,7 @@
   @touchstart="handleDragStart">
 
   <div class="function-label">
-    {{$text(`function_${statement.constructor.keyword}`)}}
+    {{$text(`graph_node_function_${statement.constructor.keyword}`)}}
   </div>
 
   <value-select v-for="(param, index) in params"
