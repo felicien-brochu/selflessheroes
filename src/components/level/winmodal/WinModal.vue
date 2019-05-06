@@ -183,7 +183,7 @@ $modal-color: #282c34;
     box-shadow: inset 0 0 30px 10px #00000033, 0 0 30px 10px #000000;
 
     .graph-container {
-        margin-bottom: 40px;
+        margin-bottom: 25px;
     }
 
     .score-container {
@@ -205,7 +205,7 @@ $modal-color: #282c34;
         }
 
         p {
-            margin: 0;
+            margin: 0 0 0 26px;
         }
         .score {
             font-weight: 800;
