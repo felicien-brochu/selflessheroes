@@ -35,8 +35,13 @@ import ObjectTypeLiteral from '../../../../world/ai/compile/statements/literals/
 import TerrainTypeLiteral from '../../../../world/ai/compile/statements/literals/TerrainTypeLiteral'
 import DirectionLiteral from '../../../../world/ai/compile/statements/literals/DirectionLiteral'
 import IntegerLiteral from '../../../../world/ai/compile/statements/literals/IntegerLiteral'
+import ArithmeticOperatorLiteral from '../../../../world/ai/compile/statements/literals/ArithmeticOperatorLiteral'
 import ObjectType from '../../../../world/ObjectType'
 import TerrainType from '../../../../world/TerrainType'
+import {
+  arithmeticOperators
+}
+from './operators'
 
 
 export default {
@@ -83,6 +88,9 @@ export default {
       }
       else if (this.value instanceof TerrainTypeLiteral) {
         return this.value.name
+      }
+      else if (this.value instanceof ArithmeticOperatorLiteral) {
+        return arithmeticOperators[this.value.operator]
       }
     },
     isDirection: function() {

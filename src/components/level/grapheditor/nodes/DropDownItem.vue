@@ -63,6 +63,7 @@ export default {
         background-color: transparentize(white, 0.88);
     }
 
+    &.arithmetic-operator,
     &.boolean-operator,
     &.comparison-operator {
         font-weight: 500;

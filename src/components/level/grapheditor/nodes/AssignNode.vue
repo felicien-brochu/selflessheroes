@@ -18,6 +18,7 @@
     </div>
 
     <value-select v-for="(param, index) in params"
+      class="bright"
       :key="index"
       :types="param.types"
       :value="param.value"

@@ -7,7 +7,8 @@ import JumpStatement from './statements/JumpStatement'
 import AnchorStatement from './statements/AnchorStatement'
 import BooleanExpression from './statements/BooleanExpression'
 import ActionFunctions from './statements/functions/ActionFunctions'
-import DirFunction from './statements/functions/DirFunction'
+import SetFunction from './statements/functions/SetFunction'
+import CalcFunction from './statements/functions/CalcFunction'
 import StepFunction from './statements/functions/StepFunction'
 import StepOnceFunction from './statements/functions/StepOnceFunction'
 import VariableIdentifier from './statements/VariableIdentifier'
@@ -41,7 +42,8 @@ const objectTypeMap = {
 }
 
 const valueFunctionMap = {
-  dir: DirFunction
+  set: SetFunction,
+  calc: CalcFunction
 }
 
 const actionFunctionMap = {
@@ -86,9 +88,7 @@ export default class CompilerConfig {
 
   static getDefault() {
     return new CompilerConfig({
-      excludePrimary: [
-        'assign'
-      ],
+      excludePrimary: [],
       variables: 3,
       terrainTypes: [
         'wall',
@@ -99,7 +99,8 @@ export default class CompilerConfig {
         'objective'
       ],
       valueFunctions: [
-        'dir'
+        'set',
+        'calc'
       ],
       actionFunctions: [
         'step_once'

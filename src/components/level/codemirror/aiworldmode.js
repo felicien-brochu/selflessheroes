@@ -78,7 +78,7 @@ CodeMirror.defineSimpleMode('aiworld', {
       next: 'comment'
     },
     {
-      regex: /[-+\/*=<>!]+|&&|\|\|/,
+      regex: /[-+\/*=<>!%]+|&&|\|\|/,
       token: 'operator'
     },
     {

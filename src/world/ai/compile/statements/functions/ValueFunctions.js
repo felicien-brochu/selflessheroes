@@ -1,5 +1,7 @@
-import DirFunction from './DirFunction'
+import SetFunction from './SetFunction'
+import CalcFunction from './CalcFunction'
 
 export default {
-  dir: DirFunction,
+  set: SetFunction,
+  calc: CalcFunction,
 }

@@ -5,18 +5,18 @@
     @mousedown="handlePopupClick"
     @touchstart="handlePopupTouchStart">
 
-    <button class="minus-button"
+    <button class="minus-button mdi mdi-minus"
       @mousedown="decrement"
-      @touchstart="decrement"><i class="material-icons">remove</i></button>
+      @touchstart="decrement" />
     <!--⯆-->
     <span ref="number"
       class="number">
       {{integer}}
     </span>
 
-    <button class="plus-button"
+    <button class="plus-button mdi mdi-plus"
       @mousedown="increment"
-      @touchstart="increment"><i class="material-icons">add</i></button>
+      @touchstart="increment" />
     <!--⯅-->
 
   </div>
@@ -129,10 +129,8 @@ export default {
             color: inherit;
             text-align: center;
             border-radius: 5px;
-
-            i {
-                line-height: 30px;
-            }
+            line-height: 30px;
+            font-size: 21px;
 
             &:active {
                 background-color: transparentize(white, 0.6);

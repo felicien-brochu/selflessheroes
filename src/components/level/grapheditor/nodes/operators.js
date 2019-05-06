@@ -12,10 +12,10 @@ export const booleanOperators = {
   '||': 'or'
 }
 
-export const algebricOperators = {
+export const arithmeticOperators = {
   '+': '+',
   '-': '−',
-  '*': '✕',
-  '/': '∕',
+  '*': '×',
+  '/': '÷',
   '%': '%'
 }

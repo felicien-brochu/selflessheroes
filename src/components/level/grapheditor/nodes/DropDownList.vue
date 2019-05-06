@@ -4,7 +4,8 @@
     :key="index"
     :class="{
 			'comparison-operator': !!item.comparisonOperator,
-			'boolean-operator': !!item.booleanOperator
+			'boolean-operator': !!item.booleanOperator,
+			'arithmetic-operator': !!item.arithmeticOperator
 		}"
     :value="item.value"
     :label="item.label"
@@ -19,7 +20,8 @@ import Popup from './Popup'
 import DropDownItem from './DropDownItem'
 import {
   comparisonOperators,
-  booleanOperators
+  booleanOperators,
+  arithmeticOperators
 }
 from './operators'
 
@@ -28,6 +30,7 @@ import ObjectTypeLiteral from '../../../../world/ai/compile/statements/literals/
 import TerrainTypeLiteral from '../../../../world/ai/compile/statements/literals/TerrainTypeLiteral'
 import DirectionLiteral from '../../../../world/ai/compile/statements/literals/DirectionLiteral'
 import IntegerLiteral from '../../../../world/ai/compile/statements/literals/IntegerLiteral'
+import ArithmeticOperatorLiteral from '../../../../world/ai/compile/statements/literals/ArithmeticOperatorLiteral'
 import ObjectType from '../../../../world/ObjectType'
 import TerrainType from '../../../../world/TerrainType'
 import {
@@ -38,6 +41,10 @@ import {
   boolOperators
 }
 from '../../../../world/ai/compile/statements/BooleanExpression'
+import {
+  arithmeticOperators as arithOperators
+}
+from '../../../../world/ai/compile/statements/literals/ArithmeticOperatorLiteral'
 
 export default {
   extends: Popup,
@@ -91,6 +98,9 @@ export default {
         }
         else if (type === 'newBooleanOperator') {
           items = items.concat(this.createNewBooleanOperatorItems())
+        }
+        else if (type === ArithmeticOperatorLiteral) {
+          items = items.concat(this.createArithmeticOperatorItems())
         }
       }
       return items
@@ -221,6 +231,29 @@ export default {
           value: operator,
           selected: this.value === operator,
           booleanOperator: true
+        }
+
+        if (!item.selected || items.length === 0) {
+          items.push(item)
+        }
+        else {
+          items.splice(0, 0, item)
+        }
+      }
+      return items
+    },
+
+    createArithmeticOperatorItems() {
+      let items = []
+
+      for (let operator of arithOperators) {
+        let literal = new ArithmeticOperatorLiteral(null)
+        literal.operator = operator
+        let item = {
+          label: arithmeticOperators[operator],
+          value: literal,
+          selected: this.value && this.value.operator === operator,
+          arithmeticOperator: true
         }
 
         if (!item.selected || items.length === 0) {
