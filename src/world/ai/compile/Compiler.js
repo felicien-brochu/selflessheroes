@@ -45,8 +45,14 @@ export default class Compiler {
     for (let i = 0; i < lines.length; i++) {
       let line = lines[i]
       if (!currentStatement) {
-        for (let statementClass of this.config.getPrimaryStatements()) {
+        const primaryStatements = this.config.getPrimaryStatements()
+        for (let statementClass of primaryStatements) {
           if (statementClass.matchLine(lines[i])) {
+            let currentIndex = primaryStatements.indexOf(statementClass)
+            if (!this.config.getAllowedPrimaryStatements().some(st => st === statementClass) &&
+              primaryStatements.some((st, index) => index > currentIndex && st.matchLine(lines[i]))) {
+              continue
+            }
             currentStatement = new statementClass(i, 0)
             break
           }

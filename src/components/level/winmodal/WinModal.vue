@@ -232,6 +232,7 @@ $modal-color: #282c34;
             margin-top: 35px;
 
             button {
+                font-family: 'Roboto', Arial, sans-serif;
                 font-weight: 500;
                 min-width: 100px;
                 font-size: 21px;

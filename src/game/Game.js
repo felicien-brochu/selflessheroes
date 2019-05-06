@@ -23,7 +23,6 @@ export default class extends Phaser.Scene {
       key: 'GameScene'
     })
     this.aiFactory = null
-    this.compilerConfig = CompilerConfig.getDefault()
     this.onSceneReady = null
     this.followHeroIndex = -1
     this.runner = new WorldRunner()
@@ -38,6 +37,7 @@ export default class extends Phaser.Scene {
     if (data) {
       this.onSceneReady = data.onGameSceneReady
       this.level = data.level
+      this.compilerConfig = this.level.buildCompilerConfig()
     }
   }
 

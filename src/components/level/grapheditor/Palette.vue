@@ -20,6 +20,7 @@ from './PaletteStatementType'
 import IfStatement from '../../../world/ai/compile/statements/IfStatement'
 import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'
 import StepFunction from '../../../world/ai/compile/statements/functions/StepFunction'
+import StepOnceFunction from '../../../world/ai/compile/statements/functions/StepOnceFunction'
 import DirFunction from '../../../world/ai/compile/statements/functions/DirFunction'
 
 const branchingStatements = [
@@ -27,7 +28,8 @@ const branchingStatements = [
   JumpStatement
 ]
 const actionFunctions = [
-  StepFunction
+  StepFunction,
+  StepOnceFunction
 ]
 const assignFunctions = [
   DirFunction

@@ -17,7 +17,16 @@ export default class Level1 extends Level {
   }
 
   buildCompilerConfig() {
-    return CompilerConfig.getDefault()
+    return new CompilerConfig({
+      excludePrimary: ['assign'],
+      variables: 0,
+      terrainTypes: ['wall'],
+      objectTypes: ['objective'],
+      valueFunctions: [],
+      actionFunctions: ['step_once'],
+      leftComparisonExpressions: ['direction'],
+      rightComparisonExpressions: ['terrain_type', 'object_type']
+    })
   }
 
   buildRuleset(world) {
