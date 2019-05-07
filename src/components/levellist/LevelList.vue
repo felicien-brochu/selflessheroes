@@ -7,12 +7,13 @@
     @touchstart="goBack" />
 
   <ul class="list">
-    <level-item v-for="level in careerLevels"
-      :key="level.level.id"
+    <level-item v-for="level in levels"
+      :key="level.id"
       :level="level.level"
-      :locked="!level.unlocked"
-      @mousedown.native="selectLevel(level.level.id, level.unlocked)"
-      @touchstart.native="selectLevel(level.level.id, level.unlocked)" />
+      :locked="level.locked"
+      :score="level.score"
+      @mousedown.native="selectLevel(level.id, !level.locked)"
+      @touchstart.native="selectLevel(level.id, !level.locked)" />
   </ul>
 </div>
 </template>
@@ -38,6 +39,24 @@ export default {
     return {
       career: career,
       careerLevels: careerLevels
+    }
+  },
+
+  computed: {
+    levels: function() {
+      return this.careerLevels.map(level => {
+        let score = null
+        let levelSolutions = this.career.getLevel(level.level.id)
+        if (levelSolutions) {
+          score = levelSolutions.score
+        }
+        return {
+          id: level.level.id,
+          level: level.level,
+          locked: !level.unlocked,
+          score: score
+        }
+      })
     }
   },
 

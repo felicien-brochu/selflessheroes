@@ -2,26 +2,29 @@
 <li :class="{
 	'level-item': true,
 	'locked': locked
-}">{{
+}">
+  <h3>{{
 	level.name
-}}</li>
+	}}</h3>
+
+  <score-stars :score="score"
+    :level="level"
+    v-show="!locked" />
+</li>
 </template>
 
 <script>
+import ScoreStars from './ScoreStars'
+
 export default {
-  components: {},
-  props: {
-    'level': {
-      type: Object
-    },
-    'locked': {
-      type: Boolean
-    }
+  components: {
+    ScoreStars
   },
-  computed: {
-    url: function() {
-      return `level/${this.level.id}`
-    }
+
+  props: {
+    'level': Object,
+    'locked': Boolean,
+    'score': Object
   }
 }
 </script>
@@ -31,13 +34,11 @@ export default {
 
 .level-item {
     @include card-box;
-    padding: 49px 60px 30px;
+    padding: 49px 0 30px;
     flex-direction: column;
-    font-size: 60px;
+    align-items: center;
     margin-right: 20px;
     display: flex;
-    text-align: center;
-    font-weight: 500;
 
     &:not(.locked) {
         @include home-card($default-card-color, true);
@@ -46,6 +47,19 @@ export default {
     &.locked {
         @include home-card(#3C404A, false, transparentize(white, 0.7));
         cursor: default;
+    }
+
+    h3 {
+        font-size: 60px;
+        text-align: center;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    .score-stars {
+        margin-top: 40px;
+        width: 155px;
+        height: 84px;
     }
 }
 </style>
