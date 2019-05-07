@@ -6,7 +6,8 @@
 	-ms-user-select: none;
 	user-select: none;
 }
-$default-card-color: #583455;
+// $default-card-color: #583455;
+$default-card-color: #406f96;
 @mixin card-box {
 	box-sizing: border-box;
 	width: 280px;
