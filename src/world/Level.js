@@ -48,6 +48,6 @@ export default class Level {
   }
 
   get tilesetImagePath() {
-    return `${this.getRootPath()}/tileset${this.id}.png`
+    return `${this.getRootPath()}/tileset.png`
   }
 }
