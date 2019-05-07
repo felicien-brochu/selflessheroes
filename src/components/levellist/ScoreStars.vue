@@ -1,5 +1,6 @@
 <template>
 <div class="score-stars">
+  <div class="stars-shadow" />
   <div class="left-star-enabled"
     v-show="hasSpeed" />
   <div class="left-star-disabled"
@@ -50,6 +51,10 @@ export default {
         position: absolute;
     }
 
+    .stars-shadow {
+        background-image: url("../../game/images/stars-shadow.png");
+        opacity: 0.3;
+    }
     .left-star-enabled {
         background-image: url("../../game/images/star-left-enabled.png");
     }

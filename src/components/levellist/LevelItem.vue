@@ -9,7 +9,7 @@
 
   <score-stars :score="score"
     :level="level"
-    v-show="!locked" />
+    v-show="!locked && score && score.won" />
 </li>
 </template>
 
