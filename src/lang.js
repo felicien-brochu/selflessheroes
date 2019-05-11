@@ -8,11 +8,20 @@ const messages = {
     new_game: "new game:",
     new_game_name_placeholder: "Pseudo",
     remove_career_button: "Remove",
-    remove_career_warning: "Are you really sure to delete this game?\nAll progression will be lost.",
+    remove_career_warning: "Are you really sure to delete this profile?\nAll progression will be lost.",
+
+    level_details_ok_button: "ok",
+    level_details_add_solution_button: "new solution",
+    level_details_delete_solution_button: "delete",
+    level_details_rename_solution_button: "rename",
+    level_details_name_input_placeholder: "name",
+    level_details_delete_solution_warning: "Are you really sure to delete this solution?",
 
     modal_confirm_button: "ok",
     modal_cancel_button: "cancel",
     modal_close_button: "close",
+    modal_confirm_yes: "yes",
+    modal_cancel_no: "no",
 
     editor_bar_objective_button: "Objective",
     editor_bar_undo_button: "Undo",
@@ -102,9 +111,18 @@ const messages = {
     remove_career_button: "Supprimer",
     remove_career_warning: "Êtes-vous vraiment sûr de vouloir supprimer cette partie\u00A0?\nToute progression sera perdue.",
 
+    level_details_ok_button: "ok",
+    level_details_add_solution_button: "nouvelle solution",
+    level_details_delete_solution_button: "supprimer",
+    level_details_rename_solution_button: "renommer",
+    level_details_name_input_placeholder: "nom",
+    level_details_delete_solution_warning: "Êtes-vous vraiment sûr de vouloir supprimer cette solution\u00A0?",
+
     modal_confirm_button: "ok",
     modal_cancel_button: "annuler",
     modal_close_button: "fermer",
+    modal_confirm_yes: "oui",
+    modal_cancel_no: "non",
 
     editor_bar_objective_button: "Objectif",
     editor_bar_undo_button: "Annuler",

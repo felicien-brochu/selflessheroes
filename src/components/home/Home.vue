@@ -18,8 +18,8 @@
       <button class="remove-button mdi mdi-minus-circle"
         type="button"
         :title="$text('remove_career_button')"
-        @click="removeCareer(career.id, $event)"
-        @touchstart="removeCareer(career.id, $event)" />
+        @click="deleteCareer(career.id, $event)"
+        @touchstart="deleteCareer(career.id, $event)" />
 
       <div class="career-name"
         v-text-fit="{
@@ -144,7 +144,7 @@ export default {
       }
     },
 
-    removeCareer(careerID, e) {
+    deleteCareer(careerID, e) {
       e.preventDefault()
       this.$refs.modalLayer.addModal({
         component: Modal,
@@ -152,7 +152,9 @@ export default {
         props: {
           text: this.$text('remove_career_warning'),
           cancelable: true,
-          confirmValue: careerID
+          confirmValue: careerID,
+          confirmLabel: this.$text('modal_confirm_yes'),
+          cancelLabel: this.$text('modal_cancel_no')
         },
         handlers: {
           confirm: this.confirmRemoveCareer
@@ -162,7 +164,7 @@ export default {
 
     confirmRemoveCareer(careerID) {
       console.log("REMOVE career", careerID)
-      storage.removeCareer(careerID)
+      storage.deleteCareer(careerID)
     }
   }
 }

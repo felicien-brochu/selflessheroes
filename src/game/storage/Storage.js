@@ -27,11 +27,11 @@ export class Storage extends StorageWrapper {
     return this.careers.find(c => c.get().id === id)
   }
 
-  removeCareer(careerID) {
+  deleteCareer(careerID) {
     let career = this.getCareer(careerID)
     career.clear()
     this.careers.splice(this.careers.indexOf(career), 1)
-    this.save()
+    this.save(false)
   }
 
   load(data) {
@@ -51,7 +51,7 @@ export class Storage extends StorageWrapper {
 
 const mainStorage = new Storage('mainStorage')
 if (!mainStorage.get()) {
-  mainStorage.save()
+  mainStorage.save(false)
 }
 
 export default mainStorage

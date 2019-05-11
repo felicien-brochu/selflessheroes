@@ -12,20 +12,31 @@
       :level="level.level"
       :locked="level.locked"
       :score="level.score"
+      :class="{'selected': level.id === selectedID}"
       @mousedown.native="selectLevel(level.id, !level.locked)"
-      @touchstart.native="selectLevel(level.id, !level.locked)" />
+      @touchstart.native="$event.preventDefault(); selectLevel(level.id, !level.locked)" />
   </ul>
+
+  <transition name="fade-slide"
+    appear>
+    <level-details v-if="selectedID >= 0"
+      :levelID="selectedID"
+      :career="career"
+      @close="selectedID = -1" />
+  </transition>
 </div>
 </template>
 
 <script>
 import levelManager from '../../levels/levelManager'
 import LevelItem from './LevelItem'
+import LevelDetails from './LevelDetails'
 import storage from '../../game/storage/Storage'
 
 export default {
   components: {
-    LevelItem
+    LevelItem,
+    LevelDetails
   },
   props: {
     careerID: {
@@ -38,7 +49,8 @@ export default {
     let careerLevels = levelManager.getCareerList(career)
     return {
       career: career,
-      careerLevels: careerLevels
+      careerLevels: careerLevels,
+      selectedID: -1
     }
   },
 
@@ -73,14 +85,7 @@ export default {
   methods: {
     selectLevel(id, unlocked) {
       if (unlocked) {
-        let level = this.career.getLevel(id)
-        this.$router.push({
-          name: 'level',
-          params: {
-            careerID: this.careerID,
-            levelID: id
-          }
-        })
+        this.selectedID = id
       }
     },
 
@@ -129,5 +134,38 @@ export default {
         align-items: flex-start;
         align-content: flex-start;
     }
+
+    .level-details {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+
+        &.fade-slide-enter-active {
+            transition: opacity 0.25s ease-out;
+
+            .level-details-modal {
+                transition: all 0.25s ease-out;
+            }
+        }
+
+        &.fade-slide-leave-active {
+            transition: opacity 0.2s ease-out;
+            .level-details-modal {
+                transition: all 0.2s ease-out;
+            }
+        }
+
+        &.fade-slide-enter,
+        &.fade-slide-leave-to {
+            opacity: 0;
+            .level-details-modal {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-50px);
+            }
+        }
+    }
+
 }
 </style>

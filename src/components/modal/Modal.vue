@@ -20,18 +20,18 @@
 
   <div class="button-container">
     <button type="submit"
-      :title="$text('modal_confirm_button')"
+      :title="confirmButtonLabel"
       @click="confirm"
       @touchstart="confirm">{{
-				$text('modal_confirm_button')
+				confirmButtonLabel
 		}}</button>
 
     <button v-if="cancelable"
       type="button"
-      :title="$text('modal_cancel_button')"
+      :title="cancelButtonLabel"
       @click="cancel"
       @touchstart="cancel">{{
-				$text('modal_cancel_button')
+				cancelButtonLabel
 		}}</button>
   </div>
 </div>
@@ -58,7 +58,15 @@ export default {
     'frameHeight': {
       type: Number,
       default: window.innerHeight
-    }
+    },
+    'confirmLabel': {
+      type: String,
+      default: ''
+    },
+    'cancelLabel': {
+      type: String,
+      default: ''
+    },
   },
 
   computed: {
@@ -69,6 +77,12 @@ export default {
     },
     maxHeight: function() {
       return this.frameHeight
+    },
+    confirmButtonLabel: function() {
+      return this.confirmLabel.length > 0 ? this.confirmLabel : this.$text('modal_confirm_button')
+    },
+    cancelButtonLabel: function() {
+      return this.cancelLabel.length > 0 ? this.cancelLabel : this.$text('modal_cancel_button')
     }
   },
 

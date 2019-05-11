@@ -22,13 +22,27 @@ export default class LevelSolutions extends StorageWrapper {
   createDefaultSolution(levelConfig) {
     const id = StorageWrapper.getAvailableID(this.solutions)
     let solution = new Solution(`${this.storageKey}.solutions[${id}]`)
-    solution.set(id, null, levelConfig.startingCode, levelConfig.startingEditorType)
+    solution.set(id, `solution${this.solutions.length + 1}`, levelConfig.startingCode, levelConfig.startingEditorType)
     solution.save(false)
     this.solutions.push(solution)
     this.solutionID = id
     this.save(false)
 
     return solution
+  }
+
+  deleteSolution(solutionID) {
+    let solution = this.getSolution(solutionID)
+    solution.clear()
+    this.solutions.splice(this.solutions.indexOf(solution), 1)
+    if (solutionID === this.solutionID) {
+      if (this.solutions.length === 0) {
+        this.solutionID = NaN
+      } else {
+        this.solutionID = this.solutions[0].get().id
+      }
+    }
+    this.save()
   }
 
   getCurrentSolution() {

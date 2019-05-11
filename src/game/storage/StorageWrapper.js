@@ -32,15 +32,16 @@ export default class StorageWrapper {
 
     for (let id of ids) {
       let storageKey = `${this.storageKey}.${arrayKey}[${id}]`
-      storages.push(new storageClass(storageKey))
+      let storage = new storageClass(storageKey)
+      storages.push(storage.get())
     }
 
     return storages
   }
 
-  save(deep = true) {
+  save(deep = false) {
     window.localStorage.setItem(this.storageKey, JSON.stringify(this))
-
+    console.debug("STORAGE SAVE: ", this.id, this.constructor.name, JSON.stringify(this, null, '\t'))
     if (deep) {
       for (let saveableObject of this.getSaveables()) {
         saveableObject.save()
@@ -51,7 +52,7 @@ export default class StorageWrapper {
   clear(deep = true) {
     if (deep) {
       for (let saveableObject of this.getSaveables()) {
-        saveableObject.clear(true)
+        saveableObject.get().clear(true)
       }
     }
     window.localStorage.removeItem(this.storageKey)
@@ -69,12 +70,14 @@ export default class StorageWrapper {
     let saveables = []
     for (let key in this) {
       let prop = this[key]
-      if (prop instanceof StorageWrapper) {
-        saveables.push(prop)
-      } else if (Array.isArray(prop)) {
-        for (let item of prop) {
-          if (item instanceof StorageWrapper) {
-            saveables.push(item)
+      if (prop) {
+        if (prop instanceof StorageWrapper) {
+          saveables.push(prop)
+        } else if (Array.isArray(prop)) {
+          for (let item of prop) {
+            if (item && item instanceof StorageWrapper) {
+              saveables.push(item)
+            }
           }
         }
       }
