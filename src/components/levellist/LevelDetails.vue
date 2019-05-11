@@ -7,7 +7,37 @@
 
   <div class="level-details-modal">
 
-    <h2>{{level.name}}</h2>
+    <div class="level-score">
+      <div class="level-name">
+        <score-stars :score="levelSolutions.score"
+          :level="level" />
+
+        <div class="level-label">{{level.name}}</div>
+      </div>
+
+      <div class="score speed-score">
+        <i class="mdi mdi-clock-fast" />
+        <template v-if="levelSolutions.score.minStep >= 0">
+          <span :class="{
+				'score-number': true,
+				'won': levelSolutions.score.minStep <= level.speedTarget
+				}">{{levelSolutions.score.minStep}}</span><span class="score-target">/{{level.speedTarget}}</span>
+        </template>
+        <i v-else
+          class="mdi mdi-infinity" />
+      </div>
+      <div class="score length-score">
+        <i class="mdi mdi-format-list-numbered" />
+        <template v-if="levelSolutions.score.minLength >= 0">
+          <span :class="{
+				'score-number': true,
+				'won': levelSolutions.score.minLength <= level.lengthTarget
+			}">{{levelSolutions.score.minLength}}</span><span class="score-target">/{{level.lengthTarget}}</span>
+        </template>
+        <i v-else
+          class="mdi mdi-infinity" />
+      </div>
+    </div>
 
     <button class="close-button mdi mdi-close"
       type="button"
@@ -16,10 +46,6 @@
       @touchstart="$emit('close')" />
 
     <div class="solution-table">
-      <div class="table-header">
-        <i class="mdi mdi-clock-fast" />
-        <i class="mdi mdi-format-list-numbered" />
-      </div>
 
       <ul class="solution-list">
         <li v-for="solution in solutions"
@@ -48,7 +74,7 @@
                 class="mdi mdi-delete"
                 :title="$text('level_details_delete_solution_button')"
                 @mousedown="deleteSolution(solution.id, $event)"
-                @touchstart="deleteSolution(solution.id, $event)" />
+                @touchstart="deleteSolution(solution.id, $event); $event.preventDefault()" />
 
             </template>
 
@@ -90,7 +116,7 @@
             <button v-if="solution.id === levelSolutions.solutionID"
               type="button"
               class="mdi mdi-arrow-right-circle"
-              :title="$text('level_details_ok_button')"
+              :title="$text('level_details_edit_button')"
               @mousedown="editLevelSolution"
               @touchstart="editLevelSolution" />
           </div>
@@ -107,11 +133,17 @@
 
     <div class="button-container">
       <button type="button"
-        :title="$text('level_details_ok_button')"
+        :title="$text('level_details_back_button')"
+        @mousedown="$emit('close')"
+        @touchstart="$emit('close')"><i class="mdi mdi-chevron-left" />{{
+				$text('level_details_back_button')
+		}}</button>
+      <button type="button"
+        :title="$text('level_details_edit_button')"
         @mousedown="editLevelSolution"
         @touchstart="editLevelSolution">{{
-				$text('level_details_ok_button')
-		}}</button>
+				$text('level_details_edit_button')
+		}}<i class="mdi mdi-chevron-right" /></button>
     </div>
   </div>
 </div>
@@ -244,7 +276,7 @@ $level-details-color: #3C404A;
         font-family: 'Roboto', Arial, sans-serif;
         font-size: 20px;
         color: white;
-        padding: 47px 50px 30px;
+        padding: 37px 50px 30px;
         box-sizing: border-box;
         background: $level-details-color;
         border-radius: 12px;
@@ -262,11 +294,6 @@ $level-details-color: #3C404A;
             color: white;
         }
 
-        h2 {
-            margin: 0;
-            font-size: 30px;
-        }
-
         .close-button {
             position: absolute;
             top: 0;
@@ -280,24 +307,67 @@ $level-details-color: #3C404A;
             padding: 0;
         }
 
+        .level-score {
+            display: flex;
+            justify-content: flex-end;
+            line-height: 37px;
+            padding-right: 26px + 10px;
+            margin-bottom: 16px;
+
+            .level-name {
+                display: flex;
+                flex-grow: 1;
+                .score-stars {
+                    width: 64px;
+                }
+
+                .level-label {
+                    font-weight: bold;
+                    font-size: 30px;
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        .score {
+            width: 130px;
+            text-align: center;
+            flex-shrink: 0;
+
+            i {
+                font-size: 24px;
+                margin-right: 5px;
+                opacity: 0.5;
+            }
+
+            .score-number {
+                font-size: 24px;
+                font-weight: 800;
+                padding: 0 5px 0 0;
+
+                &.won {
+                    color: #86b36d;
+                }
+                &:not(.won) {
+                    opacity: 0.8;
+                }
+            }
+
+            .score-target {
+                opacity: 0.5;
+            }
+
+            .mdi-infinity {
+                opacity: 0.5;
+            }
+        }
+
         .solution-table {
             position: relative;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             min-height: 0;
-
-            .table-header {
-                display: flex;
-                padding: 0 10px + 26px;
-                justify-content: flex-end;
-
-                i {
-                    width: 100px;
-                    text-align: center;
-                    font-size: 27px;
-                }
-            }
 
             .solution-list {
                 $selected-color: #568AF2;
@@ -327,6 +397,10 @@ $level-details-color: #3C404A;
 
                     &:nth-child(2n+1) {
                         background: lighten($table-color, 2%);
+                    }
+
+                    &:last-child {
+                        margin-bottom: 60px;
                     }
 
                     .score-stars {
@@ -368,31 +442,6 @@ $level-details-color: #3C404A;
                         }
                     }
 
-                    .score {
-                        width: 100px;
-                        text-align: center;
-                        flex-shrink: 0;
-
-                        .score-number {
-                            font-size: 24px;
-                            font-weight: 800;
-                            padding: 0 5px 0 0;
-
-                            &.won {
-                                color: #86b36d;
-                            }
-                        }
-
-                        .score-target {
-                            opacity: 0.5;
-                        }
-
-                        .mdi-infinity {
-                            opacity: 0.5;
-                            padding: 0 30px;
-                        }
-                    }
-
                     .edit-button-container {
                         width: 26px;
                         button {
@@ -424,7 +473,7 @@ $level-details-color: #3C404A;
             min-width: 300px;
             display: flex;
             justify-content: space-evenly;
-            margin-top: 35px;
+            margin-top: 24px;
 
             button {
                 font-family: 'Roboto', Arial, sans-serif;
@@ -440,6 +489,17 @@ $level-details-color: #3C404A;
 
                 &:hover:not(:active) {
                     background-color: lighten($level-details-color, 12%);
+                }
+
+                i {
+                    vertical-align: middle;
+                }
+
+                &:first-child {
+                    padding: 9px 20px 9px 12px;
+                }
+                &:last-child {
+                    padding: 9px 12px 9px 20px;
                 }
             }
         }

@@ -10,7 +10,8 @@ const messages = {
     remove_career_button: "Remove",
     remove_career_warning: "Are you really sure to delete this profile?\nAll progression will be lost.",
 
-    level_details_ok_button: "ok",
+    level_details_edit_button: "edit",
+    level_details_back_button: "back",
     level_details_add_solution_button: "new solution",
     level_details_delete_solution_button: "delete",
     level_details_rename_solution_button: "rename",
@@ -111,7 +112,8 @@ const messages = {
     remove_career_button: "Supprimer",
     remove_career_warning: "Êtes-vous vraiment sûr de vouloir supprimer cette partie\u00A0?\nToute progression sera perdue.",
 
-    level_details_ok_button: "ok",
+    level_details_edit_button: "éditer",
+    level_details_back_button: "retour",
     level_details_add_solution_button: "nouvelle solution",
     level_details_delete_solution_button: "supprimer",
     level_details_rename_solution_button: "renommer",
@@ -192,7 +194,7 @@ const messages = {
     win_modal_code_length: "longueur:\u00A0%%score${codeLength}%%\u00A0/{lengthTarget}",
     win_modal_prior_code_length: "votre solution la plus courte faisait %%score${minLength}%% lignes",
     win_modal_ok_button: "ok",
-    win_modal_continue_edit_button: "continuer",
+    win_modal_continue_edit_button: "améliorer",
   }
 }
 
