@@ -265,7 +265,7 @@ export default {
     @include node-button;
     color: inherit;
     height: 26px;
-    line-height: 26px;
+    line-height: 1;
     font-size: 20px;
     font-weight: 400;
     cursor: default;
