@@ -91,6 +91,17 @@ const messages = {
     graph_node_function_set: "set",
     graph_node_function_calc: "calc",
 
+    drop_down_list_direction: "direction",
+    drop_down_list_number: "number",
+
+    drop_down_list_object_type_hero: "someone",
+    drop_down_list_object_type_objective: "switch",
+
+    drop_down_list_terrain_type_wall: "wall",
+    drop_down_list_terrain_type_floor: "floor",
+    drop_down_list_terrain_type_hole: "hole",
+    drop_down_list_terrain_type_void: "nothing",
+
 
     loss_reason_too_many_steps: "Your program takes too much time!",
     loss_reason_all_hero_ended: "Why do you stop now?\nThere is still a lot of work left!",
@@ -182,6 +193,17 @@ const messages = {
     graph_node_function_step: "va",
     graph_node_function_set: "init",
     graph_node_function_calc: "calc",
+
+    drop_down_list_direction: "direction",
+    drop_down_list_number: "nombre",
+
+    drop_down_list_object_type_hero: "quelqu'un",
+    drop_down_list_object_type_objective: "interrupteur",
+
+    drop_down_list_terrain_type_wall: "mur",
+    drop_down_list_terrain_type_floor: "sol",
+    drop_down_list_terrain_type_hole: "trou",
+    drop_down_list_terrain_type_void: "vide",
 
 
 

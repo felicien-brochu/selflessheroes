@@ -166,8 +166,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../constants';
-
 .svg-defs {
     position: absolute;
     width: 0;

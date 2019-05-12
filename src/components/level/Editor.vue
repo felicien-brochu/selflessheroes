@@ -207,8 +207,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import './constants';
-
 .editors-container {
     height: 100vh;
     display: flex;

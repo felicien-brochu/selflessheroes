@@ -92,7 +92,9 @@ export default class CompilerConfig {
       variables: 3,
       terrainTypes: [
         'wall',
-        'hole'
+        'hole',
+        'floor',
+        'void'
       ],
       objectTypes: [
         'hero',

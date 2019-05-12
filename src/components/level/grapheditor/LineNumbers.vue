@@ -264,7 +264,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../constants';
+@import '../mixins';
 
 .svg-defs {
     position: absolute;

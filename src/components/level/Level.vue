@@ -464,7 +464,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import './constants';
+@import './mixins';
 
 .level {
     @include no-select;

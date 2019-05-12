@@ -9,6 +9,7 @@
 		}"
     :value="item.value"
     :label="item.label"
+    :icon="item.icon"
     :selected="item.selected"
     @select-value="handleItemSelectValue" />
 </ul>
@@ -133,7 +134,8 @@ export default {
 
     createDirectionItem() {
       return {
-        label: 'direction',
+        label: this.$text('drop_down_list_direction'),
+        icon: 'direction',
         value: DirectionLiteral,
         selected: this.value instanceof DirectionLiteral
       }
@@ -141,7 +143,8 @@ export default {
 
     createIntegerLiteralItem() {
       return {
-        label: 'number',
+        label: this.$text('drop_down_list_number'),
+        icon: 'number',
         value: IntegerLiteral,
         selected: this.value instanceof IntegerLiteral
       }
@@ -154,6 +157,7 @@ export default {
         variable.name = identifier
         items.push({
           label: variable.name,
+          icon: 'variable',
           value: variable,
           selected: this.value instanceof VariableIdentifier && this.value.name === variable.name
         })
@@ -168,7 +172,8 @@ export default {
         literal.name = objectType
         literal.value = ObjectType[objectType]
         items.push({
-          label: literal.name,
+          label: this.$text(`drop_down_list_object_type_${literal.name}`),
+          icon: literal.name,
           value: literal,
           selected: this.value instanceof ObjectTypeLiteral && this.value.value === literal.value
         })
@@ -183,7 +188,8 @@ export default {
         literal.name = terrainType
         literal.value = TerrainType[terrainType]
         items.push({
-          label: literal.name,
+          label: this.$text(`drop_down_list_terrain_type_${literal.name}`),
+          icon: literal.name,
           value: literal,
           selected: this.value instanceof TerrainTypeLiteral && this.value.value === literal.value
         })
@@ -272,7 +278,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../constants';
+@import '../../mixins';
 
 .drop-down-list {
     transform-origin: top;

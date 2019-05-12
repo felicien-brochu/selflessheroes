@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../constants';
+@import '../../mixins';
 
 .popup {
     @include node-shadow;

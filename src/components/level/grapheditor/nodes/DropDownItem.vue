@@ -4,9 +4,11 @@
 	'selected': selected
 	}"
   @mousedown="$emit('select-value', value)">
-  <img v-if="icon"
-    class="drop-down-item-icon"
-    :src="icon"
+  <i v-if="icon"
+    :class="[
+				'drop-down-item-icon',
+				`icon-${icon}`
+			]"
     :alt="label" />
   <span class="drop-down-item-label">{{ label }}</span>
 </li>
@@ -32,16 +34,12 @@ export default {
   },
   data: function() {
     return {}
-  },
-
-  mounted() {
-
   }
 }
 </script>
 
 <style lang="scss">
-@import '../../constants';
+@import '../../mixins';
 
 .drop-down-item {
     @include no-select;
@@ -54,7 +52,7 @@ export default {
     font-size: 18px;
     line-height: 26px;
     font-weight: 400;
-    padding: 4px 9px 4px 10px;
+    padding: 4px 9px 4px 6px;
 
     &:nth-child(odd) {
         background-color: transparentize(white, 0.96);
@@ -77,6 +75,15 @@ export default {
     }
     &.boolean-operator {
         font-size: 20px;
+    }
+
+    i {
+        width: 22px;
+        height: 22px;
+        margin-right: 5px;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 }
 </style>

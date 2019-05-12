@@ -182,7 +182,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../constants';
+@import '../../mixins';
 
 .condition-node {
     position: relative;

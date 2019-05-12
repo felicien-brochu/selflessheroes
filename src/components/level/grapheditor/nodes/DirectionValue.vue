@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../constants';
+@import '../../mixins';
 
 .direction-values {
     display: flex;

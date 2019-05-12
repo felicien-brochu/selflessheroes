@@ -1,0 +1,56 @@
+@import '../mixins';
+$assign-color: #c4a14e;
+$action-color: #779666;
+$branching-color: #6991b2;
+$text-darken: 38%;
+$line-margin: 12px;
+$node-line-height: 34px;
+$node-padding-top: 0;
+$node-padding-right: 19px;
+$node-padding-bottom: 0;
+$node-padding-left: 9px;
+@mixin node-color($background-color) {
+	background-color: $background-color;
+	color: darken($background-color, $text-darken);
+}
+@mixin node-shadow {
+	box-shadow: -2px 2px 6px 0 rgba(#0f1114, 0.8);
+}
+@mixin animate-margin {
+	transition-property: margin;
+	transition-duration: 100ms;
+	transition-timing-function: ease;
+}
+@mixin node-button {
+	border-radius: 3px;
+	border: none;
+	font-family: inherit;
+	color: inherit;
+	padding: 0;
+}
+
+%node {
+	@include no-select;
+	@include node-shadow;
+	padding: $node-padding-top $node-padding-right $node-padding-bottom $node-padding-left;
+	border-radius: 4px;
+	display: inline;
+	font-size: 21px;
+	height: $node-line-height;
+	line-height: $node-line-height;
+	font-weight: 500;
+}
+
+%node-list {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	& > li {
+		margin-bottom: $line-margin;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../constants';
+@import '../mixins';
 
 .palette-statement {
     @extend %node;

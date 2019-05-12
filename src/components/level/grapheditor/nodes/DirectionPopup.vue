@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../constants';
+@import '../../mixins';
 
 .direction-popup {
     border-radius: 5px;

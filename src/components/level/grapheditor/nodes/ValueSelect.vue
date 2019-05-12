@@ -16,11 +16,16 @@
     <div v-else-if="isInteger"
       class="label"
       @mousedown="handleEditInteger"
-      @touchstart="handleEditInteger">{{label}}</div>
+      @touchstart="handleEditInteger">
+      <div class="label-text">{{label}}</div>
+    </div>
     <div v-else
       class="label"
       @mousedown="handleDropDown"
-      @touchstart="handleDropDown">{{label}}</div>
+      @touchstart="handleDropDown"><i v-if="icon.length > 0"
+        :class="`icon-${icon}`" />
+      <div class="label-text">{{label}}</div>
+    </div>
   </div>
   <i v-if="hasDropDown"
     class="button-icon mdi mdi-menu-down" />
@@ -84,14 +89,24 @@ export default {
         return this.value.name
       }
       else if (this.value instanceof ObjectTypeLiteral) {
-        return this.value.name
+        return this.$text(`drop_down_list_object_type_${this.value.name}`)
       }
       else if (this.value instanceof TerrainTypeLiteral) {
-        return this.value.name
+        return this.$text(`drop_down_list_terrain_type_${this.value.name}`)
       }
       else if (this.value instanceof ArithmeticOperatorLiteral) {
         return arithmeticOperators[this.value.operator]
       }
+    },
+    icon: function() {
+      let icon = ''
+      if (this.value instanceof VariableIdentifier) {
+        icon = 'variable'
+      }
+      else if (this.value instanceof ObjectTypeLiteral || this.value instanceof TerrainTypeLiteral) {
+        icon = this.value.name
+      }
+      return icon
     },
     isDirection: function() {
       return this.value instanceof DirectionLiteral ||
@@ -241,7 +256,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../constants';
+@import '../../mixins';
 
 .value-select {
     align-items: center;
@@ -289,7 +304,23 @@ export default {
         .label {
             padding-left: 5px;
             height: 26px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+
+            .label-text {
+                text-align: center;
+                flex-grow: 1;
+            }
+
+            i {
+                width: 22px;
+                height: 22px;
+                margin-right: 5px;
+                display: inline-block;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
         }
     }
 
