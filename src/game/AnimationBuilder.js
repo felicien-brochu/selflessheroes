@@ -206,6 +206,14 @@ const anims = {
   wizzard_m_hit: {
     start: 8,
     end: 8
+  },
+  fire: {
+    start: 0,
+    end: 7
+  },
+  explosion: {
+    start: 0,
+    end: 8
   }
 }
 
