@@ -58,21 +58,18 @@ export default class World {
   step(rng) {
     this.steps++
     try {
+      let heroActions = []
       for (var i = 0; i < this.heroes.length; i++) {
         let hero = this.heroes[i]
         let action = hero.step(rng)
-        if (action) {
-          if (action.type === 'StepAction' && !this.collides(hero, action.direction)) {
-            hero.move(action.direction)
 
-            for (let mySwitch of this.switches) {
-              if (hero.overlaps(mySwitch)) {
-                mySwitch.enable()
-              }
-            }
-          }
-        }
+        heroActions.push({
+          hero: hero,
+          action: action
+        })
       }
+
+      this.resolveHeroActions(heroActions)
     } catch (e) {
       console.error(e)
       this.pause()
@@ -83,6 +80,39 @@ export default class World {
       this.declareWin()
     } else if (this.ruleset.hasLost()) {
       this.declareLoss()
+    }
+  }
+
+  resolveHeroActions(heroActions) {
+    for (let {
+        hero,
+        action
+      } of heroActions) {
+
+      if (action) {
+        if (action.type === 'StepAction') {
+          if (!this.collides(hero, action.direction)) {
+            hero.move(action.direction)
+
+            for (let mySwitch of this.switches) {
+              if (hero.overlaps(mySwitch)) {
+                mySwitch.enable()
+              }
+            }
+          }
+        } else if (action.type === 'FireBallAction') {
+          this.resolveFireBallAction(hero, action)
+        }
+      }
+    }
+  }
+
+  resolveFireBallAction(hero, action) {
+    let x = hero.x + action.direction.dx
+    let y = hero.y + action.direction.dy
+    let bonfires = this.bonfires.filter(b => b.x === x && b.y === y)
+    if (bonfires.length > 0) {
+      bonfires[0].enable()
     }
   }
 

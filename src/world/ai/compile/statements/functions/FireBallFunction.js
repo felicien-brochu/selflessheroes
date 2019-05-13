@@ -2,7 +2,7 @@ import ActionFunction from './ActionFunction'
 import DirectionLiteral from '../literals/DirectionLiteral'
 import ExpressionTypes from '../ExpressionTypes'
 import Direction from '../../../../Direction'
-import StepAction from '../../../../actions/StepAction'
+import FireBallAction from '../../../../actions/FireBallAction'
 import {
   MismatchStatementException,
   InvalidNumberOfParamsException,
@@ -13,11 +13,11 @@ import {
   extractParams
 } from '../../utils'
 
-const identifier = 'step'
+const identifier = 'fireball'
 
-export default class StepOnceFunction extends ActionFunction {
+export default class FireBallFunction extends ActionFunction {
   constructor(parent, line, column) {
-    super('StepOnceFunction', parent, line, column)
+    super('FireBallFunction', parent, line, column)
   }
 
   getParamTypes() {
@@ -34,9 +34,9 @@ export default class StepOnceFunction extends ActionFunction {
     super.compile(config, context)
 
     let joinedCode = this.code.join(' ')
-    let res = joinedCode.match(StepOnceFunction.correctCodeRegExp)
+    let res = joinedCode.match(FireBallFunction.correctCodeRegExp)
     if (!res) {
-      throw new MismatchStatementException('you try to compile as a step function a statement which is not one', this, {
+      throw new MismatchStatementException('you try to compile as a fireball function a statement which is not one', this, {
         template: 'exception_mismatch_function_template',
         values: {
           keyword: {
@@ -50,7 +50,7 @@ export default class StepOnceFunction extends ActionFunction {
     let params = extractParams(paramsJoinedCode, this.code, this.line, this.column)
 
     if (params.length !== 1) {
-      throw new InvalidNumberOfParamsException('\'step\' function requires exactly 1 direction parameter', this, {
+      throw new InvalidNumberOfParamsException('\'fireball\' function requires exactly 1 direction parameter', this, {
         template: 'exception_invalid_params_one_dir_template',
         values: {
           keyword: {
@@ -90,12 +90,12 @@ export default class StepOnceFunction extends ActionFunction {
       step: true,
       complete: true,
       goto: null,
-      action: new StepAction(this.params[0].value)
+      action: new FireBallAction(this.params[0].value)
     }
   }
 }
 
-StepOnceFunction.keyword = 'step'
-StepOnceFunction.startLineRegExp = /^\s*(step\s*\((.*)\))\s*/
-StepOnceFunction.correctCodeRegExp = /^\s*(step\s*\((.*)\))\s*$/
-StepOnceFunction.codeRegExp = /^\s*(step\s*\((.*)\)).*$/
+FireBallFunction.keyword = 'fireball'
+FireBallFunction.startLineRegExp = /^\s*(fireball\s*\((.*)\))\s*/
+FireBallFunction.correctCodeRegExp = /^\s*(fireball\s*\((.*)\))\s*$/
+FireBallFunction.codeRegExp = /^\s*(fireball\s*\((.*)\)).*$/

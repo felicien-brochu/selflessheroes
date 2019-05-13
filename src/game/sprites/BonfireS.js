@@ -20,7 +20,7 @@ export default class BonfireS extends Phaser.GameObjects.Sprite {
   }
 
   playAnimation() {
-    let animation = !this.bonfire.isEnabled() ? 'bonfire_on' : 'bonfire_off'
+    let animation = this.bonfire.isEnabled() ? 'bonfire_on' : 'bonfire_off'
     this.play(animation)
   }
 }

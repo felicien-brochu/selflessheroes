@@ -9,8 +9,9 @@ import BooleanExpression from './statements/BooleanExpression'
 import ActionFunctions from './statements/functions/ActionFunctions'
 import SetFunction from './statements/functions/SetFunction'
 import CalcFunction from './statements/functions/CalcFunction'
-import StepFunction from './statements/functions/StepFunction'
 import StepOnceFunction from './statements/functions/StepOnceFunction'
+import StepFunction from './statements/functions/StepFunction'
+import FireBallFunction from './statements/functions/FireBallFunction'
 import VariableIdentifier from './statements/VariableIdentifier'
 import ObjectTypeLiteral from './statements/literals/ObjectTypeLiteral'
 import TerrainTypeLiteral from './statements/literals/TerrainTypeLiteral'
@@ -49,7 +50,8 @@ const valueFunctionMap = {
 
 const actionFunctionMap = {
   step_once: StepOnceFunction,
-  step: StepFunction
+  step: StepFunction,
+  fireball: FireBallFunction
 }
 
 const comparisonExpressionMap = {
@@ -107,7 +109,8 @@ export default class CompilerConfig {
         'calc'
       ],
       actionFunctions: [
-        'step'
+        'step',
+        'fireball'
       ],
       leftComparisonExpressions: [
         'direction',

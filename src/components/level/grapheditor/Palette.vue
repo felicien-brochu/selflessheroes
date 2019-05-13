@@ -19,26 +19,18 @@ from './PaletteStatementType'
 
 import IfStatement from '../../../world/ai/compile/statements/IfStatement'
 import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'
-import StepFunction from '../../../world/ai/compile/statements/functions/StepFunction'
-import StepOnceFunction from '../../../world/ai/compile/statements/functions/StepOnceFunction'
-import SetFunction from '../../../world/ai/compile/statements/functions/SetFunction'
-import CalcFunction from '../../../world/ai/compile/statements/functions/CalcFunction'
+import ActionFunctions from '../../../world/ai/compile/statements/functions/ActionFunctions'
+import ValueFunctions from '../../../world/ai/compile/statements/functions/ValueFunctions'
 
 const branchingStatements = [
   IfStatement,
   JumpStatement
 ]
-const actionFunctions = [
-  StepFunction,
-  StepOnceFunction
-]
-const assignFunctions = [
-  SetFunction,
-  CalcFunction
-]
+const actionFunctions = Object.values(ActionFunctions)
+const valueFunctions = Object.values(ValueFunctions)
 const paletteStatements = [
   ...branchingStatements,
-  ...assignFunctions,
+  ...valueFunctions,
   ...actionFunctions
 ]
 
@@ -78,7 +70,7 @@ export default {
           clazz: statementClass
         }
       })
-      let assign = statementClasses.filter(statementClass => assignFunctions.indexOf(statementClass) >= 0)
+      let assign = statementClasses.filter(statementClass => valueFunctions.indexOf(statementClass) >= 0)
       let actions = statementClasses.filter(statementClass => actionFunctions.indexOf(statementClass) >= 0)
       let branching = statementClasses.filter(statementClass => branchingStatements.indexOf(statementClass) >= 0)
       assign = assign.map(statementClass => {

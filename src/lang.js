@@ -80,6 +80,7 @@ const messages = {
     type_direction: "direction",
 
     function_step: "step",
+    function_fireball: "fireball",
     function_set: "set",
     function_calc: "calc",
 
@@ -88,6 +89,7 @@ const messages = {
     graph_node_jump: "jump",
 
     graph_node_function_step: "step",
+    graph_node_function_fireball: "fireball",
     graph_node_function_set: "set",
     graph_node_function_calc: "calc",
 
@@ -192,6 +194,7 @@ const messages = {
     graph_node_jump: "saut",
 
     graph_node_function_step: "va",
+    graph_node_function_fireball: "allumer",
     graph_node_function_set: "init",
     graph_node_function_calc: "calc",
 
@@ -199,8 +202,8 @@ const messages = {
     drop_down_list_number: "nombre",
 
     drop_down_list_object_type_hero: "quelqu'un",
-    drop_down_list_object_type_objective: "interrupteur",
-    drop_down_list_object_type_bonfire: "feux",
+    drop_down_list_object_type_switch: "bouton",
+    drop_down_list_object_type_bonfire: "feu",
 
     drop_down_list_terrain_type_wall: "mur",
     drop_down_list_terrain_type_floor: "sol",
