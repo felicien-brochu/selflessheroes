@@ -11,12 +11,23 @@ export default class BonfireS extends Phaser.GameObjects.Sprite {
     this.playAnimation()
   }
 
-  update() {
+  beforeStep(world) {
     if (this.bonfire.isEnabled() !== this.enabled) {
       this.enabled = this.bonfire.isEnabled()
 
-      this.playAnimation()
+      if (this.enabled) {
+        let delay = Math.min(150, this.scene.runner.stepInterval / 2)
+        setTimeout(() => this.playAnimation(), delay)
+      } else {
+        this.playAnimation()
+      }
     }
+  }
+
+  afterStep(world) {}
+
+  update() {
+
   }
 
   playAnimation() {

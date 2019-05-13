@@ -34,6 +34,9 @@ export default {
 
   beforeDestroy() {
     window.removeEventListener("resize", this.resizeGame)
+    this.gameScene.customEvents.removeListener('ai-state-change', this.handleAiStateChange)
+    this.gameScene.customEvents.removeListener('follow-hero-change', this.handleFollowHeroChange)
+    this.gameScene.runner.events.removeListener('world-state-change', this.handleWorldStateChange)
     this.game.destroy(true)
   },
 

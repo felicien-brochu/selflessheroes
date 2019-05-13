@@ -17,6 +17,7 @@ import CompilerConfig from '../world/ai/compile/CompilerConfig'
 import HeroS from './sprites/HeroS'
 import SwitchS from './sprites/SwitchS'
 import BonfireS from './sprites/BonfireS'
+import FireBallS from './sprites/FireBallS'
 
 export default class extends Phaser.Scene {
   constructor() {
@@ -27,6 +28,10 @@ export default class extends Phaser.Scene {
     this.onSceneReady = null
     this.followHeroIndex = -1
     this.runner = new WorldRunner()
+    this.beforeStep = this.beforeStep.bind(this)
+    this.afterStep = this.afterStep.bind(this)
+    this.runner.events.on('before-step', this.beforeStep)
+    this.runner.events.on('after-step', this.afterStep)
     this.editorWidth = 385
 
     this.customEvents = new EventEmitter()
@@ -63,6 +68,8 @@ export default class extends Phaser.Scene {
 
   beforeDestroy() {
     this.runner.pause()
+    this.runner.events.removeListener('before-step', this.beforeStep)
+    this.runner.events.removeListener('after-step', this.afterStep)
   }
 
   createMap() {
@@ -116,7 +123,7 @@ export default class extends Phaser.Scene {
       let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight, heroIndex)
       this.heroes.push(sprite)
       sprite.setOrigin(0.5)
-      this.add.existing(sprite);
+      this.add.existing(sprite)
       sprite.setInteractive()
       sprite.on('pointerdown', () => this.handleClick(sprite), this)
       heroIndex++
@@ -125,12 +132,12 @@ export default class extends Phaser.Scene {
     for (let mySwitch of this.world.switches) {
       let sprite = new SwitchS(this, mySwitch, this.map.tileWidth, this.map.tileHeight)
       this.switches.push(sprite)
-      this.add.existing(sprite);
+      this.add.existing(sprite)
     }
     for (let bonfire of this.world.bonfires) {
       let sprite = new BonfireS(this, bonfire, this.map.tileWidth, this.map.tileHeight)
       this.bonfires.push(sprite)
-      this.add.existing(sprite);
+      this.add.existing(sprite)
     }
   }
 
@@ -163,16 +170,22 @@ export default class extends Phaser.Scene {
     this.game.events.on('destroy', this.beforeDestroy.bind(this))
   }
 
+  beforeStep(world) {
+    for (let sprite of this.getSprites()) {
+      sprite.beforeStep(world)
+    }
+  }
+
+  afterStep(world) {
+    for (let sprite of this.getSprites()) {
+      sprite.afterStep(world)
+    }
+  }
+
   update(time, delta) {
     this.cameraControl.update(delta)
 
-    for (let sprite of this.heroes) {
-      sprite.update()
-    }
-    for (let sprite of this.switches) {
-      sprite.update()
-    }
-    for (let sprite of this.bonfires) {
+    for (let sprite of this.getSprites()) {
       sprite.update()
     }
 
@@ -184,6 +197,14 @@ export default class extends Phaser.Scene {
     }
   }
 
+  getSprites() {
+    return [
+      ...this.heroes,
+      ...this.switches,
+      ...this.bonfires
+    ]
+  }
+
   compileAI(code) {
     let compiler = new Compiler(code, this.compilerConfig)
     let oldAIFactory = this.aiFactory
@@ -193,6 +214,12 @@ export default class extends Phaser.Scene {
       this.customEvents.emit('ai-state-change', this.aiReady())
     }
     return compiler.exceptions
+  }
+
+  throwFireBall(character, direction) {
+    let sprite = new FireBallS(this, character.x + direction.dx, character.y + direction.dy, this.map.tileWidth, this.map.tileHeight)
+    sprite.setOrigin(0.5)
+    this.add.existing(sprite)
   }
 
   play() {
@@ -272,14 +299,8 @@ export default class extends Phaser.Scene {
   }
 
   destroySprites() {
-    for (let hero of this.heroes) {
-      hero.destroy()
-    }
-    for (let mySwitch of this.switches) {
-      mySwitch.destroy()
-    }
-    for (let bonfire of this.bonfires) {
-      bonfire.destroy()
+    for (let sprite of this.getSprites()) {
+      sprite.destroy()
     }
   }
 

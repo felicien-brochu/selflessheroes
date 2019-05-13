@@ -220,7 +220,8 @@ const anims = {
   explosion: {
     sprite: 'explosion',
     start: 0,
-    end: 8
+    end: 8,
+    repeat: 0
   }
 }
 
@@ -233,6 +234,10 @@ export default class AnimationBuilder {
         if (animConfig.sprite) {
           spriteKey = animConfig.sprite
         }
+        let repeat = -1
+        if (animConfig.repeat !== undefined) {
+          repeat = animConfig.repeat
+        }
 
         scene.anims.create({
           key: key,
@@ -240,7 +245,7 @@ export default class AnimationBuilder {
             start: animConfig.start,
             end: animConfig.end
           }),
-          repeat: -1,
+          repeat: repeat,
           frameRate: 12
         })
       }

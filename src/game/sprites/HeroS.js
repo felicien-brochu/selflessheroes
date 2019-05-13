@@ -4,11 +4,11 @@ import CharacterS from './CharacterS'
 
 let heroCreated = 0
 let assets = [
-  'elf_m',
   'knight_m',
+  'elf_m',
   'wizzard_m',
-  'elf_f',
   'knight_f',
+  'elf_f',
   'wizzard_f',
 ]
 

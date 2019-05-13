@@ -50,6 +50,7 @@ export default class WorldRunner {
 
   step() {
     if (!this.world.gameOver) {
+      this.events.emit('before-step', this.world)
       this.world.step(this.rng)
 
       this.emitStateChange()
@@ -57,6 +58,7 @@ export default class WorldRunner {
       if (this.world.gameOver) {
         this.pause()
       }
+      this.events.emit('after-step', this.world)
     }
   }
 

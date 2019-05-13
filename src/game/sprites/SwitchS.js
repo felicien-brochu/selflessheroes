@@ -12,14 +12,16 @@ export default class SwitchS extends Phaser.GameObjects.Sprite {
     this.enabled = this.switch.isEnabled()
   }
 
-  update() {
-    if (this.switch.isEnabled() !== this.enabled) {
+  beforeStep(world) {
+    if (this.enabled !== this.switch.isEnabled()) {
+      setTimeout(() =>
+        this.setFrame(this.switch.isEnabled() ? 1 : 0),
+        this.scene.runner.stepInterval / 2)
       this.enabled = this.switch.isEnabled()
-
-      let duration = this.scene.runner.stepInterval
-      setTimeout(() => {
-        this.setFrame(this.enabled ? 1 : 0)
-      }, duration)
     }
   }
+
+  afterStep(world) {}
+
+  update() {}
 }

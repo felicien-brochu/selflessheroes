@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 
 const stateIdle = 'idle'
 const stateRun = 'run'
+const stateHit = 'hit'
 
 export default class CharacterS extends Phaser.GameObjects.Sprite {
 
@@ -20,7 +21,6 @@ export default class CharacterS extends Phaser.GameObjects.Sprite {
     this.lastTileX = character.x
     this.lastTileY = character.y
     this.depth = this.y
-    this.lastStepAction = null
 
     this.actionState = stateIdle
     this.playAnimation()
@@ -30,49 +30,62 @@ export default class CharacterS extends Phaser.GameObjects.Sprite {
     this.play(`${this.asset}_${this.actionState}`)
   }
 
-  updateState() {
-    let newState = stateIdle
-    if (this.character.lastAction) {
-      if (this.character.lastAction.type === 'StepAction') {
-        newState = stateRun
-        this.lastStepAction = this.character.lastAction
-      }
-    }
+  updateState(newState) {
     if (this.actionState !== newState) {
       this.actionState = newState
       this.playAnimation()
     }
   }
 
-  update() {
-    if (this.lastTileX !== this.character.x || this.lastTileY !== this.character.y) {
-      // Wait a step before walking
-      if (this.lastStepAction && this.character.lastAction !== this.lastStepAction) {
-        if (this.lastTileX < this.character.x) {
-          this.setFlipX(false)
-        } else if (this.lastTileX > this.character.x) {
-          this.setFlipX(true)
+  beforeStep(world) {
+    let newState = stateIdle
+    if (this.character.lastAction) {
+      if (this.character.lastAction.type === 'StepAction') {
+        newState = stateRun
+        if (this.lastTileX !== this.character.x || this.lastTileY !== this.character.y) {
+          const maxDuration = 500
+          let duration = Math.min(this.scene.runner.stepInterval, maxDuration)
+          let ease = 'Quad.easeOut'
+          if (duration <= 200) {
+            ease = 'Quad.easeInOut'
+          }
+          this.scene.tweens.add({
+            targets: this,
+            x: (this.character.x + 0.5) * this.tileWidth + this.offsetX,
+            y: (this.character.y + 0.5) * this.tileHeight + this.offsetY,
+            duration: duration,
+            ease: ease
+          })
+          this.lastTileX = this.character.x
+          this.lastTileY = this.character.y
         }
-
-        const maxDuration = 500
-        let duration = Math.min(this.scene.runner.stepInterval, maxDuration)
-        let ease = 'Quad.easeOut'
-        if (duration <= 200) {
-          ease = 'Quad.easeInOut'
-        }
-        this.scene.tweens.add({
-          targets: this,
-          x: (this.character.x + 0.5) * this.tileWidth + this.offsetX,
-          y: (this.character.y + 0.5) * this.tileHeight + this.offsetY,
-          duration: duration,
-          ease: ease
-        })
-        this.lastTileX = this.character.x
-        this.lastTileY = this.character.y
+      } else if (this.character.lastAction.type === 'FireBallAction') {
+        newState = stateHit
+        this.scene.throwFireBall(this.character, this.character.lastAction.direction)
       }
-      this.lastStepAction = null
-      this.depth = this.y
+      this.updateState(newState)
     }
-    this.updateState()
+  }
+
+  afterStep(world) {
+    let newState = stateIdle
+    if (this.lastTileX !== this.character.x) {
+      this.setFlipX(this.lastTileX > this.character.x)
+    }
+    if (this.character.lastAction) {
+      if (this.character.lastAction.type === 'StepAction') {
+        newState = stateRun
+      } else if (this.character.lastAction.type === 'FireBallAction') {
+        let dir = this.character.lastAction.direction
+        if (dir.dx !== 0) {
+          this.setFlipX(dir.dx < 0)
+        }
+      }
+    }
+    this.updateState(newState)
+  }
+
+  update() {
+    this.depth = this.y
   }
 }
