@@ -48,7 +48,7 @@ CodeMirror.defineSimpleMode('aiworld', {
       token: 'keyword'
     },
     {
-      regex: /(?:n|e|s|w|ne|se|sw|nw|here|floor|wall|hole|hero|objective)\b/,
+      regex: /(?:n|e|s|w|ne|se|sw|nw|here|floor|wall|hole|hero|switch|bonfire)\b/,
       token: 'atom'
     },
     {

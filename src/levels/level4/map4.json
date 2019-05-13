@@ -67,7 +67,7 @@
                 {
                  "height":0,
                  "id":10,
-                 "name":"objective",
+                 "name":"bonfire",
                  "point":true,
                  "properties":[
                         {
@@ -76,16 +76,16 @@
                          "value":0
                         }],
                  "rotation":0,
-                 "type":"objective",
+                 "type":"bonfire",
                  "visible":true,
                  "width":0,
-                 "x":1106,
-                 "y":596
+                 "x":912,
+                 "y":887
                 }, 
                 {
                  "height":0,
                  "id":2,
-                 "name":"objective",
+                 "name":"switch",
                  "point":true,
                  "properties":[
                         {
@@ -94,7 +94,7 @@
                          "value":0
                         }],
                  "rotation":0,
-                 "type":"objective",
+                 "type":"switch",
                  "visible":true,
                  "width":0,
                  "x":336,
@@ -139,7 +139,7 @@
                 {
                  "height":0,
                  "id":11,
-                 "name":"objective",
+                 "name":"switch",
                  "point":true,
                  "properties":[
                         {
@@ -148,7 +148,7 @@
                          "value":0
                         }],
                  "rotation":0,
-                 "type":"objective",
+                 "type":"switch",
                  "visible":true,
                  "width":0,
                  "x":1297.33,

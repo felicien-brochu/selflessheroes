@@ -6,8 +6,8 @@ import Direction from '../Direction'
 export default class DumbPathFinderAI extends AI {
   constructor(world, character, x, y) {
     super(world, character)
-    this.objectiveX = x
-    this.objectiveY = y
+    this.switchX = x
+    this.switchY = y
 
     this.buildPath()
   }
@@ -45,7 +45,7 @@ export default class DumbPathFinderAI extends AI {
       return false
     }
     this.path.push([x, y])
-    if (x === this.objectiveX && y === this.objectiveY) {
+    if (x === this.switchX && y === this.switchY) {
       return true
     }
     this.map[y][x] = false

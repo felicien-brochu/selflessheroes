@@ -144,13 +144,13 @@
   <object id="12" name="frame" type="rectangle" x="240" y="610" width="1014" height="594" visible="0"/>
  </objectgroup>
  <objectgroup id="2" name="objects">
-  <object id="10" name="objective" type="objective" x="1106" y="596">
+  <object id="10" name="bonfire" type="bonfire" x="912" y="887">
    <properties>
     <property name="color" type="int" value="0"/>
    </properties>
    <point/>
   </object>
-  <object id="2" name="objective" type="objective" x="336" y="277">
+  <object id="2" name="switch" type="switch" x="336" y="277">
    <properties>
     <property name="color" type="int" value="0"/>
    </properties>
@@ -165,7 +165,7 @@
   <object id="9" name="hero" type="hero" x="912" y="852">
    <point/>
   </object>
-  <object id="11" name="objective" type="objective" x="1297.33" y="436">
+  <object id="11" name="switch" type="switch" x="1297.33" y="436">
    <properties>
     <property name="color" type="int" value="0"/>
    </properties>

@@ -7,8 +7,8 @@ import Direction from '../Direction'
 export default class PathFinderAI extends AI {
   constructor(world, character, x, y) {
     super(world, character)
-    this.objectiveX = x
-    this.objectiveY = y
+    this.switchX = x
+    this.switchY = y
 
     this.buildPath()
   }
@@ -46,7 +46,7 @@ export default class PathFinderAI extends AI {
   buildRec(x, y, length, path) {
     let map = this.map
     path.push([x, y])
-    if (x === this.objectiveX && y === this.objectiveY) {
+    if (x === this.switchX && y === this.switchY) {
       return [path, length]
     }
     map[y][x] = length

@@ -15,7 +15,8 @@ import {
 import Compiler from '../world/ai/compile/Compiler'
 import CompilerConfig from '../world/ai/compile/CompilerConfig'
 import HeroS from './sprites/HeroS'
-import ObjectiveS from './sprites/ObjectiveS'
+import SwitchS from './sprites/SwitchS'
+import BonfireS from './sprites/BonfireS'
 
 export default class extends Phaser.Scene {
   constructor() {
@@ -106,7 +107,8 @@ export default class extends Phaser.Scene {
   createWorld() {
     this.world = new World(this.level, this.mapConfig, this.aiFactory)
     this.heroes = []
-    this.objectives = []
+    this.switches = []
+    this.bonfires = []
 
     let heroIndex = 0
 
@@ -120,9 +122,14 @@ export default class extends Phaser.Scene {
       heroIndex++
     }
 
-    for (let objective of this.world.objectives) {
-      let sprite = new ObjectiveS(this, objective, this.map.tileWidth, this.map.tileHeight)
-      this.objectives.push(sprite)
+    for (let mySwitch of this.world.switches) {
+      let sprite = new SwitchS(this, mySwitch, this.map.tileWidth, this.map.tileHeight)
+      this.switches.push(sprite)
+      this.add.existing(sprite);
+    }
+    for (let bonfire of this.world.bonfires) {
+      let sprite = new BonfireS(this, bonfire, this.map.tileWidth, this.map.tileHeight)
+      this.bonfires.push(sprite)
       this.add.existing(sprite);
     }
   }
@@ -162,7 +169,10 @@ export default class extends Phaser.Scene {
     for (let sprite of this.heroes) {
       sprite.update()
     }
-    for (let sprite of this.objectives) {
+    for (let sprite of this.switches) {
+      sprite.update()
+    }
+    for (let sprite of this.bonfires) {
       sprite.update()
     }
 
@@ -265,8 +275,11 @@ export default class extends Phaser.Scene {
     for (let hero of this.heroes) {
       hero.destroy()
     }
-    for (let objective of this.objectives) {
-      objective.destroy()
+    for (let mySwitch of this.switches) {
+      mySwitch.destroy()
+    }
+    for (let bonfire of this.bonfires) {
+      bonfire.destroy()
     }
   }
 

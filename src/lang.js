@@ -95,7 +95,8 @@ const messages = {
     drop_down_list_number: "number",
 
     drop_down_list_object_type_hero: "someone",
-    drop_down_list_object_type_objective: "switch",
+    drop_down_list_object_type_switch: "switch",
+    drop_down_list_object_type_bonfire: "bonfire",
 
     drop_down_list_terrain_type_wall: "wall",
     drop_down_list_terrain_type_floor: "floor",
@@ -199,6 +200,7 @@ const messages = {
 
     drop_down_list_object_type_hero: "quelqu'un",
     drop_down_list_object_type_objective: "interrupteur",
+    drop_down_list_object_type_bonfire: "feux",
 
     drop_down_list_terrain_type_wall: "mur",
     drop_down_list_terrain_type_floor: "sol",

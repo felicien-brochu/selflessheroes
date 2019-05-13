@@ -207,11 +207,18 @@ const anims = {
     start: 8,
     end: 8
   },
-  fire: {
+  bonfire_off: {
+    sprite: 'bonfire',
     start: 0,
-    end: 7
+    end: 0
+  },
+  bonfire_on: {
+    sprite: 'bonfire',
+    start: 1,
+    end: 8
   },
   explosion: {
+    sprite: 'explosion',
     start: 0,
     end: 8
   }
@@ -222,11 +229,16 @@ export default class AnimationBuilder {
     for (var key in anims) {
       if (anims.hasOwnProperty(key)) {
         let spriteKey = key.replace(/(.*)_((idle)|(run)|(hit))/, '$1')
+        let animConfig = anims[key]
+        if (animConfig.sprite) {
+          spriteKey = animConfig.sprite
+        }
+
         scene.anims.create({
           key: key,
           frames: scene.anims.generateFrameNumbers(spriteKey, {
-            start: anims[key].start,
-            end: anims[key].end
+            start: animConfig.start,
+            end: animConfig.end
           }),
           repeat: -1,
           frameRate: 12

@@ -90,19 +90,19 @@
   <object id="12" name="frame" type="rectangle" x="210" y="97" width="637" height="557" visible="0"/>
  </objectgroup>
  <objectgroup id="2" name="objects">
-  <object id="10" name="objective" type="objective" x="624" y="628">
+  <object id="10" name="switch" type="switch" x="624" y="628">
    <properties>
     <property name="color" type="int" value="0"/>
    </properties>
    <point/>
   </object>
-  <object id="2" name="objective" type="objective" x="718" y="467">
+  <object id="2" name="switch" type="switch" x="718" y="467">
    <properties>
     <property name="color" type="int" value="0"/>
    </properties>
    <point/>
   </object>
-  <object id="11" name="objective" type="objective" x="818" y="308">
+  <object id="11" name="switch" type="switch" x="818" y="308">
    <properties>
     <property name="color" type="int" value="0"/>
    </properties>

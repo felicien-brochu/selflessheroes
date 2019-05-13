@@ -21,7 +21,7 @@ export default class Level1 extends Level {
       excludePrimary: ['assign'],
       variables: 0,
       terrainTypes: ['wall'],
-      objectTypes: ['objective'],
+      objectTypes: ['switch'],
       valueFunctions: [],
       actionFunctions: ['step_once'],
       leftComparisonExpressions: ['direction'],

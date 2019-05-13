@@ -214,16 +214,12 @@
  </layer>
  <objectgroup id="14" name="config" visible="0">
   <object id="7" name="ruleset" type="ruleset" x="148" y="213">
-   <properties>
-    <property name="lossCondition" value="none"/>
-    <property name="winCondition" value="all_objectives"/>
-   </properties>
    <point/>
   </object>
   <object id="12" name="frame" type="rectangle" x="241" y="128" width="798" height="689" visible="0"/>
  </objectgroup>
  <objectgroup id="2" name="objects" visible="0">
-  <object id="11" name="objective" type="objective" x="911" y="179">
+  <object id="11" name="switch" type="switch" x="911" y="179">
    <properties>
     <property name="color" type="int" value="0"/>
    </properties>

@@ -1,6 +1,7 @@
 import Map from './Map'
 import Hero from './Hero'
-import Objective from './Objective'
+import Switch from './Switch'
+import Bonfire from './Bonfire'
 import {
   namedObjectListToObject
 } from './utils'
@@ -14,7 +15,8 @@ export default class World {
     this.map = new Map(mapConfig)
     this.characters = []
     this.heroes = []
-    this.objectives = []
+    this.switches = []
+    this.bonfires = []
     this.parseObjects()
 
     this.ruleset = this.level.buildRuleset(this)
@@ -44,8 +46,11 @@ export default class World {
         this.heroes.push(hero)
         this.characters.push(hero)
         break;
-      case 'objective':
-        this.objectives.push(new Objective(config, tileWidth, tileHeight))
+      case 'switch':
+        this.switches.push(new Switch(config, tileWidth, tileHeight))
+        break;
+      case 'bonfire':
+        this.bonfires.push(new Bonfire(config, tileWidth, tileHeight))
         break;
     }
   }
@@ -60,9 +65,9 @@ export default class World {
           if (action.type === 'StepAction' && !this.collides(hero, action.direction)) {
             hero.move(action.direction)
 
-            for (let objective of this.objectives) {
-              if (hero.overlaps(objective)) {
-                objective.enable()
+            for (let mySwitch of this.switches) {
+              if (hero.overlaps(mySwitch)) {
+                mySwitch.enable()
               }
             }
           }
@@ -99,7 +104,11 @@ export default class World {
   }
 
   getWorldObjects() {
-    return [].concat(this.heroes).concat(this.objectives)
+    return [
+      ...this.heroes,
+      ...this.switches,
+      ...this.bonfires
+    ]
   }
 
   getCharacters() {

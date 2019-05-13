@@ -38,7 +38,8 @@ const terrainTypeMap = {
 
 const objectTypeMap = {
   hero: 'hero',
-  objective: 'objective'
+  switch: 'switch',
+  bonfire: 'bonfire'
 }
 
 const valueFunctionMap = {
@@ -98,7 +99,8 @@ export default class CompilerConfig {
       ],
       objectTypes: [
         'hero',
-        'objective'
+        'switch',
+        'bonfire'
       ],
       valueFunctions: [
         'set',

@@ -28,7 +28,6 @@ import button_blue from './images/button_blue.png'
 import button_red from './images/button_red.png'
 // import lever from './images/lever.png'
 import bonfire from './images/bonfire.png'
-import fire from './images/fire.png'
 import explosion from './images/explosion.png'
 
 import follow_cursor from './images/follow_cursor.png'
@@ -143,13 +142,9 @@ export default class extends Phaser.Scene {
     //   frameWidth: 32,
     //   frameHeight: 32
     // })
-    this.load.spritesheet('fire', fire, {
-      frameWidth: 28,
-      frameHeight: 60
-    })
     this.load.spritesheet('bonfire', bonfire, {
       frameWidth: 28,
-      frameHeight: 26
+      frameHeight: 74
     })
     this.load.spritesheet('explosion', explosion, {
       frameWidth: 32,

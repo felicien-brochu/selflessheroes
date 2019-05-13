@@ -1,11 +1,11 @@
 import Ruleset from './Ruleset'
-import AllObjectivesWinCondition from './AllObjectivesWinCondition'
+import AllSwitchesWinCondition from './AllSwitchesWinCondition'
 
 export default class DefaultRuleset extends Ruleset {
   constructor(world, maxStep) {
     super(world, maxStep)
 
-    this.winCondition = new AllObjectivesWinCondition(this.world)
+    this.winCondition = new AllSwitchesWinCondition(this.world)
   }
 
   step() {
