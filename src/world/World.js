@@ -84,45 +84,88 @@ export default class World {
   }
 
   resolveHeroActions(heroActions) {
+    this.resolveStepActions(heroActions)
+    this.resolveFireBallActions(heroActions)
+
+    for (let mySwitch of this.switches) {
+      if (this.heroes.some(hero => hero.overlaps(mySwitch))) {
+        mySwitch.enable()
+      }
+    }
+  }
+
+  resolveFireBallActions(heroActions) {
     for (let {
         hero,
         action
       } of heroActions) {
-
-      if (action) {
-        if (action.type === 'StepAction') {
-          if (!this.collides(hero, action.direction)) {
-            hero.move(action.direction)
-
-            for (let mySwitch of this.switches) {
-              if (hero.overlaps(mySwitch)) {
-                mySwitch.enable()
-              }
-            }
-          }
-        } else if (action.type === 'FireBallAction') {
-          this.resolveFireBallAction(hero, action)
+      if (action && action.type === 'FireBallAction') {
+        let x = hero.x + action.direction.dx
+        let y = hero.y + action.direction.dy
+        let bonfires = this.bonfires.filter(b => b.x === x && b.y === y)
+        if (bonfires.length > 0) {
+          bonfires[0].enable()
         }
       }
     }
   }
 
-  resolveFireBallAction(hero, action) {
-    let x = hero.x + action.direction.dx
-    let y = hero.y + action.direction.dy
-    let bonfires = this.bonfires.filter(b => b.x === x && b.y === y)
-    if (bonfires.length > 0) {
-      bonfires[0].enable()
+  resolveStepActions(heroActions) {
+    let stepActions = heroActions.filter(heroAction => heroAction.action && heroAction.action.type === 'StepAction')
+
+    // Wall collisions and simple hero collisions
+    let changed = true
+    while (changed) {
+      changed = false
+      for (let i = 0; i < stepActions.length; i++) {
+        let {
+          hero,
+          action
+        } = stepActions[i]
+        let x = hero.x + action.direction.dx
+        let y = hero.y + action.direction.dy
+        let collidesWall = this.map.isWall(x, y)
+        let collidesCharacter = this.getCharactersAt(x, y).length > 0
+        if (collidesWall) {
+          stepActions.splice(i, 1)
+          i--
+        } else if (!this.getCharactersAt(x, y).length > 0) {
+          hero.move(action.direction)
+          stepActions.splice(i, 1)
+          i--
+          changed = true
+        }
+      }
     }
-  }
 
-  collides(character, direction) {
-    let x = character.x + direction.dx
-    let y = character.y + direction.dy
-    let collidesWall = this.map.isWall(x, y)
-    let collidesCharacter = this.getCharactersAt(x, y).length > 0
+    // double hero collisions: allow heroes to exchange places
+    changed = true
+    while (changed) {
+      changed = false
+      main_loop:
+        for (let i = 0; i < stepActions.length - 1; i++) {
+          let stepAction1 = stepActions[i]
+          let x1 = stepAction1.hero.x + stepAction1.action.direction.dx
+          let y1 = stepAction1.hero.y + stepAction1.action.direction.dy
+          for (let j = i + 1; j < stepActions.length; j++) {
+            let stepAction2 = stepActions[j]
+            let x2 = stepAction2.hero.x + stepAction2.action.direction.dx
+            let y2 = stepAction2.hero.y + stepAction2.action.direction.dy
 
-    return collidesWall || collidesCharacter
+            if (x1 === stepAction2.hero.x &&
+              y1 === stepAction2.hero.y &&
+              x2 === stepAction1.hero.x &&
+              y2 === stepAction1.hero.y) {
+              stepAction1.hero.move(stepAction1.action.direction)
+              stepAction2.hero.move(stepAction2.action.direction)
+              stepActions.splice(stepActions.indexOf(stepAction1), 1)
+              stepActions.splice(stepActions.indexOf(stepAction2), 1)
+              changed = true
+              break main_loop
+            }
+          }
+        }
+    }
   }
 
   getWorldObjectsAt(x, y) {
