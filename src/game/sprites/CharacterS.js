@@ -23,7 +23,6 @@ export default class CharacterS extends Phaser.GameObjects.Sprite {
     this.depth = this.y
 
     this.actionState = stateIdle
-    this.setFlipX(Math.random() < 0.5)
     this.playAnimation()
   }
 

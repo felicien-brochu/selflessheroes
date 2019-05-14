@@ -122,11 +122,13 @@ const messages = {
     level1_name: "First step",
     level1_objective: "Help the heroes to walk on the switches.\nThey seem to stop prematurly.",
     level2_name: "Step aside",
-    level2_objective: "Walk on the switches",
+    level2_objective: "Trigger the switches",
     level3_name: "Watch the step",
-    level3_objective: "Walk on the switches.\nTry not to fall.",
+    level3_objective: "Trigger the switches.\nTry not to fall.",
     level4_name: "Seperate ways",
-    level4_objective: "Walk on the switches.",
+    level4_objective: "Trigger the switches.",
+    level5_name: "Vertigo",
+    level5_objective: "Trigger the switches.\nTry not to fall.",
   },
 
 
@@ -239,9 +241,11 @@ const messages = {
     level2_name: "Pas de côté",
     level2_objective: "Déclenche les interrupteurs",
     level3_name: "Attention à la marche",
-    level3_objective: "Déclenche les interrupteurs.\nFais attention à ne pas tomber.",
+    level3_objective: "Déclenche les interrupteurs.\nNe tombe pas dans le vide.",
     level4_name: "Chacun son chemin",
     level4_objective: "Déclenche les interrupteurs",
+    level5_name: "Vertige",
+    level5_objective: "Déclenche les interrupteurs.\nNe tombe pas dans le vide.",
   }
 }
 
