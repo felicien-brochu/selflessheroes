@@ -1,16 +1,16 @@
-import Level from '../Level'
+import Level from '../../world/Level'
 import CompilerConfig from '../../world/ai/compile/CompilerConfig'
 
-export default class Level1 extends Level {
+export default class Level101 extends Level {
   constructor(id) {
     super(id, {
-      nameTemplate: "level1_name",
-      objectiveTemplate: "level1_objective",
-      startingCode: "step(s)\nstep(s)\n",
+      name: "level101",
+      objective: "level1 objective Do stuff yo",
+      startingCode: "step(s)",
       startingEditorType: "graph",
-      maxStep: 100,
-      speedTarget: 3,
-      lengthTarget: 3
+      maxStep: Infinity,
+      speedTarget: 100,
+      lengthTarget: 5
     })
 
     Object.freeze(this)
@@ -18,14 +18,14 @@ export default class Level1 extends Level {
 
   buildCompilerConfig() {
     return new CompilerConfig({
-      excludePrimary: ['assign', 'if', 'else', 'endif', 'jump', 'anchor'],
+      excludePrimary: ['assign'],
       variables: 0,
-      terrainTypes: [],
+      terrainTypes: ['wall'],
       objectTypes: ['switch'],
       valueFunctions: [],
       actionFunctions: ['step_once'],
       leftComparisonExpressions: ['direction'],
-      rightComparisonExpressions: ['object_type']
+      rightComparisonExpressions: ['terrain_type', 'object_type']
     })
   }
 

@@ -1,16 +1,16 @@
 import Level from '../Level'
 import CompilerConfig from '../../world/ai/compile/CompilerConfig'
 
-export default class Level1 extends Level {
+export default class Level2 extends Level {
   constructor(id) {
     super(id, {
-      nameTemplate: "level1_name",
-      objectiveTemplate: "level1_objective",
-      startingCode: "step(s)\nstep(s)\n",
+      nameTemplate: "level2_name",
+      objectiveTemplate: "level2_objective",
+      startingCode: "",
       startingEditorType: "graph",
       maxStep: 100,
-      speedTarget: 3,
-      lengthTarget: 3
+      speedTarget: 2,
+      lengthTarget: 2
     })
 
     Object.freeze(this)

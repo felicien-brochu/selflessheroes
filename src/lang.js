@@ -116,6 +116,17 @@ const messages = {
     win_modal_prior_code_length: "your smallest one was %%score${minLength}%% lines long",
     win_modal_ok_button: "ok",
     win_modal_continue_edit_button: "keep at it",
+
+
+
+    level1_name: "First step",
+    level1_objective: "Help the heroes to walk on the switches.\nThey seem to stop prematurly.",
+    level2_name: "Step aside",
+    level2_objective: "Walk on the switches",
+    level3_name: "Watch the step",
+    level3_objective: "Walk on the switches.\nTry not to fall.",
+    level4_name: "Seperate ways",
+    level4_objective: "Walk on the switches.",
   },
 
 
@@ -194,7 +205,7 @@ const messages = {
     graph_node_jump: "saut",
 
     graph_node_function_step: "va",
-    graph_node_function_fireball: "allumer",
+    graph_node_function_fireball: "allume",
     graph_node_function_set: "init",
     graph_node_function_calc: "calc",
 
@@ -222,6 +233,15 @@ const messages = {
     win_modal_prior_code_length: "votre solution la plus courte faisait %%score${minLength}%% lignes",
     win_modal_ok_button: "ok",
     win_modal_continue_edit_button: "améliorer",
+
+    level1_name: "Premiers pas",
+    level1_objective: "Aide les héros à aller sur les interrupteurs.\nOn dirait qu'ils s'arrêtent juste avant.",
+    level2_name: "Pas de côté",
+    level2_objective: "Déclenche les interrupteurs",
+    level3_name: "Attention à la marche",
+    level3_objective: "Déclenche les interrupteurs.\nFais attention à ne pas tomber.",
+    level4_name: "Chacun son chemin",
+    level4_objective: "Déclenche les interrupteurs",
   }
 }
 

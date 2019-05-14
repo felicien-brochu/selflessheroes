@@ -3,7 +3,10 @@
 	'level-item': true,
 	'locked': locked
 }">
-  <h3>{{
+  <h3 v-text-fit="{
+		alignHoriz: true,
+		alignVert: true
+	}">{{
 	level.name
 	}}</h3>
 
@@ -50,6 +53,8 @@ export default {
     }
 
     h3 {
+        width: 220px;
+        height: 60px;
         font-size: 60px;
         text-align: center;
         font-weight: 500;

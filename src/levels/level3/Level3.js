@@ -1,15 +1,15 @@
 import Level from '../Level'
 import CompilerConfig from '../../world/ai/compile/CompilerConfig'
 
-export default class Level1 extends Level {
+export default class Level3 extends Level {
   constructor(id) {
     super(id, {
-      nameTemplate: "level1_name",
-      objectiveTemplate: "level1_objective",
-      startingCode: "step(s)\nstep(s)\n",
+      nameTemplate: "level3_name",
+      objectiveTemplate: "level3_objective",
+      startingCode: "if e == switch:\n\tstep(e)\nendif\n",
       startingEditorType: "graph",
       maxStep: 100,
-      speedTarget: 3,
+      speedTarget: 2,
       lengthTarget: 3
     })
 
@@ -18,14 +18,14 @@ export default class Level1 extends Level {
 
   buildCompilerConfig() {
     return new CompilerConfig({
-      excludePrimary: ['assign', 'if', 'else', 'endif', 'jump', 'anchor'],
+      excludePrimary: ['assign', 'jump', 'anchor'],
       variables: 0,
-      terrainTypes: [],
+      terrainTypes: ['hole'],
       objectTypes: ['switch'],
       valueFunctions: [],
       actionFunctions: ['step_once'],
       leftComparisonExpressions: ['direction'],
-      rightComparisonExpressions: ['object_type']
+      rightComparisonExpressions: ['object_type', 'terrain_type']
     })
   }
 

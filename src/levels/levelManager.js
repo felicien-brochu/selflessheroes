@@ -1,18 +1,30 @@
-import Level from '../world/Level'
+import Level from './Level'
 import Level1 from './level1/Level1'
+import Level2 from './level2/Level2'
+import Level3 from './level3/Level3'
+import Level4 from './level4/Level4'
+import Level101 from './level101/Level101'
 
 const levels = [
   new Level1(1),
-  new Level(2, {}),
-  new Level(3, {}),
-  new Level(4, {})
+  new Level2(2),
+  new Level3(3),
+  new Level4(4),
+  new Level101(101),
+  new Level(102, {}),
+  new Level(103, {}),
+  new Level(104, {})
 ]
 
 const unlockTree = {
   1: [],
   2: [1],
-  3: [1],
-  4: [2, 'or', 3]
+  3: [2],
+  4: [2, 'or', 3],
+  101: [],
+  102: [],
+  103: [],
+  104: [],
 }
 
 class LevelManager {

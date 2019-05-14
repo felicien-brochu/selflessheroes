@@ -1,25 +1,10 @@
 import CompilerConfig from './ai/compile/CompilerConfig'
 import DefaultRuleset from './rules/DefaultRuleset'
-import lang from '../lang'
 
 export default class Level {
-  constructor(id, {
-    name,
-    objective,
-    startingCode,
-    startingEditorType,
-    maxStep,
-    speedTarget,
-    lengthTarget
-  }) {
+  constructor(id, maxStep = 300) {
     this.id = id
-    this.name = name || `level${id}`
-    this.objective = objective || 'no-text'
-    this.startingCode = startingCode || ''
-    this.startingEditorType = startingEditorType || 'graph'
-    this.maxStep = maxStep || 300
-    this.speedTarget = speedTarget || 20
-    this.lengthTarget = lengthTarget || 10
+    this.maxStep = maxStep
   }
 
   buildCompilerConfig() {
@@ -28,15 +13,6 @@ export default class Level {
 
   buildRuleset(world) {
     return new DefaultRuleset(world, this.maxStep)
-  }
-
-  getLossReasonTemplate(lossReason) {
-    if (lossReason === DefaultRuleset.lossReasonTooManySteps) {
-      return lang.text('loss_reason_too_many_steps')
-    } else if (lossReason === DefaultRuleset.lossReasonAllHeroEnded) {
-      return lang.text('loss_reason_all_hero_ended')
-    }
-    return null
   }
 
   getRootPath() {
