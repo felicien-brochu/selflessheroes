@@ -222,6 +222,12 @@ const anims = {
     start: 0,
     end: 8,
     repeat: 0
+  },
+  ashes: {
+    sprite: 'ashes',
+    start: 0,
+    end: 7,
+    repeat: 0
   }
 }
 

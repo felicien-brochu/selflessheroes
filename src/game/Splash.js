@@ -29,6 +29,7 @@ import button_red from './images/button_red.png'
 // import lever from './images/lever.png'
 import bonfire from './images/bonfire.png'
 import explosion from './images/explosion.png'
+import ashes from './images/ashes.png'
 
 import follow_cursor from './images/follow_cursor.png'
 
@@ -149,6 +150,10 @@ export default class extends Phaser.Scene {
     this.load.spritesheet('explosion', explosion, {
       frameWidth: 32,
       frameHeight: 32
+    })
+    this.load.spritesheet('ashes', ashes, {
+      frameWidth: 56,
+      frameHeight: 56
     })
     this.load.image('follow_cursor', follow_cursor)
     const level = this.game.gameSceneConfig.level

@@ -1,5 +1,6 @@
 import Map from './Map'
 import Hero from './Hero'
+import CharacterDeathReason from './CharacterDeathReason'
 import Switch from './Switch'
 import Bonfire from './Bonfire'
 import {
@@ -86,12 +87,6 @@ export default class World {
   resolveHeroActions(heroActions) {
     this.resolveStepActions(heroActions)
     this.resolveFireBallActions(heroActions)
-
-    for (let mySwitch of this.switches) {
-      if (this.heroes.some(hero => hero.overlaps(mySwitch))) {
-        mySwitch.enable()
-      }
-    }
   }
 
   resolveFireBallActions(heroActions) {
@@ -102,16 +97,20 @@ export default class World {
       if (action && action.type === 'FireBallAction') {
         let x = hero.x + action.direction.dx
         let y = hero.y + action.direction.dy
+
+        // Light bonfires
         let bonfires = this.bonfires.filter(b => b.x === x && b.y === y)
-        if (bonfires.length > 0) {
-          bonfires[0].enable()
-        }
+        bonfires.forEach(bonfire => bonfire.enable())
+
+        // Kill heroes
+        let targetHeroes = this.heroes.filter(h => h.x === x && h.y === y)
+        targetHeroes.forEach(hero => hero.setDead(true, CharacterDeathReason.burnt))
       }
     }
   }
 
   resolveStepActions(heroActions) {
-    let stepActions = heroActions.filter(heroAction => heroAction.action && heroAction.action.type === 'StepAction')
+    let stepActions = heroActions.filter(heroAction => heroAction.action && heroAction.action.type === 'StepAction' && !heroAction.hero.dead)
 
     // Wall collisions and simple hero collisions
     let changed = true
@@ -125,11 +124,11 @@ export default class World {
         let x = hero.x + action.direction.dx
         let y = hero.y + action.direction.dy
         let collidesWall = this.map.isWall(x, y)
-        let collidesCharacter = this.getCharactersAt(x, y).length > 0
+        let collidesCharacter = this.getCharactersAt(x, y).filter(c => !c.dead).length > 0
         if (collidesWall) {
           stepActions.splice(i, 1)
           i--
-        } else if (!this.getCharactersAt(x, y).length > 0) {
+        } else if (!collidesCharacter) {
           hero.move(action.direction)
           stepActions.splice(i, 1)
           i--
@@ -165,6 +164,18 @@ export default class World {
             }
           }
         }
+    }
+
+    for (let mySwitch of this.switches) {
+      if (this.heroes.some(hero => hero.overlaps(mySwitch))) {
+        mySwitch.enable()
+      }
+    }
+
+    for (let hero of this.heroes.filter(h => !h.dead)) {
+      if (this.map.isHole(hero.x, hero.y)) {
+        hero.setDead(true, CharacterDeathReason.fall)
+      }
     }
   }
 

@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import CharacterDeathReason from '../../world/CharacterDeathReason'
 
 const stateIdle = 'idle'
 const stateRun = 'run'
@@ -21,8 +22,10 @@ export default class CharacterS extends Phaser.GameObjects.Sprite {
     this.lastTileX = character.x
     this.lastTileY = character.y
     this.depth = this.y
+    this.depthLocked = false
 
     this.actionState = stateIdle
+    this.dead = this.character.dead
     this.playAnimation()
   }
 
@@ -42,29 +45,56 @@ export default class CharacterS extends Phaser.GameObjects.Sprite {
     if (this.character.lastAction) {
       if (this.character.lastAction.type === 'StepAction') {
         newState = stateRun
-        if (this.lastTileX !== this.character.x || this.lastTileY !== this.character.y) {
-          const maxDuration = 500
-          let duration = Math.min(this.scene.runner.stepInterval, maxDuration)
-          let ease = 'Quad.easeOut'
-          if (duration <= 200) {
-            ease = 'Quad.easeInOut'
-          }
-          this.scene.tweens.add({
-            targets: this,
-            x: (this.character.x + 0.5) * this.tileWidth + this.offsetX,
-            y: (this.character.y + 0.5) * this.tileHeight + this.offsetY,
-            duration: duration,
-            ease: ease
-          })
-          this.lastTileX = this.character.x
-          this.lastTileY = this.character.y
-        }
       } else if (this.character.lastAction.type === 'FireBallAction') {
         newState = stateHit
         this.scene.throwFireBall(this.character, this.character.lastAction.direction)
       }
+      if (this.lastTileX !== this.character.x || this.lastTileY !== this.character.y) {
+        let timeline = this.scene.tweens.createTimeline()
+        const maxDuration = 500
+        let duration = Math.min(this.scene.runner.stepInterval, maxDuration)
+        let ease = 'Quad.easeOut'
+        if (duration <= 200) {
+          ease = 'Quad.easeInOut'
+        }
+
+        timeline.add({
+          targets: this,
+          x: (this.character.x + 0.5) * this.tileWidth + this.offsetX,
+          y: (this.character.y + 0.5) * this.tileHeight + this.offsetY,
+          duration: duration,
+          ease: ease
+        })
+
+        if (this.character.dead && this.character.deathReason === CharacterDeathReason.fall) {
+          timeline.add({
+            targets: this,
+            y: (this.character.y + 0.5) * this.tileHeight + this.offsetY + 60,
+            alphaTopLeft: -1,
+            alphaTopRight: -1,
+            alphaBottomLeft: -3,
+            alphaBottomRight: -3,
+            duration: duration,
+            ease: ease
+          })
+        }
+        timeline.play()
+
+        this.lastTileX = this.character.x
+        this.lastTileY = this.character.y
+      }
+    }
+    if (!this.dead && this.character.dead) {
+      if (this.character.deathReason === CharacterDeathReason.burnt) {
+        setTimeout(() => this.play('ashes', true), 200)
+      }
+      this.depth = 0
+      this.depthLocked = true
+    } else {
       this.updateState(newState)
     }
+
+    this.dead = this.character.dead
   }
 
   afterStep(world) {
@@ -86,6 +116,8 @@ export default class CharacterS extends Phaser.GameObjects.Sprite {
   }
 
   update() {
-    this.depth = this.y
+    if (!this.depthLocked) {
+      this.depth = this.y
+    }
   }
 }
