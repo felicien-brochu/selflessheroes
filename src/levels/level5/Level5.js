@@ -10,7 +10,7 @@ export default class Level5 extends Level {
       startingEditorType: "graph",
       maxStep: 100,
       speedTarget: 4,
-      lengthTarget: 8
+      lengthTarget: 7
     })
 
     Object.freeze(this)
