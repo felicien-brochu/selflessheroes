@@ -5,7 +5,9 @@
 }">
   <h3 v-text-fit="{
 		alignHoriz: true,
-		alignVert: true
+		alignVert: true,
+		maxFontSize: 40,
+		minFontSize: 30
 	}">{{
 	level.name
 	}}</h3>
@@ -54,15 +56,15 @@ export default {
 
     h3 {
         width: 220px;
-        height: 60px;
-        font-size: 60px;
+        height: 40px;
+        font-size: 40px;
         text-align: center;
         font-weight: 500;
         margin: 0;
     }
 
     .score-stars {
-        margin-top: 40px;
+        margin-top: 55px;
         width: 155px;
         height: 84px;
     }
