@@ -16,6 +16,7 @@ export default class WorldRunner {
 
     this.rng = rng
     this.rngSeed = seed
+    this.gameOver = false
 
     this.events = new EventEmitter()
   }
@@ -26,6 +27,7 @@ export default class WorldRunner {
 
   init(world, rngSeed) {
     this.world = world
+    this.gameOver = false
     if (rngSeed) {
       this.rngSeed = rngSeed
     }
@@ -49,16 +51,18 @@ export default class WorldRunner {
   }
 
   step() {
-    if (!this.world.gameOver) {
-      this.events.emit('before-step', this.world)
-      this.world.step(this.rng)
+    this.events.emit('before-step', this.world)
+    this.world.step(this.rng)
 
-      this.emitStateChange()
+    this.emitStateChange()
 
-      if (this.world.gameOver) {
-        this.pause()
-      }
-      this.events.emit('after-step', this.world)
+    this.events.emit('after-step', this.world)
+
+    if (this.gameOver) {
+      this.pause()
+    }
+    if (this.world.gameOver) {
+      this.gameOver = true
     }
   }
 
@@ -107,9 +111,9 @@ export default class WorldRunner {
     return {
       steps: this.world.steps,
       speed: this.speed,
-      hasWon: this.world.hasWon,
-      hasLost: this.world.hasLost,
-      gameOver: this.world.gameOver,
+      hasWon: this.gameOver && this.world.hasWon,
+      hasLost: this.gameOver && this.world.hasLost,
+      gameOver: this.gameOver,
       ruleset: this.world.ruleset,
       paused: this.isPaused(),
       debugContext: this.world.getDebugContext()

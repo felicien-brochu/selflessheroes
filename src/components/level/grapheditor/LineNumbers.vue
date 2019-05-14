@@ -149,7 +149,7 @@ export default {
       for (let i = 0; i < this.debugContext.heroes.length; i++) {
         let heroContext = this.debugContext.heroes[i]
         let line
-        if (!heroContext.ended) {
+        if (heroContext.cursor < this.statements.length) {
           line = this.getStatementLine(this.statements[heroContext.cursor])
         }
         else {

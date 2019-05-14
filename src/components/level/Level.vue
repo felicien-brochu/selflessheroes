@@ -224,11 +224,10 @@ export default {
       this.worldState = worldState
 
       if (this.worldState.hasWon) {
-        this.showWinModal()
+        setTimeout(this.showWinModal.bind(this), 700)
       }
       else if (this.worldState.hasLost) {
-        this.stop()
-        this.showLossModal()
+        setTimeout(this.showLossModal.bind(this), 0)
       }
     },
 

@@ -32,30 +32,35 @@ export default class CustomAI extends AI {
 
   step(rng) {
     let res = null
-    while (this.cursor < this.statements.length) {
-      let statement = this.statements[this.cursor]
-      let {
-        step,
-        complete,
-        goto,
-        action
-      } = statement.execute(this.getContext(rng))
 
-      if (step) {
-        this.lastActionCursor = this.cursor
-        this.lastActionStatement = statement
-      }
+    if (this.cursor >= this.statements.length) {
+      this.lastActionCursor = this.cursor
+    } else {
+      while (this.cursor < this.statements.length) {
+        let statement = this.statements[this.cursor]
+        let {
+          step,
+          complete,
+          goto,
+          action
+        } = statement.execute(this.getContext(rng))
 
-      if (goto) {
-        this.context.lastGoto = goto
-        this.cursor = this.statements.indexOf(goto)
-      } else if (complete) {
-        this.cursor++
-      }
+        if (step) {
+          this.lastActionCursor = this.cursor
+          this.lastActionStatement = statement
+        }
 
-      if (step) {
-        res = action
-        break
+        if (goto) {
+          this.context.lastGoto = goto
+          this.cursor = this.statements.indexOf(goto)
+        } else if (complete) {
+          this.cursor++
+        }
+
+        if (step) {
+          res = action
+          break
+        }
       }
     }
 
@@ -76,7 +81,7 @@ export default class CustomAI extends AI {
       ...this.context,
       cursor: this.lastActionCursor,
       cursorStatement: this.lastActionStatement,
-      ended: !this.hasStepAvailable()
+      ended: this.lastActionCursor >= this.statements.length
     }
   }
 }
