@@ -65,6 +65,7 @@ export default class CameraControl extends Phaser.Cameras.Controls.FixedKeyContr
     let vZoom = (this.visibleHeight - (this.margin.top + this.margin.bottom)) / this.mapFrame.height
     let zoom = Math.min(hZoom, vZoom)
     zoom = Math.max(zoom, minZoom)
+    zoom = Math.min(zoom, maxZoom)
     this.camera.setZoom(zoom)
   }
 
