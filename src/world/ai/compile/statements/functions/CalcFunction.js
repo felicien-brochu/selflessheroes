@@ -108,10 +108,10 @@ export default class CalcFunction extends ValueFunction {
     let value2 = 0
 
     if (leftValue.hasIntegerValue()) {
-      value1 = leftValue.getFirstIntegerValue()
+      value1 = leftValue.getFirstIntegerValue().value
     }
     if (rightValue.hasIntegerValue()) {
-      value2 = rightValue.getFirstIntegerValue()
+      value2 = rightValue.getFirstIntegerValue().value
     }
 
     let value = 0

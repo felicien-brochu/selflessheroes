@@ -136,9 +136,9 @@ export default class SimpleBooleanExpression extends Expression {
 
   computeEqual(value1, value2) {
     if (value1.hasBooleanValue() && value2.hasBooleanValue()) {
-      return value1.getFirstBooleanValue() === value2.getFirstBooleanValue()
+      return value1.getFirstBooleanValue().value === value2.getFirstBooleanValue().value
     } else if (value1.hasIntegerValue() && value2.hasIntegerValue()) {
-      return value1.getFirstIntegerValue() === value2.getFirstIntegerValue()
+      return value1.getFirstIntegerValue().value === value2.getFirstIntegerValue().value
     } else if (value1.hasObjectTypeValue() && value2.hasObjectTypeValue()) {
       if (value1.type === ExpressionTypes.objectType) {
         if (value2.type === ExpressionTypes.objectType) {

@@ -6,19 +6,16 @@ export default class ExpressionValue {
     this.value = value
   }
 
-  hasValueType(type) {
+  hasValueOfType(type) {
     return this.type === type || (this.type === ExpressionTypes.composite && this.value.some(val => val.type === type))
   }
 
-  getFirstValueType(type) {
+  getFirstValueOfType(type) {
     let value = null
     if (this.type === type) {
-      value = this.value
+      value = this
     } else if (this.type === ExpressionTypes.composite) {
       value = this.value.find(val => val.type === type)
-      if (value) {
-        value = value.value
-      }
     }
     return value
   }
@@ -35,7 +32,7 @@ export default class ExpressionValue {
 
     if (this.type === ExpressionTypes.composite) {
       for (let type of typeDominance) {
-        value = this.getFirstValueType(type)
+        value = this.getFirstValueOfType(type)
         if (value) {
           break
         }
@@ -45,43 +42,43 @@ export default class ExpressionValue {
   }
 
   hasBooleanValue() {
-    return this.hasValueType(ExpressionTypes.boolean)
+    return this.hasValueOfType(ExpressionTypes.boolean)
   }
 
   getFirstBooleanValue() {
-    return this.getFirstValueType(ExpressionTypes.boolean)
+    return this.getFirstValueOfType(ExpressionTypes.boolean)
   }
 
   hasIntegerValue() {
-    return this.hasValueType(ExpressionTypes.integer)
+    return this.hasValueOfType(ExpressionTypes.integer)
   }
 
   getFirstIntegerValue() {
-    return this.getFirstValueType(ExpressionTypes.integer)
+    return this.getFirstValueOfType(ExpressionTypes.integer)
   }
 
   hasObjectTypeValue() {
-    return this.hasValueType(ExpressionTypes.objectType)
+    return this.hasValueOfType(ExpressionTypes.objectType)
   }
 
   getFirstObjectTypeValue() {
-    return this.getFirstValueType(ExpressionTypes.objectType)
+    return this.getFirstValueOfType(ExpressionTypes.objectType)
   }
 
   hasTerrainTypeValue() {
-    return this.hasValueType(ExpressionTypes.terrainType)
+    return this.hasValueOfType(ExpressionTypes.terrainType)
   }
 
   getFirstTerrainTypeValue() {
-    return this.getFirstValueType(ExpressionTypes.terrainType)
+    return this.getFirstValueOfType(ExpressionTypes.terrainType)
   }
 
   hasDirectionValue() {
-    return this.hasValueType(ExpressionTypes.direction)
+    return this.hasValueOfType(ExpressionTypes.direction)
   }
 
   getFirstDirectionValue() {
-    return this.getFirstValueType(ExpressionTypes.direction)
+    return this.getFirstValueOfType(ExpressionTypes.direction)
   }
 
   static boolean(value) {
