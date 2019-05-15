@@ -30,13 +30,13 @@
         type="button"
         :title="$text('level_back_button')"
         @mousedown="goBack"
-        @touchstart="goBack" />
+        @touchstart="$event.preventDefault(); goBack()" />
 
       <button class="objective-button mdi mdi-flag-variant"
         type="button"
         :title="$text('level_objective_button')"
         @mousedown="showObjectiveModal"
-        @touchstart="showObjectiveModal" />
+        @touchstart="$event.preventDefault(); showObjectiveModal()" />
 
       <run-bar :worldReady="worldReady"
         :aiReady="aiReady"
