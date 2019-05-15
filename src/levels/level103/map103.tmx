@@ -188,145 +188,145 @@
   </object>
   <object id="11" name="switch" type="switch" x="271" y="787">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="35" name="switch" type="switch" x="303" y="787">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="36" name="switch" type="switch" x="335" y="790">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="37" name="switch" type="switch" x="367" y="790">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="46" name="switch" type="switch" x="402" y="787">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="47" name="switch" type="switch" x="434" y="787">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="48" name="switch" type="switch" x="466" y="790">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="49" name="switch" type="switch" x="498" y="790">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="50" name="switch" type="switch" x="529" y="791">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="51" name="switch" type="switch" x="561" y="791">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="52" name="switch" type="switch" x="590" y="789">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="53" name="switch" type="switch" x="625" y="788">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="54" name="switch" type="switch" x="657" y="788">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="55" name="switch" type="switch" x="689" y="784">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="56" name="switch" type="switch" x="721" y="787">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="57" name="switch" type="switch" x="753" y="787">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="58" name="switch" type="switch" x="782" y="785">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="59" name="switch" type="switch" x="814" y="785">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="60" name="switch" type="switch" x="846" y="788">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="61" name="switch" type="switch" x="878" y="788">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="62" name="switch" type="switch" x="909" y="784">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="63" name="switch" type="switch" x="939" y="784">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="64" name="switch" type="switch" x="975" y="787">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="65" name="switch" type="switch" x="1005" y="785">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>

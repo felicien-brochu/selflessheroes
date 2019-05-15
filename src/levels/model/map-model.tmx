@@ -221,7 +221,7 @@
  <objectgroup id="2" name="objects" visible="0">
   <object id="11" name="switch" type="switch" x="911" y="179">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>

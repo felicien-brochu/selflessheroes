@@ -296,7 +296,6 @@ export default {
     showLossModal() {
       if (!this.lossModalDisplayed) {
         const lossReason = this.level.getLossReasonTemplate(this.worldState.ruleset.getLossReason())
-        console.log("####LOSSS", lossReason)
         this.lossModalDisplayed = true
         this.$refs.modalLayer.addModal({
           component: Modal,

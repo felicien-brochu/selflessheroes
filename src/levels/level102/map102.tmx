@@ -150,19 +150,19 @@
  <objectgroup id="2" name="objects">
   <object id="10" name="switch" type="switch" x="367" y="370">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="2" name="switch" type="switch" x="814" y="499">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="11" name="switch" type="switch" x="911" y="179">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>

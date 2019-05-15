@@ -215,25 +215,25 @@
  <objectgroup id="2" name="objects">
   <object id="22" name="switch" type="switch" x="559.333" y="531">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="23" name="switch" type="switch" x="752.333" y="498">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="11" name="switch" type="switch" x="719.333" y="310">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="14" name="switch" type="switch" x="529.667" y="338">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>

@@ -169,6 +169,8 @@ export default class World {
     for (let mySwitch of this.switches) {
       if (this.heroes.some(hero => hero.overlaps(mySwitch))) {
         mySwitch.enable()
+      } else {
+        mySwitch.disable()
       }
     }
 

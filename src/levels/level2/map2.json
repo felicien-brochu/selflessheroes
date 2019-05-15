@@ -43,15 +43,15 @@
          "name":"config",
          "objects":[
                 {
-                 "height":283.818181818182,
+                 "height":283.818,
                  "id":12,
                  "name":"frame",
                  "rotation":0,
                  "type":"rectangle",
                  "visible":false,
                  "width":347,
-                 "x":465.333333333333,
-                 "y":320.333333333333
+                 "x":465.333,
+                 "y":320.333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -71,15 +71,15 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",
                  "visible":true,
                  "width":0,
-                 "x":560.333333333333,
+                 "x":560.333,
                  "y":503
                 }, 
                 {
@@ -89,16 +89,16 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",
                  "visible":true,
                  "width":0,
-                 "x":688.666666666667,
-                 "y":501.333333333333
+                 "x":688.667,
+                 "y":501.333
                 }, 
                 {
                  "height":0,
@@ -107,15 +107,15 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",
                  "visible":true,
                  "width":0,
-                 "x":752.666666666667,
+                 "x":752.667,
                  "y":502
                 }, 
                 {
@@ -125,15 +125,15 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",
                  "visible":true,
                  "width":0,
-                 "x":622.666666666667,
+                 "x":622.667,
                  "y":500
                 }, 
                 {
@@ -146,7 +146,7 @@
                  "visible":true,
                  "width":0,
                  "x":528,
-                 "y":435.333333333333
+                 "y":435.333
                 }, 
                 {
                  "height":0,
@@ -157,7 +157,7 @@
                  "type":"hero",
                  "visible":true,
                  "width":0,
-                 "x":593.333333333333,
+                 "x":593.333,
                  "y":436
                 }, 
                 {
@@ -170,7 +170,7 @@
                  "visible":true,
                  "width":0,
                  "x":656,
-                 "y":436.666666666667
+                 "y":436.667
                 }, 
                 {
                  "height":0,
@@ -181,8 +181,8 @@
                  "type":"hero",
                  "visible":true,
                  "width":0,
-                 "x":722.666666666667,
-                 "y":437.333333333333
+                 "x":722.667,
+                 "y":437.333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -230,7 +230,7 @@
  "nextobjectid":19,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.2.3",
+ "tiledversion":"2019.03.13",
  "tileheight":32,
  "tilesets":[
         {

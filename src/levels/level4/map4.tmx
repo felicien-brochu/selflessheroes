@@ -218,13 +218,13 @@
  <objectgroup id="2" name="objects">
   <object id="11" name="switch" type="switch" x="527.333" y="436">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
   <object id="14" name="switch" type="switch" x="723.667" y="435">
    <properties>
-    <property name="color" type="int" value="0"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>

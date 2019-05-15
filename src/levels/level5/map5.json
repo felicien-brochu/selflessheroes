@@ -85,9 +85,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",
@@ -103,9 +103,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",
@@ -121,9 +121,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",
@@ -139,9 +139,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",

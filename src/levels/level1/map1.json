@@ -107,9 +107,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",
@@ -125,9 +125,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",
@@ -143,9 +143,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",
@@ -161,9 +161,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"color",
-                         "type":"int",
-                         "value":0
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",
@@ -230,7 +230,7 @@
  "nextobjectid":19,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.2.3",
+ "tiledversion":"2019.03.13",
  "tileheight":32,
  "tilesets":[
         {
