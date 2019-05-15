@@ -16,7 +16,7 @@ export default class Level extends WorldLevel {
   }) {
     super(id, maxStep)
     this.nameTemplate = nameTemplate
-    this.objectiveTemplate = objectiveTemplate || 'no-text'
+    this.objectiveTemplate = objectiveTemplate
     this.startingCode = startingCode || ''
     this.startingEditorType = startingEditorType || 'graph'
     this.speedTarget = speedTarget || 20
@@ -32,7 +32,7 @@ export default class Level extends WorldLevel {
   }
 
   get objective() {
-    let objective = 'no-text objective'
+    let objective = lang.text('no_text')
     if (this.objectiveTemplate) {
       objective = lang.text(this.objectiveTemplate)
     }

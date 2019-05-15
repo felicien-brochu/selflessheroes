@@ -4,6 +4,8 @@ const messages = {
   default: 'en',
 
   'en': {
+    no_text: "[no-text]",
+
     home_title: "AI World",
     new_game: "new game:",
     new_game_name_placeholder: "Pseudo",

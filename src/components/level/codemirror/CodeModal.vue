@@ -21,7 +21,7 @@ export default {
   props: {
     'text': {
       type: String,
-      default: 'no-text'
+      default: '[no-text]'
     },
     'cancelable': {
       type: Boolean,
