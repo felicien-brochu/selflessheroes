@@ -8,7 +8,7 @@
     <template v-if="this.worldReady">
       <transition name="slide"
         appear>
-        <variable-debugger v-if="playing && followHeroIndex >= 0"
+        <variable-debugger v-if="playing && followHeroIndex >= 0 && compilerConfig && compilerConfig.variables > 0"
           :variables="followHeroVariables" />
       </transition>
 
