@@ -32,7 +32,7 @@ export default class extends Phaser.Scene {
     this.afterStep = this.afterStep.bind(this)
     this.runner.events.on('before-step', this.beforeStep)
     this.runner.events.on('after-step', this.afterStep)
-    this.editorWidth = 385
+    this.editorWidth = 350
 
     this.customEvents = new EventEmitter()
   }
@@ -146,7 +146,7 @@ export default class extends Phaser.Scene {
     this.cameraControl = new CameraControl(
       this,
       camera,
-      window.innerWidth - 385,
+      window.innerWidth - 350,
       window.innerHeight,
       this.map.widthInPixels,
       this.map.heightInPixels,

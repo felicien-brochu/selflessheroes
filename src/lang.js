@@ -12,6 +12,8 @@ const messages = {
     remove_career_button: "Remove",
     remove_career_warning: "Are you really sure to delete this profile?\nAll progression will be lost.",
 
+    level_list_back_button: "Back",
+
     level_details_edit_button: "edit",
     level_details_back_button: "back",
     level_details_add_solution_button: "new solution",
@@ -26,7 +28,9 @@ const messages = {
     modal_confirm_yes: "yes",
     modal_cancel_no: "no",
 
-    editor_bar_objective_button: "Objective",
+    level_back_button: "Back to level list",
+    level_objective_button: "Objective",
+
     editor_bar_undo_button: "Undo",
     editor_bar_redo_button: "Redo",
     editor_bar_delete_button: "Delete",
@@ -142,6 +146,8 @@ const messages = {
     remove_career_button: "Supprimer",
     remove_career_warning: "Êtes-vous vraiment sûr de vouloir supprimer cette partie\u00A0?\nToute progression sera perdue.",
 
+    level_list_back_button: "Retour",
+
     level_details_edit_button: "éditer",
     level_details_back_button: "retour",
     level_details_add_solution_button: "nouvelle solution",
@@ -156,7 +162,9 @@ const messages = {
     modal_confirm_yes: "oui",
     modal_cancel_no: "non",
 
-    editor_bar_objective_button: "Objectif",
+    level_back_button: "Retour à la liste des niveaux",
+    level_objective_button: "Objectif",
+
     editor_bar_undo_button: "Annuler",
     editor_bar_redo_button: "Rétablir",
     editor_bar_delete_button: "Supprimer",

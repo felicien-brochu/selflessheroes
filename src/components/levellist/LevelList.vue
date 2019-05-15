@@ -3,6 +3,7 @@
 
   <button class="back-button mdi mdi-chevron-left"
     type="button"
+    :title="$text('level_list_back_button')"
     @mousedown="goBack"
     @touchstart="goBack" />
 

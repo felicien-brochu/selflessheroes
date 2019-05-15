@@ -223,7 +223,7 @@ export default {
             position: absolute;
             top: 0;
             right: 100%;
-            margin: 40px 0 0;
+            margin: 60px 0 0;
         }
 
         .vue-codemirror-wrap {

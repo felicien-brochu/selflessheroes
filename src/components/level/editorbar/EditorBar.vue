@@ -6,14 +6,12 @@
 		'hidden': !isCodeEditor
 	}">
     <button :class="['code-state', codeState]"
+      type="button"
       :title="codeStateToolTip"
       @click="handleCodeStateClick" />
   </div>
 
   <div class="center-container">
-    <button class="target-button mdi mdi-light mdi-flag-variant"
-      :title="$text('editor_bar_objective_button')"
-      @click="handleObjectiveClick" />
 
     <button :class="{
 				'undo-button': true,
@@ -22,6 +20,7 @@
 				'mdi-undo': true,
 				'mdi-inactive': !codeHistory.canUndo()
 			}"
+      type="button"
       :disabled="!codeHistory.canUndo()"
       :title="$text('editor_bar_undo_button')"
       @click="handleUndoClick" />
@@ -33,6 +32,7 @@
 				'mdi-redo': true,
 				'mdi-inactive': !codeHistory.canRedo()
 			}"
+      type="button"
       :disabled="!codeHistory.canRedo()"
       :title="$text('editor_bar_redo_button')"
       @click="handleRedoClick" />
@@ -44,6 +44,7 @@
 				'mdi-light': true,
 				'mdi-inactive': code.length === 0
       }"
+      type="button"
       :disabled="code.length === 0"
       :title="$text('editor_bar_delete_button')"
       @click="handleRemoveCodeClick" />
@@ -135,9 +136,6 @@ export default {
     },
     handleCodeStateClick() {
       this.$emit('code-state-click', this.codeState)
-    },
-    handleObjectiveClick() {
-      this.$emit('objective-click', this.codeState)
     }
   }
 }
@@ -170,10 +168,6 @@ export default {
         display: flex;
         justify-content: space-around;
         margin: 0 18px 0 6px;
-
-        .target-button {
-            margin-right: 10px;
-        }
     }
 
     .code-state-container {

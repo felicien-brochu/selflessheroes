@@ -17,7 +17,7 @@
     @resize="handleEditorResize"
     :allow-resize="true"
     :size="editorWidth"
-    :min-size="385"
+    :min-size="320"
     :resizerThickness="2"
     units="pixels"
     resizerColor="#4b5261"
@@ -28,8 +28,15 @@
 
       <button class="back-button mdi mdi-chevron-left"
         type="button"
+        :title="$text('level_back_button')"
         @mousedown="goBack"
         @touchstart="goBack" />
+
+      <button class="objective-button mdi mdi-flag-variant"
+        type="button"
+        :title="$text('level_objective_button')"
+        @mousedown="showObjectiveModal"
+        @touchstart="showObjectiveModal" />
 
       <run-bar :worldReady="worldReady"
         :aiReady="aiReady"
@@ -66,8 +73,7 @@
       @code-change="handleCodeChange"
       @start-edit="handleStartEdit"
       @select-follow-hero="followHeroIndex = $event"
-      @change-type="handleEditorTypeChange"
-      @objective-click="showObjectiveModal" />
+      @change-type="handleEditorTypeChange" />
 
   </resize-split-pane>
 </div>
@@ -134,7 +140,7 @@ export default {
         fatal: [],
         undefinedLiterals: []
       },
-      editorWidth: 385
+      editorWidth: 350
     }
   },
 
@@ -486,7 +492,8 @@ export default {
                 width: 100%;
                 height: 100%;
 
-                .back-button {
+                .back-button,
+                .objective-button {
                     color: transparentize(white, 0.2);
                     background: none;
                     border: none;
@@ -495,15 +502,24 @@ export default {
                     z-index: 5;
                     position: absolute;
                     padding: 0;
-                    font-size: 60px;
-                    line-height: 40px;
-                    left: 4px;
-                    top: 12px;
                     cursor: pointer;
 
                     &:hover {
                         color: white;
                     }
+                }
+
+                .back-button {
+                    font-size: 60px;
+                    line-height: 40px;
+                    left: 4px;
+                    top: 12px;
+                }
+
+                .objective-button {
+                    font-size: 32px;
+                    right: 14px;
+                    top: 10px;
                 }
 
                 .run-bar {

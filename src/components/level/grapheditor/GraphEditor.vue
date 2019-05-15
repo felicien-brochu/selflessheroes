@@ -333,7 +333,7 @@ export default {
             position: absolute;
             right: 100%;
             top: 0;
-            margin: 40px 0 0;
+            margin: 60px 0 0;
         }
 
         .graph-scroll {
