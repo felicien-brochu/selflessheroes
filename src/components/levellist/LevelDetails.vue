@@ -46,89 +46,91 @@
       @touchstart="$emit('close')" />
 
     <div class="solution-table">
+      <div class="solution-table-scroll">
 
-      <ul class="solution-list">
-        <li v-for="solution in solutions"
-          :key="solution.id"
-          :class="{
+        <ul class="solution-list">
+          <li v-for="solution in solutions"
+            :key="solution.id"
+            :class="{
 					'selected': solution.id === levelSolutions.solutionID
 				}"
-          @mousedown="selectSolution(solution.id, $event)"
-          @touchstart="selectSolution(solution.id, $event)">
-          <score-stars :score="solution.score"
-            :level="level" />
+            @mousedown="selectSolution(solution.id, $event)"
+            @touchstart="selectSolution(solution.id, $event)">
+            <score-stars :score="solution.score"
+              :level="level" />
 
-          <div class="name-container">
+            <div class="name-container">
 
-            <template v-if="renamedSolutionID !== solution.id">
-              <span class="name">{{
+              <template v-if="renamedSolutionID !== solution.id">
+                <span class="name">{{
 						solution.name
 					}}</span>
 
-              <button type="button"
-                class="mdi mdi-pencil"
-                :title="$text('level_details_rename_solution_button')"
-                @mousedown="selectRenamedSolution(solution.id, solution.name, $event)"
-                @touchstart="selectRenamedSolution(solution.id, solution.name, $event)" /><button v-if="solutions.length > 1"
-                type="button"
-                class="mdi mdi-delete"
-                :title="$text('level_details_delete_solution_button')"
-                @mousedown="deleteSolution(solution.id, $event)"
-                @touchstart="deleteSolution(solution.id, $event); $event.preventDefault()" />
+                <button type="button"
+                  class="mdi mdi-pencil"
+                  :title="$text('level_details_rename_solution_button')"
+                  @mousedown="selectRenamedSolution(solution.id, solution.name, $event)"
+                  @touchstart="selectRenamedSolution(solution.id, solution.name, $event)" /><button v-if="solutions.length > 1"
+                  type="button"
+                  class="mdi mdi-delete"
+                  :title="$text('level_details_delete_solution_button')"
+                  @mousedown="deleteSolution(solution.id, $event)"
+                  @touchstart="deleteSolution(solution.id, $event); $event.preventDefault()" />
 
-            </template>
+              </template>
 
-            <form v-else
-              @submit="renameSolution">
-              <input v-focus
-                type="text"
-                name="name"
-                v-model="renamedSolutionName"
-                maxlength="20"
-                :placeholder="$text('level_details_name_input_placeholder')"
-                @blur="renameSolution" />
-            </form>
+              <form v-else
+                @submit="renameSolution">
+                <input v-focus
+                  type="text"
+                  name="name"
+                  v-model="renamedSolutionName"
+                  maxlength="20"
+                  :placeholder="$text('level_details_name_input_placeholder')"
+                  @blur="renameSolution" />
+              </form>
 
-          </div>
+            </div>
 
-          <div class="score speed-score">
-            <template v-if="solution.score.lastStep >= 0">
-              <span :class="{
+            <div class="score speed-score">
+              <template v-if="solution.score.lastStep >= 0">
+                <span :class="{
 						'score-number': true,
 						'won': solution.score.lastStep <= level.speedTarget
 						}">{{solution.score.lastStep}}</span><span class="score-target">/{{level.speedTarget}}</span>
-            </template>
-            <i v-else
-              class="mdi mdi-infinity" />
-          </div>
-          <div class="score length-score">
-            <template v-if="solution.score.lastLength >= 0">
-              <span :class="{
+              </template>
+              <i v-else
+                class="mdi mdi-infinity" />
+            </div>
+            <div class="score length-score">
+              <template v-if="solution.score.lastLength >= 0">
+                <span :class="{
 						'score-number': true,
 						'won': solution.score.lastLength <= level.lengthTarget
 					}">{{solution.score.lastLength}}</span><span class="score-target">/{{level.lengthTarget}}</span>
-            </template>
-            <i v-else
-              class="mdi mdi-infinity" />
-          </div>
+              </template>
+              <i v-else
+                class="mdi mdi-infinity" />
+            </div>
 
-          <div class="edit-button-container">
-            <button v-if="solution.id === levelSolutions.solutionID"
-              type="button"
-              class="mdi mdi-arrow-right-circle"
-              :title="$text('level_details_edit_button')"
-              @mousedown="editLevelSolution"
-              @touchstart="editLevelSolution" />
-          </div>
-        </li>
-      </ul>
-
+            <div class="edit-button-container">
+              <button v-if="solution.id === levelSolutions.solutionID"
+                type="button"
+                class="mdi mdi-arrow-right-circle"
+                :title="$text('level_details_edit_button')"
+                @mousedown="editLevelSolution"
+                @touchstart="editLevelSolution" />
+            </div>
+          </li>
+        </ul>
+      </div>
 
       <button type="button"
         class="add-button mdi mdi-plus-circle"
         :title="$text('level_details_add_solution_button')"
         @mousedown="createSolution"
         @touchstart="createSolution" />
+
     </div>
 
     <div class="button-container">
@@ -268,7 +270,7 @@ $level-details-color: #3C404A;
     .level-details-modal {
         position: absolute;
         width: calc(100vw - 80px);
-        height: calc(100vh - 60px);
+        max-height: calc(100vh - 60px);
         top: 30px;
         left: 50%;
         transform: translateX(-50%);
@@ -363,97 +365,10 @@ $level-details-color: #3C404A;
         }
 
         .solution-table {
-            position: relative;
             flex-grow: 1;
             display: flex;
-            flex-direction: column;
+            position: relative;
             min-height: 0;
-
-            .solution-list {
-                $selected-color: #568AF2;
-                $table-color: #282C34;
-                background-color: $table-color;
-                flex-grow: 1;
-                border-radius: 8px;
-                overflow: auto;
-
-                li {
-                    display: flex;
-                    background: $table-color;
-                    padding: 7px 10px;
-                    line-height: 24px;
-
-                    &.selected {
-                        background-color: $selected-color;
-
-                        &:nth-child(2n+1) {
-                            background-color: $selected-color;
-                        }
-
-                        .score .score-number.won {
-                            color: #54d20e;
-                        }
-                    }
-
-                    &:nth-child(2n+1) {
-                        background: lighten($table-color, 2%);
-                    }
-
-                    &:last-child {
-                        margin-bottom: 60px;
-                    }
-
-                    .score-stars {
-                        width: 44px;
-                        margin-right: 8px;
-                        flex-shrink: 0;
-                    }
-
-                    .name-container {
-                        flex-grow: 1;
-
-                        .name {
-                            vertical-align: middle;
-                        }
-
-                        button {
-                            font-size: 18px;
-                            opacity: 0.5;
-
-                            &:active,
-                            &:hover {
-                                opacity: 1;
-                            }
-
-                            &::before {
-                                vertical-align: middle;
-                            }
-                        }
-
-                        input[type="text"] {
-                            padding: 3px 6px;
-                            border-radius: 5px;
-                            font-family: 'Roboto', Arial, sans-serif;
-                            font-size: 17px;
-                            border: none;
-                            background-color: white;
-                            color: darken($selected-color, 10%);
-                            width: 200px;
-                        }
-                    }
-
-                    .edit-button-container {
-                        width: 26px;
-                        button {
-                            padding: 0;
-
-                            &::before {
-                                font-size: 22px;
-                            }
-                        }
-                    }
-                }
-            }
 
             .add-button {
                 position: absolute;
@@ -465,6 +380,103 @@ $level-details-color: #3C404A;
                 &:active,
                 &:hover {
                     text-shadow: 0 0 5px #fff4;
+                }
+            }
+
+            .solution-table-scroll {
+                $table-color: #282C34;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                background-color: $table-color;
+                min-height: 0;
+                border-radius: 8px;
+                overflow: auto;
+                transform: translate(0);
+
+                .solution-list {
+                    $selected-color: #568AF2;
+                    background-color: $table-color;
+                    flex-grow: 1;
+                    border-radius: 8px;
+                    min-height: 250px;
+
+                    li {
+                        display: flex;
+                        background: $table-color;
+                        padding: 7px 10px;
+                        line-height: 24px;
+
+                        &.selected {
+                            background-color: $selected-color;
+
+                            &:nth-child(2n+1) {
+                                background-color: $selected-color;
+                            }
+
+                            .score .score-number.won {
+                                color: #54d20e;
+                            }
+                        }
+
+                        &:nth-child(2n+1) {
+                            background: lighten($table-color, 2%);
+                        }
+
+                        &:last-child {
+                            margin-bottom: 74px;
+                        }
+
+                        .score-stars {
+                            width: 44px;
+                            margin-right: 8px;
+                            flex-shrink: 0;
+                        }
+
+                        .name-container {
+                            flex-grow: 1;
+
+                            .name {
+                                vertical-align: middle;
+                            }
+
+                            button {
+                                font-size: 18px;
+                                opacity: 0.5;
+
+                                &:active,
+                                &:hover {
+                                    opacity: 1;
+                                }
+
+                                &::before {
+                                    vertical-align: middle;
+                                }
+                            }
+
+                            input[type="text"] {
+                                padding: 3px 6px;
+                                border-radius: 5px;
+                                font-family: 'Roboto', Arial, sans-serif;
+                                font-size: 17px;
+                                border: none;
+                                background-color: white;
+                                color: darken($selected-color, 10%);
+                                width: 200px;
+                            }
+                        }
+
+                        .edit-button-container {
+                            width: 26px;
+                            button {
+                                padding: 0;
+
+                                &::before {
+                                    font-size: 22px;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
