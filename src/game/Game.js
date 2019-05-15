@@ -122,7 +122,6 @@ export default class extends Phaser.Scene {
     for (let hero of this.world.heroes) {
       let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight, heroIndex)
       this.heroes.push(sprite)
-      sprite.setOrigin(0.5)
       this.add.existing(sprite)
       sprite.setInteractive()
       sprite.on('pointerdown', () => this.handleClick(sprite), this)

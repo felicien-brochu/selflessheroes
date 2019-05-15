@@ -30,6 +30,7 @@ import button_red from './images/button_red.png'
 import bonfire from './images/bonfire.png'
 import explosion from './images/explosion.png'
 import ashes from './images/ashes.png'
+import sleep_zzz from './images/sleep_zzz.png'
 
 import follow_cursor from './images/follow_cursor.png'
 
@@ -153,6 +154,10 @@ export default class extends Phaser.Scene {
     })
     this.load.spritesheet('ashes', ashes, {
       frameWidth: 56,
+      frameHeight: 56
+    })
+    this.load.spritesheet('sleep_zzz', sleep_zzz, {
+      frameWidth: 32,
       frameHeight: 56
     })
     this.load.image('follow_cursor', follow_cursor)

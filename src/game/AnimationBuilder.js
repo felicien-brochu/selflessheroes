@@ -147,6 +147,10 @@ const anims = {
     start: 8,
     end: 8
   },
+  elf_f_sleep: {
+    start: 9,
+    end: 9
+  },
   elf_m_idle: {
     start: 0,
     end: 3
@@ -158,6 +162,10 @@ const anims = {
   elf_m_hit: {
     start: 8,
     end: 8
+  },
+  elf_m_sleep: {
+    start: 9,
+    end: 9
   },
   knight_f_idle: {
     start: 0,
@@ -171,6 +179,10 @@ const anims = {
     start: 8,
     end: 8
   },
+  knight_f_sleep: {
+    start: 9,
+    end: 9
+  },
   knight_m_idle: {
     start: 0,
     end: 3
@@ -182,6 +194,10 @@ const anims = {
   knight_m_hit: {
     start: 8,
     end: 8
+  },
+  knight_m_sleep: {
+    start: 9,
+    end: 9
   },
   wizzard_f_idle: {
     start: 0,
@@ -195,6 +211,10 @@ const anims = {
     start: 8,
     end: 8
   },
+  wizzard_f_sleep: {
+    start: 9,
+    end: 9
+  },
   wizzard_m_idle: {
     start: 0,
     end: 3
@@ -206,6 +226,10 @@ const anims = {
   wizzard_m_hit: {
     start: 8,
     end: 8
+  },
+  wizzard_m_sleep: {
+    start: 9,
+    end: 9
   },
   bonfire_off: {
     sprite: 'bonfire',
@@ -228,6 +252,12 @@ const anims = {
     start: 0,
     end: 7,
     repeat: 0
+  },
+  sleep_zzz: {
+    sprite: 'sleep_zzz',
+    start: 0,
+    end: 4,
+    frameRate: 2
   }
 }
 
@@ -235,7 +265,7 @@ export default class AnimationBuilder {
   static build(scene) {
     for (var key in anims) {
       if (anims.hasOwnProperty(key)) {
-        let spriteKey = key.replace(/(.*)_((idle)|(run)|(hit))/, '$1')
+        let spriteKey = key.replace(/(.*)_((idle)|(run)|(hit)|(sleep))/, '$1')
         let animConfig = anims[key]
         if (animConfig.sprite) {
           spriteKey = animConfig.sprite
@@ -243,6 +273,10 @@ export default class AnimationBuilder {
         let repeat = -1
         if (animConfig.repeat !== undefined) {
           repeat = animConfig.repeat
+        }
+        let frameRate = 12
+        if (animConfig.frameRate !== undefined) {
+          frameRate = animConfig.frameRate
         }
 
         scene.anims.create({
@@ -252,7 +286,7 @@ export default class AnimationBuilder {
             end: animConfig.end
           }),
           repeat: repeat,
-          frameRate: 12
+          frameRate: frameRate
         })
       }
     }
