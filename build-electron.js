@@ -33,7 +33,8 @@ const config = {
     "dist/vendors~app~phaser.js",
     "dist/app.css",
     "dist/assets/**/*",
-    "dist/levels/**/*"
+    "dist/levels/**/*",
+    "dist/workers/**/*",
   ],
   compression: "normal",
   nsis: {
