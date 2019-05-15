@@ -24,19 +24,21 @@ export default class Ruleset {
   }
 
   allHeroEnded() {
-    let ended = true
+    let oneEndedNotDead = false
+    let endedOrDead = true
     for (let hero of this.world.heroes) {
-      ended &= hero.getDebugContext().ended
+      oneEndedNotDead |= (hero.getDebugContext().ended && !hero.dead)
+      endedOrDead &= (hero.getDebugContext().ended || hero.dead)
     }
-    return ended
+    return endedOrDead && oneEndedNotDead
   }
 
-  static get lossReasonTooManySteps() {
-    return 'loss_reason_too_many_steps'
-  }
-
-  static get lossReasonAllHeroEnded() {
-    return 'loss_reason_all_hero_ended'
+  allHeroDead() {
+    let dead = true
+    for (let hero of this.world.heroes) {
+      dead &= hero.dead
+    }
+    return dead
   }
 
   getLossReason() {
@@ -46,8 +48,14 @@ export default class Ruleset {
       reason = Ruleset.lossReasonTooManySteps
     } else if (this.allHeroEnded()) {
       reason = Ruleset.lossReasonAllHeroEnded
+    } else if (this.allHeroDead()) {
+      reason = Ruleset.lossReasonAllHeroDead
     }
 
     return reason
   }
 }
+
+Ruleset.lossReasonTooManySteps = 'loss_reason_too_many_steps'
+Ruleset.lossReasonAllHeroEnded = 'loss_reason_all_hero_ended'
+Ruleset.lossReasonAllHeroDead = 'loss_reason_all_hero_dead'

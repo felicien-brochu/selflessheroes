@@ -44,6 +44,8 @@ export default class Level extends WorldLevel {
       return lang.text('loss_reason_too_many_steps')
     } else if (lossReason === DefaultRuleset.lossReasonAllHeroEnded) {
       return lang.text('loss_reason_all_hero_ended')
+    } else if (lossReason === DefaultRuleset.lossReasonAllHeroDead) {
+      return lang.text('loss_reason_all_hero_dead')
     }
     return null
   }

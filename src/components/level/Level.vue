@@ -227,7 +227,7 @@ export default {
         setTimeout(this.showWinModal.bind(this), 700)
       }
       else if (this.worldState.hasLost) {
-        setTimeout(this.showLossModal.bind(this), 0)
+        setTimeout(this.showLossModal.bind(this), 500)
       }
     },
 
@@ -296,6 +296,7 @@ export default {
     showLossModal() {
       if (!this.lossModalDisplayed) {
         const lossReason = this.level.getLossReasonTemplate(this.worldState.ruleset.getLossReason())
+        console.log("####LOSSS", lossReason)
         this.lossModalDisplayed = true
         this.$refs.modalLayer.addModal({
           component: Modal,
