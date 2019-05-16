@@ -79,6 +79,7 @@ export default {
 .objective-modal {
     padding: 37px 50px 30px;
     min-width: 485px;
+    background-color: #3C404A;
 
     .modal-content {
         display: flex;
@@ -157,6 +158,14 @@ export default {
 
     .button-container {
         margin-top: 17px;
+
+        button {
+            background-color: lighten(#3C404A, 10%);
+
+            &:hover:not(:active) {
+                background-color: lighten(#3C404A, 12%);
+            }
+        }
     }
 }
 </style>
