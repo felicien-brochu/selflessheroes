@@ -94,6 +94,7 @@ export default {
 
     handleOutsideClick(e) {
       let target = e.touches && e.touches[0].target || e.target
+      e.stopPropagation()
       if (target === this.$el) {
         this.closeLastModal()
       }
