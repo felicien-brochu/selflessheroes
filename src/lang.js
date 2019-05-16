@@ -30,6 +30,10 @@ const messages = {
 
     level_back_button: "Back to level list",
     level_objective_button: "Objective",
+    level_objective_modal_objective_title: "objective",
+    level_objective_modal_secondary_objectives_title: "secondary objectives",
+    level_objective_modal_speed_target_unit: "cycles",
+    level_objective_modal_length_target_unit: "lines",
 
     editor_bar_undo_button: "Undo",
     editor_bar_redo_button: "Redo",
@@ -114,7 +118,7 @@ const messages = {
 
     level_test_failed_modal: "Some of the tests failed.\nWe reproduced the same situation as in these failed attempts.",
     loss_reason_too_many_steps: "Your program takes too much time!",
-    loss_reason_all_hero_ended: "Your characters are asleep",
+    loss_reason_all_hero_ended: "Your characters fell asleep before completing the objective",
     loss_reason_all_hero_dead: "All your characters are dead",
 
     win_modal_code_speed: "average time:\u00A0%%score${codeSpeed}%%\u00A0/{speedTarget}",
@@ -127,15 +131,15 @@ const messages = {
 
 
     level1_name: "First step",
-    level1_objective: "Help the heroes to walk on the switches.\nThey seem to stop prematurly.",
+    level1_objective: "Help the heroes to walk on the %%icon icon-switch$%% switches.\nThey seem to stop prematurly.",
     level2_name: "Step aside",
-    level2_objective: "Trigger the switches",
+    level2_objective: "Trigger the %%icon icon-switch$%% switches",
     level3_name: "Watch the step",
-    level3_objective: "Trigger the switches.\nTry not to fall.",
+    level3_objective: "Trigger the %%icon icon-switch$%% switches.\nTry not to fall.",
     level4_name: "Seperate ways",
-    level4_objective: "Trigger the switches.",
+    level4_objective: "Trigger the %%icon icon-switch$%% switches.",
     level5_name: "Vertigo",
-    level5_objective: "Trigger the switches.\nTry not to fall.",
+    level5_objective: "Trigger the %%icon icon-switch$%% switches.\nTry not to fall.",
   },
 
 
@@ -164,6 +168,10 @@ const messages = {
 
     level_back_button: "Retour à la liste des niveaux",
     level_objective_button: "Objectif",
+    level_objective_modal_objective_title: "objectif",
+    level_objective_modal_secondary_objectives_title: "objectifs secondaires",
+    level_objective_modal_speed_target_unit: "cycles",
+    level_objective_modal_length_target_unit: "lignes",
 
     editor_bar_undo_button: "Annuler",
     editor_bar_redo_button: "Rétablir",
@@ -226,7 +234,7 @@ const messages = {
     drop_down_list_number: "nombre",
 
     drop_down_list_object_type_hero: "quelqu'un",
-    drop_down_list_object_type_switch: "interrupteur",
+    drop_down_list_object_type_switch: "bouton",
     drop_down_list_object_type_bonfire: "feu",
 
     drop_down_list_terrain_type_wall: "mur",
@@ -238,7 +246,7 @@ const messages = {
 
     level_test_failed_modal: "Certains tests ont échoué.\nNous avons reproduit une des situations problématiques.",
     loss_reason_too_many_steps: "Votre programme prend trop de temps\u00A0!",
-    loss_reason_all_hero_ended: "Vos personnages sont endormis",
+    loss_reason_all_hero_ended: "Vos personnages se sont endormis avant de remplir l'objectif",
     loss_reason_all_hero_dead: "Tous vos personnages sont morts",
 
     win_modal_code_speed: "temps moyen:\u00A0%%score${codeSpeed}%%\u00A0/{speedTarget}",
@@ -249,15 +257,15 @@ const messages = {
     win_modal_continue_edit_button: "améliorer",
 
     level1_name: "Premiers pas",
-    level1_objective: "Aide les héros à aller sur les interrupteurs.\nOn dirait qu'ils s'arrêtent juste avant.",
+    level1_objective: "Aide les héros à aller sur les %%icon icon-switch$%% boutons.\nOn dirait qu'ils s'arrêtent juste avant.",
     level2_name: "Pas de côté",
-    level2_objective: "Déclenche les interrupteurs",
+    level2_objective: "Marche sur les %%icon icon-switch$%% boutons",
     level3_name: "Attention à la marche",
-    level3_objective: "Déclenche les interrupteurs.\nNe tombe pas dans le vide.",
+    level3_objective: "Marche sur les %%icon icon-switch$%% boutons.\n\nNe tombe pas dans le vide.",
     level4_name: "Chacun son chemin",
-    level4_objective: "Déclenche les interrupteurs",
+    level4_objective: "Marche sur les %%icon icon-switch$%% boutons",
     level5_name: "Vertige",
-    level5_objective: "Déclenche les interrupteurs.\nNe tombe pas dans le vide.",
+    level5_objective: "Marche sur les %%icon icon-switch$%% boutons.\n\nNe tombe pas dans le vide.",
   }
 }
 

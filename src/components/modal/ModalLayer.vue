@@ -5,18 +5,15 @@
     @mousedown="handleOutsideClick"
     @touchstart="handleOutsideClick">
 
-    <transition-group name="pop"
-      appear>
-      <component v-for="(modal, index) in modals"
-        ref="modals"
-        :key="modal.key"
-        :is="modal.component"
-        :frameWidth="frameWidth"
-        :frameHeight="frameHeight"
-        v-bind="modal.props"
-        v-on="modal.handlers"
-        @close="removeModal(index)"></component>
-    </transition-group>
+    <component v-for="(modal, index) in modals"
+      ref="modals"
+      :key="modal.key"
+      :is="modal.component"
+      :frameWidth="frameWidth"
+      :frameHeight="frameHeight"
+      v-bind="modal.props"
+      v-on="modal.handlers"
+      @close="removeModal(index)" />
 
   </div>
 </transition>
@@ -27,11 +24,11 @@ export default {
   props: {
     'horizontalPadding': {
       type: Number,
-      default: 30
+      default: 20
     },
     'verticalPadding': {
       type: Number,
-      default: 20
+      default: 13
     }
   },
   data: function() {
@@ -125,25 +122,6 @@ export default {
         left: 50%;
 
         transform: translate(-50%, -50%) scale(1) rotate(0deg);
-
-        &.pop-enter-active {
-            transition: all 0.20s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        &.pop-leave-active {
-            transition: all 0.15s ease;
-        }
-
-        &.pop-enter {
-            transform: translate(-50%, -50%) scale(0.5) rotate(10deg);
-            opacity: 0;
-        }
-
-        &.pop-leave-to {
-            transform: translate(-50%, -50%) scale(0) rotate(10deg);
-            opacity: 0;
-        }
     }
-
 }
 </style>

@@ -50,6 +50,8 @@ export default {
         background-size: 100%;
         background-repeat: no-repeat;
         position: absolute;
+        top: 0;
+        left: 0;
     }
 
     .stars-shadow {

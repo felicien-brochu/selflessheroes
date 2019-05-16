@@ -89,6 +89,7 @@ import ResizeSplitPane from './rspane/ResizeSplitPane'
 import ModalLayer from '../modal/ModalLayer'
 import Modal from '../modal/Modal'
 import WinModal from './winmodal/WinModal'
+import ObjectiveModal from './ObjectiveModal'
 import Compiler from '../../world/ai/compile/Compiler'
 import Decompiler from '../../world/ai/compile/Decompiler'
 import Linter from '../../world/ai/compile/Linter'
@@ -257,11 +258,11 @@ export default {
 
     showObjectiveModal() {
       this.$refs.modalLayer.addModal({
-        component: Modal,
+        component: ObjectiveModal,
         key: 'level_objective_modal',
         props: {
-          text: this.level.objective,
-          cancelable: false
+          level: this.level,
+          solution: this.solution
         }
       })
     },
