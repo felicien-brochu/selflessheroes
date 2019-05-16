@@ -166,16 +166,19 @@ export default {
     },
 
     handleDropDown(e) {
+      e.stopPropagation()
       this.$emit('start-edit')
       this.openDropDownList()
     },
 
     handleEditPosition(e) {
+      e.stopPropagation()
       this.$emit('start-edit')
       this.openDirectionPopup()
     },
 
     handleEditInteger(e) {
+      e.stopPropagation()
       this.$emit('start-edit')
       this.openIntegerPopup()
     },

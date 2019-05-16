@@ -1,5 +1,6 @@
 <template>
 <div class="editors-container">
+
   <div class="editor"
     ref="editor">
 
