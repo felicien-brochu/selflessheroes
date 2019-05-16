@@ -28,12 +28,18 @@ const messages = {
     modal_confirm_yes: "yes",
     modal_cancel_no: "no",
 
+    level_modal_speed_target_unit: "cycles",
+    level_modal_length_target_unit: "lines",
+
     level_back_button: "Back to level list",
     level_objective_button: "Objective",
     level_objective_modal_objective_title: "objective",
     level_objective_modal_secondary_objectives_title: "secondary objectives",
-    level_objective_modal_speed_target_unit: "cycles",
-    level_objective_modal_length_target_unit: "lines",
+
+    win_modal_prior_code_speed: "your fastest was %%score${minStep}%% cycles",
+    win_modal_prior_code_length: "your smallest was %%score${minLength}%% lines",
+    win_modal_ok_button: "ok",
+    win_modal_continue_edit_button: "improve",
 
     editor_bar_undo_button: "Undo",
     editor_bar_redo_button: "Redo",
@@ -121,13 +127,6 @@ const messages = {
     loss_reason_all_hero_ended: "Your characters fell asleep before completing the objective",
     loss_reason_all_hero_dead: "All your characters are dead",
 
-    win_modal_code_speed: "average time:\u00A0%%score${codeSpeed}%%\u00A0/{speedTarget}",
-    win_modal_prior_code_speed: "your shortest one was %%score${minStep}%%",
-    win_modal_code_length: "length:\u00A0%%score${codeLength}%%\u00A0/{lengthTarget}",
-    win_modal_prior_code_length: "your smallest one was %%score${minLength}%% lines long",
-    win_modal_ok_button: "ok",
-    win_modal_continue_edit_button: "improve",
-
 
 
     level1_name: "First step",
@@ -166,12 +165,18 @@ const messages = {
     modal_confirm_yes: "oui",
     modal_cancel_no: "non",
 
+    level_modal_speed_target_unit: "cycles",
+    level_modal_length_target_unit: "lignes",
+
     level_back_button: "Retour à la liste des niveaux",
     level_objective_button: "Objectif",
     level_objective_modal_objective_title: "objectif",
     level_objective_modal_secondary_objectives_title: "objectifs secondaires",
-    level_objective_modal_speed_target_unit: "cycles",
-    level_objective_modal_length_target_unit: "lignes",
+
+    win_modal_prior_code_speed: "votre meilleur temps était %%score-number${minStep}%% cycles",
+    win_modal_prior_code_length: "votre solution la plus courte faisait %%score-number${minLength}%% lignes",
+    win_modal_ok_button: "ok",
+    win_modal_continue_edit_button: "améliorer",
 
     editor_bar_undo_button: "Annuler",
     editor_bar_redo_button: "Rétablir",
@@ -248,13 +253,6 @@ const messages = {
     loss_reason_too_many_steps: "Votre programme prend trop de temps\u00A0!",
     loss_reason_all_hero_ended: "Vos personnages se sont endormis avant de remplir l'objectif",
     loss_reason_all_hero_dead: "Tous vos personnages sont morts",
-
-    win_modal_code_speed: "temps moyen:\u00A0%%score${codeSpeed}%%\u00A0/{speedTarget}",
-    win_modal_prior_code_speed: "votre meilleur temps était %%score${minStep}%%",
-    win_modal_code_length: "longueur:\u00A0%%score${codeLength}%%\u00A0/{lengthTarget}",
-    win_modal_prior_code_length: "votre solution la plus courte faisait %%score${minLength}%% lignes",
-    win_modal_ok_button: "ok",
-    win_modal_continue_edit_button: "améliorer",
 
     level1_name: "Premiers pas",
     level1_objective: "Aide les héros à aller sur les %%icon icon-switch$%% boutons.\nOn dirait qu'ils s'arrêtent juste avant.",

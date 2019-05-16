@@ -7,6 +7,7 @@
 		maxHeight: `${maxHeight}px`
 	}">
     <button class="close-button mdi mdi-close"
+      v-if="!hideButtons && !hideCloseButton"
       type="button"
       :title="$text('modal_close_button')"
       @click="cancel"
@@ -20,21 +21,24 @@
       <slot>{{text}}</slot>
     </div>
 
-    <div class="button-container">
-      <button type="submit"
-        :title="confirmButtonLabel"
-        @click="confirm"
-        @touchstart="confirm">{{
-				confirmButtonLabel
-		}}</button>
+    <div class="button-container"
+      v-if="!hideButtons">
 
       <button v-if="cancelable"
         type="button"
         :title="cancelButtonLabel"
         @click="cancel"
         @touchstart="cancel">{{
-				cancelButtonLabel
-		}}</button>
+					cancelButtonLabel
+				}}</button>
+
+      <button type="submit"
+        :title="confirmButtonLabel"
+        @click="confirm"
+        @touchstart="confirm">{{
+				confirmButtonLabel
+			}}</button>
+
     </div>
   </div>
 </transition>
@@ -65,6 +69,14 @@ export default {
     'frameHeight': {
       type: Number,
       default: window.innerHeight
+    },
+    'hideButtons': {
+      type: Boolean,
+      default: false
+    },
+    'hideCloseButton': {
+      type: Boolean,
+      default: false
     },
     'confirmLabel': {
       type: String,
@@ -144,7 +156,7 @@ export default {
     @include modal-type(#583455, white);
 }
 .modal-info {
-    @include modal-type(#3C404A, white);
+    @include modal-type(#282c34, white);
 }
 
 .modal {

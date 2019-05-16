@@ -23,11 +23,11 @@
     <h4>{{$text('level_objective_modal_secondary_objectives_title')}}</h4>
 
     <div class="score">
-      <i class="mdi mdi-clock-fast" />:<span class="score-target"><span class="target-number">{{level.speedTarget}}</span> {{$text('level_objective_modal_speed_target_unit')}}</span>
+      <i class="mdi mdi-clock-fast" />:<span class="score-target"><span class="target-number">{{level.speedTarget}}</span> {{$text('level_modal_speed_target_unit')}}</span>
     </div>
 
     <div class="score">
-      <i class="mdi mdi-format-list-numbered" />:<span class="score-target"><span class="target-number">{{level.lengthTarget}}</span> {{$text('level_objective_modal_length_target_unit')}}</span>
+      <i class="mdi mdi-format-list-numbered" />:<span class="score-target"><span class="target-number">{{level.lengthTarget}}</span> {{$text('level_modal_length_target_unit')}}</span>
     </div>
 
   </div>
@@ -146,6 +146,7 @@ export default {
 
                     .target-number {
                         font-size: 24px;
+                        margin-right: 2px;
                         font-weight: 800;
                         color: #86b36d;
                     }

@@ -190,8 +190,8 @@ export default {
     },
 
     speedUpTestAnimation() {
-      if (this.barAnimationDuration > 0) {
-        this.barAnimationDuration = 0
+      if (this.barAnimationDuration > 1) {
+        this.barAnimationDuration = 1
       }
       else {
         this.finishTestAnimation()

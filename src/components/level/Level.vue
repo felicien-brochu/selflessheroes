@@ -46,14 +46,6 @@
         @step="stepOnce"
         @stop="stop" />
 
-      <transition name="slide-down">
-        <win-modal v-if="winModalDisplayed"
-          :code="code"
-          :level="level"
-          :levelSolutions="levelSolutions"
-          @close="handleWinModalClose" />
-      </transition>
-
     </div>
 
     <editor slot="secondPane"
@@ -270,15 +262,29 @@ export default {
     showWinModal() {
       if (!this.winModalDisplayed) {
         this.winModalDisplayed = true
+
+        this.$refs.modalLayer.addModal({
+          component: WinModal,
+          key: 'level_win_modal',
+          props: {
+            level: this.level,
+            levelSolutions: this.levelSolutions,
+            code: this.code
+          },
+          handlers: {
+            confirm: (e) => this.handleWinModalClose('confirm', e),
+            cancel: (e) => this.handleWinModalClose('cancel', e)
+          }
+        })
       }
     },
 
-    handleWinModalClose(e) {
+    handleWinModalClose(action, e) {
       this.winModalDisplayed = false
       if (e.hasWon) {
         this.solution.addScore(e.averageStep, e.codeLength)
         this.levelSolutions.addScore(e.averageStep, e.codeLength)
-        if (e.action === 'confirm') {
+        if (action === 'confirm') {
           this.goBack()
         }
       }
