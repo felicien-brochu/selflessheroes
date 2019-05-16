@@ -38,7 +38,8 @@
         @after-enter="handleJumpLinkTransitionEnd"
         @enter-cancelled="handleJumpLinkTransitionEnd"
         name="jump-link">
-        <jump-link-layer ref="jumpLinkLayer" />
+        <jump-link-layer ref="jumpLinkLayer"
+          :focusedStatementIndex="focusedStatementIndex" />
       </transition>
 
       <line-numbers :statements="statements"
@@ -111,7 +112,8 @@ export default {
       statements: null,
       startDragEvent: null,
       chosenPaletteStatement: null,
-      code: this.masterCode
+      code: this.masterCode,
+      focusedStatementIndex: -1
     }
   },
 
@@ -144,7 +146,7 @@ export default {
 
   methods: {
     compileCode() {
-      console.log("####COMPILE code", this.code)
+      console.debug("####COMPILE code", this.code)
       let compiler = new Compiler(this.code, this.compilerConfig)
       compiler.compile()
       let statements = compiler.statements
@@ -158,6 +160,7 @@ export default {
     handlePaletteDragStart(e) {
       this.$emit('start-edit')
 
+      this.focusedStatementIndex = -1
       this.startDragEvent = {
         event: e.event,
         node: NodeBuilder.buildNewNode(e.statement.clazz, this.compilerConfig),
@@ -169,6 +172,7 @@ export default {
     handleNodeDragStart(e) {
       this.$emit('start-edit')
 
+      this.focusedStatementIndex = this.statements.indexOf(e.node.statement)
       this.startDragEvent = {
         ...e,
         isNew: false
@@ -203,9 +207,10 @@ export default {
 
     handleDropNode(dropHandler) {
       if (this.startDragEvent) {
+        this.focusedStatementIndex = -1
         let statements = this.statements.slice(0)
         if (dropHandler) {
-          NodeBuilder.insertStatement(statements, dropHandler, this.startDragEvent.node.statement, this.startDragEvent.isNew)
+          this.focusedStatementIndex = NodeBuilder.insertStatement(statements, dropHandler, this.startDragEvent.node.statement, this.startDragEvent.isNew)
         }
         else if (!this.startDragEvent.isNew) {
           NodeBuilder.removeStatement(statements, this.startDragEvent.node.statement)
@@ -237,7 +242,7 @@ export default {
     decompile(correction = false) {
       let decompiler = new Decompiler(this.statements, this.compilerConfig)
       decompiler.decompile()
-      console.log("###DECOMPILE", decompiler.exception, decompiler.executable, decompiler.code)
+      console.debug("###DECOMPILE", decompiler.exception, decompiler.executable, decompiler.code)
       if (decompiler.exception) {
         throw decompiler.exception
       }

@@ -255,6 +255,7 @@ export default class NodeBuilder {
 
     statements.splice(index, 0, ...insertStatements)
     Linter.removeEmptyElse(statements)
+    return statements.indexOf(insertStatement)
   }
 
   static removeStatement(statements, toRemove) {

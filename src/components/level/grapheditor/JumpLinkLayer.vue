@@ -13,11 +13,24 @@
     <path d="M 0 0 L 10 5 L 0 10 z" />
   </marker>
 
+  <marker id="arrow-focused"
+    viewBox="0 0 10 10"
+    refX="0"
+    refY="5"
+    markerWidth="3.5"
+    markerHeight="3.5"
+    orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" />
+  </marker>
+
   <path v-for="path in linkPaths"
-    class="link-line"
+    :class="{
+			'link-line': true,
+			'focused': path.focused
+		}"
     :key="path.key"
     :d="path.path"
-    marker-end="url(#arrow)" />
+    :marker-end="`url(#arrow${path.focused ? '-focused' : ''})`" />
 </svg>
 </template>
 
@@ -31,7 +44,12 @@ import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'
 const arrowWidth = 16
 
 export default {
-  props: {},
+  props: {
+    focusedStatementIndex: {
+      type: Number,
+      default: -1
+    }
+  },
   data: function() {
     return {
       links: new Map(),
@@ -69,6 +87,9 @@ export default {
   watch: {
     links: function(links) {
       this.updateLinkPaths()
+    },
+    focusedStatementIndex: function() {
+      this.buildLinks()
     }
   },
   methods: {
@@ -76,8 +97,9 @@ export default {
       let paths = []
       for (let [
           jumpNode,
-          anchorNode
+          target
         ] of this.links) {
+        let anchorNode = target.anchor
         let jumpRect = jumpNode.$el.getBoundingClientRect()
         let anchorRect = anchorNode.$el.getBoundingClientRect()
         let jx = jumpRect.right
@@ -88,7 +110,8 @@ export default {
 
         paths.push({
           key: anchorNode.statement.name,
-          path: `M ${jx} ${jy} C ${jx + dx} ${jy}, ${ax + dx} ${ay}, ${ax} ${ay}`
+          path: `M ${jx} ${jy} C ${jx + dx} ${jy}, ${ax + dx} ${ay}, ${ax} ${ay}`,
+          focused: target.focused
         })
       }
 
@@ -99,14 +122,19 @@ export default {
       this.updateLinkPaths()
     },
 
-    handleNodesChange(nodes) {
-      nodes = nodes.slice(0)
+    handleNodesChange(nodes, statements) {
+      this.nodes = nodes.slice(0)
+      NodeBuilder.makeNodesIterable(this.nodes)
+      this.statements = statements
+      this.buildLinks()
+    },
+
+    buildLinks() {
       let links = new Map()
       let anchors = []
       let jumps = []
 
-      NodeBuilder.makeNodesIterable(nodes)
-      for (let node of nodes) {
+      for (let node of this.nodes) {
         if (node.statement instanceof JumpStatement) {
           jumps.push(node)
         }
@@ -118,7 +146,11 @@ export default {
       for (let jump of jumps) {
         for (let anchor of anchors) {
           if (anchor.statement === jump.statement.anchorStatement) {
-            links.set(jump, anchor)
+            links.set(jump, {
+              anchor: anchor,
+              focused: this.statements.indexOf(jump.statement) === this.focusedStatementIndex ||
+                this.statements.indexOf(anchor.statement) === this.focusedStatementIndex
+            })
             break
           }
         }
@@ -146,12 +178,20 @@ export default {
     pointer-events: none;
 
     .link-line {
-        stroke: transparentize($branching-color, 0.2);
         fill: none;
         stroke-width: 4px;
+        stroke: transparentize(#666, 0.15);
+
+        &.focused {
+            stroke: transparentize($branching-color, 0.2);
+        }
     }
 
     #arrow {
+        stroke: none;
+        fill: transparentize(#666, 0.15);
+    }
+    #arrow-focused {
         stroke: none;
         fill: transparentize($branching-color, 0.2);
     }

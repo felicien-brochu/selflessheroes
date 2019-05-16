@@ -65,7 +65,7 @@ export default {
     statements: function(statements, oldStatements) {
       this.clearNodeContainer()
       this.populateNodeContainer()
-      this.$emit('nodes-change', this.nodes)
+      this.$emit('nodes-change', this.nodes, statements)
     },
 
     dragEvent: function(dragEvent, oldEvent) {
