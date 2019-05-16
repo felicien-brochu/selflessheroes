@@ -144,38 +144,6 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="14" name="config">
-  <object id="12" name="frame" type="rectangle" x="242" y="130" width="794" height="685"/>
- </objectgroup>
- <objectgroup id="2" name="objects">
-  <object id="10" name="switch" type="switch" x="367" y="370">
-   <properties>
-    <property name="autoDisable" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="2" name="switch" type="switch" x="814" y="499">
-   <properties>
-    <property name="autoDisable" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="11" name="switch" type="switch" x="911" y="179">
-   <properties>
-    <property name="autoDisable" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="1" name="hero" type="hero" x="814.67" y="595">
-   <point/>
-  </object>
-  <object id="8" name="hero" type="hero" x="369" y="274">
-   <point/>
-  </object>
-  <object id="9" name="hero" type="hero" x="1008" y="178">
-   <point/>
-  </object>
- </objectgroup>
  <layer id="78" name="types" width="40" height="30">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,0,0,0,0,0,0,0,0,0,0,0,
@@ -278,4 +246,36 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="14" name="config">
+  <object id="12" name="frame" type="rectangle" x="242" y="130" width="794" height="685"/>
+ </objectgroup>
+ <objectgroup id="2" name="objects">
+  <object id="10" name="switch" type="switch" x="367" y="370">
+   <properties>
+    <property name="autoDisable" type="bool" value="false"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="2" name="switch" type="switch" x="814" y="499">
+   <properties>
+    <property name="autoDisable" type="bool" value="false"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="11" name="switch" type="switch" x="911" y="179">
+   <properties>
+    <property name="autoDisable" type="bool" value="false"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="1" name="hero" type="hero" x="814.67" y="595">
+   <point/>
+  </object>
+  <object id="8" name="hero" type="hero" x="369" y="274">
+   <point/>
+  </object>
+  <object id="9" name="hero" type="hero" x="1008" y="178">
+   <point/>
+  </object>
+ </objectgroup>
 </map>
