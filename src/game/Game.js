@@ -31,10 +31,8 @@ export default class extends Phaser.Scene {
     this.runner = new WorldRunner()
     this.beforeStep = this.beforeStep.bind(this)
     this.afterStep = this.afterStep.bind(this)
-    this.onGameOver = this.onGameOver.bind(this)
     this.runner.events.on('before-step', this.beforeStep)
     this.runner.events.on('after-step', this.afterStep)
-    this.runner.events.on('game-over', this.onGameOver)
     this.editorWidth = 350
 
     this.customEvents = new EventEmitter()
@@ -195,14 +193,17 @@ export default class extends Phaser.Scene {
     }
   }
 
-  onGameOver(world) {
-    setTimeout(() =>
-      this.scene.get('CelebrationScene').playCelebration({
-        x: 0,
-        y: 0,
-        w: window.innerWidth - this.editorWidth,
-        h: window.innerHeight
-      }), 700)
+  playCelebration(nbCelebrations) {
+    this.scene.get('CelebrationScene').playCelebration({
+      x: 0,
+      y: 0,
+      w: window.innerWidth - this.editorWidth,
+      h: window.innerHeight
+    }, nbCelebrations)
+  }
+
+  stopCelebration() {
+    this.scene.get('CelebrationScene').stopCelebration()
   }
 
   update(time, delta) {

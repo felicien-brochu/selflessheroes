@@ -83,6 +83,9 @@ export default class extends Phaser.Scene {
     super({
       key: 'CelebrationScene'
     })
+
+    this.celebrationsToPlay = 0
+    this.timeoutID = -1
   }
 
   preload() {}
@@ -97,10 +100,11 @@ export default class extends Phaser.Scene {
     }
   }
 
-  playCelebration(rect) {
-    this.playOneCelebration(rect)
-    setTimeout(() => this.playOneCelebration(rect), 1500)
-    setTimeout(() => this.playOneCelebration(rect), 3000)
+  playCelebration(rect, count = 1) {
+    this.celebrationsToPlay = count
+    if (this.celebrationsToPlay > 0) {
+      this.playOneCelebration(rect)
+    }
   }
 
   playOneCelebration(rect) {
@@ -121,6 +125,17 @@ export default class extends Phaser.Scene {
       path.cubicBezierTo(x + dx, y + dy, x, y + dy, x + dx, y + dy)
       this.fireworks[i].playFireworks(path, rect)
     }
+    this.celebrationsToPlay--
+    this.timeoutID = -1
+    if (this.celebrationsToPlay > 0) {
+      this.timeoutID = setTimeout(() => this.playOneCelebration(rect), 1500)
+    }
+  }
+
+  stopCelebration() {
+    this.sound.stopAll()
+    this.fireworks.forEach(sprite => sprite.stopFireworks())
+    clearTimeout(this.timeoutID)
   }
 
   update() {}

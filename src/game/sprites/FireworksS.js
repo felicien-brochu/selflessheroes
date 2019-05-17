@@ -6,11 +6,9 @@ export default class FireworksS extends Phaser.GameObjects.Sprite {
     this.config = config
     this.delay = delay
     this.setTint(tint)
-    this.init()
+    this.timeoutID
 
-    // this.on('animationcomplete', () => {
-    //   this.init()
-    // })
+    this.init()
   }
 
   init() {
@@ -22,13 +20,15 @@ export default class FireworksS extends Phaser.GameObjects.Sprite {
     this.playing = false
   }
 
+  stopFireworks() {
+    clearTimeout(this.timeoutID)
+    this.timeoutID = -1
+    this.init()
+  }
+
   playFireworks(path, rect) {
-    // let size = (window.innerHeight / 3) / zoom
-    // this.displayHeight = size
-    // this.displayWidth = size
     let size = Math.min(rect.h, rect.w) / 3.5
     this.setScale(size / 100)
-    // console.log("####SIZE", 1 / zoom)
     this.path = path
 
     let tween = this.scene.tweens.add({
@@ -39,10 +39,11 @@ export default class FireworksS extends Phaser.GameObjects.Sprite {
       delay: this.delay
     })
 
-    setTimeout(() => {
+    this.timeoutID = setTimeout(() => {
       this.play(this.config.animation)
       this.playing = true
       this.setVisible(true)
+      this.timeoutID = -1
     }, this.delay)
 
     tween.setCallback('onComplete', () => {
@@ -53,7 +54,6 @@ export default class FireworksS extends Phaser.GameObjects.Sprite {
   preUpdate(time, delta) {
     super.preUpdate(time, delta)
     if (this.playing) {
-      // console.log("###update fw", this.follower.t, this.follower.vec.x, this.follower.vec.y)
       this.path.getPoint(this.follower.t, this.follower.vec)
       this.x = this.follower.vec.x
       this.y = this.follower.vec.y + 100

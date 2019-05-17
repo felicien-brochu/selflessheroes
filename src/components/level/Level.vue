@@ -273,13 +273,15 @@ export default {
           },
           handlers: {
             confirm: (e) => this.handleWinModalClose('confirm', e),
-            cancel: (e) => this.handleWinModalClose('cancel', e)
+            cancel: (e) => this.handleWinModalClose('cancel', e),
+            'test-success': this.playCelebration
           }
         })
       }
     },
 
     handleWinModalClose(action, e) {
+      this.stopCelebration()
       this.winModalDisplayed = false
       if (e.hasWon) {
         this.solution.addScore(e.averageStep, e.codeLength)
@@ -293,6 +295,14 @@ export default {
         this.gameScene.restartWorldWithRngSeed(failedTest.rngSeed)
         this.showTestFailedModal()
       }
+    },
+
+    playCelebration() {
+      this.$refs.world.gameScene.playCelebration(3)
+    },
+
+    stopCelebration() {
+      this.$refs.world.gameScene.stopCelebration()
     },
 
     showTestFailedModal() {

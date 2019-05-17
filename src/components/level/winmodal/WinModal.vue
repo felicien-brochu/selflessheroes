@@ -2,7 +2,7 @@
 <modal class="win-modal"
   ref="modal"
   type="info"
-  :cancelable="true"
+  :cancelable="hasWon"
   :hideButtons="!testAnimationEnded"
   :hideCloseButton="true"
   :cancelLabel="$text('win_modal_continue_edit_button')"
@@ -114,7 +114,6 @@ export default {
     },
 
     hasWon: function() {
-      let won = true
       return this.tests.every(test => !test.hasLost)
     },
 
@@ -180,6 +179,10 @@ export default {
 
     handleAnimationEnd() {
       this.testAnimationEnded = true
+
+      if (this.hasWon) {
+        this.$emit('test-success', this.tests)
+      }
       this.$nextTick(() => {
         let content = this.$el.getElementsByClassName('modal-content')[0]
         content.scrollTo({
