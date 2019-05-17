@@ -120,7 +120,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
       }
       this.depth = 0
       this.depthLocked = true
-    } else {
+    } else if (!this.dead) {
       this.updateState(newState)
     }
 
@@ -145,10 +145,12 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     if (this.sleep) {
       newState = stateSleep
     }
-    setTimeout(() => {
-      this.updateState(newState)
-    }, this.stateUpdateDelay)
-    this.stateUpdateDelay = 0
+    if (!this.dead) {
+      setTimeout(() => {
+        this.updateState(newState)
+      }, this.stateUpdateDelay)
+      this.stateUpdateDelay = 0
+    }
   }
 
   update() {
