@@ -36,9 +36,6 @@ import follow_cursor from './images/follow_cursor.png'
 
 import fireworks1 from './images/fireworks1.png'
 import fireworks2 from './images/fireworks2.png'
-import fireworks3 from './images/fireworks3.png'
-import fireworks4 from './images/fireworks4.png'
-import fireworks5 from './images/fireworks5.png'
 
 
 export default class extends Phaser.Scene {
@@ -171,18 +168,6 @@ export default class extends Phaser.Scene {
       frameHeight: 100
     })
     this.load.spritesheet('fireworks2', fireworks2, {
-      frameWidth: 100,
-      frameHeight: 100
-    })
-    this.load.spritesheet('fireworks3', fireworks3, {
-      frameWidth: 100,
-      frameHeight: 100
-    })
-    this.load.spritesheet('fireworks4', fireworks4, {
-      frameWidth: 100,
-      frameHeight: 100
-    })
-    this.load.spritesheet('fireworks5', fireworks5, {
       frameWidth: 100,
       frameHeight: 100
     })

@@ -60,6 +60,7 @@ export default class WorldRunner {
 
     if (this.gameOver) {
       this.pause()
+      this.events.emit('game-over', this.world)
     }
     if (this.world.gameOver) {
       this.gameOver = true

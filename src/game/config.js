@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 
 import SplashScene from './Splash'
 import GameScene from './Game'
+import CelebrationScene from './Celebration'
 import MouseWheelToUpDownPlugin from './plugins/mousewheeltoupdown/mousewheeltoupdown-plugin.js';
 
 
@@ -14,7 +15,7 @@ export default {
   type: Phaser.AUTO,
   parent: 'world-content',
   localStorageName: 'aiworld',
-  backgroundColor: '#000000',
+  backgroundColor: '#00000000',
   plugins: {
     global: [{
       key: 'rexMouseWheelToUpDown',
@@ -22,5 +23,5 @@ export default {
       start: true
     }]
   },
-  scene: [SplashScene, GameScene]
+  scene: [SplashScene, GameScene, CelebrationScene]
 }

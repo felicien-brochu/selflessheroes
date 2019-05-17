@@ -263,31 +263,15 @@ const anims = {
     sprite: 'fireworks1',
     start: 0,
     end: 70,
-    frameRate: 60
+    frameRate: 60,
+    repeat: 0
   },
   fireworks2: {
     sprite: 'fireworks2',
     start: 0,
-    end: 81,
-    frameRate: 60
-  },
-  fireworks3: {
-    sprite: 'fireworks3',
-    start: 0,
     end: 73,
-    frameRate: 60
-  },
-  fireworks4: {
-    sprite: 'fireworks4',
-    start: 0,
-    end: 64,
-    frameRate: 60
-  },
-  fireworks5: {
-    sprite: 'fireworks5',
-    start: 0,
-    end: 63,
-    frameRate: 60
+    frameRate: 60,
+    repeat: 0
   }
 }
 

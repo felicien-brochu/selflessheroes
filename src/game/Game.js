@@ -30,8 +30,10 @@ export default class extends Phaser.Scene {
     this.runner = new WorldRunner()
     this.beforeStep = this.beforeStep.bind(this)
     this.afterStep = this.afterStep.bind(this)
+    this.onGameOver = this.onGameOver.bind(this)
     this.runner.events.on('before-step', this.beforeStep)
     this.runner.events.on('after-step', this.afterStep)
+    this.runner.events.on('game-over', this.onGameOver)
     this.editorWidth = 350
 
     this.customEvents = new EventEmitter()
@@ -109,6 +111,8 @@ export default class extends Phaser.Scene {
   createStaticElements() {
     this.followCursor = this.add.image(0, 0, 'follow_cursor')
     this.followCursor.setVisible(false)
+
+    this.scene.run('CelebrationScene')
   }
 
   createWorld() {
@@ -164,6 +168,8 @@ export default class extends Phaser.Scene {
   }
 
   initEvents() {
+    this.input.setGlobalTopOnly(false)
+
     this.input.on('pointerdown', this.handleClickOutside, this)
     this.scale.on('resize', this.handleResize.bind(this))
     this.game.events.on('destroy', this.beforeDestroy.bind(this))
@@ -179,6 +185,16 @@ export default class extends Phaser.Scene {
     for (let sprite of this.getSprites()) {
       sprite.afterStep(world)
     }
+  }
+
+  onGameOver(world) {
+    setTimeout(() =>
+      this.scene.get('CelebrationScene').playCelebration({
+        x: 0,
+        y: 0,
+        w: window.innerWidth - this.editorWidth,
+        h: window.innerHeight
+      }), 700)
   }
 
   update(time, delta) {

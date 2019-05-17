@@ -60,6 +60,13 @@ export default class CameraControl extends Phaser.Cameras.Controls.FixedKeyContr
     this.camera.centerOn(centerX, centerY)
   }
 
+  getDisplayCenter() {
+    return {
+      x: this.camera.width / 2,
+      y: this.camera.height / 2
+    }
+  }
+
   setInitialZoom() {
     let hZoom = (this.visibleWidth - (this.margin.left + this.margin.right)) / this.mapFrame.width
     let vZoom = (this.visibleHeight - (this.margin.top + this.margin.bottom)) / this.mapFrame.height
