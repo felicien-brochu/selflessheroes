@@ -219,7 +219,7 @@ export default {
 <style lang="scss">
 .win-modal {
     color: white;
-    padding: 30px 50px;
+    padding: 45px 50px 30px;
     border-radius: 12px;
     box-shadow: inset 0 0 30px 10px #00000033, 0 0 30px 10px #000000;
 
