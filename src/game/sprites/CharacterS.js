@@ -65,8 +65,8 @@ export default class CharacterS extends Phaser.GameObjects.Container {
       if (this.character.lastAction.type === 'StepAction') {
         newState = stateRun
       } else if (this.character.lastAction.type === 'FireBallAction') {
-        newState = stateHit
         this.scene.throwFireBall(this.character, this.character.lastAction.direction)
+        this.scene.soundManager.play('fireball_sfx')
       }
 
       if (this.lastTileX !== this.character.x || this.lastTileY !== this.character.y) {
@@ -86,6 +86,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
           ease: ease
         })
         this.stateUpdateDelay = duration * 0.2
+        this.scene.soundManager.play('step_sfx')
 
         if (this.character.dead && this.character.deathReason === CharacterDeathReason.fall) {
           timeline.add({
@@ -94,6 +95,9 @@ export default class CharacterS extends Phaser.GameObjects.Container {
             alpha: -1,
             duration: duration,
             ease: ease
+          })
+          this.scene.soundManager.play('scream_sfx', {
+            delay: duration / 1000
           })
         }
         this.stateUpdateDelay += duration
@@ -111,6 +115,8 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     if (!this.dead && this.character.dead) {
       if (this.character.deathReason === CharacterDeathReason.burnt) {
         setTimeout(() => this.sprite.play('ashes', true), 200)
+
+        this.scene.soundManager.play('scream_sfx')
       }
       this.depth = 0
       this.depthLocked = true

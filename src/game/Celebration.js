@@ -95,8 +95,6 @@ export default class extends Phaser.Scene {
       this.fireworks.push(firework)
       this.add.existing(firework)
     }
-
-    this.fireworksSfx = this.sound.add('fireworks_sfx')
   }
 
   playCelebration(rect) {
@@ -106,15 +104,7 @@ export default class extends Phaser.Scene {
   }
 
   playOneCelebration(rect) {
-    this.fireworksSfx.play({
-      mute: false,
-      volume: 1,
-      rate: 1,
-      detune: 0,
-      seek: 0,
-      loop: false,
-      delay: 0
-    })
+    this.sound.play('fireworks_sfx')
     let rb = (min, max) => Math.random() * (max - min) + min
     let interval = (min, max, count, index) => min + ((max - min) / count - 1) * index
 

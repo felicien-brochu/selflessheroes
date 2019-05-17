@@ -40,6 +40,10 @@ import fireworks2 from './images/fireworks2.png'
 // AUDIO
 
 import fireworks_sfx from './audio/fireworks.mp3'
+import scream_sfx from './audio/scream.mp3'
+import step_sfx from './audio/step.mp3'
+import fireball_sfx from './audio/fireball.mp3'
+import bonfire_sfx from './audio/bonfire.mp3'
 
 
 export default class extends Phaser.Scene {
@@ -179,6 +183,10 @@ export default class extends Phaser.Scene {
 
     // AUDIO
     this.load.audio('fireworks_sfx', fireworks_sfx)
+    this.load.audio('scream_sfx', scream_sfx)
+    this.load.audio('step_sfx', step_sfx)
+    this.load.audio('fireball_sfx', fireball_sfx)
+    this.load.audio('bonfire_sfx', bonfire_sfx)
 
     // LEVEL SPECIFIC
     const level = this.game.gameSceneConfig.level

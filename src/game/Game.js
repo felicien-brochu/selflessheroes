@@ -7,6 +7,7 @@ import lang from '../lang'
 import AnimationBuilder from './AnimationBuilder'
 import WorldRunner from './WorldRunner'
 import CameraControl from './CameraControl'
+import SoundManager from './SoundManager'
 import Speeds from './Speeds'
 import World from '../world/World'
 import {
@@ -58,6 +59,7 @@ export default class extends Phaser.Scene {
     this.runner.init(this.world)
 
     this.initCamera()
+    this.initAudio()
     this.initEvents()
 
     this.createStaticElements()
@@ -165,6 +167,12 @@ export default class extends Phaser.Scene {
 
   resetCamera() {
     this.cameraControl.init()
+  }
+
+  initAudio() {
+    this.sound.unlock()
+    this.sound.pauseOnBlur = false
+    this.soundManager = new SoundManager(this)
   }
 
   initEvents() {

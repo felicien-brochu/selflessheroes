@@ -18,6 +18,7 @@ export default class BonfireS extends Phaser.GameObjects.Sprite {
       if (this.enabled) {
         let delay = Math.min(150, this.scene.runner.stepInterval / 2)
         setTimeout(() => this.playAnimation(), delay)
+        this.scene.soundManager.play('bonfire_sfx')
       } else {
         this.playAnimation()
       }
