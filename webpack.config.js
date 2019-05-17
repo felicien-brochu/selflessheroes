@@ -83,6 +83,14 @@ const config = {
           name: '[name].[ext]',
           outputPath: 'assets/fonts'
         }
+      },
+      {
+        test: /\.(wav|mp3)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'assets/audio'
+        }
       }
     ],
   },

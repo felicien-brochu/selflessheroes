@@ -37,6 +37,10 @@ import follow_cursor from './images/follow_cursor.png'
 import fireworks1 from './images/fireworks1.png'
 import fireworks2 from './images/fireworks2.png'
 
+// AUDIO
+
+import fireworks_sfx from './audio/fireworks.mp3'
+
 
 export default class extends Phaser.Scene {
   constructor() {
@@ -172,6 +176,11 @@ export default class extends Phaser.Scene {
       frameHeight: 100
     })
     this.load.image('follow_cursor', follow_cursor)
+
+    // AUDIO
+    this.load.audio('fireworks_sfx', fireworks_sfx)
+
+    // LEVEL SPECIFIC
     const level = this.game.gameSceneConfig.level
     this.load.json('map', level.mapPath)
     this.load.image('tileset_image', level.tilesetImagePath)
