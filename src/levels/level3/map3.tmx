@@ -212,7 +212,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="2" name="objects" visible="0">
+ <objectgroup id="2" name="objects">
   <object id="11" name="switch" type="switch" x="718.333" y="468">
    <properties>
     <property name="autoDisable" type="bool" value="true"/>
@@ -238,15 +238,27 @@
    <point/>
   </object>
   <object id="9" name="hero" type="hero" x="752" y="467.333">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
    <point/>
   </object>
   <object id="16" name="hero" type="hero" x="526.333" y="466">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
    <point/>
   </object>
   <object id="17" name="hero" type="hero" x="750" y="306.667">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
    <point/>
   </object>
   <object id="18" name="hero" type="hero" x="530.667" y="309.333">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>

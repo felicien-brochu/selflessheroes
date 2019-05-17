@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import CharacterDeathReason from '../../world/CharacterDeathReason'
+import Direction from '../../world/Direction'
 
 const stateIdle = 'idle'
 const stateRun = 'run'
@@ -24,6 +25,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     this.lastTileX = character.x
     this.lastTileY = character.y
     this.depth = this.y
+
     this.depthLocked = false
     this.stateUpdateDelay = 0
 
@@ -32,6 +34,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     this.sleep = false
 
     this.sprite = new Phaser.GameObjects.Sprite(scene, 0, 0, this.asset)
+    this.sprite.setFlipX(Direction[this.character.initialDirection].dx < 0)
     this.sleepSprite = new Phaser.GameObjects.Sprite(scene, 0, 0, 'sleep_zzz')
     this.sleepSprite.depth = 1
     this.sleepSprite.setVisible(false)

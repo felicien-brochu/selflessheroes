@@ -155,6 +155,12 @@
                  "id":9,
                  "name":"hero",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"initialDirection",
+                         "type":"string",
+                         "value":"w"
+                        }],
                  "rotation":0,
                  "type":"hero",
                  "visible":true,
@@ -167,6 +173,12 @@
                  "id":16,
                  "name":"hero",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"initialDirection",
+                         "type":"string",
+                         "value":"e"
+                        }],
                  "rotation":0,
                  "type":"hero",
                  "visible":true,
@@ -179,6 +191,12 @@
                  "id":17,
                  "name":"hero",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"initialDirection",
+                         "type":"string",
+                         "value":"w"
+                        }],
                  "rotation":0,
                  "type":"hero",
                  "visible":true,
@@ -191,6 +209,12 @@
                  "id":18,
                  "name":"hero",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"initialDirection",
+                         "type":"string",
+                         "value":"e"
+                        }],
                  "rotation":0,
                  "type":"hero",
                  "visible":true,
@@ -200,7 +224,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

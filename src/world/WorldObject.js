@@ -6,8 +6,10 @@ export default class WorldObject {
   }
 
   parseProperties() {
-    for (let property of this.config.properties) {
-      this[property.name] = property.value
+    if (this.config.properties) {
+      for (let property of this.config.properties) {
+        this[property.name] = property.value
+      }
     }
   }
 

@@ -229,9 +229,15 @@
    <point/>
   </object>
   <object id="16" name="hero" type="hero" x="618.333" y="435">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
    <point/>
   </object>
   <object id="17" name="hero" type="hero" x="651" y="435.667">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>
