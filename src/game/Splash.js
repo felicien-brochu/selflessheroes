@@ -40,6 +40,7 @@ import fireworks2 from './images/fireworks2.png'
 // AUDIO
 
 import fireworks_sfx from './audio/fireworks.mp3'
+import tests_sfx from './audio/tests.mp3'
 import scream_sfx from './audio/scream.mp3'
 import step_sfx from './audio/step.mp3'
 import fireball_sfx from './audio/fireball.mp3'
@@ -183,6 +184,7 @@ export default class extends Phaser.Scene {
 
     // AUDIO
     this.load.audio('fireworks_sfx', fireworks_sfx)
+    this.load.audio('tests_sfx', tests_sfx)
     this.load.audio('scream_sfx', scream_sfx)
     this.load.audio('step_sfx', step_sfx)
     this.load.audio('fireball_sfx', fireball_sfx)

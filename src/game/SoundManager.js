@@ -2,6 +2,13 @@ const soundDefs = [{
     key: 'fireworks_sfx'
   },
   {
+    key: 'tests_sfx',
+    config: {
+      loop: true,
+      volume: 0.5
+    }
+  },
+  {
     key: 'scream_sfx',
     config: {
       volume: 0.05
@@ -40,5 +47,9 @@ export default class SoundManager {
 
   play(key, config) {
     this.sounds.get(key).play(config)
+  }
+
+  stop(key) {
+    this.sounds.get(key).stop()
   }
 }

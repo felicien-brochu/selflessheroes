@@ -274,7 +274,8 @@ export default {
           handlers: {
             confirm: (e) => this.handleWinModalClose('confirm', e),
             cancel: (e) => this.handleWinModalClose('cancel', e),
-            'test-success': this.playCelebration
+            'test-done': this.playTestsSound,
+            'test-success': this.handleTestSuccess
           }
         })
       }
@@ -282,6 +283,7 @@ export default {
 
     handleWinModalClose(action, e) {
       this.stopCelebration()
+      this.stopTestsSound()
       this.winModalDisplayed = false
       if (e.hasWon) {
         this.solution.addScore(e.averageStep, e.codeLength)
@@ -297,8 +299,21 @@ export default {
       }
     },
 
-    playCelebration() {
-      this.$refs.world.gameScene.playCelebration(3)
+    handleTestSuccess() {
+      this.stopTestsSound()
+      this.playCelebration(3)
+    },
+
+    playTestsSound() {
+      this.$refs.world.gameScene.soundManager.play('tests_sfx')
+    },
+
+    stopTestsSound() {
+      this.$refs.world.gameScene.soundManager.stop('tests_sfx')
+    },
+
+    playCelebration(count) {
+      this.$refs.world.gameScene.playCelebration(count)
     },
 
     stopCelebration() {

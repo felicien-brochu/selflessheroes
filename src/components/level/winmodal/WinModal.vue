@@ -175,6 +175,8 @@ export default {
 
     handleWorkerResponse(e) {
       this.tests = e.data
+
+      this.$emit('test-done', this.tests)
     },
 
     handleAnimationEnd() {
