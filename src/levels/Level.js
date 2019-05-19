@@ -1,6 +1,7 @@
 import WorldLevel from '../world/Level'
 import CompilerConfig from '../world/ai/compile/CompilerConfig'
 import DefaultRuleset from '../world/rules/DefaultRuleset'
+import tileset_image from './model/tileset.png'
 import lang from '../lang'
 
 export default class Level extends WorldLevel {
@@ -48,5 +49,9 @@ export default class Level extends WorldLevel {
       return lang.text('loss_reason_all_hero_dead')
     }
     return null
+  }
+
+  get tilesetImagePath() {
+    return tileset_image
   }
 }

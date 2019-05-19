@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="5" height="3" tilewidth="32" tileheight="32" infinite="0" nextlayerid="33" nextobjectid="1">
+ <tileset firstgid="1" source="../tileset.tsx"/>
+ <layer id="29" name="regions" width="5" height="3">
+  <data encoding="csv">
+70,0,0,0,0,
+80,0,70,80,70,
+70,0,0,0,0
+</data>
+ </layer>
+ <layer id="30" name="input_types" width="5" height="3">
+  <data encoding="csv">
+0,0,0,0,0,
+80,0,0,80,0,
+0,0,0,0,0
+</data>
+ </layer>
+ <layer id="32" name="inputnot_types" width="5" height="3" visible="0">
+  <data encoding="csv">
+80,0,0,0,0,
+0,0,80,0,80,
+80,0,0,0,0
+</data>
+ </layer>
+ <layer id="31" name="output_ground" width="5" height="3">
+  <data encoding="csv">
+0,0,0,0,0,
+65,0,0,66,0,
+0,0,0,0,0
+</data>
+ </layer>
+</map>

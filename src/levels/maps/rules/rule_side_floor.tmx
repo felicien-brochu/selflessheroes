@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="9" height="2" tilewidth="32" tileheight="32" infinite="0" nextlayerid="22" nextobjectid="1">
+ <tileset firstgid="1" source="../tileset.tsx"/>
+ <layer id="12" name="regions" width="9" height="2">
+  <data encoding="csv">
+70,0,80,0,70,80,0,80,70,
+80,0,70,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="15" name="input_types" width="9" height="2">
+  <data encoding="csv">
+0,0,80,0,0,80,0,80,0,
+80,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="21" name="inputnot_types" width="9" height="2">
+  <data encoding="csv">
+80,0,0,0,80,0,0,0,80,
+0,0,80,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="16" name="output1_ground" width="9" height="2">
+  <data encoding="csv">
+0,0,33,0,0,22,0,25,0,
+13,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="17" name="output2_ground" width="9" height="2">
+  <data encoding="csv">
+0,0,33,0,0,22,0,25,0,
+13,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="18" name="output3_ground" width="9" height="2">
+  <data encoding="csv">
+0,0,34,0,0,22,0,25,0,
+14,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="19" name="output4_ground" width="9" height="2">
+  <data encoding="csv">
+0,0,34,0,0,22,0,25,0,
+14,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>
