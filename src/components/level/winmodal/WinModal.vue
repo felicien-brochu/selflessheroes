@@ -180,18 +180,19 @@ export default {
     },
 
     handleAnimationEnd() {
-      this.testAnimationEnded = true
-
-      if (this.hasWon) {
-        this.$emit('test-success', this.tests)
-      }
-      this.$nextTick(() => {
-        let content = this.$el.getElementsByClassName('modal-content')[0]
-        content.scrollTo({
-          top: content.scrollHeight,
-          behavior: 'smooth'
+      if (!this.testAnimationEnded) {
+        this.testAnimationEnded = true
+        if (this.hasWon) {
+          this.$emit('test-success', this.tests)
+        }
+        this.$nextTick(() => {
+          let content = this.$el.getElementsByClassName('modal-content')[0]
+          content.scrollTo({
+            top: content.scrollHeight,
+            behavior: 'smooth'
+          })
         })
-      })
+      }
     },
 
     handleModalClick() {
