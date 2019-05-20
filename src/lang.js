@@ -139,6 +139,8 @@ const messages = {
     level4_objective: "Trigger the %%icon icon-switch$%% switches.",
     level5_name: "Vertigo",
     level5_objective: "Trigger the %%icon icon-switch$%% switches.\nTry not to fall.",
+    level6_name: "Fireball",
+    level6_objective: "Lit the %%icon icon-bonfire$%% bonfires",
   },
 
 
@@ -264,6 +266,8 @@ const messages = {
     level4_objective: "Marche sur les %%icon icon-switch$%% boutons",
     level5_name: "Vertige",
     level5_objective: "Marche sur les %%icon icon-switch$%% boutons.\n\nNe tombe pas dans le vide.",
+    level6_name: "Allumer le feu",
+    level6_objective: "Allume les %%icon icon-bonfire$%% feux",
   }
 }
 

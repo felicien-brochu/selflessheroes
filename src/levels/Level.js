@@ -1,7 +1,7 @@
 import WorldLevel from '../world/Level'
 import CompilerConfig from '../world/ai/compile/CompilerConfig'
-import DefaultRuleset from '../world/rules/DefaultRuleset'
-import tileset_image from './model/tileset.png'
+import Reason from '../world/rules/conditions/Reason'
+import tileset_image from './maps/tileset.png'
 import lang from '../lang'
 
 export default class Level extends WorldLevel {
@@ -41,11 +41,11 @@ export default class Level extends WorldLevel {
   }
 
   getLossReasonTemplate(lossReason) {
-    if (lossReason === DefaultRuleset.lossReasonTooManySteps) {
+    if (lossReason === Reason.tooManySteps) {
       return lang.text('loss_reason_too_many_steps')
-    } else if (lossReason === DefaultRuleset.lossReasonAllHeroEnded) {
+    } else if (lossReason === Reason.allHeroEnded) {
       return lang.text('loss_reason_all_hero_ended')
-    } else if (lossReason === DefaultRuleset.lossReasonAllHeroDead) {
+    } else if (lossReason === Reason.allHeroDead) {
       return lang.text('loss_reason_all_hero_dead')
     }
     return null

@@ -1,8 +1,7 @@
-export default class AllSwitchesWinCondition {
-  constructor(world) {
-    this.world = world
-  }
+import Reason from './Reason'
+import Condition from './Condition'
 
+export default class AllSwitchesEnabledCondition extends Condition {
   check() {
     let disabled = false
     for (let mySwitch of this.world.switches) {
@@ -13,5 +12,9 @@ export default class AllSwitchesWinCondition {
     }
 
     return !disabled
+  }
+
+  getReason() {
+    return Reason.allSwitchesEnabled
   }
 }

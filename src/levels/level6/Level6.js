@@ -1,16 +1,16 @@
 import Level from '../Level'
 import CompilerConfig from '../../world/ai/compile/CompilerConfig'
 
-export default class Level5 extends Level {
+export default class Level6 extends Level {
   constructor(id) {
     super(id, {
-      nameTemplate: "level5_name",
-      objectiveTemplate: "level5_objective",
+      nameTemplate: "level6_name",
+      objectiveTemplate: "level6_objective",
       startingCode: "",
       startingEditorType: "graph",
       maxStep: 100,
-      speedTarget: 4,
-      lengthTarget: 7
+      speedTarget: 2,
+      lengthTarget: 2
     })
 
     Object.freeze(this)
@@ -20,10 +20,10 @@ export default class Level5 extends Level {
     return new CompilerConfig({
       excludePrimary: ['assign', 'jump', 'anchor'],
       variables: 0,
-      terrainTypes: ['hole'],
-      objectTypes: ['switch'],
+      terrainTypes: ['wall', 'floor'],
+      objectTypes: ['bonfire', 'hero'],
       valueFunctions: [],
-      actionFunctions: ['step_once'],
+      actionFunctions: ['step_once', 'fireball'],
       leftComparisonExpressions: ['direction'],
       rightComparisonExpressions: ['object_type', 'terrain_type']
     })
@@ -31,7 +31,7 @@ export default class Level5 extends Level {
 
   buildRuleset(world) {
     return super.buildRuleset(world, {
-      win: 'all_switches',
+      win: 'all_bonfires',
       lose: 'default_loss'
     })
   }

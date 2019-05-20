@@ -1,4 +1,5 @@
 import CompilerConfig from './ai/compile/CompilerConfig'
+import CustomRuleset from './rules/CustomRuleset'
 import DefaultRuleset from './rules/DefaultRuleset'
 
 export default class Level {
@@ -11,8 +12,11 @@ export default class Level {
     return CompilerConfig.getDefault()
   }
 
-  buildRuleset(world) {
-    return new DefaultRuleset(world, this.maxStep)
+  buildRuleset(world, config) {
+    if (config) {
+      return new CustomRuleset(world, config)
+    }
+    return new DefaultRuleset(world)
   }
 
   getRootPath() {
