@@ -25,7 +25,8 @@
           :debugContext="debugContext"
           :followHeroIndex="followHeroIndex"
           @change="handleCodeMirrorChange"
-          @select-follow-hero="$emit('select-follow-hero', $event)" />
+          @select-follow-hero="$emit('select-follow-hero', $event)"
+          @start-edit="$emit('start-edit')" />
 
         <graph-editor v-else-if="editorType === 'graph'"
           ref="graphEditor"

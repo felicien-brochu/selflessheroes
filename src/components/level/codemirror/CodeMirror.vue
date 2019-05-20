@@ -1,10 +1,12 @@
 <template>
-<div class='vue-codemirror-wrap'>
+<div class="vue-codemirror-wrap"
+  @mousedown="$emit('start-edit')"
+  @touchstart="$emit('start-edit')">
 
   <modal-layer ref="modalLayer" />
 
   <line-cursors v-show="playing"
-    ref='lineCursors'
+    ref="lineCursors"
     :debugContext="debugContext"
     :followHeroIndex="followHeroIndex"
     @select-follow-hero="$emit('select-follow-hero', $event)"

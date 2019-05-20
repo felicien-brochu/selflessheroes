@@ -4,7 +4,9 @@
 		'animate-margin': animateDragAndDrop
 	}"
   ref="scroll"
-  @scroll="$emit('scroll', $event)">
+  @scroll="$emit('scroll', $event)"
+  @mousedown="$emit('start-edit')"
+  @touchstart="$emit('start-edit')">
 
   <div class="graph-code">
     <slot></slot>
