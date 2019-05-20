@@ -124,8 +124,9 @@ export default class World {
         let x = hero.x + action.direction.dx
         let y = hero.y + action.direction.dy
         let collidesWall = this.map.isWall(x, y)
+        let collidesBonfire = this.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire).length > 0
         let collidesCharacter = this.getCharactersAt(x, y).filter(c => !c.dead).length > 0
-        if (collidesWall) {
+        if (collidesWall || collidesBonfire) {
           stepActions.splice(i, 1)
           i--
         } else if (!collidesCharacter) {
