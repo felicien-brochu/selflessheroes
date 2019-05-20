@@ -2,7 +2,7 @@ import Phaser from 'phaser'
 
 export default class BonfireS extends Phaser.GameObjects.Sprite {
   constructor(scene, bonfire, tileWidth, tileHeight) {
-    super(scene, (bonfire.x + 0.5) * tileWidth, (bonfire.y + 0.5) * tileHeight - 22, 'bonfire')
+    super(scene, (bonfire.x + 0.5) * tileWidth, (bonfire.y + 0.5) * tileHeight - 23, 'bonfire')
 
     this.tileWidth = tileWidth
     this.tileHeight = tileHeight

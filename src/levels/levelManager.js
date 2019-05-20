@@ -5,6 +5,8 @@ import Level3 from './level3/Level3'
 import Level4 from './level4/Level4'
 import Level5 from './level5/Level5'
 import Level6 from './level6/Level6'
+import Level7 from './level7/Level7'
+import Level8 from './level8/Level8'
 import Level101 from './level101/Level101'
 
 const levels = [
@@ -14,6 +16,8 @@ const levels = [
   new Level4(4),
   new Level5(5),
   new Level6(6),
+  new Level7(7),
+  new Level8(8),
   new Level101(101),
   new Level(102, {}),
   new Level(103, {}),
@@ -29,6 +33,8 @@ const unlockTree = {
   4: [2, 'or', 3],
   5: [2, 'or', 3],
   6: [5],
+  7: [5],
+  8: [5],
   101: [],
   102: [],
   103: [],

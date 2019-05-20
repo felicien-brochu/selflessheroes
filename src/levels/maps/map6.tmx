@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="130" nextobjectid="25">
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="130" nextobjectid="26">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
   <image source="tileset.png" trans="000000" width="340" height="680"/>
   <terraintypes>
@@ -182,22 +182,16 @@
   <object id="12" name="frame" type="rectangle" x="530.056" y="318.771" width="381.693" height="208.837"/>
  </objectgroup>
  <objectgroup id="2" name="objects">
-  <object id="11" name="bonfire" type="bonfire" x="686.972" y="369.459">
-   <point/>
-  </object>
-  <object id="9" name="hero" type="hero" x="751.858" y="436.423">
-   <properties>
-    <property name="initialDirection" value="n"/>
-   </properties>
-   <point/>
-  </object>
   <object id="13" name="bonfire" type="bonfire" x="816.773" y="369.83">
    <point/>
   </object>
-  <object id="15" name="bonfire" type="bonfire" x="624.601" y="367.981">
+  <object id="25" name="bonfire" type="bonfire" x="749.773" y="369.83">
    <point/>
   </object>
-  <object id="16" name="hero" type="hero" x="751.305" y="367.633">
+  <object id="11" name="bonfire" type="bonfire" x="686.972" y="369.459">
+   <point/>
+  </object>
+  <object id="15" name="bonfire" type="bonfire" x="624.601" y="367.981">
    <point/>
   </object>
   <object id="17" name="hero" type="hero" x="623.19" y="436.601">
@@ -207,6 +201,12 @@
    <point/>
   </object>
   <object id="23" name="hero" type="hero" x="689.79" y="436.685">
+   <properties>
+    <property name="initialDirection" value="n"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="16" name="hero" type="hero" x="753.305" y="437.633">
    <properties>
     <property name="initialDirection" value="n"/>
    </properties>

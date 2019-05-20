@@ -47,6 +47,8 @@ export default class Level extends WorldLevel {
       return lang.text('loss_reason_all_hero_ended')
     } else if (lossReason === Reason.allHeroDead) {
       return lang.text('loss_reason_all_hero_dead')
+    } else if (lossReason === Reason.oneHeroDead) {
+      return lang.text('loss_reason_one_hero_dead')
     }
     return null
   }

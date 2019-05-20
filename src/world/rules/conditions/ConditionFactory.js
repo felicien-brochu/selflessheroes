@@ -1,16 +1,18 @@
 import DefaultLossCondition from './DefaultLossCondition'
-import AllHeroDeadCondition from './AllHeroDeadCondition'
-import AllHeroEndedCondition from './AllHeroEndedCondition'
 import TooManyStepsCondition from './TooManyStepsCondition'
+import AllHeroEndedCondition from './AllHeroEndedCondition'
+import AllHeroDeadCondition from './AllHeroDeadCondition'
+import OneHeroDeadCondition from './OneHeroDeadCondition'
 
 import AllSwitchesEnabledCondition from './AllSwitchesEnabledCondition'
 import AllBonfiresEnabledCondition from './AllBonfiresEnabledCondition'
 
 const conditionMap = {
   default_loss: DefaultLossCondition,
-  all_hero_dead: AllHeroDeadCondition,
-  all_hero_ended: AllHeroEndedCondition,
   too_many_steps: TooManyStepsCondition,
+  all_hero_ended: AllHeroEndedCondition,
+  all_hero_dead: AllHeroDeadCondition,
+  one_hero_dead: OneHeroDeadCondition,
 
   all_switches: AllSwitchesEnabledCondition,
   all_bonfires: AllBonfiresEnabledCondition

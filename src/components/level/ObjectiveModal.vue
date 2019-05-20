@@ -76,6 +76,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import './mixins';
+
 .objective-modal {
     padding: 37px 50px 30px;
     min-width: 485px;
@@ -125,6 +127,22 @@ export default {
                     display: inline-block;
                     background-size: cover;
                     vertical-align: bottom;
+                }
+
+                .statement {
+                    border-radius: 4px;
+                    font-weight: 500;
+                    padding: 0 10px 0 5px;
+                }
+
+                .action-statement {
+                    @include node-color($action-color);
+                }
+                .branching-statement {
+                    @include node-color($branching-color);
+                }
+                .assign-statement {
+                    @include node-color($assign-color);
                 }
             }
 

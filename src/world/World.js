@@ -77,10 +77,10 @@ export default class World {
     }
 
     this.ruleset.step()
-    if (this.ruleset.hasWon()) {
-      this.declareWin()
-    } else if (this.ruleset.hasLost()) {
+    if (this.ruleset.hasLost()) {
       this.declareLoss()
+    } else if (this.ruleset.hasWon()) {
+      this.declareWin()
     }
   }
 

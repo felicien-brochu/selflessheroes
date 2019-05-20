@@ -126,21 +126,26 @@ const messages = {
     loss_reason_too_many_steps: "Your program takes too much time!",
     loss_reason_all_hero_ended: "Your characters fell asleep before completing the objective",
     loss_reason_all_hero_dead: "All your characters are dead",
+    loss_reason_one_hero_dead: "One of your characters is dead",
 
 
 
-    level1_name: "First step",
-    level1_objective: "Help the heroes to walk on the %%icon icon-switch$%% switches.\nThey seem to stop prematurly.",
+    level1_name: "First steps",
+    level1_objective: "Help the heroes to walk on the %%icon icon-switch$%% switches",
     level2_name: "Step aside",
-    level2_objective: "Trigger the %%icon icon-switch$%% switches",
+    level2_objective: "Trigger all the %%icon icon-switch$%% switches",
     level3_name: "Watch the step",
-    level3_objective: "Trigger the %%icon icon-switch$%% switches.\nTry not to fall.",
+    level3_objective: "Trigger all the %%icon icon-switch$%% switches",
     level4_name: "Seperate ways",
-    level4_objective: "Trigger the %%icon icon-switch$%% switches.",
+    level4_objective: "Trigger all the %%icon icon-switch$%% switches",
     level5_name: "Vertigo",
-    level5_objective: "Trigger the %%icon icon-switch$%% switches.\nTry not to fall.",
+    level5_objective: "Trigger all the %%icon icon-switch$%% switches",
     level6_name: "Fireball",
-    level6_objective: "Lit the %%icon icon-bonfire$%% bonfires",
+    level6_objective: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-information-outline$%% Use %%statement action-statement$fireball%% to lit the bonfires",
+    level7_name: "Sharp turn",
+    level7_objective: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the characters must survive",
+    level8_name: "Candlelight vigil",
+    level8_objective: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-information-outline$%% Use %%statement branching-statement$jump%% to repeat actions",
   },
 
 
@@ -233,7 +238,7 @@ const messages = {
     graph_node_jump: "saut",
 
     graph_node_function_step: "va",
-    graph_node_function_fireball: "allume",
+    graph_node_function_fireball: "bouledefeu",
     graph_node_function_set: "init",
     graph_node_function_calc: "calc",
 
@@ -255,19 +260,24 @@ const messages = {
     loss_reason_too_many_steps: "Votre programme prend trop de temps\u00A0!",
     loss_reason_all_hero_ended: "Vos personnages se sont endormis avant de remplir l'objectif",
     loss_reason_all_hero_dead: "Tous vos personnages sont morts",
+    loss_reason_one_hero_dead: "Un de vos personnages est mort",
 
     level1_name: "Premiers pas",
-    level1_objective: "Aide les héros à aller sur les %%icon icon-switch$%% boutons.\nOn dirait qu'ils s'arrêtent juste avant.",
+    level1_objective: "Aide les personnages à aller sur les %%icon icon-switch$%% boutons",
     level2_name: "Pas de côté",
-    level2_objective: "Marche sur les %%icon icon-switch$%% boutons",
+    level2_objective: "Active tous les %%icon icon-switch$%% boutons",
     level3_name: "Attention à la marche",
-    level3_objective: "Marche sur les %%icon icon-switch$%% boutons.\n\nNe tombe pas dans le vide.",
+    level3_objective: "Active tous les %%icon icon-switch$%% boutons",
     level4_name: "Chacun son chemin",
-    level4_objective: "Marche sur les %%icon icon-switch$%% boutons",
+    level4_objective: "Active tous les %%icon icon-switch$%% boutons",
     level5_name: "Vertige",
-    level5_objective: "Marche sur les %%icon icon-switch$%% boutons.\n\nNe tombe pas dans le vide.",
+    level5_objective: "Active tous les %%icon icon-switch$%% boutons",
     level6_name: "Allumer le feu",
-    level6_objective: "Allume les %%icon icon-bonfire$%% feux",
+    level6_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement action-statement$bouledefeu%% pour allumer les feux",
+    level7_name: "Virage serré",
+    level7_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: aucun personnage ne doit mourir",
+    level8_name: "Veillée aux flambeaux",
+    level8_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement branching-statement$saut%% pour répéter des actions en boucle",
   }
 }
 
