@@ -182,9 +182,13 @@ export default {
     handleAnimationEnd() {
       if (!this.testAnimationEnded) {
         this.testAnimationEnded = true
-        if (this.hasWon) {
-          this.$emit('test-success', this.tests)
-        }
+        this.$emit('test-success', {
+          tests: this.tests,
+          codeLength: this.codeLength,
+          averageStep: this.averageStep,
+          hasWon: this.hasWon
+        })
+
         this.$nextTick(() => {
           let content = this.$el.getElementsByClassName('modal-content')[0]
           content.scrollTo({

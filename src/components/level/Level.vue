@@ -299,9 +299,19 @@ export default {
       }
     },
 
-    handleTestSuccess() {
+    handleTestSuccess(results) {
       this.stopTestsSound()
-      this.playCelebration(3)
+      if (results.hasWon) {
+        let celebrations = 1
+
+        if (results.averageStep <= this.level.speedTarget) {
+          celebrations++
+        }
+        if (results.codeLength <= this.level.lengthTarget) {
+          celebrations++
+        }
+        this.playCelebration(celebrations)
+      }
     },
 
     playTestsSound() {
