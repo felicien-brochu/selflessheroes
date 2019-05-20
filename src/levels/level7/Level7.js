@@ -20,7 +20,7 @@ export default class Level7 extends Level {
     return new CompilerConfig({
       excludePrimary: ['assign', 'jump', 'anchor'],
       variables: 0,
-      terrainTypes: ['wall', 'floor', 'hole'],
+      terrainTypes: ['wall', 'floor'],
       objectTypes: ['bonfire'],
       valueFunctions: [],
       actionFunctions: ['step_once', 'fireball'],

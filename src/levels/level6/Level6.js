@@ -21,7 +21,7 @@ export default class Level6 extends Level {
       excludePrimary: ['assign', 'jump', 'anchor'],
       variables: 0,
       terrainTypes: ['wall', 'floor'],
-      objectTypes: ['bonfire', 'hero'],
+      objectTypes: ['bonfire'],
       valueFunctions: [],
       actionFunctions: ['step_once', 'fireball'],
       leftComparisonExpressions: ['direction'],
