@@ -15,7 +15,10 @@ const soundDefs = [{
     }
   },
   {
-    key: 'step_sfx'
+    key: 'step_sfx',
+    config: {
+      volume: 1
+    }
   },
   {
     key: 'fireball_sfx',
@@ -26,7 +29,7 @@ const soundDefs = [{
   {
     key: 'bonfire_sfx',
     config: {
-      volume: 0.5
+      volume: 0.1
     }
   },
 ]
