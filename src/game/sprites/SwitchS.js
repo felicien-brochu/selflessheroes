@@ -6,8 +6,7 @@ export default class SwitchS extends Phaser.GameObjects.Sprite {
   constructor(scene, mySwitch, tileWidth, tileHeight) {
     super(scene, (mySwitch.x + 0.5) * tileWidth, (mySwitch.y + 0.5) * tileHeight, assets[mySwitch.autoDisable ? 0 : 1])
 
-    this.tileWidth = tileWidth
-    this.tileHeight = tileHeight
+    this.depth = this.y - 32
     this.switch = mySwitch
     this.enabled = this.switch.isEnabled()
   }
