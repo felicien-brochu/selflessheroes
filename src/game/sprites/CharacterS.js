@@ -64,6 +64,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
 
   beforeStep(world) {
     let newState = this.sleep ? stateSleep : stateIdle
+
     if (this.character.lastAction) {
       if (this.character.lastAction.type === 'StepAction') {
         newState = stateRun
@@ -103,8 +104,8 @@ export default class CharacterS extends Phaser.GameObjects.Container {
           this.scene.soundManager.play('scream_sfx', {
             delay: duration / 1000
           })
+          this.stateUpdateDelay += duration
         }
-        this.stateUpdateDelay += duration
         timeline.play()
 
         this.lastTileX = this.character.x
