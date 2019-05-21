@@ -6,6 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const WebpackAutoInject = require('webpack-auto-inject-version')
 const VueLoader = require('vue-loader')
 
 const env = process.env.NODE_ENV
@@ -102,6 +103,11 @@ const config = {
       to: 'levels',
       ignore: ['model/**/*', '*.js', '*.tmx']
     }]),
+    new WebpackAutoInject({
+      components: {
+        InjectAsComment: false
+      }
+    }),
     new MiniCssExtractPlugin(),
     new VueLoader.VueLoaderPlugin(),
     new HtmlWebpackPlugin({

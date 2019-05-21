@@ -1,7 +1,7 @@
 import StorageWrapper from './StorageWrapper'
 import Career from './Career'
 
-const version = "0.0.1"
+const version = '[AIV]{version}[/AIV]'
 
 export class Storage extends StorageWrapper {
   constructor(storageKey) {

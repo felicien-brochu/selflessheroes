@@ -52,6 +52,7 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.17.2",
+    "webpack-auto-inject-version": "^1.2.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.3.1",
     "worker-loader": "^2.0.0"
