@@ -14,10 +14,18 @@
   @mousedown.native="handleModalClick"
   @touchstart.native="handleModalClick">
 
-  <test-graph ref="graph"
-    :tests="tests"
-    :level="level"
-    @animation-end="handleAnimationEnd" />
+  <div class="test-graph-container">
+    <test-graph ref="graph"
+      :tests="tests"
+      :level="level"
+      @animation-end="handleAnimationEnd" />
+
+    <score-stars-animation v-if="testAnimationEnded && hasWon"
+      :level="level"
+      :hasWon="hasWon"
+      :codeLength="codeLength"
+      :averageStep="averageStep" />
+  </div>
 
   <transition name="fade-expand"
     appear>
@@ -33,7 +41,7 @@
 						level.speedTarget
 					}}</span> {{$text('level_modal_speed_target_unit')}}</span>
       </div>
-      <p v-if="levelSolutions.score.minStep >= 0"
+      <p v-if="hasPriorSpeed"
         :class="{
 					'prior-score-phrase': true,
 					'not-won': levelSolutions.score.minStep > level.speedTarget
@@ -50,7 +58,7 @@
 							level.lengthTarget
 						}}</span> {{$text('level_modal_length_target_unit')}}</span>
       </div>
-      <p v-if="levelSolutions.score.minLength >= 0"
+      <p v-if="hasPriorLength"
         :class="{
 					'prior-score-phrase': true,
 					'not-won': levelSolutions.score.minLength > level.lengthTarget
@@ -64,6 +72,7 @@
 <script>
 import Modal from '../../modal/Modal'
 import TestGraph from './TestGraph'
+import ScoreStarsAnimation from './ScoreStarsAnimation'
 import WinLevelTestWorker from './WinLevelTest.worker.js'
 import Compiler from '../../../world/ai/compile/Compiler'
 import AnchorStatement from '../../../world/ai/compile/statements/AnchorStatement'
@@ -72,7 +81,8 @@ import EndIfStatement from '../../../world/ai/compile/statements/EndIfStatement'
 export default {
   components: {
     Modal,
-    TestGraph
+    TestGraph,
+    ScoreStarsAnimation
   },
 
   props: {
@@ -99,9 +109,11 @@ export default {
       tests: [],
       statements: compiler.statements,
       testAnimationEnded: false,
+      hasPriorSpeed: this.levelSolutions.score.minStep >= 0,
       priorSpeedText: this.$text('win_modal_prior_code_speed', {
         minStep: this.levelSolutions.score.minStep
       }),
+      hasPriorLength: this.levelSolutions.score.minLength >= 0,
       priorLengthText: this.$text('win_modal_prior_code_length', {
         minLength: this.levelSolutions.score.minLength
       })
@@ -109,6 +121,10 @@ export default {
   },
 
   computed: {
+    hasWon: function() {
+      return this.tests.every(test => !test.hasLost)
+    },
+
     codeLength: function() {
       let codeLength = 0
       for (let statement of this.statements) {
@@ -117,10 +133,6 @@ export default {
         }
       }
       return codeLength
-    },
-
-    hasWon: function() {
-      return this.tests.every(test => !test.hasLost)
     },
 
     averageStep: function() {
@@ -133,7 +145,6 @@ export default {
     if (this.worker) {
       this.worker.terminate()
     }
-    this.stopCelebration()
   },
 
   mounted() {
@@ -190,30 +201,6 @@ export default {
             behavior: 'smooth'
           })
         })
-
-        this.playCelebrations()
-      }
-    },
-
-    playCelebration(count) {
-      this.$gameScene.playCelebration(count)
-    },
-
-    stopCelebration() {
-      this.$gameScene.stopCelebration()
-    },
-
-    playCelebrations() {
-      if (this.hasWon) {
-        let celebrations = 1
-
-        if (this.averageStep <= this.level.speedTarget) {
-          celebrations++
-        }
-        if (this.codeLength <= this.level.lengthTarget) {
-          celebrations++
-        }
-        this.playCelebration(celebrations)
       }
     },
 
@@ -256,6 +243,19 @@ export default {
         display: flex;
         flex-direction: column;
         overflow: hidden auto;
+
+        .test-graph-container {
+            position: relative;
+
+            .score-stars-animation {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
 
         .score-container {
             display: flex;

@@ -55,26 +55,26 @@ export default {
     }
 
     .stars-shadow {
-        background-image: url("../../game/images/stars-shadow.png");
+        background-image: url("../images/stars-shadow.png");
         opacity: 0.3;
     }
     .left-star-enabled {
-        background-image: url("../../game/images/star-left-enabled.png");
+        background-image: url("../images/star-left-enabled.png");
     }
     .center-star-enabled {
-        background-image: url("../../game/images/star-center-enabled.png");
+        background-image: url("../images/star-center-enabled.png");
     }
     .right-star-enabled {
-        background-image: url("../../game/images/star-right-enabled.png");
+        background-image: url("../images/star-right-enabled.png");
     }
     .left-star-disabled {
-        background-image: url("../../game/images/star-left-disabled.png");
+        background-image: url("../images/star-left-disabled.png");
     }
     .center-star-disabled {
-        background-image: url("../../game/images/star-center-disabled.png");
+        background-image: url("../images/star-center-disabled.png");
     }
     .right-star-disabled {
-        background-image: url("../../game/images/star-right-disabled.png");
+        background-image: url("../images/star-right-disabled.png");
     }
 }
 </style>
