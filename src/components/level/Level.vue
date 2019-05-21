@@ -294,6 +294,7 @@ export default {
         if (action === 'confirm') {
           this.goBack()
         }
+        this.stop()
       }
       else {
         let failedTest = e.tests.find(test => test.hasLost)
