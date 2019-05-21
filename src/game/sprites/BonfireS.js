@@ -1,10 +1,13 @@
 import Phaser from 'phaser'
 
 export default class BonfireS extends Phaser.GameObjects.Sprite {
-  constructor(scene, bonfire, tileWidth, tileHeight) {
-    super(scene, (bonfire.x + 0.5) * tileWidth, (bonfire.y + 0.5) * tileHeight - 23, 'bonfire')
+  constructor(scene, bonfire, tileWidth, tileHeight, offsetX = 0, offsetY = -23) {
+    super(scene, (bonfire.x + 0.5) * tileWidth + offsetX, (bonfire.y + 0.5) * tileHeight + offsetY, 'bonfire')
 
-    this.depth = this.y
+    this.offsetX = offsetX
+    this.offsetY = offsetY
+    this.depthOffset = -15
+    this.updateDepth()
     this.bonfire = bonfire
     this.enabled = this.bonfire.isEnabled()
     this.playAnimation()
@@ -25,6 +28,10 @@ export default class BonfireS extends Phaser.GameObjects.Sprite {
   }
 
   afterStep(world) {}
+
+  updateDepth() {
+    this.depth = (this.y - this.offsetY) + this.depthOffset
+  }
 
   update() {
 

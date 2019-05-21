@@ -24,9 +24,9 @@ export default class CharacterS extends Phaser.GameObjects.Container {
 
     this.lastTileX = character.x
     this.lastTileY = character.y
-    this.depth = this.y
+    this.updateDepth()
 
-    this.depthLocked = false
+    this.depthOffset = 0
     this.stateUpdateDelay = 0
 
     this.actionState = stateIdle
@@ -123,8 +123,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
 
         this.scene.soundManager.play('scream_sfx')
       }
-      this.depth = 0
-      this.depthLocked = true
+      this.depthOffset = -14
     } else if (!this.dead) {
       this.updateState(newState)
     }
@@ -158,9 +157,11 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     }
   }
 
+  updateDepth() {
+    this.depth = (this.y - this.offsetY) + this.depthOffset
+  }
+
   update() {
-    if (!this.depthLocked) {
-      this.depth = this.y
-    }
+    this.updateDepth()
   }
 }

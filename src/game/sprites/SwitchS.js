@@ -3,10 +3,13 @@ import Phaser from 'phaser'
 const assets = ['button_blue', 'button_red']
 
 export default class SwitchS extends Phaser.GameObjects.Sprite {
-  constructor(scene, mySwitch, tileWidth, tileHeight) {
-    super(scene, (mySwitch.x + 0.5) * tileWidth, (mySwitch.y + 0.5) * tileHeight, assets[mySwitch.autoDisable ? 0 : 1])
+  constructor(scene, mySwitch, tileWidth, tileHeight, offsetX = 0, offsetY = 0) {
+    super(scene, (mySwitch.x + 0.5) * tileWidth + offsetX, (mySwitch.y + 0.5) * tileHeight + offsetY, assets[mySwitch.autoDisable ? 0 : 1])
 
-    this.depth = this.y - 32
+    this.offsetX = offsetX
+    this.offsetY = offsetY
+    this.depthOffset = -15
+    this.updateDepth()
     this.switch = mySwitch
     this.enabled = this.switch.isEnabled()
   }
@@ -22,6 +25,10 @@ export default class SwitchS extends Phaser.GameObjects.Sprite {
   }
 
   afterStep(world) {}
+
+  updateDepth() {
+    this.depth = (this.y - this.offsetY) + this.depthOffset
+  }
 
   update() {}
 }
