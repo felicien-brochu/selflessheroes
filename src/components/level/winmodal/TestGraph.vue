@@ -84,6 +84,7 @@ export default {
   },
 
   data: function() {
+    this.requestAnimationFrameID = -1
     return {
       unitHeight: 200 / (startTargetFactor * this.level.speedTarget),
       barAnimationDuration: defaultBarAnimationDuration
@@ -123,6 +124,13 @@ export default {
     }
   },
 
+  beforeDestroy() {
+    this.stopTestsSound()
+    if (this.requestAnimationFrameID >= 0) {
+      cancelAnimationFrame(this.requestAnimationFrameID)
+    }
+  },
+
   methods: {
     startTestsAnimation() {
       const startHeight = startTargetFactor * this.level.speedTarget
@@ -132,8 +140,16 @@ export default {
         stepHeight: startHeight,
         lastStepHeight: startHeight
       }
+      this.playTestsSound()
+      this.requestAnimationFrameID = requestAnimationFrame(this.testAnimationStep);
+    },
 
-      requestAnimationFrame(this.testAnimationStep);
+    playTestsSound() {
+      this.$sound.play('tests_sfx')
+    },
+
+    stopTestsSound() {
+      this.$sound.stop('tests_sfx')
     },
 
     testAnimationStep(timestamp) {
@@ -186,7 +202,7 @@ export default {
       targetLine.setAttribute("y2", targetY + 40)
 
 
-      requestAnimationFrame(this.testAnimationStep)
+      this.requestAnimationFrameID = requestAnimationFrame(this.testAnimationStep)
     },
 
     speedUpTestAnimation() {
@@ -237,7 +253,9 @@ export default {
     },
 
     animationEnded() {
+      this.requestAnimationFrameID = -1
       this.$emit('animation-end')
+      this.stopTestsSound()
     }
   }
 }

@@ -98,7 +98,13 @@ export default {
     return {
       tests: [],
       statements: compiler.statements,
-      testAnimationEnded: false
+      testAnimationEnded: false,
+      priorSpeedText: this.$text('win_modal_prior_code_speed', {
+        minStep: this.levelSolutions.score.minStep
+      }),
+      priorLengthText: this.$text('win_modal_prior_code_length', {
+        minLength: this.levelSolutions.score.minLength
+      })
     }
   },
 
@@ -120,25 +126,14 @@ export default {
     averageStep: function() {
       let sum = this.tests.map(test => test.steps).reduce((sum, next) => (sum + next))
       return Math.floor(sum / this.tests.length)
-    },
-
-    priorSpeedText: function() {
-      return this.$text('win_modal_prior_code_speed', {
-        minStep: this.levelSolutions.score.minStep
-      })
-    },
-
-    priorLengthText: function() {
-      return this.$text('win_modal_prior_code_length', {
-        minLength: this.levelSolutions.score.minLength
-      })
-    },
+    }
   },
 
   beforeDestroy() {
     if (this.worker) {
       this.worker.terminate()
     }
+    this.stopCelebration()
   },
 
   mounted() {
@@ -176,18 +171,17 @@ export default {
     handleWorkerResponse(e) {
       this.tests = e.data
 
-      this.$emit('test-done', this.tests)
+      this.$emit('test-done', {
+        tests: this.tests,
+        codeLength: this.codeLength,
+        averageStep: this.averageStep,
+        hasWon: this.hasWon
+      })
     },
 
     handleAnimationEnd() {
       if (!this.testAnimationEnded) {
         this.testAnimationEnded = true
-        this.$emit('test-success', {
-          tests: this.tests,
-          codeLength: this.codeLength,
-          averageStep: this.averageStep,
-          hasWon: this.hasWon
-        })
 
         this.$nextTick(() => {
           let content = this.$el.getElementsByClassName('modal-content')[0]
@@ -196,6 +190,30 @@ export default {
             behavior: 'smooth'
           })
         })
+
+        this.playCelebrations()
+      }
+    },
+
+    playCelebration(count) {
+      this.$gameScene.playCelebration(count)
+    },
+
+    stopCelebration() {
+      this.$gameScene.stopCelebration()
+    },
+
+    playCelebrations() {
+      if (this.hasWon) {
+        let celebrations = 1
+
+        if (this.averageStep <= this.level.speedTarget) {
+          celebrations++
+        }
+        if (this.codeLength <= this.level.lengthTarget) {
+          celebrations++
+        }
+        this.playCelebration(celebrations)
       }
     },
 

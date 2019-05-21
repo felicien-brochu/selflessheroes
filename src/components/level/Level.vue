@@ -274,60 +274,32 @@ export default {
           handlers: {
             confirm: (e) => this.handleWinModalClose('confirm', e),
             cancel: (e) => this.handleWinModalClose('cancel', e),
-            'test-done': this.playTestsSound,
-            'test-success': this.handleTestSuccess
+            'test-done': this.handleTestsDone
           }
         })
       }
     },
 
-    handleWinModalClose(action, e) {
-      this.stopCelebration()
-      this.stopTestsSound()
-      this.winModalDisplayed = false
+    handleTestsDone(e) {
       if (e.hasWon) {
         this.solution.addScore(e.averageStep, e.codeLength)
         this.levelSolutions.addScore(e.averageStep, e.codeLength)
+      }
+    },
+
+    handleWinModalClose(action, e) {
+      this.winModalDisplayed = false
+
+      if (e.hasWon) {
         if (action === 'confirm') {
           this.goBack()
         }
       }
       else {
         let failedTest = e.tests.find(test => test.hasLost)
-        this.gameScene.restartWorldWithRngSeed(failedTest.rngSeed)
+        this.$gameScene.restartWorldWithRngSeed(failedTest.rngSeed)
         this.showTestFailedModal()
       }
-    },
-
-    handleTestSuccess(results) {
-      this.stopTestsSound()
-      if (results.hasWon) {
-        let celebrations = 1
-
-        if (results.averageStep <= this.level.speedTarget) {
-          celebrations++
-        }
-        if (results.codeLength <= this.level.lengthTarget) {
-          celebrations++
-        }
-        this.playCelebration(celebrations)
-      }
-    },
-
-    playTestsSound() {
-      this.$refs.world.gameScene.soundManager.play('tests_sfx')
-    },
-
-    stopTestsSound() {
-      this.$refs.world.gameScene.soundManager.stop('tests_sfx')
-    },
-
-    playCelebration(count) {
-      this.$refs.world.gameScene.playCelebration(count)
-    },
-
-    stopCelebration() {
-      this.$refs.world.gameScene.stopCelebration()
     },
 
     showTestFailedModal() {
