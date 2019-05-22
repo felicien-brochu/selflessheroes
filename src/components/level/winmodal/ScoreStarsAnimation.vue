@@ -6,7 +6,7 @@
       appear>
       <div :class="{
 				'score-stars': true,
-				'zoomed': animationRunning
+				'animated': animationRunning
 			}">
         <div class="stars-shadow" />
 
@@ -114,7 +114,7 @@ export default {
         this.programAnimationStep(1500)
       }
       else {
-        this.timeoutID = setTimeout(() => this.animationRunning = false, 1500)
+        this.timeoutID = setTimeout(() => this.animationRunning = false, 1450)
       }
     },
 
@@ -173,7 +173,7 @@ export default {
         left: calc(50% + 10px);
         transform: translate(-50%, -50%) scale(0.85);
 
-        &.zoomed {
+        &.animated {
             @keyframes bounce {
                 0% {
                     transform: translate(-50%, -50%) scale(0.85);

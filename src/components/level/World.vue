@@ -10,7 +10,7 @@ import gameConfig from '../../game/config'
 
 class Game extends Phaser.Game {
   constructor(gameSceneConfig) {
-    super(gameConfig)
+    super(gameConfig())
     this.gameSceneConfig = gameSceneConfig
   }
 }

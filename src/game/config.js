@@ -6,7 +6,7 @@ import CelebrationScene from './Celebration'
 import MouseWheelToUpDownPlugin from './plugins/mousewheeltoupdown/mousewheeltoupdown-plugin.js';
 
 
-export default {
+export default () => ({
   width: document.documentElement.clientWidth,
   height: document.documentElement.clientHeight,
   mode: Phaser.Scale.NO_SCALE,
@@ -24,4 +24,4 @@ export default {
     }]
   },
   scene: [SplashScene, GameScene, CelebrationScene]
-}
+})

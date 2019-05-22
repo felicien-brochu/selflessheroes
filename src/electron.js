@@ -60,8 +60,9 @@ function createWindow() {
 
   // Don't show until we are ready and loaded
   mainWindow.once('ready-to-show', () => {
-    mainWindow.maximize()
-    // mainWindow.show()
+    // mainWindow.maximize()
+    mainWindow.show()
+    mainWindow.setFullScreen(true)
 
     // Open the DevTools automatically if developing
     if (dev) {

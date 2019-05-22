@@ -1,5 +1,6 @@
 <template>
 <div class="app">
+  <modal-layer ref="modalLayer" />
   <transition :name="transitionName"
     mode="out-in"
     @before-enter="handleTransition('onTransitionBeforeEnter', $event)"
@@ -17,13 +18,24 @@
 </template>
 
 <script>
+import isElectron from 'is-electron'
+import ModalLayer from './modal/ModalLayer'
+import Modal from './modal/Modal'
+
 export default {
-  components: {},
+  components: {
+    ModalLayer
+  },
+
   props: {},
+
   data() {
     return {
       transitionName: 'slide-left'
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    next()
   },
   beforeRouteUpdate(to, from, next) {
     const toDepth = to.path.split('/').length
@@ -32,11 +44,36 @@ export default {
     next()
   },
 
+  mounted() {
+    this.proposeFullscreen()
+  },
+
   methods: {
     handleTransition(handler, el) {
       // If there is a corresponding handler on a child, we call it
       if (el.__vue__ && el.__vue__[handler] && {}.toString.call(el.__vue__[handler]) === '[object Function]') {
         el.__vue__[handler]()
+      }
+    },
+
+    proposeFullscreen() {
+      if (!document.fullscreenElement && document.body.requestFullscreen && !isElectron()) {
+        this.$refs.modalLayer.addModal({
+          component: Modal,
+          key: 'app_fullscreen_modal',
+          props: {
+            text: this.$text('app_fullscreen_modal'),
+            cancelable: true,
+            type: 'info'
+          },
+          handlers: {
+            confirm: () => {
+              document.body.requestFullscreen().catch(err => {
+                console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`)
+              })
+            }
+          }
+        })
       }
     }
   }

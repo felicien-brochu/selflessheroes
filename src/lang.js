@@ -6,6 +6,8 @@ const messages = {
   'en': {
     no_text: "[no-text]",
 
+    app_fullscreen_modal: "In order to have the best game experience,\nit is recommended to go fullscreen",
+
     home_title: "AI World",
     new_game: "new game:",
     new_game_name_placeholder: "Pseudo",
@@ -150,6 +152,8 @@ const messages = {
 
 
   'fr': {
+    app_fullscreen_modal: "Afin d'avoir la meilleure expérience de jeu possible,\nil est recommandé de jouer en plein écran.",
+
     home_title: "AI World",
     new_game: "nouvelle partie\u00A0:",
     new_game_name_placeholder: "Pseudo",

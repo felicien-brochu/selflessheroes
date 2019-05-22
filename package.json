@@ -62,6 +62,7 @@
     "codemirror": "^5.45.0",
     "escape-string-regexp": "^1.0.5",
     "events": "^3.0.0",
+    "is-electron": "^2.2.0",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "phaser": "^3.16.0",

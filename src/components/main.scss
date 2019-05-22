@@ -8,6 +8,37 @@ html {
 	padding: 0;
 	background-color: black;
 	font-family: 'Roboto', Arial, sans-serif;
+
+	* {
+		scrollbar-color: #fff6 #0000;
+		scrollbar-width: thin;
+
+		&::-webkit-scrollbar {
+			width: 8px;
+			height: 8px;
+			background-color: #0000;
+			position: absolute;
+			/* or add it to the track */
+		}
+
+		&::-webkit-scrollbar-button {
+			height: 8px;
+			width: 8px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: #fff6;
+			border-radius: 4px;
+			margin: 5px 2px;
+		}
+	}
+}
+
+#app-container {
+	overflow: auto;
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
 }
 
 ol,

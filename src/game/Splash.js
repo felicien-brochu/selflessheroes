@@ -55,6 +55,8 @@ export default class extends Phaser.Scene {
   }
 
   preload() {
+    this.disablePhaserFullscreenManagement()
+
     // load assets
     this.load.spritesheet('elf_f', elf_f, {
       frameWidth: 32,
@@ -194,6 +196,20 @@ export default class extends Phaser.Scene {
     const level = this.game.gameSceneConfig.level
     this.load.json('map', level.mapPath)
     this.load.image('tileset_image', level.tilesetImagePath)
+  }
+
+  disablePhaserFullscreenManagement() {
+    var vendors = ['webkit', 'moz', '']
+    const listeners = this.scale.listeners
+
+    vendors.forEach(prefix => {
+      document.removeEventListener(prefix + 'fullscreenchange', listeners.fullScreenChange, false)
+      document.removeEventListener(prefix + 'fullscreenerror', listeners.fullScreenError, false)
+    })
+
+    //  MS Specific
+    document.removeEventListener('MSFullscreenChange', listeners.fullScreenChange, false)
+    document.removeEventListener('MSFullscreenError', listeners.fullScreenError, false)
   }
 
   create() {

@@ -86,6 +86,7 @@ export default class extends Phaser.Scene {
 
     this.celebrationsToPlay = 0
     this.timeoutID = -1
+
   }
 
   preload() {}
@@ -98,6 +99,8 @@ export default class extends Phaser.Scene {
       this.fireworks.push(firework)
       this.add.existing(firework)
     }
+
+    this.scale.on('resize', this.handleResize.bind(this))
   }
 
   playCelebration(rect, count = 1) {
@@ -139,4 +142,8 @@ export default class extends Phaser.Scene {
   }
 
   update() {}
+
+  handleResize(width, height, ratio) {
+    this.cameras.main.setViewport(0, 0, window.innerWidth, window.innerHeight)
+  }
 }
