@@ -46,6 +46,7 @@ export default class DirectionLiteral extends Expression {
   computeValue(context) {
     let res = []
     let direction = this.value
+    context.observations.push(direction)
     let x = context.character.x + direction.dx
     let y = context.character.y + direction.dy
 

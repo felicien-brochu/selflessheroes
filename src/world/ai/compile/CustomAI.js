@@ -19,6 +19,7 @@ export default class CustomAI extends AI {
       world: this.world,
       character: this.character,
       variables: this.variables,
+      observations: [],
       lastGoto: null,
       rng: Math.random
     }
@@ -33,6 +34,8 @@ export default class CustomAI extends AI {
   step(rng) {
     let res = null
 
+    this.prepareContext(rng)
+
     if (this.cursor >= this.statements.length) {
       this.lastActionCursor = this.cursor
     } else {
@@ -43,7 +46,7 @@ export default class CustomAI extends AI {
           complete,
           goto,
           action
-        } = statement.execute(this.getContext(rng))
+        } = statement.execute(this.context)
 
         if (step) {
           this.lastActionCursor = this.cursor
@@ -71,9 +74,9 @@ export default class CustomAI extends AI {
     return this.cursor < this.statements.length
   }
 
-  getContext(rng) {
+  prepareContext(rng) {
     this.context.rng = rng
-    return this.context
+    this.context.observations = []
   }
 
   getDebugContext() {

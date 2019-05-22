@@ -27,10 +27,11 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     this.updateDepth()
 
     this.depthOffset = 0
-    this.stateUpdateDelay = 0
-    this.timeline = null
+    this._moving = false
+    this.moveTimeline = null
 
     this.actionState = stateIdle
+    this.newActionState = stateIdle
     this.dead = this.character.dead
     this.sleep = false
 
@@ -52,10 +53,10 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     this.sprite.play(`${this.asset}_${this.actionState}`)
   }
 
-  updateState(newState) {
-    if (this.actionState !== newState) {
-      this.actionState = newState
-      if (newState === stateSleep) {
+  updateState() {
+    if (this.actionState !== this.newActionState && !this.dead) {
+      this.actionState = this.newActionState
+      if (this.newActionState === stateSleep) {
         this.sleepSprite.setVisible(true)
         this.sleepSprite.play('sleep_zzz')
       }
@@ -64,11 +65,15 @@ export default class CharacterS extends Phaser.GameObjects.Container {
   }
 
   beforeStep(world) {
-    let newState = this.sleep ? stateSleep : stateIdle
+    this.newActionState = this.sleep ? stateSleep : stateIdle
+
+    if (!this.dead) {
+      this.stopMoving()
+    }
 
     if (this.character.lastAction) {
       if (this.character.lastAction.type === 'StepAction') {
-        newState = stateRun
+        this.newActionState = stateRun
       } else if (this.character.lastAction.type === 'FireBallAction') {
         this.scene.throwFireBall(this.character, this.character.lastAction.direction)
         this.scene.soundManager.play('fireball_sfx')
@@ -76,45 +81,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
       }
 
       if (this.lastTileX !== this.character.x || this.lastTileY !== this.character.y) {
-        if (this.timeline) {
-          this.timeline.stop()
-        }
-        this.timeline = this.scene.tweens.timeline()
-
-        const maxDuration = 500
-        let duration = Math.min(this.scene.runner.stepInterval, maxDuration)
-        let ease = 'Quad.easeOut'
-        if (duration <= 200) {
-          ease = 'Quad.easeInOut'
-        }
-
-        this.timeline.add({
-          targets: this,
-          x: (this.character.x + 0.5) * this.tileWidth + this.offsetX,
-          y: (this.character.y + 0.5) * this.tileHeight + this.offsetY,
-          duration: duration,
-          ease: ease
-        })
-        this.stateUpdateDelay = duration * 0.2
-        this.scene.soundManager.play('step_sfx')
-
-        if (this.character.dead && this.character.deathReason === CharacterDeathReason.fall) {
-          this.timeline.add({
-            targets: this,
-            y: (this.character.y + 0.5) * this.tileHeight + this.offsetY + 60,
-            alpha: -1,
-            duration: duration,
-            ease: ease
-          })
-          this.scene.soundManager.play('scream_sfx', {
-            delay: duration / 1000
-          })
-          this.stateUpdateDelay += duration
-        }
-        this.timeline.play()
-
-        this.lastTileX = this.character.x
-        this.lastTileY = this.character.y
+        this.moveToNewLocation()
       }
     }
 
@@ -125,25 +92,23 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     if (!this.dead && this.character.dead) {
       if (this.character.deathReason === CharacterDeathReason.burnt) {
         setTimeout(() => this.sprite.play('ashes', true), 200)
-
         this.scene.soundManager.play('scream_sfx')
       }
       this.depthOffset = -14
-    } else if (!this.dead) {
-      this.updateState(newState)
     }
 
+    this.updateState()
     this.dead = this.character.dead
   }
 
   afterStep(world) {
-    let newState = stateIdle
+    this.newActionState = stateIdle
     if (this.lastTileX !== this.character.x) {
       this.sprite.setFlipX(this.lastTileX > this.character.x)
     }
     if (this.character.lastAction) {
       if (this.character.lastAction.type === 'StepAction') {
-        newState = stateRun
+        this.newActionState = stateRun
       } else if (this.character.lastAction.type === 'FireBallAction') {
         let dir = this.character.lastAction.direction
         if (dir.dx !== 0) {
@@ -152,14 +117,16 @@ export default class CharacterS extends Phaser.GameObjects.Container {
       }
     }
     if (this.sleep) {
-      newState = stateSleep
+      this.newActionState = stateSleep
     }
-    if (!this.dead) {
-      setTimeout(() => {
-        this.updateState(newState)
-      }, this.stateUpdateDelay)
-      this.stateUpdateDelay = 0
+
+    if (!this.moving) {
+      this.afterStepAnimation()
     }
+  }
+
+  afterStepAnimation() {
+    this.updateState()
   }
 
   updateDepth() {
@@ -168,5 +135,78 @@ export default class CharacterS extends Phaser.GameObjects.Container {
 
   update() {
     this.updateDepth()
+  }
+
+  moveToNewLocation() {
+    this.moveTimeline = this.scene.tweens.timeline()
+
+    const maxDuration = 500
+    let duration = Math.min(this.scene.runner.stepInterval, maxDuration)
+    let ease = 'Quad.easeOut'
+    if (duration <= 200) {
+      ease = 'Quad.easeInOut'
+    }
+
+    this.moveTimeline.add({
+      targets: this,
+      x: (this.character.x + 0.5) * this.tileWidth + this.offsetX,
+      y: (this.character.y + 0.5) * this.tileHeight + this.offsetY,
+      duration: duration,
+      ease: ease
+    })
+    this.scene.soundManager.play('step_sfx')
+
+    if (this.character.dead && this.character.deathReason === CharacterDeathReason.fall) {
+      this.moveTimeline.add({
+        targets: this,
+        y: (this.character.y + 0.5) * this.tileHeight + this.offsetY + 60,
+        alpha: -1,
+        duration: duration,
+        ease: ease
+      })
+      this.scene.soundManager.play('scream_sfx', {
+        delay: duration / 1000
+      })
+    }
+    this.moveTimeline.on('complete', () => this.onMoveTimelineStop)
+    this.moveTimeline.play()
+    this.moving = true
+
+    this.lastTileX = this.character.x
+    this.lastTileY = this.character.y
+  }
+
+  onMoveTimelineStop() {
+    this.moving = false
+  }
+
+  stopMoving() {
+    if (this.moveTimeline) {
+      this.moveTimeline.stop()
+    }
+    this.moving = false
+  }
+
+  onStartMoving() {}
+
+  onStopMoving() {
+    this.afterStepAnimation()
+  }
+
+  get moving() {
+    return this._moving
+  }
+
+  set moving(moving) {
+    let changed = moving !== this._moving
+    this._moving = moving
+
+    if (changed) {
+      if (!this._moving) {
+        this.onStopMoving()
+      } else {
+        this.onStartMoving()
+      }
+    }
   }
 }
