@@ -167,37 +167,31 @@ export default {
 
     .score-stars {
         position: absolute;
-        width: 55%;
-        height: 55%;
+        width: 65%;
+        height: 65%;
         top: calc(50% - 20px);
         left: calc(50% + 10px);
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) scale(0.85);
 
         &.zoomed {
             @keyframes bounce {
                 0% {
-                    width: 55%;
-                    height: 55%;
+                    transform: translate(-50%, -50%) scale(0.85);
                 }
-                25% {
-                    width: 65%;
-                    height: 65%;
+                12% {
+                    transform: translate(-50%, -50%) scale(1);
+                }
+                23% {
+                    transform: translate(-50%, -50%) scale(1.01);
                 }
                 33% {
-                    width: 66%;
-                    height: 66%;
+                    transform: translate(-50%, -50%) scale(1);
                 }
-                37% {
-                    width: 65%;
-                    height: 65%;
-                }
-                70% {
-                    width: 55%;
-                    height: 55%;
+                80% {
+                    transform: translate(-50%, -50%) scale(0.85);
                 }
                 to {
-                    width: 55%;
-                    height: 55%;
+                    transform: translate(-50%, -50%) scale(0.85);
                 }
             }
             animation-name: bounce;
