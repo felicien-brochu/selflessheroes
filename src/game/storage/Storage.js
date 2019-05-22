@@ -1,13 +1,13 @@
 import StorageWrapper from './StorageWrapper'
 import Career from './Career'
 
-const version = '[AIV]{version}[/AIV]'
+const storageVersion = '[AIV]{version}[/AIV]'
 
 export class Storage extends StorageWrapper {
   constructor(storageKey) {
     super(storageKey)
 
-    this.version = version
+    this.version = storageVersion
     this.careers = []
   }
 
@@ -55,8 +55,15 @@ export class Storage extends StorageWrapper {
   load(data) {
     this.version = data.version
     this.careers = super.loadIDArray(data.careers, 'careers', Career)
+
+    if (this.version !== storageVersion) {
+      this.migrate()
+    }
+
     return true
   }
+
+  migrate() {}
 
   toJSON() {
     let o = super.toJSON()
