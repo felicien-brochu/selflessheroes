@@ -349,12 +349,12 @@ export default class extends Phaser.Scene {
   }
 
   handleResize(width, height, ratio) {
-    this.cameraControl.setVisibleSize(window.innerWidth - this.editorWidth, window.innerHeight)
+    this.cameraControl.onResize(window.innerWidth - this.editorWidth, window.innerHeight)
   }
 
   handleEditorResize(editorWidth) {
     this.editorWidth = editorWidth
-    this.cameraControl.setVisibleSize(window.innerWidth - this.editorWidth, window.innerHeight)
+    this.cameraControl.onResize(window.innerWidth - this.editorWidth, window.innerHeight)
   }
 
   handleSpeedChange(speedIndex) {

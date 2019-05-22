@@ -76,6 +76,11 @@ export default class CameraControl extends Phaser.Cameras.Controls.FixedKeyContr
     this.camera.setZoom(zoom)
   }
 
+  onResize(visibleWidth, visibleHeight) {
+    this.setVisibleSize(visibleWidth, visibleHeight)
+    this.init()
+  }
+
   setVisibleSize(visibleWidth, visibleHeight) {
     if (visibleWidth !== this.visibleWidth || visibleHeight !== this.visibleHeight) {
       this.visibleWidth = visibleWidth
