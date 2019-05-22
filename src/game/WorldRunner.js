@@ -54,13 +54,13 @@ export default class WorldRunner {
 
   step() {
     this.events.emit('before-step', this.world)
+
     this.world.step(this.rng)
 
     if (this.gameOver) {
       this.gameOverDeclared = true
     }
     this.emitStateChange()
-
     this.events.emit('after-step', this.world)
 
     if (this.gameOver) {

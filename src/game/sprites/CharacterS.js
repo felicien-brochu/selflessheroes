@@ -28,6 +28,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
 
     this.depthOffset = 0
     this.stateUpdateDelay = 0
+    this.timeline = null
 
     this.actionState = stateIdle
     this.dead = this.character.dead
@@ -75,7 +76,11 @@ export default class CharacterS extends Phaser.GameObjects.Container {
       }
 
       if (this.lastTileX !== this.character.x || this.lastTileY !== this.character.y) {
-        let timeline = this.scene.tweens.createTimeline()
+        if (this.timeline) {
+          this.timeline.stop()
+        }
+        this.timeline = this.scene.tweens.timeline()
+
         const maxDuration = 500
         let duration = Math.min(this.scene.runner.stepInterval, maxDuration)
         let ease = 'Quad.easeOut'
@@ -83,7 +88,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
           ease = 'Quad.easeInOut'
         }
 
-        timeline.add({
+        this.timeline.add({
           targets: this,
           x: (this.character.x + 0.5) * this.tileWidth + this.offsetX,
           y: (this.character.y + 0.5) * this.tileHeight + this.offsetY,
@@ -94,7 +99,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
         this.scene.soundManager.play('step_sfx')
 
         if (this.character.dead && this.character.deathReason === CharacterDeathReason.fall) {
-          timeline.add({
+          this.timeline.add({
             targets: this,
             y: (this.character.y + 0.5) * this.tileHeight + this.offsetY + 60,
             alpha: -1,
@@ -106,7 +111,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
           })
           this.stateUpdateDelay += duration
         }
-        timeline.play()
+        this.timeline.play()
 
         this.lastTileX = this.character.x
         this.lastTileY = this.character.y
