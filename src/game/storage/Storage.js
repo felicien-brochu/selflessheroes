@@ -35,17 +35,17 @@ export class Storage extends StorageWrapper {
     this.careers.splice(this.careers.indexOf(career), 1)
     this.save(false)
 
-    // Safety feature: when no career remove all from local storage
+    // Safety feature: when no career remove all career keys from local storage
     if (this.careers.length === 0) {
       this.cleanLocalStorage()
     }
   }
 
   cleanLocalStorage() {
-    // Remove all that is not this object from local storage
+    // Remove all career items from local storage
     for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i)
-      if (key !== this.storageKey) {
+      if (key.startsWith(`${this.storageKey}.careers`)) {
         localStorage.removeItem(key)
         i--
       }
