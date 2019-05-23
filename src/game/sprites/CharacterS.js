@@ -94,6 +94,8 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     }
 
     if (!this.dead && this.character.dead) {
+      this.dead = this.character.dead
+      this.emit('die', this)
       if (this.character.deathReason === CharacterDeathReason.burnt) {
         setTimeout(() => {
           // Check if destroyed

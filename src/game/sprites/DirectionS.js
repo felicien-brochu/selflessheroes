@@ -31,10 +31,6 @@ export default class ObservationS extends Phaser.GameObjects.Sprite {
     this.updateDepth()
   }
 
-  beforeStep(world) {}
-
-  afterStep(world) {}
-
   updateDepth() {
     this.depth = (this.y - this.offsetY) + this.depthOffset
   }

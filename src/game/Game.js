@@ -11,6 +11,7 @@ import SoundManager from './SoundManager'
 import Speeds from './Speeds'
 import World from '../world/World'
 import Direction from '../world/Direction'
+import CharacterDeathReason from '../world/CharacterDeathReason'
 import {
   namedObjectListToObject
 } from '../world/utils'
@@ -149,8 +150,10 @@ export default class extends Phaser.Scene {
       let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight, heroIndex)
       this.heroes.push(sprite)
       this.add.existing(sprite)
+
       sprite.on('step-to', this.updateCharacterDirection, this)
       sprite.on('observe', this.updateCharacterObservations, this)
+      sprite.on('die', this.onHeroDeath, this)
       sprite.setInteractive()
       sprite.on('pointerdown', () => this.handleClick(sprite), this)
 
@@ -170,6 +173,14 @@ export default class extends Phaser.Scene {
       this.bonfires.push(sprite)
       this.add.existing(sprite)
     }
+  }
+
+  restartWorld() {
+    this.runner.pause()
+    this.destroySprites()
+    this.createWorld()
+    this.updateFollowHero()
+    this.runner.restart(this.world)
   }
 
   initCamera() {
@@ -317,13 +328,6 @@ export default class extends Phaser.Scene {
     this.runner.init(this.world, rngSeed)
   }
 
-  restartWorld() {
-    this.runner.pause()
-    this.destroySprites()
-    this.createWorld()
-    this.runner.restart(this.world)
-  }
-
   startFollowHero(sprite) {
     let heroIndex = -1
     for (let i = 0; i < this.heroes.length; i++) {
@@ -342,8 +346,8 @@ export default class extends Phaser.Scene {
   setFollowHero(heroIndex) {
     if (heroIndex !== this.followHeroIndex) {
       this.followHeroIndex = heroIndex
-      this.updateFollowHero()
     }
+    this.updateFollowHero()
   }
 
   updateFollowHero() {
@@ -353,12 +357,17 @@ export default class extends Phaser.Scene {
   }
 
   updateFollowCursor() {
+    let visible = true
     if (this.followHeroIndex >= 0) {
       let sprite = this.heroes[this.followHeroIndex]
-      this.followCursor.setVisible(true)
+      if (sprite.dead && sprite.character.deathReason === CharacterDeathReason.fall) {
+        visible = false
+      }
     } else {
-      this.followCursor.setVisible(false)
+      visible = false
     }
+
+    this.followCursor.setVisible(visible)
   }
 
   updateCharacterDirection(character, direction) {
@@ -406,6 +415,13 @@ export default class extends Phaser.Scene {
 
   hideObservationSprites() {
     this.observationSprites.forEach(sprite => sprite.setVisible(false))
+  }
+
+  onHeroDeath(hero) {
+    // If died hero is the follow hero: update follow hero
+    if (this.followHeroIndex >= 0 && hero === this.heroes[this.followHeroIndex]) {
+      this.updateFollowHero()
+    }
   }
 
   destroySprites() {
