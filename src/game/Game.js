@@ -149,6 +149,8 @@ export default class extends Phaser.Scene {
       let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight, heroIndex)
       this.heroes.push(sprite)
       this.add.existing(sprite)
+      sprite.on('step-to', this.updateCharacterDirection, this)
+      sprite.on('observe', this.updateCharacterObservations, this)
       sprite.setInteractive()
       sprite.on('pointerdown', () => this.handleClick(sprite), this)
 
@@ -347,6 +349,10 @@ export default class extends Phaser.Scene {
   updateFollowHero() {
     this.updateObservations()
     this.updateDirection()
+    this.updateFollowCursor()
+  }
+
+  updateFollowCursor() {
     if (this.followHeroIndex >= 0) {
       let sprite = this.heroes[this.followHeroIndex]
       this.followCursor.setVisible(true)

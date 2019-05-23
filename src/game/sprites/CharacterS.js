@@ -114,7 +114,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     if (this.character.lastAction) {
       let action = this.character.lastAction
       if (action.type === 'StepAction') {
-        this.scene.updateCharacterDirection(this, action.direction)
+        this.emit('step-to', this, action.direction)
       }
     }
 
@@ -122,6 +122,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
       this.character.ai.context &&
       this.character.ai.context.observations &&
       this.character.ai.context.observations.length > 0) {
+      this.emit('observe', this, this.character.ai.context.observations)
       this.scene.updateCharacterObservations(this, this.character.ai.context.observations)
     }
     if (!this.moving) {
