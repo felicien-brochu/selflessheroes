@@ -9,8 +9,8 @@ export default class Level7 extends Level {
       startingCode: "if w != wall :\n\tstep(w)\nelse\n\tstep(e)\nendif\n",
       startingEditorType: "graph",
       maxStep: 100,
-      speedTarget: 5,
-      lengthTarget: 7
+      speedTarget: 4,
+      lengthTarget: 5
     })
 
     Object.freeze(this)

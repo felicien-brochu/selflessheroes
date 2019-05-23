@@ -9,7 +9,7 @@ export default class Level8 extends Level {
       startingCode: "a:\nstep(e)\njump a\n",
       startingEditorType: "graph",
       maxStep: 200,
-      speedTarget: 94,
+      speedTarget: 71,
       lengthTarget: 4
     })
 
