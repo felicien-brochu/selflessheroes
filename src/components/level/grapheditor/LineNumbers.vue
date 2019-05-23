@@ -54,8 +54,8 @@
           y="13"
           href="#graph-cursor"
           filter="url(#graph-cursor-dropshadow)"
-          @mousedown="$emit('select-follow-hero', cursor.heroIndex)"
-          @touchstart="$emit('select-follow-hero', cursor.heroIndex)" />
+          @mousedown="$event.stopPropagation(); $emit('select-follow-hero', cursor.heroIndex)"
+          @touchstart="$event.stopPropagation(); $emit('select-follow-hero', cursor.heroIndex)" />
       </svg>
     </li>
 
