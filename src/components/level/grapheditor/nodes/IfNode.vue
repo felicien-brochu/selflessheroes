@@ -5,6 +5,7 @@
     <ul class="condition-list"
       ref="conditionList">
       <condition-node v-for="(condition, index) in conditions"
+        ref="conditionNodes"
         :key="index"
         :expression="condition.expression"
         :operator="condition.operator"
@@ -49,6 +50,7 @@ import {
 from './NodeBuilder'
 import NodeBuilder from './NodeBuilder'
 import ConditionNode from './ConditionNode'
+import DirectionLiteral from '../../../../world/ai/compile/statements/literals/DirectionLiteral'
 import {
   boolOperators
 }
@@ -64,6 +66,7 @@ export default {
   components: {
     ConditionNode
   },
+
   props: {
     'statements': {
       type: Array,
@@ -72,24 +75,20 @@ export default {
     'compilerConfig': {
       type: Object
     },
-    'insertedStatement': Object
-  },
-  data: function() {
-    return {
-      draggedOver: false
+    'insertedStatement': Object,
+    'inserted': {
+      type: Boolean,
+      default: false
     }
   },
-  mounted() {
-    this.dragOverIndex = -1
-    this.dragTransitionStart = -1
-    this.dragOverMarked = false
-    this.dragPlaceholderIndex = -1
-    this.nodes = [
-      []
-    ]
 
-    this.populateNodeContainers()
+  data: function() {
+    return {
+      draggedOver: false,
+      autoPopSelectDone: false
+    }
   },
+
   computed: {
     elseDeployed: function() {
       return this.statement.elseStatement || this.draggedOver
@@ -102,14 +101,37 @@ export default {
             operator: i < this.statement.condition.operators.length ? this.statement.condition.operators[i] : null
           }
         })
+    },
+    autoPopSelect: function() {
+      let types = this.compilerConfig.leftComparisonExpressions
+      return types.length === 1 && types[0] === DirectionLiteral
     }
   },
+
   watch: {
     statements: function(statements) {
       this.clearNodeContainers()
       this.populateNodeContainers()
     }
   },
+
+  mounted() {
+    this.dragOverIndex = -1
+    this.dragTransitionStart = -1
+    this.dragOverMarked = false
+    this.dragPlaceholderIndex = -1
+    this.nodes = [
+      []
+    ]
+
+    this.populateNodeContainers()
+
+    if (this.autoPopSelect && this.inserted && !this.autoPopSelectDone) {
+      this.autoPopSelectDone = true
+      this.$refs.conditionNodes[0].startEditLeftExpression()
+    }
+  },
+
   methods: {
     isDraggableElement(element) {
       for (let conditionNode of this.$refs.conditionList.children) {

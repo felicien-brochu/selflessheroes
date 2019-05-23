@@ -55,6 +55,7 @@ export default {
 
   mounted() {
     if (this.autoPopSelect && this.inserted && !this.autoPopSelectDone) {
+      this.autoPopSelectDone = true
       this.$refs.valueSelects[0].startEdit()
     }
   }

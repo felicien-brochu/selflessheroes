@@ -176,6 +176,10 @@ export default {
     },
     newBooleanOperatorLabelFunc(operator) {
       return '+'
+    },
+
+    startEditLeftExpression() {
+      this.$refs.leftExpression.startEdit()
     }
   }
 }
