@@ -3,6 +3,7 @@ import Hero from './Hero'
 import CharacterDeathReason from './CharacterDeathReason'
 import Switch from './Switch'
 import Bonfire from './Bonfire'
+import EventLog from './EventLog'
 import {
   namedObjectListToObject
 } from './utils'
@@ -25,6 +26,9 @@ export default class World {
     this.hasLost = false
     this.gameOver = false
     this.steps = 0
+
+    this.eventLog = new EventLog(this)
+    this.eventLog.attach()
   }
 
   parseObjects() {
@@ -218,7 +222,8 @@ export default class World {
 
   getDebugContext() {
     let context = {
-      heroes: this.heroes.map(hero => hero.getDebugContext())
+      heroes: this.heroes.map(hero => hero.getDebugContext()),
+      eventLog: this.eventLog
     }
     return context
   }

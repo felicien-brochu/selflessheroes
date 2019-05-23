@@ -37,6 +37,9 @@ export default class Character extends WorldObject {
   setDead(isDead, deathReason) {
     this.dead = isDead
     this.deathReason = deathReason
+    if (isDead) {
+      this.events.emit('die', this)
+    }
   }
 
   getDebugContext() {

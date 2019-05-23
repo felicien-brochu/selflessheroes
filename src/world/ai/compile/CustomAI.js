@@ -2,6 +2,7 @@ import AI from '../AI'
 import ExpressionValue from './statements/ExpressionValue'
 import AnchorStatement from './statements/AnchorStatement'
 import EmptyStatement from './statements/EmptyStatement'
+import EndIfStatement from './statements/EndIfStatement'
 
 export default class CustomAI extends AI {
   constructor(statements, compilerConfig, world, character) {
@@ -56,6 +57,9 @@ export default class CustomAI extends AI {
         if (goto) {
           this.context.lastGoto = goto
           this.cursor = this.statements.indexOf(goto)
+          if (goto instanceof EndIfStatement) {
+            this.cursor++
+          }
         } else if (complete) {
           this.cursor++
         }
@@ -82,8 +86,9 @@ export default class CustomAI extends AI {
   getDebugContext() {
     return {
       ...this.context,
-      cursor: this.lastActionCursor,
-      cursorStatement: this.lastActionStatement,
+      cursor: this.cursor,
+      lastActionCursor: this.lastActionCursor,
+      lastActionStatement: this.lastActionStatement,
       ended: this.lastActionCursor >= this.statements.length
     }
   }

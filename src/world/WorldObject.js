@@ -1,8 +1,16 @@
+import EventEmitter from 'events'
+
+let instanceCount = 0
+
 export default class WorldObject {
   constructor(config, tileWidth, tileHeight) {
+    this.id = instanceCount
+    instanceCount++
+
     this.config = config
     this.x = (config.x - (config.x % tileWidth)) / tileWidth
     this.y = (config.y - (config.y % tileHeight)) / tileHeight
+    this.events = new EventEmitter()
   }
 
   parseProperties() {

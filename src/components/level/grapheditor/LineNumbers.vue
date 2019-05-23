@@ -92,15 +92,12 @@ export default {
 
   data: function() {
     return {
-      followHeroCursorLine: 0,
-      lastHeroesDeath: null,
-      heroesDeath: null
+      followHeroCursorLine: 0
     }
   },
 
   watch: {
     debugContext: function() {
-      this.recordHeroesDeath()
       this.updateFollowHeroCursorLine()
     },
     followHeroIndex: function() {
@@ -152,8 +149,15 @@ export default {
       for (let i = 0; i < this.debugContext.heroes.length; i++) {
         let heroContext = this.debugContext.heroes[i]
         let line
-        if (heroContext.cursor < this.statements.length && (!this.lastHeroesDeath || !this.lastHeroesDeath[i])) {
-          line = this.getStatementLine(this.statements[heroContext.cursor])
+
+        let deathEvents = this.debugContext.eventLog.search({
+          type: 'hero-death',
+          heroID: heroContext.character.id
+        })
+        let deathEvent = deathEvents.length > 0 ? deathEvents.pop() : null
+
+        if (heroContext.lastActionCursor < this.statements.length && (!deathEvent || heroContext.world.steps === deathEvent.step)) {
+          line = this.getStatementLine(this.statements[heroContext.lastActionCursor])
         }
         else {
           line = this.getLastLine()
@@ -261,15 +265,6 @@ export default {
           this.$emit('follow-hero-cursor-line-change', line)
         }
       }
-    },
-
-    recordHeroesDeath() {
-      let heroesDeath = []
-      for (let heroContext of this.debugContext.heroes) {
-        heroesDeath.push(heroContext.character.dead)
-      }
-      this.lastHeroesDeath = this.heroesDeath
-      this.heroesDeath = heroesDeath
     }
   }
 }
