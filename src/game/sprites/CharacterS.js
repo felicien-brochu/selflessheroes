@@ -7,6 +7,7 @@ const stateRun = 'run'
 const stateHit = 'hit'
 const stateSleep = 'sleep'
 
+
 export default class CharacterS extends Phaser.GameObjects.Container {
 
   constructor(scene, character, asset, tileWidth, tileHeight, offsetX = 0, offsetY = 0) {
@@ -82,6 +83,9 @@ export default class CharacterS extends Phaser.GameObjects.Container {
 
       if (this.lastTileX !== this.character.x || this.lastTileY !== this.character.y) {
         this.moveToNewLocation()
+
+        this.lastTileX = this.character.x
+        this.lastTileY = this.character.y
       }
     }
 
@@ -91,7 +95,12 @@ export default class CharacterS extends Phaser.GameObjects.Container {
 
     if (!this.dead && this.character.dead) {
       if (this.character.deathReason === CharacterDeathReason.burnt) {
-        setTimeout(() => this.sprite.play('ashes', true), 200)
+        setTimeout(() => {
+          // Check if destroyed
+          if (this.scene) {
+            this.sprite.play('ashes', true)
+          }
+        }, 200)
         this.scene.soundManager.play('scream_sfx')
       }
       this.depthOffset = -14
@@ -102,30 +111,49 @@ export default class CharacterS extends Phaser.GameObjects.Container {
   }
 
   afterStep(world) {
-    this.newActionState = stateIdle
-    if (this.lastTileX !== this.character.x) {
-      this.sprite.setFlipX(this.lastTileX > this.character.x)
-    }
     if (this.character.lastAction) {
-      if (this.character.lastAction.type === 'StepAction') {
-        this.newActionState = stateRun
-      } else if (this.character.lastAction.type === 'FireBallAction') {
-        let dir = this.character.lastAction.direction
-        if (dir.dx !== 0) {
-          this.sprite.setFlipX(dir.dx < 0)
-        }
+      let action = this.character.lastAction
+      if (action.type === 'StepAction') {
+        this.scene.updateCharacterDirection(this, action.direction)
       }
     }
-    if (this.sleep) {
-      this.newActionState = stateSleep
-    }
 
+    if (this.character.ai &&
+      this.character.ai.context &&
+      this.character.ai.context.observations &&
+      this.character.ai.context.observations.length > 0) {
+      this.scene.updateCharacterObservations(this, this.character.ai.context.observations)
+    }
     if (!this.moving) {
       this.afterStepAnimation()
     }
   }
 
   afterStepAnimation() {
+    // If destroyed return
+    if (!this.scene) {
+      return
+    }
+    this.newActionState = stateIdle
+
+    if (this.character.lastAction) {
+      let action = this.character.lastAction
+      if (action.type === 'StepAction') {
+        this.newActionState = stateRun
+      }
+
+      if (action.type === 'FireBallAction' || action.type === 'StepAction') {
+        let dir = action.direction
+        if (dir.dx !== 0) {
+          this.sprite.setFlipX(dir.dx < 0)
+        }
+      }
+    }
+
+    if (this.sleep) {
+      this.newActionState = stateSleep
+    }
+
     this.updateState()
   }
 
@@ -138,9 +166,10 @@ export default class CharacterS extends Phaser.GameObjects.Container {
   }
 
   moveToNewLocation() {
-    this.moveTimeline = this.scene.tweens.timeline()
+    this.moveTimeline = this.scene.tweens.createTimeline()
+    this.moveTimeline.on('complete', () => this.onMoveTimelineComplete())
 
-    const maxDuration = 500
+    const maxDuration = 400
     let duration = Math.min(this.scene.runner.stepInterval, maxDuration)
     let ease = 'Quad.easeOut'
     if (duration <= 200) {
@@ -168,21 +197,20 @@ export default class CharacterS extends Phaser.GameObjects.Container {
         delay: duration / 1000
       })
     }
-    this.moveTimeline.on('complete', () => this.onMoveTimelineStop)
     this.moveTimeline.play()
     this.moving = true
-
-    this.lastTileX = this.character.x
-    this.lastTileY = this.character.y
   }
 
-  onMoveTimelineStop() {
+  onMoveTimelineComplete() {
     this.moving = false
   }
 
   stopMoving() {
     if (this.moveTimeline) {
       this.moveTimeline.stop()
+      this.moveTimeline = null
+      this.x = (this.lastTileX + 0.5) * this.tileWidth + this.offsetX
+      this.y = (this.lastTileY + 0.5) * this.tileHeight + this.offsetY
     }
     this.moving = false
   }

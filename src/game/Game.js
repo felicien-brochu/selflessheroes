@@ -16,6 +16,8 @@ import {
 import Compiler from '../world/ai/compile/Compiler'
 import CompilerConfig from '../world/ai/compile/CompilerConfig'
 import HeroS from './sprites/HeroS'
+import ObservationS from './sprites/ObservationS'
+import DirectionS from './sprites/DirectionS'
 import SwitchS from './sprites/SwitchS'
 import BonfireS from './sprites/BonfireS'
 import FireBallS from './sprites/FireBallS'
@@ -79,8 +81,8 @@ export default class extends Phaser.Scene {
     this.map = new Tilemap(this, this.mapData)
     this.tilesetImage = this.map.addTilesetImage('tileset', 'tileset_image')
     this.groundLayer = this.map.createDynamicLayer('ground', this.tilesetImage, 0, 0)
-    this.aboveCharacterLayer = this.map.createDynamicLayer('above_characters', this.tilesetImage, 0, 0)
-    this.aboveCharacterLayer.depth = 1000000
+    // this.aboveCharacterLayer = this.map.createDynamicLayer('above_characters', this.tilesetImage, 0, 0)
+    // this.aboveCharacterLayer.depth = 1000000
 
     this.extractMapFrame()
   }
@@ -118,6 +120,10 @@ export default class extends Phaser.Scene {
   createWorld() {
     this.world = new World(this.level, this.mapConfig, this.aiFactory)
     this.heroes = []
+    this.directions = new Map()
+    this.observations = new Map()
+    this.observationSprites = []
+    this.directionSprite = null
     this.switches = []
     this.bonfires = []
 
@@ -129,6 +135,10 @@ export default class extends Phaser.Scene {
       this.add.existing(sprite)
       sprite.setInteractive()
       sprite.on('pointerdown', () => this.handleClick(sprite), this)
+
+      this.observations.set(sprite, [])
+      this.directions.set(sprite, null)
+
       heroIndex++
     }
 
@@ -185,6 +195,11 @@ export default class extends Phaser.Scene {
     for (let sprite of this.getSprites()) {
       sprite.beforeStep(world)
     }
+
+    this.destroyDirectionSprite()
+    this.directions.forEach((value, key, map) => map.set(key, null))
+    this.destroyObservationSprites()
+    this.observations.forEach((value, key, map) => map.set(key, []))
   }
 
   afterStep(world) {
@@ -222,11 +237,18 @@ export default class extends Phaser.Scene {
   }
 
   getSprites() {
-    return [
+    let sprites = [
       ...this.heroes,
       ...this.switches,
-      ...this.bonfires
+      ...this.bonfires,
+      ...this.observationSprites
     ]
+
+    if (this.directionSprite) {
+      sprites.push(this.directionSprite)
+    }
+
+    return sprites
   }
 
   compileAI(code) {
@@ -312,13 +334,67 @@ export default class extends Phaser.Scene {
   }
 
   updateFollowHero() {
+    this.updateObservations()
+    this.updateDirection()
     if (this.followHeroIndex >= 0) {
       let sprite = this.heroes[this.followHeroIndex]
-      this.cameraControl.startFollow(sprite)
       this.followCursor.setVisible(true)
     } else {
-      this.cameraControl.stopFollow()
       this.followCursor.setVisible(false)
+    }
+  }
+
+  updateCharacterDirection(character, direction) {
+    this.directions.set(character, direction)
+
+    this.updateDirection()
+  }
+
+  updateCharacterObservations(character, observations) {
+    this.observations.get(character).push(...observations)
+
+    this.updateObservations()
+  }
+
+  updateDirection() {
+    this.destroyDirectionSprite()
+    if (this.followHeroIndex >= 0) {
+      let hero = this.heroes[this.followHeroIndex]
+      let direction = this.directions.get(hero)
+      if (direction) {
+        let x = hero.lastTileX
+        let y = hero.lastTileY
+        this.directionSprite = new DirectionS(this, direction, x + direction.dx, y + direction.dy, this.map.tileWidth, this.map.tileHeight)
+        this.add.existing(this.directionSprite)
+      }
+    }
+  }
+
+  updateObservations() {
+    this.destroyObservationSprites()
+    if (this.followHeroIndex >= 0) {
+      let hero = this.heroes[this.followHeroIndex]
+      let observations = this.observations.get(hero)
+      let x = hero.lastTileX
+      let y = hero.lastTileY
+      for (let observation of observations) {
+        let sprite = new ObservationS(this, x + observation.dx, y + observation.dy, this.map.tileWidth, this.map.tileHeight)
+        this.observationSprites.push(sprite)
+        this.add.existing(sprite)
+      }
+    }
+  }
+
+  destroyDirectionSprite() {
+    if (this.directionSprite) {
+      this.directionSprite.destroy()
+      this.directionSprite = null
+    }
+  }
+
+  destroyObservationSprites() {
+    while (this.observationSprites.length > 0) {
+      this.observationSprites.pop().destroy()
     }
   }
 

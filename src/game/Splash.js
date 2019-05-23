@@ -33,6 +33,15 @@ import explosion from './images/explosion.png'
 import ashes from './images/ashes.png'
 import sleep_zzz from './images/sleep_zzz.png'
 import follow_cursor from './images/follow_cursor.png'
+import observation from './images/observation.png'
+import direction_e from './images/direction_e.png'
+import direction_s from './images/direction_s.png'
+import direction_w from './images/direction_w.png'
+import direction_n from './images/direction_n.png'
+import direction_ne from './images/direction_ne.png'
+import direction_se from './images/direction_se.png'
+import direction_sw from './images/direction_sw.png'
+import direction_nw from './images/direction_nw.png'
 
 import fireworks1 from './images/fireworks1.png'
 import fireworks2 from './images/fireworks2.png'
@@ -183,6 +192,15 @@ export default class extends Phaser.Scene {
       frameHeight: 100
     })
     this.load.image('follow_cursor', follow_cursor)
+    this.load.image('observation', observation)
+    this.load.image('direction_e', direction_e)
+    this.load.image('direction_s', direction_s)
+    this.load.image('direction_w', direction_w)
+    this.load.image('direction_n', direction_n)
+    this.load.image('direction_ne', direction_ne)
+    this.load.image('direction_se', direction_se)
+    this.load.image('direction_sw', direction_sw)
+    this.load.image('direction_nw', direction_nw)
 
     // AUDIO
     this.load.audio('fireworks_sfx', fireworks_sfx)

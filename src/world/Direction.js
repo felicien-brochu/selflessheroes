@@ -25,6 +25,19 @@ export default class Direction {
     }
     this._dy = dy
   }
+
+  equals(dir) {
+    return this.dx === dir.dx && this.dy === dir.dy
+  }
+
+  getName() {
+    for (let name of Direction.names) {
+      if (this.equals(Direction[name])) {
+        return name
+      }
+    }
+    return ''
+  }
 }
 
 Direction.here = new Direction(0, 0)
