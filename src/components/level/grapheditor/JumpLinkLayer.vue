@@ -122,9 +122,16 @@ export default {
       this.updateLinkPaths()
     },
 
-    handleNodesChange(nodes, statements) {
-      this.nodes = nodes.slice(0)
-      NodeBuilder.makeNodesIterable(this.nodes)
+    handleNodesChange(newNodes, statements) {
+      // Save nodes in a flat form
+      newNodes = newNodes.slice(0)
+      let nodes = []
+      NodeBuilder.makeNodesIterable(newNodes)
+      for (let node of newNodes) {
+        nodes.push(node)
+      }
+
+      this.nodes = nodes
       this.statements = statements
       this.buildLinks()
     },
