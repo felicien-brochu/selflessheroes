@@ -17,6 +17,10 @@ export default {
     'compilerConfig': {
       type: Object,
       default: null
+    },
+    'inserted': {
+      type: Boolean,
+      default: false
     }
   },
 

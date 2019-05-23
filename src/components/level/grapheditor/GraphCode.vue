@@ -41,7 +41,8 @@ export default {
     'compilerConfig': {
       type: Object,
       default: null
-    }
+    },
+    'insertedStatement': Object
   },
 
   data: function() {
@@ -90,7 +91,7 @@ export default {
 
     populateNodeContainer() {
       let nodeBuilder = new NodeBuilder(this.statements)
-      this.nodes = nodeBuilder.build(this.compilerConfig)
+      this.nodes = nodeBuilder.build(this.compilerConfig, this.insertedStatement)
       let container = this.$refs.nodeContainer
       for (let node of this.nodes) {
         container.appendChild(node.$el)

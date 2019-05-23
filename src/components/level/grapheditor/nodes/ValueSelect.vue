@@ -11,8 +11,8 @@
     <direction-value v-if="isDirection"
       :value="value"
       :notHere="directionNotHere"
-      @mousedown.native="handleEditPosition"
-      @touchstart.native="handleEditPosition" />
+      @mousedown.native="handleEditDirection"
+      @touchstart.native="handleEditDirection" />
     <div v-else-if="isInteger"
       class="label"
       @mousedown="handleEditInteger"
@@ -145,6 +145,18 @@ export default {
       this.$emit('select', value)
     },
 
+    startEdit() {
+      if (this.isInteger) {
+        this.editInteger()
+      }
+      else if (this.isDirection) {
+        this.editDirection()
+      }
+      else {
+        this.openDropDownList()
+      }
+    },
+
     handleClickContainer(e) {
       let target = e.target
       if (e.touches) {
@@ -167,18 +179,25 @@ export default {
 
     handleDropDown(e) {
       e.stopPropagation()
-      this.$emit('start-edit')
       this.openDropDownList()
     },
 
-    handleEditPosition(e) {
+    handleEditDirection(e) {
       e.stopPropagation()
+      this.editDirection()
+    },
+
+    editDirection() {
       this.$emit('start-edit')
       this.openDirectionPopup()
     },
 
     handleEditInteger(e) {
       e.stopPropagation()
+      this.editInteger()
+    },
+
+    editInteger() {
       this.$emit('start-edit')
       this.openIntegerPopup()
     },
@@ -212,6 +231,8 @@ export default {
     },
 
     openDropDownList() {
+      this.$emit('start-edit')
+
       this.popupLayer.createDropDownList({
         listener: this.handleSelectDropDownItem,
         anchor: this.$el,

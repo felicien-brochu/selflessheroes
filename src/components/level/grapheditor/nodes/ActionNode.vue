@@ -8,6 +8,7 @@
   </div>
 
   <value-select v-for="(param, index) in params"
+    ref="valueSelects"
     :key="index"
     :types="param.types"
     :value="param.value"
@@ -19,6 +20,8 @@
 </template>
 
 <script>
+import DirectionLiteral from '../../../../world/ai/compile/statements/literals/DirectionLiteral'
+import IntegerLiteral from '../../../../world/ai/compile/statements/literals/IntegerLiteral'
 import Node from './Node'
 import ValueSelect from './ValueSelect'
 import FunctionMixin from './FunctionMixin'
@@ -31,7 +34,28 @@ export default {
   mixins: [FunctionMixin],
   data: function() {
     return {
-      func: this.statement
+      func: this.statement,
+      autoPopSelectDone: false
+    }
+  },
+
+  computed: {
+    autoPopSelect: function() {
+      if (this.params.length === 1) {
+        let param = this.params[0]
+        // If the types possible are only integer literal or direction
+        if (param.types.length === 1 &&
+          (param.types[0].type === DirectionLiteral || param.types[0].type === IntegerLiteral)) {
+          return true
+        }
+      }
+      return false
+    }
+  },
+
+  mounted() {
+    if (this.autoPopSelect && this.inserted && !this.autoPopSelectDone) {
+      this.$refs.valueSelects[0].startEdit()
     }
   }
 }

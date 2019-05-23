@@ -31,7 +31,7 @@ export default class NodeBuilder {
     this.nodes = []
   }
 
-  build(compilerConfig) {
+  build(compilerConfig, insertedStatement) {
     let containerStatements
     let containerStack = []
     let containerClass = null
@@ -69,7 +69,8 @@ export default class NodeBuilder {
             let node = new nodeClass({
               propsData: {
                 statement: statement,
-                compilerConfig: compilerConfig
+                compilerConfig: compilerConfig,
+                inserted: statement === insertedStatement
               }
             })
             node.$mount()
@@ -99,7 +100,9 @@ export default class NodeBuilder {
             propsData: {
               statement: containerStatement,
               statements: containerStatements,
-              compilerConfig: compilerConfig
+              compilerConfig: compilerConfig,
+              insertedStatement: insertedStatement,
+              inserted: containerStatement === insertedStatement
             }
           })
           container.$mount()

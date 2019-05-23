@@ -71,7 +71,8 @@ export default {
     },
     'compilerConfig': {
       type: Object
-    }
+    },
+    'insertedStatement': Object
   },
   data: function() {
     return {
@@ -146,7 +147,7 @@ export default {
 
     populateNodeContainer(container, statements, index) {
       let nodeBuilder = new NodeBuilder(statements)
-      let nodes = nodeBuilder.build(this.compilerConfig)
+      let nodes = nodeBuilder.build(this.compilerConfig, this.insertedStatement)
       this.nodes[index] = nodes
       for (let node of nodes) {
         container.appendChild(node.$el)

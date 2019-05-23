@@ -26,6 +26,7 @@
       id="graph-code"
       :statements="statements"
       :compilerConfig="compilerConfig"
+      :insertedStatement="insertedStatement"
       @node-drag-start="handleNodeDragStart"
       @drop-node="handleDropNode"
       @node-change="handleNodeChange"
@@ -113,7 +114,8 @@ export default {
       startDragEvent: null,
       chosenPaletteStatement: null,
       code: this.masterCode,
-      focusedStatementIndex: -1
+      focusedStatementIndex: -1,
+      insertedStatement: null
     }
   },
 
@@ -160,6 +162,7 @@ export default {
     handlePaletteDragStart(e) {
       this.$emit('start-edit')
 
+      this.insertedStatement = null
       this.focusedStatementIndex = -1
       this.startDragEvent = {
         event: e.event,
@@ -172,6 +175,7 @@ export default {
     handleNodeDragStart(e) {
       this.$emit('start-edit')
 
+      this.insertedStatement = null
       this.focusedStatementIndex = this.statements.indexOf(e.node.statement)
       this.startDragEvent = {
         ...e,
@@ -206,17 +210,22 @@ export default {
     },
 
     handleDropNode(dropHandler) {
+      let focusedStatement = null
       if (this.startDragEvent) {
-        this.focusedStatementIndex = -1
         let statements = this.statements.slice(0)
         if (dropHandler) {
-          this.focusedStatementIndex = NodeBuilder.insertStatement(statements, dropHandler, this.startDragEvent.node.statement, this.startDragEvent.isNew)
+          let insertIndex = NodeBuilder.insertStatement(statements, dropHandler, this.startDragEvent.node.statement, this.startDragEvent.isNew)
+          focusedStatement = statements[insertIndex]
+          if (this.startDragEvent.isNew) {
+            this.insertedStatement = focusedStatement
+          }
         }
         else if (!this.startDragEvent.isNew) {
           NodeBuilder.removeStatement(statements, this.startDragEvent.node.statement)
         }
         this.statements = statements
       }
+      this.focusedStatementIndex = this.statements.indexOf(focusedStatement)
 
       if (this.startDragEvent) {
         let statement = this.startDragEvent.node.statement
