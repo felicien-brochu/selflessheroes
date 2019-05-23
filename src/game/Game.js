@@ -10,6 +10,7 @@ import CameraControl from './CameraControl'
 import SoundManager from './SoundManager'
 import Speeds from './Speeds'
 import World from '../world/World'
+import Direction from '../world/Direction'
 import {
   namedObjectListToObject
 } from '../world/utils'
@@ -81,8 +82,6 @@ export default class extends Phaser.Scene {
     this.map = new Tilemap(this, this.mapData)
     this.tilesetImage = this.map.addTilesetImage('tileset', 'tileset_image')
     this.groundLayer = this.map.createDynamicLayer('ground', this.tilesetImage, 0, 0)
-    // this.aboveCharacterLayer = this.map.createDynamicLayer('above_characters', this.tilesetImage, 0, 0)
-    // this.aboveCharacterLayer.depth = 1000000
 
     this.extractMapFrame()
   }
@@ -115,6 +114,25 @@ export default class extends Phaser.Scene {
     this.followCursor.setVisible(false)
 
     this.scene.run('CelebrationScene')
+
+    this.observationSprites = new Map()
+    this.directionSprites = new Map()
+
+    for (let dirName of Direction.names) {
+      if (dirName !== 'here') {
+        let direction = Direction[dirName]
+
+        let observationSprite = new ObservationS(this, 0, 0, direction, this.map.tileWidth, this.map.tileHeight)
+        observationSprite.setVisible(false)
+        this.observationSprites.set(dirName, observationSprite)
+        this.add.existing(observationSprite)
+
+        let directionSprite = new DirectionS(this, 0, 0, direction, this.map.tileWidth, this.map.tileHeight)
+        directionSprite.setVisible(false)
+        this.directionSprites.set(dirName, directionSprite)
+        this.add.existing(directionSprite)
+      }
+    }
   }
 
   createWorld() {
@@ -122,8 +140,6 @@ export default class extends Phaser.Scene {
     this.heroes = []
     this.directions = new Map()
     this.observations = new Map()
-    this.observationSprites = []
-    this.directionSprite = null
     this.switches = []
     this.bonfires = []
 
@@ -192,18 +208,18 @@ export default class extends Phaser.Scene {
   }
 
   beforeStep(world) {
-    for (let sprite of this.getSprites()) {
+    for (let sprite of this.getWorldObjectSprites()) {
       sprite.beforeStep(world)
     }
 
-    this.destroyDirectionSprite()
+    this.hideDirectionSprites()
     this.directions.forEach((value, key, map) => map.set(key, null))
-    this.destroyObservationSprites()
+    this.hideObservationSprites()
     this.observations.forEach((value, key, map) => map.set(key, []))
   }
 
   afterStep(world) {
-    for (let sprite of this.getSprites()) {
+    for (let sprite of this.getWorldObjectSprites()) {
       sprite.afterStep(world)
     }
   }
@@ -224,7 +240,7 @@ export default class extends Phaser.Scene {
   update(time, delta) {
     this.cameraControl.update(delta)
 
-    for (let sprite of this.getSprites()) {
+    for (let sprite of this.getWorldObjectSprites()) {
       sprite.update()
     }
 
@@ -236,17 +252,12 @@ export default class extends Phaser.Scene {
     }
   }
 
-  getSprites() {
+  getWorldObjectSprites() {
     let sprites = [
       ...this.heroes,
       ...this.switches,
-      ...this.bonfires,
-      ...this.observationSprites
+      ...this.bonfires
     ]
-
-    if (this.directionSprite) {
-      sprites.push(this.directionSprite)
-    }
 
     return sprites
   }
@@ -346,60 +357,53 @@ export default class extends Phaser.Scene {
 
   updateCharacterDirection(character, direction) {
     this.directions.set(character, direction)
-
     this.updateDirection()
   }
 
   updateCharacterObservations(character, observations) {
-    this.observations.get(character).push(...observations)
-
+    this.observations.set(character, observations)
     this.updateObservations()
   }
 
   updateDirection() {
-    this.destroyDirectionSprite()
+    this.hideDirectionSprites()
     if (this.followHeroIndex >= 0) {
       let hero = this.heroes[this.followHeroIndex]
       let direction = this.directions.get(hero)
       if (direction) {
-        let x = hero.lastTileX
-        let y = hero.lastTileY
-        this.directionSprite = new DirectionS(this, direction, x + direction.dx, y + direction.dy, this.map.tileWidth, this.map.tileHeight)
-        this.add.existing(this.directionSprite)
+        let directionSprite = this.directionSprites.get(direction.getName())
+        directionSprite.setTilePosition(hero.lastTileX, hero.lastTileY)
+        directionSprite.setVisible(true)
       }
     }
   }
 
   updateObservations() {
-    this.destroyObservationSprites()
+    this.hideObservationSprites()
     if (this.followHeroIndex >= 0) {
       let hero = this.heroes[this.followHeroIndex]
       let observations = this.observations.get(hero)
       let x = hero.lastTileX
       let y = hero.lastTileY
       for (let observation of observations) {
-        let sprite = new ObservationS(this, x + observation.dx, y + observation.dy, this.map.tileWidth, this.map.tileHeight)
-        this.observationSprites.push(sprite)
-        this.add.existing(sprite)
+        let direction = observation
+        let observationSprite = this.observationSprites.get(direction.getName())
+        observationSprite.setTilePosition(x, y)
+        observationSprite.setVisible(true)
       }
     }
   }
 
-  destroyDirectionSprite() {
-    if (this.directionSprite) {
-      this.directionSprite.destroy()
-      this.directionSprite = null
-    }
+  hideDirectionSprites() {
+    this.directionSprites.forEach(sprite => sprite.setVisible(false))
   }
 
-  destroyObservationSprites() {
-    while (this.observationSprites.length > 0) {
-      this.observationSprites.pop().destroy()
-    }
+  hideObservationSprites() {
+    this.observationSprites.forEach(sprite => sprite.setVisible(false))
   }
 
   destroySprites() {
-    for (let sprite of this.getSprites()) {
+    for (let sprite of this.getWorldObjectSprites()) {
       sprite.destroy()
     }
   }
