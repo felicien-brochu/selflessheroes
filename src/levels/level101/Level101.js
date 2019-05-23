@@ -1,14 +1,34 @@
 import Level from '../Level'
 import CompilerConfig from '../../world/ai/compile/CompilerConfig'
 
+/* speed: 58
+a:
+step(e)
+if se == wall :
+	jump a
+endif
+step(se)
+b:
+step(s)
+jump b
+*/
+
+/* length: 3
+b:
+step(e)
+step(s)
+jump b
+*/
+
+
 export default class Level101 extends Level {
   constructor(id) {
     super(id, {
-      startingCode: "step(s)",
+      startingCode: "",
       startingEditorType: "graph",
-      maxStep: Infinity,
-      speedTarget: 100,
-      lengthTarget: 5
+      maxStep: 300,
+      speedTarget: 58,
+      lengthTarget: 3
     })
 
     Object.freeze(this)
@@ -18,7 +38,7 @@ export default class Level101 extends Level {
     return new CompilerConfig({
       excludePrimary: ['assign'],
       variables: 0,
-      terrainTypes: ['wall'],
+      terrainTypes: ['wall', 'floor'],
       objectTypes: ['switch'],
       valueFunctions: [],
       actionFunctions: ['step_once'],

@@ -106,6 +106,7 @@ export default {
             display: flex;
             flex-direction: column;
             overflow: auto;
+            max-width: 500px;
 
             h4 {
                 text-align: start;

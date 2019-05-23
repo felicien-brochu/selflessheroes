@@ -1,6 +1,13 @@
 import Level from '../Level'
 import CompilerConfig from '../../world/ai/compile/CompilerConfig'
 
+/* speed: 2, length: 3
+if e == switch :
+	step(e)
+endif
+step(w)
+*/
+
 export default class Level3 extends Level {
   constructor(id) {
     super(id, {

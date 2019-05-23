@@ -1,6 +1,27 @@
 import Level from '../Level'
 import CompilerConfig from '../../world/ai/compile/CompilerConfig'
 
+/* speed: 4
+if w != wall :
+	step(sw)
+	fireball(s)
+else
+	step(ne)
+	if n == bonfire :
+		fireball(n)
+	endif
+endif
+*/
+
+/* length: 5
+step(sw)
+fireball(s)
+step(ne)
+if n == bonfire :
+	fireball(n)
+endif
+*/
+
 export default class Level7 extends Level {
   constructor(id) {
     super(id, {

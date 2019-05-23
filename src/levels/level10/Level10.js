@@ -1,38 +1,47 @@
 import Level from '../Level'
 import CompilerConfig from '../../world/ai/compile/CompilerConfig'
 
-/* speed: 71
-if s == bonfire :
-	a:
-	fireball(s)
+/* length: 8
+a:
+if ne != bonfire :
+	if se == floor :
+		step(se)
+	endif
+	if ne == floor :
+		step(ne)
+	endif
 	step(e)
 	jump a
-else
-	b:
-	fireball(n)
-	step(e)
-	jump b
 endif
+fireball(ne)
 */
 
-/* length: 4
+/* speed: 69
 a:
-fireball(s)
-fireball(n)
 step(e)
-jump a
+if ne != bonfire :
+	if e == hole :
+		if ne == floor :
+			step(ne)
+		else
+			step(se)
+		endif
+	endif
+	jump a
+endif
+fireball(ne)
 */
 
-export default class Level8 extends Level {
+export default class Level10 extends Level {
   constructor(id) {
     super(id, {
-      nameTemplate: "level8_name",
-      objectiveTemplate: "level8_objective",
-      startingCode: "a:\nstep(e)\njump a\n",
+      nameTemplate: "level10_name",
+      objectiveTemplate: "level10_objective",
+      startingCode: "",
       startingEditorType: "graph",
       maxStep: 200,
-      speedTarget: 71,
-      lengthTarget: 4
+      speedTarget: 69,
+      lengthTarget: 8
     })
 
     Object.freeze(this)
@@ -42,19 +51,19 @@ export default class Level8 extends Level {
     return new CompilerConfig({
       excludePrimary: ['assign'],
       variables: 0,
-      terrainTypes: ['wall', 'floor'],
+      terrainTypes: ['hole', 'floor', 'wall'],
       objectTypes: ['bonfire'],
       valueFunctions: [],
       actionFunctions: ['step_once', 'fireball'],
       leftComparisonExpressions: ['direction'],
-      rightComparisonExpressions: ['object_type', 'terrain_type']
+      rightComparisonExpressions: ['terrain_type', 'object_type']
     })
   }
 
   buildRuleset(world) {
     return super.buildRuleset(world, {
       win: 'all_bonfires',
-      lose: 'default_loss'
+      lose: ['one_hero_dead', 'or', 'default_loss']
     })
   }
 }

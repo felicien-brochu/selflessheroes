@@ -1,21 +1,32 @@
 import Level from '../Level'
 import CompilerConfig from '../../world/ai/compile/CompilerConfig'
 
-/* speed: 2, length:2
-step(n)
-fireball(n)
+/* speed: 62, length: 8
+a:
+step(e)
+fireball(e)
+if e == hole :
+	if ne == floor :
+		step(ne)
+	else
+		step(se)
+	endif
+endif
+jump a
 */
 
-export default class Level6 extends Level {
+
+
+export default class Level9 extends Level {
   constructor(id) {
     super(id, {
-      nameTemplate: "level6_name",
-      objectiveTemplate: "level6_objective",
+      nameTemplate: "level9_name",
+      objectiveTemplate: "level9_objective",
       startingCode: "",
       startingEditorType: "graph",
-      maxStep: 100,
-      speedTarget: 2,
-      lengthTarget: 2
+      maxStep: 200,
+      speedTarget: 62,
+      lengthTarget: 8
     })
 
     Object.freeze(this)
@@ -23,14 +34,14 @@ export default class Level6 extends Level {
 
   buildCompilerConfig() {
     return new CompilerConfig({
-      excludePrimary: ['assign', 'jump', 'anchor'],
+      excludePrimary: ['assign'],
       variables: 0,
-      terrainTypes: ['wall', 'floor'],
+      terrainTypes: ['hole', 'floor', 'wall'],
       objectTypes: ['bonfire'],
       valueFunctions: [],
       actionFunctions: ['step_once', 'fireball'],
       leftComparisonExpressions: ['direction'],
-      rightComparisonExpressions: ['object_type', 'terrain_type']
+      rightComparisonExpressions: ['terrain_type', 'object_type']
     })
   }
 

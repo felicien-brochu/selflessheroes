@@ -148,6 +148,10 @@ const messages = {
     level7_objective: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the characters must survive",
     level8_name: "Candlelight vigil",
     level8_objective: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-information-outline$%% Use %%statement branching-statement$jump%% to repeat actions",
+    level9_name: "Winding path",
+    level9_objective: "Lit all %%icon icon-bonfire$%% bonfires",
+    level10_name: "Winding path 2",
+    level10_objective: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the characters must survive\n\n\n%%icon mdi mdi-information-outline$%% copy/paste the code from the previous level to go faster",
   },
 
 
@@ -282,6 +286,10 @@ const messages = {
     level7_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: aucun personnage ne doit mourir",
     level8_name: "Veillée aux flambeaux",
     level8_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement branching-statement$saut%% pour répéter des actions en boucle",
+    level9_name: "Chemin sinueux",
+    level9_objective: "Allume tous les %%icon icon-bonfire$%% feux",
+    level10_name: "Chemin sinueux 2",
+    level10_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: aucun personnage ne doit mourir\n\n\n%%icon mdi mdi-information-outline$%% Pour aller plus vite, copie/colle le code du niveau précédent",
   }
 }
 
