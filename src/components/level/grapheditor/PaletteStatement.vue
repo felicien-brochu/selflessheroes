@@ -70,6 +70,7 @@ export default {
     @extend %node;
     transition-property: padding, border-width;
     transition-duration: 0.07s;
+    white-space: nowrap;
 }
 
 .place-holder {

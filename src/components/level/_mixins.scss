@@ -39,6 +39,7 @@ $node-padding-left: 9px;
 	height: $node-line-height;
 	line-height: $node-line-height;
 	font-weight: 500;
+	white-space: nowrap;
 }
 
 %node-list {

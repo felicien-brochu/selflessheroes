@@ -241,8 +241,8 @@ const messages = {
     graph_node_else: "sinon",
     graph_node_jump: "saut",
 
-    graph_node_function_step: "va",
-    graph_node_function_fireball: "bouledefeu",
+    graph_node_function_step: "aller",
+    graph_node_function_fireball: "boule de feu",
     graph_node_function_set: "init",
     graph_node_function_calc: "calc",
 
