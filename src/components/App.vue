@@ -48,6 +48,7 @@ import mainStorage from '../game/storage/Storage'
 import ModalLayer from './modal/ModalLayer'
 import Modal from './modal/Modal'
 import MenuModal from './menu/MenuModal'
+import ProposeFullscreenModal from './menu/ProposeFullscreenModal'
 
 export default {
   components: {
@@ -159,16 +160,17 @@ export default {
     },
 
     proposeFullscreen() {
-      if (!document.fullscreenElement && document.body.requestFullscreen && !isElectron()) {
+      if (!document.fullscreenElement && document.body.requestFullscreen && !isElectron() && mainStorage.preferences.proposeFullscreen) {
         this.$refs.modalLayer.addModal({
-          component: Modal,
+          component: ProposeFullscreenModal,
           key: 'app_fullscreen_modal',
           props: {
-            text: this.$text('app_fullscreen_modal'),
-            cancelable: true,
-            type: 'info'
+            preferences: mainStorage.preferences
           },
           handlers: {
+            close: () => {
+              mainStorage.save()
+            },
             confirm: () => {
               document.body.requestFullscreen().catch(err => {
                 console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`)

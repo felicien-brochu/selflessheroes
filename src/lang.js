@@ -7,6 +7,7 @@ const messages = {
     no_text: "[no-text]",
 
     app_fullscreen_modal: "In order to have the best game experience,\nit is recommended to go fullscreen",
+    app_fullscreen_modal_stop_propose: "Don't show this message again",
     navigation_exit_button: "Exit",
     navigation_menu_button: "Menu",
     menu_fullscreen_label: "Fullscreen:",
@@ -166,6 +167,7 @@ const messages = {
 
   'fr': {
     app_fullscreen_modal: "Afin d'avoir la meilleure expérience de jeu possible,\nil est recommandé de jouer en plein écran.",
+    app_fullscreen_modal_stop_propose: "Ne plus afficher ce message",
     navigation_exit_button: "Quitter",
     navigation_menu_button: "Menu",
     menu_fullscreen_label: "Plein écran",
