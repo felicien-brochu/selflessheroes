@@ -131,8 +131,6 @@ export default {
       ) {
         this.transitioning = true
       }
-
-      console.log("####trrr", handler, this.transitioning)
     },
 
     goBack() {

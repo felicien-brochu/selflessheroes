@@ -37,15 +37,20 @@ const soundDefs = [{
 export default class SoundManager {
   constructor(scene) {
     this.scene = scene
+    this.volumePreference = null
     this.sound = scene.sound
     this.sounds = new Map()
     this.initSounds()
+    this.onVolumePreferenceChange = this.onVolumePreferenceChange.bind(this)
   }
 
   initSounds() {
     for (let soundDef of soundDefs) {
-      this.sounds.set(soundDef.key, this.sound.add(soundDef.key, soundDef.config))
+      let sound = this.sound.add(soundDef.key, soundDef.config)
+      this.sounds.set(soundDef.key, sound)
     }
+
+    this.applyVolumePreference()
   }
 
   play(key, config) {
@@ -54,5 +59,32 @@ export default class SoundManager {
 
   stop(key) {
     this.sounds.get(key).stop()
+  }
+
+  setVolumePreference(volumePreference) {
+    if (this.volumePreference) {
+      this.volumePreference.events.removeListener('change', this.onVolumePreferenceChange)
+    }
+    this.volumePreference = volumePreference
+    this.volumePreference.events.on('change', this.onVolumePreferenceChange)
+  }
+
+  onVolumePreferenceChange() {
+    this.applyVolumePreference()
+  }
+
+  applyVolumePreference() {
+    if (this.volumePreference) {
+      this.sounds.forEach(sound => {
+        sound.setVolume(this.volumePreference.volume)
+        sound.setMute(this.volumePreference.mute)
+      })
+    }
+  }
+
+  beforeDestroy() {
+    if (this.volumePreference) {
+      this.volumePreference.events.removeListener('change', this.onVolumePreferenceChange)
+    }
   }
 }

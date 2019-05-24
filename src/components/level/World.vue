@@ -20,6 +20,9 @@ export default {
     "level": {
       type: Object
     },
+    "preferences": {
+      type: Object
+    },
     "followHeroIndex": {
       type: Number
     }
@@ -55,6 +58,7 @@ export default {
     handleGameReady(gameScene) {
       this.gameScene = gameScene
 
+      this.gameScene.soundManager.setVolumePreference(this.preferences.soundVolume)
       this.gameScene.customEvents.on('ai-state-change', this.handleAiStateChange)
       this.gameScene.customEvents.on('follow-hero-change', this.handleFollowHeroChange)
       this.gameScene.runner.events.on('world-state-change', this.handleWorldStateChange)

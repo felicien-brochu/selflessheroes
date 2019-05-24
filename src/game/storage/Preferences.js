@@ -1,5 +1,9 @@
+import EventEmitter from 'events'
+
 export default class Preferences {
   constructor(soundVolume, musicVolume, proposeFullscreen = true) {
+    this.events = new EventEmitter()
+
     if (!soundVolume) {
       soundVolume = new VolumePreference()
     }
@@ -9,6 +13,47 @@ export default class Preferences {
     this.soundVolume = soundVolume
     this.musicVolume = musicVolume
     this.proposeFullscreen = proposeFullscreen
+  }
+
+  get soundVolume() {
+    return this._soundVolume
+  }
+
+  set soundVolume(soundVolume) {
+    if (soundVolume !== this._soundVolume) {
+      soundVolume.events.on('change', () => this.events.emit('change', 'soundVolume'))
+      this._soundVolume = soundVolume
+      this.events.emit('change', 'soundVolume')
+    }
+  }
+
+  get musicVolume() {
+    return this._musicVolume
+  }
+
+  set musicVolume(musicVolume) {
+    if (musicVolume !== this._musicVolume) {
+      musicVolume.events.on('change', () => this.events.emit('change', 'musicVolume'))
+      this._musicVolume = musicVolume
+      this.events.emit('change', 'musicVolume')
+    }
+  }
+
+  get proposeFullscreen() {
+    return this._proposeFullscreen
+  }
+
+  set proposeFullscreen(proposeFullscreen) {
+    this._proposeFullscreen = proposeFullscreen
+    this.events.emit('change', 'proposeFullscreen')
+  }
+
+  toJSON() {
+    return {
+      soundVolume: this.soundVolume,
+      musicVolume: this.musicVolume,
+      proposeFullscreen: this.proposeFullscreen
+    }
   }
 
   static buildFromJSON(jsonObject) {
@@ -21,8 +66,35 @@ export default class Preferences {
 
 class VolumePreference {
   constructor(volume = 1, mute = false) {
+    this.events = new EventEmitter()
+
     this.volume = volume
     this.mute = mute
+  }
+
+  get volume() {
+    return this._volume
+  }
+
+  set volume(volume) {
+    this._volume = volume
+    this.events.emit('change', 'volume')
+  }
+
+  get mute() {
+    return this._mute
+  }
+
+  set mute(mute) {
+    this._mute = mute
+    this.events.emit('change', 'mute')
+  }
+
+  toJSON() {
+    return {
+      volume: this.volume,
+      mute: this.mute
+    }
   }
 
   static buildFromJSON(jsonObject) {

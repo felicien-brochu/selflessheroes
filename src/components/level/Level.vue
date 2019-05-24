@@ -7,6 +7,7 @@
   <world ref="world"
     :level="level"
     :followHeroIndex="followHeroIndex"
+    :preferences="preferences"
     @world-state-change="handleWorldStateChange"
     @ai-state-change="aiReady = $event"
     @ready="handleWorldReady"
@@ -112,6 +113,7 @@ export default {
       codeSource: 'history',
       level: levelManager.getLevelByID(this.levelID),
       career: career,
+      preferences: storage.preferences,
       levelSolutions: levelSolutions,
       solution: solution,
       codeHistory: solution.codeHistory,

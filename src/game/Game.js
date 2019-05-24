@@ -76,6 +76,7 @@ export default class extends Phaser.Scene {
     this.runner.pause()
     this.runner.events.removeListener('before-step', this.beforeStep)
     this.runner.events.removeListener('after-step', this.afterStep)
+    this.soundManager.beforeDestroy()
   }
 
   createMap() {
