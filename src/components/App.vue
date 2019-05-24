@@ -18,6 +18,12 @@
       @mousedown="exitApp"
       @touchstart="$event.preventDefault(); exitApp()" />
 
+    <button class="menu-button mdi mdi-menu-open"
+      type="button"
+      :title="$text('navigation_menu_button')"
+      @mousedown="openMenu"
+      @touchstart="$event.preventDefault(); openMenu()" />
+
   </div>
 
   <transition :name="transitionName"
@@ -79,7 +85,7 @@ export default {
     },
 
     hasExitButton: function() {
-      return isElectron()
+      return isElectron() || true
     }
   },
 
@@ -135,6 +141,10 @@ export default {
       }
     },
 
+    openMenu() {
+      console.log("###OPEN")
+    },
+
     proposeFullscreen() {
       if (!document.fullscreenElement && document.body.requestFullscreen && !isElectron()) {
         this.$refs.modalLayer.addModal({
@@ -168,40 +178,43 @@ export default {
     }
 
     .app-buttons {
-        left: 4px;
-        top: 12px;
         position: absolute;
         z-index: 5;
+        left: 4px;
+        top: 12px;
+        height: 44px;
+        display: flex;
 
-        .back-button {
-            font-size: 60px;
-            line-height: 40px;
-            color: transparentize(white, 0.2);
-            padding: 0;
+        button {
             background: none;
             border: none;
             outline: none;
             pointer-events: all;
             cursor: pointer;
+            font-size: 44px;
+            line-height: 40px;
+            color: transparentize(white, 0.2);
+            padding: 0;
 
             &:hover {
                 color: white;
             }
-        }
 
-        .exit-button {
-            font-size: 44px;
-            line-height: 40px;
-            color: transparentize(white, 0.5);
-            padding: 2px 0 0 12px;
-            background: none;
-            border: none;
-            outline: none;
-            pointer-events: all;
-            cursor: pointer;
+            &.back-button {
+                font-size: 60px;
+            }
 
-            &:hover {
-                color: transparentize(white, 0.3);
+            &.exit-button {
+                color: transparentize(white, 0.5);
+                padding: 2px 4px 0 12px;
+
+                &:hover {
+                    color: transparentize(white, 0.3);
+                }
+            }
+
+            &.menu-button {
+                margin-left: 8px;
             }
         }
     }
