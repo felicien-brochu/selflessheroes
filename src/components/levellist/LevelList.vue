@@ -1,12 +1,6 @@
 <template>
 <div class="level-list">
 
-  <button class="back-button mdi mdi-chevron-left"
-    type="button"
-    :title="$text('level_list_back_button')"
-    @mousedown="goBack"
-    @touchstart="goBack" />
-
   <ul class="list">
     <level-item v-for="level in levels"
       :key="level.id"
@@ -88,12 +82,6 @@ export default {
       if (unlocked) {
         this.selectedID = id
       }
-    },
-
-    goBack() {
-      this.$router.push({
-        name: 'home'
-      })
     }
   }
 }
@@ -104,31 +92,14 @@ export default {
     margin: 0 auto;
     box-sizing: border-box;
     min-height: 100vh;
-    padding: 80px 40px;
+    padding: 0 40px;
     color: #ABB2BF;
     background-color: #282C34;
-
-    .back-button {
-        color: transparentize(white, 0.2);
-        padding: 0;
-        font-size: 60px;
-        line-height: 40px;
-        left: 4px;
-        top: 12px;
-        z-index: 5;
-        background: none;
-        border: none;
-        outline: none;
-        pointer-events: all;
-        position: absolute;
-        cursor: pointer;
-
-        &:hover {
-            color: white;
-        }
-    }
+    overflow-x: hidden;
+    overflow-y: auto;
 
     .list {
+        padding: 80px 0;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
@@ -139,7 +110,7 @@ export default {
     .level-details {
         position: fixed;
         width: 100vw;
-        height: 100vh;
+        height: 100%;
         top: 0;
         left: 0;
 

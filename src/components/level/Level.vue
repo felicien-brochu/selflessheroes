@@ -26,12 +26,6 @@
     <div slot="firstPane"
       class="left-panel">
 
-      <button class="back-button mdi mdi-chevron-left"
-        type="button"
-        :title="$text('level_back_button')"
-        @mousedown="goBack"
-        @touchstart="$event.preventDefault(); goBack()" />
-
       <button class="objective-button mdi mdi-flag-variant"
         type="button"
         :title="$text('level_objective_button')"
@@ -507,7 +501,6 @@ export default {
                 width: 100%;
                 height: 100%;
 
-                .back-button,
                 .objective-button {
                     color: transparentize(white, 0.2);
                     background: none;
@@ -518,23 +511,13 @@ export default {
                     position: absolute;
                     padding: 0;
                     cursor: pointer;
+                    font-size: 32px;
+                    right: 14px;
+                    top: 10px;
 
                     &:hover {
                         color: white;
                     }
-                }
-
-                .back-button {
-                    font-size: 60px;
-                    line-height: 40px;
-                    left: 4px;
-                    top: 12px;
-                }
-
-                .objective-button {
-                    font-size: 32px;
-                    right: 14px;
-                    top: 10px;
                 }
 
                 .run-bar {

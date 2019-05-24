@@ -1,6 +1,13 @@
 <template>
 <div class="app">
   <modal-layer ref="modalLayer" />
+
+  <button class="back-button mdi mdi-chevron-left"
+    type="button"
+    :title="$text('level_list_back_button')"
+    @mousedown="goBack"
+    @touchstart="$event.preventDefault(); goBack()" />
+
   <transition :name="transitionName"
     mode="out-in"
     @before-enter="handleTransition('onTransitionBeforeEnter', $event)"
@@ -56,6 +63,22 @@ export default {
       }
     },
 
+    goBack() {
+      if (this.$route.name === 'level-list') {
+        this.$router.push({
+          name: 'home'
+        })
+      }
+      else if (this.$route.name === 'level') {
+        this.$router.push({
+          name: 'level-list',
+          params: {
+            careerID: this.$route.params.careerID
+          }
+        })
+      }
+    },
+
     proposeFullscreen() {
       if (!document.fullscreenElement && document.body.requestFullscreen && !isElectron()) {
         this.$refs.modalLayer.addModal({
@@ -82,7 +105,31 @@ export default {
 
 <style lang="scss">
 .app {
-    overflow: hidden;
+    .child-view {
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .back-button {
+        color: transparentize(white, 0.2);
+        padding: 0;
+        font-size: 60px;
+        line-height: 40px;
+        left: 4px;
+        top: 12px;
+        z-index: 5;
+        background: none;
+        border: none;
+        outline: none;
+        pointer-events: all;
+        position: absolute;
+        cursor: pointer;
+
+        &:hover {
+            color: white;
+        }
+    }
 }
 
 .slide-left-enter-active,

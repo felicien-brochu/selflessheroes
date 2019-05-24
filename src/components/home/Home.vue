@@ -184,6 +184,7 @@ export default {
     padding: 20px 40px;
     color: #ABB2BF;
     background-color: #282C34;
+    overflow: auto;
 
     h1 {
         font-size: 60px;
@@ -202,13 +203,13 @@ export default {
     }
 
     .career-list {
+        padding: 0 0 80px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
         align-content: flex-start;
         margin: 0;
-        padding: 0;
         height: max-content;
 
         .career-item {

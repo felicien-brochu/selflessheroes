@@ -206,6 +206,9 @@ export default {
           levelID: this.levelID
         }
       })
+
+      this.$el.style.position = 'absolute'
+      this.$el.style.top = `${this.$el.parentNode.scrollTop}px`
     },
 
     createSolution() {
