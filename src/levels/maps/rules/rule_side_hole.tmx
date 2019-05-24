@@ -16,13 +16,13 @@
  <layer id="23" name="output1_ground" width="1" height="2">
   <data encoding="csv">
 0,
-38
+62
 </data>
  </layer>
  <layer id="24" name="output2_ground" width="1" height="2">
   <data encoding="csv">
 0,
-39
+63
 </data>
  </layer>
 </map>

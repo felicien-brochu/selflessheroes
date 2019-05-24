@@ -10,5 +10,3 @@ rules/rule_sandwich_floor.tmx
 rules/rule_wall_hole.tmx
 rules/rule_special_floor.tmx
 rules/rule_sandwich_special_wall.tmx
-rules/rule_above_characters.tmx
-rules/rule_checkers.tmx

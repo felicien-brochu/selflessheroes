@@ -1,74 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="32" tileheight="32" infinite="0" nextlayerid="50" nextobjectid="1">
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="3" height="1" tilewidth="32" tileheight="32" infinite="0" nextlayerid="74" nextobjectid="1">
  <tileset firstgid="1" source="../tileset.tsx"/>
- <layer id="36" name="regions" width="1" height="1">
+ <layer id="54" name="regions" width="3" height="1">
   <data encoding="csv">
-80
+80,0,69
 </data>
  </layer>
- <layer id="37" name="input_types" width="1" height="1">
+ <layer id="55" name="input_types" width="3" height="1" visible="0">
   <data encoding="csv">
-80
+80,0,80
 </data>
  </layer>
- <layer id="38" name="output1_ground" width="1" height="1">
+ <layer id="72" name="input_checkers" width="3" height="1" visible="0">
   <data encoding="csv">
-7
+0,0,69
 </data>
  </layer>
- <layer id="39" name="output2_ground" width="1" height="1">
+ <layer id="73" name="inputnot_checkers" width="3" height="1" visible="0">
   <data encoding="csv">
-8
+69,0,0
 </data>
  </layer>
- <layer id="40" name="output3_ground" width="1" height="1">
+ <layer id="56" name="output1_ground" width="3" height="1" visible="0">
   <data encoding="csv">
-9
+7,0,121
 </data>
  </layer>
- <layer id="41" name="output4_ground" width="1" height="1">
+ <layer id="57" name="output2_ground" width="3" height="1" visible="0">
   <data encoding="csv">
-10
+8,0,122
 </data>
  </layer>
- <layer id="42" name="output5_ground" width="1" height="1">
+ <layer id="58" name="output3_ground" width="3" height="1" visible="0">
   <data encoding="csv">
-17
+9,0,123
 </data>
  </layer>
- <layer id="43" name="output6_ground" width="1" height="1">
+ <layer id="59" name="output4_ground" width="3" height="1" visible="0">
   <data encoding="csv">
-18
+10,0,124
 </data>
  </layer>
- <layer id="44" name="output7_ground" width="1" height="1">
+ <layer id="60" name="output5_ground" width="3" height="1" visible="0">
   <data encoding="csv">
-19
+17,0,131
 </data>
  </layer>
- <layer id="45" name="output8_ground" width="1" height="1">
+ <layer id="61" name="output6_ground" width="3" height="1" visible="0">
   <data encoding="csv">
-20
+18,0,132
 </data>
  </layer>
- <layer id="46" name="output9_ground" width="1" height="1">
+ <layer id="62" name="output7_ground" width="3" height="1" visible="0">
   <data encoding="csv">
-27
+19,0,133
 </data>
  </layer>
- <layer id="47" name="output10_ground" width="1" height="1">
+ <layer id="63" name="output8_ground" width="3" height="1" visible="0">
   <data encoding="csv">
-28
+20,0,134
 </data>
  </layer>
- <layer id="48" name="output11_ground" width="1" height="1">
+ <layer id="64" name="output9_ground" width="3" height="1" visible="0">
   <data encoding="csv">
-29
+27,0,141
 </data>
  </layer>
- <layer id="49" name="output12_ground" width="1" height="1">
+ <layer id="65" name="output10_ground" width="3" height="1" visible="0">
   <data encoding="csv">
-30
+28,0,142
+</data>
+ </layer>
+ <layer id="66" name="output11_ground" width="3" height="1" visible="0">
+  <data encoding="csv">
+29,0,143
+</data>
+ </layer>
+ <layer id="67" name="output12_ground" width="3" height="1" visible="0">
+  <data encoding="csv">
+30,0,144
+</data>
+ </layer>
+ <layer id="68" name="output13_ground" width="3" height="1" visible="0">
+  <data encoding="csv">
+37,0,151
+</data>
+ </layer>
+ <layer id="69" name="output14_ground" width="3" height="1" visible="0">
+  <data encoding="csv">
+38,0,152
+</data>
+ </layer>
+ <layer id="70" name="output15_ground" width="3" height="1" visible="0">
+  <data encoding="csv">
+39,0,153
+</data>
+ </layer>
+ <layer id="71" name="output16_ground" width="3" height="1" visible="0">
+  <data encoding="csv">
+40,0,154
 </data>
  </layer>
 </map>

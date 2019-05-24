@@ -83,6 +83,7 @@ export default class extends Phaser.Scene {
     this.map = new Tilemap(this, this.mapData)
     this.tilesetImage = this.map.addTilesetImage('tileset', 'tileset_image')
     this.groundLayer = this.map.createDynamicLayer('ground', this.tilesetImage, 0, 0)
+    this.floorShadowLayer = this.map.createDynamicLayer('floor_shadow', this.tilesetImage, 0, 0)
 
     this.extractMapFrame()
   }

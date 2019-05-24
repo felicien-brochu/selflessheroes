@@ -19,28 +19,10 @@
 0,0,80,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="16" name="output1_ground" width="9" height="2">
+ <layer id="16" name="output_floor_shadow" width="9" height="2">
   <data encoding="csv">
 0,0,33,0,0,22,0,25,0,
 13,0,0,0,0,0,0,0,0
-</data>
- </layer>
- <layer id="17" name="output2_ground" width="9" height="2">
-  <data encoding="csv">
-0,0,33,0,0,22,0,25,0,
-13,0,0,0,0,0,0,0,0
-</data>
- </layer>
- <layer id="18" name="output3_ground" width="9" height="2">
-  <data encoding="csv">
-0,0,34,0,0,22,0,25,0,
-14,0,0,0,0,0,0,0,0
-</data>
- </layer>
- <layer id="19" name="output4_ground" width="9" height="2">
-  <data encoding="csv">
-0,0,34,0,0,22,0,25,0,
-14,0,0,0,0,0,0,0,0
 </data>
  </layer>
 </map>

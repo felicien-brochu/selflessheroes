@@ -77,7 +77,7 @@
 </data>
  </layer>
  <objectgroup id="14" name="config">
-  <object id="12" name="frame" type="rectangle" x="241" y="128" width="798" height="689" visible="0"/>
+  <object id="12" name="frame" type="rectangle" x="241" y="128" width="798" height="689"/>
  </objectgroup>
  <objectgroup id="2" name="objects">
   <object id="11" name="switch" type="switch" x="487" y="175">
