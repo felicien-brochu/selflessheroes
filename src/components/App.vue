@@ -2,11 +2,23 @@
 <div class="app">
   <modal-layer ref="modalLayer" />
 
-  <button class="back-button mdi mdi-chevron-left"
-    type="button"
-    :title="$text('level_list_back_button')"
-    @mousedown="goBack"
-    @touchstart="$event.preventDefault(); goBack()" />
+  <div class="app-buttons">
+
+    <button class="back-button mdi mdi-chevron-left"
+      v-if="showBackButton"
+      type="button"
+      :title="backButtonTitle"
+      @mousedown="goBack"
+      @touchstart="$event.preventDefault(); goBack()" />
+
+    <button class="exit-button mdi mdi-power"
+      v-else-if="hasExitButton"
+      type="button"
+      :title="$text('navigation_exit_button')"
+      @mousedown="exitApp"
+      @touchstart="$event.preventDefault(); exitApp()" />
+
+  </div>
 
   <transition :name="transitionName"
     mode="out-in"
@@ -38,7 +50,8 @@ export default {
 
   data() {
     return {
-      transitionName: 'slide-left'
+      transitionName: 'slide-left',
+      transitioning: false
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -51,6 +64,25 @@ export default {
     next()
   },
 
+  computed: {
+    showBackButton: function() {
+      return this.$route.name !== 'home'
+    },
+
+    backButtonTitle: function() {
+      if (this.$route.name === 'level-list') {
+        return this.$text('level_list_back_button')
+      }
+      else if (this.$route.name === 'level') {
+        return this.$text('level_back_button')
+      }
+    },
+
+    hasExitButton: function() {
+      return isElectron()
+    }
+  },
+
   mounted() {
     this.proposeFullscreen()
   },
@@ -60,6 +92,24 @@ export default {
       // If there is a corresponding handler on a child, we call it
       if (el.__vue__ && el.__vue__[handler] && {}.toString.call(el.__vue__[handler]) === '[object Function]') {
         el.__vue__[handler]()
+      }
+
+      if (
+        handler === 'onTransitionEnter' ||
+        handler === 'onTransitionBeforeEnter' ||
+        handler === 'onTransitionAfterEnter'
+      ) {
+        this.transitioning = true
+      }
+      else if (
+        handler === 'onTransitionLeave' ||
+        handler === 'onTransitionEnterCancelled' ||
+        handler === 'onTransitionBeforeLeave' ||
+        handler === 'onTransitionLeave' ||
+        handler === 'onTransitionAfterLeave' ||
+        handler === 'onTransitionLeaveCancelled'
+      ) {
+        this.transitioning = false
       }
     },
 
@@ -76,6 +126,12 @@ export default {
             careerID: this.$route.params.careerID
           }
         })
+      }
+    },
+
+    exitApp() {
+      if (isElectron()) {
+        window.close()
       }
     },
 
@@ -111,25 +167,45 @@ export default {
         width: 100vw;
     }
 
-    .back-button {
-        color: transparentize(white, 0.2);
-        padding: 0;
-        font-size: 60px;
-        line-height: 40px;
+    .app-buttons {
         left: 4px;
         top: 12px;
-        z-index: 5;
-        background: none;
-        border: none;
-        outline: none;
-        pointer-events: all;
         position: absolute;
-        cursor: pointer;
+        z-index: 5;
 
-        &:hover {
-            color: white;
+        .back-button {
+            font-size: 60px;
+            line-height: 40px;
+            color: transparentize(white, 0.2);
+            padding: 0;
+            background: none;
+            border: none;
+            outline: none;
+            pointer-events: all;
+            cursor: pointer;
+
+            &:hover {
+                color: white;
+            }
+        }
+
+        .exit-button {
+            font-size: 44px;
+            line-height: 40px;
+            color: transparentize(white, 0.5);
+            padding: 2px 0 0 12px;
+            background: none;
+            border: none;
+            outline: none;
+            pointer-events: all;
+            cursor: pointer;
+
+            &:hover {
+                color: transparentize(white, 0.3);
+            }
         }
     }
+
 }
 
 .slide-left-enter-active,

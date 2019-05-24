@@ -7,6 +7,7 @@ const messages = {
     no_text: "[no-text]",
 
     app_fullscreen_modal: "In order to have the best game experience,\nit is recommended to go fullscreen",
+    navigation_exit_button: "Exit",
 
     home_title: "AI World",
     new_game: "new game:",
@@ -157,6 +158,7 @@ const messages = {
 
   'fr': {
     app_fullscreen_modal: "Afin d'avoir la meilleure expérience de jeu possible,\nil est recommandé de jouer en plein écran.",
+    navigation_exit_button: "Quitter",
 
     home_title: "AI World",
     new_game: "nouvelle partie\u00A0:",
