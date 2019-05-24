@@ -31,6 +31,10 @@ html {
 			border-radius: 4px;
 			margin: 5px 2px;
 		}
+
+		&:focus {
+			outline: none;
+		}
 	}
 }
 
@@ -39,10 +43,6 @@ ul {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-}
-
-:focus {
-	outline: none;
 }
 
 .mdi-light {

@@ -1,4 +1,5 @@
 import StorageWrapper from './StorageWrapper'
+import Preferences from './Preferences'
 import Career from './Career'
 
 const storageVersion = '[AIV]{version}[/AIV]'
@@ -8,6 +9,7 @@ export class Storage extends StorageWrapper {
     super(storageKey)
 
     this.version = storageVersion
+    this.preferences = new Preferences()
     this.careers = []
   }
 
@@ -54,6 +56,11 @@ export class Storage extends StorageWrapper {
 
   load(data) {
     this.version = data.version
+    if (data.preferences) {
+      this.preferences = Preferences.buildFromJSON(data.preferences)
+    } else {
+      this.preferences = new Preferences()
+    }
     this.careers = super.loadIDArray(data.careers, 'careers', Career)
 
     if (this.version !== storageVersion) {
@@ -69,6 +76,7 @@ export class Storage extends StorageWrapper {
     let o = super.toJSON()
     Object.assign(o, {
       version: this.version,
+      preferences: this.preferences,
       careers: super.toIDArray(this.careers)
     })
 

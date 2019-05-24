@@ -20,7 +20,7 @@
 
 <script>
 import Speeds from '../../../game/Speeds'
-import TouchRange from './TouchRange'
+import TouchRange from '../../inputs/TouchRange'
 import lang from '../../../lang'
 
 export default {

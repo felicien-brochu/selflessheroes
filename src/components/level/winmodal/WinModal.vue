@@ -237,6 +237,7 @@ export default {
     padding: 45px 50px 30px;
     border-radius: 12px;
     box-shadow: inset 0 0 30px 10px #00000033, 0 0 30px 10px #000000;
+    background-color: #282c34;
 
     .modal-content {
         text-align: start;
@@ -335,18 +336,22 @@ export default {
                     font-size: 17px;
                 }
             }
-
-            .button-container {
-                min-width: 300px;
-                display: flex;
-                justify-content: space-evenly;
-                margin-top: 35px;
-            }
         }
     }
 
     .button-container {
-        margin-top: 25px;
+        min-width: 300px;
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 35px;
+
+        button {
+            background-color: lighten(#282c34, 10%);
+
+            &:hover:not(:active) {
+                background-color: lighten(#282c34, 12%);
+            }
+        }
     }
 }
 </style>

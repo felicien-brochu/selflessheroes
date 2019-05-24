@@ -44,8 +44,10 @@
 
 <script>
 import isElectron from 'is-electron'
+import mainStorage from '../game/storage/Storage'
 import ModalLayer from './modal/ModalLayer'
 import Modal from './modal/Modal'
+import MenuModal from './menu/MenuModal'
 
 export default {
   components: {
@@ -85,7 +87,7 @@ export default {
     },
 
     hasExitButton: function() {
-      return isElectron() || true
+      return isElectron()
     }
   },
 
@@ -142,7 +144,18 @@ export default {
     },
 
     openMenu() {
-      console.log("###OPEN")
+      this.$refs.modalLayer.addModal({
+        component: MenuModal,
+        key: 'app_menu_modal',
+        props: {
+          preferences: mainStorage.preferences
+        },
+        handlers: {
+          close: () => {
+            mainStorage.save()
+          }
+        }
+      })
     },
 
     proposeFullscreen() {

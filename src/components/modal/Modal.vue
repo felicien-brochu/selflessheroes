@@ -156,7 +156,7 @@ export default {
     @include modal-type(#583455, white);
 }
 .modal-info {
-    @include modal-type(#282c34, white);
+    @include modal-type(#3C404A, white);
 }
 
 .modal {

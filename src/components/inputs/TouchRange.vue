@@ -68,8 +68,8 @@ $thumb-color: #607d8b !default;
 $thumb-radius: 12px !default;
 $thumb-height: 24px !default;
 $thumb-width: 24px !default;
-$thumb-shadow-size: 4px !default;
-$thumb-shadow-blur: 4px !default;
+$thumb-shadow-size: 0 !default;
+$thumb-shadow-blur: 6px !default;
 $thumb-shadow-color: rgba(0, 0, 0, .2) !default;
 $thumb-border-width: 2px !default;
 $thumb-border-color: #eceff1 !default;
@@ -77,7 +77,7 @@ $thumb-border-color: #eceff1 !default;
 $track-width: 120px;
 $track-width: 100% !default;
 $track-height: 8px !default;
-$track-shadow-size: 1px !default;
+$track-shadow-size: 0 !default;
 $track-shadow-blur: 1px !default;
 $track-shadow-color: rgba(0, 0, 0, .2) !default;
 $track-border-width: 2px !default;
@@ -108,7 +108,7 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
 }
 
 @mixin disabled {
-    cursor: not-allowed;
+    // cursor: not-allowed;
 }
 
 [type='range'] {
@@ -116,6 +116,10 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
     background: transparent;
     margin: $thumb-height / 2 0;
     width: $track-width;
+
+    &.inactive {
+        opacity: 0.3;
+    }
 
     &::-moz-focus-outer {
         border: 0;
