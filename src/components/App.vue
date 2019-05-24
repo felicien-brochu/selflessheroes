@@ -1,22 +1,33 @@
 <template>
-<div class="app">
+<div :class="{
+	'app': true,
+	'transitioning': transitioning
+}">
   <modal-layer ref="modalLayer" />
 
   <div class="app-buttons">
 
-    <button class="back-button mdi mdi-chevron-left"
-      v-if="showBackButton"
-      type="button"
-      :title="backButtonTitle"
-      @mousedown="goBack"
-      @touchstart="$event.preventDefault(); goBack()" />
+    <transition name="delay"
+      appear>
+      <button class="back-button mdi mdi-chevron-left"
+        key="back-button"
+        v-if="showBackButton"
+        type="button"
+        :title="backButtonTitle"
+        @mousedown="goBack"
+        @touchstart="$event.preventDefault(); goBack()" />
+    </transition>
 
-    <button class="exit-button mdi mdi-power"
-      v-else-if="hasExitButton"
-      type="button"
-      :title="$text('navigation_exit_button')"
-      @mousedown="exitApp"
-      @touchstart="$event.preventDefault(); exitApp()" />
+    <transition name="delay"
+      appear>
+      <button class="exit-button mdi mdi-power"
+        key="exit-button"
+        v-if="!showBackButton && hasExitButton"
+        type="button"
+        :title="$text('navigation_exit_button')"
+        @mousedown="exitApp"
+        @touchstart="$event.preventDefault(); exitApp()" />
+    </transition>
 
     <button class="menu-button mdi mdi-menu-open"
       type="button"
@@ -108,7 +119,7 @@ export default {
         handler === 'onTransitionBeforeEnter' ||
         handler === 'onTransitionAfterEnter'
       ) {
-        this.transitioning = true
+        this.transitioning = false
       }
       else if (
         handler === 'onTransitionLeave' ||
@@ -118,8 +129,10 @@ export default {
         handler === 'onTransitionAfterLeave' ||
         handler === 'onTransitionLeaveCancelled'
       ) {
-        this.transitioning = false
+        this.transitioning = true
       }
+
+      console.log("####trrr", handler, this.transitioning)
     },
 
     goBack() {
@@ -192,6 +205,10 @@ export default {
         width: 100vw;
     }
 
+    &.transitioning .app-buttons {
+        opacity: 0;
+    }
+
     .app-buttons {
         position: absolute;
         z-index: 5;
@@ -199,6 +216,8 @@ export default {
         top: 12px;
         height: 44px;
         display: flex;
+
+        transition: opacity 0.5s ease;
 
         button {
             background: none;
@@ -255,6 +274,14 @@ export default {
     opacity: 0;
     -webkit-transform: translate(-30px, 0);
     transform: translate(-30px, 0);
+}
+
+.delay-enter-active,
+.delay-leave-active {
+    transition-timing-function: ease;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-delay: 0.2s;
 }
 </style>
 <style lang="scss" src="./main.scss"></style>
