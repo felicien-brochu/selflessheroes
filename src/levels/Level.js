@@ -40,6 +40,10 @@ export default class Level extends WorldLevel {
     return objective
   }
 
+  get tutorial() {
+    return null
+  }
+
   getLossReasonTemplate(lossReason) {
     if (lossReason === Reason.tooManySteps) {
       return lang.text('loss_reason_too_many_steps')

@@ -3,6 +3,9 @@
   v-hotkey="keymap">
 
   <modal-layer ref="modalLayer" />
+  <tutorial v-if="level.tutorial"
+    ref="tutorial"
+    :config="level.tutorial" />
 
   <world ref="world"
     :level="level"
@@ -77,6 +80,7 @@ import ModalLayer from '../modal/ModalLayer'
 import Modal from '../modal/Modal'
 import WinModal from './winmodal/WinModal'
 import ObjectiveModal from './ObjectiveModal'
+import Tutorial from './tutorial/Tutorial'
 import Compiler from '../../world/ai/compile/Compiler'
 import Decompiler from '../../world/ai/compile/Decompiler'
 import Linter from '../../world/ai/compile/Linter'
@@ -91,7 +95,8 @@ export default {
     RunBar,
     ResizeSplitPane,
     ModalLayer,
-    WinModal
+    WinModal,
+    Tutorial
   },
 
   props: {
@@ -125,6 +130,7 @@ export default {
       followHeroIndex: -1,
       lossModalDisplayed: false,
       winModalDisplayed: false,
+      openingSequence: true,
       compilerExceptions: {
         fatal: [],
         undefinedLiterals: []
@@ -167,11 +173,10 @@ export default {
   },
 
   mounted() {
-    if (!this.solution.hasOpen) {
-      this.showObjectiveModal()
-      this.solution.hasOpen = true
-      this.solution.save()
-    }
+    this.solution.hasOpen = true
+    this.solution.save()
+
+    this.showObjectiveModal()
   },
 
   beforeDestroy() {
@@ -209,6 +214,10 @@ export default {
       this.worldReady = true
       this.handleEditorResize(this.editorWidth)
       this.debouncedCompileCode()
+
+      if (!this.openingSequence) {
+        this.checkTutorialTreated()
+      }
     },
 
     handleWorldStateChange(worldState) {
@@ -251,8 +260,30 @@ export default {
         props: {
           level: this.level,
           solution: this.solution
+        },
+        handlers: {
+          close: this.handleObjectiveModalClose
         }
       })
+    },
+
+    handleObjectiveModalClose() {
+      if (this.openingSequence) {
+        this.openingSequence = false
+        this.checkTutorialTreated()
+      }
+    },
+
+    checkTutorialTreated() {
+      if (!this.worldReady) {
+        return
+      }
+      if (this.level.tutorial) {
+        this.solution.hasOpen = true
+        this.solution.save()
+
+        this.$refs.tutorial.start()
+      }
     },
 
     showWinModal() {

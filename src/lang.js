@@ -40,6 +40,12 @@ const messages = {
     modal_confirm_yes: "yes",
     modal_cancel_no: "no",
 
+    tutorial_button_next: "Next",
+    tutorial_default_step_graphcode: "The heroes follow these instructions step by step",
+    tutorial_default_step_palette: "Drag new instructions from here to change heroes behavior",
+    tutorial_default_step_objective: "To see the level objective click here",
+    tutorial_default_step_runbar: "When you are ready, click here to start the game",
+
     level_modal_speed_target_unit: "cycles",
     level_modal_length_target_unit: "lines",
 
@@ -199,6 +205,12 @@ const messages = {
     modal_close_button: "fermer",
     modal_confirm_yes: "oui",
     modal_cancel_no: "non",
+
+    tutorial_button_next: "Suivant",
+    tutorial_default_step_graphcode: "Les héros suivent ces instructions dans l'ordre",
+    tutorial_default_step_palette: "Pour changer le comportement des héros, choisis une nouvelle instruction ici et glisse-la à droite",
+    tutorial_default_step_objective: "Pour revoir l'objectif du niveau, clique ici",
+    tutorial_default_step_runbar: "Une fois que tu es prêt, clique ici pour démarrer la partie",
 
     level_modal_speed_target_unit: "cycles",
     level_modal_length_target_unit: "lignes",
