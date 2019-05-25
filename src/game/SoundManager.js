@@ -75,10 +75,8 @@ export default class SoundManager {
 
   applyVolumePreference() {
     if (this.volumePreference) {
-      this.sounds.forEach(sound => {
-        sound.setVolume(this.volumePreference.volume)
-        sound.setMute(this.volumePreference.mute)
-      })
+      this.sound.setVolume(this.volumePreference.volume)
+      this.sound.setMute(this.volumePreference.mute)
     }
   }
 
