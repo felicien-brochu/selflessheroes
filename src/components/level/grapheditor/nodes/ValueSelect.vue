@@ -95,7 +95,7 @@ export default {
         return this.$text(`drop_down_list_terrain_type_${this.value.name}`)
       }
       else if (this.value instanceof ArithmeticOperatorLiteral) {
-        return arithmeticOperators[this.value.operator]
+        return this.$text(arithmeticOperators[this.value.operator])
       }
     },
     icon: function() {

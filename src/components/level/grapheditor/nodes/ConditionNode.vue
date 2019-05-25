@@ -169,10 +169,10 @@ export default {
     },
 
     comparisonOperatorLabelFunc(operator) {
-      return comparisonOperators[operator]
+      return this.$text(comparisonOperators[operator])
     },
     booleanOperatorLabelFunc(operator) {
-      return booleanOperators[operator]
+      return this.$text(booleanOperators[operator])
     },
     newBooleanOperatorLabelFunc(operator) {
       return '+'

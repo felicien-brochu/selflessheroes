@@ -127,6 +127,24 @@ const messages = {
     graph_node_function_set: "set",
     graph_node_function_calc: "calc",
 
+    operator_comparison_eq: '=',
+    operator_comparison_ne: '≠',
+    operator_comparison_le: '≤',
+    operator_comparison_lt: '<',
+    operator_comparison_ge: '≥',
+    operator_comparison_gt: '>',
+
+    operator_boolean_and: 'and',
+    operator_boolean_or: 'or',
+
+    operator_arithmetic_plus: '+',
+    operator_arithmetic_minus: '−',
+    operator_arithmetic_multiply: '×',
+    operator_arithmetic_divide: '÷',
+    operator_arithmetic_modulo: '%',
+
+
+
     drop_down_list_direction: "direction",
     drop_down_list_number: "number",
 
@@ -281,6 +299,9 @@ const messages = {
     graph_node_function_fireball: "boule de feu",
     graph_node_function_set: "init",
     graph_node_function_calc: "calc",
+
+    operator_boolean_and: 'et',
+    operator_boolean_or: 'ou',
 
     drop_down_list_direction: "direction",
     drop_down_list_number: "nombre",

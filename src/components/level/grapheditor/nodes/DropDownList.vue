@@ -202,7 +202,7 @@ export default {
 
       for (let operator of compOperators) {
         let item = {
-          label: comparisonOperators[operator],
+          label: this.$text(comparisonOperators[operator]),
           value: operator,
           selected: this.value === operator,
           comparisonOperator: true
@@ -233,7 +233,7 @@ export default {
 
       for (let operator of boolOperators) {
         let item = {
-          label: booleanOperators[operator],
+          label: this.$text(booleanOperators[operator]),
           value: operator,
           selected: this.value === operator,
           booleanOperator: true
@@ -256,7 +256,7 @@ export default {
         let literal = new ArithmeticOperatorLiteral(null)
         literal.operator = operator
         let item = {
-          label: arithmeticOperators[operator],
+          label: this.$text(arithmeticOperators[operator]),
           value: literal,
           selected: this.value && this.value.operator === operator,
           arithmeticOperator: true
