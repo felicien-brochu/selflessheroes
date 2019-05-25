@@ -48,7 +48,9 @@ export default {
       const width = e.target.clientWidth
       const rate = Math.max(0, Math.min(width, e.touches[0].pageX - e.target.getBoundingClientRect().x)) / width
       let value = rate * this.range + this.min
-      value = Math.round(value / this.step) * this.step
+      if (typeof this.step === 'number') {
+        value = Math.round(value / this.step) * this.step
+      }
       this.emit(value)
     }
   }
