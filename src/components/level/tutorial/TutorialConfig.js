@@ -34,11 +34,29 @@ export class TutorialAnchor {
   }
 
   getTargetNode() {
-    return this.selector()
+    let node = null
+
+    try {
+      node = this.selector()
+    } catch (e) {
+      node = null
+    }
+
+    if (!node) {
+      throw new Error("Tutorial target node not found")
+    }
+    return node
   }
 
   getTargetPosition() {
-    let target = this.getTargetNode().getBoundingClientRect()
+    let target
+    let targetNode = this.getTargetNode()
+    if (targetNode) {
+      target = targetNode.getBoundingClientRect()
+    } else {
+      target = document.body.getBoundingClientRect()
+    }
+
     let x, y
 
     switch (this.arrowTargetX) {

@@ -45,10 +45,18 @@ export default {
     },
 
     computeStyle() {
+      let targetPosition
+      try {
+        targetPosition = this.anchor.getTargetPosition()
+      }
+      catch (e) {
+        this.$emit('next')
+        return
+      }
       let {
         x,
         y
-      } = this.anchor.getTargetPosition()
+      } = targetPosition
       let {
         width,
         height

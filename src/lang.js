@@ -44,7 +44,7 @@ const messages = {
     tutorial_default_step_graphcode: "The heroes follow these instructions step by step",
     tutorial_default_step_palette: "Drag new instructions from here to change heroes behavior",
     tutorial_default_step_objective: "To see the level objective click here",
-    tutorial_default_step_runbar: "When you are ready, click here to start the game",
+    tutorial_default_step_runbar: "When you are ready, click here to run your program",
 
     level_modal_speed_target_unit: "cycles",
     level_modal_length_target_unit: "lines",
@@ -228,7 +228,7 @@ const messages = {
     tutorial_default_step_graphcode: "Les héros suivent ces instructions dans l'ordre",
     tutorial_default_step_palette: "Pour changer le comportement des héros, choisis une nouvelle instruction ici et glisse-la à droite",
     tutorial_default_step_objective: "Pour revoir l'objectif du niveau, clique ici",
-    tutorial_default_step_runbar: "Une fois que tu es prêt, clique ici pour démarrer la partie",
+    tutorial_default_step_runbar: "Une fois que tu es prêt, clique ici pour lancer ton programme",
 
     level_modal_speed_target_unit: "cycles",
     level_modal_length_target_unit: "lignes",
