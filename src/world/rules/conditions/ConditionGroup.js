@@ -11,10 +11,12 @@ export default class ConditionGroup extends Condition {
     this.operators = []
 
     let conf = config.slice(0)
-    this.addCondition(conf.shift())
-    while (conf.length > 0) {
-      this.operators.push(conf.shift())
+    if (conf.length > 0) {
       this.addCondition(conf.shift())
+      while (conf.length > 0) {
+        this.operators.push(conf.shift())
+        this.addCondition(conf.shift())
+      }
     }
   }
 
@@ -34,6 +36,10 @@ export default class ConditionGroup extends Condition {
   }
 
   getReason() {
+    if (this.conditions.length === 0) {
+      return null
+    }
+
     let accumulator = []
     this.conditions.forEach((condition, index) => {
       if (index > 0) {

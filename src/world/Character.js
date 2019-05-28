@@ -16,6 +16,7 @@ export default class Character extends WorldObject {
     this.lastAction = null
     this.dead = false
     this.deathReason = null
+    this.item = null
 
     this.parseProperties()
   }

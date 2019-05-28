@@ -70,7 +70,7 @@ const config = {
         ]
       },
       {
-        test: /\.(jpe?g|png|gif)$/,
+        test: /\.(jpe?g|png|gif|fnt)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',

@@ -1,13 +1,9 @@
 import EventEmitter from 'events'
 
-let instanceCount = 0
-
 export default class WorldObject {
   constructor(config, tileWidth, tileHeight) {
-    this.id = instanceCount
-    instanceCount++
-
     this.config = config
+    this.id = config.id
     this.x = (config.x - (config.x % tileWidth)) / tileWidth
     this.y = (config.y - (config.y % tileHeight)) / tileHeight
     this.events = new EventEmitter()
@@ -26,10 +22,6 @@ export default class WorldObject {
   }
 
   getObjectType() {
-    throw new Error('Needs subclass implementation')
-  }
-
-  getDebugContext() {
     throw new Error('Needs subclass implementation')
   }
 }

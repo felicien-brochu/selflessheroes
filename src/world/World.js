@@ -3,6 +3,7 @@ import Hero from './Hero'
 import CharacterDeathReason from './CharacterDeathReason'
 import Switch from './Switch'
 import Bonfire from './Bonfire'
+import Egg from './Egg'
 import EventLog from './EventLog'
 import {
   namedObjectListToObject
@@ -19,6 +20,7 @@ export default class World {
     this.heroes = []
     this.switches = []
     this.bonfires = []
+    this.eggs = []
     this.parseObjects()
 
     this.ruleset = this.level.buildRuleset(this)
@@ -56,6 +58,9 @@ export default class World {
         break;
       case 'bonfire':
         this.bonfires.push(new Bonfire(config, tileWidth, tileHeight))
+        break;
+      case 'egg':
+        this.eggs.push(new Egg(config, tileWidth, tileHeight))
         break;
     }
   }

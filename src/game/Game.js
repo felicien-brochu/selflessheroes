@@ -22,6 +22,7 @@ import ObservationS from './sprites/ObservationS'
 import DirectionS from './sprites/DirectionS'
 import SwitchS from './sprites/SwitchS'
 import BonfireS from './sprites/BonfireS'
+import EggS from './sprites/EggS'
 import FireBallS from './sprites/FireBallS'
 
 export default class extends Phaser.Scene {
@@ -145,6 +146,7 @@ export default class extends Phaser.Scene {
     this.observations = new Map()
     this.switches = []
     this.bonfires = []
+    this.eggs = []
 
     let heroIndex = 0
 
@@ -173,6 +175,11 @@ export default class extends Phaser.Scene {
     for (let bonfire of this.world.bonfires) {
       let sprite = new BonfireS(this, bonfire, this.map.tileWidth, this.map.tileHeight)
       this.bonfires.push(sprite)
+      this.add.existing(sprite)
+    }
+    for (let egg of this.world.eggs) {
+      let sprite = new EggS(this, egg, this.map.tileWidth, this.map.tileHeight)
+      this.eggs.push(sprite)
       this.add.existing(sprite)
     }
   }
@@ -271,7 +278,8 @@ export default class extends Phaser.Scene {
     let sprites = [
       ...this.heroes,
       ...this.switches,
-      ...this.bonfires
+      ...this.bonfires,
+      ...this.eggs
     ]
 
     return sprites

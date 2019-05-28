@@ -17,7 +17,7 @@ export default class HeroS extends CharacterS {
 
   constructor(scene, hero, tileWidth, tileHeight, image) {
     let assetIndex = (Number.isInteger(image) ? image : heroCreated) % assets.length
-    super(scene, hero, assets[assetIndex], tileWidth, tileHeight, 0, -21)
+    super(scene, hero, assets[0], tileWidth, tileHeight, 0, -21)
 
     heroCreated++
   }

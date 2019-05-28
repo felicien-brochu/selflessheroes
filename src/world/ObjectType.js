@@ -15,5 +15,6 @@ export default class ObjectType {
 ObjectType.hero = Symbol('heroType')
 ObjectType.switch = Symbol('switchType')
 ObjectType.bonfire = Symbol('bonfireType')
+ObjectType.egg = Symbol('eggType')
 
 Object.freeze(ObjectType)

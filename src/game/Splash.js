@@ -28,6 +28,7 @@ import button_blue from './images/button_blue.png'
 import button_red from './images/button_red.png'
 // import lever from './images/lever.png'
 import bonfire from './images/bonfire.png'
+import egg from './images/egg.png'
 
 import explosion from './images/explosion.png'
 import ashes from './images/ashes.png'
@@ -54,6 +55,11 @@ import scream_sfx from './audio/scream.mp3'
 import step_sfx from './audio/step.mp3'
 import fireball_sfx from './audio/fireball.mp3'
 import bonfire_sfx from './audio/bonfire.mp3'
+
+// FONTS
+
+import digits_font from './images/digits.fnt'
+import digits_font_texture from './images/digits.png'
 
 
 export default class extends Phaser.Scene {
@@ -171,6 +177,7 @@ export default class extends Phaser.Scene {
       frameWidth: 28,
       frameHeight: 74
     })
+    this.load.image('egg', egg)
     this.load.spritesheet('explosion', explosion, {
       frameWidth: 32,
       frameHeight: 32
@@ -209,6 +216,9 @@ export default class extends Phaser.Scene {
     this.load.audio('step_sfx', step_sfx)
     this.load.audio('fireball_sfx', fireball_sfx)
     this.load.audio('bonfire_sfx', bonfire_sfx)
+
+    //FONTS
+    this.load.bitmapFont('digits_font', digits_font_texture, digits_font)
 
     // LEVEL SPECIFIC
     const level = this.game.gameSceneConfig.level
