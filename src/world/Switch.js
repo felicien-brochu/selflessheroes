@@ -30,4 +30,12 @@ export default class Switch extends WorldObject {
   getObjectType() {
     return ObjectType.switch
   }
+
+  shallowCopy() {
+    let copy = super.shallowCopy()
+    return Object.assign(copy, {
+      enabled: this.enabled,
+      autoDisable: this.autoDisable
+    })
+  }
 }

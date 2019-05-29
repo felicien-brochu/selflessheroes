@@ -11,4 +11,11 @@ export default class Egg extends WorldObject {
   getObjectType() {
     return ObjectType.egg
   }
+
+  shallowCopy() {
+    let copy = super.shallowCopy()
+    return Object.assign(copy, {
+      value: this.value
+    })
+  }
 }

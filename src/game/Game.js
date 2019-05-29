@@ -123,19 +123,17 @@ export default class extends Phaser.Scene {
     this.directionSprites = new Map()
 
     for (let dirName of Direction.names) {
-      if (dirName !== 'here') {
-        let direction = Direction[dirName]
+      let direction = Direction[dirName]
 
-        let observationSprite = new ObservationS(this, 0, 0, direction, this.map.tileWidth, this.map.tileHeight)
-        observationSprite.setVisible(false)
-        this.observationSprites.set(dirName, observationSprite)
-        this.add.existing(observationSprite)
+      let observationSprite = new ObservationS(this, 0, 0, direction, this.map.tileWidth, this.map.tileHeight)
+      observationSprite.setVisible(false)
+      this.observationSprites.set(dirName, observationSprite)
+      this.add.existing(observationSprite)
 
-        let directionSprite = new DirectionS(this, 0, 0, direction, this.map.tileWidth, this.map.tileHeight)
-        directionSprite.setVisible(false)
-        this.directionSprites.set(dirName, directionSprite)
-        this.add.existing(directionSprite)
-      }
+      let directionSprite = new DirectionS(this, 0, 0, direction, this.map.tileWidth, this.map.tileHeight)
+      directionSprite.setVisible(false)
+      this.directionSprites.set(dirName, directionSprite)
+      this.add.existing(directionSprite)
     }
   }
 

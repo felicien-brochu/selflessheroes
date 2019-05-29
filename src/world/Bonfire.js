@@ -23,4 +23,11 @@ export default class Bonfire extends WorldObject {
   getObjectType() {
     return ObjectType.bonfire
   }
+
+  shallowCopy() {
+    let copy = super.shallowCopy()
+    return Object.assign(copy, {
+      enabled: this.enabled
+    })
+  }
 }

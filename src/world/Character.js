@@ -46,4 +46,14 @@ export default class Character extends WorldObject {
   getDebugContext() {
     return this.ai.getDebugContext()
   }
+
+  shallowCopy() {
+    let copy = super.shallowCopy()
+    let item = item ? item.shallowCopy() : null
+    return Object.assign(copy, {
+      dead: this.dead,
+      deathReason: this.deathReason,
+      item: item
+    })
+  }
 }

@@ -2,7 +2,7 @@ import ActionFunction from './ActionFunction'
 import DirectionLiteral from '../literals/DirectionLiteral'
 import ExpressionTypes from '../ExpressionTypes'
 import Direction from '../../../../Direction'
-import FireBallAction from '../../../../actions/FireBallAction'
+import TakeAction from '../../../../actions/TakeAction'
 import {
   MismatchStatementException,
   InvalidNumberOfParamsException,
@@ -13,9 +13,9 @@ import {
   extractParams
 } from '../../utils'
 
-export default class FireBallFunction extends ActionFunction {
+export default class TakeFunction extends ActionFunction {
   constructor(parent, line, column) {
-    super('FireBallFunction', parent, line, column)
+    super('TakeFunction', parent, line, column)
   }
 
   getParamTypes() {
@@ -23,7 +23,7 @@ export default class FireBallFunction extends ActionFunction {
       [{
         type: DirectionLiteral,
         multiple: false,
-        notHere: true
+        notHere: false
       }]
     ]
   }
@@ -32,9 +32,9 @@ export default class FireBallFunction extends ActionFunction {
     super.compile(config, context)
 
     let joinedCode = this.code.join(' ')
-    let res = joinedCode.match(FireBallFunction.correctCodeRegExp)
+    let res = joinedCode.match(TakeFunction.correctCodeRegExp)
     if (!res) {
-      throw new MismatchStatementException('you try to compile as a fireball function a statement which is not one', this, {
+      throw new MismatchStatementException('you try to compile as a take function a statement which is not one', this, {
         template: 'exception_mismatch_function_template',
         values: {
           keyword: {
@@ -48,13 +48,13 @@ export default class FireBallFunction extends ActionFunction {
     let params = extractParams(paramsJoinedCode, this.code, this.line, this.column)
 
     if (params.length !== 1) {
-      throw new InvalidNumberOfParamsException('\'fireball\' function requires exactly 1 direction parameter', this, {
+      throw new InvalidNumberOfParamsException('\'take\' function requires exactly 1 direction parameter', this, {
         template: 'exception_invalid_params_one_dir_template',
         values: {
           keyword: {
             template: `function_${this.constructor.keyword}`
           },
-          directions: Direction.names.filter(dir => dir !== 'here')
+          directions: Direction.names
         }
       })
     }
@@ -75,7 +75,7 @@ export default class FireBallFunction extends ActionFunction {
             template: `function_${this.constructor.keyword}`
           },
           param: param.code.join(' ').trim(),
-          allowedValues: Direction.names.filter(dir => dir !== 'here')
+          allowedValues: Direction.names
         }
       })
     }
@@ -88,12 +88,12 @@ export default class FireBallFunction extends ActionFunction {
       step: true,
       complete: true,
       goto: null,
-      action: new FireBallAction(this.params[0].value)
+      action: new TakeAction(this.params[0].value)
     }
   }
 }
 
-FireBallFunction.keyword = 'fireball'
-FireBallFunction.startLineRegExp = /^\s*(fireball\s*\((.*)\))\s*/
-FireBallFunction.correctCodeRegExp = /^\s*(fireball\s*\((.*)\))\s*$/
-FireBallFunction.codeRegExp = /^\s*(fireball\s*\((.*)\)).*$/
+TakeFunction.keyword = 'take'
+TakeFunction.startLineRegExp = /^\s*(take\s*\((.*)\))\s*/
+TakeFunction.correctCodeRegExp = /^\s*(take\s*\((.*)\))\s*$/
+TakeFunction.codeRegExp = /^\s*(take\s*\((.*)\)).*$/

@@ -12,6 +12,9 @@ import CalcFunction from './statements/functions/CalcFunction'
 import StepOnceFunction from './statements/functions/StepOnceFunction'
 import StepFunction from './statements/functions/StepFunction'
 import FireBallFunction from './statements/functions/FireBallFunction'
+import TakeFunction from './statements/functions/TakeFunction'
+import DropFunction from './statements/functions/DropFunction'
+import WriteFunction from './statements/functions/WriteFunction'
 import VariableIdentifier from './statements/VariableIdentifier'
 import ObjectTypeLiteral from './statements/literals/ObjectTypeLiteral'
 import TerrainTypeLiteral from './statements/literals/TerrainTypeLiteral'
@@ -40,7 +43,8 @@ const terrainTypeMap = {
 const objectTypeMap = {
   hero: 'hero',
   switch: 'switch',
-  bonfire: 'bonfire'
+  bonfire: 'bonfire',
+  egg: 'egg'
 }
 
 const valueFunctionMap = {
@@ -51,7 +55,10 @@ const valueFunctionMap = {
 const actionFunctionMap = {
   step_once: StepOnceFunction,
   step: StepFunction,
-  fireball: FireBallFunction
+  fireball: FireBallFunction,
+  take: TakeFunction,
+  drop: DropFunction,
+  write: WriteFunction
 }
 
 const comparisonExpressionMap = {
@@ -102,7 +109,8 @@ export default class CompilerConfig {
       objectTypes: [
         'hero',
         'switch',
-        'bonfire'
+        'bonfire',
+        'egg'
       ],
       valueFunctions: [
         'set',
@@ -110,7 +118,10 @@ export default class CompilerConfig {
       ],
       actionFunctions: [
         'step',
-        'fireball'
+        'fireball',
+        'take',
+        'drop',
+        'write'
       ],
       leftComparisonExpressions: [
         'direction',

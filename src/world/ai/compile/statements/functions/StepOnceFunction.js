@@ -13,8 +13,6 @@ import {
   extractParams
 } from '../../utils'
 
-const identifier = 'step'
-
 export default class StepOnceFunction extends ActionFunction {
   constructor(parent, line, column) {
     super('StepOnceFunction', parent, line, column)

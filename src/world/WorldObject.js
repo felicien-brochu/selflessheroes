@@ -24,4 +24,12 @@ export default class WorldObject {
   getObjectType() {
     throw new Error('Needs subclass implementation')
   }
+
+  shallowCopy() {
+    return {
+      id: this.id,
+      x: this.x,
+      y: this.y
+    }
+  }
 }

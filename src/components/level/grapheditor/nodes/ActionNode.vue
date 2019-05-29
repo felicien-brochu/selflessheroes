@@ -9,6 +9,7 @@
 
   <value-select v-for="(param, index) in params"
     ref="valueSelects"
+    class="bright"
     :key="index"
     :types="param.types"
     :value="param.value"
