@@ -203,7 +203,8 @@ export default class World {
     return [
       ...this.heroes,
       ...this.switches,
-      ...this.bonfires
+      ...this.bonfires,
+      ...this.eggs
     ]
   }
 

@@ -28,6 +28,7 @@ export default class WorldObject {
   shallowCopy() {
     return {
       id: this.id,
+      type: this.getObjectType(),
       x: this.x,
       y: this.y
     }

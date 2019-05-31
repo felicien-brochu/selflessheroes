@@ -1,4 +1,5 @@
 import ExpressionTypes from './ExpressionTypes'
+import Direction from '../../../Direction'
 
 export default class ExpressionValue {
   constructor(type, value) {
@@ -7,22 +8,68 @@ export default class ExpressionValue {
   }
 
   hasValueOfType(type) {
-    return this.type === type || (this.type === ExpressionTypes.composite && this.value.some(val => val.type === type))
+    return this.getValuesOfType(type).length > 0
   }
 
   getFirstValueOfType(type) {
-    let value = null
-    if (this.type === type) {
-      value = this
-    } else if (this.type === ExpressionTypes.composite) {
-      value = this.value.find(val => val.type === type)
+    let values = this.getValuesOfType(type)
+    if (values.length > 0) {
+      return values[0]
     }
-    return value
+    return null
+  }
+
+  getValuesOfType(type) {
+    let values = []
+    if (this.type === ExpressionTypes.composite) {
+      for (let value of this.value) {
+        values.push(value.getValueOfType(type))
+      }
+    } else {
+      values.push(this.getValueOfType(type))
+    }
+
+    return values.filter(v => !!v)
+  }
+
+  getValueOfType(type) {
+    if (this.type === ExpressionTypes.composite) {
+      if (type === ExpressionTypes.composite) {
+        return this
+      }
+    } else {
+      if (type === this.type) {
+        return this
+      } else if (this.type === ExpressionTypes.object) {
+        if (type === ExpressionTypes.objectType) {
+          return ExpressionValue.objectType(this.value.type)
+        } else if (type === ExpressionTypes.integer && Number.isInteger(this.value.value)) {
+          return ExpressionValue.integer(this.value.value)
+        } else if (type === ExpressionTypes.boolean && typeof this.value.value === "boolean") {
+          return ExpressionValue.boolean(this.value.value)
+        } else if (type === ExpressionTypes.direction && this.value.value instanceof Direction) {
+          return ExpressionValue.direction(this.value.value)
+        } else if (this.value.item) {
+          let item = this.value.item
+          // Do not get objectType for items
+          if (type === ExpressionTypes.integer && Number.isInteger(item.value)) {
+            return ExpressionValue.integer(item.value)
+          } else if (type === ExpressionTypes.boolean && typeof item.value === "boolean") {
+            return ExpressionValue.boolean(item.value)
+          } else if (type === ExpressionTypes.direction && item.value instanceof Direction) {
+            return ExpressionValue.direction(item.value)
+          }
+        }
+      }
+    }
+
+    return null
   }
 
   getDominantValue() {
     let value = this
     let typeDominance = [
+      ExpressionTypes.object,
       ExpressionTypes.objectType,
       ExpressionTypes.terrainType,
       ExpressionTypes.direction,
@@ -57,6 +104,14 @@ export default class ExpressionValue {
     return this.getFirstValueOfType(ExpressionTypes.integer)
   }
 
+  hasObjectValue() {
+    return this.hasValueOfType(ExpressionTypes.object)
+  }
+
+  getFirstObjectValue() {
+    return this.getFirstValueOfType(ExpressionTypes.object)
+  }
+
   hasObjectTypeValue() {
     return this.hasValueOfType(ExpressionTypes.objectType)
   }
@@ -87,6 +142,10 @@ export default class ExpressionValue {
 
   static integer(value) {
     return new ExpressionValue(ExpressionTypes.integer, value)
+  }
+
+  static object(value) {
+    return new ExpressionValue(ExpressionTypes.object, value)
   }
 
   static objectType(value) {

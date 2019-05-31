@@ -8,6 +8,7 @@ import {
   NotDecompilableStatementException
 } from '../../DecompilerException'
 import Direction from '../../../../Direction'
+import ObjectType from '../../../../ObjectType'
 
 export default class DirectionLiteral extends Expression {
   constructor(parent, line, column) {
@@ -50,11 +51,18 @@ export default class DirectionLiteral extends Expression {
     let x = context.character.x + direction.dx
     let y = context.character.y + direction.dy
 
+    let worldObjects = context.world.getWorldObjectsAt(x, y)
+      .map(obj => ExpressionValue.object(obj.shallowCopy()))
+      .sort((a, b) => a.value.type === ObjectType.hero ? 1 : 0)
+    // Remove hero self from results and replace by object type hero
+    if (direction.equals(Direction.here)) {
+      worldObjects = worldObjects.filter(o => o.value.type !== ObjectType.hero)
+      worldObjects.push(ExpressionValue.objectType(ObjectType.hero))
+    }
+    res = res.concat(worldObjects)
+
     let terrainType = context.world.map.getTerrainTypeAt(x, y)
     res.push(ExpressionValue.terrainType(terrainType))
-
-    let worldObjects = context.world.getWorldObjectsAt(x, y)
-    worldObjects.forEach(obj => res.push(ExpressionValue.objectType(obj.getObjectType())))
 
     return ExpressionValue.composite(res)
   }

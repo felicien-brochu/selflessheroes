@@ -118,8 +118,7 @@ export default class SimpleBooleanExpression extends Expression {
       value = this.computeEqual(value1, value2)
     } else if (this.operator === neOperator) {
       value = !this.computeEqual(value1, value2)
-    } else
-    if (value1.hasIntegerValue() && value2.hasIntegerValue()) {
+    } else if (value1.hasIntegerValue() && value2.hasIntegerValue()) {
       if (this.operator === ltOperator) {
         value = value1.value < value2.value
       } else if (this.operator === leOperator) {
@@ -140,33 +139,13 @@ export default class SimpleBooleanExpression extends Expression {
     } else if (value1.hasIntegerValue() && value2.hasIntegerValue()) {
       return value1.getFirstIntegerValue().value === value2.getFirstIntegerValue().value
     } else if (value1.hasObjectTypeValue() && value2.hasObjectTypeValue()) {
-      if (value1.type === ExpressionTypes.objectType) {
-        if (value2.type === ExpressionTypes.objectType) {
-          return value1.value === value2.value
-        } else if (value2.type === ExpressionTypes.composite) {
-          return value2.value.some(val => value1.value === val.value)
-        }
-      } else if (value1.type === ExpressionTypes.composite) {
-        if (value2.type === ExpressionTypes.objectType) {
-          return value1.value.some(val => value2.value === val.value)
-        } else if (value2.type === ExpressionTypes.composite) {
-          return value1.value.some(val => value2.value.some(v => v.value === val.value))
-        }
-      }
+      let value1Types = value1.getValuesOfType(ExpressionTypes.objectType)
+      let value2Types = value2.getValuesOfType(ExpressionTypes.objectType)
+      return value1Types.some(v1 => value2Types.some(v2 => v1.value === v2.value))
     } else if (value1.hasTerrainTypeValue() && value2.hasTerrainTypeValue()) {
-      if (value1.type === ExpressionTypes.terrainType) {
-        if (value2.type === ExpressionTypes.terrainType) {
-          return value1.value === value2.value
-        } else if (value2.type === ExpressionTypes.composite) {
-          return value2.value.some(val => value1.value === val.value)
-        }
-      } else if (value1.type === ExpressionTypes.composite) {
-        if (value2.type === ExpressionTypes.terrainType) {
-          return value1.value.some(val => value2.value === val.value)
-        } else if (value2.type === ExpressionTypes.composite) {
-          return value1.value.some(val => value2.value.some(v => v.value === val.value))
-        }
-      }
+      let value1Types = value1.getValuesOfType(ExpressionTypes.terrainType)
+      let value2Types = value2.getValuesOfType(ExpressionTypes.terrainType)
+      return value1Types.some(v1 => value2Types.some(v2 => v1.value === v2.value))
     }
     return false
   }
