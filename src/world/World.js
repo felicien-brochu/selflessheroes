@@ -11,10 +11,11 @@ import {
 } from './utils'
 
 export default class World {
-  constructor(level, mapConfig, aiFactory) {
+  constructor(level, mapConfig, aiFactory, rng) {
     this.level = level
     this.mapConfig = mapConfig
     this.aiFactory = aiFactory
+    this.rng = rng
 
     this.map = new Map(mapConfig)
     this.characters = []
@@ -52,6 +53,11 @@ export default class World {
         hero.takeItem(item)
       }
     }
+
+    // Generate eggs values with rng if necessary
+    for (let egg of this.eggs) {
+      egg.initValue(this.rng)
+    }
   }
 
 
@@ -74,13 +80,13 @@ export default class World {
     }
   }
 
-  step(rng) {
+  step() {
     this.steps++
     try {
       let heroActions = []
       for (var i = 0; i < this.heroes.length; i++) {
         let hero = this.heroes[i]
-        let action = hero.step(rng)
+        let action = hero.step(this.rng)
 
         heroActions.push({
           hero: hero,

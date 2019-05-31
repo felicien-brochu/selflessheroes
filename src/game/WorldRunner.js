@@ -1,3 +1,4 @@
+import World from '../world/World'
 import Speeds from './Speeds'
 import seedrandom from 'seedrandom'
 import EventEmitter from 'events'
@@ -26,14 +27,14 @@ export default class WorldRunner {
     return defaultStepInterval / this.speed
   }
 
-  init(world, rngSeed) {
-    this.world = world
-    this.gameOver = false
-    this.gameOverDeclared = false
+  init(level, mapConfig, aiFactory, rngSeed) {
     if (rngSeed) {
       this.rngSeed = rngSeed
     }
     this.rng = seedrandom(this.rngSeed)
+    this.world = new World(level, mapConfig, aiFactory, this.rng)
+    this.gameOver = false
+    this.gameOverDeclared = false
   }
 
   static buildRNG() {
@@ -47,15 +48,15 @@ export default class WorldRunner {
     })
   }
 
-  restart(world) {
-    this.init(world)
+  restart(level, mapConfig, aiFactory, rngSeed) {
+    this.init(level, mapConfig, aiFactory, rngSeed)
     this.emitStateChange()
   }
 
   step() {
     this.events.emit('before-step', this.world)
 
-    this.world.step(this.rng)
+    this.world.step()
 
     if (this.gameOver) {
       this.gameOverDeclared = true

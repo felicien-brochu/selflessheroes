@@ -58,8 +58,9 @@ export default class extends Phaser.Scene {
     this.mapConfig = this.cache.json.get('map')
     this.createMap()
 
+    this.runner.init(this.level, this.mapConfig, this.aiFactory)
+    this.world = this.runner.world
     this.createWorld()
-    this.runner.init(this.world)
 
     this.initCamera()
     this.initAudio()
@@ -138,7 +139,6 @@ export default class extends Phaser.Scene {
   }
 
   createWorld() {
-    this.world = new World(this.level, this.mapConfig, this.aiFactory)
     this.heroes = []
     this.directions = new Map()
     this.observations = new Map()
@@ -182,12 +182,14 @@ export default class extends Phaser.Scene {
     }
   }
 
-  restartWorld() {
+  restartWorld(rngSeed) {
     this.runner.pause()
     this.destroySprites()
+
+    this.runner.restart(this.level, this.mapConfig, this.aiFactory, rngSeed)
+    this.world = this.runner.world
     this.createWorld()
     this.updateFollowHero()
-    this.runner.restart(this.world)
   }
 
   initCamera() {
@@ -336,8 +338,7 @@ export default class extends Phaser.Scene {
   }
 
   restartWorldWithRngSeed(rngSeed) {
-    this.restartWorld()
-    this.runner.init(this.world, rngSeed)
+    this.restartWorld(rngSeed)
   }
 
   startFollowHero(sprite) {

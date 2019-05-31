@@ -23,13 +23,13 @@ function testCode(level, mapConfig, code) {
   let t = Date.now()
   let tests = []
   for (let i = 0; i < 20; i++) {
-    let world = new World(level, mapConfig, aiFactory)
     let {
       rng,
       seed
     } = buildRNG()
+    let world = new World(level, mapConfig, aiFactory, rng)
     while (!world.gameOver) {
-      world.step(rng)
+      world.step()
     }
 
     let lossReason = null
