@@ -8,6 +8,8 @@ export default class EggS extends Phaser.GameObjects.Container {
 
     this.offsetX = offsetX
     this.offsetY = offsetY
+    this.tileWidth = tileWidth
+    this.tileHeight = tileHeight
     this.depthOffset = 1
     this.updateDepth()
     this.egg = egg
@@ -25,7 +27,17 @@ export default class EggS extends Phaser.GameObjects.Container {
     this.setSize(this.sprite.width, this.sprite.height)
   }
 
-  beforeStep(world) {}
+  beforeStep(world) {
+    if (!this.egg.owner) {
+      this.x = (this.egg.x + 0.5) * this.tileWidth + this.offsetX
+      this.y = (this.egg.y + 0.5) * this.tileHeight + this.offsetY
+    } else {
+      this.x = 0
+      this.y = 0
+    }
+
+    this.updateText()
+  }
 
   afterStep(world) {}
 
@@ -33,19 +45,22 @@ export default class EggS extends Phaser.GameObjects.Container {
     let text = this.egg.value.toString()
     let length = text.length > 3 ? 3 : text.length
     text = text.substring(text.length - length)
-    this.textSprite.setText(text)
 
-    let fontSize
-    if (text.length < 2) {
-      fontSize = 8
-    } else if (text.length < 3) {
-      fontSize = 7
-    } else {
-      fontSize = 6
+    if (text !== this.textSprite.text) {
+      this.textSprite.setText(text)
+
+      let fontSize
+      if (text.length < 2) {
+        fontSize = 8
+      } else if (text.length < 3) {
+        fontSize = 7
+      } else {
+        fontSize = 6
+      }
+
+      this.textSprite.setFontSize(fontSize)
+      this.textSprite.setDisplayOrigin((this.textSprite.width - fontSize / 5) / 2, fontSize / 2)
     }
-
-    this.textSprite.setFontSize(fontSize)
-    this.textSprite.setDisplayOrigin((this.textSprite.width - fontSize / 5) / 2, fontSize / 2)
   }
 
   updateDepth() {

@@ -146,8 +146,13 @@ export default class extends Phaser.Scene {
     this.bonfires = []
     this.eggs = []
 
-    let heroIndex = 0
+    for (let egg of this.world.eggs) {
+      let sprite = new EggS(this, egg, this.map.tileWidth, this.map.tileHeight)
+      this.eggs.push(sprite)
+      this.add.existing(sprite)
+    }
 
+    let heroIndex = 0
     for (let hero of this.world.heroes) {
       let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight, heroIndex)
       this.heroes.push(sprite)
@@ -173,11 +178,6 @@ export default class extends Phaser.Scene {
     for (let bonfire of this.world.bonfires) {
       let sprite = new BonfireS(this, bonfire, this.map.tileWidth, this.map.tileHeight)
       this.bonfires.push(sprite)
-      this.add.existing(sprite)
-    }
-    for (let egg of this.world.eggs) {
-      let sprite = new EggS(this, egg, this.map.tileWidth, this.map.tileHeight)
-      this.eggs.push(sprite)
       this.add.existing(sprite)
     }
   }
@@ -281,6 +281,10 @@ export default class extends Phaser.Scene {
     ]
 
     return sprites
+  }
+
+  getItemSprite(item) {
+    return this.eggs.find(eggSprite => eggSprite.egg === item)
   }
 
   compileAI(code) {

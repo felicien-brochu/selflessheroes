@@ -3,6 +3,7 @@ import Hero from './Hero'
 import CharacterDeathReason from './CharacterDeathReason'
 import Switch from './Switch'
 import Bonfire from './Bonfire'
+import Item from './Item'
 import Egg from './Egg'
 import EventLog from './EventLog'
 import {
@@ -95,7 +96,55 @@ export default class World {
 
   resolveHeroActions(heroActions) {
     this.resolveStepActions(heroActions)
+    this.resolveDropActions(heroActions)
+    this.resolveTakeActions(heroActions)
+    this.resolveWriteActions(heroActions)
     this.resolveFireBallActions(heroActions)
+  }
+
+  resolveDropActions(heroActions) {
+    for (let {
+        hero,
+        action
+      } of heroActions) {
+      if (action && action.type === 'DropAction' && hero.item !== null) {
+        let x = hero.x + action.direction.dx
+        let y = hero.y + action.direction.dy
+
+        let items = this.getWorldObjectsAt(x, y).filter(o => o instanceof Item)
+        if (items.length === 0 && this.map.isFloor(x, y)) {
+          hero.dropItem(action.direction)
+        }
+      }
+    }
+  }
+
+  resolveTakeActions(heroActions) {
+    for (let {
+        hero,
+        action
+      } of heroActions) {
+      if (action && action.type === 'TakeAction' && hero.item === null) {
+        let x = hero.x + action.direction.dx
+        let y = hero.y + action.direction.dy
+
+        let items = this.getWorldObjectsAt(x, y).filter(o => o instanceof Item)
+        if (items.length > 0) {
+          hero.takeItem(items[0])
+        }
+      }
+    }
+  }
+
+  resolveWriteActions(heroActions) {
+    for (let {
+        hero,
+        action
+      } of heroActions) {
+      if (action && action.type === 'WriteAction' && hero.item !== null && typeof hero.item.write === 'function') {
+        hero.item.write(action.value)
+      }
+    }
   }
 
   resolveFireBallActions(heroActions) {
@@ -192,7 +241,7 @@ export default class World {
   }
 
   getWorldObjectsAt(x, y) {
-    return this.getWorldObjects().filter(o => o.x === x && o.y === y)
+    return this.getWorldObjects().filter(o => o.x === x && o.y === y && !(o instanceof Item && o.owner))
   }
 
   getCharactersAt(x, y) {

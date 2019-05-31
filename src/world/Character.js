@@ -33,6 +33,25 @@ export default class Character extends WorldObject {
   move(direction) {
     this.x += direction.dx
     this.y += direction.dy
+
+    if (this.item) {
+      this.item.x = this.x
+      this.item.y = this.y
+    }
+  }
+
+  dropItem(direction) {
+    if (this.item) {
+      this.item.setOwner(null)
+      this.item.x = this.x + direction.dx
+      this.item.y = this.y + direction.dy
+      this.item = null
+    }
+  }
+
+  takeItem(item) {
+    this.item = item
+    item.setOwner(this)
   }
 
   setDead(isDead, deathReason) {

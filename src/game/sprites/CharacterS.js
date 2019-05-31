@@ -7,6 +7,7 @@ const stateRun = 'run'
 const stateHit = 'hit'
 const stateSleep = 'sleep'
 
+const itemContainerInitialY = -14.4
 
 export default class CharacterS extends Phaser.GameObjects.Container {
 
@@ -30,6 +31,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     this.depthOffset = 0
     this._moving = false
     this.moveTimeline = null
+    this.itemContainerTimeline = null
 
     this.actionState = stateIdle
     this.newActionState = stateIdle
@@ -42,16 +44,80 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     this.sleepSprite.depth = 1
     this.sleepSprite.setVisible(false)
 
+    this.itemContainer = new Phaser.GameObjects.Container(scene, 0, itemContainerInitialY)
+    this.updateItem()
+
     this.scene.add.existing(this.sprite)
     this.scene.add.existing(this.sleepSprite)
+    this.scene.add.existing(this.itemContainer)
     this.add(this.sprite)
     this.add(this.sleepSprite)
+    this.add(this.itemContainer)
+
     this.setSize(this.sprite.width, this.sprite.height)
     this.playAnimation()
   }
 
   playAnimation() {
     this.sprite.play(`${this.asset}_${this.actionState}`)
+
+    this.playItemContainerAnimation()
+  }
+
+  playItemContainerAnimation() {
+    if (this.itemContainerTimeline) {
+      this.itemContainerTimeline.stop()
+      this.itemContainerTimeline = null
+    }
+    this.itemContainerTimeline = this.scene.tweens.createTimeline()
+
+    if (this.actionState === stateIdle) {
+      this.itemContainer.y = itemContainerInitialY
+      this.itemContainerTimeline.add({
+        targets: this.itemContainer,
+        y: itemContainerInitialY + 4,
+        duration: 4 * 1000 / 12,
+        repeat: Infinity,
+        ease: function(v) {
+          v += 0.05
+          v = v % 1
+          if (v <= 0.25) {
+            return 0
+          } else if (v <= 0.5) {
+            return 0.5
+          } else if (v <= 0.75) {
+            return 1
+          } else {
+            return 0.5
+          }
+        }
+      })
+    } else if (this.actionState === stateRun) {
+      this.itemContainer.y = itemContainerInitialY - 4
+      this.itemContainerTimeline.add({
+        targets: this.itemContainer,
+        y: itemContainerInitialY,
+        duration: 4 * 1000 / 12,
+        repeat: Infinity,
+        ease: function(v) {
+          v += 0.05
+          v = v % 1
+          if (v <= 0.25) {
+            return 0.5
+          } else if (v <= 0.5) {
+            return 0
+          } else if (v <= 0.75) {
+            return 0.5
+          } else {
+            return 1
+          }
+        }
+      })
+    } else if (this.actionState === stateSleep) {
+      this.itemContainer.y = -8
+    }
+
+    this.itemContainerTimeline.play()
   }
 
   updateState() {
@@ -71,6 +137,8 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     if (!this.dead) {
       this.stopMoving()
     }
+
+    this.updateItem()
 
     if (this.character.lastAction) {
       if (this.character.lastAction.type === 'StepAction') {
@@ -158,6 +226,20 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     }
 
     this.updateState()
+  }
+
+  updateItem() {
+    if (this.itemContainer.length > 0) {
+      if (!this.character.item) {
+        let itemSprite = this.itemContainer.getAt(0)
+        this.itemContainer.removeAll()
+        this.scene.add.existing(itemSprite)
+      }
+    } else {
+      if (this.character.item) {
+        this.itemContainer.add(this.scene.getItemSprite(this.character.item))
+      }
+    }
   }
 
   updateDepth() {
