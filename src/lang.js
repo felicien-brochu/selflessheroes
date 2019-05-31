@@ -349,7 +349,7 @@ const messages = {
     level5_name: "Vertige",
     level5_objective: "Active tous les %%icon icon-switch$%% boutons",
     level6_name: "Allumer le feu",
-    level6_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement action-statement$bouledefeu%% pour allumer les feux",
+    level6_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement action-statement$boule de feu%% pour allumer les feux",
     level7_name: "Virage serré",
     level7_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: aucun personnage ne doit mourir",
     level8_name: "Veillée aux flambeaux",
