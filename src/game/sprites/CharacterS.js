@@ -237,7 +237,10 @@ export default class CharacterS extends Phaser.GameObjects.Container {
       }
     } else {
       if (this.character.item) {
-        this.itemContainer.add(this.scene.getItemSprite(this.character.item))
+        let itemSprite = this.scene.getItemSprite(this.character.item)
+        this.itemContainer.add(itemSprite)
+        itemSprite.x = 0
+        itemSprite.y = 0
       }
     }
   }

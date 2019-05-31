@@ -50,8 +50,12 @@ export default class Character extends WorldObject {
   }
 
   takeItem(item) {
-    this.item = item
-    item.setOwner(this)
+    if (item) {
+      this.item = item
+      item.setOwner(this)
+    } else {
+      this.item = null
+    }
   }
 
   setDead(isDead, deathReason) {

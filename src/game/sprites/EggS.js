@@ -31,9 +31,6 @@ export default class EggS extends Phaser.GameObjects.Container {
     if (!this.egg.owner) {
       this.x = (this.egg.x + 0.5) * this.tileWidth + this.offsetX
       this.y = (this.egg.y + 0.5) * this.tileHeight + this.offsetY
-    } else {
-      this.x = 0
-      this.y = 0
     }
 
     this.updateText()

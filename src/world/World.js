@@ -44,6 +44,14 @@ export default class World {
     for (var i = 0; i < layers.objects.objects.length; i++) {
       this.createObject(layers.objects.objects[i], this.mapConfig.tilewidth, this.mapConfig.tileheight)
     }
+
+    // Item ownership
+    for (let hero of this.heroes) {
+      if (Number.isInteger(hero.item)) {
+        let item = this.findWorldObjectByID(hero.item)
+        hero.takeItem(item)
+      }
+    }
   }
 
 
@@ -255,6 +263,10 @@ export default class World {
       ...this.bonfires,
       ...this.eggs
     ]
+  }
+
+  findWorldObjectByID(id) {
+    return this.getWorldObjects().find(o => o.id === id)
   }
 
   getCharacters() {
