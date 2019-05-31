@@ -96,9 +96,9 @@ export default {
       })
 
       return [
-        ...assign,
+        ...branching,
         ...actions,
-        ...branching
+        ...assign
       ]
     }
   },
