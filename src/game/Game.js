@@ -285,8 +285,12 @@ export default class extends Phaser.Scene {
     return sprites
   }
 
-  getItemSprite(item) {
-    return this.eggs.find(eggSprite => eggSprite.egg === item)
+  getCharacterSprite(characterID) {
+    return this.heroes.find(heroSprite => heroSprite.character.id === characterID)
+  }
+
+  getItemSprite(itemID) {
+    return this.eggs.find(eggSprite => eggSprite.egg.id === itemID)
   }
 
   compileAI(code) {

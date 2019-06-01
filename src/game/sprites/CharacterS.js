@@ -36,6 +36,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     this.actionState = stateIdle
     this.newActionState = stateIdle
     this.dead = this.character.dead
+    this.lastCharacter = this.character.shallowCopy()
     this.sleep = false
 
     this.sprite = new Phaser.GameObjects.Sprite(scene, 0, 0, this.asset)
@@ -138,8 +139,6 @@ export default class CharacterS extends Phaser.GameObjects.Container {
       this.stopMoving()
     }
 
-    this.updateItem()
-
     if (this.character.lastAction) {
       if (this.character.lastAction.type === 'StepAction') {
         this.newActionState = stateRun
@@ -178,6 +177,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
 
     this.updateState()
     this.dead = this.character.dead
+    this.lastCharacter = this.character.shallowCopy()
   }
 
   afterStep(world) {
@@ -230,14 +230,14 @@ export default class CharacterS extends Phaser.GameObjects.Container {
 
   updateItem() {
     if (this.itemContainer.length > 0) {
-      if (!this.character.item) {
+      if (!this.lastCharacter.item) {
         let itemSprite = this.itemContainer.getAt(0)
         this.itemContainer.removeAll()
         this.scene.add.existing(itemSprite)
       }
     } else {
-      if (this.character.item) {
-        let itemSprite = this.scene.getItemSprite(this.character.item)
+      if (this.lastCharacter.item) {
+        let itemSprite = this.scene.getItemSprite(this.lastCharacter.item.id)
         this.itemContainer.add(itemSprite)
         itemSprite.x = 0
         itemSprite.y = 0

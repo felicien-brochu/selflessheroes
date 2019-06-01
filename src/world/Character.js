@@ -72,7 +72,7 @@ export default class Character extends WorldObject {
 
   shallowCopy() {
     let copy = super.shallowCopy()
-    let item = item ? item.shallowCopy() : null
+    let item = this.item ? this.item.shallowCopy() : null
     return Object.assign(copy, {
       dead: this.dead,
       deathReason: this.deathReason,

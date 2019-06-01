@@ -17,9 +17,9 @@ export default class Item extends WorldObject {
 
   shallowCopy() {
     let copy = super.shallowCopy()
-    let owner = this.owner ? owner.shallowCopy() : null
+    let ownerID = this.owner ? this.owner.id : null
     return Object.assign(copy, {
-      owner
+      ownerID
     })
   }
 }
