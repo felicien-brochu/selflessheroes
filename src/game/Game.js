@@ -152,9 +152,8 @@ export default class extends Phaser.Scene {
       this.add.existing(sprite)
     }
 
-    let heroIndex = 0
     for (let hero of this.world.heroes) {
-      let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight, heroIndex)
+      let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight)
       this.heroes.push(sprite)
       this.add.existing(sprite)
 
@@ -166,8 +165,6 @@ export default class extends Phaser.Scene {
 
       this.observations.set(sprite, [])
       this.directions.set(sprite, null)
-
-      heroIndex++
     }
 
     for (let mySwitch of this.world.switches) {

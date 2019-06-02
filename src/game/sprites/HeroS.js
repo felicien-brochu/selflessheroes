@@ -2,7 +2,6 @@ import Phaser from 'phaser'
 
 import CharacterS from './CharacterS'
 
-let heroCreated = 0
 let assets = [
   'knight_red',
   'knight_pink',
@@ -17,10 +16,7 @@ let assets = [
 
 export default class HeroS extends CharacterS {
 
-  constructor(scene, hero, tileWidth, tileHeight, image) {
-    let assetIndex = (Number.isInteger(image) ? image : heroCreated) % assets.length
-    super(scene, hero, assets[assetIndex], tileWidth, tileHeight, 0, -21)
-
-    heroCreated++
+  constructor(scene, hero, tileWidth, tileHeight) {
+    super(scene, hero, assets[hero.color], tileWidth, tileHeight, 0, -21)
   }
 }

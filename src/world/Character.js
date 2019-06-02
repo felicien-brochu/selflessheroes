@@ -11,14 +11,13 @@ export default class Character extends WorldObject {
       this.ai = new IdleAI(world, this)
     }
 
+    this.world = world
     this.initialDirection = 'e'
 
     this.lastAction = null
     this.dead = false
     this.deathReason = null
     this.item = null
-
-    this.parseProperties()
   }
 
   step(rng) {
