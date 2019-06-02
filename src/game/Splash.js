@@ -1,11 +1,19 @@
 import Phaser from 'phaser'
 
-import elf_f from './images/elf_f.png'
-import elf_m from './images/elf_m.png'
-import knight_f from './images/knight_f.png'
-import knight_m from './images/knight_m.png'
-import wizzard_f from './images/wizzard_f.png'
-import wizzard_m from './images/wizzard_m.png'
+import knight_red from './images/knight_red.png'
+import knight_pink from './images/knight_pink.png'
+import knight_green from './images/knight_green.png'
+import knight_blue from './images/knight_blue.png'
+import knight_purple from './images/knight_purple.png'
+import knight_orange from './images/knight_orange.png'
+import knight_dark_blue from './images/knight_dark_blue.png'
+import knight_white from './images/knight_white.png'
+import knight_gray from './images/knight_gray.png'
+import knight_yellow from './images/knight_yellow.png'
+// import elf_f from './images/elf_f.png'
+// import elf_m from './images/elf_m.png'
+// import wizzard_f from './images/wizzard_f.png'
+// import wizzard_m from './images/wizzard_m.png'
 
 // import tiny_zombie from './images/tiny_zombie.png'
 // import goblin from './images/goblin.png'
@@ -73,30 +81,62 @@ export default class extends Phaser.Scene {
     this.disablePhaserFullscreenManagement()
 
     // load assets
-    this.load.spritesheet('elf_f', elf_f, {
+    this.load.spritesheet('knight_red', knight_red, {
       frameWidth: 32,
       frameHeight: 56
     })
-    this.load.spritesheet('elf_m', elf_m, {
+    this.load.spritesheet('knight_pink', knight_pink, {
       frameWidth: 32,
       frameHeight: 56
     })
-    this.load.spritesheet('knight_f', knight_f, {
+    this.load.spritesheet('knight_green', knight_green, {
       frameWidth: 32,
       frameHeight: 56
     })
-    this.load.spritesheet('knight_m', knight_m, {
+    this.load.spritesheet('knight_blue', knight_blue, {
       frameWidth: 32,
       frameHeight: 56
     })
-    this.load.spritesheet('wizzard_f', wizzard_f, {
+    this.load.spritesheet('knight_purple', knight_purple, {
       frameWidth: 32,
       frameHeight: 56
     })
-    this.load.spritesheet('wizzard_m', wizzard_m, {
+    this.load.spritesheet('knight_orange', knight_orange, {
       frameWidth: 32,
       frameHeight: 56
     })
+    this.load.spritesheet('knight_dark_blue', knight_dark_blue, {
+      frameWidth: 32,
+      frameHeight: 56
+    })
+    this.load.spritesheet('knight_white', knight_white, {
+      frameWidth: 32,
+      frameHeight: 56
+    })
+    this.load.spritesheet('knight_gray', knight_gray, {
+      frameWidth: 32,
+      frameHeight: 56
+    })
+    this.load.spritesheet('knight_yellow', knight_yellow, {
+      frameWidth: 32,
+      frameHeight: 56
+    })
+    // this.load.spritesheet('elf_f', elf_f, {
+    //   frameWidth: 32,
+    //   frameHeight: 56
+    // })
+    // this.load.spritesheet('elf_m', elf_m, {
+    //   frameWidth: 32,
+    //   frameHeight: 56
+    // })
+    // this.load.spritesheet('wizzard_f', wizzard_f, {
+    //   frameWidth: 32,
+    //   frameHeight: 56
+    // })
+    // this.load.spritesheet('wizzard_m', wizzard_m, {
+    //   frameWidth: 32,
+    //   frameHeight: 56
+    // })
     // this.load.spritesheet('tiny_zombie', tiny_zombie, {
     //   frameWidth: 32,
     //   frameHeight: 32

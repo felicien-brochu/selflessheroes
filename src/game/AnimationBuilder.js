@@ -135,6 +135,166 @@ const anims = {
     start: 4,
     end: 7
   },
+  knight_red_idle: {
+    start: 0,
+    end: 3
+  },
+  knight_red_run: {
+    start: 4,
+    end: 7
+  },
+  knight_red_hit: {
+    start: 8,
+    end: 8
+  },
+  knight_red_sleep: {
+    start: 9,
+    end: 9
+  },
+  knight_pink_idle: {
+    start: 0,
+    end: 3
+  },
+  knight_pink_run: {
+    start: 4,
+    end: 7
+  },
+  knight_pink_hit: {
+    start: 8,
+    end: 8
+  },
+  knight_pink_sleep: {
+    start: 9,
+    end: 9
+  },
+  knight_green_idle: {
+    start: 0,
+    end: 3
+  },
+  knight_green_run: {
+    start: 4,
+    end: 7
+  },
+  knight_green_hit: {
+    start: 8,
+    end: 8
+  },
+  knight_green_sleep: {
+    start: 9,
+    end: 9
+  },
+  knight_blue_idle: {
+    start: 0,
+    end: 3
+  },
+  knight_blue_run: {
+    start: 4,
+    end: 7
+  },
+  knight_blue_hit: {
+    start: 8,
+    end: 8
+  },
+  knight_blue_sleep: {
+    start: 9,
+    end: 9
+  },
+  knight_purple_idle: {
+    start: 0,
+    end: 3
+  },
+  knight_purple_run: {
+    start: 4,
+    end: 7
+  },
+  knight_purple_hit: {
+    start: 8,
+    end: 8
+  },
+  knight_purple_sleep: {
+    start: 9,
+    end: 9
+  },
+  knight_orange_idle: {
+    start: 0,
+    end: 3
+  },
+  knight_orange_run: {
+    start: 4,
+    end: 7
+  },
+  knight_orange_hit: {
+    start: 8,
+    end: 8
+  },
+  knight_orange_sleep: {
+    start: 9,
+    end: 9
+  },
+  knight_dark_blue_idle: {
+    start: 0,
+    end: 3
+  },
+  knight_dark_blue_run: {
+    start: 4,
+    end: 7
+  },
+  knight_dark_blue_hit: {
+    start: 8,
+    end: 8
+  },
+  knight_dark_blue_sleep: {
+    start: 9,
+    end: 9
+  },
+  knight_white_idle: {
+    start: 0,
+    end: 3
+  },
+  knight_white_run: {
+    start: 4,
+    end: 7
+  },
+  knight_white_hit: {
+    start: 8,
+    end: 8
+  },
+  knight_white_sleep: {
+    start: 9,
+    end: 9
+  },
+  knight_gray_idle: {
+    start: 0,
+    end: 3
+  },
+  knight_gray_run: {
+    start: 4,
+    end: 7
+  },
+  knight_gray_hit: {
+    start: 8,
+    end: 8
+  },
+  knight_gray_sleep: {
+    start: 9,
+    end: 9
+  },
+  knight_yellow_idle: {
+    start: 0,
+    end: 3
+  },
+  knight_yellow_run: {
+    start: 4,
+    end: 7
+  },
+  knight_yellow_hit: {
+    start: 8,
+    end: 8
+  },
+  knight_yellow_sleep: {
+    start: 9,
+    end: 9
+  },
   elf_f_idle: {
     start: 0,
     end: 3
@@ -164,38 +324,6 @@ const anims = {
     end: 8
   },
   elf_m_sleep: {
-    start: 9,
-    end: 9
-  },
-  knight_f_idle: {
-    start: 0,
-    end: 3
-  },
-  knight_f_run: {
-    start: 4,
-    end: 7
-  },
-  knight_f_hit: {
-    start: 8,
-    end: 8
-  },
-  knight_f_sleep: {
-    start: 9,
-    end: 9
-  },
-  knight_m_idle: {
-    start: 0,
-    end: 3
-  },
-  knight_m_run: {
-    start: 4,
-    end: 7
-  },
-  knight_m_hit: {
-    start: 8,
-    end: 8
-  },
-  knight_m_sleep: {
     start: 9,
     end: 9
   },
