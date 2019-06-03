@@ -18,4 +18,11 @@ export default class Hero extends Character {
   getObjectType() {
     return ObjectType.hero
   }
+
+  shallowCopy() {
+    let copy = super.shallowCopy()
+    return Object.assign(copy, {
+      color: this.color
+    })
+  }
 }

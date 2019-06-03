@@ -15,7 +15,6 @@ let assets = [
 
 
 export default class HeroS extends CharacterS {
-
   constructor(scene, hero, tileWidth, tileHeight) {
     super(scene, hero, assets[hero.color], tileWidth, tileHeight, 0, -21)
   }

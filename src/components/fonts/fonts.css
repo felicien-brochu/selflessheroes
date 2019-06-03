@@ -11,6 +11,10 @@
 	src: url("./Monaco/Monaco.eot") format("embedded-opentype"), url("./Monaco/Monaco.woff2") format("woff2"), url("./Monaco/Monaco.woff") format("woff"), url("./Monaco/Monaco.ttf") format("truetype"), url("./Monaco/Monaco.svg") format("svg");
 }
 @font-face {
+	font-family: "Digits";
+	src: url("./Digits/digits.woff2") format("woff2"), url("./Digits/digits.woff") format("woff"), url("./Digits/digits.ttf") format("truetype"), url("./Digits/digits.svg") format("svg");
+}
+@font-face {
 	font-family: 'Roboto';
 	src: url("./Roboto/roboto_regular/Roboto-Regular-webfont.eot");
 	src: url("./Roboto/roboto_regular/Roboto-Regular-webfont.eot?#iefix") format('embedded-opentype'), url("./Roboto/roboto_regular/Roboto-Regular-webfont.woff2") format('woff2'), url("./Roboto/roboto_regular/Roboto-Regular-webfont.woff") format('woff'), url("./Roboto/roboto_regular/Roboto-Regular-webfont.ttf") format('truetype'), url("./Roboto/roboto_regular/Roboto-Regular-webfont.svg#robotoregular") format('svg');

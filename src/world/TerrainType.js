@@ -2,7 +2,7 @@ export default class TerrainType {
   static keyOf(type) {
     let key = null
     for (let propKey of Object.keys(TerrainType)) {
-      if (ObjectType[propKey] === type) {
+      if (TerrainType[propKey] === type) {
         key = propKey
         break
       }

@@ -1,0 +1,55 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+<metadata>
+Created by FontForge 20190413 at Sun Jun 02 14:40:59 2019
+ By felicien
+Copyright gama27 2019
+</metadata>
+<defs>
+<font id="digits" horiz-adv-x="4096" >
+  <font-face 
+    font-family="digits"
+    font-weight="400"
+    font-stretch="normal"
+    units-per-em="4096"
+    panose-1="0 0 4 0 0 0 0 0 0 0"
+    ascent="4096"
+    descent="0"
+    bbox="0 0 3276 4096"
+    underline-thickness="204"
+    underline-position="307"
+    unicode-range="U+0020-0039"
+  />
+<missing-glyph horiz-adv-x="3969" 
+d="M3081 50l-1506 1978l-1506 -1978h3012zM50 69l1506 1979l-1506 1978v-3957v0zM3100 69v3957l-1506 -1978l1506 -1979v0zM1575 2067l1506 1979h-3012l1506 -1979v0zM0 0v4096h3150v-4096h-3150z" />
+    <glyph glyph-name=".notdef" horiz-adv-x="3969" 
+d="M3081 50l-1506 1978l-1506 -1978h3012zM50 69l1506 1979l-1506 1978v-3957v0zM3100 69v3957l-1506 -1978l1506 -1979v0zM1575 2067l1506 1979h-3012l1506 -1979v0zM0 0v4096h3150v-4096h-3150z" />
+    <glyph glyph-name="glyph1" horiz-adv-x="819" 
+ />
+    <glyph glyph-name="glyph2" horiz-adv-x="819" 
+ />
+    <glyph glyph-name="space" unicode=" " horiz-adv-x="1638" 
+ />
+    <glyph glyph-name="zero" unicode="0" 
+d="M2457 819v2457h-1638v-2457h1638zM0 0v4096h3276v-4096h-3276z" />
+    <glyph glyph-name="one" unicode="1" horiz-adv-x="3276" 
+d="M0 0v819h819v2457h-819v820h1638v-3277h819v-819h-2457z" />
+    <glyph glyph-name="two" unicode="2" 
+d="M0 0v2457h2457v819h-2457v820h3276v-2458h-2457v-819h2457v-819h-3276z" />
+    <glyph glyph-name="three" unicode="3" 
+d="M0 0v819h2457v819h-1638v819h1638v819h-2457v820h3276v-4096h-3276z" />
+    <glyph glyph-name="four" unicode="4" 
+d="M2457 0v1638h-2457v2458h819v-1639h1638v1639h819v-4096h-819z" />
+    <glyph glyph-name="five" unicode="5" 
+d="M0 0v819h2457v819h-2457v2458h3276v-820h-2457v-819h2457v-2457h-3276z" />
+    <glyph glyph-name="six" unicode="6" 
+d="M2457 819v819h-1638v-819h1638zM0 0v4096h3276v-820h-2457v-819h2457v-2457h-3276z" />
+    <glyph glyph-name="seven" unicode="7" 
+d="M819 0v1638h819v-1638h-819zM1638 1638v819h819v-819h-819zM2457 2457v819h-2457v820h3276v-1639h-819z" />
+    <glyph glyph-name="eight" unicode="8" 
+d="M2457 819v819h-1638v-819h1638zM2457 2457v819h-1638v-819h1638zM0 0v4096h3276v-4096h-3276z" />
+    <glyph glyph-name="nine" unicode="9" 
+d="M2457 2457v819h-1638v-819h1638zM0 0v819h2457v819h-2457v2458h3276v-4096h-3276z" />
+  </font>
+</defs></svg>

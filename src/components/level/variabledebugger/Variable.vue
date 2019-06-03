@@ -1,13 +1,19 @@
 <template>
 <li class="variable">
+  <i class="icon-variable" />
   <div class="variable-name">{{name}}&nbsp;:</div>
   <div class="variable-value">
 
     <div v-if="isRawType"
       class="raw-value">{{variable.getDominantValue().value.toString()}}</div>
 
-    <i v-else
+    <i v-else-if="isIconType"
       :class="icon" />
+
+    <i v-else-if="isEgg"
+      class="egg-value icon-egg"> {{
+				eggDigits
+			}}</i>
 
   </div>
 </li>
@@ -17,6 +23,17 @@
 import ExpressionTypes from '../../../world/ai/compile/statements/ExpressionTypes'
 import ObjectType from '../../../world/ObjectType'
 import TerrainType from '../../../world/TerrainType'
+
+const heroColors = [
+  'red',
+  'pink',
+  'green',
+  'blue',
+  'purple',
+  'orange',
+  'dark-blue',
+  'white'
+]
 
 export default {
   props: {
@@ -30,19 +47,48 @@ export default {
 
   computed: {
     isRawType: function() {
-      return this.variable.getDominantValue().type === ExpressionTypes.integer || this.variable.getDominantValue().type === ExpressionTypes.boolean
+      let type = this.variable.getDominantValue().type
+      return type === ExpressionTypes.integer || type === ExpressionTypes.boolean
+    },
+    isIconType: function() {
+      let value = this.variable.getDominantValue()
+      return value.type === ExpressionTypes.terrainType ||
+        value.type === ExpressionTypes.objectType ||
+        (value.type === ExpressionTypes.object &&
+          value.value.type !== ObjectType.egg)
     },
     icon: function() {
       let value = this.variable.getDominantValue()
       let icon = ''
-      if (value.type === ExpressionTypes.objectType) {
-        icon = ObjectType.keyOf(value.value)
+      if (value.type === ExpressionTypes.object) {
+        let obj = value.value
+        if (obj.type === ObjectType.hero) {
+          icon = `hero-${heroColors[obj.color % heroColors.length]}`
+        }
+        else if (obj.type === ObjectType.switch || obj.type === ObjectType.bonfire) {
+          icon = `icon-${ObjectType.keyOf(obj.type)}`
+        }
+      }
+      else if (value.type === ExpressionTypes.objectType) {
+        icon = `icon-${ObjectType.keyOf(value.value)}`
       }
       else if (value.type === ExpressionTypes.terrainType) {
-        icon = TerrainType.keyOf(value.value)
+        icon = `icon-${TerrainType.keyOf(value.value)}`
       }
 
-      return `icon-${icon}`
+      return icon
+    },
+    isEgg: function() {
+      let value = this.variable.getDominantValue()
+      return value.type === ExpressionTypes.object &&
+        value.value.type === ObjectType.egg
+    },
+    eggDigits: function() {
+      let egg = this.variable.getDominantValue().value
+      let text = egg.value.toString()
+      let length = text.length > 2 ? 2 : text.length
+      text = text.substring(text.length - length)
+      return text
     }
   }
 }
@@ -55,37 +101,81 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
+    color: #282c34;
+    background-color: #87A7C1;
+    border-radius: 7px;
+    padding-left: 5px;
+
+    i {
+        width: 22px;
+        height: 22px;
+        display: inline-block;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
 
     .variable-name {
         font-weight: 500;
-        font-size: 26px;
-        margin-right: 7px;
+        font-size: 20px;
+        margin-left: 3px;
     }
 
     .variable-value {
         font-weight: 500;
-        width: 45px;
-        height: 37px;
+        width: 38px;
+        height: 34px;
         line-height: 37px;
-        border-radius: 7px;
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #282c34;
-        background-color: $branching-color;
-
-        .raw-value {
-            font-size: 26px;
-            text-align: center;
-        }
 
         i {
             width: 26px;
             height: 26px;
-            display: inline-block;
-            background-size: cover;
-            background-repeat: no-repeat;
+        }
+
+        .raw-value {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .egg-value {
+            text-align: center;
+            line-height: 35px;
+            font-style: normal;
+            font-family: Digits, monospace;
+            color: #302d24;
+            font-size: 9px;
+            padding-left: 2px;
+            box-sizing: border-box;
+            width: 32px;
+            height: 32px;
         }
     }
+}
+
+.hero-red {
+    background-image: url("../../images/hero-red.png");
+}
+.hero-pink {
+    background-image: url("../../images/hero-pink.png");
+}
+.hero-green {
+    background-image: url("../../images/hero-green.png");
+}
+.hero-blue {
+    background-image: url("../../images/hero-blue.png");
+}
+.hero-purple {
+    background-image: url("../../images/hero-purple.png");
+}
+.hero-orange {
+    background-image: url("../../images/hero-orange.png");
+}
+.hero-dark-blue {
+    background-image: url("../../images/hero-dark-blue.png");
+}
+.hero-white {
+    background-image: url("../../images/hero-white.png");
 }
 </style>

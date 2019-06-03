@@ -68,7 +68,7 @@ export default {
         background-color: transparentize(white, 0.75);
 
         &.selected {
-            background: transparentize(white, 0.4);
+            background: transparentize(white, 0.2);
         }
 
         &.no-value,
