@@ -29,6 +29,12 @@
 				career.name
 			}}</div>
 
+      <div class="stars-count">
+        <i class="star-icon">{{
+					career.stars
+				}}</i>
+      </div>
+
     </router-link>
 
     <transition name="fade"
@@ -115,6 +121,7 @@ export default {
         careers.push({
           id: career.id,
           name: career.name,
+          stars: career.getStarCount(),
           url: `c/${career.id}/`
         })
       }
@@ -241,6 +248,26 @@ export default {
                 height: 60px;
                 text-align: center;
                 font-weight: 500;
+            }
+
+            .stars-count {
+                display: flex;
+                margin-top: 55px;
+                font-weight: 500;
+                align-items: end;
+                justify-content: center;
+
+                .star-icon {
+                    width: 100px;
+                    height: 100px;
+                    background-image: url("../images/star.png");
+                    background-size: cover;
+                    color: #394249;
+                    font-style: normal;
+                    text-align: center;
+                    font-size: 30px;
+                    line-height: 112px;
+                }
             }
         }
 

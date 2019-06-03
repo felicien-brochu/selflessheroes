@@ -1,5 +1,6 @@
 import StorageWrapper from './StorageWrapper'
 import LevelSolutions from './LevelSolutions'
+import levelManager from '../../levels/levelManager'
 
 export default class Career extends StorageWrapper {
   constructor(key) {
@@ -49,6 +50,18 @@ export default class Career extends StorageWrapper {
 
   getLevel(id) {
     return this.levels.find(l => l.get().id === id)
+  }
+
+  getStarCount() {
+    let stars = 0
+    for (let level of this.levels) {
+      level.get()
+      let levelConfig = levelManager.getLevelByID(level.id)
+      if (levelConfig) {
+        stars += level.score.getStarCount(levelConfig)
+      }
+    }
+    return stars
   }
 
   load(data) {

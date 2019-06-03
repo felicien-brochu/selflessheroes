@@ -111,6 +111,21 @@ class LevelScore {
     return this.won
   }
 
+  getStarCount(level) {
+    let stars = 0
+    if (this.won) {
+      stars++
+      if (this.minStep <= level.speedTarget) {
+        stars++
+      }
+      if (this.minLength <= level.lengthTarget) {
+        stars++
+      }
+    }
+
+    return stars
+  }
+
   add(averageStep, codeLength) {
     this.won = true
     if (this.minStep < 0 || this.minStep > averageStep) {
