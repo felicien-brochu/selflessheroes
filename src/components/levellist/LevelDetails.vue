@@ -70,7 +70,11 @@
                   class="mdi mdi-pencil"
                   :title="$text('level_details_rename_solution_button')"
                   @mousedown="selectRenamedSolution(solution.id, solution.name, $event)"
-                  @touchstart="selectRenamedSolution(solution.id, solution.name, $event)" /><button v-if="solutions.length > 1"
+                  @touchstart="selectRenamedSolution(solution.id, solution.name, $event)" /><button type="button"
+                  class="mdi mdi-content-copy"
+                  :title="$text('level_details_duplicate_solution_button')"
+                  @mousedown="duplicateSolution(solution.id, $event)"
+                  @touchstart="duplicateSolution(solution.id, $event); $event.preventDefault()" /><button v-if="solutions.length > 1"
                   type="button"
                   class="mdi mdi-delete"
                   :title="$text('level_details_delete_solution_button')"
@@ -117,7 +121,7 @@
               <button v-if="solution.id === levelSolutions.solutionID"
                 type="button"
                 class="mdi mdi-arrow-right-circle"
-                :title="$text('level_details_edit_button')"
+                :title="$text('level_details_edit_button_tooltip')"
                 @mousedown="editLevelSolution"
                 @touchstart="editLevelSolution" />
             </div>
@@ -135,13 +139,13 @@
 
     <div class="button-container">
       <button type="button"
-        :title="$text('level_details_back_button')"
+        :title="$text('level_details_back_button_tooltip')"
         @mousedown="$emit('close')"
         @touchstart="$emit('close')"><i class="mdi mdi-chevron-left" />{{
 				$text('level_details_back_button')
 		}}</button>
       <button type="button"
-        :title="$text('level_details_edit_button')"
+        :title="$text('level_details_edit_button_tooltip')"
         @mousedown="editLevelSolution"
         @touchstart="editLevelSolution">{{
 				$text('level_details_edit_button')
@@ -217,7 +221,13 @@ export default {
       this.renamedSolutionName = solution.name
     },
 
-    deleteSolution(id, e) {
+    duplicateSolution(solutionID) {
+      let solution = this.levelSolutions.duplicateSolution(solutionID)
+      this.renamedSolutionID = solution.id
+      this.renamedSolutionName = solution.name
+    },
+
+    deleteSolution(solutionID, e) {
       e.stopPropagation()
 
       this.$refs.modalLayer.addModal({
@@ -226,7 +236,7 @@ export default {
         props: {
           text: this.$text('level_details_delete_solution_warning'),
           cancelable: true,
-          confirmValue: id,
+          confirmValue: solutionID,
           confirmLabel: this.$text('modal_confirm_yes'),
           cancelLabel: this.$text('modal_cancel_no')
         },
