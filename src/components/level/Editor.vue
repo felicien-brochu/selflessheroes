@@ -6,7 +6,7 @@
 
     <modal-layer ref="modalLayer" />
 
-    <template v-if="this.worldReady">
+    <template v-if="worldReady">
       <transition name="slide"
         appear>
         <variable-debugger v-if="playing && followHeroIndex >= 0 && compilerConfig && compilerConfig.variables > 0"

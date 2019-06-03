@@ -18,4 +18,19 @@ export default class HeroS extends CharacterS {
   constructor(scene, hero, tileWidth, tileHeight) {
     super(scene, hero, assets[hero.color], tileWidth, tileHeight, 0, -21)
   }
+
+  startCreateAnimation() {
+    const fallHeight = 50
+    let targetY = this.y
+    this.y -= fallHeight
+    this.alpha = 0
+
+    this.scene.tweens.add({
+      targets: this,
+      y: targetY,
+      alpha: 1,
+      ease: 'Quad.easeOut',
+      duration: 400
+    })
+  }
 }
