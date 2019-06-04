@@ -5,7 +5,10 @@
   <div class="variable-value">
 
     <div v-if="isRawType"
-      class="raw-value">{{variable.getDominantValue().value.toString()}}</div>
+      :class="{
+				'raw-value': true,
+				'small': variable.getDominantValue().value.toString().length >= 3
+			}">{{variable.getDominantValue().value.toString()}}</div>
 
     <i v-else-if="isIconType"
       :class="icon" />
@@ -135,8 +138,13 @@ export default {
         }
 
         .raw-value {
-            font-size: 24px;
+            font-family: Digits, Roboto, sans-serif;
+            font-size: 16px;
             text-align: center;
+
+            &.small {
+                font-size: 11px;
+            }
         }
 
         .egg-value {
