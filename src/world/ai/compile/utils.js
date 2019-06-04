@@ -116,7 +116,9 @@ export function createUnitExpression(code, expressionClasses, parent, line, colu
 export function extractParams(paramsJoinedCode, functionCode, line, column) {
   let params = []
   if (paramsJoinedCode.trim().length > 0) {
-    let position = indexOfStringInLines(paramsJoinedCode, functionCode)
+    let position = indexOfStringInLines(`(${paramsJoinedCode})`, functionCode)
+    position[0].start.column++
+    position[0].end.column--
     let code = subCode(functionCode, position[0].start.line, position[0].start.column, position[0].end.line, position[0].end.column)
     let codeSplit = [{}, {
       code: code,
