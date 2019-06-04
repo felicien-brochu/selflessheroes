@@ -1,6 +1,9 @@
 <template>
 <ul class="palette">
   <palette-statement v-for="statement in statements"
+    :class="{
+			'category-last': statement.last
+		}"
     :statement="statement"
     :key="statement.keyword"
     :placeHolder="chosenStatement && statement.keyword === chosenStatement.keyword"
@@ -95,6 +98,16 @@ export default {
         }
       })
 
+      if (assign.length > 0) {
+        assign[assign.length - 1].last = true
+      }
+      if (actions.length > 0) {
+        actions[actions.length - 1].last = true
+      }
+      if (branching.length > 0) {
+        branching[branching.length - 1].last = true
+      }
+
       return [
         ...branching,
         ...actions,
@@ -113,7 +126,7 @@ export default {
 
 <style lang="scss">
 .palette {
-    padding: 7px 20px 30px 15px;
+    padding: 7px 20px 20px 15px;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
     background-color: #282c34;
@@ -125,6 +138,10 @@ export default {
 
     .palette-statement {
         margin-top: 8px;
+
+        &.category-last {
+            margin-bottom: 10px;
+        }
     }
 }
 </style>
