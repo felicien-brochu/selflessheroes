@@ -30,9 +30,12 @@
 			}}</div>
 
       <div class="stars-count">
-        <i class="star-icon">{{
+        <i class="star-icon"><span :class="{
+					'number': true,
+					'small': career.stars.toString().length >= 3
+				}">{{
 					career.stars
-				}}</i>
+				}}</span></i>
       </div>
 
     </router-link>
@@ -262,11 +265,23 @@ export default {
                     height: 100px;
                     background-image: url("../images/star.png");
                     background-size: cover;
-                    color: #394249;
-                    font-style: normal;
+                    line-height: 100px;
                     text-align: center;
-                    font-size: 30px;
-                    line-height: 112px;
+
+                    .number {
+                        color: #394249;
+                        font-style: normal;
+                        text-align: center;
+                        width: 60px;
+                        font-size: 19px;
+                        font-family: Digits, sans-serif;
+                        vertical-align: middle;
+                        margin-left: 4px;
+
+                        &.small {
+                            font-size: 16px;
+                        }
+                    }
                 }
             }
         }
