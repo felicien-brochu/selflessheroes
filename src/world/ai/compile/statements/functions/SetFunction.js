@@ -4,6 +4,7 @@ import ExpressionTypes from '../ExpressionTypes'
 import VariableIdentifier from '../VariableIdentifier'
 import DirectionLiteral from '../literals/DirectionLiteral'
 import IntegerLiteral from '../literals/IntegerLiteral'
+import MyItemLiteral from '../literals/MyItemLiteral'
 import Direction from '../../../../Direction'
 import {
   MismatchStatementException,
@@ -26,11 +27,11 @@ export default class SetFunction extends ValueFunction {
         type: DirectionLiteral,
         multiple: false
       }, {
-        type: IntegerLiteral,
-        multiple: false
+        type: IntegerLiteral
       }, {
-        type: VariableIdentifier,
-        multiple: false
+        type: MyItemLiteral
+      }, {
+        type: VariableIdentifier
       }]
     ]
   }
@@ -56,7 +57,7 @@ export default class SetFunction extends ValueFunction {
 
     if (params.length !== 1) {
       throw new InvalidNumberOfParamsException('\'set\' function requires exactly 1 parameter', this, {
-        template: 'exception_invalid_params_one_dir_or_integer_or_variable_template',
+        template: 'exception_invalid_params_one_dir_integer_variable_myitem_template',
         values: {
           keyword: {
             template: `function_${this.constructor.keyword}`
@@ -69,12 +70,12 @@ export default class SetFunction extends ValueFunction {
   }
 
   compileParam(paramCode, index, config, context) {
-    let param = createUnitExpression(paramCode.code, [DirectionLiteral, IntegerLiteral, VariableIdentifier], this, paramCode.line, paramCode.column)
+    let param = createUnitExpression(paramCode.code, [DirectionLiteral, IntegerLiteral, VariableIdentifier, MyItemLiteral], this, paramCode.line, paramCode.column)
     this.params.push(param)
 
     if (param.type === 'InvalidExpression') {
-      throw new InvalidFunctionParamsException(`\'set\' function requires 1 parameter of type DirectionLiteral, IntegerLiteral or VariableIdentifier`, param, {
-        template: 'exception_invalid_dir_or_integer_or_variable_param_template',
+      throw new InvalidFunctionParamsException(`\'set\' function requires 1 parameter of type DirectionLiteral, IntegerLiteral, VariableIdentifier or MyItemLiteral`, param, {
+        template: 'exception_invalid_dir_integer_variable_myitem_param_template',
         values: {
           keyword: {
             template: `function_${this.constructor.keyword}`

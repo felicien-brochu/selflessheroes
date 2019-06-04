@@ -11,6 +11,8 @@ import {
   moduloOperator
 } from '../literals/ArithmeticOperatorLiteral'
 import IntegerLiteral from '../literals/IntegerLiteral'
+import MyItemLiteral from '../literals/MyItemLiteral'
+import DirectionLiteral from '../literals/DirectionLiteral'
 import Direction from '../../../../Direction'
 import {
   MismatchStatementException,
@@ -30,7 +32,11 @@ export default class CalcFunction extends ValueFunction {
   getParamTypes() {
     return [
       [{
+        type: MyItemLiteral
+      }, {
         type: IntegerLiteral
+      }, {
+        type: DirectionLiteral
       }, {
         type: VariableIdentifier
       }],
@@ -38,7 +44,11 @@ export default class CalcFunction extends ValueFunction {
         type: ArithmeticOperatorLiteral
       }],
       [{
+        type: MyItemLiteral
+      }, {
         type: IntegerLiteral
+      }, {
+        type: DirectionLiteral
       }, {
         type: VariableIdentifier
       }]
@@ -70,7 +80,14 @@ export default class CalcFunction extends ValueFunction {
         values: {
           keyword: {
             template: `function_${this.constructor.keyword}`
-          }
+          },
+          operators: [
+            addOperator,
+            substractOperator,
+            multiplyOperator,
+            moduloOperator,
+            divideOperator
+          ]
         }
       })
     }
@@ -83,7 +100,7 @@ export default class CalcFunction extends ValueFunction {
     if (index === 1) {
       param = createUnitExpression(paramCode.code, [ArithmeticOperatorLiteral], this, paramCode.line, paramCode.column)
     } else {
-      param = createUnitExpression(paramCode.code, [IntegerLiteral, VariableIdentifier], this, paramCode.line, paramCode.column)
+      param = createUnitExpression(paramCode.code, [IntegerLiteral, MyItemLiteral, DirectionLiteral, VariableIdentifier], this, paramCode.line, paramCode.column)
     }
     this.params.push(param)
 
@@ -93,7 +110,14 @@ export default class CalcFunction extends ValueFunction {
         values: {
           keyword: {
             template: `function_${this.constructor.keyword}`
-          }
+          },
+          operators: [
+            addOperator,
+            substractOperator,
+            multiplyOperator,
+            moduloOperator,
+            divideOperator
+          ]
         }
       })
     }

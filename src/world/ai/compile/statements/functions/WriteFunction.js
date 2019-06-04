@@ -22,11 +22,9 @@ export default class WriteFunction extends ActionFunction {
   getParamTypes() {
     return [
       [{
-        type: IntegerLiteral,
-        multiple: false
+        type: IntegerLiteral
       }, {
-        type: VariableIdentifier,
-        multiple: false
+        type: VariableIdentifier
       }]
     ]
   }
