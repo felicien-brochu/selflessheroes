@@ -119,14 +119,17 @@ export default class SimpleBooleanExpression extends Expression {
     } else if (this.operator === neOperator) {
       value = !this.computeEqual(value1, value2)
     } else if (value1.hasIntegerValue() && value2.hasIntegerValue()) {
+      let int1 = value1.getFirstIntegerValue().value
+      let int2 = value2.getFirstIntegerValue().value
+
       if (this.operator === ltOperator) {
-        value = value1.value < value2.value
+        value = int1 < int2
       } else if (this.operator === leOperator) {
-        value = value1.value <= value2.value
+        value = int1 <= int2
       } else if (this.operator === gtOperator) {
-        value = value1.value > value2.value
+        value = int1 > int2
       } else if (this.operator === geOperator) {
-        value = value1.value >= value2.value
+        value = int1 >= int2
       }
     }
 

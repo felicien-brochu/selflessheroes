@@ -159,6 +159,8 @@ const messages = {
     drop_down_list_direction: "direction",
     drop_down_list_number: "number",
 
+    drop_down_list_my_item_literal: "my item",
+
     drop_down_list_object_type_hero: "hero",
     drop_down_list_object_type_switch: "switch",
     drop_down_list_object_type_bonfire: "bonfire",
@@ -325,6 +327,8 @@ const messages = {
 
     drop_down_list_direction: "direction",
     drop_down_list_number: "nombre",
+
+    drop_down_list_my_item_literal: "mon item",
 
     drop_down_list_object_type_hero: "héro",
     drop_down_list_object_type_switch: "bouton",

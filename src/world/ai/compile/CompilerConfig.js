@@ -20,6 +20,7 @@ import ObjectTypeLiteral from './statements/literals/ObjectTypeLiteral'
 import TerrainTypeLiteral from './statements/literals/TerrainTypeLiteral'
 import DirectionLiteral from './statements/literals/DirectionLiteral'
 import IntegerLiteral from './statements/literals/IntegerLiteral'
+import MyItemLiteral from './statements/literals/MyItemLiteral'
 import ObjectType from '../../ObjectType'
 import TerrainType from '../../TerrainType'
 
@@ -66,7 +67,8 @@ const comparisonExpressionMap = {
   object_type: ObjectTypeLiteral,
   direction: DirectionLiteral,
   integer: IntegerLiteral,
-  variable: VariableIdentifier
+  variable: VariableIdentifier,
+  myitem: MyItemLiteral
 }
 
 export default class CompilerConfig {
@@ -103,8 +105,7 @@ export default class CompilerConfig {
       terrainTypes: [
         'wall',
         'hole',
-        'floor',
-        'void'
+        'floor'
       ],
       objectTypes: [
         'hero',
@@ -125,14 +126,16 @@ export default class CompilerConfig {
       ],
       leftComparisonExpressions: [
         'direction',
+        'myitem',
         'variable'
       ],
       rightComparisonExpressions: [
         'terrain_type',
         'object_type',
         'direction',
-        'variable',
         'integer',
+        'myitem',
+        'variable'
       ]
     })
   }

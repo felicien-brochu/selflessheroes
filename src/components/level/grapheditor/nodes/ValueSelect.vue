@@ -40,6 +40,7 @@ import ObjectTypeLiteral from '../../../../world/ai/compile/statements/literals/
 import TerrainTypeLiteral from '../../../../world/ai/compile/statements/literals/TerrainTypeLiteral'
 import DirectionLiteral from '../../../../world/ai/compile/statements/literals/DirectionLiteral'
 import IntegerLiteral from '../../../../world/ai/compile/statements/literals/IntegerLiteral'
+import MyItemLiteral from '../../../../world/ai/compile/statements/literals/MyItemLiteral'
 import ArithmeticOperatorLiteral from '../../../../world/ai/compile/statements/literals/ArithmeticOperatorLiteral'
 import ObjectType from '../../../../world/ObjectType'
 import TerrainType from '../../../../world/TerrainType'
@@ -88,6 +89,9 @@ export default {
       else if (this.value instanceof VariableIdentifier) {
         return this.value.name
       }
+      else if (this.value instanceof MyItemLiteral) {
+        return this.$text('drop_down_list_my_item_literal')
+      }
       else if (this.value instanceof ObjectTypeLiteral) {
         return this.$text(`drop_down_list_object_type_${this.value.name}`)
       }
@@ -102,6 +106,9 @@ export default {
       let icon = ''
       if (this.value instanceof VariableIdentifier) {
         icon = 'variable'
+      }
+      else if (this.value instanceof MyItemLiteral) {
+        icon = 'myitem'
       }
       else if (this.value instanceof ObjectTypeLiteral || this.value instanceof TerrainTypeLiteral) {
         icon = this.value.name

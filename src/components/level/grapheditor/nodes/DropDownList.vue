@@ -31,6 +31,7 @@ import ObjectTypeLiteral from '../../../../world/ai/compile/statements/literals/
 import TerrainTypeLiteral from '../../../../world/ai/compile/statements/literals/TerrainTypeLiteral'
 import DirectionLiteral from '../../../../world/ai/compile/statements/literals/DirectionLiteral'
 import IntegerLiteral from '../../../../world/ai/compile/statements/literals/IntegerLiteral'
+import MyItemLiteral from '../../../../world/ai/compile/statements/literals/MyItemLiteral'
 import ArithmeticOperatorLiteral from '../../../../world/ai/compile/statements/literals/ArithmeticOperatorLiteral'
 import ObjectType from '../../../../world/ObjectType'
 import TerrainType from '../../../../world/TerrainType'
@@ -81,6 +82,9 @@ export default {
         }
         else if (type === IntegerLiteral) {
           items.push(this.createIntegerLiteralItem())
+        }
+        else if (type === MyItemLiteral) {
+          items.push(this.createMyItemLiteralItem())
         }
         else if (type === VariableIdentifier) {
           items = items.concat(this.createVariableItems())
@@ -147,6 +151,15 @@ export default {
         icon: 'number',
         value: IntegerLiteral,
         selected: this.value instanceof IntegerLiteral
+      }
+    },
+
+    createMyItemLiteralItem() {
+      return {
+        label: this.$text('drop_down_list_my_item_literal'),
+        icon: 'myitem',
+        value: new MyItemLiteral(null),
+        selected: this.value instanceof MyItemLiteral
       }
     },
 

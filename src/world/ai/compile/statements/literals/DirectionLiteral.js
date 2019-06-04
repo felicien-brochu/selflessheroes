@@ -1,8 +1,7 @@
 import Expression from '../Expression'
 import ExpressionValue from '../ExpressionValue'
 import {
-  MismatchStatementException,
-  ForbiddenObjectTypeLiteralException
+  MismatchStatementException
 } from '../../CompilerException'
 import {
   NotDecompilableStatementException
@@ -21,7 +20,7 @@ export default class DirectionLiteral extends Expression {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(DirectionLiteral.codeRegExp)
     if (!res) {
-      throw new MismatchStatementException('you try to compile as a type literal a statement which is not one', this)
+      throw new MismatchStatementException('you try to compile as a direction literal a statement which is not one', this)
     }
 
     this.name = joinedCode.trim()

@@ -52,6 +52,7 @@ export default {
     font-size: 18px;
     line-height: 26px;
     font-weight: 400;
+    white-space: nowrap;
     padding: 4px 9px 4px 6px;
 
     &:nth-child(odd) {
