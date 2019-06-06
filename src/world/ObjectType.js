@@ -12,6 +12,7 @@ export default class ObjectType {
   }
 }
 
+ObjectType.nothing = Symbol('nothingType')
 ObjectType.hero = Symbol('heroType')
 ObjectType.switch = Symbol('switchType')
 ObjectType.bonfire = Symbol('bonfireType')

@@ -53,12 +53,19 @@ export default class DirectionLiteral extends Expression {
     let worldObjects = context.world.getWorldObjectsAt(x, y)
       .map(obj => ExpressionValue.object(obj.shallowCopy()))
       .sort((a, b) => a.value.type === ObjectType.hero ? 1 : 0)
+
     // Remove hero self from results and replace by object type hero
     if (direction.equals(Direction.here)) {
       worldObjects = worldObjects.filter(o => o.value.type !== ObjectType.hero)
       worldObjects.push(ExpressionValue.objectType(ObjectType.hero))
     }
-    res = res.concat(worldObjects)
+
+    // Insert nothing object type if no object
+    if (worldObjects.length === 0) {
+      res.push(ExpressionValue.objectType(ObjectType.nothing))
+    } else {
+      res = res.concat(worldObjects)
+    }
 
     let terrainType = context.world.map.getTerrainTypeAt(x, y)
     res.push(ExpressionValue.terrainType(terrainType))

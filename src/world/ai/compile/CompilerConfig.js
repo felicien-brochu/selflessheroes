@@ -42,6 +42,7 @@ const terrainTypeMap = {
 }
 
 const objectTypeMap = {
+  nothing: 'nothing',
   hero: 'hero',
   switch: 'switch',
   bonfire: 'bonfire',
@@ -111,7 +112,8 @@ export default class CompilerConfig {
         'hero',
         'switch',
         'bonfire',
-        'egg'
+        'egg',
+        'nothing'
       ],
       valueFunctions: [
         'set',

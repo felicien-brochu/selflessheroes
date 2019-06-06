@@ -1,5 +1,6 @@
 import Expression from '../Expression'
 import ExpressionValue from '../ExpressionValue'
+import ObjectType from '../../../../ObjectType'
 import {
   MismatchStatementException
 } from '../../CompilerException'
@@ -31,12 +32,11 @@ export default class MyItemLiteral extends Expression {
   }
 
   computeValue(context) {
-    let res = []
     if (context.character.item) {
-      res.push(ExpressionValue.object(context.character.item.shallowCopy()))
+      return ExpressionValue.object(context.character.item.shallowCopy())
+    } else {
+      return ExpressionValue.objectType(ObjectType.nothing)
     }
-
-    return ExpressionValue.composite(res)
   }
 }
 
