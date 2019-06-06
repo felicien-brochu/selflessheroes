@@ -14,13 +14,16 @@
       @mousedown.native="handleEditDirection"
       @touchstart.native="handleEditDirection" />
     <div v-else-if="isInteger"
-      class="label"
+      class="label number-label"
       @mousedown="handleEditInteger"
       @touchstart="handleEditInteger">
       <div class="label-text">{{label}}</div>
     </div>
     <div v-else
-      class="label"
+      :class="{
+				'label': true,
+				'arithmetic-operator': isArithmeticOperator
+			}"
       @mousedown="handleDropDown"
       @touchstart="handleDropDown"><i v-if="icon.length > 0"
         :class="`icon-${icon}`" />
@@ -134,6 +137,9 @@ export default {
     },
     isInteger: function() {
       return this.value instanceof IntegerLiteral
+    },
+    isArithmeticOperator: function() {
+      return this.value instanceof ArithmeticOperatorLiteral
     },
     hasDropDown: function() {
       return !(this.types.length === 1 && (this.types[0].type === DirectionLiteral || this.types[0].type === IntegerLiteral || this.types[0].type === 'booleanOperator' || this.types[0].type === 'newBooleanOperator'))
@@ -297,7 +303,7 @@ export default {
     color: inherit;
     height: 26px;
     line-height: 1;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
     cursor: default;
 
@@ -338,14 +344,19 @@ export default {
             display: flex;
             align-items: center;
 
+            &.arithmetic-operator,
+            &.number-label {
+                font-size: 20px;
+            }
+
             .label-text {
                 text-align: center;
                 flex-grow: 1;
             }
 
             i {
-                width: 22px;
-                height: 22px;
+                width: 20px;
+                height: 20px;
                 margin-right: 5px;
                 display: inline-block;
                 background-position: center;
