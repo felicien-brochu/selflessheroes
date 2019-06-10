@@ -2,14 +2,38 @@ var webpack = require('webpack')
 const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const PreloadWebpackPlugin = require('preload-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WebpackAutoInject = require('webpack-auto-inject-version')
 const VueLoader = require('vue-loader')
 
 const env = process.env.NODE_ENV
+const platform = process.env.platform
+
+const copiedFiles = [{
+  context: 'src/levels',
+  from: '**',
+  to: 'levels',
+  ignore: ['model/**/*', '*.js', '*.tmx']
+}, {
+  context: 'src/icons',
+  from: '**',
+  to: 'icons'
+}, {
+  context: 'src/manifest',
+  from: '**',
+  to: ''
+}]
+
+if (platform === 'electron') {
+  copiedFiles.push({
+    from: 'src/icons/android-icon-512x512.png',
+    to: 'icon.png'
+  })
+}
 
 const config = {
   entry: {
@@ -97,12 +121,7 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin([{
-      context: 'src/levels',
-      from: '**',
-      to: 'levels',
-      ignore: ['model/**/*', '*.js', '*.tmx']
-    }]),
+    new CopyWebpackPlugin(copiedFiles),
     new WebpackAutoInject({
       components: {
         InjectAsComment: false
@@ -114,6 +133,11 @@ const config = {
       filename: path.join(__dirname, 'dist', 'index.html'),
       template: path.join(__dirname, 'src', 'index.html'),
       inject: true
+    }),
+    new PreloadWebpackPlugin({
+      rel: 'preload',
+      include: 'allAssets',
+      fileWhitelist: [/\.woff2/]
     })
   ],
   resolve: {
@@ -126,15 +150,12 @@ const config = {
 
 if (env === 'production') {
   config.optimization.minimizer = [
-    new UglifyJsPlugin({
-      cache: true,
+    new TerserPlugin({
       parallel: true,
-      uglifyOptions: {
-        output: {
-          comments: false,
-        },
+      terserOptions: {
+        ecma: 6,
       },
-    }),
+    })
   ]
 }
 

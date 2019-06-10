@@ -1,14 +1,6 @@
 @font-face {
-	font-family: "Menlo";
-	src: url("./Menlo/Menlo.eot") format("embedded-opentype"), url("./Menlo/Menlo.woff2") format("woff2"), url("./Menlo/Menlo.woff") format("woff"), url("./Menlo/Menlo.ttf") format("truetype"), url("./Menlo/Menlo.svg") format("svg");
-}
-@font-face {
 	font-family: "Consolas";
 	src: url("./Consolas/Consolas.eot") format("embedded-opentype"), url("./Consolas/Consolas.woff2") format("woff2"), url("./Consolas/Consolas.woff") format("woff"), url("./Consolas/Consolas.ttf") format("truetype"), url("./Consolas/Consolas.svg") format("svg");
-}
-@font-face {
-	font-family: "Monaco";
-	src: url("./Monaco/Monaco.eot") format("embedded-opentype"), url("./Monaco/Monaco.woff2") format("woff2"), url("./Monaco/Monaco.woff") format("woff"), url("./Monaco/Monaco.ttf") format("truetype"), url("./Monaco/Monaco.svg") format("svg");
 }
 @font-face {
 	font-family: "Digits";

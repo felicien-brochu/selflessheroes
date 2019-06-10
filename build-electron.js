@@ -24,6 +24,11 @@ const config = {
   appId: "fr.felicienbrochu.aiworld",
   productName: "AIWorld",
   copyright: "Copyright © 2019 Félicien Brochu",
+  directories: {
+    app: '.',
+    output: 'electron-dist',
+    buildResources: 'dist'
+  },
   files: [
     "src/electron.js",
     "dist/index.html",
