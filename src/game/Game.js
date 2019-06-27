@@ -18,10 +18,12 @@ import {
 import Compiler from '../world/ai/compile/Compiler'
 import CompilerConfig from '../world/ai/compile/CompilerConfig'
 import HeroS from './sprites/HeroS'
+import NpcS from './sprites/NpcS'
 import ObservationS from './sprites/ObservationS'
 import DirectionS from './sprites/DirectionS'
 import SwitchS from './sprites/SwitchS'
 import BonfireS from './sprites/BonfireS'
+import SpikesS from './sprites/SpikesS'
 import EggS from './sprites/EggS'
 import FireBallS from './sprites/FireBallS'
 
@@ -140,10 +142,12 @@ export default class extends Phaser.Scene {
 
   createWorld() {
     this.heroes = []
+    this.npcs = []
     this.directions = new Map()
     this.observations = new Map()
     this.switches = []
     this.bonfires = []
+    this.spikes = []
     this.eggs = []
 
     for (let egg of this.world.eggs) {
@@ -167,6 +171,12 @@ export default class extends Phaser.Scene {
       this.directions.set(sprite, null)
     }
 
+    for (let npc of this.world.npcs) {
+      let sprite = new NpcS(this, npc, this.map.tileWidth, this.map.tileHeight)
+      this.npcs.push(sprite)
+      this.add.existing(sprite)
+    }
+
     for (let mySwitch of this.world.switches) {
       let sprite = new SwitchS(this, mySwitch, this.map.tileWidth, this.map.tileHeight)
       this.switches.push(sprite)
@@ -175,6 +185,11 @@ export default class extends Phaser.Scene {
     for (let bonfire of this.world.bonfires) {
       let sprite = new BonfireS(this, bonfire, this.map.tileWidth, this.map.tileHeight)
       this.bonfires.push(sprite)
+      this.add.existing(sprite)
+    }
+    for (let spikes of this.world.spikes) {
+      let sprite = new SpikesS(this, spikes, this.map.tileWidth, this.map.tileHeight)
+      this.spikes.push(sprite)
       this.add.existing(sprite)
     }
   }
@@ -274,8 +289,10 @@ export default class extends Phaser.Scene {
   getWorldObjectSprites() {
     let sprites = [
       ...this.heroes,
+      ...this.npcs,
       ...this.switches,
       ...this.bonfires,
+      ...this.spikes,
       ...this.eggs
     ]
 

@@ -163,14 +163,16 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     if (!this.dead && this.character.dead) {
       this.dead = this.character.dead
       this.emit('die', this)
-      if (this.character.deathReason === CharacterDeathReason.burnt) {
+      if (this.character.deathReason === CharacterDeathReason.burnt ||
+        this.character.deathReason === CharacterDeathReason.spikes ||
+        this.character.deathReason === CharacterDeathReason.touchedEnemy) {
         setTimeout(() => {
           // Check if destroyed
           if (this.scene) {
             this.sprite.play('ashes', true)
           }
-        }, 200)
-        this.scene.soundManager.play('scream_sfx')
+        }, this.character.deathReason === CharacterDeathReason.burnt ? 200 : 0)
+        this.scene.soundManager.play(this.getScreamAsset())
       }
       this.depthOffset = -14
     }
@@ -281,7 +283,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
         duration: duration,
         ease: ease
       })
-      this.scene.soundManager.play('scream_sfx', {
+      this.scene.soundManager.play('hero_scream_sfx', {
         delay: duration / 1000
       })
     }

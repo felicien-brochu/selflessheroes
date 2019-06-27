@@ -155,7 +155,6 @@ export default class CameraControl extends Phaser.Cameras.Controls.FixedKeyContr
   }
 
   update(delta) {
-    // this.updateDrag(delta)
     if (!this.active) {
       return
     }

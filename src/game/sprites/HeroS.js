@@ -19,6 +19,10 @@ export default class HeroS extends CharacterS {
     super(scene, hero, assets[hero.color], tileWidth, tileHeight, 0, -21)
   }
 
+  getScreamAsset() {
+    return 'hero_scream_sfx'
+  }
+
   startCreateAnimation() {
     const fallHeight = 50
     let targetY = this.y

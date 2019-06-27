@@ -148,7 +148,6 @@ export default {
 
   methods: {
     compileCode() {
-      console.debug("####COMPILE code", this.code)
       let compiler = new Compiler(this.code, this.compilerConfig)
       compiler.compile()
       let statements = compiler.statements
@@ -251,7 +250,6 @@ export default {
     decompile(correction = false) {
       let decompiler = new Decompiler(this.statements, this.compilerConfig)
       decompiler.decompile()
-      console.debug("###DECOMPILE", decompiler.exception, decompiler.executable, decompiler.code)
       if (decompiler.exception) {
         throw decompiler.exception
       }

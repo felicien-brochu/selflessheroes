@@ -29,13 +29,14 @@ import knight_yellow from './images/knight_yellow.png'
 // import wogol from './images/wogol.png'
 // import chort from './images/chort.png'
 // import big_zombie from './images/big_zombie.png'
-// import ogre from './images/ogre.png'
+import ogre from './images/ogre.png'
 // import big_demon from './images/big_demon.png'
 
 import button_blue from './images/button_blue.png'
 import button_red from './images/button_red.png'
 // import lever from './images/lever.png'
 import bonfire from './images/bonfire.png'
+import spikes from './images/spikes.png'
 import egg from './images/egg.png'
 
 import explosion from './images/explosion.png'
@@ -59,10 +60,13 @@ import fireworks2 from './images/fireworks2.png'
 
 import fireworks_sfx from './audio/fireworks.mp3'
 import tests_sfx from './audio/tests.mp3'
-import scream_sfx from './audio/scream.mp3'
+import hero_scream_sfx from './audio/hero_scream.mp3'
+import npc_scream_sfx from './audio/npc_scream.mp3'
 import step_sfx from './audio/step.mp3'
 import fireball_sfx from './audio/fireball.mp3'
 import bonfire_sfx from './audio/bonfire.mp3'
+import spikes_on_sfx from './audio/spikes_on.mp3'
+import spikes_off_sfx from './audio/spikes_off.mp3'
 
 // FONTS
 
@@ -193,10 +197,10 @@ export default class extends Phaser.Scene {
     //   frameWidth: 64,
     //   frameHeight: 68
     // })
-    // this.load.spritesheet('ogre', ogre, {
-    //   frameWidth: 64,
-    //   frameHeight: 64
-    // })
+    this.load.spritesheet('ogre', ogre, {
+      frameWidth: 64,
+      frameHeight: 64
+    })
     // this.load.spritesheet('big_demon', big_demon, {
     //   frameWidth: 64,
     //   frameHeight: 72
@@ -216,6 +220,10 @@ export default class extends Phaser.Scene {
     this.load.spritesheet('bonfire', bonfire, {
       frameWidth: 28,
       frameHeight: 74
+    })
+    this.load.spritesheet('spikes', spikes, {
+      frameWidth: 32,
+      frameHeight: 32
     })
     this.load.image('egg', egg)
     this.load.spritesheet('explosion', explosion, {
@@ -252,10 +260,13 @@ export default class extends Phaser.Scene {
     // AUDIO
     this.load.audio('fireworks_sfx', fireworks_sfx)
     this.load.audio('tests_sfx', tests_sfx)
-    this.load.audio('scream_sfx', scream_sfx)
+    this.load.audio('hero_scream_sfx', hero_scream_sfx)
+    this.load.audio('npc_scream_sfx', npc_scream_sfx)
     this.load.audio('step_sfx', step_sfx)
     this.load.audio('fireball_sfx', fireball_sfx)
     this.load.audio('bonfire_sfx', bonfire_sfx)
+    this.load.audio('spikes_on_sfx', spikes_on_sfx)
+    this.load.audio('spikes_off_sfx', spikes_off_sfx)
 
     //FONTS
     this.load.bitmapFont('digits_font', digits_font_texture, digits_font)

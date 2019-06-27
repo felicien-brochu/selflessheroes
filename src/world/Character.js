@@ -2,14 +2,10 @@ import WorldObject from './WorldObject'
 import IdleAI from './ai/IdleAI'
 
 export default class Character extends WorldObject {
-  constructor(config, aiFactory, tileWidth, tileHeight, world) {
+  constructor(config, tileWidth, tileHeight, world) {
     super(config, tileWidth, tileHeight)
 
-    if (aiFactory) {
-      this.ai = aiFactory.buildAI(world, this)
-    } else {
-      this.ai = new IdleAI(world, this)
-    }
+    this.ai = new IdleAI(world, this)
 
     this.world = world
     this.initialDirection = 'e'

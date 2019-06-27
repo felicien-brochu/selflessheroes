@@ -9,9 +9,15 @@ const soundDefs = [{
     }
   },
   {
-    key: 'scream_sfx',
+    key: 'hero_scream_sfx',
     config: {
       volume: 0.05
+    }
+  },
+  {
+    key: 'npc_scream_sfx',
+    config: {
+      volume: 0.1
     }
   },
   {
@@ -28,6 +34,18 @@ const soundDefs = [{
   },
   {
     key: 'bonfire_sfx',
+    config: {
+      volume: 0.1
+    }
+  },
+  {
+    key: 'spikes_on_sfx',
+    config: {
+      volume: 0.1
+    }
+  },
+  {
+    key: 'spikes_off_sfx',
     config: {
       volume: 0.1
     }

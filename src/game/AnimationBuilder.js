@@ -369,6 +369,16 @@ const anims = {
     start: 1,
     end: 8
   },
+  spikes_off: {
+    sprite: 'spikes',
+    start: 0,
+    end: 0
+  },
+  spikes_on: {
+    sprite: 'spikes',
+    start: 3,
+    end: 3
+  },
   explosion: {
     sprite: 'explosion',
     start: 0,
@@ -420,6 +430,10 @@ export default class AnimationBuilder {
         if (animConfig.frameRate !== undefined) {
           frameRate = animConfig.frameRate
         }
+        let yoyo = false
+        if (animConfig.yoyo !== undefined) {
+          yoyo = animConfig.yoyo
+        }
 
         scene.anims.create({
           key: key,
@@ -428,7 +442,8 @@ export default class AnimationBuilder {
             end: animConfig.end
           }),
           repeat: repeat,
-          frameRate: frameRate
+          frameRate: frameRate,
+          yoyo: yoyo
         })
       }
     }
