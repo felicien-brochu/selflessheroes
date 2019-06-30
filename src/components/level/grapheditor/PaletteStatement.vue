@@ -33,10 +33,10 @@ export default {
   computed: {
     label: function() {
       if (this.isBranchingStatement) {
-        return this.$text(`graph_node_${this.statement.keyword}`)
+        return this.$text(`graph_node_${this.statement.clazz.keyword}`)
       }
       else {
-        return this.$text(`graph_node_function_${this.statement.keyword}`)
+        return this.$text(`graph_node_function_${this.statement.clazz.keyword}`)
       }
     },
     isAssignStatement: function() {

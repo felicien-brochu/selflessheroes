@@ -53,7 +53,14 @@ const messages = {
     level_modal_length_target_unit: "lines",
 
     level_back_button: "Back to level list",
+    level_help_button: "Help",
     level_objective_button: "Objective",
+
+    level_help_modal_title: 'Help',
+    level_help_modal_tab_general_title: 'general',
+    level_help_basic_tutorial_button: 'Basic tutorial',
+    level_help_advanced_tutorial_button: 'Advanced tutorial',
+
     level_objective_modal_objective_title: "objective",
     level_objective_modal_secondary_objectives_title: "secondary objectives",
 
@@ -252,7 +259,11 @@ const messages = {
     level_modal_length_target_unit: "lignes",
 
     level_back_button: "Retour à la liste des niveaux",
+    level_help_button: "Aide",
     level_objective_button: "Objectif",
+
+    level_help_modal_tab_general_title: 'général',
+
     level_objective_modal_objective_title: "objectif",
     level_objective_modal_secondary_objectives_title: "objectifs secondaires",
 

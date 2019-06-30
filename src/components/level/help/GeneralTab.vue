@@ -1,0 +1,60 @@
+<template>
+<div class="tab general-tab">
+  <button class="basic-tutorial-button"
+    :title="$text('level_help_basic_tutorial_button')"
+    @click="handleBasicTutorialClick">{{
+			$text('level_help_basic_tutorial_button')
+		}}<i class="mdi mdi-arrow-right-circle" />
+  </button><button class="advanced-tutorial-button"
+    :title="$text('level_help_advanced_tutorial_button')"
+    @click="handleBasicTutorialClick">{{
+			$text('level_help_advanced_tutorial_button')
+		}}<i class="mdi mdi-arrow-right-circle" />
+  </button>
+</div>
+</template>
+
+<script>
+export default {
+  components: {},
+  props: {},
+  methods: {
+    handleBasicTutorialClick() {
+
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+$text-color: white;
+
+.general-tab {
+    color: white;
+    padding: 16px 15px 20px 23px;
+
+    button {
+        display: block;
+        background: #568AF2;
+        margin: 0;
+        padding: 0 5px 0 15px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+        border-radius: 16px;
+        box-shadow: 0 0 7px 0 #00000066;
+        line-height: 32px;
+        margin-bottom: 14px;
+
+        .mdi-arrow-right-circle {
+            font-size: 25px;
+            margin-left: 8px;
+            vertical-align: bottom;
+        }
+    }
+
+}
+</style>

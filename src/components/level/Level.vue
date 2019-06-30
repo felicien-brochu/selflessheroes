@@ -30,11 +30,22 @@
     <div slot="firstPane"
       class="left-panel">
 
-      <button class="objective-button mdi mdi-flag-variant"
-        type="button"
-        :title="$text('level_objective_button')"
-        @mousedown="showObjectiveModal"
-        @touchstart="$event.preventDefault(); showObjectiveModal()" />
+      <ul class="help-buttons">
+        <li>
+          <button class="help-button mdi mdi-help-circle-outline"
+            type="button"
+            :title="$text('level_help_button')"
+            @mousedown="showHelpModal"
+            @touchstart="$event.preventDefault(); showHelpModal()" />
+        </li>
+        <li>
+          <button class="objective-button mdi mdi-flag-variant"
+            type="button"
+            :title="$text('level_objective_button')"
+            @mousedown="showObjectiveModal"
+            @touchstart="$event.preventDefault(); showObjectiveModal()" />
+        </li>
+      </ul>
 
       <run-bar :worldReady="worldReady"
         :aiReady="aiReady"
@@ -80,6 +91,7 @@ import ModalLayer from '../modal/ModalLayer'
 import Modal from '../modal/Modal'
 import WinModal from './winmodal/WinModal'
 import ObjectiveModal from './ObjectiveModal'
+import HelpModal from './help/HelpModal'
 import Tutorial from './tutorial/Tutorial'
 import Compiler from '../../world/ai/compile/Compiler'
 import Decompiler from '../../world/ai/compile/Decompiler'
@@ -272,6 +284,17 @@ export default {
         this.openingSequence = false
         this.checkTutorialTreated()
       }
+    },
+
+    showHelpModal() {
+      this.$refs.modalLayer.addModal({
+        component: HelpModal,
+        key: 'level_help_modal',
+        props: {
+          compilerConfig: this.compilerConfig
+        },
+        handlers: {}
+      })
     },
 
     checkTutorialTreated() {
@@ -534,22 +557,30 @@ export default {
                 width: 100%;
                 height: 100%;
 
-                .objective-button {
-                    color: transparentize(white, 0.2);
-                    background: none;
-                    border: none;
-                    outline: none;
-                    pointer-events: all;
+                .help-buttons {
                     z-index: 5;
                     position: absolute;
-                    padding: 0;
-                    cursor: pointer;
-                    font-size: 32px;
                     right: 14px;
                     top: 10px;
+                    display: flex;
 
-                    &:hover {
-                        color: white;
+                    li {
+                        margin-left: 12px;
+
+                        button {
+                            background: none;
+                            border: none;
+                            outline: none;
+                            pointer-events: all;
+                            color: transparentize(white, 0.2);
+                            padding: 0;
+                            cursor: pointer;
+                            font-size: 32px;
+
+                            &:hover {
+                                color: white;
+                            }
+                        }
                     }
                 }
 

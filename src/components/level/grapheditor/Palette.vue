@@ -5,8 +5,8 @@
 			'category-last': statement.last
 		}"
     :statement="statement"
-    :key="statement.keyword"
-    :placeHolder="chosenStatement && statement.keyword === chosenStatement.keyword"
+    :key="statement.clazz.keyword"
+    :placeHolder="chosenStatement && statement.clazz.keyword === chosenStatement.clazz.keyword"
     @drag-start="handleDragStart" />
 </ul>
 </template>
@@ -69,43 +69,39 @@ export default {
       let statementClasses = primaryStatements.filter(statementClass => paletteStatements.indexOf(statementClass) >= 0)
       let statements = statementClasses.map(statementClass => {
         return {
-          keyword: statementClass.keyword,
           clazz: statementClass
         }
       })
-      let assign = statementClasses.filter(statementClass => valueFunctions.indexOf(statementClass) >= 0)
-      let actions = statementClasses.filter(statementClass => actionFunctions.indexOf(statementClass) >= 0)
       let branching = statementClasses.filter(statementClass => branchingStatements.indexOf(statementClass) >= 0)
-      assign = assign.map(statementClass => {
+      let actions = statementClasses.filter(statementClass => actionFunctions.indexOf(statementClass) >= 0)
+      let assign = statementClasses.filter(statementClass => valueFunctions.indexOf(statementClass) >= 0)
+      branching = branching.map(statementClass => {
         return {
-          statementType: assignStatementType,
-          keyword: statementClass.keyword,
+          statementType: branchingStatementType,
           clazz: statementClass
         }
       })
       actions = actions.map(statementClass => {
         return {
           statementType: actionStatementType,
-          keyword: statementClass.keyword,
           clazz: statementClass
         }
       })
-      branching = branching.map(statementClass => {
+      assign = assign.map(statementClass => {
         return {
-          statementType: branchingStatementType,
-          keyword: statementClass.keyword,
+          statementType: assignStatementType,
           clazz: statementClass
         }
       })
 
-      if (assign.length > 0) {
-        assign[assign.length - 1].last = true
+      if (branching.length > 0) {
+        branching[branching.length - 1].last = true
       }
       if (actions.length > 0) {
         actions[actions.length - 1].last = true
       }
-      if (branching.length > 0) {
-        branching[branching.length - 1].last = true
+      if (assign.length > 0) {
+        assign[assign.length - 1].last = true
       }
 
       return [
