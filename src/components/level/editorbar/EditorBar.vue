@@ -51,7 +51,8 @@
   </div>
 
 
-  <toggle-button :value="isCodeEditor"
+  <toggle-button id="editor-switch"
+    :value="isCodeEditor"
     :switchColor="{checked: '#252930', unchecked: '#252930', disabled: '#252930'}"
     :color="{checked: '#5d84c7', unchecked: '#FFFFFF', disabled: '#CCCCCC'}"
     :sync="true"

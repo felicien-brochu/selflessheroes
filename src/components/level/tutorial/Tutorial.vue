@@ -57,6 +57,7 @@ export default {
   methods: {
 
     start() {
+      this.stepIndex = -1
       this.$nextTick(() => {
         this.nextStep()
       })

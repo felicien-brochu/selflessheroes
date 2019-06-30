@@ -24,13 +24,23 @@ export class TutorialStep {
 }
 
 export class TutorialAnchor {
-  constructor(selector, arrowPosition = 'top', arrowTargetX = 'center', arrowTargetY = 'center', arrowTargetOffsetX = 0, arrowTargetOffsetY = 0) {
+  constructor(
+    selector,
+    arrowPosition = {
+      position: 'top',
+      origin: 'center',
+      offset: 0
+    }, arrowTarget = {
+      x: 'center',
+      y: 'center'
+    }, arrowTargetOffset = {
+      x: 0,
+      y: 0
+    }) {
     this.selector = selector
     this.arrowPosition = arrowPosition
-    this.arrowTargetX = arrowTargetX
-    this.arrowTargetY = arrowTargetY
-    this.arrowTargetOffsetX = arrowTargetOffsetX
-    this.arrowTargetOffsetY = arrowTargetOffsetY
+    this.arrowTarget = arrowTarget
+    this.arrowTargetOffset = arrowTargetOffset
   }
 
   getTargetNode() {
@@ -59,7 +69,7 @@ export class TutorialAnchor {
 
     let x, y
 
-    switch (this.arrowTargetX) {
+    switch (this.arrowTarget.x) {
       case 'start':
         x = target.x
         break
@@ -72,7 +82,7 @@ export class TutorialAnchor {
       default:
         x = 0
     }
-    switch (this.arrowTargetY) {
+    switch (this.arrowTarget.y) {
       case 'start':
         y = target.y
         break
@@ -86,8 +96,8 @@ export class TutorialAnchor {
         y = 0
     }
 
-    x += this.arrowTargetOffsetX
-    y += this.arrowTargetOffsetY
+    x += this.arrowTargetOffset.x
+    y += this.arrowTargetOffset.y
 
     return {
       x,

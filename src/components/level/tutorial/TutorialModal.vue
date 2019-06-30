@@ -64,26 +64,72 @@ export default {
 
       let style = {}
 
-      switch (this.anchor.arrowPosition) {
+      let {
+        position,
+        origin,
+        offset
+      } = this.anchor.arrowPosition
+
+      switch (position) {
         case 'top':
           style.top = px(y + arrowSize)
           style.left = px(x)
-          style.transform = transformCenterX
+          switch (origin) {
+            case 'center':
+              style.transform = offsetCenterX(-offset)
+              break
+            case 'start':
+              style.transform = offsetStartX(-offset)
+              break
+            case 'end':
+              style.transform = offsetEndX(-offset, width)
+              break
+          }
           break
         case 'bottom':
           style.top = px(y - height - arrowSize)
           style.left = px(x)
-          style.transform = transformCenterX
+          switch (origin) {
+            case 'center':
+              style.transform = offsetCenterX(-offset)
+              break
+            case 'start':
+              style.transform = offsetStartX(-offset)
+              break
+            case 'end':
+              style.transform = offsetEndX(-offset, width)
+              break
+          }
           break
         case 'left':
           style.top = px(y)
           style.left = px(x + arrowSize)
-          style.transform = transformCenterY
+          switch (origin) {
+            case 'center':
+              style.transform = offsetCenterY(-offset)
+              break
+            case 'start':
+              style.transform = offsetStartY(-offset)
+              break
+            case 'end':
+              style.transform = offsetEndY(-offset, height)
+              break
+          }
           break
         case 'right':
           style.top = px(y)
           style.left = px(x - width - arrowSize)
-          style.transform = transformCenterY
+          switch (origin) {
+            case 'center':
+              style.transform = offsetCenterY(-offset)
+              break
+            case 'start':
+              style.transform = offsetStartY(-offset)
+              break
+            case 'end':
+              style.transform = offsetEndY(-offset, height)
+              break
+          }
           break
       }
 
@@ -91,35 +137,99 @@ export default {
     },
 
     computeArrowStyle() {
+      let {
+        width,
+        height
+      } = this.$el.getBoundingClientRect()
+
+      let {
+        position,
+        origin,
+        offset
+      } = this.anchor.arrowPosition
+
       let style = {}
-      switch (this.anchor.arrowPosition) {
+
+      switch (position) {
         case 'top':
-          style.top = px(-arrowSize)
-          style.left = '50%'
-          style.transform = transformCenterX
           style['border-width'] = "0 15px 15px"
           style['border-color'] = "#568AF2 transparent"
+          style.top = px(-arrowSize)
+
+          switch (origin) {
+            case 'center':
+              style.left = '50%'
+              style.transform = offsetCenterX(offset)
+              break
+            case 'start':
+              style.left = '0'
+              style.transform = offsetCenterX(offset)
+              break
+            case 'end':
+              style.left = '0'
+              style.transform = offsetCenterX(width + offset)
+              break
+          }
           break
         case 'bottom':
-          style.bottom = px(-arrowSize)
-          style.left = '50%'
-          style.transform = transformCenterX
           style['border-width'] = "15px 15px 0"
           style['border-color'] = "#568AF2 transparent"
+          style.bottom = px(-arrowSize)
+
+          switch (origin) {
+            case 'center':
+              style.left = '50%'
+              style.transform = offsetCenterX(offset)
+              break
+            case 'start':
+              style.left = '0'
+              style.transform = offsetCenterX(offset)
+              break
+            case 'end':
+              style.left = '0'
+              style.transform = offsetCenterX(width + offset)
+              break
+          }
           break
         case 'left':
-          style.left = px(-arrowSize)
-          style.top = '50%'
-          style.transform = transformCenterY
           style['border-width'] = "15px 15px 15px 0"
           style['border-color'] = "transparent #568AF2"
+          style.left = px(-arrowSize)
+
+          switch (origin) {
+            case 'center':
+              style.top = '50%'
+              style.transform = offsetCenterY(offset)
+              break
+            case 'start':
+              style.top = '0'
+              style.transform = offsetCenterY(offset)
+              break
+            case 'end':
+              style.top = '0'
+              style.transform = offsetCenterY(height + offset)
+              break
+          }
           break
         case 'right':
-          style.right = px(-arrowSize)
-          style.top = '50%'
-          style.transform = transformCenterY
           style['border-width'] = "15px 0 15px 15px"
           style['border-color'] = "transparent #568AF2"
+          style.right = px(-arrowSize)
+
+          switch (origin) {
+            case 'center':
+              style.top = '50%'
+              style.transform = offsetCenterY(offset)
+              break
+            case 'start':
+              style.top = '0'
+              style.transform = offsetCenterY(offset)
+              break
+            case 'end':
+              style.top = '0'
+              style.transform = offsetCenterY(height + offset)
+              break
+          }
           break
         default:
           style.display = 'none'
@@ -130,9 +240,12 @@ export default {
 }
 
 let px = value => `${value}px`
-const transformCenterX = 'translateX(-50%)'
-const transformCenterY = 'translateY(-50%)'
-const transformCenter = 'translate(-50%, -50%)'
+const offsetCenterX = value => `translateX(calc(-50% + ${value}px))`
+const offsetCenterY = value => `translateY(calc(-50% + ${value}px))`
+const offsetStartX = value => `translateX(${value}px)`
+const offsetStartY = value => `translateY(${value}px)`
+const offsetEndX = (value, width) => `translateX(${value - width}px)`
+const offsetEndY = (value, height) => `translateY(${value - height}px)`
 </script>
 
 <style lang="scss">

@@ -3,9 +3,8 @@
   v-hotkey="keymap">
 
   <modal-layer ref="modalLayer" />
-  <tutorial v-if="level.tutorial"
-    ref="tutorial"
-    :config="level.tutorial" />
+  <tutorial ref="tutorial"
+    :config="tutorialConfig" />
 
   <world ref="world"
     :level="level"
@@ -124,17 +123,19 @@ export default {
     let career = storage.get().getCareer(this.careerID)
     let levelSolutions = career.getLevel(this.levelID)
     let solution = levelSolutions.getCurrentSolution()
+    let level = levelManager.getLevelByID(this.levelID)
 
     return {
       code: solution.codeHistory.getCode(),
       codeSource: 'history',
-      level: levelManager.getLevelByID(this.levelID),
+      level: level,
       career: career,
       preferences: storage.preferences,
       levelSolutions: levelSolutions,
       solution: solution,
       codeHistory: solution.codeHistory,
       editorType: solution.editorType,
+      tutorialConfig: null,
       compilerConfig: null,
       worldState: {},
       worldReady: false,
@@ -293,8 +294,20 @@ export default {
         props: {
           compilerConfig: this.compilerConfig
         },
-        handlers: {}
+        handlers: {
+          confirm: this.handleHelpModalClose
+        }
       })
+    },
+
+    handleHelpModalClose(e) {
+      if (typeof e === 'object' && e.action) {
+        switch (e.action) {
+          case 'start-tutorial':
+            this.startTutorial(e.tutorialConfig)
+            break
+        }
+      }
     },
 
     checkTutorialTreated() {
@@ -305,8 +318,13 @@ export default {
         this.solution.hasOpen = true
         this.solution.save()
 
-        this.$refs.tutorial.start()
+        this.startTutorial(this.level.tutorial)
       }
+    },
+
+    startTutorial(config) {
+      this.tutorialConfig = config
+      this.$refs.tutorial.start()
     },
 
     showWinModal() {

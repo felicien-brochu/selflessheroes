@@ -1,6 +1,6 @@
 import Level from '../Level'
 import CompilerConfig from '../../world/ai/compile/CompilerConfig'
-import defaultTutorialConfig from '../../components/level/tutorial/DefaultTutorialConfig'
+import BasicTutorialConfig from '../../components/level/tutorial/BasicTutorialConfig'
 
 /* speed: 3, length: 3
 step(s)
@@ -44,6 +44,6 @@ export default class Level1 extends Level {
   }
 
   get tutorial() {
-    return defaultTutorialConfig
+    return BasicTutorialConfig
   }
 }

@@ -7,7 +7,7 @@
 		}}<i class="mdi mdi-arrow-right-circle" />
   </button><button class="advanced-tutorial-button"
     :title="$text('level_help_advanced_tutorial_button')"
-    @click="handleBasicTutorialClick">{{
+    @click="handleAdvancedTutorialClick">{{
 			$text('level_help_advanced_tutorial_button')
 		}}<i class="mdi mdi-arrow-right-circle" />
   </button>
@@ -15,12 +15,19 @@
 </template>
 
 <script>
+import BasicTutorialConfig from '../tutorial/BasicTutorialConfig'
+import AdvancedTutorialConfig from '../tutorial/AdvancedTutorialConfig'
+
 export default {
   components: {},
   props: {},
   methods: {
     handleBasicTutorialClick() {
+      this.$emit('start-tutorial', BasicTutorialConfig)
+    },
 
+    handleAdvancedTutorialClick() {
+      this.$emit('start-tutorial', AdvancedTutorialConfig)
     }
   }
 }
@@ -30,9 +37,6 @@ export default {
 $text-color: white;
 
 .general-tab {
-    color: white;
-    padding: 16px 15px 20px 23px;
-
     button {
         display: block;
         background: #568AF2;

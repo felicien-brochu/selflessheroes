@@ -3,6 +3,7 @@
   ref="modal"
   type="info"
   :cancelable="false"
+  :confirmValue="confirmValue"
   v-bind="$props"
   @close="$emit('close')"
   @confirm="$emit('confirm', $event)"
@@ -31,7 +32,8 @@
 
     <component class="tab-content"
       :is="currentTab.component"
-      v-bind="currentTab.props" />
+      v-bind="currentTab.props"
+      v-on="currentTab.handlers" />
 
   </div>
 </modal>
@@ -76,9 +78,6 @@ export default {
     'compilerConfig': {
       type: Object
     },
-    'confirmValue': {
-      default: true
-    },
     'frameWidth': {
       type: Number,
       default: window.innerWidth
@@ -95,7 +94,10 @@ export default {
       type: 'text-tab',
       title: this.$text('level_help_modal_tab_general_title'),
       component: GeneralTab,
-      props: {}
+      props: {},
+      handlers: {
+        'start-tutorial': this.handleStartTutorial
+      }
     })
 
     let primaryStatements = [...this.compilerConfig.getAllowedPrimaryStatements(), ...this.compilerConfig.valueFunctions]
@@ -104,14 +106,18 @@ export default {
         type: 'statement-tab',
         statement: statement,
         component: 'div',
-        props: {}
+        props: {},
+        handlers: {}
       })
     }
 
     return {
       tabs: tabs,
       selectedTab: 0,
-      currentTab: tabs[0]
+      currentTab: tabs[0],
+      confirmValue: {
+        action: null
+      }
     }
   },
 
@@ -127,6 +133,13 @@ export default {
     selectTab(tabIndex) {
       this.selectedTab = tabIndex
       this.currentTab = this.tabs[tabIndex]
+    },
+
+    handleStartTutorial(config) {
+      this.$refs.modal.confirm({
+        action: 'start-tutorial',
+        tutorialConfig: config
+      })
     },
 
     getStatements() {
@@ -234,6 +247,11 @@ $selected-color: #535866;
                 box-sizing: border-box;
                 flex-grow: 1;
                 margin-left: -1px;
+
+                &.tab {
+                    color: white;
+                    padding: 16px 15px 20px 23px;
+                }
             }
         }
     }
