@@ -34,8 +34,6 @@ export default {
 </script>
 
 <style lang="scss">
-$text-color: white;
-
 .general-tab {
     button {
         display: block;
@@ -59,6 +57,5 @@ $text-color: white;
             vertical-align: bottom;
         }
     }
-
 }
 </style>

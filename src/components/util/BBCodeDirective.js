@@ -1,5 +1,3 @@
-import textFit from './textFit'
-
 export default function(el, binding) {
   let prefix = binding.value ? binding.value + '-' : ''
   let bbcode = el.innerHTML

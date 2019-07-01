@@ -1,9 +1,5 @@
 <template>
-<div :class="{
-	'node': true,
-	'drag-over-top': dragOverTop,
-	'drag-over-bottom': dragOverBottom
-}">
+<div class="node">
 </div>
 </template>
 

@@ -288,16 +288,18 @@ export default {
     },
 
     showHelpModal() {
-      this.$refs.modalLayer.addModal({
-        component: HelpModal,
-        key: 'level_help_modal',
-        props: {
-          compilerConfig: this.compilerConfig
-        },
-        handlers: {
-          confirm: this.handleHelpModalClose
-        }
-      })
+      if (this.compilerConfig) {
+        this.$refs.modalLayer.addModal({
+          component: HelpModal,
+          key: 'level_help_modal',
+          props: {
+            compilerConfig: this.compilerConfig
+          },
+          handlers: {
+            confirm: this.handleHelpModalClose
+          }
+        })
+      }
     },
 
     handleHelpModalClose(e) {

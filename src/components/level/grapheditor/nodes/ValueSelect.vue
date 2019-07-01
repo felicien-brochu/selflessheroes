@@ -147,7 +147,10 @@ export default {
   },
 
   mounted() {
-    this.popupLayer = document.getElementById("popup-layer").__vue__
+    let popupLayer = document.getElementById("popup-layer")
+    if (popupLayer) {
+      this.popupLayer = popupLayer.__vue__
+    }
   },
 
   beforeDestroy() {},

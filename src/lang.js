@@ -69,10 +69,20 @@ const messages = {
     level_help_button: "Help",
     level_objective_button: "Objective",
 
-    level_help_modal_title: 'Help',
-    level_help_modal_tab_general_title: 'general',
-    level_help_basic_tutorial_button: 'Basic tutorial',
-    level_help_advanced_tutorial_button: 'Advanced tutorial',
+    level_help_modal_title: "Help",
+    level_help_modal_tab_general_title: "general",
+    level_help_basic_tutorial_button: "Basic tutorial",
+    level_help_advanced_tutorial_button: "Advanced tutorial",
+
+    level_help_tab_statement_code_example: "code example:",
+
+    level_help_tab_step_function_1: "%%statement action-statement$step%% says to your hero to go in a direction. If you specify multiple directions, the hero will decide randomly between these directions.",
+    level_help_tab_step_function_2: "You could read the above example as \"go one step to the left or to the right\".",
+    level_help_tab_step_function_3: "%%type-function$step%%(%%type-literal$w%% %%type-literal$e%%)",
+
+    level_help_tab_step_once_function_1: "%%statement action-statement$step%% says to your hero to go in a direction.",
+    level_help_tab_step_once_function_2: "You could read the above example as \"go one step to the right\".",
+    level_help_tab_step_once_function_3: "%%type-function$step%%(%%type-literal$e%%)",
 
     level_objective_modal_objective_title: "objective",
     level_objective_modal_secondary_objectives_title: "secondary objectives",
@@ -158,21 +168,21 @@ const messages = {
     graph_node_function_drop: "drop",
     graph_node_function_write: "write",
 
-    operator_comparison_eq: '=',
-    operator_comparison_ne: '≠',
-    operator_comparison_le: '≤',
-    operator_comparison_lt: '<',
-    operator_comparison_ge: '≥',
-    operator_comparison_gt: '>',
+    operator_comparison_eq: "=",
+    operator_comparison_ne: "≠",
+    operator_comparison_le: "≤",
+    operator_comparison_lt: "<",
+    operator_comparison_ge: "≥",
+    operator_comparison_gt: ">",
 
-    operator_boolean_and: 'and',
-    operator_boolean_or: 'or',
+    operator_boolean_and: "and",
+    operator_boolean_or: "or",
 
-    operator_arithmetic_plus: '+',
-    operator_arithmetic_minus: '−',
-    operator_arithmetic_multiply: '×',
-    operator_arithmetic_divide: '÷',
-    operator_arithmetic_modulo: '%',
+    operator_arithmetic_plus: "+",
+    operator_arithmetic_minus: "−",
+    operator_arithmetic_multiply: "×",
+    operator_arithmetic_divide: "÷",
+    operator_arithmetic_modulo: "%",
 
 
 
@@ -273,7 +283,7 @@ const messages = {
     tutorial_advanced_step_redo: "Rétablit la dernière modification",
     tutorial_advanced_step_delete: "Supprime toutes les instructions",
     tutorial_advanced_step_editor_switch: "Passe à l'éditeur de code.\nAvec l'éditeur de code, vous pouvez copier le programme d'un niveau pour le réutiliser dans un autre.\nLes joueurs les plus avancés peuvent l'utiliser pour créer leur programme directement en code.",
-    tutorial_advanced_step_game: "Pour mieux suivre le comportement d'un héro, sélectionne-le en cliquant dessus.\nQuand le programme est lancé, un curseur bleu apparaîtra alors à gauche des instructions pour montrer à quelle étape du programme se trouve le héro sélectionné.",
+    tutorial_advanced_step_game: "Pour mieux suivre le comportement d'un héro, sélectionne-le en cliquant dessus.\nQuand le programme est lancé, un curseur bleu apparaîtra à gauche des instructions pour montrer à quelle étape du programme se trouve le héro sélectionné.",
     tutorial_advanced_step_play_pause: "Lance ou pause le programme",
     tutorial_advanced_step_step: "Exécute le programme étape par étape",
     tutorial_advanced_step_stop: "Arrête le programme",
@@ -287,10 +297,10 @@ const messages = {
     level_help_button: "Aide",
     level_objective_button: "Objectif",
 
-    level_help_modal_title: 'Aide',
-    level_help_modal_tab_general_title: 'général',
-    level_help_basic_tutorial_button: 'Tutoriel basique',
-    level_help_advanced_tutorial_button: 'Tutoriel avancé',
+    level_help_modal_title: "Aide",
+    level_help_modal_tab_general_title: "général",
+    level_help_basic_tutorial_button: "Tutoriel basique",
+    level_help_advanced_tutorial_button: "Tutoriel avancé",
 
     level_objective_modal_objective_title: "objectif",
     level_objective_modal_secondary_objectives_title: "objectifs secondaires",
@@ -362,8 +372,8 @@ const messages = {
     graph_node_function_drop: "déposer",
     graph_node_function_write: "écrire",
 
-    operator_boolean_and: 'et',
-    operator_boolean_or: 'ou',
+    operator_boolean_and: "et",
+    operator_boolean_or: "ou",
 
     drop_down_list_direction: "direction",
     drop_down_list_number: "nombre",

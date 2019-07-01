@@ -30,7 +30,7 @@
 
     </ul>
 
-    <component class="tab-content"
+    <component class="tab"
       :is="currentTab.component"
       v-bind="currentTab.props"
       v-on="currentTab.handlers" />
@@ -42,6 +42,8 @@
 <script>
 import Modal from '../../modal/Modal'
 import GeneralTab from './GeneralTab'
+import StepFunctionTab from './StepFunctionTab'
+import StepOnceFunctionTab from './StepOnceFunctionTab'
 
 import PaletteStatement from '../grapheditor/PaletteStatement'
 import {
@@ -53,6 +55,14 @@ from '../grapheditor/PaletteStatementType'
 
 import IfStatement from '../../../world/ai/compile/statements/IfStatement'
 import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'
+import CalcFunction from '../../../world/ai/compile/statements/functions/CalcFunction'
+import DropFunction from '../../../world/ai/compile/statements/functions/DropFunction'
+import FireBallFunction from '../../../world/ai/compile/statements/functions/FireBallFunction'
+import SetFunction from '../../../world/ai/compile/statements/functions/SetFunction'
+import StepFunction from '../../../world/ai/compile/statements/functions/StepFunction'
+import StepOnceFunction from '../../../world/ai/compile/statements/functions/StepOnceFunction'
+import TakeFunction from '../../../world/ai/compile/statements/functions/TakeFunction'
+import WriteFunction from '../../../world/ai/compile/statements/functions/WriteFunction'
 import ActionFunctions from '../../../world/ai/compile/statements/functions/ActionFunctions'
 import ValueFunctions from '../../../world/ai/compile/statements/functions/ValueFunctions'
 
@@ -67,6 +77,35 @@ const paletteStatements = [
   ...valueFunctions,
   ...actionFunctions
 ]
+
+// IfStatement
+// JumpStatement
+// CalcFunction
+// DropFunction
+// FireBallFunction
+// SetFunction
+// StepFunction
+// StepOnceFunction
+// TakeFunction
+// WriteFunction
+const statementTabs = new Map([
+  [StepFunction, {
+    component: StepFunctionTab,
+    props: {}
+  }],
+  [StepOnceFunction, {
+    component: StepOnceFunctionTab,
+    props: {}
+  }]
+])
+// {
+//   'step_once': {
+//     component: StatementTab,
+//     props: {
+//       text: 'level_help_tab_step_once'
+//     }
+//   }
+// }
 
 export default {
   components: {
@@ -102,13 +141,21 @@ export default {
 
     let primaryStatements = [...this.compilerConfig.getAllowedPrimaryStatements(), ...this.compilerConfig.valueFunctions]
     for (let statement of this.getStatements()) {
-      tabs.push({
+      let tab = statementTabs.get(statement.clazz)
+      if (!tab) {
+        tab = {
+          component: 'div',
+          props: {}
+        }
+      }
+
+      Object.assign(tab, {
         type: 'statement-tab',
-        statement: statement,
-        component: 'div',
-        props: {},
-        handlers: {}
+        handlers: {},
+        statement: statement
       })
+      tab.props.compilerConfig = this.compilerConfig
+      tabs.push(tab)
     }
 
     return {
@@ -239,18 +286,57 @@ $selected-color: #535866;
                 }
             }
 
-            .tab-content {
+            .tab {
                 border-left: solid 5px $selected-color;
                 background: #282C34;
                 min-height: 100%;
                 min-width: 300px;
-                box-sizing: border-box;
+                box-sizing: content-box;
                 flex-grow: 1;
                 margin-left: -1px;
+                color: transparentize(white, 0.2);
+                font-size: 18px;
+                padding: 16px 15px 20px 23px;
+                text-align: start;
+                white-space: normal;
 
-                &.tab {
-                    color: white;
-                    padding: 16px 15px 20px 23px;
+                .simple-graph-code {
+                    margin-bottom: 8px;
+                }
+
+                p {
+                    margin-top: 0;
+                }
+
+                .statement {
+                    border-radius: 4px;
+                    font-weight: 500;
+                    padding: 0 10px 0 5px;
+                }
+
+                h5 {
+                    font-size: 16px;
+                    margin: 6px 0;
+                    font-weight: 500;
+                }
+
+                .code {
+                    font-family: Consolas, 'DejaVu Sans Mono', monospace;
+                    color: #abb2bf;
+                    background-color: #1F2229;
+                    padding: 2px 4px;
+                    border-radius: 5px;
+                    padding: 7px 13px;
+                }
+
+                .action-statement {
+                    @include node-color($action-color);
+                }
+                .branching-statement {
+                    @include node-color($branching-color);
+                }
+                .assign-statement {
+                    @include node-color($assign-color);
                 }
             }
         }
