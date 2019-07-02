@@ -11,30 +11,32 @@
 
   <h3>{{$text('level_help_modal_title')}}</h3>
 
-  <div class="tab-view">
-    <ul class="tabs">
+  <div class="scroll">
+    <div class="tab-view">
+      <ul class="tabs">
 
-      <li v-for="(tab, index) in tabs"
-        :class="{
+        <li v-for="(tab, index) in tabs"
+          :class="{
 				'selected': index === selectedTab
 			}"
-        @mousedown="selectTab(index)"
-        @touchstart="$event.preventDefault(); selectTab(index)">
-        <palette-statement v-if="tab.type === 'statement-tab'"
-          :statement="tab.statement" />
+          @mousedown="selectTab(index)"
+          @touchstart="$event.preventDefault(); selectTab(index)">
+          <palette-statement v-if="tab.type === 'statement-tab'"
+            :statement="tab.statement" />
 
-        <div v-else>{{
+          <div v-else>{{
 				tab.title
 			}}</div>
-      </li>
+        </li>
 
-    </ul>
+      </ul>
 
-    <component class="tab"
-      :is="currentTab.component"
-      v-bind="currentTab.props"
-      v-on="currentTab.handlers" />
+      <component class="tab"
+        :is="currentTab.component"
+        v-bind="currentTab.props"
+        v-on="currentTab.handlers" />
 
+    </div>
   </div>
 </modal>
 </template>
@@ -42,8 +44,6 @@
 <script>
 import Modal from '../../modal/Modal'
 import GeneralTab from './GeneralTab'
-import StepFunctionTab from './StepFunctionTab'
-import StepOnceFunctionTab from './StepOnceFunctionTab'
 
 import PaletteStatement from '../grapheditor/PaletteStatement'
 import {
@@ -78,6 +78,10 @@ const paletteStatements = [
   ...actionFunctions
 ]
 
+
+import IfStatementTab from './IfStatementTab'
+import StepFunctionTab from './StepFunctionTab'
+import StepOnceFunctionTab from './StepOnceFunctionTab'
 // IfStatement
 // JumpStatement
 // CalcFunction
@@ -89,6 +93,10 @@ const paletteStatements = [
 // TakeFunction
 // WriteFunction
 const statementTabs = new Map([
+  [IfStatement, {
+    component: IfStatementTab,
+    props: {}
+  }],
   [StepFunction, {
     component: StepFunctionTab,
     props: {}
@@ -251,92 +259,104 @@ $selected-color: #535866;
             margin: 0 0 20px;
         }
 
-        .tab-view {
-            display: flex;
-            flex-direction: row;
-            padding-left: 10px;
-            border-radius: 10px;
-            overflow: hidden;
-            background: #32363E;
+        .scroll {
+            overflow-x: hidden;
+            overflow-y: auto;
 
-            .tabs {
+            .tab-view {
                 display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                width: min-content;
-                font-size: 21px;
-                padding-bottom: 30px;
-                padding-top: 20px;
+                flex-direction: row;
+                padding-left: 10px;
+                border-radius: 10px;
+                background: #32363E;
 
-                & > li {
-                    padding: 3px 7px 4px;
-                    border-radius: 6px 0 0 6px;
-                    text-align: start;
-                    width: 100%;
-                    box-sizing: border-box;
-                    cursor: pointer;
+                .tabs {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    width: min-content;
+                    font-size: 21px;
+                    padding-bottom: 30px;
+                    padding-top: 20px;
 
-                    &.selected {
-                        background: $selected-color;
+                    & > li {
+                        padding: 3px 7px 4px;
+                        border-radius: 6px 0 0 6px;
+                        text-align: start;
+                        width: 100%;
+                        box-sizing: border-box;
+                        cursor: pointer;
+
+                        &.selected {
+                            background: $selected-color;
+                        }
+                    }
+
+                    .palette-statement {
+                        box-shadow: none;
                     }
                 }
 
-                .palette-statement {
-                    box-shadow: none;
-                }
-            }
+                .tab {
+                    border-left: solid 5px $selected-color;
+                    background: #282C34;
+                    min-height: 100%;
+                    min-width: 300px;
+                    box-sizing: content-box;
+                    flex-grow: 1;
+                    margin-left: -1px;
+                    color: transparentize(white, 0.2);
+                    font-size: 18px;
+                    padding: 23px 15px 20px 23px;
+                    text-align: start;
+                    white-space: normal;
+                    border-radius: 0 10px 10px 0;
 
-            .tab {
-                border-left: solid 5px $selected-color;
-                background: #282C34;
-                min-height: 100%;
-                min-width: 300px;
-                box-sizing: content-box;
-                flex-grow: 1;
-                margin-left: -1px;
-                color: transparentize(white, 0.2);
-                font-size: 18px;
-                padding: 16px 15px 20px 23px;
-                text-align: start;
-                white-space: normal;
+                    .simple-graph-code {
+                        margin: 15px;
+                    }
 
-                .simple-graph-code {
-                    margin-bottom: 8px;
-                }
+                    p {
+                        margin-top: 0;
+                    }
 
-                p {
-                    margin-top: 0;
-                }
+                    .statement {
+                        border-radius: 4px;
+                        font-weight: 500;
+                        padding: 0 10px 0 5px;
+                    }
 
-                .statement {
-                    border-radius: 4px;
-                    font-weight: 500;
-                    padding: 0 10px 0 5px;
-                }
+                    h5 {
+                        font-size: 16px;
+                        margin: 6px 0;
+                        font-weight: 500;
+                    }
 
-                h5 {
-                    font-size: 16px;
-                    margin: 6px 0;
-                    font-weight: 500;
-                }
+                    .code {
+                        font-family: Consolas, 'DejaVu Sans Mono', monospace;
+                        white-space: pre;
+                        font-size: 18px;
+                        line-height: 24px;
+                        color: #abb2bf;
+                        background-color: #1F2229;
+                        padding: 2px 4px;
+                        border-radius: 5px;
+                        padding: 7px 13px;
+                    }
 
-                .code {
-                    font-family: Consolas, 'DejaVu Sans Mono', monospace;
-                    color: #abb2bf;
-                    background-color: #1F2229;
-                    padding: 2px 4px;
-                    border-radius: 5px;
-                    padding: 7px 13px;
-                }
+                    .text-segment {
+                        white-space: pre-wrap;
+                    }
 
-                .action-statement {
-                    @include node-color($action-color);
-                }
-                .branching-statement {
-                    @include node-color($branching-color);
-                }
-                .assign-statement {
-                    @include node-color($assign-color);
+                    .action-statement {
+                        @include node-color($action-color);
+                    }
+                    .branching-statement {
+                        @include node-color($branching-color);
+                    }
+                    .assign-statement {
+                        @include node-color($assign-color);
+                    }
                 }
             }
         }

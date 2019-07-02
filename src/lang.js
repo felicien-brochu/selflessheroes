@@ -75,13 +75,23 @@ const messages = {
     level_help_advanced_tutorial_button: "Advanced tutorial",
 
     level_help_tab_statement_code_example: "code example:",
+    level_help_tab_statement_graph_code_example: "example:",
+
+    level_help_tab_step_if_statement_1: "%%statement branching-statement$if%% allows to run instructions only if a given condition is true.",
+    level_help_tab_step_if_statement_2: "You could read the above example as \"If the square to the right of me is a wall, then go to the left. Otherwise go to the right\".",
+    level_help_tab_step_if_statement_3: "%%statement branching-statement$if%% checks if the condition is true in which case it will run the instructions inside it (instructions to the right of the vertical gray line). Otherwise it will run the instructions inside the %%statement branching-statement$else%% if there is one.",
+    level_help_tab_step_if_statement_4: "%%statement branching-statement$else%% is not initialy part of the %%statement branching-statement$if%%. To make it appear, drag any instruction over the %%statement branching-statement$if%%.\nIf you remove all the instructions inside %%statement branching-statement$else%%, it will disappear.",
+    level_help_tab_step_if_statement_5: "%%type-keyword$if%% %%type-literal$e%% %%type-operator$==%% %%type-literal$wall%% :\n  %%type-function$step%%(%%type-literal$w%%)\n%%type-keyword$else%%\n  %%type-function$step%%(%%type-literal$e%%)\n%%type-keyword$endif%%\n",
+    level_help_tab_step_if_statement_6: "Click on the plus sign to add other conditions.",
+    level_help_tab_step_if_statement_7: "You could read the above example as \"If the square to the right of me is a wall or if the square to the right of me is a hole, then go to the left\".",
+    level_help_tab_step_if_statement_8: "%%type-keyword$if%% %%type-literal$e%% %%type-operator$==%% %%type-literal$wall%% %%type-operator$||%%\n  %%type-literal$e%% %%type-operator$==%% %%type-literal$hole%% :\n  %%type-function$step%%(%%type-literal$w%%)\n%%type-keyword$endif%%\n",
 
     level_help_tab_step_function_1: "%%statement action-statement$step%% says to your hero to go in a direction. If you specify multiple directions, the hero will decide randomly between these directions.",
-    level_help_tab_step_function_2: "You could read the above example as \"go one step to the left or to the right\".",
+    level_help_tab_step_function_2: "You could read the above example as \"Go one step to the left or to the right\".",
     level_help_tab_step_function_3: "%%type-function$step%%(%%type-literal$w%% %%type-literal$e%%)",
 
     level_help_tab_step_once_function_1: "%%statement action-statement$step%% says to your hero to go in a direction.",
-    level_help_tab_step_once_function_2: "You could read the above example as \"go one step to the right\".",
+    level_help_tab_step_once_function_2: "You could read the above example as \"Go one step to the right\".",
     level_help_tab_step_once_function_3: "%%type-function$step%%(%%type-literal$e%%)",
 
     level_objective_modal_objective_title: "objective",
@@ -301,6 +311,26 @@ const messages = {
     level_help_modal_tab_general_title: "général",
     level_help_basic_tutorial_button: "Tutoriel basique",
     level_help_advanced_tutorial_button: "Tutoriel avancé",
+
+    level_help_tab_statement_code_example: "exemple de code:",
+    level_help_tab_statement_graph_code_example: "exemple:",
+
+    level_help_tab_step_if_statement_1: "%%statement branching-statement$si%% permet d'exécuter des instructions seulement si une condition est vraie.",
+    level_help_tab_step_if_statement_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Si la case à ma droite est un mur, alors va à gauche. Sinon va à droite\".",
+    level_help_tab_step_if_statement_3: "%%statement branching-statement$si%% vérifie si la condition est vraie, dans quel cas les instructions à l'intérieur du %%statement branching-statement$si%% (celles à droite de la barre verticale grise) seront exécutées. Sinon les instructions à l'intérieur du %%statement branching-statement$sinon%% (si il y en a un) seront exécutées.",
+    level_help_tab_step_if_statement_4: "%%statement branching-statement$sinon%% ne fait pas partie du %%statement branching-statement$si%% à la base. Pour le faire apparaître glisse une instruction au-dessus du %%statement branching-statement$si%%.\nPour le faire disparaître, enlève toutes les instructions à l'intérieur du %%statement branching-statement$sinon%%.",
+    level_help_tab_step_if_statement_5: "%%type-keyword$if%% %%type-literal$e%% %%type-operator$==%% %%type-literal$wall%% :\n  %%type-function$step%%(%%type-literal$w%%)\n%%type-keyword$else%%\n  %%type-function$step%%(%%type-literal$e%%)\n%%type-keyword$endif%%\n",
+    level_help_tab_step_if_statement_6: "Clique sur le bouton plus pour ajouter une autre condition.",
+    level_help_tab_step_if_statement_7: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Si la case à ma droite est un mur ou si la case à ma droite est un trou, alors va à gauche\".",
+    level_help_tab_step_if_statement_8: "%%type-keyword$if%% %%type-literal$e%% %%type-operator$==%% %%type-literal$wall%% %%type-operator$||%%\n  %%type-literal$e%% %%type-operator$==%% %%type-literal$hole%% :\n  %%type-function$step%%(%%type-literal$w%%)\n%%type-keyword$endif%%\n",
+
+    level_help_tab_step_function_1: "%%statement action-statement$aller%% dit au héro d'aller dans une direction. Si plusieurs directions sont données, le héro décidera au hasard entre ces directions.",
+    level_help_tab_step_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Fais un pas à gauche ou à droite\".",
+    level_help_tab_step_function_3: "%%type-function$step%%(%%type-literal$w%% %%type-literal$e%%)",
+
+    level_help_tab_step_once_function_1: "%%statement action-statement$aller%% dit au héro d'aller dans une direction.",
+    level_help_tab_step_once_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Fais un pas à droite\".",
+    level_help_tab_step_once_function_3: "%%type-function$step%%(%%type-literal$e%%)",
 
     level_objective_modal_objective_title: "objectif",
     level_objective_modal_secondary_objectives_title: "objectifs secondaires",

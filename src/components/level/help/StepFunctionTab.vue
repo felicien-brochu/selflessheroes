@@ -4,6 +4,7 @@
 		$text('level_help_tab_step_function_1')
 	}}</p>
 
+  <h5>{{$text('level_help_tab_statement_graph_code_example')}}</h5>
   <p>
     <simple-graph-code code="step(e w)"
       :compilerConfig="compilerConfig" />
