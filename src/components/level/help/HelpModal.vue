@@ -80,6 +80,7 @@ const paletteStatements = [
 
 
 import IfStatementTab from './IfStatementTab'
+import JumpStatementTab from './JumpStatementTab'
 import StepFunctionTab from './StepFunctionTab'
 import StepOnceFunctionTab from './StepOnceFunctionTab'
 // IfStatement
@@ -95,6 +96,10 @@ import StepOnceFunctionTab from './StepOnceFunctionTab'
 const statementTabs = new Map([
   [IfStatement, {
     component: IfStatementTab,
+    props: {}
+  }],
+  [JumpStatement, {
+    component: JumpStatementTab,
     props: {}
   }],
   [StepFunction, {

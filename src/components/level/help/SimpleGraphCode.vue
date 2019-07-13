@@ -43,9 +43,20 @@ export default {
 
 <style lang="scss">
 .simple-graph-code {
+    display: flex;
+    flex-direction: column;
+
     .node {
         pointer-events: none;
         width: min-content;
+
+        &:not(:last-child):not(.else-node) {
+            margin-bottom: 12px;
+        }
+    }
+
+    .anchor-node {
+        width: 30px;
     }
 
     .if-node {
