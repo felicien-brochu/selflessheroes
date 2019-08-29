@@ -85,6 +85,7 @@ export default class SoundManager {
     }
     this.volumePreference = volumePreference
     this.volumePreference.events.on('change', this.onVolumePreferenceChange)
+    this.applyVolumePreference()
   }
 
   onVolumePreferenceChange() {
