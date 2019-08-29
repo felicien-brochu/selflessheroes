@@ -7,7 +7,7 @@
   <h5>{{$text('level_help_tab_statement_graph_code_example')}}</h5>
   <p>
     <simple-graph-code :code="'if e == wall :\nstep(w)\nelse\nstep(e)\nendif\n'"
-      :compilerConfig="compilerConfig" />
+      :compilerConfig="defaultCompilerConfig" />
 
     <span v-bbcode>{{
 		$text('level_help_tab_if_statement_2')
@@ -26,7 +26,7 @@
   <h5>{{$text('level_help_tab_statement_graph_code_example')}}</h5>
   <p>
     <simple-graph-code :code="'if e == wall || e == hole :\nstep(w)\nendif\n'"
-      :compilerConfig="compilerConfig" />
+      :compilerConfig="defaultCompilerConfig" />
 
     <span v-bbcode>{{
 			$text('level_help_tab_if_statement_7')
@@ -42,6 +42,7 @@
 
 <script>
 import SimpleGraphCode from './SimpleGraphCode'
+import CompilerConfig from '../../../world/ai/compile/CompilerConfig'
 
 export default {
   components: {
@@ -49,6 +50,11 @@ export default {
   },
   props: {
     compilerConfig: Object
+  },
+  computed: {
+    defaultCompilerConfig: function() {
+      return CompilerConfig.getDefault()
+    }
   }
 }
 </script>

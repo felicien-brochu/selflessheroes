@@ -8,7 +8,7 @@
   <p>
     <div class="graph-code-container">
       <simple-graph-code :code="'a:\nstep(e)\njump a'"
-        :compilerConfig="compilerConfig" />
+        :compilerConfig="defaultCompilerConfig" />
       <svg viewBox="0 0 100 126"
         style="height: 126px;"
         class="jump-link-layer">
@@ -65,7 +65,7 @@
           class="link-line" />
       </svg>
       <simple-graph-code :code="'a:\nstep(e)\nif e != wall :\n  jump a\nendif\n'"
-        :compilerConfig="compilerConfig" />
+        :compilerConfig="defaultCompilerConfig" />
     </div>
 
     <span v-bbcode>{{$text('level_help_tab_jump_statement_6')}}</span>
@@ -81,6 +81,7 @@
 
 <script>
 import SimpleGraphCode from './SimpleGraphCode'
+import CompilerConfig from '../../../world/ai/compile/CompilerConfig'
 
 export default {
   components: {
@@ -88,6 +89,11 @@ export default {
   },
   props: {
     compilerConfig: Object
+  },
+  computed: {
+    defaultCompilerConfig: function() {
+      return CompilerConfig.getDefault()
+    }
   }
 }
 </script>

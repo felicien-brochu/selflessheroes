@@ -7,7 +7,7 @@
   <h5>{{$text('level_help_tab_statement_graph_code_example')}}</h5>
   <p>
     <simple-graph-code code="step(e)"
-      :compilerConfig="compilerConfig" />
+      :compilerConfig="defaultCompilerConfig" />
 
     <span v-bbcode>{{
 		$text('level_help_tab_step_once_function_2')
@@ -23,6 +23,7 @@
 
 <script>
 import SimpleGraphCode from './SimpleGraphCode'
+import CompilerConfig from '../../../world/ai/compile/CompilerConfig'
 
 export default {
   components: {
@@ -30,6 +31,11 @@ export default {
   },
   props: {
     compilerConfig: Object
+  },
+  computed: {
+    defaultCompilerConfig: function() {
+      return CompilerConfig.getDefault()
+    }
   }
 }
 </script>
