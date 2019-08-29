@@ -26,8 +26,8 @@ const messages = {
 
     level_list_back_button: "Back",
 
-    level_details_edit_button: "edit",
-    level_details_edit_button_tooltip: "Edit",
+    level_details_edit_button: "play",
+    level_details_edit_button_tooltip: "Play",
     level_details_back_button: "back",
     level_details_back_button_tooltip: "Back",
     level_details_add_solution_button: "New solution",
@@ -273,8 +273,8 @@ const messages = {
 
     level_list_back_button: "Retour",
 
-    level_details_edit_button: "éditer",
-    level_details_edit_button_tooltip: "Éditer",
+    level_details_edit_button: "jouer",
+    level_details_edit_button_tooltip: "Jouer",
     level_details_back_button: "retour",
     level_details_back_button_tooltip: "Retour",
     level_details_add_solution_button: "Nouvelle solution",
