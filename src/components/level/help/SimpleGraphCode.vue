@@ -17,7 +17,6 @@ export default {
   data: function() {
     let compiler = new Compiler(this.code, this.compilerConfig)
     compiler.compile()
-    console.log("#####compile", compiler)
     return {
       statements: compiler.statements
     }
@@ -31,7 +30,7 @@ export default {
     populateNodeContainer() {
       let nodeBuilder = new NodeBuilder(this.statements)
       this.nodes = nodeBuilder.build(this.compilerConfig, this.insertedStatement)
-      console.log("#####nodes", this.nodes)
+
       for (let node of this.nodes) {
         this.$el.appendChild(node.$el)
         node.$parent = this
