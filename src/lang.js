@@ -114,6 +114,10 @@ const messages = {
     level_help_tab_drop_function_2: "You could read the above example as \"Drop your item on the square on your right\".",
     level_help_tab_drop_function_3: "%%type-function$drop%%(%%type-literal$e%%)\n",
 
+    level_help_tab_write_function_1: "%%statement action-statement$write%% says to your hero to write something on his item.",
+    level_help_tab_write_function_2: "You could read the above example as \"Write 3 on your item\".",
+    level_help_tab_write_function_3: "%%type-function$write%%(%%type-literal$3%%)\n",
+
     level_objective_modal_objective_title: "objective",
     level_objective_modal_secondary_objectives_title: "secondary objectives",
 
@@ -362,6 +366,9 @@ const messages = {
 
     level_help_tab_drop_function_1: "%%statement action-statement$déposer%% dit au héro de déposer son item.",
     level_help_tab_drop_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Dépose ton item sur la case à ta droite\".",
+
+    level_help_tab_write_function_1: "%%statement action-statement$écrire%% dit au héro d'écrire quelque chose sur son item.",
+    level_help_tab_write_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Écris 3 sur ton item\".",
 
     level_objective_modal_objective_title: "objectif",
     level_objective_modal_secondary_objectives_title: "objectifs secondaires",

@@ -81,11 +81,14 @@ const paletteStatements = [
 
 import IfStatementTab from './IfStatementTab'
 import JumpStatementTab from './JumpStatementTab'
+
 import StepFunctionTab from './StepFunctionTab'
 import StepOnceFunctionTab from './StepOnceFunctionTab'
 import FireBallFunctionTab from './FireBallFunctionTab'
 import TakeFunctionTab from './TakeFunctionTab'
 import DropFunctionTab from './DropFunctionTab'
+import WriteFunctionTab from './WriteFunctionTab'
+
 // IfStatement
 // JumpStatement
 // CalcFunction
@@ -123,6 +126,10 @@ const statementTabs = new Map([
   }],
   [DropFunction, {
     component: DropFunctionTab,
+    props: {}
+  }],
+  [WriteFunction, {
+    component: WriteFunctionTab,
     props: {}
   }]
 ])
