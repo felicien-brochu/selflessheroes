@@ -237,6 +237,7 @@ const messages = {
     drop_down_list_object_type_hero: "hero",
     drop_down_list_object_type_switch: "switch",
     drop_down_list_object_type_bonfire: "bonfire",
+    drop_down_list_object_type_spikes: "spikes",
     drop_down_list_object_type_egg: "egg",
 
     drop_down_list_terrain_type_wall: "wall",
@@ -466,6 +467,7 @@ const messages = {
     drop_down_list_object_type_hero: "héro",
     drop_down_list_object_type_switch: "bouton",
     drop_down_list_object_type_bonfire: "feu",
+    drop_down_list_object_type_spikes: "piques",
     drop_down_list_object_type_egg: "œuf",
 
     drop_down_list_terrain_type_wall: "mur",
