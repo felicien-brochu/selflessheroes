@@ -93,17 +93,8 @@ import DropFunctionTab from './DropFunctionTab'
 import WriteFunctionTab from './WriteFunctionTab'
 
 import SetFunctionTab from './SetFunctionTab'
+import CalcFunctionTab from './CalcFunctionTab'
 
-// IfStatement
-// JumpStatement
-// CalcFunction
-// DropFunction
-// FireBallFunction
-// SetFunction
-// StepFunction
-// StepOnceFunction
-// TakeFunction
-// WriteFunction
 const statementTabs = new Map([
   [IfStatement, {
     component: IfStatementTab,
@@ -139,6 +130,10 @@ const statementTabs = new Map([
   }],
   [SetFunction, {
     component: SetFunctionTab,
+    props: {}
+  }],
+  [CalcFunction, {
+    component: CalcFunctionTab,
     props: {}
   }]
 ])

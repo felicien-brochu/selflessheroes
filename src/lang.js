@@ -122,6 +122,10 @@ const messages = {
     level_help_tab_set_function_2: "You could read the above example as \"Set the variable a to 3\".",
     level_help_tab_set_function_3: "%%type-variable$a%% %%type-operator$=%% %%type-function$set%%(%%type-literal$3%%)\n",
 
+    level_help_tab_calc_function_1: "%%statement assign-statement$calc%% makes a calculation and puts the result in a variable.",
+    level_help_tab_calc_function_2: "You could read the above example as \"Set the variable b to a + 2\".",
+    level_help_tab_calc_function_3: "%%type-variable$b%% %%type-operator$=%% %%type-function$calc%%(%%type-variable$a%% %%type-operator$+%% %%type-literal$2%%)\n",
+
     level_objective_modal_objective_title: "objective",
     level_objective_modal_secondary_objectives_title: "secondary objectives",
 
@@ -376,6 +380,9 @@ const messages = {
 
     level_help_tab_set_function_1: "%%statement assign-statement$init%% initialise une variable.",
     level_help_tab_set_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Donne la valeur 3 à la variable a\".",
+
+    level_help_tab_calc_function_1: "%%statement assign-statement$calc%% fait un calcul et met le résultat dans une variable.",
+    level_help_tab_calc_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Donne la valeur a + 2 à la variable b\".",
 
     level_objective_modal_objective_title: "objectif",
     level_objective_modal_secondary_objectives_title: "objectifs secondaires",
