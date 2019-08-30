@@ -102,6 +102,10 @@ const messages = {
     level_help_tab_step_once_function_2: "You could read the above example as \"Go one step to the right\".",
     level_help_tab_step_once_function_3: "%%type-function$step%%(%%type-literal$e%%)",
 
+    level_help_tab_fireball_function_1: "%%statement action-statement$fireball%% throws a fireball on a square around the hero.\nIf the fireball hits another hero it will kill him. You can use a fireball to lit a %%icon icon-bonfire$%% bonfire.",
+    level_help_tab_fireball_function_2: "You could read the above example as \"Throw a fireball to the right\".",
+    level_help_tab_fireball_function_3: "%%type-function$fireball%%(%%type-literal$e%%)",
+
     level_objective_modal_objective_title: "objective",
     level_objective_modal_secondary_objectives_title: "secondary objectives",
 
@@ -341,6 +345,9 @@ const messages = {
 
     level_help_tab_step_once_function_1: "%%statement action-statement$aller%% dit au héro d'aller dans une direction.",
     level_help_tab_step_once_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Fais un pas à droite\".",
+
+    level_help_tab_fireball_function_1: "%%statement action-statement$boule de feu%% lance une boule de feu sur une case autour du héro.\nSi la boule de feu touche un autre héro, celui-ci mourra. On peut utiliser une boule de feu pour allumer un %%icon icon-bonfire$%% feu.",
+    level_help_tab_fireball_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Lance une boule de feu à droite\".",
 
     level_objective_modal_objective_title: "objectif",
     level_objective_modal_secondary_objectives_title: "objectifs secondaires",

@@ -83,6 +83,7 @@ import IfStatementTab from './IfStatementTab'
 import JumpStatementTab from './JumpStatementTab'
 import StepFunctionTab from './StepFunctionTab'
 import StepOnceFunctionTab from './StepOnceFunctionTab'
+import FireBallFunctionTab from './FireBallFunctionTab'
 // IfStatement
 // JumpStatement
 // CalcFunction
@@ -108,6 +109,10 @@ const statementTabs = new Map([
   }],
   [StepOnceFunction, {
     component: StepOnceFunctionTab,
+    props: {}
+  }],
+  [FireBallFunction, {
+    component: FireBallFunctionTab,
     props: {}
   }]
 ])
@@ -361,6 +366,14 @@ $selected-color: #535866;
                     }
                     .assign-statement {
                         @include node-color($assign-color);
+                    }
+
+                    .icon {
+                        width: 24px;
+                        height: 24px;
+                        display: inline-block;
+                        background-size: cover;
+                        vertical-align: bottom;
                     }
                 }
             }
