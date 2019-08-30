@@ -6,7 +6,7 @@
 
   <h5>{{$text('level_help_tab_statement_graph_code_example')}}</h5>
   <p>
-    <simple-graph-code :code="'b = calc(a + 2)'"
+    <simple-graph-code :code="'$b = calc($a + 2)'"
       :compilerConfig="defaultCompilerConfig" />
 
     <span v-bbcode>{{

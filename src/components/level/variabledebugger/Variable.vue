@@ -1,7 +1,7 @@
 <template>
 <li class="variable">
   <i class="icon-variable" />
-  <div class="variable-name">{{name}}&nbsp;:</div>
+  <div class="variable-name">{{name | shortName}}&nbsp;:</div>
   <div class="variable-value">
 
     <div v-if="isRawType"
@@ -45,6 +45,15 @@ export default {
     },
     'name': {
       type: String
+    }
+  },
+
+  filters: {
+    shortName: function(name) {
+      if (!name) {
+        return ''
+      }
+      return name.substring(1)
     }
   },
 

@@ -52,4 +52,4 @@ export default class VariableIdentifier extends Expression {
   }
 }
 
-VariableIdentifier.codeRegExp = /^\s*([a-z])\s*$/
+VariableIdentifier.codeRegExp = /^\s*(\$[a-z]+)\s*$/

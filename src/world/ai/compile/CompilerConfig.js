@@ -145,7 +145,7 @@ export default class CompilerConfig {
   getAllowedVariableIdentifiers() {
     let names = []
     for (let i = 0; i < this.variables; i++) {
-      names.push(String.fromCharCode(0x61 + i))
+      names.push('$' + String.fromCharCode(0x61 + i))
     }
     return names
   }

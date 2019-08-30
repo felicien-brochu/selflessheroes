@@ -132,5 +132,5 @@ export default class AssignStatement extends PrimaryStatement {
   }
 }
 
-AssignStatement.startLineRegExp = /^\s*(\w+)\s*=\s*(.+)\s*$/
-AssignStatement.codeRegExp = /^\s*(\w+)\s*=\s*(.+)\s*$/
+AssignStatement.startLineRegExp = /^\s*(\$[a-z])\s*=\s*(.+)\s*$/
+AssignStatement.codeRegExp = /^\s*(\$[a-z])\s*=\s*(.+)\s*$/

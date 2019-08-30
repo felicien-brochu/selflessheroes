@@ -169,7 +169,7 @@ export default {
         let variable = new VariableIdentifier(null)
         variable.name = identifier
         items.push({
-          label: variable.name,
+          label: variable.name.substring(1),
           icon: 'variable',
           value: variable,
           selected: this.value instanceof VariableIdentifier && this.value.name === variable.name

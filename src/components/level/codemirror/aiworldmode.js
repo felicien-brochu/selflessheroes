@@ -16,7 +16,7 @@ CodeMirror.defineSimpleMode('aiworld', {
       token: ['function', null]
     },
     {
-      regex: /([a-z])(\s*=\s*)([a-z$][\w$]*)(\s*\()/,
+      regex: /($[a-z])(\s*=\s*)([a-z$][\w$]*)(\s*\()/,
       token: ['variable', 'operator', 'function', null]
     },
     {
@@ -82,7 +82,7 @@ CodeMirror.defineSimpleMode('aiworld', {
       token: 'operator'
     },
     {
-      regex: /[a-z$][\w$]*/,
+      regex: /\$[a-z]+/,
       token: 'variable'
     }
   ],

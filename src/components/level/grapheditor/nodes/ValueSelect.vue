@@ -90,7 +90,7 @@ export default {
         return this.value.value
       }
       else if (this.value instanceof VariableIdentifier) {
-        return this.value.name
+        return this.value.name.substring(1)
       }
       else if (this.value instanceof MyItemLiteral) {
         return this.$text('drop_down_list_my_item_literal')
