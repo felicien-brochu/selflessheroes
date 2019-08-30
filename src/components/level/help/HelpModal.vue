@@ -84,6 +84,7 @@ import JumpStatementTab from './JumpStatementTab'
 import StepFunctionTab from './StepFunctionTab'
 import StepOnceFunctionTab from './StepOnceFunctionTab'
 import FireBallFunctionTab from './FireBallFunctionTab'
+import TakeFunctionTab from './TakeFunctionTab'
 // IfStatement
 // JumpStatement
 // CalcFunction
@@ -113,6 +114,10 @@ const statementTabs = new Map([
   }],
   [FireBallFunction, {
     component: FireBallFunctionTab,
+    props: {}
+  }],
+  [TakeFunction, {
+    component: TakeFunctionTab,
     props: {}
   }]
 ])

@@ -106,6 +106,10 @@ const messages = {
     level_help_tab_fireball_function_2: "You could read the above example as \"Throw a fireball to the right\".",
     level_help_tab_fireball_function_3: "%%type-function$fireball%%(%%type-literal$e%%)",
 
+    level_help_tab_take_function_1: "%%statement action-statement$take%% says to your hero to take an item.",
+    level_help_tab_take_function_2: "You could read the above example as \"If there is an egg on the square on your right, take this egg\".",
+    level_help_tab_take_function_3: "%%type-keyword$if%% %%type-literal$e%% %%type-operator$==%% %%type-literal$egg%% :\n  %%type-function$take%%(%%type-literal$e%%)\n%%type-keyword$endif%%\n",
+
     level_objective_modal_objective_title: "objective",
     level_objective_modal_secondary_objectives_title: "secondary objectives",
 
@@ -348,6 +352,9 @@ const messages = {
 
     level_help_tab_fireball_function_1: "%%statement action-statement$boule de feu%% lance une boule de feu sur une case autour du héro.\nSi la boule de feu touche un autre héro, celui-ci mourra. On peut utiliser une boule de feu pour allumer un %%icon icon-bonfire$%% feu.",
     level_help_tab_fireball_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Lance une boule de feu à droite\".",
+
+    level_help_tab_take_function_1: "%%statement action-statement$prendre%% dit au héro de prendre un item.",
+    level_help_tab_take_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"S'il y a un œuf sur la case à ta droite, prends cet œuf\".",
 
     level_objective_modal_objective_title: "objectif",
     level_objective_modal_secondary_objectives_title: "objectifs secondaires",
