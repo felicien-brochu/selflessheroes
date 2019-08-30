@@ -55,14 +55,17 @@ from '../grapheditor/PaletteStatementType'
 
 import IfStatement from '../../../world/ai/compile/statements/IfStatement'
 import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'
-import CalcFunction from '../../../world/ai/compile/statements/functions/CalcFunction'
-import DropFunction from '../../../world/ai/compile/statements/functions/DropFunction'
-import FireBallFunction from '../../../world/ai/compile/statements/functions/FireBallFunction'
-import SetFunction from '../../../world/ai/compile/statements/functions/SetFunction'
+
 import StepFunction from '../../../world/ai/compile/statements/functions/StepFunction'
 import StepOnceFunction from '../../../world/ai/compile/statements/functions/StepOnceFunction'
+import FireBallFunction from '../../../world/ai/compile/statements/functions/FireBallFunction'
 import TakeFunction from '../../../world/ai/compile/statements/functions/TakeFunction'
+import DropFunction from '../../../world/ai/compile/statements/functions/DropFunction'
 import WriteFunction from '../../../world/ai/compile/statements/functions/WriteFunction'
+
+import SetFunction from '../../../world/ai/compile/statements/functions/SetFunction'
+import CalcFunction from '../../../world/ai/compile/statements/functions/CalcFunction'
+
 import ActionFunctions from '../../../world/ai/compile/statements/functions/ActionFunctions'
 import ValueFunctions from '../../../world/ai/compile/statements/functions/ValueFunctions'
 
@@ -88,6 +91,8 @@ import FireBallFunctionTab from './FireBallFunctionTab'
 import TakeFunctionTab from './TakeFunctionTab'
 import DropFunctionTab from './DropFunctionTab'
 import WriteFunctionTab from './WriteFunctionTab'
+
+import SetFunctionTab from './SetFunctionTab'
 
 // IfStatement
 // JumpStatement
@@ -130,6 +135,10 @@ const statementTabs = new Map([
   }],
   [WriteFunction, {
     component: WriteFunctionTab,
+    props: {}
+  }],
+  [SetFunction, {
+    component: SetFunctionTab,
     props: {}
   }]
 ])
