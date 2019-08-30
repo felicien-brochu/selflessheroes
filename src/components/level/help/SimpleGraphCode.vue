@@ -47,8 +47,11 @@ export default {
     flex-direction: column;
 
     .node {
-        pointer-events: none;
         width: min-content;
+        pointer-events: none;
+        &.assign-node .function-container .value-select {
+            pointer-events: none;
+        }
 
         &:not(:last-child):not(.else-node) {
             margin-bottom: 12px;

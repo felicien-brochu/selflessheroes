@@ -137,14 +137,6 @@ const statementTabs = new Map([
     props: {}
   }]
 ])
-// {
-//   'step_once': {
-//     component: StatementTab,
-//     props: {
-//       text: 'level_help_tab_step_once'
-//     }
-//   }
-// }
 
 export default {
   components: {
