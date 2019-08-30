@@ -110,6 +110,10 @@ const messages = {
     level_help_tab_take_function_2: "You could read the above example as \"If there is an egg on the square on your right, take this egg\".",
     level_help_tab_take_function_3: "%%type-keyword$if%% %%type-literal$e%% %%type-operator$==%% %%type-literal$egg%% :\n  %%type-function$take%%(%%type-literal$e%%)\n%%type-keyword$endif%%\n",
 
+    level_help_tab_drop_function_1: "%%statement action-statement$drop%% says to your hero to drop his item.",
+    level_help_tab_drop_function_2: "You could read the above example as \"Drop your item on the square on your right\".",
+    level_help_tab_drop_function_3: "%%type-function$drop%%(%%type-literal$e%%)\n",
+
     level_objective_modal_objective_title: "objective",
     level_objective_modal_secondary_objectives_title: "secondary objectives",
 
@@ -355,6 +359,9 @@ const messages = {
 
     level_help_tab_take_function_1: "%%statement action-statement$prendre%% dit au héro de prendre un item.",
     level_help_tab_take_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"S'il y a un œuf sur la case à ta droite, prends cet œuf\".",
+
+    level_help_tab_drop_function_1: "%%statement action-statement$déposer%% dit au héro de déposer son item.",
+    level_help_tab_drop_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Dépose ton item sur la case à ta droite\".",
 
     level_objective_modal_objective_title: "objectif",
     level_objective_modal_secondary_objectives_title: "objectifs secondaires",
