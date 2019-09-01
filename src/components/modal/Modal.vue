@@ -27,15 +27,15 @@
       <button v-if="cancelable"
         type="button"
         :title="cancelButtonLabel"
-        @click="cancel"
-        @touchstart="cancel">{{
+        @click="cancel()"
+        @touchstart="cancel()">{{
 					cancelButtonLabel
 				}}</button>
 
       <button type="submit"
         :title="confirmButtonLabel"
-        @click="confirm"
-        @touchstart="confirm">{{
+        @click="confirm()"
+        @touchstart="confirm()">{{
 				confirmButtonLabel
 			}}</button>
 

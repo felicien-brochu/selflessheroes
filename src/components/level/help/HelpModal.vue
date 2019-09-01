@@ -17,16 +17,16 @@
 
         <li v-for="(tab, index) in tabs"
           :class="{
-				'selected': index === selectedTab
-			}"
+						'selected': index === selectedTab
+					}"
           @mousedown="selectTab(index)"
           @touchstart="$event.preventDefault(); selectTab(index)">
           <palette-statement v-if="tab.type === 'statement-tab'"
             :statement="tab.statement" />
 
           <div v-else>{{
-				tab.title
-			}}</div>
+						tab.title
+					}}</div>
         </li>
 
       </ul>

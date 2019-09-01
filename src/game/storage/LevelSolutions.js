@@ -31,11 +31,11 @@ export default class LevelSolutions extends StorageWrapper {
     return solution
   }
 
-  duplicateSolution(solutionID) {
+  duplicateSolution(solutionID, suffix) {
     const template = this.getSolution(solutionID)
     const id = StorageWrapper.getAvailableID(this.solutions)
     let solution = new Solution(`${this.storageKey}.solutions[${id}]`)
-    solution.set(id, `${template.name} copy`, template.codeHistory.getCode(), template.editorType)
+    solution.set(id, `${template.name}${suffix}`, template.codeHistory.getCode(), template.editorType)
     solution.save(false)
     this.solutions.push(solution)
     this.solutionID = id

@@ -222,7 +222,7 @@ export default {
     },
 
     duplicateSolution(solutionID) {
-      let solution = this.levelSolutions.duplicateSolution(solutionID)
+      let solution = this.levelSolutions.duplicateSolution(solutionID, this.$text('level_details_duplicate_solution_suffix'))
       this.renamedSolutionID = solution.id
       this.renamedSolutionName = solution.name
     },
