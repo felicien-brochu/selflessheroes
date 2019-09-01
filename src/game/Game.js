@@ -6,13 +6,14 @@ import EventEmitter from 'events'
 import lang from '../lang'
 import AnimationBuilder from './AnimationBuilder'
 import WorldRunner from './WorldRunner'
-import CameraControl from './CameraControl'
+import CameraControlFactory from './camera/CameraControlFactory'
 import SoundManager from './SoundManager'
 import Speeds from './Speeds'
 import World from '../world/World'
 import Direction from '../world/Direction'
 import CharacterDeathReason from '../world/CharacterDeathReason'
 import {
+  tiledObjectToObject,
   namedObjectListToObject
 } from '../world/utils'
 import Compiler from '../world/ai/compile/Compiler'
@@ -41,6 +42,7 @@ export default class extends Phaser.Scene {
     this.runner.events.on('before-step', this.beforeStep)
     this.runner.events.on('after-step', this.afterStep)
     this.editorWidth = 350
+    this.cameraConfig = null
 
     this.customEvents = new EventEmitter()
   }
@@ -90,28 +92,36 @@ export default class extends Phaser.Scene {
     this.groundLayer = this.map.createDynamicLayer('ground', this.tilesetImage, 0, 0)
     this.floorShadowLayer = this.map.createDynamicLayer('floor_shadow', this.tilesetImage, 0, 0)
 
-    this.extractMapFrame()
+    this.extractCameraConfig()
   }
 
-  extractMapFrame() {
+  extractCameraConfig() {
     const objectLayers = namedObjectListToObject(this.map.objects)
-    if (!objectLayers.config) {
-      throw new Error('there is no "config" object layer in the Tiled json')
-    }
-    const config = namedObjectListToObject(objectLayers.config.objects)
-    if (config.frame) {
-      this.mapFrame = {
-        x: config.frame.x,
-        y: config.frame.y,
-        width: config.frame.width,
-        height: config.frame.height
-      }
-    } else {
-      this.mapFrame = {
+    this.cameraConfig = {
+      frame: {
         x: 0,
         y: 0,
         width: this.map.widthInPixels,
         height: this.map.heightInPixels
+      },
+      strategy: {
+        strategy: 'default'
+      }
+    }
+
+    if (objectLayers.camera) {
+      let config = namedObjectListToObject(objectLayers.camera.objects)
+
+      if (config) {
+        if (config.frame) {
+          this.cameraConfig.frame = tiledObjectToObject(config.frame)
+        }
+        if (config.strategy) {
+          let strategy = tiledObjectToObject(config.strategy)
+          this.cameraConfig.strategy = {
+            strategy: strategy.strategy
+          }
+        }
       }
     }
   }
@@ -206,14 +216,14 @@ export default class extends Phaser.Scene {
 
   initCamera() {
     let camera = this.cameras.main
-    this.cameraControl = new CameraControl(
+    this.cameraControl = CameraControlFactory.build(
+      this.cameraConfig,
       this,
       camera,
       window.innerWidth - 350,
       window.innerHeight,
       this.map.widthInPixels,
-      this.map.heightInPixels,
-      this.mapFrame, {
+      this.map.heightInPixels, {
         top: 80,
         right: 112 + 50,
         bottom: 87 + 80,

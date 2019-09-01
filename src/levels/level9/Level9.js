@@ -14,6 +14,20 @@ if e == hole :
 endif
 jump a
 */
+/* length: 7
+a:
+fireball(e)
+if ne == floor &&
+  n == floor :
+	step(ne)
+endif
+if se == floor &&
+  s == floor :
+	step(se)
+endif
+step(e)
+jump a
+*/
 
 
 

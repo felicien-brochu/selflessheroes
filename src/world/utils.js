@@ -1,7 +1,12 @@
-export function namedPropertiesToObject(properties) {
-  let o = {}
-  for (let property of properties) {
-    o[property.name] = property.value
+export function tiledObjectToObject(object) {
+  let o = {
+    ...object
+  }
+  if (object.properties !== undefined) {
+    delete o.properties
+    for (let property of object.properties) {
+      o[property.name] = property.value
+    }
   }
   return o
 }

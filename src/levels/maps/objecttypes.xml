@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="ai" color="#930002">
+  <property name="paths" type="string"/>
+  <property name="type" type="string" default="follow_path"/>
+ </objecttype>
+ <objecttype name="bonfire" color="#ffff01">
+  <property name="enabled" type="bool" default="false"/>
+ </objecttype>
+ <objecttype name="cameraStrategy" color="#ff2fff">
+  <property name="strategy" type="string" default="default"/>
+ </objecttype>
+ <objecttype name="frame" color="#ff2fff"/>
+ <objecttype name="hero" color="#fc8844">
+  <property name="initialDirection" type="string" default="e"/>
+ </objecttype>
+ <objecttype name="npc" color="#a40002">
+  <property name="aiConfig" type="int" default="0"/>
+  <property name="initialDirection" type="string" default="e"/>
+  <property name="race" type="string" default="ogre"/>
+ </objecttype>
+ <objecttype name="path" color="#62a468">
+  <property name="stepRythm" type="int" default="1"/>
+  <property name="yoyo" type="bool" default="false"/>
+ </objecttype>
+ <objecttype name="spikes" color="#75d8d9">
+  <property name="enabled" type="bool" default="false"/>
+  <property name="triggers" type="string"/>
+ </objecttype>
+ <objecttype name="switch" color="#1064a4">
+  <property name="autoDisable" type="bool" default="true"/>
+  <property name="enabled" type="bool" default="false"/>
+ </objecttype>
+</objecttypes>
