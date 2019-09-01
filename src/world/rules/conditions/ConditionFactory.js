@@ -6,6 +6,7 @@ import OneHeroDeadCondition from './OneHeroDeadCondition'
 
 import AllSwitchesEnabledCondition from './AllSwitchesEnabledCondition'
 import AllBonfiresEnabledCondition from './AllBonfiresEnabledCondition'
+import AllNpcDeadCondition from './AllNpcDeadCondition'
 
 const conditionMap = {
   default_loss: DefaultLossCondition,
@@ -15,7 +16,8 @@ const conditionMap = {
   one_hero_dead: OneHeroDeadCondition,
 
   all_switches: AllSwitchesEnabledCondition,
-  all_bonfires: AllBonfiresEnabledCondition
+  all_bonfires: AllBonfiresEnabledCondition,
+  all_npc_dead: AllNpcDeadCondition
 }
 
 export default class ConditionFactory {

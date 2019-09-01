@@ -274,6 +274,8 @@ const messages = {
     level9_objective: "Lit all %%icon icon-bonfire$%% bonfires",
     level10_name: "Winding path 2",
     level10_objective: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the characters must survive\n\n\n%%icon mdi mdi-information-outline$%% copy/paste the code from the previous level to go faster",
+    level11_name: "Be brave, run away!",
+    level11_objective: "Don't die!\n\nThese two ogres are after you, get rid of them before they catch up with you.\n\n%%icon mdi mdi-information-outline$%% Use the %%icon icon-switch$%% switches to disable/enable the %%icon icon-spikes$%% spikes.",
   },
 
 
@@ -503,6 +505,8 @@ const messages = {
     level9_objective: "Allume tous les %%icon icon-bonfire$%% feux",
     level10_name: "Chemin sinueux 2",
     level10_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: aucun personnage ne doit mourir\n\n\n%%icon mdi mdi-information-outline$%% Pour aller plus vite, copie/colle le code du niveau précédent",
+    level11_name: "Courage, fuyons\u00A0!",
+    level11_objective: "Ne meurs pas!\n\nCes deux ogres en ont après toi, débarrasse t'en avant qu'ils ne te rattrapent.\n\n%%icon mdi mdi-information-outline$%% Utilise les %%icon icon-switch$%% boutons pour activer/désactiver les %%icon icon-spikes$%% piques.",
   }
 }
 

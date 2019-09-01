@@ -6,6 +6,7 @@ const reasons = {
 
   allSwitchesEnabled: Symbol('reason_all_switches_enabled'),
   allBonfiresEnabled: Symbol('reason_all_bonfires_enabled'),
+  allNpcDead: Symbol('reason_all_npc_dead'),
 }
 
 Object.freeze(reasons)

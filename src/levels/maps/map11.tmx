@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="38" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="259" nextobjectid="238">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
+  <image source="tileset.png" trans="000000" width="340" height="680"/>
+  <terraintypes>
+   <terrain name="floor" tile="79"/>
+   <terrain name="wall" tile="69"/>
+   <terrain name="hole" tile="78"/>
+  </terraintypes>
+ </tileset>
+ <layer id="254" name="checkers" width="38" height="12" visible="0">
+  <data encoding="csv">
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,0
+</data>
+ </layer>
+ <layer id="255" name="path" width="38" height="12" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,79,79,79,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,79,79,79,79,79,79,79,79,80,80,80,80,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,79,79,79,80,80,80,80,80,80,80,80,79,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,79,79,79,79,79,79,79,79,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,79,79,79,79,79,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,80,80,0,0,0,80,80,0,0,0,80,80,0,0,0,80,80,0,0,0,0,0,0,0,0,0,0,0,79,79,79,0,0,0,0,
+0,0,0,80,80,0,0,0,80,80,0,0,0,80,80,0,0,0,80,80,0,0,0,0,0,0,0,0,79,79,79,79,80,80,80,80,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,79,79,79,79,79,79,79,80,80,80,80,79,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,79,79,79,79,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,79,79,79,79,79,79,79,79,79,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="14" name="camera">
+  <object id="12" name="frame" type="frame" x="1.265" y="67.3433" width="320.933" height="287.786"/>
+  <object id="237" name="strategy" type="cameraStrategy" x="-49.3333" y="254.667">
+   <properties>
+    <property name="strategy" value="follow_characters"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="2" name="objects">
+  <object id="135" name="switch" type="switch" x="1136" y="84">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+    <property name="enabled" type="bool" value="false"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="136" name="switch" type="switch" x="1136" y="246">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+    <property name="enabled" type="bool" value="false"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="137" name="switch" type="switch" x="626" y="310">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+    <property name="enabled" type="bool" value="false"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="134" name="switch" type="switch" x="365" y="146">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+    <property name="enabled" type="bool" value="false"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="133" name="spikes" type="spikes" x="623" y="147">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+    <property name="triggers" value="137"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="132" name="spikes" type="spikes" x="399" y="306">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+    <property name="triggers" value="134"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="9" name="hero" type="hero" x="203.858" y="307.423">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="55" name="hero" type="hero" x="208" y="150">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="145" name="path1" type="path" x="24" y="307">
+   <properties>
+    <property name="stepRythm" type="int" value="3"/>
+   </properties>
+   <polyline points="90,-1 125,-2 152,-1 190,2 214,-2 253,0 284,-3 318,-3 347,-2 379,-3 410,-1 442,-2 470,-2 506,-1 535,-1 576,-2 599,-1 606.008,-1.30532 635,0 664,0 697,3 733,0 760,-2 789,1 823,3 856,3 890,3 921,2 956,-30 984,-30 1016,-32 1018.53,-63.9203 1046.02,-66.3682 1079.88,-64.6397 1112,-63"/>
+  </object>
+  <object id="146" name="ai" type="ai" x="-52" y="186.667">
+   <properties>
+    <property name="paths" value="145"/>
+    <property name="type" value="follow_path"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="147" name="npc" type="npc" x="112" y="303">
+   <properties>
+    <property name="aiConfig" type="int" value="146"/>
+    <property name="initialDirection" value="e"/>
+    <property name="race" value="ogre"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="144" name="path1" type="path" x="23" y="142">
+   <properties>
+    <property name="stepRythm" type="int" value="3"/>
+   </properties>
+   <polyline points="90,-1 125,-2 152,-1 190,2 214,-2 253,0 284,-3 318,-3 347,-2 355.05,-1.4078 379,-3 410,-1 442,-2 470,-2 506,-1 535,-1 576,-2 599,-1 635,0 664,0 697,3 733,0 760,-2 789,1 826,-30 857,-27 891,-30 924,-29 956,-30 984,-30 1015,-26 1017.1,-57.9626 1048,-60.8926 1079,-60.9472 1109,-61"/>
+  </object>
+  <object id="139" name="ai" type="ai" x="-78" y="188">
+   <properties>
+    <property name="paths" value="144"/>
+    <property name="type" value="follow_path"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="131" name="npc" type="npc" x="114" y="147">
+   <properties>
+    <property name="aiConfig" type="int" value="139"/>
+    <property name="initialDirection" value="e"/>
+    <property name="race" value="ogre"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="150" name="spikes" type="spikes" x="1010" y="119">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="151" name="spikes" type="spikes" x="1009" y="277">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="135"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="152" name="spikes" type="spikes" x="941" y="277">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="135"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="153" name="spikes" type="spikes" x="977" y="118">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="154" name="spikes" type="spikes" x="976" y="280">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="135"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="155" name="spikes" type="spikes" x="943" y="118">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="156" name="spikes" type="spikes" x="1039" y="277">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="135"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="158" name="spikes" type="spikes" x="1041" y="111">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="202" name="bonfire" type="bonfire" x="623" y="211">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="203" name="bonfire" type="bonfire" x="592" y="214">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="204" name="bonfire" type="bonfire" x="594" y="247">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="205" name="bonfire" type="bonfire" x="626" y="244">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="206" name="bonfire" type="bonfire" x="466" y="211">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="207" name="bonfire" type="bonfire" x="435" y="214">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="208" name="bonfire" type="bonfire" x="437" y="247">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="209" name="bonfire" type="bonfire" x="469" y="244">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="210" name="bonfire" type="bonfire" x="307" y="211">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="211" name="bonfire" type="bonfire" x="276" y="214">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="212" name="bonfire" type="bonfire" x="278" y="247">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="213" name="bonfire" type="bonfire" x="310" y="244">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="214" name="bonfire" type="bonfire" x="139" y="205">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="215" name="bonfire" type="bonfire" x="108" y="208">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="216" name="bonfire" type="bonfire" x="110" y="241">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="217" name="bonfire" type="bonfire" x="142" y="238">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="218" name="spikes" type="spikes" x="943" y="307">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="135"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="219" name="spikes" type="spikes" x="912" y="304">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="135"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="220" name="spikes" type="spikes" x="882" y="306">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="135"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="221" name="spikes" type="spikes" x="844" y="308">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="135"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="222" name="spikes" type="spikes" x="812" y="308">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="135"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="223" name="spikes" type="spikes" x="783" y="307">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="135"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="224" name="spikes" type="spikes" x="745" y="305">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="135"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="225" name="spikes" type="spikes" x="715" y="304">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="135"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="226" name="spikes" type="spikes" x="685" y="304">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="135"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="227" name="spikes" type="spikes" x="911" y="112">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="228" name="spikes" type="spikes" x="880" y="112">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="229" name="spikes" type="spikes" x="845" y="109">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="230" name="spikes" type="spikes" x="818" y="108">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="231" name="spikes" type="spikes" x="815" y="146">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="232" name="spikes" type="spikes" x="784" y="143">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="233" name="spikes" type="spikes" x="751" y="142">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="234" name="spikes" type="spikes" x="714" y="144">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="235" name="spikes" type="spikes" x="690" y="146">
+   <properties>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="256" name="types" width="38" height="12">
+  <data encoding="csv">
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,70,70,70,79,
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,80,80,80,80,70,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,79,79,79,80,80,80,80,80,80,80,80,79,70,70,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,79,79,79,79,79,79,79,79,79,79,79,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,
+79,79,70,80,80,70,79,70,80,80,70,79,70,80,80,70,79,70,80,80,70,79,79,79,79,79,79,79,79,79,79,79,79,79,70,70,70,79,
+79,79,70,80,80,70,79,70,80,80,70,79,70,80,80,70,79,70,80,80,70,79,79,79,79,79,79,79,79,79,79,79,80,80,80,80,70,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,79,79,79,79,79,79,79,80,80,80,80,79,70,70,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,79,79,79,79,79,79,79,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79
+</data>
+ </layer>
+ <layer id="257" name="ground" width="38" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,2,6,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,153,17,151,36,0,
+0,1,2,3,2,4,4,5,2,5,3,4,2,3,4,3,2,2,5,3,5,59,0,0,0,19,131,17,133,38,121,20,124,63,58,45,46,0,
+0,31,27,134,27,131,8,153,28,154,37,121,7,123,7,142,28,152,17,134,17,134,40,153,29,133,63,63,62,62,63,63,63,0,0,0,0,0,
+0,41,56,3,3,55,42,56,3,3,55,52,56,3,3,55,42,56,3,3,55,57,62,63,62,63,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,11,124,9,16,0,11,38,152,16,0,11,144,17,16,0,11,37,122,16,0,0,0,0,0,0,0,0,0,0,0,0,0,60,2,6,0,
+0,0,31,20,143,36,0,31,122,30,36,0,31,27,143,36,0,31,133,20,36,0,0,0,0,0,0,0,0,0,0,0,143,29,122,37,36,0,
+0,1,4,3,3,2,5,2,3,3,4,5,2,3,3,2,3,4,3,3,4,59,0,0,0,0,0,0,0,131,20,122,19,63,58,45,46,0,
+0,31,152,20,133,27,123,29,133,20,154,27,131,27,142,40,123,28,151,37,144,10,142,40,124,17,134,27,123,10,62,62,62,0,0,0,0,0,
+0,41,42,42,53,42,43,53,52,52,53,53,53,42,53,52,53,53,52,52,43,57,63,63,62,62,62,62,63,63,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="258" name="floor_shadow" width="38" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,81,65,65,76,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,81,65,65,65,65,65,65,83,0,0,0,0,0,
+0,0,77,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,83,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,12,15,0,0,0,12,15,0,0,0,12,15,0,0,0,12,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,32,35,0,0,0,32,35,0,0,0,32,35,0,0,0,32,35,0,0,0,0,0,0,0,0,0,0,0,0,81,65,65,76,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,81,65,65,83,0,0,0,0,0,
+0,0,77,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,83,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>
