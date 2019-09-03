@@ -67,7 +67,7 @@ export default class Level11 extends Level {
   buildRuleset(world) {
     return super.buildRuleset(world, {
       win: ['all_npc_dead'],
-      lose: ['one_hero_dead', 'or', 'default_loss']
+      lose: ['all_hero_dead', 'or', 'one_hero_dead', 'or', 'too_many_steps']
     })
   }
 }
