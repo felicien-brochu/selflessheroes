@@ -7,6 +7,7 @@ import Bonfire from './Bonfire'
 import Spikes from './Spikes'
 import Item from './Item'
 import Egg from './Egg'
+import Symbol from './Symbol'
 import AIConfig from './AIConfig'
 import PathConfig from './PathConfig'
 import EventLog from './EventLog'
@@ -31,6 +32,8 @@ export default class World {
     this.bonfires = []
     this.spikes = []
     this.eggs = []
+
+    this.symbols = []
 
     this.configObjects = []
     this.parseObjects()
@@ -108,6 +111,9 @@ export default class World {
         break
       case 'egg':
         this.eggs.push(new Egg(config, tileWidth, tileHeight))
+        break
+      case 'symbol':
+        this.symbols.push(new Symbol(config, tileWidth, tileHeight))
         break
       case 'ai':
         this.configObjects.push(new AIConfig(config, tileWidth, tileHeight))

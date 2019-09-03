@@ -20,4 +20,6 @@ ObjectType.bonfire = Symbol('bonfireType')
 ObjectType.spikes = Symbol('spikesType')
 ObjectType.egg = Symbol('eggType')
 
+ObjectType.symbol = Symbol('symbol')
+
 Object.freeze(ObjectType)

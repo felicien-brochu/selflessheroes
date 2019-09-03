@@ -39,6 +39,12 @@ import bonfire from './images/bonfire.png'
 import spikes from './images/spikes.png'
 import egg from './images/egg.png'
 
+import symbol_cross from './images/symbol_cross.png'
+import symbol_arrow_n from './images/symbol_arrow_n.png'
+import symbol_arrow_e from './images/symbol_arrow_e.png'
+import symbol_arrow_s from './images/symbol_arrow_s.png'
+import symbol_arrow_w from './images/symbol_arrow_w.png'
+
 import explosion from './images/explosion.png'
 import ashes from './images/ashes.png'
 import sleep_zzz from './images/sleep_zzz.png'
@@ -226,6 +232,14 @@ export default class extends Phaser.Scene {
       frameHeight: 32
     })
     this.load.image('egg', egg)
+
+    this.load.image('symbol_cross', symbol_cross)
+    this.load.image('symbol_arrow_n', symbol_arrow_n)
+    this.load.image('symbol_arrow_e', symbol_arrow_e)
+    this.load.image('symbol_arrow_s', symbol_arrow_s)
+    this.load.image('symbol_arrow_w', symbol_arrow_w)
+
+
     this.load.spritesheet('explosion', explosion, {
       frameWidth: 32,
       frameHeight: 32

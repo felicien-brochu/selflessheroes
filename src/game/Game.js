@@ -159,6 +159,7 @@ export default class extends Phaser.Scene {
     this.bonfires = []
     this.spikes = []
     this.eggs = []
+    this.symbols = []
 
     for (let egg of this.world.eggs) {
       let sprite = new EggS(this, egg, this.map.tileWidth, this.map.tileHeight)
@@ -201,6 +202,10 @@ export default class extends Phaser.Scene {
       let sprite = new SpikesS(this, spikes, this.map.tileWidth, this.map.tileHeight)
       this.spikes.push(sprite)
       this.add.existing(sprite)
+    }
+    for (let symbol of this.world.symbols) {
+      let sprite = this.add.image((symbol.x + 0.5) * this.map.tileWidth, (symbol.y + 0.5) * this.map.tileHeight, `symbol_${symbol.symbol}`)
+      this.symbols.push(sprite)
     }
   }
 
@@ -468,6 +473,9 @@ export default class extends Phaser.Scene {
   destroySprites() {
     for (let sprite of this.getWorldObjectSprites()) {
       sprite.destroy()
+    }
+    for (let symbol of this.symbols) {
+      symbol.destroy()
     }
   }
 
