@@ -10,10 +10,14 @@
  <objecttype name="cameraStrategy" color="#ff2fff">
   <property name="strategy" type="string" default="default"/>
  </objecttype>
+ <objecttype name="egg" color="#44cc64">
+  <property name="value" type="string" default="rng(0,10)"/>
+ </objecttype>
  <objecttype name="frame" color="#ff2fff"/>
  <objecttype name="hero" color="#fc8844">
   <property name="initialDirection" type="string" default="e"/>
  </objecttype>
+ <objecttype name="marker" color="#55aaff"/>
  <objecttype name="npc" color="#a40002">
   <property name="aiConfig" type="int" default="0"/>
   <property name="initialDirection" type="string" default="e"/>
@@ -30,5 +34,8 @@
  <objecttype name="switch" color="#1064a4">
   <property name="autoDisable" type="bool" default="true"/>
   <property name="enabled" type="bool" default="false"/>
+ </objecttype>
+ <objecttype name="symbol" color="#a0a0a4">
+  <property name="symbol" type="string" default="cross"/>
  </objecttype>
 </objecttypes>
