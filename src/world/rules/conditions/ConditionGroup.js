@@ -59,6 +59,7 @@ export default class ConditionGroup extends Condition {
           value,
           reason
         })
+        i--
       }
     }
 
@@ -70,6 +71,7 @@ export default class ConditionGroup extends Condition {
           value,
           reason
         })
+        i--
       }
     }
 
