@@ -32,8 +32,8 @@ import knight_yellow from './images/knight_yellow.png'
 import ogre from './images/ogre.png'
 // import big_demon from './images/big_demon.png'
 
-import button_blue from './images/button_blue.png'
-import button_red from './images/button_red.png'
+import switch_blue from './images/switch_blue.png'
+import switch_red from './images/switch_red.png'
 // import lever from './images/lever.png'
 import bonfire from './images/bonfire.png'
 import spikes from './images/spikes.png'
@@ -211,11 +211,11 @@ export default class extends Phaser.Scene {
     //   frameWidth: 64,
     //   frameHeight: 72
     // })
-    this.load.spritesheet('button_blue', button_blue, {
+    this.load.spritesheet('switch_blue', switch_blue, {
       frameWidth: 32,
       frameHeight: 32
     })
-    this.load.spritesheet('button_red', button_red, {
+    this.load.spritesheet('switch_red', switch_red, {
       frameWidth: 32,
       frameHeight: 32
     })

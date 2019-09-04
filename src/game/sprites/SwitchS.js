@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 
-const assets = ['button_blue', 'button_red']
+const assets = ['switch_blue', 'switch_red']
 
 export default class SwitchS extends Phaser.GameObjects.Sprite {
   constructor(scene, mySwitch, tileWidth, tileHeight, offsetX = 0, offsetY = 0) {
