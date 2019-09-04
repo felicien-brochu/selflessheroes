@@ -111,6 +111,12 @@
                  "id":1,
                  "name":"hero",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"initialDirection",
+                         "type":"string",
+                         "value":"w"
+                        }],
                  "rotation":0,
                  "type":"hero",
                  "visible":true,
@@ -123,6 +129,12 @@
                  "id":8,
                  "name":"hero",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"initialDirection",
+                         "type":"string",
+                         "value":"e"
+                        }],
                  "rotation":0,
                  "type":"hero",
                  "visible":true,
@@ -135,6 +147,12 @@
                  "id":9,
                  "name":"hero",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"initialDirection",
+                         "type":"string",
+                         "value":"w"
+                        }],
                  "rotation":0,
                  "type":"hero",
                  "visible":true,
