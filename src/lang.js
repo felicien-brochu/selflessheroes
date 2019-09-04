@@ -252,31 +252,6 @@ const messages = {
     loss_reason_all_hero_ended: "Your characters fell asleep before completing the objective",
     loss_reason_all_hero_dead: "All your characters are dead",
     loss_reason_one_hero_dead: "One of your characters is dead",
-
-
-
-    level1_name: "First steps",
-    level1_objective: "Help the heroes to walk on the %%icon icon-switch$%% switches",
-    level2_name: "Step aside",
-    level2_objective: "Trigger all the %%icon icon-switch$%% switches",
-    level3_name: "Watch the step",
-    level3_objective: "Trigger all the %%icon icon-switch$%% switches",
-    level4_name: "Seperate ways",
-    level4_objective: "Trigger all the %%icon icon-switch$%% switches",
-    level5_name: "Vertigo",
-    level5_objective: "Trigger all the %%icon icon-switch$%% switches",
-    level6_name: "Fireball",
-    level6_objective: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-information-outline$%% Use %%statement action-statement$fireball%% to lit the bonfires",
-    level7_name: "Sharp turn",
-    level7_objective: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the characters must survive",
-    level8_name: "Candlelight vigil",
-    level8_objective: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-information-outline$%% Use %%statement branching-statement$jump%% to repeat actions",
-    level9_name: "Winding path",
-    level9_objective: "Lit all %%icon icon-bonfire$%% bonfires",
-    level10_name: "Winding path 2",
-    level10_objective: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the characters must survive\n\n\n%%icon mdi mdi-information-outline$%% copy/paste the code from the previous level to go faster",
-    level11_name: "Be brave, run away!",
-    level11_objective: "Don't die!\n\nThese two ogres are after you, get rid of them before they catch up with you.\n\n%%icon mdi mdi-information-outline$%% Use the %%icon icon-switch$%% switches to disable/enable the %%icon icon-spikes$%% spikes.",
   },
 
 
@@ -486,29 +461,6 @@ const messages = {
     loss_reason_all_hero_ended: "Vos personnages se sont endormis avant de remplir l'objectif",
     loss_reason_all_hero_dead: "Tous vos personnages sont morts",
     loss_reason_one_hero_dead: "Un de vos personnages est mort",
-
-    level1_name: "Premiers pas",
-    level1_objective: "Aide les personnages à aller sur les %%icon icon-switch$%% boutons",
-    level2_name: "Pas de côté",
-    level2_objective: "Active tous les %%icon icon-switch$%% boutons",
-    level3_name: "Attention à la marche",
-    level3_objective: "Active tous les %%icon icon-switch$%% boutons",
-    level4_name: "Chacun son chemin",
-    level4_objective: "Active tous les %%icon icon-switch$%% boutons",
-    level5_name: "Vertige",
-    level5_objective: "Active tous les %%icon icon-switch$%% boutons",
-    level6_name: "Allumer le feu",
-    level6_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement action-statement$boule de feu%% pour allumer les feux",
-    level7_name: "Virage serré",
-    level7_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: aucun personnage ne doit mourir",
-    level8_name: "Veillée aux flambeaux",
-    level8_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement branching-statement$saut%% pour répéter des actions en boucle",
-    level9_name: "Chemin sinueux",
-    level9_objective: "Allume tous les %%icon icon-bonfire$%% feux",
-    level10_name: "Chemin sinueux 2",
-    level10_objective: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: aucun personnage ne doit mourir\n\n\n%%icon mdi mdi-information-outline$%% Pour aller plus vite, copie/colle le code du niveau précédent",
-    level11_name: "Courage, fuyons\u00A0!",
-    level11_objective: "Ne meurs pas!\n\nCes deux ogres en ont après toi, débarrasse t'en avant qu'ils ne te rattrapent.\n\n%%icon mdi mdi-information-outline$%% Utilise les %%icon icon-switch$%% boutons pour activer/désactiver les %%icon icon-spikes$%% piques.",
   }
 }
 
@@ -531,11 +483,36 @@ class Idiom {
       message = this.messages[this.messages.default][key]
 
       if (!message) {
-        message = null
         throw new Error(`lang::: message not found [${key}]`)
       }
     }
     return message
+  }
+
+  pushMessage(key, message) {
+    if (typeof message === 'string') {
+      this.messages[this.messages.default][key] = message
+    } else {
+      let defaultMessage = ''
+      let foundDefaultLanguage = false
+
+      for (let language in message) {
+        if (message.hasOwnProperty(language)) {
+          defaultMessage = message[language]
+
+          if (this.messages.hasOwnProperty(language)) {
+            this.messages[language][key] = message[language]
+
+            if (language === this.messages.default) {
+              foundDefaultLanguage = true
+            }
+          }
+        }
+      }
+      if (!foundDefaultLanguage) {
+        this.messages[this.messages.default][key] = defaultMessage
+      }
+    }
   }
 
   text(key, templateValues) {

@@ -1,30 +1,34 @@
 import Level from './Level'
-import Level1 from './level1/Level1'
-import Level2 from './level2/Level2'
-import Level3 from './level3/Level3'
-import Level4 from './level4/Level4'
-import Level5 from './level5/Level5'
-import Level6 from './level6/Level6'
-import Level7 from './level7/Level7'
-import Level8 from './level8/Level8'
-import Level9 from './level9/Level9'
-import Level10 from './level10/Level10'
-import Level11 from './level11/Level11'
-import Level102 from './level102/Level102'
+import level1 from './level1/level1'
+import level2 from './level2/level2'
+import level3 from './level3/level3'
+import level4 from './level4/level4'
+import level5 from './level5/level5'
+import level6 from './level6/level6'
+import level7 from './level7/level7'
+import level8 from './level8/level8'
+import level9 from './level9/level9'
+import level10 from './level10/level10'
+import level11 from './level11/level11'
+import level12 from './level12/level12'
+import level101 from './level101/level101'
+// import levelTest from './levelTest/levelTest'
 
 const levels = [
-  new Level1(1),
-  new Level2(2),
-  new Level3(3),
-  new Level4(4),
-  new Level5(5),
-  new Level6(6),
-  new Level7(7),
-  new Level8(8),
-  new Level9(9),
-  new Level10(10),
-  new Level11(11),
-  new Level102(102)
+  new Level(1, level1),
+  new Level(2, level2),
+  new Level(3, level3),
+  new Level(4, level4),
+  new Level(5, level5),
+  new Level(6, level6),
+  new Level(7, level7),
+  new Level(8, level8),
+  new Level(9, level9),
+  new Level(10, level10),
+  new Level(11, level11),
+  new Level(12, level12),
+  new Level(101, level101),
+  // new Level(0, levelTest),
 ]
 
 const unlockTree = {
@@ -39,7 +43,9 @@ const unlockTree = {
   9: [8],
   10: [9],
   11: [10],
-  102: [11]
+  12: [11],
+  101: [10],
+  // 0: [],
 }
 
 class LevelManager {

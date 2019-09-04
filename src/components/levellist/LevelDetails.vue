@@ -12,7 +12,7 @@
         <score-stars :score="levelSolutions.score"
           :level="level" />
 
-        <div class="level-label">{{level.name}}</div>
+        <div class="level-label">{{level.getName()}}</div>
       </div>
 
       <div class="score speed-score">

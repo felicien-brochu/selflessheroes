@@ -10,6 +10,7 @@ import Egg from './Egg'
 import Symbol from './Symbol'
 import AIConfig from './AIConfig'
 import PathConfig from './PathConfig'
+import Marker from './Marker'
 import EventLog from './EventLog'
 import NpcAIFactory from './ai/NpcAIFactory'
 import IdleAI from './ai/IdleAI'
@@ -120,6 +121,9 @@ export default class World {
         break
       case 'path':
         this.configObjects.push(new PathConfig(config, tileWidth, tileHeight))
+        break
+      case 'marker':
+        this.configObjects.push(new Marker(config, tileWidth, tileHeight))
         break
     }
   }

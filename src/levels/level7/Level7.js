@@ -1,6 +1,3 @@
-import Level from '../Level'
-import CompilerConfig from '../../world/ai/compile/CompilerConfig'
-
 /* speed: 4
 if w != wall :
 	step(sw)
@@ -22,38 +19,36 @@ if n == bonfire :
 endif
 */
 
-export default class Level7 extends Level {
-  constructor(id) {
-    super(id, {
-      nameTemplate: "level7_name",
-      objectiveTemplate: "level7_objective",
-      startingCode: "if w != wall :\n\tstep(w)\nelse\n\tstep(e)\nendif\n",
-      startingEditorType: "graph",
-      maxStep: 100,
-      speedTarget: 4,
-      lengthTarget: 5
-    })
+const level = {
+  name: {
+    en: "Sharp turn",
+    fr: "Virage serré",
+  },
+  objective: {
+    en: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the characters must survive",
+    fr: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: aucun personnage ne doit mourir",
+  },
+  startingCode: "if w != wall :\n\tstep(w)\nelse\n\tstep(e)\nendif\n",
+  startingEditorType: "graph",
+  maxStep: 100,
+  speedTarget: 4,
+  lengthTarget: 5,
 
-    Object.freeze(this)
-  }
+  compilerConfig: {
+    excludePrimary: ['assign', 'jump', 'anchor'],
+    variables: 0,
+    terrainTypes: ['wall', 'floor'],
+    objectTypes: ['bonfire', 'hero'],
+    valueFunctions: [],
+    actionFunctions: ['step_once', 'fireball'],
+    leftComparisonExpressions: ['direction'],
+    rightComparisonExpressions: ['object_type', 'terrain_type']
+  },
 
-  buildCompilerConfig() {
-    return new CompilerConfig({
-      excludePrimary: ['assign', 'jump', 'anchor'],
-      variables: 0,
-      terrainTypes: ['wall', 'floor'],
-      objectTypes: ['bonfire', 'hero'],
-      valueFunctions: [],
-      actionFunctions: ['step_once', 'fireball'],
-      leftComparisonExpressions: ['direction'],
-      rightComparisonExpressions: ['object_type', 'terrain_type']
-    })
-  }
-
-  buildRuleset(world) {
-    return super.buildRuleset(world, {
-      win: 'all_bonfires',
-      lose: ['one_hero_dead', 'or', 'default_loss']
-    })
+  ruleset: {
+    win: 'all_bonfires',
+    lose: ['one_hero_dead', 'or', 'default_loss']
   }
 }
+
+export default level

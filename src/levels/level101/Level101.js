@@ -1,53 +1,54 @@
-import Level from '../Level'
-import CompilerConfig from '../../world/ai/compile/CompilerConfig'
+const level = {
+  name: {
+    en: "Delivery",
+    fr: "Livraison",
+  },
+  objective: {
+    en: "Drop the %%icon icon-egg$%% eggs on the crosses",
+    fr: "Dépose les %%icon icon-egg$%% œufs sur les croix",
+  },
+  startingCode: "",
+  startingEditorType: "graph",
+  maxStep: 50,
+  speedTarget: 3,
+  lengthTarget: 3,
 
-/* speed: 58
-a:
-step(e)
-if se == wall :
-	jump a
-endif
-step(se)
-b:
-step(s)
-jump b
-*/
+  compilerConfig: {
+    excludePrimary: ['assign', 'if', 'else', 'endif', 'jump', 'anchor'],
+    variables: 0,
+    terrainTypes: [],
+    objectTypes: ['egg'],
+    valueFunctions: [],
+    actionFunctions: ['step_once', 'take', 'drop'],
+    leftComparisonExpressions: ['direction'],
+    rightComparisonExpressions: ['object_type']
+  },
 
-/* length: 3
-b:
-step(e)
-step(s)
-jump b
-*/
-
-
-export default class Level101 extends Level {
-  constructor(id) {
-    super(id, {
-      startingCode: "",
-      startingEditorType: "graph",
-      maxStep: 300,
-      speedTarget: 58,
-      lengthTarget: 3
-    })
-
-    Object.freeze(this)
-  }
-
-  buildCompilerConfig() {
-    return new CompilerConfig({
-      excludePrimary: ['assign'],
-      variables: 0,
-      terrainTypes: ['wall', 'floor'],
-      objectTypes: ['switch'],
-      valueFunctions: [],
-      actionFunctions: ['step_once'],
-      leftComparisonExpressions: ['direction'],
-      rightComparisonExpressions: ['terrain_type', 'object_type']
-    })
-  }
-
-  buildRuleset(world) {
-    return super.buildRuleset(world)
+  ruleset: {
+    win: [{
+      type: 'egg_on_marker',
+      config: {
+        eggMarkerMap: [{
+            egg: 17,
+            marker: 28
+          },
+          {
+            egg: 22,
+            marker: 29
+          },
+          {
+            egg: 23,
+            marker: 30
+          },
+          {
+            egg: 24,
+            marker: 31
+          },
+        ]
+      }
+    }],
+    lose: 'default_loss'
   }
 }
+
+export default level

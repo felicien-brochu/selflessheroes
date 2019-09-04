@@ -1,6 +1,3 @@
-import Level from '../Level'
-import CompilerConfig from '../../world/ai/compile/CompilerConfig'
-
 /* length: 9
 a:
 if here != switch :
@@ -36,38 +33,36 @@ step(e)
 jump b
 */
 
-export default class Level11 extends Level {
-  constructor(id) {
-    super(id, {
-      nameTemplate: "level11_name",
-      objectiveTemplate: "level11_objective",
-      startingCode: "",
-      startingEditorType: "graph",
-      maxStep: 300,
-      speedTarget: 57,
-      lengthTarget: 9
-    })
+const level = {
+  name: {
+    en: "Be brave, run away!",
+    fr: "Courage, fuyons\u00A0!",
+  },
+  objective: {
+    en: "Don't die!\n\nThese two ogres are after you, get rid of them before they catch up with you.\n\n%%icon mdi mdi-information-outline$%% Use the %%icon icon-switch$%% switches to disable/enable the %%icon icon-spikes$%% spikes.",
+    fr: "Ne meurs pas!\n\nCes deux ogres en ont après toi, débarrasse t'en avant qu'ils ne te rattrapent.\n\n%%icon mdi mdi-information-outline$%% Utilise les %%icon icon-switch$%% boutons pour activer/désactiver les %%icon icon-spikes$%% piques.",
+  },
+  startingCode: "",
+  startingEditorType: "graph",
+  maxStep: 300,
+  speedTarget: 57,
+  lengthTarget: 9,
 
-    Object.freeze(this)
-  }
+  compilerConfig: {
+    excludePrimary: ['assign'],
+    variables: 0,
+    terrainTypes: ['hole', 'floor', 'wall'],
+    objectTypes: ['switch', 'spikes', 'nothing'],
+    valueFunctions: [],
+    actionFunctions: ['step_once'],
+    leftComparisonExpressions: ['direction'],
+    rightComparisonExpressions: ['terrain_type', 'object_type']
+  },
 
-  buildCompilerConfig() {
-    return new CompilerConfig({
-      excludePrimary: ['assign'],
-      variables: 0,
-      terrainTypes: ['hole', 'floor', 'wall'],
-      objectTypes: ['switch', 'spikes', 'nothing'],
-      valueFunctions: [],
-      actionFunctions: ['step_once'],
-      leftComparisonExpressions: ['direction'],
-      rightComparisonExpressions: ['terrain_type', 'object_type']
-    })
-  }
-
-  buildRuleset(world) {
-    return super.buildRuleset(world, {
-      win: ['all_npc_dead'],
-      lose: ['all_hero_dead', 'or', 'one_hero_dead', 'or', 'too_many_steps']
-    })
+  ruleset: {
+    win: ['all_npc_dead'],
+    lose: ['all_hero_dead', 'or', 'one_hero_dead', 'or', 'too_many_steps']
   }
 }
+
+export default level

@@ -3,45 +3,102 @@ import CompilerConfig from '../world/ai/compile/CompilerConfig'
 import Reason from '../world/rules/conditions/Reason'
 import tileset_image from './maps/tileset.png'
 import lang from '../lang'
+import BasicTutorialConfig from '../components/level/tutorial/BasicTutorialConfig'
+import AdvancedTutorialConfig from '../components/level/tutorial/AdvancedTutorialConfig'
 
 export default class Level extends WorldLevel {
 
   constructor(id, {
-    nameTemplate,
-    objectiveTemplate,
+    name,
+    objective,
     startingCode,
     startingEditorType,
     maxStep,
     speedTarget,
-    lengthTarget
+    lengthTarget,
+    tutorialConfig,
+    compilerConfig,
+    ruleset
   }) {
     super(id, maxStep)
-    this.nameTemplate = nameTemplate
-    this.objectiveTemplate = objectiveTemplate
+    this.name = name
+    this.objective = objective
     this.startingCode = startingCode || ''
     this.startingEditorType = startingEditorType || 'graph'
     this.speedTarget = speedTarget || 20
     this.lengthTarget = lengthTarget || 10
+    this.tutorialConfig = tutorialConfig || null
+    this.compilerConfig = compilerConfig || 'default'
+    this.ruleset = ruleset || {
+      win: [],
+      lose: 'default_loss'
+    }
+
+    this.installMessages()
   }
 
-  get name() {
+  installMessages() {
+    if (this.name) {
+      lang.pushMessage(this.getNameMessageKey(), this.name)
+    }
+    if (this.objective) {
+      lang.pushMessage(this.getObjectiveMessageKey(), this.objective)
+    }
+  }
+
+  getNameMessageKey() {
+    return `level${this.id}_name`
+  }
+
+  getObjectiveMessageKey() {
+    return `level${this.id}_objective`
+  }
+
+  getName() {
     let name = `level${this.id}`
-    if (this.nameTemplate) {
-      name = lang.text(this.nameTemplate)
+    if (this.name) {
+      name = lang.text(this.getNameMessageKey())
     }
     return name
   }
 
-  get objective() {
+  getObjective() {
     let objective = lang.text('no_text')
-    if (this.objectiveTemplate) {
-      objective = lang.text(this.objectiveTemplate)
+    if (this.objective) {
+      objective = lang.text(this.getObjectiveMessageKey())
     }
     return objective
   }
 
   get tutorial() {
-    return null
+    if (typeof this.tutorialConfig === 'string') {
+      if (this.tutorialConfig === 'basic_tutorial') {
+        return BasicTutorialConfig
+      } else if (this.tutorialConfig === 'advanced_tutorial') {
+        return AdvancedTutorialConfig
+      }
+    } else {
+      return this.tutorialConfig
+    }
+  }
+
+  buildCompilerConfig() {
+    if (this.compilerConfig === 'default') {
+      return CompilerConfig.getDefault()
+    } else {
+      return new CompilerConfig(this.compilerConfig)
+    }
+  }
+
+  buildRuleset(world) {
+    if (typeof this.ruleset.__proto__.step === 'function' &&
+      typeof this.ruleset.__proto__.hasWon === 'function' &&
+      typeof this.ruleset.__proto__.hasLost === 'function' &&
+      typeof this.ruleset.__proto__.getLossReason === 'function') {
+      return this.ruleset
+    } else {
+      return super.buildRuleset(world, this.ruleset)
+    }
   }
 
   getLossReasonTemplate(lossReason) {

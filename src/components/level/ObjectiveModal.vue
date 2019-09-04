@@ -12,13 +12,13 @@
     <score-stars :score="solution.score"
       :level="level" />
 
-    <div class="level-label">{{level.name}}</div>
+    <div class="level-label">{{level.getName()}}</div>
   </div>
   <div class="objective-modal-content">
 
     <h4>{{$text('level_objective_modal_objective_title')}}</h4>
     <div class="objective-text"
-      v-bbcode>{{level.objective}}</div>
+      v-bbcode>{{level.getObjective()}}</div>
 
     <h4>{{$text('level_objective_modal_secondary_objectives_title')}}</h4>
 

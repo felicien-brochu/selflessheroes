@@ -1,6 +1,3 @@
-import Level from '../Level'
-import CompilerConfig from '../../world/ai/compile/CompilerConfig'
-
 /* speed: 4, length: 7
 if n == switch :
 	step(n)
@@ -14,38 +11,36 @@ endif
 step(w)
 */
 
-export default class Level5 extends Level {
-  constructor(id) {
-    super(id, {
-      nameTemplate: "level5_name",
-      objectiveTemplate: "level5_objective",
-      startingCode: "",
-      startingEditorType: "graph",
-      maxStep: 100,
-      speedTarget: 4,
-      lengthTarget: 7
-    })
+const level = {
+  name: {
+    en: "Vertigo",
+    fr: "Vertige",
+  },
+  objective: {
+    en: "Trigger all the %%icon icon-switch$%% switches",
+    fr: "Active tous les %%icon icon-switch$%% boutons",
+  },
+  startingCode: "",
+  startingEditorType: "graph",
+  maxStep: 100,
+  speedTarget: 4,
+  lengthTarget: 7,
 
-    Object.freeze(this)
-  }
+  compilerConfig: {
+    excludePrimary: ['assign', 'jump', 'anchor'],
+    variables: 0,
+    terrainTypes: ['hole'],
+    objectTypes: ['switch'],
+    valueFunctions: [],
+    actionFunctions: ['step_once'],
+    leftComparisonExpressions: ['direction'],
+    rightComparisonExpressions: ['object_type', 'terrain_type']
+  },
 
-  buildCompilerConfig() {
-    return new CompilerConfig({
-      excludePrimary: ['assign', 'jump', 'anchor'],
-      variables: 0,
-      terrainTypes: ['hole'],
-      objectTypes: ['switch'],
-      valueFunctions: [],
-      actionFunctions: ['step_once'],
-      leftComparisonExpressions: ['direction'],
-      rightComparisonExpressions: ['object_type', 'terrain_type']
-    })
-  }
-
-  buildRuleset(world) {
-    return super.buildRuleset(world, {
-      win: 'all_switches',
-      lose: 'default_loss'
-    })
+  ruleset: {
+    win: 'all_switches',
+    lose: 'default_loss'
   }
 }
+
+export default level

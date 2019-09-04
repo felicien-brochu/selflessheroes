@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="38" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="259" nextobjectid="238">
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="38" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="259" nextobjectid="243">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
   <image source="tileset.png" trans="000000" width="340" height="680"/>
   <terraintypes>
@@ -64,88 +64,6 @@
    </properties>
    <point/>
   </object>
-  <object id="137" name="switch" type="switch" x="626" y="310">
-   <properties>
-    <property name="autoDisable" type="bool" value="true"/>
-    <property name="enabled" type="bool" value="false"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="134" name="switch" type="switch" x="365" y="146">
-   <properties>
-    <property name="autoDisable" type="bool" value="true"/>
-    <property name="enabled" type="bool" value="false"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="133" name="spikes" type="spikes" x="623" y="147">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-    <property name="triggers" value="137"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="132" name="spikes" type="spikes" x="399" y="306">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-    <property name="triggers" value="134"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="9" name="hero" type="hero" x="203.858" y="307.423">
-   <properties>
-    <property name="initialDirection" value="e"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="55" name="hero" type="hero" x="208" y="150">
-   <properties>
-    <property name="initialDirection" value="e"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="145" name="path1" type="path" x="24" y="307">
-   <properties>
-    <property name="stepRythm" type="int" value="3"/>
-   </properties>
-   <polyline points="90,-1 125,-2 152,-1 190,2 214,-2 253,0 284,-3 318,-3 347,-2 379,-3 410,-1 442,-2 470,-2 506,-1 535,-1 576,-2 599,-1 606.008,-1.30532 635,0 664,0 697,3 733,0 760,-2 789,1 823,3 856,3 890,3 921,2 956,-30 984,-30 1016,-32 1018.53,-63.9203 1046.02,-66.3682 1079.88,-64.6397 1112,-63"/>
-  </object>
-  <object id="146" name="ai" type="ai" x="-52" y="186.667">
-   <properties>
-    <property name="paths" value="145"/>
-    <property name="type" value="follow_path"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="147" name="npc" type="npc" x="112" y="303">
-   <properties>
-    <property name="aiConfig" type="int" value="146"/>
-    <property name="initialDirection" value="e"/>
-    <property name="race" value="ogre"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="144" name="path1" type="path" x="23" y="142">
-   <properties>
-    <property name="stepRythm" type="int" value="3"/>
-   </properties>
-   <polyline points="90,-1 125,-2 152,-1 190,2 214,-2 253,0 284,-3 318,-3 347,-2 355.05,-1.4078 379,-3 410,-1 442,-2 470,-2 506,-1 535,-1 576,-2 599,-1 635,0 664,0 697,3 733,0 760,-2 789,1 826,-30 857,-27 891,-30 924,-29 956,-30 984,-30 1015,-26 1017.1,-57.9626 1048,-60.8926 1079,-60.9472 1109,-61"/>
-  </object>
-  <object id="139" name="ai" type="ai" x="-78" y="188">
-   <properties>
-    <property name="paths" value="144"/>
-    <property name="type" value="follow_path"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="131" name="npc" type="npc" x="114" y="147">
-   <properties>
-    <property name="aiConfig" type="int" value="139"/>
-    <property name="initialDirection" value="e"/>
-    <property name="race" value="ogre"/>
-   </properties>
-   <point/>
-  </object>
   <object id="150" name="spikes" type="spikes" x="1010" y="119">
    <properties>
     <property name="enabled" type="bool" value="false"/>
@@ -199,102 +117,6 @@
    <properties>
     <property name="enabled" type="bool" value="false"/>
     <property name="triggers" value="136"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="202" name="bonfire" type="bonfire" x="623" y="211">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="203" name="bonfire" type="bonfire" x="592" y="214">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="204" name="bonfire" type="bonfire" x="594" y="247">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="205" name="bonfire" type="bonfire" x="626" y="244">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="206" name="bonfire" type="bonfire" x="466" y="211">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="207" name="bonfire" type="bonfire" x="435" y="214">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="208" name="bonfire" type="bonfire" x="437" y="247">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="209" name="bonfire" type="bonfire" x="469" y="244">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="210" name="bonfire" type="bonfire" x="307" y="211">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="211" name="bonfire" type="bonfire" x="276" y="214">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="212" name="bonfire" type="bonfire" x="278" y="247">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="213" name="bonfire" type="bonfire" x="310" y="244">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="214" name="bonfire" type="bonfire" x="139" y="205">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="215" name="bonfire" type="bonfire" x="108" y="208">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="216" name="bonfire" type="bonfire" x="110" y="241">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="217" name="bonfire" type="bonfire" x="142" y="238">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
@@ -421,6 +243,208 @@
    <properties>
     <property name="enabled" type="bool" value="false"/>
     <property name="triggers" value="136"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="202" name="bonfire" type="bonfire" x="623" y="211">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="203" name="bonfire" type="bonfire" x="592" y="214">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="204" name="bonfire" type="bonfire" x="594" y="247">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="205" name="bonfire" type="bonfire" x="626" y="244">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="206" name="bonfire" type="bonfire" x="466" y="211">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="207" name="bonfire" type="bonfire" x="435" y="214">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="208" name="bonfire" type="bonfire" x="437" y="247">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="209" name="bonfire" type="bonfire" x="469" y="244">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="210" name="bonfire" type="bonfire" x="307" y="211">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="211" name="bonfire" type="bonfire" x="276" y="214">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="212" name="bonfire" type="bonfire" x="278" y="247">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="213" name="bonfire" type="bonfire" x="310" y="244">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="214" name="bonfire" type="bonfire" x="139" y="205">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="215" name="bonfire" type="bonfire" x="108" y="208">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="216" name="bonfire" type="bonfire" x="110" y="241">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="217" name="bonfire" type="bonfire" x="142" y="238">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="137" name="switch" type="switch" x="626" y="310">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+    <property name="enabled" type="bool" value="false"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="134" name="switch" type="switch" x="365" y="146">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+    <property name="enabled" type="bool" value="false"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="133" name="spikes" type="spikes" x="623" y="147">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+    <property name="triggers" value="137"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="132" name="spikes" type="spikes" x="399" y="306">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+    <property name="triggers" value="134"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="242" name="arrow" type="symbol" x="304" y="306.667">
+   <properties>
+    <property name="symbol" value="arrow_e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="240" name="arrow" type="symbol" x="273.333" y="306.667">
+   <properties>
+    <property name="symbol" value="arrow_e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="241" name="arrow" type="symbol" x="305.333" y="148">
+   <properties>
+    <property name="symbol" value="arrow_e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="239" name="arrow" type="symbol" x="269.333" y="145.333">
+   <properties>
+    <property name="symbol" value="arrow_e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="9" name="hero" type="hero" x="203.858" y="307.423">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="55" name="hero" type="hero" x="208" y="150">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="145" name="path1" type="path" x="24" y="307">
+   <properties>
+    <property name="stepRythm" type="int" value="3"/>
+   </properties>
+   <polyline points="90,-1 125,-2 152,-1 190,2 214,-2 253,0 284,-3 318,-3 347,-2 379,-3 410,-1 442,-2 470,-2 506,-1 535,-1 576,-2 599,-1 606.008,-1.30532 635,0 664,0 697,3 733,0 760,-2 789,1 823,3 856,3 890,3 921,2 956,-30 984,-30 1016,-32 1018.53,-63.9203 1046.02,-66.3682 1079.88,-64.6397 1112,-63"/>
+  </object>
+  <object id="146" name="ai" type="ai" x="-52" y="186.667">
+   <properties>
+    <property name="paths" value="145"/>
+    <property name="type" value="follow_path"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="147" name="npc" type="npc" x="112" y="303">
+   <properties>
+    <property name="aiConfig" type="int" value="146"/>
+    <property name="initialDirection" value="e"/>
+    <property name="race" value="ogre"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="144" name="path1" type="path" x="23" y="142">
+   <properties>
+    <property name="stepRythm" type="int" value="3"/>
+   </properties>
+   <polyline points="90,-1 125,-2 152,-1 190,2 214,-2 253,0 284,-3 318,-3 347,-2 355.05,-1.4078 379,-3 410,-1 442,-2 470,-2 506,-1 535,-1 576,-2 599,-1 635,0 664,0 697,3 733,0 760,-2 789,1 826,-30 857,-27 891,-30 924,-29 956,-30 984,-30 1015,-26 1017.1,-57.9626 1048,-60.8926 1079,-60.9472 1109,-61"/>
+  </object>
+  <object id="139" name="ai" type="ai" x="-78" y="188">
+   <properties>
+    <property name="paths" value="144"/>
+    <property name="type" value="follow_path"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="131" name="npc" type="npc" x="114" y="147">
+   <properties>
+    <property name="aiConfig" type="int" value="139"/>
+    <property name="initialDirection" value="e"/>
+    <property name="race" value="ogre"/>
    </properties>
    <point/>
   </object>

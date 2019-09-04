@@ -1,43 +1,38 @@
-import Level from '../Level'
-import CompilerConfig from '../../world/ai/compile/CompilerConfig'
-
 /* speed: 2, length:2
 step(n)
 fireball(n)
 */
 
-export default class Level6 extends Level {
-  constructor(id) {
-    super(id, {
-      nameTemplate: "level6_name",
-      objectiveTemplate: "level6_objective",
-      startingCode: "",
-      startingEditorType: "graph",
-      maxStep: 100,
-      speedTarget: 2,
-      lengthTarget: 2
-    })
+const level = {
+  name: {
+    en: "Fireball",
+    fr: "Allumer le feu",
+  },
+  objective: {
+    en: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-information-outline$%% Use %%statement action-statement$fireball%% to lit the bonfires",
+    fr: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement action-statement$boule de feu%% pour allumer les feux",
+  },
+  startingCode: "",
+  startingEditorType: "graph",
+  maxStep: 100,
+  speedTarget: 2,
+  lengthTarget: 2,
 
-    Object.freeze(this)
-  }
+  compilerConfig: {
+    excludePrimary: ['assign', 'jump', 'anchor'],
+    variables: 0,
+    terrainTypes: ['wall', 'floor'],
+    objectTypes: ['bonfire'],
+    valueFunctions: [],
+    actionFunctions: ['step_once', 'fireball'],
+    leftComparisonExpressions: ['direction'],
+    rightComparisonExpressions: ['object_type', 'terrain_type']
+  },
 
-  buildCompilerConfig() {
-    return new CompilerConfig({
-      excludePrimary: ['assign', 'jump', 'anchor'],
-      variables: 0,
-      terrainTypes: ['wall', 'floor'],
-      objectTypes: ['bonfire'],
-      valueFunctions: [],
-      actionFunctions: ['step_once', 'fireball'],
-      leftComparisonExpressions: ['direction'],
-      rightComparisonExpressions: ['object_type', 'terrain_type']
-    })
-  }
-
-  buildRuleset(world) {
-    return super.buildRuleset(world, {
-      win: 'all_bonfires',
-      lose: 'default_loss'
-    })
+  ruleset: {
+    win: 'all_bonfires',
+    lose: 'default_loss'
   }
 }
+
+export default level

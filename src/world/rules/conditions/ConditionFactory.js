@@ -7,6 +7,7 @@ import OneHeroDeadCondition from './OneHeroDeadCondition'
 import AllSwitchesEnabledCondition from './AllSwitchesEnabledCondition'
 import AllBonfiresEnabledCondition from './AllBonfiresEnabledCondition'
 import AllNpcDeadCondition from './AllNpcDeadCondition'
+import EggOnMarkerCondition from './EggOnMarkerCondition'
 
 const conditionMap = {
   default_loss: DefaultLossCondition,
@@ -17,15 +18,16 @@ const conditionMap = {
 
   all_switches: AllSwitchesEnabledCondition,
   all_bonfires: AllBonfiresEnabledCondition,
-  all_npc_dead: AllNpcDeadCondition
+  all_npc_dead: AllNpcDeadCondition,
+  egg_on_marker: EggOnMarkerCondition,
 }
 
 export default class ConditionFactory {
-  static build(key, world) {
-    let conditionClass = conditionMap[key]
+  static build(type, world, config = {}) {
+    let conditionClass = conditionMap[type]
     let condition = null
     if (conditionClass) {
-      condition = new conditionClass(world)
+      condition = new conditionClass(world, config)
     }
     return condition
   }

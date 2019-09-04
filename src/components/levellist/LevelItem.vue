@@ -9,7 +9,7 @@
 		maxFontSize: 40,
 		minFontSize: 30
 	}">{{
-	level.name
+	level.getName()
 	}}</h3>
 
   <score-stars :score="score"
