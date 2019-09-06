@@ -2,11 +2,16 @@ import WorldObject from './WorldObject'
 import ObjectType from './ObjectType'
 
 export default class Spikes extends WorldObject {
-  constructor(config, tileWidth, tileHeight) {
-    super(config, tileWidth, tileHeight)
-    this.enabled = false
-    this.triggers = []
-    this.parseProperties()
+  constructor(config) {
+    if (config.enabled === undefined) {
+      config.enabled = false
+    }
+    if (config.triggers === undefined) {
+      config.triggers = []
+    }
+
+    super(config)
+
     this.initialyEnabled = this.enabled
   }
 

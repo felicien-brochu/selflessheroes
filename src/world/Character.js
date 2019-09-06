@@ -2,18 +2,22 @@ import WorldObject from './WorldObject'
 import IdleAI from './ai/IdleAI'
 
 export default class Character extends WorldObject {
-  constructor(config, tileWidth, tileHeight, world) {
-    super(config, tileWidth, tileHeight)
+  constructor(config, world) {
+    if (config.initialDirection === undefined) {
+      config.initialDirection = 'e'
+    }
+    if (config.item === undefined) {
+      config.item = null
+    }
 
-    this.ai = new IdleAI(world, this)
+    super(config)
 
     this.world = world
-    this.initialDirection = 'e'
+    this.ai = new IdleAI(world, this)
 
     this.lastAction = null
     this.dead = false
     this.deathReason = null
-    this.item = null
   }
 
   step(rng) {

@@ -3,14 +3,17 @@ import Phaser from 'phaser'
 import CharacterS from './CharacterS'
 
 let assets = [
-  'knight_red',
+  'knight_orange',
   'knight_pink',
   'knight_green',
   'knight_blue',
   'knight_purple',
-  'knight_orange',
+  'knight_red',
+  'knight_turquoise',
+  'knight_yellow',
   'knight_dark_blue',
-  'knight_white'
+  'knight_fuchsia',
+  'knight_hollywood_green',
 ]
 
 

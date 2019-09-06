@@ -1,14 +1,13 @@
 import Character from './Character'
 import ObjectType from './ObjectType'
 
-const nbColor = 8
+const nbColor = 11
 
 export default class Hero extends Character {
-  constructor(config, tileWidth, tileHeight, world) {
-    super(config, tileWidth, tileHeight, world)
+  constructor(config, world) {
+    super(config, world)
 
     this.color = this.getNextColor()
-    this.parseProperties()
   }
 
   getNextColor() {

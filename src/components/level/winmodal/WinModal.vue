@@ -136,8 +136,8 @@ export default {
     },
 
     averageStep: function() {
-      let sum = this.tests.map(test => test.steps).reduce((sum, next) => (sum + next))
-      return Math.floor(sum / this.tests.length)
+      let sum = this.tests.reduce((sum, next) => (sum + next.steps), 0)
+      return Math.round(sum / this.tests.length)
     }
   },
 

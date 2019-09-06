@@ -2,11 +2,15 @@ import WorldObject from './WorldObject'
 import ObjectType from './ObjectType'
 
 export default class Switch extends WorldObject {
-  constructor(config, tileWidth, tileHeight) {
-    super(config, tileWidth, tileHeight)
-    this.enabled = false
-    this.autoDisable = true
-    this.parseProperties()
+  constructor(config) {
+    if (config.enabled === undefined) {
+      config.enabled = false
+    }
+    if (config.autoDisable === undefined) {
+      config.autoDisable = false
+    }
+
+    super(config)
   }
 
   enable() {

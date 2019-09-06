@@ -19,6 +19,8 @@ export default class Level {
     return new DefaultRuleset(world)
   }
 
+  generateWorld(world) {}
+
   getRootPath() {
     return `levels/level${this.id}`
   }

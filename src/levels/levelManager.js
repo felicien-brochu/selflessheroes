@@ -11,8 +11,10 @@ import level9 from './level9/level9'
 import level10 from './level10/level10'
 import level11 from './level11/level11'
 import level12 from './level12/level12'
+
 import level101 from './level101/level101'
-// import levelTest from './levelTest/levelTest'
+import level102 from './level102/level102'
+import levelTest from './level0/level0'
 
 const levels = [
   new Level(1, level1),
@@ -27,8 +29,10 @@ const levels = [
   new Level(10, level10),
   new Level(11, level11),
   new Level(12, level12),
+
   new Level(101, level101),
-  // new Level(0, levelTest),
+  new Level(102, level102),
+  new Level(0, levelTest),
 ]
 
 const unlockTree = {
@@ -45,7 +49,8 @@ const unlockTree = {
   11: [10],
   12: [11],
   101: [10],
-  // 0: [],
+  102: [101],
+  0: [],
 }
 
 class LevelManager {

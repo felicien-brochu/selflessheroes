@@ -1,6 +1,7 @@
 import WorldLevel from '../world/Level'
 import CompilerConfig from '../world/ai/compile/CompilerConfig'
 import Reason from '../world/rules/conditions/Reason'
+import WorldGeneratorFactory from '../world/generator/WorldGeneratorFactory'
 import tileset_image from './maps/tileset.png'
 import lang from '../lang'
 import BasicTutorialConfig from '../components/level/tutorial/BasicTutorialConfig'
@@ -18,7 +19,8 @@ export default class Level extends WorldLevel {
     lengthTarget,
     tutorialConfig,
     compilerConfig,
-    ruleset
+    ruleset,
+    worldGenerator,
   }) {
     super(id, maxStep)
     this.name = name
@@ -33,6 +35,7 @@ export default class Level extends WorldLevel {
       win: [],
       lose: 'default_loss'
     }
+    this.worldGenerator = worldGenerator
 
     this.installMessages()
   }
@@ -91,13 +94,26 @@ export default class Level extends WorldLevel {
   }
 
   buildRuleset(world) {
-    if (typeof this.ruleset.__proto__.step === 'function' &&
-      typeof this.ruleset.__proto__.hasWon === 'function' &&
-      typeof this.ruleset.__proto__.hasLost === 'function' &&
-      typeof this.ruleset.__proto__.getLossReason === 'function') {
+    if (typeof this.ruleset.step === 'function' &&
+      typeof this.ruleset.hasWon === 'function' &&
+      typeof this.ruleset.hasLost === 'function' &&
+      typeof this.ruleset.getLossReason === 'function') {
       return this.ruleset
     } else {
       return super.buildRuleset(world, this.ruleset)
+    }
+  }
+
+  generateWorld(world) {
+    if (this.worldGenerator) {
+      let generator
+      if (typeof this.worldGenerator.generate === 'function') {
+        generator = this.worldGenerator
+      } else {
+        generator = WorldGeneratorFactory.build(this.worldGenerator.type, this.worldGenerator.config)
+      }
+
+      generator.generate(world)
     }
   }
 

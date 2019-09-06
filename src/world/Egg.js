@@ -4,10 +4,12 @@ import ObjectType from './ObjectType'
 const rngRegExp = /^rng\(([0-9]+),([0-9]+)\)$/
 
 export default class Egg extends Item {
-  constructor(config, tileWidth, tileHeight) {
-    super(config, tileWidth, tileHeight)
-    this.value = null
-    this.parseProperties()
+  constructor(config) {
+    if (config.value === undefined) {
+      config.value = null
+    }
+
+    super(config)
   }
 
   initValue(rng) {

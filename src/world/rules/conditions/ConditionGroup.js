@@ -25,9 +25,10 @@ export default class ConditionGroup extends Condition {
       condition = ConditionFactory.build(condition, this.world)
       this.conditions.push(condition)
     } else if (typeof condition === 'object') {
-      if (typeof condition.__proto__.step === 'function' &&
-        typeof condition.__proto__.check === 'function' &&
-        typeof condition.__proto__.getReason === 'function') {
+      if (typeof condition.step === 'function' &&
+        typeof condition.check === 'function' &&
+        typeof condition.getReason === 'function') {
+        condition.world = this.world
         this.conditions.push(condition)
       } else if (condition.type !== undefined) {
         let config = condition.config ? condition.config : {}

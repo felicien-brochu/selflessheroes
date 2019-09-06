@@ -37,9 +37,12 @@ export default class World {
     this.symbols = []
 
     this.configObjects = []
-    this.parseObjects()
 
+    this.parseObjects()
     this.ruleset = this.level.buildRuleset(this)
+    this.level.generateWorld(this)
+    this.initWorldObjects()
+
     this.hasWon = false
     this.hasLost = false
     this.gameOver = false
@@ -57,9 +60,11 @@ export default class World {
     }
 
     for (var i = 0; i < layers.objects.objects.length; i++) {
-      this.createObject(layers.objects.objects[i], this.mapConfig.tilewidth, this.mapConfig.tileheight)
+      this.createObjectFromMapObject(layers.objects.objects[i])
     }
+  }
 
+  initWorldObjects() {
     // Item ownership + hero AIs
     for (let hero of this.heroes) {
       if (this.aiFactory) {
@@ -88,44 +93,76 @@ export default class World {
     }
   }
 
+  createObjectFromMapObject(config) {
+    let objectConfig = {
+      id: config.id,
+      name: config.name,
+      x: Math.floor(config.x / this.mapConfig.tilewidth),
+      y: Math.floor(config.y / this.mapConfig.tileheight),
+    }
 
-  createObject(config, tileWidth, tileHeight) {
-    switch (config.type) {
+    if (config.properties) {
+      for (let property of config.properties) {
+        objectConfig[property.name] = property.value
+      }
+    }
+
+    if (config.type === 'path') {
+      const pointMap = point => ({
+        x: Math.floor((config.x + point.x) / this.mapConfig.tilewidth),
+        y: Math.floor((config.y + point.y) / this.mapConfig.tileheight)
+      })
+      if (config.polygon) {
+        objectConfig.polygon = config.polygon.map(pointMap)
+      } else if (config.polyline) {
+        objectConfig.polyline = config.polyline.map(pointMap)
+      }
+    }
+
+    this.createObject(config.type, objectConfig)
+  }
+
+  createObject(type, config) {
+    switch (type) {
       case 'hero':
-        let hero = new Hero(config, tileWidth, tileHeight, this)
+        let hero = new Hero(config, this)
         this.heroes.push(hero)
         this.characters.push(hero)
         break
       case 'npc':
-        let npc = new Npc(config, tileWidth, tileHeight, this)
+        let npc = new Npc(config, this)
         this.npcs.push(npc)
         this.characters.push(npc)
         break
       case 'switch':
-        this.switches.push(new Switch(config, tileWidth, tileHeight))
+        this.switches.push(new Switch(config))
         break
       case 'bonfire':
-        this.bonfires.push(new Bonfire(config, tileWidth, tileHeight))
+        this.bonfires.push(new Bonfire(config))
         break
       case 'spikes':
-        this.spikes.push(new Spikes(config, tileWidth, tileHeight))
+        this.spikes.push(new Spikes(config))
         break
       case 'egg':
-        this.eggs.push(new Egg(config, tileWidth, tileHeight))
+        this.eggs.push(new Egg(config))
         break
       case 'symbol':
-        this.symbols.push(new Symbol(config, tileWidth, tileHeight))
+        this.symbols.push(new Symbol(config))
         break
       case 'ai':
-        this.configObjects.push(new AIConfig(config, tileWidth, tileHeight))
+        this.configObjects.push(new AIConfig(config))
         break
       case 'path':
-        this.configObjects.push(new PathConfig(config, tileWidth, tileHeight))
+        this.configObjects.push(new PathConfig(config, this))
         break
       case 'marker':
-        this.configObjects.push(new Marker(config, tileWidth, tileHeight))
+        this.configObjects.push(new Marker(config))
         break
     }
+  }
+
+  getAvailableObjectID() {
+    return this.getAllObjects().reduce((max, object) => object.id > max ? object.id : max, 0) + 1
   }
 
   step() {
@@ -348,6 +385,19 @@ export default class World {
       ...this.bonfires,
       ...this.spikes,
       ...this.eggs
+    ]
+  }
+
+  getAllObjects() {
+    return [
+      ...this.heroes,
+      ...this.npcs,
+      ...this.switches,
+      ...this.bonfires,
+      ...this.spikes,
+      ...this.eggs,
+      ...this.symbols,
+      ...this.configObjects,
     ]
   }
 

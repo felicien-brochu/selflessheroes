@@ -130,8 +130,8 @@ const messages = {
     level_objective_modal_objective_title: "objective",
     level_objective_modal_secondary_objectives_title: "secondary objectives",
 
-    win_modal_prior_code_speed: "your fastest was %%score${minStep}%% cycles",
-    win_modal_prior_code_length: "your smallest was %%score${minLength}%% lines",
+    win_modal_prior_code_speed: "your fastest was %%score-number${minStep}%% cycles",
+    win_modal_prior_code_length: "your smallest was %%score-number${minLength}%% lines",
     win_modal_ok_button: "ok",
     win_modal_continue_edit_button: "improve",
 

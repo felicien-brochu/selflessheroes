@@ -1,20 +1,10 @@
 import EventEmitter from 'events'
 
 export default class WorldObject {
-  constructor(config, tileWidth, tileHeight) {
+  constructor(config) {
     this.config = config
-    this.id = config.id
-    this.x = (config.x - (config.x % tileWidth)) / tileWidth
-    this.y = (config.y - (config.y % tileHeight)) / tileHeight
+    Object.assign(this, config)
     this.events = new EventEmitter()
-  }
-
-  parseProperties() {
-    if (this.config.properties) {
-      for (let property of this.config.properties) {
-        this[property.name] = property.value
-      }
-    }
   }
 
   overlaps(object) {

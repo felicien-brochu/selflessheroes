@@ -2,11 +2,11 @@ import Character from './Character'
 import ObjectType from './ObjectType'
 
 export default class Npc extends Character {
-  constructor(config, tileWidth, tileHeight, world) {
-    super(config, tileWidth, tileHeight, world)
-
-    this.race = ''
-    this.parseProperties()
+  constructor(config, world) {
+    if (config.race === undefined) {
+      config.race = ''
+    }
+    super(config, world)
   }
 
   getObjectType() {

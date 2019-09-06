@@ -1,3 +1,9 @@
+/* speed: 3, length: 3
+take(e)
+step_once(se)
+drop(s)
+*/
+
 const level = {
   name: {
     en: "Delivery",

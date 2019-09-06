@@ -1,20 +1,16 @@
 import ConfigObject from './ConfigObject'
 
 export default class PathConfig extends ConfigObject {
-  constructor(config, tileWidth, tileHeight) {
-    super(config, tileWidth, tileHeight)
-    this.path = config.polygon || config.polyline
-    this.yoyo = false
-    this.stepRythm = 1
-    this.parseProperties()
+  constructor(config) {
+    if (config.yoyo === undefined) {
+      config.yoyo = false
+    }
+    if (config.stepRythm === undefined) {
+      config.stepRythm = 1
+    }
 
-    this.initPath(tileWidth, tileHeight)
-  }
+    super(config)
 
-  initPath(tileWidth, tileHeight) {
-    this.path = this.path.map(point => ({
-      x: Math.floor((this.config.x + point.x) / tileWidth),
-      y: Math.floor((this.config.y + point.y) / tileHeight)
-    }))
+    this.path = this.config.polygon || this.config.polyline
   }
 }

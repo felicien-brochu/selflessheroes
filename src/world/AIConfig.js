@@ -1,9 +1,11 @@
 import ConfigObject from './ConfigObject'
 
 export default class AIConfig extends ConfigObject {
-  constructor(config, tileWidth, tileHeight) {
-    super(config, tileWidth, tileHeight)
-    this.type = 'idle'
-    this.parseProperties()
+  constructor(config) {
+    if (config.type === undefined) {
+      config.type = 'idle'
+    }
+
+    super(config)
   }
 }

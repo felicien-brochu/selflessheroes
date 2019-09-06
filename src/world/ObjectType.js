@@ -12,14 +12,14 @@ export default class ObjectType {
   }
 }
 
-ObjectType.nothing = Symbol('nothingType')
-ObjectType.hero = Symbol('heroType')
-ObjectType.npc = Symbol('npcType')
-ObjectType.switch = Symbol('switchType')
-ObjectType.bonfire = Symbol('bonfireType')
-ObjectType.spikes = Symbol('spikesType')
-ObjectType.egg = Symbol('eggType')
+ObjectType.nothing = 'nothing'
+ObjectType.hero = 'hero'
+ObjectType.npc = 'npc'
+ObjectType.switch = 'switch'
+ObjectType.bonfire = 'bonfire'
+ObjectType.spikes = 'spikes'
+ObjectType.egg = 'egg'
 
-ObjectType.symbol = Symbol('symbol')
+ObjectType.symbol = 'symbol'
 
 Object.freeze(ObjectType)

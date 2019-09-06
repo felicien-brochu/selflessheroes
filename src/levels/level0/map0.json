@@ -1,0 +1,408 @@
+{
+  "height": 12,
+  "infinite": false,
+  "layers": [{
+      "data": [0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69, 0, 69],
+      "height": 12,
+      "id": 105,
+      "name": "checkers",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": false,
+      "width": 15,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 0, 0, 0, 0, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "height": 12,
+      "id": 106,
+      "name": "path",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 15,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "draworder": "topdown",
+      "id": 14,
+      "name": "camera",
+      "objects": [{
+        "height": 314.485,
+        "id": 12,
+        "name": "frame",
+        "rotation": 0,
+        "type": "frame",
+        "visible": true,
+        "width": 378.333,
+        "x": 50,
+        "y": 32.333
+      }],
+      "opacity": 1,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "draworder": "topdown",
+      "id": 2,
+      "name": "objects",
+      "objects": [{
+          "height": 0,
+          "id": 37,
+          "name": "arrow",
+          "point": true,
+          "properties": [{
+            "name": "symbol",
+            "type": "string",
+            "value": "arrow_s"
+          }],
+          "rotation": 0,
+          "type": "symbol",
+          "visible": true,
+          "width": 0,
+          "x": 113,
+          "y": 180
+        },
+        {
+          "height": 0,
+          "id": 35,
+          "name": "arrow",
+          "point": true,
+          "properties": [{
+            "name": "symbol",
+            "type": "string",
+            "value": "arrow_e"
+          }],
+          "rotation": 0,
+          "type": "symbol",
+          "visible": true,
+          "width": 0,
+          "x": 152,
+          "y": 192
+        },
+        {
+          "height": 0,
+          "id": 38,
+          "name": "cross",
+          "point": true,
+          "properties": [{
+            "name": "symbol",
+            "type": "string",
+            "value": "cross"
+          }],
+          "rotation": 0,
+          "type": "symbol",
+          "visible": true,
+          "width": 0,
+          "x": 237,
+          "y": 246
+        },
+        {
+          "height": 0,
+          "id": 36,
+          "name": "cross",
+          "point": true,
+          "properties": [{
+            "name": "symbol",
+            "type": "string",
+            "value": "cross"
+          }],
+          "rotation": 0,
+          "type": "symbol",
+          "visible": true,
+          "width": 0,
+          "x": 213,
+          "y": 250
+        },
+        {
+          "height": 0,
+          "id": 9,
+          "name": "hero",
+          "point": true,
+          "rotation": 0,
+          "type": "hero",
+          "visible": true,
+          "width": 0,
+          "x": 144,
+          "y": 147.333
+        },
+        {
+          "height": 0,
+          "id": 16,
+          "name": "hero",
+          "point": true,
+          "rotation": 0,
+          "type": "hero",
+          "visible": true,
+          "width": 0,
+          "x": 208,
+          "y": 148
+        },
+        {
+          "height": 0,
+          "id": 17,
+          "name": "hero",
+          "point": true,
+          "rotation": 0,
+          "type": "hero",
+          "visible": true,
+          "width": 0,
+          "x": 273.333,
+          "y": 150.667
+        },
+        {
+          "height": 0,
+          "id": 18,
+          "name": "hero",
+          "point": true,
+          "properties": [{
+            "name": "item",
+            "type": "int",
+            "value": 19
+          }],
+          "rotation": 0,
+          "type": "hero",
+          "visible": true,
+          "width": 0,
+          "x": 341.667,
+          "y": 148.333
+        },
+        {
+          "height": 0,
+          "id": 19,
+          "name": "egg",
+          "point": true,
+          "properties": [{
+            "name": "value",
+            "type": "string",
+            "value": "rng(0,44)"
+          }],
+          "rotation": 0,
+          "type": "egg",
+          "visible": true,
+          "width": 0,
+          "x": 337,
+          "y": 182.333
+        },
+        {
+          "height": 0,
+          "id": 25,
+          "name": "egg",
+          "point": true,
+          "properties": [{
+            "name": "value",
+            "type": "int",
+            "value": 12
+          }],
+          "rotation": 0,
+          "type": "egg",
+          "visible": true,
+          "width": 0,
+          "x": 178,
+          "y": 278
+        },
+        {
+          "height": 0,
+          "id": 26,
+          "name": "egg",
+          "point": true,
+          "properties": [{
+            "name": "value",
+            "type": "int",
+            "value": 316
+          }],
+          "rotation": 0,
+          "type": "egg",
+          "visible": true,
+          "width": 0,
+          "x": 239,
+          "y": 211
+        },
+        {
+          "height": 0,
+          "id": 27,
+          "name": "egg",
+          "point": true,
+          "properties": [{
+            "name": "value",
+            "type": "int",
+            "value": 51
+          }],
+          "rotation": 0,
+          "type": "egg",
+          "visible": true,
+          "width": 0,
+          "x": 209,
+          "y": 213
+        },
+        {
+          "height": 0,
+          "id": 28,
+          "name": "egg",
+          "point": true,
+          "properties": [{
+            "name": "value",
+            "type": "int",
+            "value": 9
+          }],
+          "rotation": 0,
+          "type": "egg",
+          "visible": true,
+          "width": 0,
+          "x": 177,
+          "y": 151
+        },
+        {
+          "height": 0,
+          "id": 29,
+          "name": "egg",
+          "point": true,
+          "properties": [{
+            "name": "value",
+            "type": "string",
+            "value": "rng(0,99)"
+          }],
+          "rotation": 0,
+          "type": "egg",
+          "visible": true,
+          "width": 0,
+          "x": 270,
+          "y": 155
+        },
+        {
+          "height": 0,
+          "id": 30,
+          "name": "egg",
+          "point": true,
+          "properties": [{
+            "name": "value",
+            "type": "int",
+            "value": 7
+          }],
+          "rotation": 0,
+          "type": "egg",
+          "visible": true,
+          "width": 0,
+          "x": 303,
+          "y": 246
+        },
+        {
+          "height": 0,
+          "id": 31,
+          "name": "bonfire",
+          "point": true,
+          "properties": [{
+            "name": "value",
+            "type": "int",
+            "value": 7
+          }],
+          "rotation": 0,
+          "type": "bonfire",
+          "visible": true,
+          "width": 0,
+          "x": 337,
+          "y": 189
+        },
+        {
+          "height": 0,
+          "id": 32,
+          "name": "switch",
+          "point": true,
+          "properties": [{
+            "name": "value",
+            "type": "int",
+            "value": 7
+          }],
+          "rotation": 0,
+          "type": "switch",
+          "visible": true,
+          "width": 0,
+          "x": 272,
+          "y": 185
+        }
+      ],
+      "opacity": 1,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "data": [79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 79, 79, 70, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 70, 79, 79, 70, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 70, 79, 79, 70, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 70, 79, 79, 70, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 70, 79, 79, 70, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 70, 79, 79, 70, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 70, 79, 79, 70, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 70, 79, 79, 70, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 70, 79, 79, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79],
+      "height": 12,
+      "id": 107,
+      "name": "types",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 15,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 5, 4, 5, 3, 5, 3, 4, 4, 2, 6, 0, 0, 11, 28, 144, 18, 144, 20, 154, 39, 132, 10, 154, 18, 16, 0, 0, 11, 123, 30, 141, 9, 134, 17, 134, 28, 131, 30, 122, 26, 0, 0, 11, 18, 141, 27, 152, 39, 132, 30, 132, 19, 151, 29, 16, 0, 0, 21, 134, 9, 123, 10, 143, 10, 144, 28, 152, 19, 134, 26, 0, 0, 21, 7, 144, 9, 141, 39, 141, 9, 131, 28, 141, 37, 26, 0, 0, 21, 121, 38, 144, 29, 122, 17, 152, 8, 132, 29, 134, 26, 0, 0, 11, 7, 154, 29, 121, 27, 151, 39, 142, 30, 122, 27, 26, 0, 0, 31, 154, 19, 131, 29, 134, 19, 144, 27, 143, 8, 142, 36, 0, 0, 41, 42, 52, 42, 53, 52, 52, 52, 53, 42, 53, 45, 46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "height": 12,
+      "id": 108,
+      "name": "ground",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 15,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 15, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 32, 33, 33, 33, 33, 33, 33, 33, 33, 33, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "height": 12,
+      "id": 109,
+      "name": "floor_shadow",
+      "opacity": 1,
+      "type": "tilelayer",
+      "visible": true,
+      "width": 15,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 111,
+  "nextobjectid": 39,
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "tiledversion": "2019.03.13",
+  "tileheight": 32,
+  "tilesets": [{
+    "columns": 10,
+    "firstgid": 1,
+    "image": "..\/maps\/tileset.png",
+    "imageheight": 680,
+    "imagewidth": 340,
+    "margin": 1,
+    "name": "tileset",
+    "spacing": 2,
+    "terrains": [{
+        "name": "floor",
+        "tile": 79
+      },
+      {
+        "name": "wall",
+        "tile": 69
+      },
+      {
+        "name": "hole",
+        "tile": 78
+      }
+    ],
+    "tilecount": 200,
+    "tileheight": 32,
+    "tilewidth": 32,
+    "transparentcolor": "#000000"
+  }],
+  "tilewidth": 32,
+  "type": "map",
+  "version": 1.2,
+  "width": 15
+}

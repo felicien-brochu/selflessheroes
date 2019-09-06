@@ -28,14 +28,17 @@ import ObjectType from '../../../world/ObjectType'
 import TerrainType from '../../../world/TerrainType'
 
 const heroColors = [
-  'red',
+  'orange',
   'pink',
   'green',
   'blue',
   'purple',
-  'orange',
-  'dark-blue',
-  'white'
+  'red',
+  'turquoise',
+  'yellow',
+  'dark_blue',
+  'fuchsia',
+  'hollywood_green',
 ]
 
 export default {
@@ -171,28 +174,37 @@ export default {
     }
 }
 
-.hero-red {
-    background-image: url("../../images/hero-red.png");
-}
-.hero-pink {
-    background-image: url("../../images/hero-pink.png");
-}
-.hero-green {
-    background-image: url("../../images/hero-green.png");
-}
 .hero-blue {
     background-image: url("../../images/hero-blue.png");
-}
-.hero-purple {
-    background-image: url("../../images/hero-purple.png");
-}
-.hero-orange {
-    background-image: url("../../images/hero-orange.png");
 }
 .hero-dark-blue {
     background-image: url("../../images/hero-dark-blue.png");
 }
-.hero-white {
-    background-image: url("../../images/hero-white.png");
+.hero-fuchsia {
+    background-image: url("../../images/hero-fuchsia.png");
+}
+.hero-green {
+    background-image: url("../../images/hero-green.png");
+}
+.hero-hollywood-green {
+    background-image: url("../../images/hero-hollywood-green.png");
+}
+.hero-orange {
+    background-image: url("../../images/hero-orange.png");
+}
+.hero-pink {
+    background-image: url("../../images/hero-pink.png");
+}
+.hero-purple {
+    background-image: url("../../images/hero-purple.png");
+}
+.hero-red {
+    background-image: url("../../images/hero-red.png");
+}
+.hero-turquoise {
+    background-image: url("../../images/hero-turquoise.png");
+}
+.hero-yellow {
+    background-image: url("../../images/hero-yellow.png");
 }
 </style>

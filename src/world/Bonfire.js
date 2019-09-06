@@ -2,10 +2,12 @@ import WorldObject from './WorldObject'
 import ObjectType from './ObjectType'
 
 export default class Bonfire extends WorldObject {
-  constructor(config, tileWidth, tileHeight) {
-    super(config, tileWidth, tileHeight)
-    this.enabled = false
-    this.parseProperties()
+  constructor(config) {
+    if (config.enabled === undefined) {
+      config.enabled = false
+    }
+
+    super(config)
   }
 
   enable() {

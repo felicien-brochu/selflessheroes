@@ -1,15 +1,17 @@
 import Phaser from 'phaser'
 
-import knight_red from './images/knight_red.png'
+import knight_orange from './images/knight_orange.png'
 import knight_pink from './images/knight_pink.png'
 import knight_green from './images/knight_green.png'
 import knight_blue from './images/knight_blue.png'
 import knight_purple from './images/knight_purple.png'
-import knight_orange from './images/knight_orange.png'
-import knight_dark_blue from './images/knight_dark_blue.png'
-import knight_white from './images/knight_white.png'
-import knight_gray from './images/knight_gray.png'
 import knight_yellow from './images/knight_yellow.png'
+import knight_dark_blue from './images/knight_dark_blue.png'
+import knight_turquoise from './images/knight_turquoise.png'
+import knight_red from './images/knight_red.png'
+import knight_fuchsia from './images/knight_fuchsia.png'
+import knight_hollywood_green from './images/knight_hollywood_green.png'
+
 // import elf_f from './images/elf_f.png'
 // import elf_m from './images/elf_m.png'
 // import wizzard_f from './images/wizzard_f.png'
@@ -91,7 +93,7 @@ export default class extends Phaser.Scene {
     this.disablePhaserFullscreenManagement()
 
     // load assets
-    this.load.spritesheet('knight_red', knight_red, {
+    this.load.spritesheet('knight_orange', knight_orange, {
       frameWidth: 32,
       frameHeight: 56
     })
@@ -111,7 +113,7 @@ export default class extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 56
     })
-    this.load.spritesheet('knight_orange', knight_orange, {
+    this.load.spritesheet('knight_yellow', knight_yellow, {
       frameWidth: 32,
       frameHeight: 56
     })
@@ -119,15 +121,19 @@ export default class extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 56
     })
-    this.load.spritesheet('knight_white', knight_white, {
+    this.load.spritesheet('knight_turquoise', knight_turquoise, {
       frameWidth: 32,
       frameHeight: 56
     })
-    this.load.spritesheet('knight_gray', knight_gray, {
+    this.load.spritesheet('knight_red', knight_red, {
       frameWidth: 32,
       frameHeight: 56
     })
-    this.load.spritesheet('knight_yellow', knight_yellow, {
+    this.load.spritesheet('knight_fuchsia', knight_fuchsia, {
+      frameWidth: 32,
+      frameHeight: 56
+    })
+    this.load.spritesheet('knight_hollywood_green', knight_hollywood_green, {
       frameWidth: 32,
       frameHeight: 56
     })

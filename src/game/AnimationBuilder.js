@@ -231,6 +231,22 @@ const anims = {
     start: 9,
     end: 9
   },
+  knight_turquoise_idle: {
+    start: 0,
+    end: 3
+  },
+  knight_turquoise_run: {
+    start: 4,
+    end: 7
+  },
+  knight_turquoise_hit: {
+    start: 8,
+    end: 8
+  },
+  knight_turquoise_sleep: {
+    start: 9,
+    end: 9
+  },
   knight_dark_blue_idle: {
     start: 0,
     end: 3
@@ -247,35 +263,35 @@ const anims = {
     start: 9,
     end: 9
   },
-  knight_white_idle: {
+  knight_fuchsia_idle: {
     start: 0,
     end: 3
   },
-  knight_white_run: {
+  knight_fuchsia_run: {
     start: 4,
     end: 7
   },
-  knight_white_hit: {
+  knight_fuchsia_hit: {
     start: 8,
     end: 8
   },
-  knight_white_sleep: {
+  knight_fuchsia_sleep: {
     start: 9,
     end: 9
   },
-  knight_gray_idle: {
+  knight_hollywood_green_idle: {
     start: 0,
     end: 3
   },
-  knight_gray_run: {
+  knight_hollywood_green_run: {
     start: 4,
     end: 7
   },
-  knight_gray_hit: {
+  knight_hollywood_green_hit: {
     start: 8,
     end: 8
   },
-  knight_gray_sleep: {
+  knight_hollywood_green_sleep: {
     start: 9,
     end: 9
   },
