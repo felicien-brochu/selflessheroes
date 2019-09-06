@@ -8,16 +8,34 @@ export default class Egg extends Item {
     if (config.value === undefined) {
       config.value = null
     }
+    if (config.showLottery === undefined) {
+      config.showLottery = false
+    }
 
     super(config)
+
+    this.initValueGenerator()
+  }
+
+  initValueGenerator() {
+    let matches
+    if (typeof this.value === 'string' && (matches = this.value.match(rngRegExp)).length > 0) {
+      this.generateValue = (rng) => {
+        const min = parseInt(matches[1])
+        const max = parseInt(matches[2])
+
+        return Math.floor(rng() * (max - min + 1)) + min
+      }
+    }
+  }
+
+  hasValueGenerator() {
+    return typeof this.generateValue === 'function'
   }
 
   initValue(rng) {
-    let matches
-    if (typeof this.value === 'string' && (matches = this.value.match(rngRegExp)).length > 0) {
-      let min = parseInt(matches[1])
-      let max = parseInt(matches[2])
-      this.value = Math.floor(rng() * (max - min + 1)) + min
+    if (this.hasValueGenerator()) {
+      this.value = this.generateValue(rng)
     }
   }
 

@@ -11,6 +11,7 @@
   <property name="strategy" type="string" default="default"/>
  </objecttype>
  <objecttype name="egg" color="#44cc64">
+  <property name="showLottery" type="bool" default="false"/>
   <property name="value" type="string" default="rng(0,10)"/>
  </objecttype>
  <objecttype name="frame" color="#ff2fff"/>

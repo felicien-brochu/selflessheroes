@@ -27,7 +27,12 @@ export default class EggS extends Phaser.GameObjects.Container {
     this.sprite.setScale(0.85)
 
     this.textSprite = new Phaser.GameObjects.BitmapText(scene, 0, 0, 'digits_font')
-    this.updateText()
+    this.updateText(this.egg.value)
+
+    this.lotteryIntervalID = -1
+    if (this.egg.showLottery && this.egg.hasValueGenerator()) {
+      this.startValueLottery()
+    }
 
     this.scene.add.existing(this.sprite)
     this.scene.add.existing(this.textSprite)
@@ -37,6 +42,10 @@ export default class EggS extends Phaser.GameObjects.Container {
   }
 
   beforeStep(world) {
+    if (world.steps === 0 && this.lotteryIntervalID !== -1) {
+      this.stopLottery()
+    }
+
     if (!this.egg.owner) {
       let x = (this.egg.x + 0.5) * this.tileWidth + this.offsetX
       let y = (this.egg.y + 0.5) * this.tileHeight + this.offsetY
@@ -98,13 +107,33 @@ export default class EggS extends Phaser.GameObjects.Container {
     }
 
     this.lastEgg = this.egg.shallowCopy()
-    this.updateText()
+    this.updateText(this.egg.value)
   }
 
   afterStep(world) {}
 
-  updateText() {
-    let text = this.egg.value.toString()
+  startValueLottery() {
+    const lottery = () => {
+      let newValue
+      do {
+        newValue = this.egg.generateValue(Math.random)
+      } while (newValue == this.egg.value)
+      this.updateText(newValue)
+    }
+    lottery()
+    this.lotteryIntervalID = setInterval(lottery, 500)
+  }
+
+  stopLottery() {
+    if (this.lotteryIntervalID !== -1) {
+      clearInterval(this.lotteryIntervalID)
+      this.lotteryIntervalID = -1
+      this.updateText(this.egg.value)
+    }
+  }
+
+  updateText(value) {
+    let text = value.toString()
     let length = text.length > 3 ? 3 : text.length
     text = text.substring(text.length - length)
 
@@ -155,5 +184,10 @@ export default class EggS extends Phaser.GameObjects.Container {
     this.path.getPoint(this.follower.t, this.follower.vec)
     this.x = this.follower.vec.x
     this.y = this.follower.vec.y
+  }
+
+  destroy() {
+    this.stopLottery()
+    super.destroy()
   }
 }

@@ -85,6 +85,7 @@
   </object>
   <object id="19" name="egg" type="egg" x="337" y="182.333">
    <properties>
+    <property name="showLottery" type="bool" value="true"/>
     <property name="value" value="rng(0,44)"/>
    </properties>
    <point/>
