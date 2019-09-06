@@ -204,8 +204,8 @@ export default class World {
 
   resolveCharacterActions(characterActions) {
     this.resolveStepActions(characterActions)
-    this.resolveDropActions(characterActions)
     this.resolveTakeActions(characterActions)
+    this.resolveDropActions(characterActions)
     this.resolveWriteActions(characterActions)
     this.resolveFireBallActions(characterActions)
   }
