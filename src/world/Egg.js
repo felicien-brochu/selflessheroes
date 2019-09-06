@@ -6,7 +6,7 @@ const rngRegExp = /^rng\(([0-9]+),([0-9]+)\)$/
 export default class Egg extends Item {
   constructor(config) {
     if (config.value === undefined) {
-      config.value = null
+      config.value = "rng(0,9)"
     }
     if (config.showLottery === undefined) {
       config.showLottery = false
