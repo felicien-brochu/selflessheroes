@@ -195,11 +195,16 @@ export default {
         this.testAnimationEnded = true
 
         this.$nextTick(() => {
-          let content = this.$el.getElementsByClassName('modal-content')[0]
-          content.scrollTo({
-            top: content.scrollHeight,
-            behavior: 'smooth'
-          })
+          if (this.tests.every(test => !test.hasLost)) {
+            let content = this.$el.getElementsByClassName('modal-content')[0]
+            content.scrollTo({
+              top: content.scrollHeight,
+              behavior: 'smooth'
+            })
+          }
+          else {
+            this.cancel()
+          }
         })
       }
     },
