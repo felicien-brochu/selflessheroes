@@ -1,10 +1,5 @@
-/* speed: 247, length: 13
-e:
+/* speed: 245, length: 13
 a:
-if e == floor :
-	step(e)
-	jump a
-endif
 b:
 if s == floor :
 	step(s)
@@ -20,7 +15,12 @@ if n == floor :
 	step(n)
 	jump d
 endif
-jump e
+e:
+if e == floor :
+	step(e)
+	jump e
+endif
+jump a
 */
 
 const level = {
@@ -35,7 +35,7 @@ const level = {
   startingCode: "",
   startingEditorType: "graph",
   maxStep: 2000,
-  speedTarget: 247,
+  speedTarget: 245,
   lengthTarget: 13,
 
   compilerConfig: {
