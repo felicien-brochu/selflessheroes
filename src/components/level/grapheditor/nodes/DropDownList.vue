@@ -234,7 +234,7 @@ export default {
     createBooleanOperatorItems() {
       let items = this.createNewBooleanOperatorItems()
       items.push({
-        label: 'delete',
+        label: this.$text('operator_boolean_delete'),
         value: 'delete',
         selected: false
       })

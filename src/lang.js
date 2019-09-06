@@ -220,6 +220,7 @@ const messages = {
 
     operator_boolean_and: "and",
     operator_boolean_or: "or",
+    operator_boolean_delete: "delete",
 
     operator_arithmetic_plus: "+",
     operator_arithmetic_minus: "−",
@@ -436,6 +437,7 @@ const messages = {
 
     operator_boolean_and: "et",
     operator_boolean_or: "ou",
+    operator_boolean_delete: "enlever",
 
     drop_down_list_direction: "direction",
     drop_down_list_number: "nombre",
