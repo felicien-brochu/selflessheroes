@@ -126,6 +126,7 @@ export default class EggS extends Phaser.GameObjects.Container {
   }
 
   onTweenComplete() {
+    this.updatePathPosition()
     if (this.lastEgg.ownerID !== null) {
       let characterSprite = this.scene.getCharacterSprite(this.lastEgg.ownerID)
       characterSprite.updateItem()
