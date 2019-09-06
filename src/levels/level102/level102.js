@@ -58,7 +58,7 @@ const level = {
   },
   startingCode: "",
   startingEditorType: "graph",
-  maxStep: 100,
+  maxStep: 140,
   speedTarget: 31,
   lengthTarget: 4,
 
