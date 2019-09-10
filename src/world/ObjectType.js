@@ -17,6 +17,7 @@ ObjectType.hero = 'hero'
 ObjectType.npc = 'npc'
 ObjectType.switch = 'switch'
 ObjectType.bonfire = 'bonfire'
+ObjectType.cauldron = 'cauldron'
 ObjectType.spikes = 'spikes'
 ObjectType.egg = 'egg'
 

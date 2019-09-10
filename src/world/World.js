@@ -4,6 +4,7 @@ import Npc from './Npc'
 import CharacterDeathReason from './CharacterDeathReason'
 import Switch from './Switch'
 import Bonfire from './Bonfire'
+import Cauldron from './Cauldron'
 import Spikes from './Spikes'
 import Item from './Item'
 import Egg from './Egg'
@@ -31,6 +32,7 @@ export default class World {
     this.npcs = []
     this.switches = []
     this.bonfires = []
+    this.cauldrons = []
     this.spikes = []
     this.eggs = []
 
@@ -140,6 +142,9 @@ export default class World {
       case 'bonfire':
         this.bonfires.push(new Bonfire(config))
         break
+      case 'cauldron':
+        this.cauldrons.push(new Cauldron(config))
+        break
       case 'spikes':
         this.spikes.push(new Spikes(config))
         break
@@ -220,7 +225,7 @@ export default class World {
         let y = character.y + action.direction.dy
 
         let items = this.getWorldObjectsAt(x, y).filter(o => o instanceof Item)
-        if (items.length === 0 && this.map.isFloor(x, y)) {
+        if (items.length === 0 && (this.map.isFloor(x, y) || this.map.isHole(x, y))) {
           character.dropItem(action.direction)
         }
       }
@@ -268,6 +273,10 @@ export default class World {
         let bonfires = this.bonfires.filter(b => b.x === x && b.y === y)
         bonfires.forEach(bonfire => bonfire.enable())
 
+        // Light cauldrons
+        let cauldrons = this.cauldrons.filter(c => c.x === x && c.y === y)
+        cauldrons.forEach(cauldron => cauldron.enable())
+
         // Kill heroes
         let targetHeroes = this.heroes.filter(h => h.x === x && h.y === y)
         targetHeroes.forEach(character => character.setDead(true, CharacterDeathReason.burnt))
@@ -291,10 +300,11 @@ export default class World {
         let y = character.y + action.direction.dy
         let collidesWall = this.map.isWall(x, y)
         let collidesBonfire = this.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire).length > 0
+        let collidesCauldron = this.getWorldObjectsAt(x, y).filter(o => o instanceof Cauldron).length > 0
         let collidingHeroes = this.getCharactersAt(x, y).filter(c => !c.dead && c instanceof Hero)
         let collidesHero = collidingHeroes.length > 0
 
-        if (collidesWall || collidesBonfire) {
+        if (collidesWall || collidesBonfire || collidesCauldron) {
           stepActions.splice(i, 1)
           i--
         } else if (!collidesHero || character instanceof Npc) {
@@ -383,6 +393,7 @@ export default class World {
       ...this.npcs,
       ...this.switches,
       ...this.bonfires,
+      ...this.cauldrons,
       ...this.spikes,
       ...this.eggs
     ]
@@ -394,6 +405,7 @@ export default class World {
       ...this.npcs,
       ...this.switches,
       ...this.bonfires,
+      ...this.cauldrons,
       ...this.spikes,
       ...this.eggs,
       ...this.symbols,

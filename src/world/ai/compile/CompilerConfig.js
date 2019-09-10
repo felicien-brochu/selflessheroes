@@ -46,6 +46,7 @@ const objectTypeMap = {
   hero: 'hero',
   switch: 'switch',
   bonfire: 'bonfire',
+  cauldron: 'cauldron',
   spikes: 'spikes',
   egg: 'egg'
 }
@@ -113,6 +114,7 @@ export default class CompilerConfig {
         'hero',
         'switch',
         'bonfire',
+        'cauldron',
         'spikes',
         'egg',
         'nothing'

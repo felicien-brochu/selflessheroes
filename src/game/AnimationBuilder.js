@@ -385,6 +385,17 @@ const anims = {
     start: 1,
     end: 8
   },
+  cauldron_off: {
+    sprite: 'cauldron',
+    start: 0,
+    end: 0
+  },
+  cauldron_on: {
+    sprite: 'cauldron',
+    start: 1,
+    end: 6,
+    frameRate: 6
+  },
   spikes_off: {
     sprite: 'spikes',
     start: 0,

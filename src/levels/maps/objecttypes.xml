@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objecttypes>
- <objecttype name="ai" color="#930002">
+ <objecttype name="ai" color="#aa0000">
   <property name="paths" type="string"/>
   <property name="type" type="string" default="follow_path"/>
  </objecttype>
@@ -9,6 +9,9 @@
  </objecttype>
  <objecttype name="cameraStrategy" color="#ff2fff">
   <property name="strategy" type="string" default="default"/>
+ </objecttype>
+ <objecttype name="cauldron" color="#3ca41c">
+  <property name="enabled" type="bool" default="true"/>
  </objecttype>
  <objecttype name="egg" color="#44cc64">
   <property name="showLottery" type="bool" default="false"/>

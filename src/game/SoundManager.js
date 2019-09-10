@@ -33,7 +33,7 @@ const soundDefs = [{
     }
   },
   {
-    key: 'bonfire_sfx',
+    key: 'light_sfx',
     config: {
       volume: 0.1
     }

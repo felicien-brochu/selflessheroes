@@ -344,6 +344,78 @@
                  "width":0,
                  "x":272,
                  "y":185
+                }, 
+                {
+                 "height":0,
+                 "id":39,
+                 "name":"bonfire",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"enabled",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"bonfire",
+                 "visible":true,
+                 "width":0,
+                 "x":79,
+                 "y":208
+                }, 
+                {
+                 "height":0,
+                 "id":40,
+                 "name":"bonfire",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"enabled",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"bonfire",
+                 "visible":true,
+                 "width":0,
+                 "x":337,
+                 "y":306
+                }, 
+                {
+                 "height":0,
+                 "id":41,
+                 "name":"cauldron",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"enabled",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"cauldron",
+                 "visible":true,
+                 "width":0,
+                 "x":111,
+                 "y":309
+                }, 
+                {
+                 "height":0,
+                 "id":42,
+                 "name":"cauldron",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"enabled",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"cauldron",
+                 "visible":true,
+                 "width":0,
+                 "x":172,
+                 "y":211
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -388,7 +460,7 @@
          "y":0
         }],
  "nextlayerid":111,
- "nextobjectid":39,
+ "nextobjectid":43,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2019.03.13",

@@ -80,7 +80,9 @@ export default {
         if (obj.type === ObjectType.hero) {
           icon = `hero-${heroColors[obj.color % heroColors.length]}`
         }
-        else if (obj.type === ObjectType.switch || obj.type === ObjectType.bonfire) {
+        else if (obj.type === ObjectType.switch ||
+          obj.type === ObjectType.bonfire ||
+          obj.type === ObjectType.cauldron) {
           icon = `icon-${ObjectType.keyOf(obj.type)}`
         }
       }

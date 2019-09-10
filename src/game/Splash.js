@@ -38,6 +38,7 @@ import switch_blue from './images/switch_blue.png'
 import switch_red from './images/switch_red.png'
 // import lever from './images/lever.png'
 import bonfire from './images/bonfire.png'
+import cauldron from './images/cauldron.png'
 import spikes from './images/spikes.png'
 import egg from './images/egg.png'
 
@@ -72,7 +73,7 @@ import hero_scream_sfx from './audio/hero_scream.mp3'
 import npc_scream_sfx from './audio/npc_scream.mp3'
 import step_sfx from './audio/step.mp3'
 import fireball_sfx from './audio/fireball.mp3'
-import bonfire_sfx from './audio/bonfire.mp3'
+import light_sfx from './audio/light.mp3'
 import spikes_on_sfx from './audio/spikes_on.mp3'
 import spikes_off_sfx from './audio/spikes_off.mp3'
 
@@ -233,6 +234,10 @@ export default class extends Phaser.Scene {
       frameWidth: 28,
       frameHeight: 74
     })
+    this.load.spritesheet('cauldron', cauldron, {
+      frameWidth: 32,
+      frameHeight: 38
+    })
     this.load.spritesheet('spikes', spikes, {
       frameWidth: 32,
       frameHeight: 32
@@ -284,7 +289,7 @@ export default class extends Phaser.Scene {
     this.load.audio('npc_scream_sfx', npc_scream_sfx)
     this.load.audio('step_sfx', step_sfx)
     this.load.audio('fireball_sfx', fireball_sfx)
-    this.load.audio('bonfire_sfx', bonfire_sfx)
+    this.load.audio('light_sfx', light_sfx)
     this.load.audio('spikes_on_sfx', spikes_on_sfx)
     this.load.audio('spikes_off_sfx', spikes_off_sfx)
 
