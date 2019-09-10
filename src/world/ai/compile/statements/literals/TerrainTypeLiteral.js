@@ -7,7 +7,7 @@ import {
 import {
   NotDecompilableStatementException
 } from '../../DecompilerException'
-import TerrainType from '../../../../TerrainType'
+import TerrainType from '../../../../map/TerrainType'
 
 export default class TerrainTypeLiteral extends Expression {
   constructor(parent, line, column) {

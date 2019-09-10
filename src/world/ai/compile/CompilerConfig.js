@@ -21,8 +21,9 @@ import TerrainTypeLiteral from './statements/literals/TerrainTypeLiteral'
 import DirectionLiteral from './statements/literals/DirectionLiteral'
 import IntegerLiteral from './statements/literals/IntegerLiteral'
 import MyItemLiteral from './statements/literals/MyItemLiteral'
-import ObjectType from '../../ObjectType'
-import TerrainType from '../../TerrainType'
+
+import ObjectType from '../../objects/ObjectType'
+import TerrainType from '../../map/TerrainType'
 
 const primaryStatementMap = {
   empty: EmptyStatement,

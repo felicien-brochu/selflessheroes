@@ -7,7 +7,7 @@ import {
 import {
   NotDecompilableStatementException
 } from '../../DecompilerException'
-import ObjectType from '../../../../ObjectType'
+import ObjectType from '../../../../objects/ObjectType'
 
 export default class ObjectTypeLiteral extends Expression {
   constructor(parent, line, column) {

@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import CharacterDeathReason from '../../world/CharacterDeathReason'
+import CharacterDeathReason from '../../world/objects/CharacterDeathReason'
 import Direction from '../../world/Direction'
 
 const stateIdle = 'idle'

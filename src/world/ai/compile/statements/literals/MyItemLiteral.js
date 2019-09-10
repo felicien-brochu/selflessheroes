@@ -1,6 +1,6 @@
 import Expression from '../Expression'
 import ExpressionValue from '../ExpressionValue'
-import ObjectType from '../../../../ObjectType'
+import ObjectType from '../../../../objects/ObjectType'
 import {
   MismatchStatementException
 } from '../../CompilerException'

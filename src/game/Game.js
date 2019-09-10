@@ -11,7 +11,7 @@ import SoundManager from './SoundManager'
 import Speeds from './Speeds'
 import World from '../world/World'
 import Direction from '../world/Direction'
-import CharacterDeathReason from '../world/CharacterDeathReason'
+import CharacterDeathReason from '../world/objects/CharacterDeathReason'
 import {
   tiledObjectToObject,
   namedObjectListToObject

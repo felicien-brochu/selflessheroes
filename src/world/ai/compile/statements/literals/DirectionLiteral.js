@@ -7,7 +7,7 @@ import {
   NotDecompilableStatementException
 } from '../../DecompilerException'
 import Direction from '../../../../Direction'
-import ObjectType from '../../../../ObjectType'
+import ObjectType from '../../../../objects/ObjectType'
 
 export default class DirectionLiteral extends Expression {
   constructor(parent, line, column) {

@@ -1,6 +1,6 @@
 import AI from './AI'
 import Direction from '../Direction'
-import Spikes from '../Spikes'
+import Spikes from '../objects/Spikes'
 import StepAction from '../actions/StepAction'
 import WaitAction from '../actions/WaitAction'
 

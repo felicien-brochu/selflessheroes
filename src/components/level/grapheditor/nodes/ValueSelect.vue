@@ -45,8 +45,8 @@ import DirectionLiteral from '../../../../world/ai/compile/statements/literals/D
 import IntegerLiteral from '../../../../world/ai/compile/statements/literals/IntegerLiteral'
 import MyItemLiteral from '../../../../world/ai/compile/statements/literals/MyItemLiteral'
 import ArithmeticOperatorLiteral from '../../../../world/ai/compile/statements/literals/ArithmeticOperatorLiteral'
-import ObjectType from '../../../../world/ObjectType'
-import TerrainType from '../../../../world/TerrainType'
+import ObjectType from '../../../../world/objects/ObjectType'
+import TerrainType from '../../../../world/map/TerrainType'
 import {
   arithmeticOperators
 }

@@ -24,8 +24,8 @@
 
 <script>
 import ExpressionTypes from '../../../world/ai/compile/statements/ExpressionTypes'
-import ObjectType from '../../../world/ObjectType'
-import TerrainType from '../../../world/TerrainType'
+import ObjectType from '../../../world/objects/ObjectType'
+import TerrainType from '../../../world/map/TerrainType'
 
 const heroColors = [
   'orange',
