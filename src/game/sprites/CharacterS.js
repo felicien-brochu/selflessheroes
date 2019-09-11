@@ -31,7 +31,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     this.depthOffset = 0
     this._moving = false
     this.moveTimeline = null
-    this.itemContainerTimeline = null
+    this.itemContainerTween = null
 
     this.actionState = stateIdle
     this.newActionState = stateIdle
@@ -66,36 +66,39 @@ export default class CharacterS extends Phaser.GameObjects.Container {
   }
 
   playItemContainerAnimation() {
-    if (this.itemContainerTimeline) {
-      this.itemContainerTimeline.stop()
-      this.itemContainerTimeline = null
+    if (this.itemContainerTween) {
+      this.itemContainerTween.stop()
+      this.itemContainerTween = null
     }
-    this.itemContainerTimeline = this.scene.tweens.createTimeline()
 
     if (this.actionState === stateIdle) {
       this.itemContainer.y = itemContainerInitialY
-      this.itemContainerTimeline.add({
+      let time1 = Date.now()
+      this.itemContainerTween = this.scene.tweens.add({
         targets: this.itemContainer,
         y: itemContainerInitialY + 4,
         duration: 4 * 1000 / 12,
         repeat: Infinity,
+        repeatDelay: 0.00000000001,
         ease: function(v) {
           v += 0.05
           v = v % 1
           if (v <= 0.25) {
-            return 0
+            v = 0
           } else if (v <= 0.5) {
-            return 0.5
+            v = 0.5
           } else if (v <= 0.75) {
-            return 1
+            v = 1
           } else {
-            return 0.5
+            v = 0.5
           }
+          return v
         }
       })
     } else if (this.actionState === stateRun) {
+      let time2 = Date.now()
       this.itemContainer.y = itemContainerInitialY - 4
-      this.itemContainerTimeline.add({
+      this.itemContainerTween = this.scene.tweens.add({
         targets: this.itemContainer,
         y: itemContainerInitialY,
         duration: 4 * 1000 / 12,
@@ -104,21 +107,20 @@ export default class CharacterS extends Phaser.GameObjects.Container {
           v += 0.05
           v = v % 1
           if (v <= 0.25) {
-            return 0.5
+            v = 0.5
           } else if (v <= 0.5) {
-            return 0
+            v = 0
           } else if (v <= 0.75) {
-            return 0.5
+            v = 0.5
           } else {
-            return 1
+            v = 1
           }
+          return v
         }
       })
     } else if (this.actionState === stateSleep) {
       this.itemContainer.y = -8
     }
-
-    this.itemContainerTimeline.play()
   }
 
   updateState() {

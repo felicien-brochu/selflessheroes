@@ -485,6 +485,7 @@ export default class extends Phaser.Scene {
     for (let symbol of this.symbols) {
       symbol.destroy()
     }
+    this.tweens.killAll()
   }
 
   emitFollowHeroChange(followIndex) {
