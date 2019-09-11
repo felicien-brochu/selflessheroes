@@ -38,7 +38,8 @@ import switch_blue from './images/switch_blue.png'
 import switch_red from './images/switch_red.png'
 // import lever from './images/lever.png'
 import bonfire from './images/bonfire.png'
-import cauldron from './images/cauldron.png'
+import cauldron_back from './images/cauldron_back.png'
+import cauldron_front from './images/cauldron_front.png'
 import spikes from './images/spikes.png'
 import egg from './images/egg.png'
 
@@ -234,7 +235,11 @@ export default class extends Phaser.Scene {
       frameWidth: 28,
       frameHeight: 74
     })
-    this.load.spritesheet('cauldron', cauldron, {
+    this.load.spritesheet('cauldron_back', cauldron_back, {
+      frameWidth: 32,
+      frameHeight: 38
+    })
+    this.load.spritesheet('cauldron_front', cauldron_front, {
       frameWidth: 32,
       frameHeight: 38
     })

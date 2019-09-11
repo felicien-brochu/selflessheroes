@@ -385,13 +385,13 @@ const anims = {
     start: 1,
     end: 8
   },
-  cauldron_off: {
-    sprite: 'cauldron',
+  cauldron_front_off: {
+    sprite: 'cauldron_front',
     start: 0,
     end: 0
   },
-  cauldron_on: {
-    sprite: 'cauldron',
+  cauldron_front_on: {
+    sprite: 'cauldron_front',
     start: 1,
     end: 6,
     frameRate: 6

@@ -41,7 +41,7 @@ export default class StorageWrapper {
 
   save(deep = false) {
     window.localStorage.setItem(this.storageKey, JSON.stringify(this))
-    console.debug("STORAGE SAVE: ", this.id, this.constructor.name, JSON.stringify(this, null, '\t'))
+    // console.debug("STORAGE SAVE: ", this.id, this.constructor.name, JSON.stringify(this, null, '\t'))
     if (deep) {
       for (let saveableObject of this.getSaveables()) {
         saveableObject.save()

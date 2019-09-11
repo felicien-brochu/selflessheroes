@@ -47,8 +47,8 @@ export default class EggS extends Phaser.GameObjects.Container {
     }
 
     if (!this.egg.owner) {
-      let x = (this.egg.x + 0.5) * this.tileWidth + this.offsetX
-      let y = (this.egg.y + 0.5) * this.tileHeight + this.offsetY
+      let x = (this.egg.x + 0.5) * this.tileWidth
+      let y = (this.egg.y + 0.5) * this.tileHeight
 
       if (this.lastEgg.ownerID) {
         let characterSprite = this.scene.getCharacterSprite(this.lastEgg.ownerID)
@@ -58,7 +58,7 @@ export default class EggS extends Phaser.GameObjects.Container {
 
         this.path = new Phaser.Curves.Path(this.x, this.y)
         let bump = this.y > y ? -50 : 0
-        this.path.cubicBezierTo(x, y, this.x, this.y + bump, x, y)
+        this.path.cubicBezierTo(x, y, this.x, this.y + bump, x, y - 100)
         this.follower = {
           t: 0,
           vec: new Phaser.Math.Vector2()
@@ -67,6 +67,8 @@ export default class EggS extends Phaser.GameObjects.Container {
         const constPortion = 300
         let duration = (this.path.getCurveLengths()[0] + constPortion) / (100 + constPortion) * (this.scene.runner.stepInterval / 3)
         duration = Math.min(duration, maxDuration)
+        console.log("####drop duration", duration, this.scene.runner.stepInterval)
+
         let tween = this.scene.tweens.add({
           targets: this.follower,
           t: 1,
@@ -76,6 +78,16 @@ export default class EggS extends Phaser.GameObjects.Container {
         this.moving = true
 
         tween.setCallback('onComplete', () => this.onTweenComplete(), [])
+
+        if (!this.removed && this.egg.removed) {
+          this.scene.tweens.add({
+            targets: this,
+            alpha: 0,
+            ease: 'Stepped',
+            delay: duration
+          })
+        }
+
       } else {
         this.x = x
         this.y = y
@@ -184,6 +196,7 @@ export default class EggS extends Phaser.GameObjects.Container {
     this.path.getPoint(this.follower.t, this.follower.vec)
     this.x = this.follower.vec.x
     this.y = this.follower.vec.y
+    this.updateDepth()
   }
 
   destroy() {

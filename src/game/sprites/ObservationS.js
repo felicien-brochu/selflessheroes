@@ -11,7 +11,7 @@ export default class ObservationS extends Phaser.GameObjects.Sprite {
     this.offsetY = offsetY
     this.tileWidth = tileWidth
     this.tileHeight = tileHeight
-    this.depthOffset = 1
+    this.depthOffset = 3
     this.setDisplaySize(tileWidth, tileHeight)
     this.updatePosition()
     this.updateDepth()

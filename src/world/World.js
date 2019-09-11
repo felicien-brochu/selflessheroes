@@ -224,13 +224,21 @@ export default class World {
         character,
         action
       } of characterActions) {
-      if (action && action.type === 'DropAction' && character.item !== null) {
+      let item = character.item
+
+      if (action && action.type === 'DropAction' && item !== null) {
         let x = character.x + action.direction.dx
         let y = character.y + action.direction.dy
 
-        let items = this.getWorldObjectsAt(x, y).filter(o => o instanceof Item)
-        if (items.length === 0 && (this.map.isFloor(x, y) || this.map.isHole(x, y))) {
+        let blockingObjects = this.getWorldObjectsAt(x, y).filter(o => o instanceof Item || o instanceof Bonfire)
+        if (blockingObjects.length === 0 && (this.map.isFloor(x, y) || this.map.isHole(x, y))) {
           character.dropItem(action.direction)
+        }
+
+        // Put inside cauldron if there is one on the drop square
+        let cauldrons = this.getWorldObjectsAt(x, y).filter(o => o instanceof Cauldron)
+        if (cauldrons.length > 0) {
+          cauldrons[0].putItem(item)
         }
       }
     }
@@ -400,7 +408,7 @@ export default class World {
       ...this.cauldrons,
       ...this.spikes,
       ...this.eggs
-    ]
+    ].filter(o => !o.removed)
   }
 
   getAllObjects() {

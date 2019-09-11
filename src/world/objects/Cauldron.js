@@ -8,6 +8,13 @@ export default class Cauldron extends WorldObject {
     }
 
     super(config)
+
+    this.items = []
+  }
+
+  putItem(item) {
+    this.items.push(item)
+    item.removed = true
   }
 
   enable() {
@@ -29,7 +36,8 @@ export default class Cauldron extends WorldObject {
   shallowCopy() {
     let copy = super.shallowCopy()
     return Object.assign(copy, {
-      enabled: this.enabled
+      enabled: this.enabled,
+      items: this.items.map(item => item.id)
     })
   }
 }

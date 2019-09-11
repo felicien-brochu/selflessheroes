@@ -3,8 +3,23 @@ import EventEmitter from 'events'
 export default class WorldObject {
   constructor(config) {
     this.config = config
+    this._removed = false
+
     Object.assign(this, config)
+
     this.events = new EventEmitter()
+  }
+
+  get removed() {
+    return this._removed
+  }
+
+  set removed(removed) {
+    let change = removed !== this._removed
+    this._removed = removed
+    if (change) {
+      this.events.emit('removed', this)
+    }
   }
 
   overlaps(object) {
