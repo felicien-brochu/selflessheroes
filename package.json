@@ -68,7 +68,7 @@
     "is-electron": "^2.2.0",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
-    "phaser": "^3.17.0",
+    "phaser": "^3.19.0",
     "seedrandom": "^3.0.1",
     "string-template": "^1.0.0",
     "v-hotkey": "^0.3.1",
