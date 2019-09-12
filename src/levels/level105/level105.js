@@ -1,22 +1,30 @@
-/* length: 6
+/* length: 9
 a:
+b:
 step(s)
-if s < 4 :
-	take(s)
+if s != cauldron :
+	jump b
 endif
-if s == cauldron :
-	drop(s)
+drop(s)
+c:
+if n >= 4 ||
+  n != egg :
+	step(n)
+	jump c
 endif
+take(n)
 jump a
 */
 
-/* speed: 29
+/* speed: 132
+step(s)
 a:
 step(s)
-if s >= 4 :
+d:
+if here >= 4 :
 	jump a
 endif
-take(s)
+take(here)
 b:
 step(s)
 step(s)
@@ -24,16 +32,38 @@ if s != cauldron :
 	jump b
 endif
 drop(s)
+c:
+step(n)
+if n == egg :
+	jump c
+endif
+jump d
 */
 
 const winCondition = {
-  step() {},
+  step() {
+    if (this.world.steps === 1) {
+      this.selectedEggs = this.world.eggs.filter(egg => egg.value < 4).map(egg => egg.shallowCopy())
+    }
+  },
 
   check() {
     const cauldronIDs = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
+    let targetEggs = this.selectedEggs.map(egg => egg.id).sort()
+    let cauldronEggs = []
+
     for (let id of cauldronIDs) {
       let cauldron = this.world.findWorldObjectByID(id)
-      if (!cauldron || cauldron.items.length !== 1 || cauldron.items[0].value >= 4) {
+      cauldronEggs = cauldronEggs.concat(cauldron.items.map(item => item.id))
+    }
+
+    if (cauldronEggs.length !== targetEggs.length) {
+      return false
+    }
+
+    cauldronEggs.sort()
+    for (let i = 0; i < cauldronEggs.length; i++) {
+      if (cauldronEggs[i] !== targetEggs[i]) {
         return false
       }
     }
@@ -45,15 +75,18 @@ const winCondition = {
   }
 }
 
-const wrongEggLossCondition = {
+const wrongNumberEggLossCondition = {
   step() {},
 
   check() {
     const cauldronIDs = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
     for (let id of cauldronIDs) {
       let cauldron = this.world.findWorldObjectByID(id)
-      if (cauldron && cauldron.items.length === 1 && cauldron.items[0].value >= 4) {
-        return true
+
+      for (let item of cauldron.items) {
+        if (cauldron && item.value >= 4) {
+          return true
+        }
       }
     }
     return false
@@ -66,12 +99,12 @@ const wrongEggLossCondition = {
 
 const level = {
   name: {
-    en: "Picking",
-    fr: "Cueillette",
+    en: "Harvest",
+    fr: "Récolte",
   },
   objective: {
-    en: "Put one %%icon icon-egg$%% egg which is less than 4\nin each %%icon icon-cauldron$%% cauldron",
-    fr: "Mets un %%icon icon-egg$%% œuf inférieur à 4\ndans chaque %%icon icon-cauldron$%% chaudron",
+    en: "Put all the %%icon icon-egg$%% eggs which are less than 4\nin the %%icon icon-cauldron$%% cauldrons",
+    fr: "Mets tous les %%icon icon-egg$%% œufs inférieurs à 4\ndans les %%icon icon-cauldron$%% chaudrons",
   },
   messages: {
     loss_reason_one_egg_ge_4: {
@@ -82,9 +115,9 @@ const level = {
 
   startingCode: "",
   startingEditorType: "graph",
-  maxStep: 400,
-  speedTarget: 29,
-  lengthTarget: 6,
+  maxStep: 1000,
+  speedTarget: 142,
+  lengthTarget: 9,
 
   compilerConfig: {
     excludePrimary: ['assign'],
@@ -99,7 +132,7 @@ const level = {
 
   ruleset: {
     win: [winCondition],
-    lose: [wrongEggLossCondition, 'or', 'default_loss']
+    lose: [wrongNumberEggLossCondition, 'or', 'default_loss']
   },
 
   worldGenerator: [{
@@ -111,27 +144,10 @@ const level = {
 
       strategy: {
         type: 'random_columns',
-        minEggs: 1,
-        maxEggs: 1,
+        minEggs: 8,
+        maxEggs: 8,
         eggConfig: {
-          value: 'rng(0,3)',
-          showLottery: true
-        }
-      }
-    }
-  }, {
-    type: 'eggs_matrix',
-    config: {
-      originMarkerID: 99,
-      width: 10,
-      height: 8,
-
-      strategy: {
-        type: 'random_columns',
-        minEggs: 7,
-        maxEggs: 7,
-        eggConfig: {
-          value: 'rng(4,9)',
+          value: 'rng(0,9)',
           showLottery: true
         }
       }
