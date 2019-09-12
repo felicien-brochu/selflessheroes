@@ -1,4 +1,3 @@
-import Reason from './Reason'
 import Condition from './Condition'
 import ConditionFactory from './ConditionFactory'
 
@@ -43,12 +42,15 @@ export default class ConditionGroup extends Condition {
   }
 
   check() {
-    return !!this.getReason()
+    return this.getConditionsCheck().value
   }
 
-  getReason() {
+  getConditionsCheck() {
     if (this.conditions.length === 0) {
-      return null
+      return {
+        value: false,
+        condition: null
+      }
     }
 
     let accumulator = []
@@ -58,17 +60,17 @@ export default class ConditionGroup extends Condition {
       }
       accumulator.push({
         value: condition.check(),
-        reason: condition.getReason()
+        condition: condition
       })
     })
 
     for (let i = 0; i < accumulator.length; i++) {
       if (accumulator[i] === 'and') {
         let value = accumulator[i - 1].value && accumulator[i + 1].value
-        let reason = accumulator[i - 1].value ? accumulator[i - 1].reason : accumulator[i + 1].reason
+        let condition = accumulator[i - 1].value ? accumulator[i - 1].condition : accumulator[i + 1].condition
         accumulator.splice(i - 1, 3, {
           value,
-          reason
+          condition
         })
         i--
       }
@@ -77,15 +79,20 @@ export default class ConditionGroup extends Condition {
     for (let i = 0; accumulator.length > 1; i++) {
       if (accumulator[i] === 'or') {
         let value = accumulator[i - 1].value || accumulator[i + 1].value
-        let reason = accumulator[i - 1].value ? accumulator[i - 1].reason : accumulator[i + 1].reason
+        let condition = accumulator[i - 1].value ? accumulator[i - 1].condition : accumulator[i + 1].condition
         accumulator.splice(i - 1, 3, {
           value,
-          reason
+          condition
         })
         i--
       }
     }
 
-    return accumulator[0].value ? accumulator[0].reason : null
+    return accumulator[0]
+  }
+
+  getReason() {
+    let condition = this.getConditionsCheck()
+    return condition.value ? condition.condition.getReason() : null
   }
 }

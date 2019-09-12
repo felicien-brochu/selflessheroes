@@ -8,6 +8,7 @@ import AllSwitchesEnabledCondition from './AllSwitchesEnabledCondition'
 import AllBonfiresEnabledCondition from './AllBonfiresEnabledCondition'
 import AllNpcDeadCondition from './AllNpcDeadCondition'
 import EggOnMarkerCondition from './EggOnMarkerCondition'
+import EggsInCauldronsCondition from './EggsInCauldronsCondition'
 
 const conditionMap = {
   default_loss: DefaultLossCondition,
@@ -20,6 +21,7 @@ const conditionMap = {
   all_bonfires: AllBonfiresEnabledCondition,
   all_npc_dead: AllNpcDeadCondition,
   egg_on_marker: EggOnMarkerCondition,
+  eggs_in_cauldrons: EggsInCauldronsCondition,
 }
 
 export default class ConditionFactory {

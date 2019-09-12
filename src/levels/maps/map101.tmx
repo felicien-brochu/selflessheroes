@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="16" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="198" nextobjectid="32">
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="16" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="198" nextobjectid="36">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
   <image source="tileset.png" trans="000000" width="340" height="680"/>
   <terraintypes>
@@ -93,40 +93,16 @@
    </properties>
    <point/>
   </object>
-  <object id="18" name="cross" type="symbol" x="178" y="211">
-   <properties>
-    <property name="symbol" value="cross"/>
-   </properties>
+  <object id="32" name="cauldron" type="cauldron" x="175" y="209">
    <point/>
   </object>
-  <object id="25" name="cross" type="symbol" x="240" y="209">
-   <properties>
-    <property name="symbol" value="cross"/>
-   </properties>
+  <object id="33" name="cauldron" type="cauldron" x="243" y="207">
    <point/>
   </object>
-  <object id="26" name="cross" type="symbol" x="310" y="207">
-   <properties>
-    <property name="symbol" value="cross"/>
-   </properties>
+  <object id="34" name="cauldron" type="cauldron" x="306" y="207">
    <point/>
   </object>
-  <object id="27" name="cross" type="symbol" x="368" y="204">
-   <properties>
-    <property name="symbol" value="cross"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="28" name="marker" type="marker" x="178" y="205">
-   <point/>
-  </object>
-  <object id="29" name="marker" type="marker" x="239" y="208">
-   <point/>
-  </object>
-  <object id="30" name="marker" type="marker" x="304" y="209">
-   <point/>
-  </object>
-  <object id="31" name="marker" type="marker" x="369" y="211">
+  <object id="35" name="cauldron" type="cauldron" x="366" y="207">
    <point/>
   </object>
  </objectgroup>

@@ -22,6 +22,10 @@ export default class DefaultRuleset extends Ruleset {
     return this.winCondition.check()
   }
 
+  hasLost() {
+    return this.lossCondition.check()
+  }
+
   getLossReason() {
     return this.lossCondition.getReason()
   }

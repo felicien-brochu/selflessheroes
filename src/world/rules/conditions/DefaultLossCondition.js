@@ -20,7 +20,12 @@ export default class DefaultLossCondition extends Condition {
   }
 
   check() {
-    return !!this.getReason()
+    for (let condition of this.conditions) {
+      if (condition.check()) {
+        return true
+      }
+    }
+    return false
   }
 
   getReason() {

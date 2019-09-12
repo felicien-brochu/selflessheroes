@@ -162,27 +162,33 @@
                 }, 
                 {
                  "height":0,
-                 "id":27,
-                 "name":"marker",
+                 "id":29,
+                 "name":"bonfire",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"enabled",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
-                 "type":"marker",
+                 "type":"bonfire",
                  "visible":true,
                  "width":0,
-                 "x":305,
-                 "y":306
+                 "x":208,
+                 "y":176
                 }, 
                 {
                  "height":0,
-                 "id":28,
-                 "name":"cross",
+                 "id":30,
+                 "name":"cauldron",
                  "point":true,
                  "rotation":0,
-                 "type":"symbol",
+                 "type":"cauldron",
                  "visible":true,
                  "width":0,
-                 "x":303,
-                 "y":305
+                 "x":304,
+                 "y":304
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -227,7 +233,7 @@
          "y":0
         }],
  "nextlayerid":195,
- "nextobjectid":29,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2019.03.13",

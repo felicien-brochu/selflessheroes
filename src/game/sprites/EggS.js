@@ -63,11 +63,10 @@ export default class EggS extends Phaser.GameObjects.Container {
           t: 0,
           vec: new Phaser.Math.Vector2()
         }
-        const maxDuration = 200
+        const maxDuration = Math.min(Math.max(this.scene.runner.stepInterval / 1.5, 200), this.scene.runner.stepInterval)
         const constPortion = 300
-        let duration = (this.path.getCurveLengths()[0] + constPortion) / (100 + constPortion) * (this.scene.runner.stepInterval / 3)
+        let duration = (this.path.getCurveLengths()[0] + constPortion) / (100 + constPortion) * this.scene.runner.stepInterval / 1.5
         duration = Math.min(duration, maxDuration)
-        console.log("####drop duration", duration, this.scene.runner.stepInterval)
 
         let tween = this.scene.tweens.add({
           targets: this.follower,

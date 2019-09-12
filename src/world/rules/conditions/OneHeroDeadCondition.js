@@ -1,4 +1,4 @@
-import Reason from './Reason'
+import DefaultLossReason from './DefaultLossReason'
 import Condition from './Condition'
 
 export default class OneHeroDeadCondition extends Condition {
@@ -7,6 +7,6 @@ export default class OneHeroDeadCondition extends Condition {
   }
 
   getReason() {
-    return Reason.oneHeroDead
+    return DefaultLossReason.reasons.oneHeroDead
   }
 }

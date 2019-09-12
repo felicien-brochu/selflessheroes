@@ -210,123 +210,51 @@
                 }, 
                 {
                  "height":0,
-                 "id":18,
-                 "name":"cross",
+                 "id":32,
+                 "name":"cauldron",
                  "point":true,
-                 "properties":[
-                        {
-                         "name":"symbol",
-                         "type":"string",
-                         "value":"cross"
-                        }],
                  "rotation":0,
-                 "type":"symbol",
+                 "type":"cauldron",
                  "visible":true,
                  "width":0,
-                 "x":178,
-                 "y":211
-                }, 
-                {
-                 "height":0,
-                 "id":25,
-                 "name":"cross",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"symbol",
-                         "type":"string",
-                         "value":"cross"
-                        }],
-                 "rotation":0,
-                 "type":"symbol",
-                 "visible":true,
-                 "width":0,
-                 "x":240,
+                 "x":175,
                  "y":209
                 }, 
                 {
                  "height":0,
-                 "id":26,
-                 "name":"cross",
+                 "id":33,
+                 "name":"cauldron",
                  "point":true,
-                 "properties":[
-                        {
-                         "name":"symbol",
-                         "type":"string",
-                         "value":"cross"
-                        }],
                  "rotation":0,
-                 "type":"symbol",
+                 "type":"cauldron",
                  "visible":true,
                  "width":0,
-                 "x":310,
+                 "x":243,
                  "y":207
                 }, 
                 {
                  "height":0,
-                 "id":27,
-                 "name":"cross",
+                 "id":34,
+                 "name":"cauldron",
                  "point":true,
-                 "properties":[
-                        {
-                         "name":"symbol",
-                         "type":"string",
-                         "value":"cross"
-                        }],
                  "rotation":0,
-                 "type":"symbol",
+                 "type":"cauldron",
                  "visible":true,
                  "width":0,
-                 "x":368,
-                 "y":204
+                 "x":306,
+                 "y":207
                 }, 
                 {
                  "height":0,
-                 "id":28,
-                 "name":"marker",
+                 "id":35,
+                 "name":"cauldron",
                  "point":true,
                  "rotation":0,
-                 "type":"marker",
+                 "type":"cauldron",
                  "visible":true,
                  "width":0,
-                 "x":178,
-                 "y":205
-                }, 
-                {
-                 "height":0,
-                 "id":29,
-                 "name":"marker",
-                 "point":true,
-                 "rotation":0,
-                 "type":"marker",
-                 "visible":true,
-                 "width":0,
-                 "x":239,
-                 "y":208
-                }, 
-                {
-                 "height":0,
-                 "id":30,
-                 "name":"marker",
-                 "point":true,
-                 "rotation":0,
-                 "type":"marker",
-                 "visible":true,
-                 "width":0,
-                 "x":304,
-                 "y":209
-                }, 
-                {
-                 "height":0,
-                 "id":31,
-                 "name":"marker",
-                 "point":true,
-                 "rotation":0,
-                 "type":"marker",
-                 "visible":true,
-                 "width":0,
-                 "x":369,
-                 "y":211
+                 "x":366,
+                 "y":207
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -371,7 +299,7 @@
          "y":0
         }],
  "nextlayerid":198,
- "nextobjectid":32,
+ "nextobjectid":36,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2019.03.13",

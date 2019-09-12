@@ -36,8 +36,8 @@ const level = {
     fr: "Chaîne humaine",
   },
   objective: {
-    en: "Put the %%icon icon-egg$%% egg on the cross",
-    fr: "Dépose l'œuf sur la croix",
+    en: "Put the %%icon icon-egg$%% egg in the %%icon icon-cauldron$%% cauldron",
+    fr: "Mets l'%%icon icon-egg$%% œuf dans le %%icon icon-cauldron$%% chaudron",
   },
   startingCode: "",
   startingEditorType: "graph",
@@ -52,17 +52,17 @@ const level = {
     objectTypes: ['egg'],
     valueFunctions: [],
     actionFunctions: ['take', 'drop'],
-    leftComparisonExpressions: ['direction'],
-    rightComparisonExpressions: ['terrain_type', 'object_type']
+    leftComparisonExpressions: ['direction', 'myitem'],
+    rightComparisonExpressions: ['terrain_type', 'object_type', 'integer']
   },
 
   ruleset: {
     win: [{
-      type: 'egg_on_marker',
+      type: 'eggs_in_cauldrons',
       config: {
-        eggMarkerMap: [{
-          egg: 26,
-          marker: 27
+        eggCauldronMap: [{
+          eggs: [26],
+          cauldron: 30
         }]
       }
     }],

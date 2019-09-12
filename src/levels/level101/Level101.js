@@ -10,8 +10,8 @@ const level = {
     fr: "Livraison",
   },
   objective: {
-    en: "Put the %%icon icon-egg$%% eggs on the crosses",
-    fr: "Dépose les %%icon icon-egg$%% œufs sur les croix",
+    en: "Put the %%icon icon-egg$%% eggs in the %%icon icon-cauldron$%% cauldrons",
+    fr: "Mets les %%icon icon-egg$%% œufs dans les %%icon icon-cauldron$%% chaudrons",
   },
   startingCode: "",
   startingEditorType: "graph",
@@ -23,32 +23,32 @@ const level = {
     excludePrimary: ['assign', 'if', 'else', 'endif', 'jump', 'anchor'],
     variables: 0,
     terrainTypes: [],
-    objectTypes: ['egg'],
+    objectTypes: [],
     valueFunctions: [],
     actionFunctions: ['step_once', 'take', 'drop'],
-    leftComparisonExpressions: ['direction'],
-    rightComparisonExpressions: ['object_type']
+    leftComparisonExpressions: [],
+    rightComparisonExpressions: []
   },
 
   ruleset: {
     win: [{
-      type: 'egg_on_marker',
+      type: 'eggs_in_cauldrons',
       config: {
-        eggMarkerMap: [{
-            egg: 17,
-            marker: 28
+        eggCauldronMap: [{
+            eggs: [17],
+            cauldron: 32
           },
           {
-            egg: 22,
-            marker: 29
+            eggs: [22],
+            cauldron: 33
           },
           {
-            egg: 23,
-            marker: 30
+            eggs: [23],
+            cauldron: 34
           },
           {
-            egg: 24,
-            marker: 31
+            eggs: [24],
+            cauldron: 35
           },
         ]
       }

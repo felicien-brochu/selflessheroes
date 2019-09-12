@@ -87,8 +87,8 @@ import Editor from './Editor'
 import RunBar from './runbar/RunBar'
 import ResizeSplitPane from './rspane/ResizeSplitPane'
 import ModalLayer from '../modal/ModalLayer'
-import Modal from '../modal/Modal'
 import WinModal from './winmodal/WinModal'
+import WarningModal from './WarningModal'
 import ObjectiveModal from './ObjectiveModal'
 import HelpModal from './help/HelpModal'
 import Tutorial from './tutorial/Tutorial'
@@ -375,11 +375,10 @@ export default {
 
     showTestFailedModal() {
       this.$refs.modalLayer.addModal({
-        component: Modal,
+        component: WarningModal,
         key: 'level_test_failed_modal',
         props: {
-          text: this.$text('level_test_failed_modal'),
-          cancelable: false
+          text: this.$text('level_test_failed_modal')
         }
       })
     },
@@ -389,11 +388,10 @@ export default {
         const lossReason = this.level.getLossReasonTemplate(this.worldState.ruleset.getLossReason())
         this.lossModalDisplayed = true
         this.$refs.modalLayer.addModal({
-          component: Modal,
+          component: WarningModal,
           key: 'level_loss_modal',
           props: {
-            text: lossReason,
-            cancelable: false
+            text: lossReason
           },
           handlers: {
             close: () => {

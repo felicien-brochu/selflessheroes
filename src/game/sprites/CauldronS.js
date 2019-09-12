@@ -47,16 +47,19 @@ export default class CauldronS {
         this.itemContainer.add(item)
       }
 
-      let oldDepth = this.itemContainer.depth
-      this.itemContainer.depth += 100
 
-      this.scene.tweens.add({
-        targets: this.itemContainer,
-        depth: oldDepth,
-        ease: 'Quad.easeInOut',
-        duration: 0,
-        delay: this.scene.runner.stepInterval / 6,
-      })
+      if (this.scene.runner.stepInterval > 10) {
+        let oldDepth = this.itemContainer.depth
+        this.itemContainer.depth += 100
+
+        this.scene.tweens.add({
+          targets: this.itemContainer,
+          depth: oldDepth,
+          ease: 'Quad.easeInOut',
+          duration: 0,
+          delay: Math.min(Math.max(this.scene.runner.stepInterval / 1.5, 200), this.scene.runner.stepInterval) / 3,
+        })
+      }
     }
 
     this.lastCauldron = this.cauldron.shallowCopy()

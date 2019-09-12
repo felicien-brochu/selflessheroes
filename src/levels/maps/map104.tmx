@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="220" nextobjectid="120">
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="248" nextobjectid="120">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
   <image source="tileset.png" trans="000000" width="340" height="680"/>
   <terraintypes>
@@ -8,7 +8,7 @@
    <terrain name="hole" tile="78"/>
   </terraintypes>
  </tileset>
- <layer id="215" name="checkers" width="16" height="16" visible="0">
+ <layer id="243" name="checkers" width="16" height="16" visible="0">
   <data encoding="csv">
 0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
 69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
@@ -25,10 +25,16 @@
 0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
 69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
 0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
-69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="216" name="path" width="16" height="16">
+ <objectgroup id="14" name="camera">
+  <object id="12" name="frame" type="frame" x="51" y="33" width="411" height="411"/>
+  <object id="15" name="strategy" type="cameraStrategy" x="3" y="126">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="244" name="path" width="16" height="16">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -48,12 +54,6 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="14" name="camera">
-  <object id="12" name="frame" type="frame" x="51" y="33" width="411" height="443"/>
-  <object id="15" name="strategy" type="cameraStrategy" x="3" y="126">
-   <point/>
-  </object>
- </objectgroup>
  <objectgroup id="2" name="objects">
   <object id="33" name="hero" type="hero" x="113" y="83">
    <properties>
@@ -118,79 +118,79 @@
   <object id="99" name="eggs_origin" type="marker" x="113" y="148">
    <point/>
   </object>
-  <object id="100" name="cauldron" type="cauldron" x="112" y="435">
+  <object id="100" name="cauldron" type="cauldron" x="111" y="437">
    <point/>
   </object>
-  <object id="101" name="cauldron" type="cauldron" x="144" y="433">
+  <object id="101" name="cauldron" type="cauldron" x="145" y="429">
    <point/>
   </object>
-  <object id="102" name="cauldron" type="cauldron" x="175" y="431">
+  <object id="102" name="cauldron" type="cauldron" x="175" y="432">
    <point/>
   </object>
-  <object id="103" name="cauldron" type="cauldron" x="210" y="433">
+  <object id="103" name="cauldron" type="cauldron" x="206" y="429">
    <point/>
   </object>
-  <object id="104" name="cauldron" type="cauldron" x="240" y="434">
+  <object id="104" name="cauldron" type="cauldron" x="241" y="430">
    <point/>
   </object>
-  <object id="105" name="cauldron" type="cauldron" x="275" y="435">
+  <object id="105" name="cauldron" type="cauldron" x="276" y="432">
    <point/>
   </object>
-  <object id="106" name="cauldron" type="cauldron" x="307" y="433">
+  <object id="106" name="cauldron" type="cauldron" x="304" y="430">
    <point/>
   </object>
-  <object id="107" name="cauldron" type="cauldron" x="336" y="433">
+  <object id="107" name="cauldron" type="cauldron" x="340" y="429">
    <point/>
   </object>
-  <object id="108" name="cauldron" type="cauldron" x="369" y="434">
+  <object id="108" name="cauldron" type="cauldron" x="371" y="433">
    <point/>
   </object>
-  <object id="109" name="cauldron" type="cauldron" x="404" y="432">
+  <object id="109" name="cauldron" type="cauldron" x="398" y="430">
    <point/>
   </object>
-  <object id="110" name="arrow" type="symbol" x="111" y="113">
+  <object id="110" name="arrow" type="symbol" x="111" y="109">
    <properties>
     <property name="symbol" value="arrow_s"/>
    </properties>
    <point/>
   </object>
-  <object id="111" name="arrow" type="symbol" x="147" y="110">
+  <object id="111" name="arrow" type="symbol" x="145" y="108">
    <properties>
     <property name="symbol" value="arrow_s"/>
    </properties>
    <point/>
   </object>
-  <object id="112" name="arrow" type="symbol" x="181" y="108">
+  <object id="112" name="arrow" type="symbol" x="174" y="110">
    <properties>
     <property name="symbol" value="arrow_s"/>
    </properties>
    <point/>
   </object>
-  <object id="113" name="arrow" type="symbol" x="208" y="109">
+  <object id="113" name="arrow" type="symbol" x="207" y="112">
    <properties>
     <property name="symbol" value="arrow_s"/>
    </properties>
    <point/>
   </object>
-  <object id="114" name="arrow" type="symbol" x="238" y="109">
+  <object id="114" name="arrow" type="symbol" x="246" y="112">
    <properties>
     <property name="symbol" value="arrow_s"/>
    </properties>
    <point/>
   </object>
-  <object id="115" name="arrow" type="symbol" x="269" y="109">
+  <object id="115" name="arrow" type="symbol" x="274" y="111">
    <properties>
     <property name="symbol" value="arrow_s"/>
    </properties>
    <point/>
   </object>
-  <object id="116" name="arrow" type="symbol" x="308" y="109">
+  <object id="116" name="arrow" type="symbol" x="306" y="109">
    <properties>
     <property name="symbol" value="arrow_s"/>
    </properties>
    <point/>
   </object>
-  <object id="117" name="arrow" type="symbol" x="342" y="112">
+  <object id="117" name="arrow" type="symbol" x="336" y="111">
    <properties>
     <property name="symbol" value="arrow_s"/>
    </properties>
@@ -202,14 +202,14 @@
    </properties>
    <point/>
   </object>
-  <object id="119" name="arrow" type="symbol" x="399" y="110">
+  <object id="119" name="arrow" type="symbol" x="397" y="110">
    <properties>
     <property name="symbol" value="arrow_s"/>
    </properties>
    <point/>
   </object>
  </objectgroup>
- <layer id="217" name="types" width="16" height="16">
+ <layer id="245" name="types" width="16" height="16">
   <data encoding="csv">
 79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,
 79,70,70,70,70,70,70,70,70,70,70,70,70,70,70,79,
@@ -229,27 +229,27 @@
 79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79
 </data>
  </layer>
- <layer id="218" name="ground" width="16" height="16">
+ <layer id="246" name="ground" width="16" height="16">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,1,2,4,4,3,4,5,2,3,3,3,3,2,6,0,
-0,11,20,142,7,124,18,132,29,121,38,151,40,151,16,0,
-0,11,121,19,134,39,152,29,153,30,121,29,144,9,16,0,
-0,21,38,141,17,121,28,143,40,133,30,133,39,151,16,0,
-0,21,132,39,143,8,151,37,122,40,131,39,144,39,16,0,
-0,11,18,124,30,132,27,121,17,152,20,141,38,153,16,0,
-0,11,143,38,154,9,132,18,124,28,154,9,142,28,26,0,
-0,11,30,154,7,153,17,151,17,123,38,122,10,132,16,0,
-0,11,131,30,132,19,142,39,142,37,121,9,131,10,26,0,
-0,21,10,122,28,154,19,133,9,152,20,122,29,152,26,0,
-0,21,153,37,151,8,124,7,134,39,122,27,123,29,16,0,
-0,21,8,134,27,144,37,123,18,132,8,141,27,143,26,0,
-0,31,122,39,141,38,154,37,141,20,153,38,151,20,36,0,
-0,41,42,53,42,52,42,43,43,52,42,42,52,45,46,0,
+0,1,2,2,5,3,2,2,3,4,2,2,4,2,6,0,
+0,11,29,122,19,122,19,142,37,141,18,141,29,124,16,0,
+0,11,122,37,141,8,153,17,121,30,151,10,122,18,16,0,
+0,11,7,131,38,132,27,131,39,124,29,152,40,152,26,0,
+0,21,134,18,141,10,151,40,141,28,134,40,131,39,16,0,
+0,11,37,123,9,151,8,124,18,154,17,134,18,142,16,0,
+0,21,132,28,133,28,133,7,122,17,152,8,153,40,26,0,
+0,11,19,153,38,141,8,153,38,144,39,132,37,141,26,0,
+0,21,141,10,121,20,121,8,141,9,133,20,134,30,16,0,
+0,11,9,122,18,153,27,142,29,131,8,121,27,123,26,0,
+0,21,132,40,132,27,153,39,133,37,142,20,152,18,26,0,
+0,21,30,133,19,124,7,132,38,122,18,131,10,132,26,0,
+0,31,134,27,123,38,143,17,142,29,134,20,151,20,36,0,
+0,41,42,42,43,42,42,43,43,43,52,43,53,45,46,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="219" name="floor_shadow" width="16" height="16">
+ <layer id="247" name="floor_shadow" width="16" height="16">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

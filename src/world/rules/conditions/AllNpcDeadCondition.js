@@ -1,4 +1,3 @@
-import Reason from './Reason'
 import Condition from './Condition'
 
 export default class AllNpcDeadCondition extends Condition {
@@ -12,9 +11,5 @@ export default class AllNpcDeadCondition extends Condition {
     }
 
     return allDead
-  }
-
-  getReason() {
-    return Reason.allNpcDead
   }
 }

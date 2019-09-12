@@ -1,4 +1,3 @@
-import Reason from './Reason'
 import Condition from './Condition'
 
 export default class AllSwitchesEnabledCondition extends Condition {
@@ -12,9 +11,5 @@ export default class AllSwitchesEnabledCondition extends Condition {
     }
 
     return !disabled
-  }
-
-  getReason() {
-    return Reason.allSwitchesEnabled
   }
 }

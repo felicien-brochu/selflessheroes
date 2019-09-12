@@ -15,9 +15,9 @@
 
     <div class="modal-content"
       :style="{
-			maxWidth: `${maxWidth - 120}px`,
-			maxHeight: `${maxHeight - 160}px`
-		}">
+				maxWidth: `${maxWidth - 120}px`,
+				maxHeight: `${maxHeight - 160}px`
+			}">
       <slot>{{text}}</slot>
     </div>
 
@@ -244,5 +244,13 @@ export default {
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow: auto;
+
+    .icon {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        background-size: cover;
+        vertical-align: bottom;
+    }
 }
 </style>

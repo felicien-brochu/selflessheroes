@@ -1,6 +1,6 @@
 import WorldLevel from '../world/Level'
 import CompilerConfig from '../world/ai/compile/CompilerConfig'
-import Reason from '../world/rules/conditions/Reason'
+import DefaultLossReason from '../world/rules/conditions/DefaultLossReason'
 import WorldGeneratorFactory from '../world/generator/WorldGeneratorFactory'
 import tileset_image from './maps/tileset.png'
 import lang from '../lang'
@@ -21,6 +21,7 @@ export default class Level extends WorldLevel {
     compilerConfig,
     ruleset,
     worldGenerator,
+    messages,
   }) {
     super(id, maxStep)
     this.name = name
@@ -36,6 +37,7 @@ export default class Level extends WorldLevel {
       lose: 'default_loss'
     }
     this.worldGenerator = worldGenerator
+    this.messages = messages || null
 
     this.installMessages()
   }
@@ -47,14 +49,25 @@ export default class Level extends WorldLevel {
     if (this.objective) {
       lang.pushMessage(this.getObjectiveMessageKey(), this.objective)
     }
+    if (this.messages) {
+      for (let message in this.messages) {
+        if (this.messages.hasOwnProperty(message)) {
+          lang.pushMessage(this.prefixMessageName(message), this.messages[message])
+        }
+      }
+    }
   }
 
   getNameMessageKey() {
-    return `level${this.id}_name`
+    return this.prefixMessageName('name')
   }
 
   getObjectiveMessageKey() {
-    return `level${this.id}_objective`
+    return this.prefixMessageName('objective')
+  }
+
+  prefixMessageName(name) {
+    return `level${this.id}_${name}`
   }
 
   getName() {
@@ -109,6 +122,14 @@ export default class Level extends WorldLevel {
       let generator
       if (typeof this.worldGenerator.generate === 'function') {
         generator = this.worldGenerator
+      } else if (Array.isArray(this.worldGenerator)) {
+        generator = {
+          generate: (world) => {
+            for (let generatorConfig of this.worldGenerator) {
+              WorldGeneratorFactory.build(generatorConfig.type, generatorConfig.config).generate(world)
+            }
+          }
+        }
       } else {
         generator = WorldGeneratorFactory.build(this.worldGenerator.type, this.worldGenerator.config)
       }
@@ -118,16 +139,13 @@ export default class Level extends WorldLevel {
   }
 
   getLossReasonTemplate(lossReason) {
-    if (lossReason === Reason.tooManySteps) {
-      return lang.text('loss_reason_too_many_steps')
-    } else if (lossReason === Reason.allHeroEnded) {
-      return lang.text('loss_reason_all_hero_ended')
-    } else if (lossReason === Reason.allHeroDead) {
-      return lang.text('loss_reason_all_hero_dead')
-    } else if (lossReason === Reason.oneHeroDead) {
-      return lang.text('loss_reason_one_hero_dead')
+    let message
+    if (DefaultLossReason.has(lossReason)) {
+      message = lang.text(lossReason)
+    } else {
+      message = lang.text(this.prefixMessageName(lossReason))
     }
-    return null
+    return message
   }
 
   get tilesetImagePath() {

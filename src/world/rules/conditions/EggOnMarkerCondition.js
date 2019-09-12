@@ -1,4 +1,3 @@
-import Reason from './Reason'
 import Condition from './Condition'
 
 export default class EggOnMarkerCondition extends Condition {
@@ -15,9 +14,5 @@ export default class EggOnMarkerCondition extends Condition {
       }
     }
     return true
-  }
-
-  getReason() {
-    return Reason.customReason
   }
 }

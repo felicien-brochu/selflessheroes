@@ -13,7 +13,7 @@ export default class Ruleset {
   }
 
   hasLost() {
-    return !!this.getLossReason()
+    return false
   }
 
   getLossReason() {

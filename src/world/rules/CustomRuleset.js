@@ -45,8 +45,12 @@ export default class CustomRuleset extends Ruleset {
     return this.winCondition && this.winCondition.check()
   }
 
+  hasLost() {
+    return this.lossCondition && this.lossCondition.check()
+  }
+
   getLossReason() {
-    if (this.lossCondition && this.lossCondition.check()) {
+    if (this.hasLost()) {
       return this.lossCondition.getReason()
     }
     return null
