@@ -4,6 +4,8 @@ import levelManager from '../../../levels/levelManager'
 import World from '../../../world/World'
 import Compiler from '../../../world/ai/compile/Compiler'
 
+const sampleSize = 20
+
 self.addEventListener('message', function(e) {
   const level = levelManager.getLevelByID(e.data.levelID)
   const code = e.data.code
@@ -22,7 +24,7 @@ function testCode(level, mapConfig, code) {
 
   let t = Date.now()
   let tests = []
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < sampleSize; i++) {
     let {
       rng,
       seed
@@ -43,6 +45,16 @@ function testCode(level, mapConfig, code) {
       lossReason: lossReason,
     })
   }
+
+  let avg = tests.reduce((acc, test) => acc + test.steps, 0) / tests.length
+  let variance = tests.reduce((acc, test) => acc + (test.steps - avg) ** 2, 0) / tests.length
+
+  console.debug("//// tests stats ////")
+  console.debug("sample:   ", sampleSize)
+  console.debug("avg:      ", avg)
+  console.debug("std dev:  ", Math.sqrt(variance))
+  console.debug("variance: ", variance)
+
   postMessage(tests)
 }
 
