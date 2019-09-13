@@ -47,13 +47,17 @@ function testCode(level, mapConfig, code) {
   }
 
   let avg = tests.reduce((acc, test) => acc + test.steps, 0) / tests.length
+  let max = tests.reduce((acc, test) => Math.max(acc, test.steps), 0)
+  let min = tests.reduce((acc, test) => Math.min(acc, test.steps), Infinity)
   let variance = tests.reduce((acc, test) => acc + (test.steps - avg) ** 2, 0) / tests.length
 
   console.debug("//// tests stats ////")
-  console.debug("sample:   ", sampleSize)
-  console.debug("avg:      ", avg)
-  console.debug("std dev:  ", Math.sqrt(variance))
-  console.debug("variance: ", variance)
+  console.debug("sample:", sampleSize)
+  console.debug("avg:   ", avg)
+  console.debug("max:   ", max, ` (${(max - avg) / Math.sqrt(variance)} σ)`)
+  console.debug("min:   ", min, ` (${(avg - min) / Math.sqrt(variance)} σ)`)
+  console.debug("σ:     ", Math.sqrt(variance))
+  console.debug("σ²:    ", variance)
 
   postMessage(tests)
 }
