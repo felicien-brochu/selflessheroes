@@ -30,7 +30,6 @@ const winCondition = {
       for (let cauldron of this.world.cauldrons) {
         let eggs = this.world.eggs.filter(egg => egg.x === cauldron.x)
         let max = eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
-
         this.cauldronTargetValues.push({
           cauldronID: cauldron.id,
           target: max,
@@ -77,7 +76,7 @@ const wrongEggLossCondition = {
   check() {
     for (let cauldron of this.world.cauldrons) {
       let targetValue = this.cauldronTargetValues.find(target => target.cauldronID === cauldron.id).target
-      if (cauldron.items.length === 1 && cauldron.items[0].value !== targetValue) {
+      if (cauldron.items.length > 1 || (cauldron.items.length === 1 && cauldron.items[0].value !== targetValue)) {
         return true
       }
     }
@@ -95,8 +94,8 @@ const level = {
     fr: "Cueillette 2",
   },
   objective: {
-    en: "Put the maximum %%icon icon-egg$%% egg from each vertical line into the corresponding %%icon icon-cauldron$%% cauldron",
-    fr: "Mets l'%%icon icon-egg$%% œuf maximum de chaque ligne verticale dans le %%icon icon-cauldron$%% chaudron correspondant",
+    en: "Put the maximum %%icon icon-egg$%% egg from each vertical line into the corresponding %%icon icon-cauldron$%% cauldron\n\n%%icon mdi mdi-alert-octagon-outline$%% Don't put the other %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons",
+    fr: "Mets l'%%icon icon-egg$%% œuf maximum de chaque ligne verticale dans le %%icon icon-cauldron$%% chaudron correspondant\n\n%%icon mdi mdi-alert-octagon-outline$%% Ne mets pas d'autres %%icon icon-egg$%% œufs que les maximums dans les %%icon icon-cauldron$%% chaudrons",
   },
   messages: {
     loss_reason_one_egg_not_max: {
