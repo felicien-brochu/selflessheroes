@@ -50,6 +50,21 @@ function testCode(level, mapConfig, code) {
   let max = tests.reduce((acc, test) => Math.max(acc, test.steps), 0)
   let min = tests.reduce((acc, test) => Math.min(acc, test.steps), Infinity)
   let variance = tests.reduce((acc, test) => acc + (test.steps - avg) ** 2, 0) / tests.length
+  let maxAvg = 0
+  let minAvg = Infinity
+  let seriesStats = []
+
+  for (let i = 0; i < sampleSize - 20 + 1; i++) {
+    let seriesAvg = 0
+    for (let j = i; j < i + 20; j++) {
+      seriesAvg += tests[j].steps
+    }
+    seriesAvg /= 20
+    seriesStats.push(seriesAvg)
+    maxAvg = Math.max(maxAvg, seriesAvg)
+    minAvg = Math.min(minAvg, seriesAvg)
+  }
+  seriesStats.sort((a, b) => a - b)
 
   console.debug("//// tests stats ////")
   console.debug("sample:", sampleSize)
@@ -58,6 +73,20 @@ function testCode(level, mapConfig, code) {
   console.debug("min:   ", min, ` (${(avg - min) / Math.sqrt(variance)} σ)`)
   console.debug("σ:     ", Math.sqrt(variance))
   console.debug("σ²:    ", variance)
+  console.debug("max 20:", maxAvg, `(over ${sampleSize - 20 + 1} samples)`)
+  console.debug("10%   :", seriesStats[Math.floor((seriesStats.length - 1) * 0.9)])
+  console.debug("5%    :", seriesStats[Math.floor((seriesStats.length - 1) * 0.95)])
+  console.debug("1%    :", seriesStats[Math.floor((seriesStats.length - 1) * 0.99)])
+  console.debug(".5%   :", seriesStats[Math.floor((seriesStats.length - 1) * 0.995)])
+  console.debug(".1%   :", seriesStats[Math.floor((seriesStats.length - 1) * 0.999)])
+  // console.debug("series:", seriesStats)
+  // for (let point of seriesStats) {
+  //   let graph = ''
+  //   for (let i = 0; i < point - minAvg; i++) {
+  //     graph += '|'
+  //   }
+  //   console.log(graph + '  ' + point)
+  // }
 
   postMessage(tests)
 }
