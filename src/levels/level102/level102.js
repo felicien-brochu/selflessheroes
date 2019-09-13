@@ -43,8 +43,8 @@ const winCondition = {
 
 const level = {
   name: {
-    en: "Tidying up",
-    fr: "Un peu de rangement",
+    en: "Dinner's ready!",
+    fr: "À table !",
   },
   objective: {
     en: "These %%icon icon-egg$%% eggs were randomly scattered throughout the room. Put them into the %%icon icon-cauldron$%% cauldrons.",
