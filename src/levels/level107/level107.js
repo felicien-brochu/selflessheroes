@@ -94,8 +94,8 @@ const level = {
     fr: "Cueillette 2",
   },
   objective: {
-    en: "Put the maximum %%icon icon-egg$%% egg from each vertical line into the corresponding %%icon icon-cauldron$%% cauldron\n\n%%icon mdi mdi-alert-octagon-outline$%% Don't put the other %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons",
-    fr: "Mets l'%%icon icon-egg$%% œuf maximum de chaque ligne verticale dans le %%icon icon-cauldron$%% chaudron correspondant\n\n%%icon mdi mdi-alert-octagon-outline$%% Ne mets pas d'autres %%icon icon-egg$%% œufs que les maximums dans les %%icon icon-cauldron$%% chaudrons",
+    en: "Put the maximum %%icon icon-egg$%% egg from each vertical line into the corresponding %%icon icon-cauldron$%% cauldron\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: don't put the other %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons",
+    fr: "Mets l'%%icon icon-egg$%% œuf maximum de chaque ligne verticale dans le %%icon icon-cauldron$%% chaudron correspondant\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: ne mets pas d'autres %%icon icon-egg$%% œufs que les maximums dans les %%icon icon-cauldron$%% chaudrons",
   },
   messages: {
     loss_reason_one_egg_not_max: {
