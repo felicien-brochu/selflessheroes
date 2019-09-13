@@ -70,7 +70,7 @@ const level = {
     fr: "Cueillette",
   },
   objective: {
-    en: "Put one %%icon icon-egg$%% egg which is less than 4\nin each %%icon icon-cauldron$%% cauldron",
+    en: "Put one %%icon icon-egg$%% egg which is less than 4\ninto each %%icon icon-cauldron$%% cauldron",
     fr: "Mets un %%icon icon-egg$%% œuf inférieur à 4\ndans chaque %%icon icon-cauldron$%% chaudron",
   },
   messages: {

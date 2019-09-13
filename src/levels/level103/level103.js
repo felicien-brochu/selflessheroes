@@ -36,7 +36,7 @@ const level = {
     fr: "Chaîne humaine",
   },
   objective: {
-    en: "Put the %%icon icon-egg$%% egg in the %%icon icon-cauldron$%% cauldron",
+    en: "Put the %%icon icon-egg$%% egg into the %%icon icon-cauldron$%% cauldron",
     fr: "Mets l'%%icon icon-egg$%% œuf dans le %%icon icon-cauldron$%% chaudron",
   },
   startingCode: "",

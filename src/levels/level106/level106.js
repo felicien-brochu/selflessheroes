@@ -65,18 +65,18 @@ const level = {
     fr: "Chaîne humaine 2",
   },
   objective: {
-    en: "Put the %%icon icon-egg$%% egg of maximum value\nin the %%icon icon-cauldron$%% cauldron\n\n%%icon mdi mdi-information-outline$%% In case of a tie, choose one of the two",
+    en: "Put the %%icon icon-egg$%% egg of maximum value\ninto the %%icon icon-cauldron$%% cauldron\n\n%%icon mdi mdi-information-outline$%% In case of a tie, choose one of the two",
     fr: "Mets l'%%icon icon-egg$%% œuf de valeur maximum\ndans le %%icon icon-cauldron$%% chaudron\n\n%%icon mdi mdi-information-outline$%% En cas d'égalité, choisis l'un des deux",
   },
   messages: {
     not_maximum_egg_loss_condition: {
-      en: "You put an %%icon icon-egg$%% egg which is not the maximum in the %%icon icon-cauldron$%% cauldron",
+      en: "You put an %%icon icon-egg$%% egg which is not the maximum into the %%icon icon-cauldron$%% cauldron",
       fr: "Tu as mis un %%icon icon-egg$%% œuf qui n'est pas le maximum dans le %%icon icon-cauldron$%% chaudron",
     }
   },
   startingCode: "",
   startingEditorType: "graph",
-  maxStep: 100,
+  maxStep: 150,
   speedTarget: 23,
   lengthTarget: 6,
 

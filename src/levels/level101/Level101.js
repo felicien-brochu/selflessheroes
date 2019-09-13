@@ -10,7 +10,7 @@ const level = {
     fr: "Livraison",
   },
   objective: {
-    en: "Put the %%icon icon-egg$%% eggs in the %%icon icon-cauldron$%% cauldrons",
+    en: "Put the %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons",
     fr: "Mets les %%icon icon-egg$%% œufs dans les %%icon icon-cauldron$%% chaudrons",
   },
   startingCode: "",

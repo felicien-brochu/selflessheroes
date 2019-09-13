@@ -103,7 +103,7 @@ const level = {
     fr: "Récolte",
   },
   objective: {
-    en: "Put all the %%icon icon-egg$%% eggs which are less than 4\nin the %%icon icon-cauldron$%% cauldrons",
+    en: "Put all the %%icon icon-egg$%% eggs which are less than 4\ninto the %%icon icon-cauldron$%% cauldrons",
     fr: "Mets tous les %%icon icon-egg$%% œufs inférieurs à 4\ndans les %%icon icon-cauldron$%% chaudrons",
   },
   messages: {

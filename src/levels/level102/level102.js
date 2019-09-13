@@ -47,7 +47,7 @@ const level = {
     fr: "Un peu de rangement",
   },
   objective: {
-    en: "These %%icon icon-egg$%% eggs were randomly scattered throughout the room. Put them in the %%icon icon-cauldron$%% cauldrons.",
+    en: "These %%icon icon-egg$%% eggs were randomly scattered throughout the room. Put them into the %%icon icon-cauldron$%% cauldrons.",
     fr: "Ces %%icon icon-egg$%% œufs ont été éparpillés au hasard dans la pièce. Mets-les dans les %%icon icon-cauldron$%% chaudrons.",
   },
   startingCode: "",
