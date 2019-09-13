@@ -116,7 +116,7 @@ const level = {
   startingCode: "",
   startingEditorType: "graph",
   maxStep: 1000,
-  speedTarget: 142,
+  speedTarget: 144,
   lengthTarget: 9,
 
   compilerConfig: {
