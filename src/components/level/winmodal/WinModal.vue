@@ -30,7 +30,8 @@
   <transition name="fade-expand"
     appear>
     <div v-if="testAnimationEnded"
-      class="score-container">
+      class="score-container"
+      ref="scoreContainer">
       <div class="score">
         <i class="mdi mdi-clock-fast" />:<span class="score-target"><span :class="{
 						'score-number': true,
@@ -196,11 +197,13 @@ export default {
 
         this.$nextTick(() => {
           if (this.tests.every(test => !test.hasLost)) {
-            let content = this.$el.getElementsByClassName('modal-content')[0]
-            content.scrollTo({
-              top: content.scrollHeight,
-              behavior: 'smooth'
-            })
+            if (this.$refs.scoreContainer) {
+              this.$refs.scoreContainer.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                inline: "start"
+              })
+            }
           }
           else {
             this.cancel()
