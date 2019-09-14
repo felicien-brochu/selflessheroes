@@ -125,7 +125,7 @@ export default {
           id: career.id,
           name: career.name,
           stars: career.getStarCount(),
-          url: `c/${career.id}/`
+          url: `c/${career.id}`
         })
       }
       return careers

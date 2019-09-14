@@ -2,7 +2,9 @@
 <div class="level-list">
 
   <ul v-for="category in careerLevels"
-    class="list">
+    class="list"
+    :key="category.name"
+    ref="categories">
     <level-item v-for="level in category.levels"
       :key="level.id"
       :level="level.level"
@@ -62,14 +64,26 @@ export default {
 
   beforeRouteEnter(to, from, next) {
     next(vm => {
-      if (vm.$router.levelListScrollTop) {
-        vm.$el.scrollTop = vm.$router.levelListScrollTop
+      if (vm.$router.levelListScroll) {
+        if (vm.$router.levelListScroll.path !== to.path) {
+          vm.$router.levelListScroll = null
+        }
+        else {
+          vm.$el.scrollTop = vm.$router.levelListScroll.scrollTop
+        }
+      }
+
+      if (!vm.$router.levelListScroll) {
+        vm.scrollToLastCategory()
       }
     })
   },
 
   beforeRouteLeave(to, from, next) {
-    this.$router.levelListScrollTop = this.$el.scrollTop
+    this.$router.levelListScroll = {
+      path: from.path,
+      scrollTop: this.$el.scrollTop,
+    }
     next()
   },
 
@@ -78,6 +92,10 @@ export default {
       if (unlocked) {
         this.selectedID = id
       }
+    },
+
+    scrollToLastCategory() {
+      this.$refs.categories[this.$refs.categories.length - 1].scrollIntoView()
     }
   }
 }
