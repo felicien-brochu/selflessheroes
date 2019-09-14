@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="15" height="7" tilewidth="32" tileheight="32" infinite="0" nextlayerid="256" nextobjectid="132">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
+  <image source="tileset.png" trans="000000" width="340" height="680"/>
+  <terraintypes>
+   <terrain name="floor" tile="79"/>
+   <terrain name="wall" tile="69"/>
+   <terrain name="hole" tile="78"/>
+  </terraintypes>
+ </tileset>
+ <layer id="251" name="checkers" width="15" height="7" visible="0">
+  <data encoding="csv">
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0
+</data>
+ </layer>
+ <objectgroup id="14" name="camera">
+  <object id="12" name="frame" type="frame" x="51" y="33" width="377.667" height="157.333"/>
+  <object id="15" name="strategy" type="cameraStrategy" x="3" y="126">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="252" name="path" width="15" height="7">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,80,0,80,0,80,0,80,0,80,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,0,80,0,80,0,80,0,80,0,80,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="2" name="objects">
+  <object id="33" name="hero" type="hero" x="113" y="115">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="34" name="hero" type="hero" x="176.5" y="117">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="35" name="hero" type="hero" x="239.5" y="119">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="36" name="hero" type="hero" x="307.5" y="119">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="37" name="hero" type="hero" x="368.5" y="115">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="120" name="egg" type="egg" x="80.5" y="115.5">
+   <properties>
+    <property name="value" value="rng(0,99)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="121" name="egg" type="egg" x="111.5" y="81.5">
+   <properties>
+    <property name="value" value="rng(0,99)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="122" name="egg" type="egg" x="111.5" y="142.5">
+   <properties>
+    <property name="value" value="rng(0,99)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="123" name="egg" type="egg" x="175.5" y="76.5">
+   <properties>
+    <property name="value" value="rng(0,99)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="124" name="egg" type="egg" x="177" y="144">
+   <properties>
+    <property name="value" value="rng(0,99)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="125" name="egg" type="egg" x="239.5" y="78.5">
+   <properties>
+    <property name="value" value="rng(0,99)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="126" name="egg" type="egg" x="239" y="143">
+   <properties>
+    <property name="value" value="rng(0,99)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="127" name="egg" type="egg" x="305.5" y="77">
+   <properties>
+    <property name="value" value="rng(0,99)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="128" name="egg" type="egg" x="302" y="144">
+   <properties>
+    <property name="value" value="rng(0,99)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="129" name="egg" type="egg" x="369.5" y="80.5">
+   <properties>
+    <property name="value" value="rng(0,99)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="130" name="egg" type="egg" x="367.5" y="143">
+   <properties>
+    <property name="value" value="rng(0,99)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="131" name="cauldron" type="cauldron" x="399.5" y="111.5">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="253" name="types" width="15" height="7">
+  <data encoding="csv">
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,
+79,79,70,70,70,70,70,70,70,70,70,70,70,79,79,
+79,70,70,80,70,80,70,80,70,80,70,80,70,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,70,80,70,80,70,80,70,80,70,80,70,70,79,
+79,79,70,70,70,70,70,70,70,70,70,70,70,79,79,
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79
+</data>
+ </layer>
+ <layer id="254" name="ground" width="15" height="7">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,1,2,61,2,61,2,61,2,61,2,6,0,0,
+0,1,2,122,3,121,3,131,3,122,3,144,2,6,0,
+0,31,143,28,132,29,122,28,141,18,122,27,151,36,0,
+0,41,54,133,50,142,50,144,50,134,50,134,51,46,0,
+0,0,41,42,49,42,49,42,49,42,49,42,46,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="255" name="floor_shadow" width="15" height="7">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,75,0,75,0,75,0,75,0,75,0,0,0,
+0,0,77,108,65,108,65,108,65,108,65,108,76,0,0,
+0,0,0,67,0,67,0,67,0,67,0,67,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

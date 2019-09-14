@@ -24,6 +24,7 @@ import level106 from './level106/level106'
 import level107 from './level107/level107'
 import level108 from './level108/level108'
 import level109 from './level109/level109'
+import level110 from './level110/level110'
 
 const levels = [
   new Level(1, level1),
@@ -48,6 +49,7 @@ const levels = [
   new Level(107, level107),
   new Level(108, level108),
   new Level(109, level109),
+  new Level(110, level110),
 
   new Level(0, levelTest),
 ]
@@ -75,6 +77,7 @@ const unlockTree = {
   107: [106],
   108: [107],
   109: [108],
+  110: [109],
 
   0: [],
 }
