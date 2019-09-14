@@ -132,7 +132,10 @@ const categories = [{
       unlock: [109]
     }, ]
   },
-  {
+]
+
+if (ENV === 'development') {
+  categories.push({
     name: 'other',
     color: 'gray',
     unlock: [],
@@ -140,8 +143,8 @@ const categories = [{
       id: 0,
       unlock: []
     }, ]
-  },
-]
+  })
+}
 
 
 class LevelManager {

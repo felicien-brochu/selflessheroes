@@ -126,6 +126,7 @@ const config = {
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
+      ENV: JSON.stringify(env),
       SHOW_STATS: JSON.stringify(env === 'development'),
     }),
     new CopyWebpackPlugin(copiedFiles),
