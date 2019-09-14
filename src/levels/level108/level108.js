@@ -131,7 +131,7 @@ const level = {
     excludePrimary: ['assign'],
     variables: 0,
     terrainTypes: ['wall', 'floor'],
-    objectTypes: ['egg', 'cauldron', 'nothing'],
+    objectTypes: ['egg', 'hero', 'nothing'],
     valueFunctions: [],
     actionFunctions: ['step_once', 'take', 'drop'],
     leftComparisonExpressions: ['direction', 'myitem', 'integer'],
