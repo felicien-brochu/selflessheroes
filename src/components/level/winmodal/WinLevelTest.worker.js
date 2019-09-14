@@ -22,7 +22,6 @@ function testCode(level, mapConfig, code) {
   const compiler = new Compiler(code, level.buildCompilerConfig())
   const aiFactory = compiler.compile()
 
-  let t = Date.now()
   let tests = []
   for (let i = 0; i < sampleSize; i++) {
     let {
@@ -46,6 +45,25 @@ function testCode(level, mapConfig, code) {
     })
   }
 
+  if (SHOW_STATS) {
+    printStats(tests)
+  }
+
+  postMessage(tests)
+}
+
+function buildRNG() {
+  return seedrandom(null, {
+    pass: (rng, seed) => {
+      return {
+        rng: rng,
+        seed: seed
+      }
+    }
+  })
+}
+
+function printStats(tests) {
   let avg = tests.reduce((acc, test) => acc + test.steps, 0) / tests.length
   let max = tests.reduce((acc, test) => Math.max(acc, test.steps), 0)
   let min = tests.reduce((acc, test) => Math.min(acc, test.steps), Infinity)
@@ -87,17 +105,4 @@ function testCode(level, mapConfig, code) {
   //   }
   //   console.log(graph + '  ' + point)
   // }
-
-  postMessage(tests)
-}
-
-function buildRNG() {
-  return seedrandom(null, {
-    pass: (rng, seed) => {
-      return {
-        rng: rng,
-        seed: seed
-      }
-    }
-  })
 }

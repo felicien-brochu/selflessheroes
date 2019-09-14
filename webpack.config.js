@@ -50,6 +50,10 @@ const config = {
       chunks: 'all'
     },
   },
+  performance: {
+    maxEntrypointSize: 1000000,
+    maxAssetSize: 1000000
+  },
   devtool: env === 'development' ? 'inline-source-map' : undefined,
   devServer: {
     contentBase: 'dist',
@@ -121,6 +125,9 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({
+      SHOW_STATS: JSON.stringify(env === 'development'),
+    }),
     new CopyWebpackPlugin(copiedFiles),
     new WebpackAutoInject({
       components: {
@@ -154,6 +161,9 @@ if (env === 'production') {
       parallel: true,
       terserOptions: {
         ecma: 6,
+        output: {
+          comments: false,
+        },
       },
     })
   ]
