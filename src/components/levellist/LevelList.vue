@@ -77,6 +77,19 @@ export default {
     this.career.createUnlockedLevelSolutions(this.careerLevels)
   },
 
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (vm.$router.levelListScrollTop) {
+        vm.$el.scrollTop = vm.$router.levelListScrollTop
+      }
+    })
+  },
+
+  beforeRouteLeave(to, from, next) {
+    this.$router.levelListScrollTop = this.$el.scrollTop
+    next()
+  },
+
   methods: {
     selectLevel(id, unlocked) {
       if (unlocked) {
