@@ -54,67 +54,169 @@ const levels = [
   new Level(0, levelTest),
 ]
 
-const unlockTree = {
-  1: [],
-  2: [1],
-  3: [2],
-  4: [3],
-  5: [4],
-  6: [5],
-  7: [6],
-  8: [7],
-  9: [8],
-  10: [9],
-  11: [10],
-  12: [11],
+const categories = [{
+    name: 'tutorial',
+    color: 'blue',
+    unlock: [],
+    levels: [{
+      id: 1,
+      unlock: []
+    }, {
+      id: 2,
+      unlock: [1]
+    }, {
+      id: 3,
+      unlock: [2]
+    }, {
+      id: 4,
+      unlock: [3]
+    }, {
+      id: 5,
+      unlock: [4]
+    }, {
+      id: 6,
+      unlock: [5]
+    }, {
+      id: 7,
+      unlock: [6]
+    }, {
+      id: 8,
+      unlock: [7]
+    }, {
+      id: 9,
+      unlock: [8]
+    }, {
+      id: 10,
+      unlock: [9]
+    }, {
+      id: 11,
+      unlock: [10]
+    }, {
+      id: 12,
+      unlock: [11]
+    }, ]
+  },
+  {
+    name: 'eggs',
+    color: 'green',
+    unlock: [10],
+    levels: [{
+      id: 101,
+      unlock: []
+    }, {
+      id: 102,
+      unlock: [101]
+    }, {
+      id: 103,
+      unlock: [102]
+    }, {
+      id: 104,
+      unlock: [103]
+    }, {
+      id: 105,
+      unlock: [104]
+    }, {
+      id: 106,
+      unlock: [104]
+    }, {
+      id: 107,
+      unlock: [106]
+    }, {
+      id: 108,
+      unlock: [107]
+    }, {
+      id: 109,
+      unlock: [108]
+    }, {
+      id: 110,
+      unlock: [109]
+    }, ]
+  },
+  {
+    name: 'other',
+    color: 'gray',
+    unlock: [],
+    levels: [{
+      id: 0,
+      unlock: []
+    }, ]
+  },
+]
 
-  101: [10],
-  102: [101],
-  103: [102],
-  104: [103],
-  105: [104],
-  106: [104],
-  107: [106],
-  108: [107],
-  109: [108],
-  110: [109],
-
-  0: [],
-}
 
 class LevelManager {
-  constructor(list, unlockTree) {
-    this.list = list
-    this.unlockTree = unlockTree
+  constructor(levels, categories) {
+    this.levels = levels
+    this.categories = categories
   }
 
-  getList(list) {
-    return this.list
+  getList(levels) {
+    return this.levels
   }
 
   getCareerList(career) {
     let winList = []
-    for (let i = 0; i < this.list.length; i++) {
-      let solutions = career.getLevel(this.list[i].id)
+    for (let i = 0; i < this.levels.length; i++) {
+      let solutions = career.getLevel(this.levels[i].id)
       winList.push({
-        id: this.list[i].id,
+        id: this.levels[i].id,
         won: !!(solutions && solutions.hasWon())
       })
     }
 
     let careerList = []
-    for (let i = 0; i < this.list.length; i++) {
-      careerList.push({
-        level: this.list[i],
-        unlocked: this.isLevelUnlocked(this.list[i], winList)
-      })
+    for (let categoryConf of this.categories) {
+      let category = {
+        name: categoryConf.name,
+        color: categoryConf.color,
+        unlocked: this.isCategoryUnlocked(categoryConf, winList),
+        levels: [],
+      }
+
+      for (let levelConf of categoryConf.levels) {
+        let level = this.getLevelByID(levelConf.id)
+        let score = null
+        let levelSolutions = career.getLevel(levelConf.id)
+        if (levelSolutions) {
+          score = levelSolutions.score
+        }
+
+        category.levels.push({
+          id: levelConf.id,
+          level: level,
+          score: score,
+          unlocked: this.isLevelUnlocked(level, winList),
+        })
+      }
+      careerList.push(category)
     }
 
     return careerList
   }
 
+  isCategoryUnlocked(category, winList) {
+    return this.isUnlocked(category.unlock, winList)
+  }
+
   isLevelUnlocked(level, winList) {
-    let condition = this.unlockTree[level.id].slice(0)
+    let unlockTree
+    for (let category of this.categories) {
+      let levelConf = category.levels.find(lvl => lvl.id === level.id)
+      if (levelConf) {
+        unlockTree = levelConf.unlock
+        break
+      }
+    }
+
+    if (!unlockTree) {
+      return false
+    }
+
+    return this.isUnlocked(unlockTree, winList)
+  }
+
+  isUnlocked(unlockTree, winList) {
+    let condition = unlockTree.slice(0)
     if (condition.length === 0) {
       return true
     }
@@ -140,9 +242,9 @@ class LevelManager {
   }
 
   getLevelByID(id) {
-    return this.list.find(level => level.id === id)
+    return this.levels.find(level => level.id === id)
   }
 }
 
-const manager = new LevelManager(levels, unlockTree)
+const manager = new LevelManager(levels, categories)
 export default manager

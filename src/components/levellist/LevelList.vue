@@ -1,15 +1,16 @@
 <template>
 <div class="level-list">
 
-  <ul class="list">
-    <level-item v-for="level in levels"
+  <ul v-for="category in careerLevels"
+    class="list">
+    <level-item v-for="level in category.levels"
       :key="level.id"
       :level="level.level"
-      :locked="level.locked"
+      :locked="!level.unlocked"
       :score="level.score"
       :class="{'selected': level.id === selectedID}"
-      @mousedown.native="selectLevel(level.id, !level.locked)"
-      @touchstart.native="$event.preventDefault(); selectLevel(level.id, !level.locked)" />
+      @mousedown.native="selectLevel(level.level.id, level.unlocked)"
+      @touchstart.native="$event.preventDefault(); selectLevel(level.id, level.unlocked)" />
   </ul>
 
   <transition name="fade-slide"
@@ -41,29 +42,11 @@ export default {
 
   data: function() {
     let career = storage.getCareer(this.careerID)
-    let careerLevels = levelManager.getCareerList(career)
+    let careerLevels = levelManager.getCareerList(career).filter(category => category.unlocked)
     return {
       career: career,
       careerLevels: careerLevels,
       selectedID: -1
-    }
-  },
-
-  computed: {
-    levels: function() {
-      return this.careerLevels.map(level => {
-        let score = null
-        let levelSolutions = this.career.getLevel(level.level.id)
-        if (levelSolutions) {
-          score = levelSolutions.score
-        }
-        return {
-          id: level.level.id,
-          level: level.level,
-          locked: !level.unlocked,
-          score: score
-        }
-      })
     }
   },
 
