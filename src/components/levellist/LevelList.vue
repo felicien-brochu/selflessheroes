@@ -1,19 +1,28 @@
 <template>
 <div class="level-list">
 
-  <ul v-for="category in careerLevels"
-    class="list"
-    :key="category.name"
-    ref="categories">
-    <level-item v-for="level in category.levels"
-      :key="level.id"
-      :level="level.level"
-      :locked="!level.unlocked"
-      :score="level.score"
-      :class="{'selected': level.id === selectedID}"
-      @mousedown.native="selectLevel(level.level.id, level.unlocked)"
-      @touchstart.native="$event.preventDefault(); selectLevel(level.id, level.unlocked)" />
-  </ul>
+  <div v-for="category in careerLevels"
+    class="list-container">
+    <div :class="[
+			'side-bar',
+			`category-color-${category.color}`,
+		]" />
+    <card-list class="list"
+      :key="category.name"
+      :itemWidth="280"
+      :horizontalMargin="15"
+      :leftOffset="30"
+      ref="categories">
+      <level-item v-for="level in category.levels"
+        :key="level.id"
+        :level="level.level"
+        :locked="!level.unlocked"
+        :score="level.score"
+        :class="{'selected': level.id === selectedID}"
+        @mousedown.native="selectLevel(level.level.id, level.unlocked)"
+        @touchstart.native="$event.preventDefault(); selectLevel(level.id, level.unlocked)" />
+    </card-list>
+  </div>
 
   <transition name="fade-slide"
     appear>
@@ -29,12 +38,14 @@
 import levelManager from '../../levels/levelManager'
 import LevelItem from './LevelItem'
 import LevelDetails from './LevelDetails'
+import CardList from './CardList'
 import storage from '../../game/storage/Storage'
 
 export default {
   components: {
     LevelItem,
-    LevelDetails
+    LevelDetails,
+    CardList,
   },
   props: {
     careerID: {
@@ -95,7 +106,7 @@ export default {
     },
 
     scrollToLastCategory() {
-      this.$refs.categories[this.$refs.categories.length - 1].scrollIntoView()
+      this.$refs.categories[this.$refs.categories.length - 1].$el.scrollIntoView()
     }
   }
 }
@@ -112,13 +123,57 @@ export default {
     overflow-x: hidden;
     overflow-y: auto;
 
-    .list {
-        padding: 80px 0;
+    .list-container {
+        margin: 80px 0;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        align-items: flex-start;
-        align-content: flex-start;
+        justify-content: center;
+        align-items: stretch;
+
+        .side-bar {
+            min-width: 30px;
+            border-radius: 15px 0 0 15px;
+            background-color: #757b88;
+
+            &.category-color-gray {
+                background-color: #757b88;
+            }
+
+            &.category-color-blue {
+                background-color: #557cca;
+            }
+
+            &.category-color-green {
+                background-color: #6d9757;
+            }
+
+            &.category-color-yellow {
+                background-color: #D5AF55;
+            }
+
+            &.category-color-red {
+                background-color: #D03F3F;
+            }
+
+            &.category-color-purple {
+                background-color: #9166BD;
+            }
+
+            &.category-color-orange {
+                background-color: #D0753B;
+            }
+        }
+
+        .list {
+            flex-grow: 0;
+            background-color: #333740;
+            padding: 20px 25px 20px 30px;
+            border-radius: 0 15px 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            align-content: flex-start;
+        }
     }
 
     .level-details {
