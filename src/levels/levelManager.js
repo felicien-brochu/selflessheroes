@@ -60,40 +60,42 @@ const categories = [{
     unlock: [],
     levels: [{
       id: 1,
-      unlock: []
+      unlock: [],
     }, {
       id: 2,
-      unlock: [1]
+      unlock: [1],
     }, {
       id: 3,
-      unlock: [2]
+      unlock: [2],
     }, {
       id: 4,
-      unlock: [3]
+      unlock: [3],
     }, {
       id: 5,
-      unlock: [4]
+      unlock: [4],
     }, {
       id: 6,
-      unlock: [5]
+      unlock: [5],
     }, {
       id: 7,
-      unlock: [6]
+      unlock: [6],
     }, {
       id: 8,
-      unlock: [7]
+      unlock: [7],
     }, {
       id: 9,
-      unlock: [8]
+      unlock: [8],
     }, {
       id: 10,
-      unlock: [9]
+      unlock: [9],
     }, {
       id: 11,
-      unlock: [10]
+      unlock: [10],
+      bonus: true,
     }, {
       id: 12,
-      unlock: [11]
+      unlock: [11],
+      bonus: true,
     }, ]
   },
   {
@@ -102,34 +104,35 @@ const categories = [{
     unlock: [10],
     levels: [{
       id: 101,
-      unlock: []
+      unlock: [],
     }, {
       id: 102,
-      unlock: [101]
+      unlock: [101],
     }, {
       id: 103,
-      unlock: [102]
+      unlock: [102],
     }, {
       id: 104,
-      unlock: [103]
+      unlock: [103],
     }, {
       id: 105,
-      unlock: [104]
+      unlock: [104],
+      bonus: true,
     }, {
       id: 106,
-      unlock: [104]
+      unlock: [104],
     }, {
       id: 107,
-      unlock: [106]
+      unlock: [106],
     }, {
       id: 108,
-      unlock: [107]
+      unlock: [107],
     }, {
       id: 109,
-      unlock: [108]
+      unlock: [108],
     }, {
       id: 110,
-      unlock: [109]
+      unlock: [109],
     }, ]
   },
 ]
@@ -141,7 +144,7 @@ if (ENV === 'development') {
     unlock: [],
     levels: [{
       id: 0,
-      unlock: []
+      unlock: [],
     }, ]
   })
 }
@@ -183,13 +186,16 @@ class LevelManager {
         if (levelSolutions) {
           score = levelSolutions.score
         }
+        let unlocked = this.isLevelUnlocked(level, winList)
 
-        category.levels.push({
-          id: levelConf.id,
-          level: level,
-          score: score,
-          unlocked: this.isLevelUnlocked(level, winList),
-        })
+        if (!(levelConf.bonus && !unlocked))
+          category.levels.push({
+            id: levelConf.id,
+            level: level,
+            bonus: !!levelConf.bonus,
+            score: score,
+            unlocked: unlocked,
+          })
       }
       careerList.push(category)
     }

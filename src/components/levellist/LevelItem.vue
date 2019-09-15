@@ -1,7 +1,8 @@
 <template>
 <li :class="{
 	'level-item': true,
-	'locked': locked
+	'locked': locked,
+	'bonus': bonus,
 }">
   <h3 v-text-fit="{
 		alignHoriz: true,
@@ -14,7 +15,10 @@
 
   <score-stars :score="score"
     :level="level"
-    v-show="!locked && score && score.won" />
+    v-show="!locked" />
+
+  <div v-if="bonus"
+    class="bonus-label"><i class="mdi mdi-star" />&nbsp;{{$text('level_list_bonus_label')}}&nbsp;<i class="mdi mdi-star" /></div>
 </li>
 </template>
 
@@ -29,7 +33,8 @@ export default {
   props: {
     'level': Object,
     'locked': Boolean,
-    'score': Object
+    'bonus': Boolean,
+    'score': Object,
   }
 }
 </script>
@@ -67,6 +72,16 @@ export default {
         margin-top: 55px;
         width: 155px;
         height: 84px;
+    }
+
+    .bonus-label {
+        margin-top: 14px;
+        color: #fbb811;
+        background-color: #394249;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 8px 12px;
+        border-radius: 17px;
     }
 }
 </style>

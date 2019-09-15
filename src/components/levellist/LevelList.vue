@@ -17,6 +17,7 @@
         :key="level.id"
         :level="level.level"
         :locked="!level.unlocked"
+        :bonus="level.bonus"
         :score="level.score"
         :class="{'selected': level.id === selectedID}"
         @mousedown.native="selectLevel(level.level.id, level.unlocked)"

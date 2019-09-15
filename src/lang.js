@@ -25,6 +25,7 @@ const messages = {
     remove_career_warning: "Are you really sure to delete this profile?\nAll progression will be lost.",
 
     level_list_back_button: "Back",
+    level_list_bonus_label: "BONUS",
 
     level_details_edit_button: "play",
     level_details_edit_button_tooltip: "Play",
@@ -277,6 +278,7 @@ const messages = {
     remove_career_warning: "Êtes-vous vraiment sûr de vouloir supprimer cette partie\u00A0?\nToute progression sera perdue.",
 
     level_list_back_button: "Retour",
+    level_list_bonus_label: "BONUS",
 
     level_details_edit_button: "jouer",
     level_details_edit_button_tooltip: "Jouer",
