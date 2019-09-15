@@ -75,16 +75,14 @@ export default {
 
   beforeRouteEnter(to, from, next) {
     next(vm => {
-      if (vm.$router.levelListScroll) {
-        if (vm.$router.levelListScroll.path !== to.path) {
-          vm.$router.levelListScroll = null
-        }
-        else {
-          vm.$el.scrollTop = vm.$router.levelListScroll.scrollTop
-        }
+      if (vm.$router.levelListScroll && vm.$router.levelListScroll.path !== to.path) {
+        vm.$router.levelListScroll = null
       }
 
-      if (!vm.$router.levelListScroll) {
+      if (vm.$router.levelListScroll) {
+        vm.$el.scrollTop = vm.$router.levelListScroll.scrollTop
+      }
+      else {
         vm.scrollToLastCategory()
       }
     })
@@ -106,7 +104,8 @@ export default {
     },
 
     scrollToLastCategory() {
-      this.$refs.categories[this.$refs.categories.length - 1].$el.scrollIntoView()
+      let category = this.$refs.categories[this.$refs.categories.length - 1].$el
+      this.$el.scrollTop = category.offsetTop - 80
     }
   }
 }
