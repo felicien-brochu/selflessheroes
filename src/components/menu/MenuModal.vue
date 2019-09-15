@@ -26,8 +26,7 @@
           @change="toggleFullscreen" />
       </td>
     </tr>
-    <tr class="sound-preference"
-      v-if="showFullscreenPreference">
+    <tr class="sound-preference">
       <td>{{$text('menu_sound_label')}}</td>
       <td>
         <volume tag="div"
@@ -35,7 +34,7 @@
       </td>
     </tr>
     <tr class="sound-preference"
-      v-if="showFullscreenPreference">
+      v-if="false">
       <td>{{$text('menu_music_label')}}</td>
       <td>
         <volume tag="div"
