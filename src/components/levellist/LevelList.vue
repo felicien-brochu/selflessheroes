@@ -11,7 +11,7 @@
       :key="category.name"
       :itemWidth="280"
       :horizontalMargin="15"
-      :leftOffset="30"
+      :parentPadding="30"
       ref="categories">
       <level-item v-for="level in category.levels"
         :key="level.id"
@@ -38,7 +38,7 @@
 import levelManager from '../../levels/levelManager'
 import LevelItem from './LevelItem'
 import LevelDetails from './LevelDetails'
-import CardList from './CardList'
+import CardList from '../common/CardList'
 import storage from '../../game/storage/Storage'
 
 export default {

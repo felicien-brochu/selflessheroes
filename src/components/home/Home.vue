@@ -7,12 +7,16 @@
 
   <modal-layer ref="modalLayer" />
 
-  <div class="career-list">
+  <card-list class="career-list"
+    :itemWidth="280"
+    :horizontalMargin="15"
+    :parentPadding="80"
+    :centerOneLiner="true">
 
     <router-link v-for="career in careers"
       class="career-item"
       :key="`career${career.id}`"
-      tag="div"
+      tag="li"
       :to="career.url">
 
       <button class="remove-button mdi mdi-minus-circle"
@@ -42,7 +46,7 @@
 
     <transition name="fade"
       mode="out-in">
-      <div v-if="!newCareer && careers.length > 0"
+      <li v-if="!newCareer && careers.length > 0"
         class="add-button-wrapper"
         @mousedown="newCareer = true"
         @touchstart="newCareer = true">
@@ -50,7 +54,7 @@
         <button class="mdi mdi-plus-circle"
           type="button" />
 
-      </div>
+      </li>
 
       <form v-else
         @submit="createCareer"
@@ -85,7 +89,7 @@
 
     </transition>
 
-  </div>
+  </card-list>
 
 </div>
 </template>
@@ -93,6 +97,7 @@
 <script>
 import ModalLayer from '../modal/ModalLayer'
 import Modal from '../modal/Modal'
+import CardList from '../common/CardList'
 import storage from '../../game/storage/Storage'
 
 export default {
@@ -105,7 +110,8 @@ export default {
   },
 
   components: {
-    ModalLayer
+    ModalLayer,
+    CardList,
   },
 
   data: function() {
@@ -216,7 +222,7 @@ export default {
         padding: 0 0 80px;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         align-content: flex-start;
         margin: 0;

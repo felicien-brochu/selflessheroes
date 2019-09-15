@@ -26,9 +26,13 @@ export default {
       type: Number,
       default: 0,
     },
-    "leftOffset": {
+    "parentPadding": {
       type: Number,
       default: 0,
+    },
+    "centerOneLiner": {
+      type: Boolean,
+      default: false,
     }
   },
 
@@ -61,7 +65,12 @@ export default {
         return 0
       }
 
-      let ghosts = this.itemByRow - (this.$slots.default.length % this.itemByRow)
+      let children = this.$slots.default.filter(node => node.elm.nodeType !== Node.TEXT_NODE)
+      if (this.centerOneLiner && children.length <= this.itemByRow) {
+        return 0
+      }
+
+      let ghosts = this.itemByRow - (children.length % this.itemByRow)
       if (ghosts === this.itemByRow) {
         ghosts = 0
       }
@@ -75,7 +84,7 @@ export default {
 
   methods: {
     onResize() {
-      let availableWidth = this.$el.parentNode.clientWidth - this.paddingLeft - this.paddingRight - this.leftOffset
+      let availableWidth = this.$el.parentNode.clientWidth - this.paddingLeft - this.paddingRight - this.parentPadding
       this.itemByRow = Math.floor(availableWidth / (this.itemWidth + 2 * this.horizontalMargin))
     }
   },
