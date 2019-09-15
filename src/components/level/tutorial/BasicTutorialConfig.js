@@ -9,8 +9,22 @@ const tutorial = new TutorialConfig()
 const getByID = id => (() => document.getElementById(id))
 const getByClass = className => (() => document.getElementsByClassName(className)[0])
 
-
 let anchor = new TutorialAnchor(
+  getByClass('Pane'), {
+    position: 'bottom',
+    origin: 'center',
+    offset: 0
+  }, {
+    x: 'center',
+    y: 'center'
+  }, {
+    x: 0,
+    y: 0
+  })
+let step = new TutorialStep(anchor, 'tutorial_basic_step_tutorial_warning')
+tutorial.addStep(step)
+
+anchor = new TutorialAnchor(
   getByID('graph-code'), {
     position: 'top',
     origin: 'center',
@@ -22,7 +36,7 @@ let anchor = new TutorialAnchor(
     x: 120,
     y: 120
   })
-let step = new TutorialStep(anchor, 'tutorial_basic_step_graphcode')
+step = new TutorialStep(anchor, 'tutorial_basic_step_graphcode')
 tutorial.addStep(step)
 
 

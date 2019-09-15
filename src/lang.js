@@ -46,10 +46,11 @@ const messages = {
 
     tutorial_button_next: "Next",
 
+    tutorial_basic_step_tutorial_warning: "It is advisable to follow this tutorial carefully in order to be able to play as soon as possible.\n\nClick on the arrow to launch the tutorial.",
     tutorial_basic_step_graphcode: "The heroes follow these instructions step by step",
     tutorial_basic_step_palette: "Drag new instructions from here to change heroes behavior",
     tutorial_basic_step_objective: "To see the level objective click here",
-    tutorial_basic_step_runbar: "When you are ready, click here to run your program",
+    tutorial_basic_step_runbar: "When your program is ready, click here to run it",
     tutorial_basic_step_help: "If you need more help or want to see this tutorial again, click here",
 
     tutorial_advanced_step_undo: "Undo last edit",
@@ -297,10 +298,12 @@ const messages = {
     modal_cancel_no: "non",
 
     tutorial_button_next: "Suivant",
+
+    tutorial_basic_step_tutorial_warning: "Il est conseillé de suivre ce tutoriel avec attention afin de pouvoir jouer le plus vite possible.\n\nClique sur la flèche pour lancer le tutoriel.",
     tutorial_basic_step_graphcode: "Les héros suivent ces instructions dans l'ordre",
     tutorial_basic_step_palette: "Pour changer le comportement des héros, choisis une nouvelle instruction ici et glisse-la à droite",
     tutorial_basic_step_objective: "Pour revoir l'objectif du niveau, clique ici",
-    tutorial_basic_step_runbar: "Une fois que tu es prêt, clique ici pour lancer ton programme",
+    tutorial_basic_step_runbar: "Une fois que ton programme est prêt, clique ici pour le lancer",
     tutorial_basic_step_help: "Pour obtenir plus d'aide ou revoir ce tutoriel, clique ici",
 
     tutorial_advanced_step_undo: "Annule la dernière modification",
