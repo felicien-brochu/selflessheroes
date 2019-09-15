@@ -11,7 +11,9 @@ $default-card-color: #406f96;
 @mixin card-box {
 	box-sizing: border-box;
 	width: 280px;
+	min-width: 280px;
 	height: 310px;
+	min-height: 310px;
 	margin: 15px;
 	border-radius: 8px;
 }

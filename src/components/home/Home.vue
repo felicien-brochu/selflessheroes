@@ -3,7 +3,7 @@
   @mousedown="handleClickOutside"
   @touchstart="handleClickOutside">
 
-  <h1>{{$text('home_title')}}</h1>
+  <header></header>
 
   <modal-layer ref="modalLayer" />
 
@@ -202,6 +202,17 @@ export default {
     background-color: #282C34;
     overflow: auto;
 
+    header {
+        background-image: url("../images/banner.jpg");
+        width: 100%;
+        max-height: calc(100vh - 420px);
+        height: calc(calc(100vw - 80px) * 0.39);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: inline-table;
+    }
+
     h1 {
         font-size: 60px;
         text-align: center;
@@ -219,7 +230,7 @@ export default {
     }
 
     .career-list {
-        padding: 0 0 80px;
+        padding: 0 0 40px;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;

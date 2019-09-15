@@ -1,11 +1,11 @@
 {
-  "name": "aiworld",
+  "name": "selflessheroes",
   "version": "0.0.2",
   "description": "An AI sandbox game.",
   "author": "Félicien Brochu <felicien.brochu@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/felicien-brochu/AIWorld.git"
+    "url": "git+https://github.com/felicien-brochu/selflessheroes.git"
   },
   "license": "Creative Commons - Attribution-NonCommercial 4.0 International",
   "main": "src/electron.js",

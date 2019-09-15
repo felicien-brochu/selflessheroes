@@ -164,6 +164,7 @@ export default {
         }
 
         .list {
+            min-width: min-content;
             flex-grow: 0;
             background-color: #333740;
             padding: 20px 25px 20px 30px;

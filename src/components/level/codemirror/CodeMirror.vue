@@ -21,7 +21,7 @@ import Vue from 'vue'
 import _debounce from 'lodash.debounce'
 import 'codemirror/lib/codemirror.css'
 import CodeMirror from 'codemirror'
-import './aiworldmode'
+import './selflessheroesmode'
 import LineCursors from './LineCursors'
 import ScrollAnimator from '../util/ScrollAnimator'
 import ModalLayer from '../../modal/ModalLayer'
@@ -44,7 +44,7 @@ export default {
       type: Object,
       default: function() {
         return {
-          mode: 'aiworld',
+          mode: 'selflessheroes',
           lineNumbers: true,
           theme: 'one-dark',
           viewportMargin: Infinity,

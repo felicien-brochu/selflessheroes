@@ -18,7 +18,6 @@ const messages = {
     mute_button_mute: "Mute",
     mute_button_unmute: "Unmute",
 
-    home_title: "AI World",
     new_game: "new game:",
     new_game_name_placeholder: "Pseudo",
     remove_career_button: "Remove",
@@ -271,7 +270,6 @@ const messages = {
     mute_button_mute: "Désactiver le son",
     mute_button_unmute: "Activer le son",
 
-    home_title: "AI World",
     new_game: "nouvelle partie\u00A0:",
     new_game_name_placeholder: "Pseudo",
     remove_career_button: "Supprimer",

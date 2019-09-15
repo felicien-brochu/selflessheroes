@@ -21,8 +21,8 @@ if (targets.length === 0) {
 }
 
 const config = {
-  appId: "fr.felicienbrochu.aiworld",
-  productName: "AIWorld",
+  appId: "fr.felicienbrochu.selflessheroes",
+  productName: "Selfless Heroes",
   copyright: "Copyright © 2019 Félicien Brochu",
   directories: {
     app: '.',

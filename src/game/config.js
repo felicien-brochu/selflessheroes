@@ -14,7 +14,7 @@ export default () => ({
   resolution: 1,
   type: Phaser.AUTO,
   parent: 'world-content',
-  localStorageName: 'aiworld',
+  localStorageName: 'selflessheroes',
   backgroundColor: '#00000000',
   plugins: {
     global: [{

@@ -1,2 +1,2 @@
-# AIWorld
-AIWorld is an AI sandbox game
+# Selfless Heroes
+Selfless Heroes is an AI sandbox game
