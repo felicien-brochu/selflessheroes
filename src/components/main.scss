@@ -6,6 +6,8 @@ html {
 	@include no-select;
 	margin: 0;
 	padding: 0;
+	min-width: 100vw;
+	min-height: 100vh;
 	background-color: black;
 	font-family: 'Roboto', Arial, sans-serif;
 
@@ -43,6 +45,31 @@ ul {
 	list-style: none;
 	padding: 0;
 	margin: 0;
+}
+
+noscript {
+	min-height: 100vh;
+	display: block;
+	background-color: #282c34;
+	box-sizing: border-box;
+	padding-top: 30px;
+
+	header {
+		height: 40vw;
+		max-height: 50vh;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		background-image: url("./images/banner.jpg");
+	}
+
+	.noscript-text {
+		padding: 40px;
+		font-weight: bold;
+		color: #abb2bf;
+		text-align: center;
+		font-size: 30px;
+	}
 }
 
 .mdi-light {
