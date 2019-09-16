@@ -1,6 +1,7 @@
 node_modules/
 dist/
 electron-dist/
+deploy.env
 .vscode/
 .cache/
 *.log

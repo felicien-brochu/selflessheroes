@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/felicien-brochu/selflessheroes.git"
   },
-  "license": "Creative Commons - Attribution-NonCommercial 4.0 International",
+  "license": "CC-BY-NC-ND-4.0",
   "main": "src/electron.js",
   "scripts": {
     "start": "npm run serve:dev",
@@ -15,6 +15,7 @@
     "build": "cross-env NODE_ENV=production webpack --env.platform=web --progress",
     "serve:dev": "cross-env NODE_ENV=development webpack-dev-server --env.platform=web --progress --colors --host 0.0.0.0",
     "serve:prod": "cross-env NODE_ENV=production webpack-dev-server --env.platform=web --progress --colors --host 0.0.0.0",
+    "deploy": "npm run build & env-cmd -f ./deploy.env sh ./scripts/deploy.sh",
     "build-electron": "cross-env NODE_ENV=production webpack --env.platform=electron --progress",
     "electron": "npm run build-electron & node ./build-electron.js",
     "electron:win64": "npm run build-electron & node ./build-electron.js win64",
