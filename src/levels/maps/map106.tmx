@@ -67,7 +67,7 @@
   </object>
   <object id="26" name="egg" type="egg" x="79" y="250">
    <properties>
-    <property name="showLottery" type="bool" value="true"/>
+    <property name="showLottery" type="bool" value="false"/>
    </properties>
    <point/>
   </object>
@@ -82,7 +82,7 @@
   </object>
   <object id="31" name="egg" type="egg" x="80.5" y="186.5">
    <properties>
-    <property name="showLottery" type="bool" value="true"/>
+    <property name="showLottery" type="bool" value="false"/>
    </properties>
    <point/>
   </object>
@@ -106,7 +106,7 @@
   </object>
   <object id="47" name="egg" type="egg" x="271" y="271">
    <properties>
-    <property name="showLottery" type="bool" value="true"/>
+    <property name="showLottery" type="bool" value="false"/>
    </properties>
    <point/>
   </object>
@@ -124,7 +124,7 @@
   </object>
   <object id="52" name="egg" type="egg" x="462" y="310">
    <properties>
-    <property name="showLottery" type="bool" value="true"/>
+    <property name="showLottery" type="bool" value="false"/>
    </properties>
    <point/>
   </object>

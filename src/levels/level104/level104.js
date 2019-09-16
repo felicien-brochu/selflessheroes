@@ -93,8 +93,8 @@ const level = {
     objectTypes: ['egg', 'cauldron', 'nothing'],
     valueFunctions: [],
     actionFunctions: ['step_once', 'take', 'drop'],
-    leftComparisonExpressions: ['direction', 'myitem', 'integer'],
-    rightComparisonExpressions: ['object_type', 'terrain_type', 'integer', 'myitem']
+    leftComparisonExpressions: ['direction', 'myitem'],
+    rightComparisonExpressions: ['object_type', 'terrain_type', 'integer']
   },
 
   ruleset: {

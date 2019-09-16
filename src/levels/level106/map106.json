@@ -121,7 +121,7 @@
                         {
                          "name":"showLottery",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"egg",
@@ -169,7 +169,7 @@
                         {
                          "name":"showLottery",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"egg",
@@ -253,7 +253,7 @@
                         {
                          "name":"showLottery",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"egg",
@@ -319,7 +319,7 @@
                         {
                          "name":"showLottery",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"egg",

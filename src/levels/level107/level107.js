@@ -117,8 +117,8 @@ const level = {
     objectTypes: ['egg', 'cauldron', 'nothing'],
     valueFunctions: [],
     actionFunctions: ['step_once', 'take', 'drop'],
-    leftComparisonExpressions: ['direction', 'myitem', 'integer'],
-    rightComparisonExpressions: ['object_type', 'terrain_type', 'direction', 'integer', 'myitem']
+    leftComparisonExpressions: ['direction', 'myitem'],
+    rightComparisonExpressions: ['object_type', 'direction', 'terrain_type', 'myitem']
   },
 
   ruleset: {
@@ -139,7 +139,6 @@ const level = {
         maxEggs: 10,
         eggConfig: {
           value: 'rng(0,99)',
-          showLottery: true
         }
       }
     }
@@ -156,7 +155,6 @@ const level = {
         maxEggs: 10,
         eggConfig: {
           value: 'rng(0,99)',
-          showLottery: true
         }
       }
     }
@@ -173,7 +171,6 @@ const level = {
         maxEggs: 10,
         eggConfig: {
           value: 'rng(0,99)',
-          showLottery: true
         }
       }
     }
@@ -190,7 +187,6 @@ const level = {
         maxEggs: 10,
         eggConfig: {
           value: 'rng(0,99)',
-          showLottery: true
         }
       }
     }
@@ -207,7 +203,6 @@ const level = {
         maxEggs: 10,
         eggConfig: {
           value: 'rng(0,99)',
-          showLottery: true
         }
       }
     }

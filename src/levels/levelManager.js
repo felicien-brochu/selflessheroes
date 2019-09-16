@@ -127,9 +127,10 @@ const categories = [{
     }, {
       id: 108,
       unlock: [107],
+      bonus: true,
     }, {
       id: 109,
-      unlock: [108],
+      unlock: [107],
     }, {
       id: 110,
       unlock: [109],

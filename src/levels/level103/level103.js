@@ -49,11 +49,11 @@ const level = {
     excludePrimary: ['assign'],
     variables: 0,
     terrainTypes: ['wall', 'floor'],
-    objectTypes: ['egg'],
+    objectTypes: ['egg', 'nothing'],
     valueFunctions: [],
     actionFunctions: ['take', 'drop'],
     leftComparisonExpressions: ['direction', 'myitem'],
-    rightComparisonExpressions: ['terrain_type', 'object_type', 'integer']
+    rightComparisonExpressions: ['terrain_type', 'object_type']
   },
 
   ruleset: {

@@ -47,8 +47,8 @@ const level = {
     fr: "À table !",
   },
   objective: {
-    en: "These %%icon icon-egg$%% eggs were randomly scattered throughout the room. Put them into the %%icon icon-cauldron$%% cauldrons.",
-    fr: "Ces %%icon icon-egg$%% œufs ont été éparpillés au hasard dans la pièce. Mets-les dans les %%icon icon-cauldron$%% chaudrons.",
+    en: "These %%icon icon-egg$%% eggs were randomly scattered throughout the room. Put them into the %%icon icon-cauldron$%% cauldrons to prepare the dinner.",
+    fr: "Ces %%icon icon-egg$%% œufs ont été éparpillés au hasard dans la pièce. Mets-les dans les %%icon icon-cauldron$%% chaudrons pour préparer le dîner.",
   },
   startingCode: "",
   startingEditorType: "graph",
@@ -60,11 +60,11 @@ const level = {
     excludePrimary: ['assign'],
     variables: 0,
     terrainTypes: ['wall', 'floor'],
-    objectTypes: ['egg', 'cauldron'],
+    objectTypes: ['egg', 'cauldron', 'nothing'],
     valueFunctions: [],
     actionFunctions: ['step_once', 'take', 'drop'],
     leftComparisonExpressions: ['direction', 'myitem'],
-    rightComparisonExpressions: ['object_type', 'terrain_type', 'integer']
+    rightComparisonExpressions: ['object_type', 'terrain_type']
   },
 
   ruleset: {

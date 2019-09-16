@@ -117,8 +117,8 @@ const level = {
     fr: "Un peu de rangement",
   },
   objective: {
-    en: "These %%icon icon-egg$%% eggs were scattered throughout the room. Put them all at the bottom of the room to tidy up.\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: the %%icon icon-egg$%% eggs must remain in the order in which you found them",
-    fr: "Ces %%icon icon-egg$%% œufs ont été éparpillés dans la pièce. Range-les tous en bas.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: les %%icon icon-egg$%% œufs doivent rester dans l'ordre où tu les as trouvés",
+    en: "These %%icon icon-egg$%% eggs were scattered throughout the room. Pack them all at the bottom of the room to tidy up.\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: the %%icon icon-egg$%% eggs must remain on their vertical line and in the order in which you found them",
+    fr: "Ces %%icon icon-egg$%% œufs ont été éparpillés dans la pièce. Range-les tous en bas.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: les %%icon icon-egg$%% œufs doivent rester sur la même ligne vertical et dans l'ordre où tu les as trouvés",
   },
 
   startingCode: "",
@@ -134,8 +134,8 @@ const level = {
     objectTypes: ['egg', 'hero', 'nothing'],
     valueFunctions: [],
     actionFunctions: ['step_once', 'take', 'drop'],
-    leftComparisonExpressions: ['direction', 'myitem', 'integer'],
-    rightComparisonExpressions: ['object_type', 'terrain_type', 'integer', 'myitem']
+    leftComparisonExpressions: ['direction', 'myitem'],
+    rightComparisonExpressions: ['object_type', 'terrain_type']
   },
 
   ruleset: {
@@ -156,7 +156,6 @@ const level = {
         maxEggs: 5,
         eggConfig: {
           value: 'rng(0,9)',
-          showLottery: true
         }
       }
     }
