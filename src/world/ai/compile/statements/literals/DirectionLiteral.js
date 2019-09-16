@@ -54,10 +54,9 @@ export default class DirectionLiteral extends Expression {
       .map(obj => ExpressionValue.object(obj.shallowCopy()))
       .sort((a, b) => a.value.type === ObjectType.hero ? 1 : 0)
 
-    // Remove hero self from results and replace by object type hero
+    // Remove hero self from results (they are selfless after all!)
     if (direction.equals(Direction.here)) {
       worldObjects = worldObjects.filter(o => o.value.type !== ObjectType.hero)
-      worldObjects.push(ExpressionValue.objectType(ObjectType.hero))
     }
 
     // Insert nothing object type if no object
