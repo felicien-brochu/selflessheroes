@@ -1,6 +1,7 @@
 {
   "name": "Selfless Heroes",
-  "start_url": "/index.html",
+  "short_name": "Selfless Heroes",
+  "start_url": "/",
   "display": "fullscreen",
   "orientation": "landscape",
   "theme_color": "#734C70",
