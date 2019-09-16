@@ -43,6 +43,7 @@ import LevelItem from './LevelItem'
 import LevelDetails from './LevelDetails'
 import CardList from '../common/CardList'
 import storage from '../../game/storage/Storage'
+import SmoothScrollTo from '../util/SmoothScrollTo'
 
 export default {
   components: {
@@ -108,8 +109,10 @@ export default {
 
     scrollToLastCategory() {
       if (this.$refs.categories.length > 1) {
-        let category = this.$refs.categories[this.$refs.categories.length - 1].$el
-        this.$el.scrollTop = category.offsetTop - 80
+        setTimeout(() => {
+          let category = this.$refs.categories[this.$refs.categories.length - 1].$el
+          SmoothScrollTo(category, 1300, -80, this.$el)
+        }, 300)
       }
     }
   }
