@@ -27,7 +27,7 @@ const level = {
     excludePrimary: ['assign', 'jump', 'anchor'],
     variables: 0,
     terrainTypes: [],
-    objectTypes: ['hero', 'switch'],
+    objectTypes: ['hero', 'switch', 'nothing'],
     valueFunctions: [],
     actionFunctions: ['step_once'],
     leftComparisonExpressions: ['direction'],

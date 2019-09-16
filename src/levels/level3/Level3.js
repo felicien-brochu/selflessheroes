@@ -23,8 +23,8 @@ const level = {
   compilerConfig: {
     excludePrimary: ['assign', 'jump', 'anchor'],
     variables: 0,
-    terrainTypes: ['hole'],
-    objectTypes: ['switch'],
+    terrainTypes: ['hole', 'floor'],
+    objectTypes: ['switch', 'nothing'],
     valueFunctions: [],
     actionFunctions: ['step_once'],
     leftComparisonExpressions: ['direction'],

@@ -39,7 +39,7 @@ const level = {
     excludePrimary: ['assign'],
     variables: 0,
     terrainTypes: ['wall', 'floor'],
-    objectTypes: ['bonfire'],
+    objectTypes: ['bonfire', 'nothing'],
     valueFunctions: [],
     actionFunctions: ['step_once', 'fireball'],
     leftComparisonExpressions: ['direction'],

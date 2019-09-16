@@ -56,7 +56,7 @@ const level = {
     valueFunctions: [],
     actionFunctions: ['step_once'],
     leftComparisonExpressions: ['direction'],
-    rightComparisonExpressions: ['terrain_type', 'object_type']
+    rightComparisonExpressions: ['object_type', 'terrain_type']
   },
 
   ruleset: {

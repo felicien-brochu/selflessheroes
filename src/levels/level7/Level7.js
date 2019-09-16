@@ -38,7 +38,7 @@ const level = {
     excludePrimary: ['assign', 'jump', 'anchor'],
     variables: 0,
     terrainTypes: ['wall', 'floor'],
-    objectTypes: ['bonfire', 'hero'],
+    objectTypes: ['bonfire', 'hero', 'nothing'],
     valueFunctions: [],
     actionFunctions: ['step_once', 'fireball'],
     leftComparisonExpressions: ['direction'],

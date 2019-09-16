@@ -42,11 +42,11 @@ const level = {
     excludePrimary: ['assign'],
     variables: 0,
     terrainTypes: ['wall', 'floor'],
-    objectTypes: ['switch'],
+    objectTypes: ['switch', 'nothing'],
     valueFunctions: [],
     actionFunctions: ['step_once'],
     leftComparisonExpressions: ['direction'],
-    rightComparisonExpressions: ['terrain_type', 'object_type']
+    rightComparisonExpressions: ['object_type', 'terrain_type']
   },
 
   ruleset: {

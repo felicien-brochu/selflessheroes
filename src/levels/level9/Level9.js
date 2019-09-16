@@ -45,11 +45,11 @@ const level = {
     excludePrimary: ['assign'],
     variables: 0,
     terrainTypes: ['hole', 'floor', 'wall'],
-    objectTypes: ['bonfire'],
+    objectTypes: ['bonfire', 'nothing'],
     valueFunctions: [],
     actionFunctions: ['step_once', 'fireball'],
     leftComparisonExpressions: ['direction'],
-    rightComparisonExpressions: ['terrain_type', 'object_type']
+    rightComparisonExpressions: ['object_type', 'terrain_type']
   },
 
   ruleset: {
