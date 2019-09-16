@@ -1,6 +1,8 @@
 <template>
 <div class="level-list">
 
+  <header></header>
+
   <div v-for="category in careerLevels"
     class="list-container">
     <div :class="[
@@ -105,8 +107,10 @@ export default {
     },
 
     scrollToLastCategory() {
-      let category = this.$refs.categories[this.$refs.categories.length - 1].$el
-      this.$el.scrollTop = category.offsetTop - 80
+      if (this.$refs.categories.length > 1) {
+        let category = this.$refs.categories[this.$refs.categories.length - 1].$el
+        this.$el.scrollTop = category.offsetTop - 80
+      }
     }
   }
 }
@@ -123,11 +127,27 @@ export default {
     overflow-x: hidden;
     overflow-y: auto;
 
+    header {
+        background-image: url("../images/level-list-banner.png");
+        margin-top: 20px;
+        width: 100%;
+        max-height: 233px;
+        height: calc(calc(100vw - 80px) * 0.21);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: inline-table;
+    }
+
     .list-container {
         margin: 80px 0;
         display: flex;
         justify-content: center;
         align-items: stretch;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
 
         .side-bar {
             min-width: 30px;
