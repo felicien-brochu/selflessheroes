@@ -2,12 +2,14 @@ import Vue from 'vue'
 import Home from './components/home/Home'
 import LevelList from './components/levellist/LevelList'
 import Level from './components/level/Level'
+import ScreenSizeWarning from './components/screensizewarning/ScreenSizeWarning'
 import App from './components/App'
 import lang from './lang'
 import VueRouter from 'vue-router'
 import VueHotkey from 'v-hotkey'
 import TextFitDirective from './components/util/TextFitDirective'
 import BBCodeDirective from './components/util/BBCodeDirective'
+import ScreenDimension from './components/util/ScreenDimension'
 
 Vue.directive('text-fit', TextFitDirective)
 Vue.directive('bbcode', BBCodeDirective)
@@ -38,8 +40,23 @@ const router = new VueRouter({
         careerID: Number(route.params.careerID),
         levelID: Number(route.params.levelID)
       })
+    }, {
+      path: 'sizewarning',
+      component: ScreenSizeWarning,
+      name: 'screen-size-warning'
     }]
-  }]
+  }],
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'screen-size-warning' && ScreenDimension.isTooSmall()) {
+    next({
+      name: 'screen-size-warning',
+      replace: true,
+    })
+  } else {
+    next()
+  }
 })
 
 const app = new Vue({

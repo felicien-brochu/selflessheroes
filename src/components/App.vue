@@ -22,7 +22,7 @@
       appear>
       <button class="exit-button mdi mdi-power"
         key="exit-button"
-        v-if="!showBackButton && hasExitButton"
+        v-if="showExitButton"
         type="button"
         :title="$text('navigation_exit_button')"
         @mousedown="exitApp"
@@ -30,6 +30,7 @@
     </transition>
 
     <button class="menu-button mdi mdi-menu-open"
+      v-if="showMenuButton"
       type="button"
       :title="$text('navigation_menu_button')"
       @mousedown="openMenu"
@@ -86,7 +87,7 @@ export default {
 
   computed: {
     showBackButton: function() {
-      return this.$route.name !== 'home'
+      return this.$route.name !== 'home' && this.$route.name !== 'screen-size-warning'
     },
 
     backButtonTitle: function() {
@@ -98,13 +99,19 @@ export default {
       }
     },
 
-    hasExitButton: function() {
-      return isElectron()
+    showExitButton: function() {
+      return isElectron() && (this.$route.name === 'home' || this.$route.name === 'screen-size-warning')
+    },
+
+    showMenuButton: function() {
+      return this.$route.name !== 'screen-size-warning'
     }
   },
 
   mounted() {
-    this.proposeFullscreen()
+    if (this.$route.name !== 'screen-size-warning') {
+      this.proposeFullscreen()
+    }
   },
 
   methods: {
