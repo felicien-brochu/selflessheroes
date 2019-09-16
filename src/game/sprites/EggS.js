@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 
 export default class EggS extends Phaser.GameObjects.Container {
-  constructor(scene, egg, tileWidth, tileHeight, offsetX = 0, offsetY = -1) {
+  constructor(scene, egg, tileWidth, tileHeight, offsetX = 0, offsetY = -3) {
     let x = (egg.x + 0.5) * tileWidth + offsetX,
       y = (egg.y + 0.5) * tileHeight + offsetY
     super(scene, x, y)
@@ -47,8 +47,8 @@ export default class EggS extends Phaser.GameObjects.Container {
     }
 
     if (!this.egg.owner) {
-      let x = (this.egg.x + 0.5) * this.tileWidth
-      let y = (this.egg.y + 0.5) * this.tileHeight
+      let x = (this.egg.x + 0.5) * this.tileWidth + this.offsetX
+      let y = (this.egg.y + 0.5) * this.tileHeight + this.offsetY
 
       if (this.lastEgg.ownerID) {
         let characterSprite = this.scene.getCharacterSprite(this.lastEgg.ownerID)
