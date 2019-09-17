@@ -14,6 +14,10 @@ export default class DefaultRuleset extends Ruleset {
     ]
   }
 
+  beforeStart() {
+    this.conditions.forEach(condition => condition.beforeStart())
+  }
+
   step() {
     this.conditions.forEach(condition => condition.step())
   }

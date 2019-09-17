@@ -24,17 +24,15 @@ jump a
 */
 
 const winCondition = {
-  step() {
-    if (this.world.steps === 1) {
-      this.cauldronTargetValues = []
-      for (let cauldron of this.world.cauldrons) {
-        let eggs = this.world.eggs.filter(egg => egg.x === cauldron.x)
-        let max = eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
-        this.cauldronTargetValues.push({
-          cauldronID: cauldron.id,
-          target: max,
-        })
-      }
+  beforeStart() {
+    this.cauldronTargetValues = []
+    for (let cauldron of this.world.cauldrons) {
+      let eggs = this.world.eggs.filter(egg => egg.x === cauldron.x)
+      let max = eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
+      this.cauldronTargetValues.push({
+        cauldronID: cauldron.id,
+        target: max,
+      })
     }
   },
 
@@ -51,25 +49,19 @@ const winCondition = {
     }
     return true
   },
-
-  getReason() {
-    return 'reason_custom'
-  }
 }
 
 const wrongEggLossCondition = {
-  step() {
-    if (this.world.steps === 1) {
-      this.cauldronTargetValues = []
-      for (let cauldron of this.world.cauldrons) {
-        let eggs = this.world.eggs.filter(egg => egg.x === cauldron.x)
-        let max = eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
+  beforeStart() {
+    this.cauldronTargetValues = []
+    for (let cauldron of this.world.cauldrons) {
+      let eggs = this.world.eggs.filter(egg => egg.x === cauldron.x)
+      let max = eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
 
-        this.cauldronTargetValues.push({
-          cauldronID: cauldron.id,
-          target: max,
-        })
-      }
+      this.cauldronTargetValues.push({
+        cauldronID: cauldron.id,
+        target: max,
+      })
     }
   },
 

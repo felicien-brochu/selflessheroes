@@ -25,27 +25,20 @@ jump a
 */
 
 const winCondition = {
-  step() {
-    if (this.world.steps === 1) {
-      this.maxEggValue = this.world.eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
-    }
+  beforeStart() {
+    this.maxEggValue = this.world.eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
   },
 
   check() {
     const cauldronID = 30
     let cauldron = this.world.findWorldObjectByID(cauldronID)
     return cauldron.items.length === 1 && cauldron.items[0].value === this.maxEggValue
-  },
-
-  getReason() {
-    return 'reason_custom'
   }
 }
+
 const notMaximumEggLossCondition = {
-  step() {
-    if (this.world.steps === 1) {
-      this.maxEggValue = this.world.eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
-    }
+  beforeStart() {
+    this.maxEggValue = this.world.eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
   },
 
   check() {

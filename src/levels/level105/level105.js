@@ -41,10 +41,8 @@ jump d
 */
 
 const winCondition = {
-  step() {
-    if (this.world.steps === 1) {
-      this.selectedEggs = this.world.eggs.filter(egg => egg.value < 4).map(egg => egg.shallowCopy())
-    }
+  beforeStart() {
+    this.selectedEggs = this.world.eggs.filter(egg => egg.value < 4).map(egg => egg.shallowCopy())
   },
 
   check() {
@@ -68,16 +66,10 @@ const winCondition = {
       }
     }
     return true
-  },
-
-  getReason() {
-    return 'reason_custom'
   }
 }
 
 const wrongNumberEggLossCondition = {
-  step() {},
-
   check() {
     const cauldronIDs = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
     for (let id of cauldronIDs) {

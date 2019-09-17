@@ -23,8 +23,6 @@ drop(s)
 */
 
 const winCondition = {
-  step() {},
-
   check() {
     const cauldronIDs = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
     for (let id of cauldronIDs) {
@@ -34,10 +32,6 @@ const winCondition = {
       }
     }
     return true
-  },
-
-  getReason() {
-    return 'reason_custom'
   }
 }
 

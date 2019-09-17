@@ -4,6 +4,10 @@ export default class Ruleset {
     this.world = world
   }
 
+  beforeStart() {
+
+  }
+
   step() {
 
   }

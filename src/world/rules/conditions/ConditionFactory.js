@@ -1,3 +1,5 @@
+import Condition from './Condition'
+
 import DefaultLossCondition from './DefaultLossCondition'
 import TooManyStepsCondition from './TooManyStepsCondition'
 import AllHeroEndedCondition from './AllHeroEndedCondition'
@@ -25,12 +27,41 @@ const conditionMap = {
 }
 
 export default class ConditionFactory {
-  static build(type, world, config = {}) {
+  static build(config, world) {
+    if (typeof config === 'string') {
+      return ConditionFactory.buildTemplate(config, world)
+    } else if (typeof config === 'object') {
+      if (typeof config.check === 'function') {
+        return ConditionFactory.buildCustom(config, world)
+      } else if (config.type !== undefined) {
+        let conditionConfig = config.config || {}
+        return ConditionFactory.buildTemplate(condition.type, world, conditionConfig)
+      }
+    }
+  }
+
+  static buildCustom(config, world) {
+    return new CustomCondition(config, world)
+  }
+
+  static buildTemplate(type, world, config = {}) {
     let conditionClass = conditionMap[type]
     let condition = null
     if (conditionClass) {
       condition = new conditionClass(world, config)
     }
     return condition
+  }
+}
+
+class CustomCondition extends Condition {
+  constructor(config, world) {
+    super(world)
+
+    Object.assign(this, config)
+  }
+
+  getReason() {
+    return 'reason_custom'
   }
 }

@@ -54,6 +54,8 @@ export default class World {
     this.gameOver = false
     this.steps = 0
 
+    this.ruleset.beforeStart()
+
     this.eventLog = new EventLog(this)
     this.eventLog.attach()
   }

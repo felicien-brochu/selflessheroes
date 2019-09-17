@@ -36,6 +36,11 @@ export default class CustomRuleset extends Ruleset {
     }
   }
 
+  beforeStart() {
+    this.winCondition.beforeStart()
+    this.lossCondition.beforeStart()
+  }
+
   step() {
     this.winCondition.step()
     this.lossCondition.step()

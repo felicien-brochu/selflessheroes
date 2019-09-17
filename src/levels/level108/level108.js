@@ -65,15 +65,13 @@ jump f
 */
 
 const winCondition = {
-  step() {
-    if (this.world.steps === 1) {
-      const eggOriginMarkerID = 99
-      const originMarker = this.world.findConfigObjectByID(eggOriginMarkerID)
-      this.eggs = []
-      for (let x = originMarker.x; x < originMarker.x + 10; x++) {
-        let columnEggs = this.world.eggs.filter(egg => egg.x === x).sort((a, b) => a.y - b.y).map(egg => egg.id)
-        this.eggs.push(columnEggs)
-      }
+  beforeStart() {
+    const eggOriginMarkerID = 99
+    const originMarker = this.world.findConfigObjectByID(eggOriginMarkerID)
+    this.eggs = []
+    for (let x = originMarker.x; x < originMarker.x + 10; x++) {
+      let columnEggs = this.world.eggs.filter(egg => egg.x === x).sort((a, b) => a.y - b.y).map(egg => egg.id)
+      this.eggs.push(columnEggs)
     }
   },
 
@@ -105,10 +103,6 @@ const winCondition = {
     }
     return true
   },
-
-  getReason() {
-    return 'reason_custom'
-  }
 }
 
 const level = {

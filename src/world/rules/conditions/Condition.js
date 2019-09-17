@@ -4,6 +4,8 @@ export default class Condition {
     this.config = config
   }
 
+  beforeStart() {}
+
   step() {}
 
   check() {

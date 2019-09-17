@@ -19,22 +19,13 @@ export default class ConditionGroup extends Condition {
     }
   }
 
-  addCondition(condition) {
-    if (typeof condition === 'string') {
-      condition = ConditionFactory.build(condition, this.world)
-      this.conditions.push(condition)
-    } else if (typeof condition === 'object') {
-      if (typeof condition.step === 'function' &&
-        typeof condition.check === 'function' &&
-        typeof condition.getReason === 'function') {
-        condition.world = this.world
-        this.conditions.push(condition)
-      } else if (condition.type !== undefined) {
-        let config = condition.config ? condition.config : {}
-        condition = ConditionFactory.build(condition.type, this.world, config)
-        this.conditions.push(condition)
-      }
-    }
+  addCondition(conditionConfig) {
+    let condition = ConditionFactory.build(conditionConfig, this.world)
+    this.conditions.push(condition)
+  }
+
+  beforeStart() {
+    this.conditions.forEach(condition => condition.beforeStart())
   }
 
   step() {

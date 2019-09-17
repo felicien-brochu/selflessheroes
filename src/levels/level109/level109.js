@@ -18,20 +18,14 @@ jump a
 */
 
 const winCondition = {
-  step() {
-    if (this.world.steps === 1) {
-      this.eggsByValue = this.world.eggs.slice().sort((a, b) => a.value - b.value)
-    }
+  beforeStart() {
+    this.eggsByValue = this.world.eggs.slice().sort((a, b) => a.value - b.value)
   },
 
   check() {
     let eggsByX = this.world.eggs.slice().sort((a, b) => a.owner.x - b.owner.x)
     return eggsByX.every((egg, i) => egg.value === this.eggsByValue[i].value)
   },
-
-  getReason() {
-    return 'reason_custom'
-  }
 }
 
 const level = {
