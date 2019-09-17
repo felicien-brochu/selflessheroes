@@ -7,11 +7,16 @@ export default class EventLog {
     this.events = new EventEmitter()
 
     this.onHeroDie = this.onHeroDie.bind(this)
+    this.onWriteEgg = this.onWriteEgg.bind(this)
   }
 
   attach() {
     for (let hero of this.world.heroes) {
       hero.events.on('die', this.onHeroDie)
+    }
+
+    for (let egg of this.world.eggs) {
+      egg.events.on('write', this.onWriteEgg)
     }
   }
 
@@ -46,6 +51,14 @@ export default class EventLog {
     this.logEvent('hero-death', {
       heroID: hero.id,
       deathReason: hero.deathReason
+    })
+  }
+
+  onWriteEgg(egg, oldValue, newValue) {
+    this.logEvent('egg-write', {
+      eggID: egg.id,
+      oldValue,
+      newValue
     })
   }
 }

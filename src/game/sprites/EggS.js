@@ -29,6 +29,9 @@ export default class EggS extends Phaser.GameObjects.Container {
     this.textSprite = new Phaser.GameObjects.BitmapText(scene, 0, 0, 'digits_font')
     this.updateText(this.egg.value)
 
+    this.writeSmokeSprite = new Phaser.GameObjects.Sprite(scene, 0, 0, 'write_smoke')
+    this.writeSmokeSprite.setFrame(4)
+
     this.lotteryIntervalID = -1
     if (this.egg.showLottery && this.egg.hasValueGenerator()) {
       this.startValueLottery()
@@ -36,14 +39,26 @@ export default class EggS extends Phaser.GameObjects.Container {
 
     this.scene.add.existing(this.sprite)
     this.scene.add.existing(this.textSprite)
+    this.scene.add.existing(this.writeSmokeSprite)
     this.add(this.sprite)
     this.add(this.textSprite)
+    this.add(this.writeSmokeSprite)
     this.setSize(this.sprite.width, this.sprite.height)
   }
 
   beforeStep(world) {
     if (world.steps === 0 && this.lotteryIntervalID !== -1) {
       this.stopLottery()
+    }
+
+    // Check for write action in event log
+    let writeLogs = world.eventLog.search({
+      type: 'egg-write',
+      step: world.steps,
+      eggID: this.egg.id
+    })
+    if (writeLogs.length > 0) {
+      this.writeSmokeSprite.play('write_smoke')
     }
 
     if (!this.egg.owner) {

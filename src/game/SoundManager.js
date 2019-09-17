@@ -1,56 +1,52 @@
 const soundDefs = [{
-    key: 'fireworks_sfx'
-  },
-  {
-    key: 'tests_sfx',
-    config: {
-      loop: true,
-      volume: 0.5
-    }
-  },
-  {
-    key: 'hero_scream_sfx',
-    config: {
-      volume: 0.05
-    }
-  },
-  {
-    key: 'npc_scream_sfx',
-    config: {
-      volume: 0.1
-    }
-  },
-  {
-    key: 'step_sfx',
-    config: {
-      volume: 1
-    }
-  },
-  {
-    key: 'fireball_sfx',
-    config: {
-      volume: 0.5
-    }
-  },
-  {
-    key: 'light_sfx',
-    config: {
-      volume: 0.1
-    }
-  },
-  {
-    key: 'spikes_on_sfx',
-    config: {
-      volume: 0.1
-    }
-  },
-  {
-    key: 'spikes_off_sfx',
-    config: {
-      volume: 0.1
-    }
-  },
-]
+  key: 'fireworks_sfx'
+}, {
+  key: 'tests_sfx',
+  config: {
+    loop: true,
+    volume: 0.5
+  }
+}, {
+  key: 'hero_scream_sfx',
+  config: {
+    volume: 0.05
+  }
+}, {
+  key: 'npc_scream_sfx',
+  config: {
+    volume: 0.1
+  }
+}, {
+  key: 'step_sfx',
+  config: {
+    volume: 1
+  }
+}, {
+  key: 'fireball_sfx',
+  config: {
+    volume: 0.5
+  }
+}, {
+  key: 'write_sfx',
+  config: {
+    volume: 0.05
+  }
+}, {
+  key: 'light_sfx',
+  config: {
+    volume: 0.1
+  }
+}, {
+  key: 'spikes_on_sfx',
+  config: {
+    volume: 0.1
+  }
+}, {
+  key: 'spikes_off_sfx',
+  config: {
+    volume: 0.1
+  }
+}]
 
 export default class SoundManager {
   constructor(scene) {

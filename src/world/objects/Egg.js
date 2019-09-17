@@ -41,7 +41,10 @@ export default class Egg extends Item {
 
   write(value) {
     if (value.hasIntegerValue()) {
-      this.value = value.getFirstIntegerValue().value
+      let oldValue = this.value
+      let newValue = value.getFirstIntegerValue().value
+      this.value = newValue
+      this.events.emit('write', this, oldValue, newValue)
     }
   }
 
