@@ -15,6 +15,7 @@ export default class Cauldron extends WorldObject {
   putItem(item) {
     this.items.push(item)
     item.removed = true
+    this.events.emit('put-item', this, item)
   }
 
   enable() {

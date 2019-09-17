@@ -77,6 +77,7 @@ import step_sfx from './audio/step.mp3'
 import fireball_sfx from './audio/fireball.mp3'
 import write_sfx from './audio/write.mp3'
 import light_sfx from './audio/light.mp3'
+import cauldron_drop_sfx from './audio/cauldron_drop.mp3'
 import spikes_on_sfx from './audio/spikes_on.mp3'
 import spikes_off_sfx from './audio/spikes_off.mp3'
 
@@ -302,6 +303,7 @@ export default class extends Phaser.Scene {
     this.load.audio('fireball_sfx', fireball_sfx)
     this.load.audio('write_sfx', write_sfx)
     this.load.audio('light_sfx', light_sfx)
+    this.load.audio('cauldron_drop_sfx', cauldron_drop_sfx)
     this.load.audio('spikes_on_sfx', spikes_on_sfx)
     this.load.audio('spikes_off_sfx', spikes_off_sfx)
 

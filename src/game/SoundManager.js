@@ -37,6 +37,11 @@ const soundDefs = [{
     volume: 0.1
   }
 }, {
+  key: 'cauldron_drop_sfx',
+  config: {
+    volume: 0.1
+  }
+}, {
   key: 'spikes_on_sfx',
   config: {
     volume: 0.1

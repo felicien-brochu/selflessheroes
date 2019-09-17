@@ -8,6 +8,7 @@ export default class EventLog {
 
     this.onHeroDie = this.onHeroDie.bind(this)
     this.onWriteEgg = this.onWriteEgg.bind(this)
+    this.onPutItemInCauldron = this.onPutItemInCauldron.bind(this)
   }
 
   attach() {
@@ -17,6 +18,10 @@ export default class EventLog {
 
     for (let egg of this.world.eggs) {
       egg.events.on('write', this.onWriteEgg)
+    }
+
+    for (let cauldron of this.world.cauldrons) {
+      cauldron.events.on('put-item', this.onPutItemInCauldron)
     }
   }
 
@@ -59,6 +64,13 @@ export default class EventLog {
       eggID: egg.id,
       oldValue,
       newValue
+    })
+  }
+
+  onPutItemInCauldron(cauldron, item) {
+    this.logEvent('put-item-cauldron', {
+      cauldronID: cauldron.id,
+      itemID: item.id,
     })
   }
 }

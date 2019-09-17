@@ -61,6 +61,16 @@ export default class EggS extends Phaser.GameObjects.Container {
       this.writeSmokeSprite.play('write_smoke')
     }
 
+    // Check for drop in cauldron in event log
+    let cauldronDropLogs = world.eventLog.search({
+      type: 'put-item-cauldron',
+      step: world.steps,
+      itemID: this.egg.id
+    })
+    if (cauldronDropLogs.length > 0) {
+      this.scene.soundManager.play('cauldron_drop_sfx')
+    }
+
     if (!this.egg.owner) {
       let x = (this.egg.x + 0.5) * this.tileWidth + this.offsetX
       let y = (this.egg.y + 0.5) * this.tileHeight + this.offsetY
