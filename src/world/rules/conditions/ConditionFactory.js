@@ -35,7 +35,7 @@ export default class ConditionFactory {
         return ConditionFactory.buildCustom(config, world)
       } else if (config.type !== undefined) {
         let conditionConfig = config.config || {}
-        return ConditionFactory.buildTemplate(condition.type, world, conditionConfig)
+        return ConditionFactory.buildTemplate(config.type, world, conditionConfig)
       }
     }
   }
