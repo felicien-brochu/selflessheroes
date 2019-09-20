@@ -151,7 +151,7 @@ export default {
   mounted() {
     this.worker = new WinLevelTestWorker()
     this.worker.addEventListener('message', this.handleWorkerResponse)
-    this.worker.onerror = function(e) {
+    this.worker.onerror = e => {
       console.error("WinLevelWorker error", e)
       this.$emit('close')
     }
