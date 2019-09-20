@@ -1,4 +1,4 @@
-import map from './map111.json'
+import map from './map121.json'
 
 /* length: 8, speed: 58
 a:
