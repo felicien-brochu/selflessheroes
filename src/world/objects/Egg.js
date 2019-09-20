@@ -5,12 +5,10 @@ const rngRegExp = /^rng\(([0-9]+),([0-9]+)\)$/
 
 export default class Egg extends Item {
   constructor(config) {
-    if (config.value === undefined) {
-      config.value = "rng(0,9)"
-    }
-    if (config.showLottery === undefined) {
-      config.showLottery = false
-    }
+    config = Object.assign({
+      value: "rng(0,9)",
+      showLottery: false,
+    }, config)
 
     super(config)
 
@@ -18,13 +16,17 @@ export default class Egg extends Item {
   }
 
   initValueGenerator() {
-    let matches
-    if (typeof this.value === 'string' && (matches = this.value.match(rngRegExp)).length > 0) {
-      this.generateValue = (rng) => {
-        const min = parseInt(matches[1])
-        const max = parseInt(matches[2])
+    if (typeof this.value === 'string') {
+      let matches
+      if (matches = this.value.match(rngRegExp)) {
+        this.generateValue = (rng) => {
+          const min = parseInt(matches[1])
+          const max = parseInt(matches[2])
 
-        return Math.floor(rng() * (max - min + 1)) + min
+          return Math.floor(rng() * (max - min + 1)) + min
+        }
+      } else {
+        this.value = parseInt(this.value)
       }
     }
   }

@@ -3,9 +3,10 @@ import ObjectType from './ObjectType'
 
 export default class Npc extends Character {
   constructor(config, world) {
-    if (config.race === undefined) {
-      config.race = ''
-    }
+    config = Object.assign({
+      race: '',
+    }, config)
+
     super(config, world)
   }
 

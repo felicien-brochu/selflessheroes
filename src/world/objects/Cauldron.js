@@ -3,9 +3,9 @@ import ObjectType from './ObjectType'
 
 export default class Cauldron extends WorldObject {
   constructor(config) {
-    if (config.enabled === undefined) {
-      config.enabled = true
-    }
+    config = Object.assign({
+      enabled: true,
+    }, config)
 
     super(config)
 

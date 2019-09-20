@@ -3,12 +3,10 @@ import ObjectType from './ObjectType'
 
 export default class Spikes extends WorldObject {
   constructor(config) {
-    if (config.enabled === undefined) {
-      config.enabled = false
-    }
-    if (config.triggers === undefined) {
-      config.triggers = []
-    }
+    config = Object.assign({
+      enabled: false,
+      triggers: [],
+    }, config)
 
     super(config)
 

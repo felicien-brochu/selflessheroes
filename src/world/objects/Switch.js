@@ -3,12 +3,10 @@ import ObjectType from './ObjectType'
 
 export default class Switch extends WorldObject {
   constructor(config) {
-    if (config.enabled === undefined) {
-      config.enabled = false
-    }
-    if (config.autoDisable === undefined) {
-      config.autoDisable = false
-    }
+    config = Object.assign({
+      enabled: false,
+      autoDisable: false,
+    }, config)
 
     super(config)
   }

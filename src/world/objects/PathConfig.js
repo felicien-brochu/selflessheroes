@@ -2,12 +2,10 @@ import ConfigObject from './ConfigObject'
 
 export default class PathConfig extends ConfigObject {
   constructor(config) {
-    if (config.yoyo === undefined) {
-      config.yoyo = false
-    }
-    if (config.stepRythm === undefined) {
-      config.stepRythm = 1
-    }
+    config = Object.assign({
+      yoyo: false,
+      stepRythm: 1,
+    }, config)
 
     super(config)
 

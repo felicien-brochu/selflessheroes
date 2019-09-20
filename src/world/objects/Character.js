@@ -3,12 +3,10 @@ import IdleAI from '../ai/IdleAI'
 
 export default class Character extends WorldObject {
   constructor(config, world) {
-    if (config.initialDirection === undefined) {
-      config.initialDirection = 'e'
-    }
-    if (config.item === undefined) {
-      config.item = null
-    }
+    config = Object.assign({
+      initialDirection: 'e',
+      item: null,
+    }, config)
 
     super(config)
 

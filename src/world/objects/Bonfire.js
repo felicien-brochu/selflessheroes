@@ -3,9 +3,9 @@ import ObjectType from './ObjectType'
 
 export default class Bonfire extends WorldObject {
   constructor(config) {
-    if (config.enabled === undefined) {
-      config.enabled = false
-    }
+    config = Object.assign({
+      enabled: false,
+    }, config)
 
     super(config)
   }
