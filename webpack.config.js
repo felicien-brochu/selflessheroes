@@ -14,11 +14,6 @@ const env = process.env.NODE_ENV
 const platform = process.env.platform
 
 const copiedFiles = [{
-  context: 'src/levels',
-  from: '**',
-  to: 'levels',
-  ignore: ['model/**/*', '*.js', '*.tmx']
-}, {
   context: 'src/icons',
   from: '**',
   to: 'icons'

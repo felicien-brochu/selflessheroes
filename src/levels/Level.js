@@ -2,7 +2,6 @@ import WorldLevel from '../world/Level'
 import CompilerConfig from '../world/ai/compile/CompilerConfig'
 import DefaultLossReason from '../world/rules/conditions/DefaultLossReason'
 import WorldGeneratorFactory from '../world/generator/WorldGeneratorFactory'
-import tileset_image from './maps/tileset.png'
 import lang from '../lang'
 import BasicTutorialConfig from '../components/level/tutorial/BasicTutorialConfig'
 import AdvancedTutorialConfig from '../components/level/tutorial/AdvancedTutorialConfig'
@@ -10,6 +9,7 @@ import AdvancedTutorialConfig from '../components/level/tutorial/AdvancedTutoria
 export default class Level extends WorldLevel {
 
   constructor(id, {
+    mapConfig,
     name,
     objective,
     startingCode,
@@ -23,7 +23,7 @@ export default class Level extends WorldLevel {
     worldGenerator,
     messages,
   }) {
-    super(id, maxStep)
+    super(id, mapConfig, maxStep)
     this.name = name
     this.objective = objective
     this.startingCode = startingCode || ''
@@ -146,9 +146,5 @@ export default class Level extends WorldLevel {
       message = lang.text(this.prefixMessageName(lossReason))
     }
     return message
-  }
-
-  get tilesetImagePath() {
-    return tileset_image
   }
 }

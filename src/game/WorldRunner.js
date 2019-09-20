@@ -27,12 +27,12 @@ export default class WorldRunner {
     return defaultStepInterval / this.speed
   }
 
-  init(level, mapConfig, aiFactory, rngSeed) {
+  init(level, aiFactory, rngSeed) {
     if (rngSeed) {
       this.rngSeed = rngSeed
     }
     this.rng = seedrandom(this.rngSeed)
-    this.world = new World(level, mapConfig, aiFactory, this.rng)
+    this.world = new World(level, aiFactory, this.rng)
     this.gameOver = false
     this.gameOverDeclared = false
   }
@@ -48,8 +48,8 @@ export default class WorldRunner {
     })
   }
 
-  restart(level, mapConfig, aiFactory, rngSeed) {
-    this.init(level, mapConfig, aiFactory, rngSeed)
+  restart(level, aiFactory, rngSeed) {
+    this.init(level, aiFactory, rngSeed)
     this.emitStateChange()
   }
 

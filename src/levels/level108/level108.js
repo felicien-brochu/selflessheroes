@@ -1,3 +1,5 @@
+import map from './map108.json'
+
 /* length: 13, speed: 158.59
 a:
 step(s)
@@ -106,6 +108,7 @@ const winCondition = {
 }
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Tidying up",
     fr: "Un peu de rangement",

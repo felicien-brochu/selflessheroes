@@ -1,3 +1,5 @@
+import map from './map5.json'
+
 /* speed: 4, length: 7
 if n == switch :
 	step(n)
@@ -12,6 +14,7 @@ step(w)
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Vertigo",
     fr: "Vertige",

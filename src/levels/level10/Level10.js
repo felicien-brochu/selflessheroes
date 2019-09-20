@@ -1,3 +1,5 @@
+import map from './map10.json'
+
 /* length: 8
 a:
 if ne != bonfire :
@@ -30,6 +32,7 @@ fireball(ne)
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Winding path 2",
     fr: "Chemin sinueux 2",

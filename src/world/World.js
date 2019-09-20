@@ -24,13 +24,12 @@ import {
 } from './utils'
 
 export default class World {
-  constructor(level, mapConfig, aiFactory, rng) {
+  constructor(level, aiFactory, rng) {
     this.level = level
-    this.mapConfig = mapConfig
     this.aiFactory = aiFactory
     this.rng = rng
 
-    this.map = new Map(mapConfig)
+    this.map = new Map(level.mapConfig)
     this.characters = []
     this.heroes = []
     this.npcs = []
@@ -61,10 +60,10 @@ export default class World {
   }
 
   parseObjects() {
-    let layers = namedObjectListToObject(this.mapConfig.layers)
+    let layers = namedObjectListToObject(this.level.mapConfig.layers)
 
     if (!layers.objects) {
-      throw new Error("objects layer is missing from the map object: " + JSON.stringify(this.mapConfig))
+      throw new Error("objects layer is missing from the map object: " + JSON.stringify(this.level.mapConfig))
     }
 
     for (var i = 0; i < layers.objects.objects.length; i++) {
@@ -105,8 +104,8 @@ export default class World {
     let objectConfig = {
       id: config.id,
       name: config.name,
-      x: Math.floor(config.x / this.mapConfig.tilewidth),
-      y: Math.floor(config.y / this.mapConfig.tileheight),
+      x: Math.floor(config.x / this.level.mapConfig.tilewidth),
+      y: Math.floor(config.y / this.level.mapConfig.tileheight),
     }
 
     if (config.properties) {
@@ -117,8 +116,8 @@ export default class World {
 
     if (config.type === 'path') {
       const pointMap = point => ({
-        x: Math.floor((config.x + point.x) / this.mapConfig.tilewidth),
-        y: Math.floor((config.y + point.y) / this.mapConfig.tileheight)
+        x: Math.floor((config.x + point.x) / this.level.mapConfig.tilewidth),
+        y: Math.floor((config.y + point.y) / this.level.mapConfig.tileheight)
       })
       if (config.polygon) {
         objectConfig.polygon = config.polygon.map(pointMap)

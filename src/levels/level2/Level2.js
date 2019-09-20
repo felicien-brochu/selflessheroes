@@ -1,9 +1,12 @@
+import map from './map2.json'
+
 /* speed: 3, length: 3
 step(s)
 step(se)
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Step aside",
     fr: "Pas de côté",

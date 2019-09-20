@@ -1,3 +1,5 @@
+import map from './map110.json'
+
 /* length: 7, speed: 24.184
 a:
 if n >= s &&
@@ -40,6 +42,7 @@ const wrongEggLossCondition = {
 }
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Human chain 3",
     fr: "Chaîne humaine 3",

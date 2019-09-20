@@ -1,3 +1,5 @@
+import map from './map105.json'
+
 /* length: 9
 a:
 b:
@@ -90,6 +92,7 @@ const wrongNumberEggLossCondition = {
 }
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Harvest",
     fr: "Récolte",

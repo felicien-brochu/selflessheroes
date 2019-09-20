@@ -87,6 +87,9 @@ import spikes_off_sfx from './audio/spikes_off.mp3'
 import digits_font from './images/digits.fnt'
 import digits_font_texture from './images/digits.png'
 
+// TILESET
+import tileset_image from '../levels/maps/tileset.png'
+
 
 export default class extends Phaser.Scene {
   constructor() {
@@ -309,13 +312,11 @@ export default class extends Phaser.Scene {
     this.load.audio('spikes_on_sfx', spikes_on_sfx)
     this.load.audio('spikes_off_sfx', spikes_off_sfx)
 
-    //FONTS
+    // FONTS
     this.load.bitmapFont('digits_font', digits_font_texture, digits_font)
 
-    // LEVEL SPECIFIC
-    const level = this.game.gameSceneConfig.level
-    this.load.json('map', level.mapPath)
-    this.load.image('tileset_image', level.tilesetImagePath)
+    // TILESET
+    this.load.image('tileset_image', tileset_image)
   }
 
   disablePhaserFullscreenManagement() {

@@ -1,3 +1,5 @@
+import map from './map11.json'
+
 /* length: 9
 a:
 if here != switch :
@@ -34,6 +36,7 @@ jump b
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Be brave, run away!",
     fr: "Courage, fuyons\u00A0!",

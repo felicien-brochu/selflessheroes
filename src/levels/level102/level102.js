@@ -1,3 +1,5 @@
+import map from './map102.json'
+
 /* length: 4
 a:
 take(here)
@@ -36,6 +38,7 @@ const winCondition = {
 }
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Dinner's ready!",
     fr: "À table !",

@@ -9,16 +9,10 @@ const sampleSize = 20
 self.addEventListener('message', function(e) {
   const level = levelManager.getLevelByID(e.data.levelID)
   const code = e.data.code
-  fetch(`../${level.mapPath}`)
-    .then(function(response) {
-      return response.json()
-    })
-    .then(function(mapConfig) {
-      testCode(level, mapConfig, code)
-    })
+  testCode(level, code)
 })
 
-function testCode(level, mapConfig, code) {
+function testCode(level, code) {
   const compiler = new Compiler(code, level.buildCompilerConfig())
   const aiFactory = compiler.compile()
 
@@ -28,7 +22,7 @@ function testCode(level, mapConfig, code) {
       rng,
       seed
     } = buildRNG()
-    let world = new World(level, mapConfig, aiFactory, rng)
+    let world = new World(level, aiFactory, rng)
     while (!world.gameOver) {
       world.step()
     }

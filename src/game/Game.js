@@ -60,10 +60,9 @@ export default class extends Phaser.Scene {
 
   create() {
     AnimationBuilder.build(this)
-    this.mapConfig = this.cache.json.get('map')
     this.createMap()
 
-    this.runner.init(this.level, this.mapConfig, this.aiFactory)
+    this.runner.init(this.level, this.aiFactory)
     this.world = this.runner.world
     this.createWorld()
 
@@ -87,7 +86,7 @@ export default class extends Phaser.Scene {
   }
 
   createMap() {
-    this.mapData = ParseJSONTiled('tilemap', this.mapConfig)
+    this.mapData = ParseJSONTiled('tilemap', this.level.mapConfig)
     this.map = new Tilemap(this, this.mapData)
     this.tilesetImage = this.map.addTilesetImage('tileset', 'tileset_image')
     this.groundLayer = this.map.createDynamicLayer('ground', this.tilesetImage, 0, 0)
@@ -220,7 +219,7 @@ export default class extends Phaser.Scene {
     this.runner.pause()
     this.destroySprites()
 
-    this.runner.restart(this.level, this.mapConfig, this.aiFactory, rngSeed)
+    this.runner.restart(this.level, this.aiFactory, rngSeed)
     this.world = this.runner.world
     this.createWorld()
     this.updateFollowHero()

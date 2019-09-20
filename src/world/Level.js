@@ -3,8 +3,9 @@ import CustomRuleset from './rules/CustomRuleset'
 import DefaultRuleset from './rules/DefaultRuleset'
 
 export default class Level {
-  constructor(id, maxStep = 300) {
+  constructor(id, mapConfig, maxStep = 300) {
     this.id = id
+    this.mapConfig = typeof mapConfig === 'string' ? JSON.parse(mapConfig) : mapConfig
     this.maxStep = maxStep
   }
 
@@ -20,12 +21,4 @@ export default class Level {
   }
 
   generateWorld(world) {}
-
-  getRootPath() {
-    return `levels/level${this.id}`
-  }
-
-  get mapPath() {
-    return `${this.getRootPath()}/map${this.id}.json`
-  }
 }

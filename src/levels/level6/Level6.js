@@ -1,9 +1,12 @@
+import map from './map6.json'
+
 /* speed: 2, length:2
 step(n)
 fireball(n)
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Fireball",
     fr: "Allumer le feu",

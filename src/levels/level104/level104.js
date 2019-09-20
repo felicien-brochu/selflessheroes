@@ -1,3 +1,5 @@
+import map from './map104.json'
+
 /* length: 6
 a:
 step(s)
@@ -57,6 +59,7 @@ const wrongEggLossCondition = {
 }
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Picking",
     fr: "Cueillette",

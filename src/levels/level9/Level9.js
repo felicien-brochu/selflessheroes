@@ -1,3 +1,5 @@
+import map from './map9.json'
+
 /* speed: 62, length: 8
 a:
 step(e)
@@ -27,6 +29,7 @@ jump a
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Winding path",
     fr: "Chemin sinueux",

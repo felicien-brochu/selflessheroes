@@ -1,3 +1,5 @@
+import map from './map3.json'
+
 /* speed: 2, length: 3
 if e == switch :
 	step(e)
@@ -6,6 +8,7 @@ step(w)
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Watch the step",
     fr: "Attention à la marche",

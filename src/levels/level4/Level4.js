@@ -1,3 +1,5 @@
+import map from './map4.json'
+
 /* speed: 4, length: 6
 if e == hero :
 	step(w)
@@ -9,6 +11,7 @@ step(e)
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Seperate ways",
     fr: "Chacun son chemin",

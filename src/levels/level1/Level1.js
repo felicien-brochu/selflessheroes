@@ -1,3 +1,5 @@
+import map from './map1.json'
+
 /* speed: 3, length: 3
 step(s)
 step(s)
@@ -5,6 +7,7 @@ step(s)
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "First steps",
     fr: "Premiers pas",

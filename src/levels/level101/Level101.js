@@ -1,3 +1,5 @@
+import map from './map101.json'
+
 /* speed: 3, length: 3
 take(e)
 step_once(se)
@@ -5,6 +7,7 @@ drop(s)
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Delivery",
     fr: "Livraison",

@@ -1,3 +1,5 @@
+import map from './map109.json'
+
 /* length: 4
 a:
 if w > myitem :
@@ -29,6 +31,7 @@ const winCondition = {
 }
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Everyone in place",
     fr: "Chacun sa place",

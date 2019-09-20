@@ -1,3 +1,5 @@
+import map from './map103.json'
+
 /* length: 5
 a:
 take(w)
@@ -31,6 +33,7 @@ endif
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Human chain",
     fr: "Chaîne humaine",

@@ -1,3 +1,5 @@
+import map from './map111.json'
+
 /* length: 8, speed: 58
 a:
 take(s)
@@ -82,6 +84,7 @@ const displacedEggLossCondition = {
 }
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Rating",
     fr: "Notation",

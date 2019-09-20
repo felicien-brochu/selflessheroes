@@ -1,3 +1,5 @@
+import map from './map8.json'
+
 /* speed: 71
 if s == bonfire :
 	a:
@@ -21,6 +23,7 @@ jump a
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Candlelight vigil",
     fr: "Veillée aux flambeaux",

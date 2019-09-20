@@ -1,3 +1,5 @@
+import map from './map12.json'
+
 /* speed: 245, length: 13
 a:
 b:
@@ -24,6 +26,7 @@ jump a
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Beat around the bush",
     fr: "Tourne autour du pot",

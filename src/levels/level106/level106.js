@@ -1,3 +1,5 @@
+import map from './map106.json'
+
 /* length: 6
 a:
 take(w)
@@ -53,6 +55,7 @@ const notMaximumEggLossCondition = {
 }
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Human chain 2",
     fr: "Chaîne humaine 2",

@@ -1,3 +1,5 @@
+import map from './map7.json'
+
 /* speed: 4
 if w != wall :
 	step(sw)
@@ -20,6 +22,7 @@ endif
 */
 
 const level = {
+  mapConfig: map,
   name: {
     en: "Sharp turn",
     fr: "Virage serré",
