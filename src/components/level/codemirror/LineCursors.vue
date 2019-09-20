@@ -102,7 +102,7 @@ export default {
         let heroContext = this.debugContext.heroes[i]
         let line = 0
 
-        let deathEvents = this.debugContext.eventLog.search({
+        let deathEvents = this.debugContext.searchEventLog({
           type: 'hero-death',
           heroID: heroContext.character.id
         })

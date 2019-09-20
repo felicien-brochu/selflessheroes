@@ -150,13 +150,13 @@ export default {
         let heroContext = this.debugContext.heroes[i]
         let line
 
-        let deathEvents = this.debugContext.eventLog.search({
+        let deathEvents = this.debugContext.searchEventLog({
           type: 'hero-death',
           heroID: heroContext.character.id
         })
         let deathEvent = deathEvents.length > 0 ? deathEvents.pop() : null
 
-        if (heroContext.lastActionCursor < this.statements.length && (!deathEvent || heroContext.world.steps === deathEvent.step)) {
+        if (heroContext.lastActionCursor < this.statements.length && (!deathEvent || heroContext.step === deathEvent.step)) {
           line = this.getStatementLine(this.statements[heroContext.lastActionCursor])
         }
         else {

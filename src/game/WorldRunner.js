@@ -123,7 +123,7 @@ export default class WorldRunner {
       hasWon: this.gameOverDeclared && this.world.hasWon,
       hasLost: this.gameOverDeclared && this.world.hasLost,
       gameOver: this.gameOverDeclared,
-      ruleset: this.world.ruleset,
+      lossReason: this.world.ruleset.getLossReason(),
       paused: this.isPaused(),
       debugContext: this.world.getDebugContext()
     }

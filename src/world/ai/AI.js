@@ -9,10 +9,7 @@ export default class AI {
   }
 
   getDebugContext() {
-    return {
-      world: this.world,
-      character: this.character
-    }
+    return {}
   }
 
   hasStepAvailable() {

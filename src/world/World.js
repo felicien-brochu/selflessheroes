@@ -455,7 +455,7 @@ export default class World {
   getDebugContext() {
     let context = {
       heroes: this.heroes.map(hero => hero.getDebugContext()),
-      eventLog: this.eventLog
+      searchEventLog: this.eventLog.search.bind(this.eventLog),
     }
     return context
   }

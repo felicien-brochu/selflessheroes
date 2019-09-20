@@ -85,7 +85,12 @@ export default class CustomAI extends AI {
 
   getDebugContext() {
     return {
-      ...this.context,
+      variables: this.variables,
+      observations: this.context.observations,
+      lastGoto: this.context.lastGoto,
+      rng: this.context.rng,
+      character: this.character.shallowCopy(),
+      step: this.world.steps,
       cursor: this.cursor,
       lastActionCursor: this.lastActionCursor,
       lastActionStatement: this.lastActionStatement,
