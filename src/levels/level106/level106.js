@@ -86,7 +86,7 @@ const level = {
 
   ruleset: {
     win: [winCondition],
-    lose: [notMaximumEggLossCondition, 'default_loss']
+    lose: [notMaximumEggLossCondition, 'or', 'default_loss']
   }
 }
 
