@@ -9,7 +9,9 @@ export default class AI {
   }
 
   getDebugContext() {
-    return {}
+    return {
+      character: this.character.shallowCopy(),
+    }
   }
 
   hasStepAvailable() {

@@ -108,13 +108,13 @@ export default {
         })
         let deathEvent = deathEvents.length > 0 ? deathEvents.pop() : null
 
-        if (!heroContext.ended && (!deathEvent || heroContext.world.steps === deathEvent.step)) {
+        if (!heroContext.ended && (!deathEvent || heroContext.step === deathEvent.step)) {
           if (heroContext.lastActionStatement) {
             line = heroContext.lastActionStatement.line
           }
         }
         else {
-          let statements = heroContext.character.ai.statements
+          let statements = heroContext.statements
           let lastStatement = statements[statements.length - 1]
           line = lastStatement.line + lastStatement.code.length
         }

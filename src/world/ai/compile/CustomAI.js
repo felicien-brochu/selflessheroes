@@ -90,6 +90,7 @@ export default class CustomAI extends AI {
       lastGoto: this.context.lastGoto,
       rng: this.context.rng,
       character: this.character.shallowCopy(),
+      statements: this.statements,
       step: this.world.steps,
       cursor: this.cursor,
       lastActionCursor: this.lastActionCursor,
