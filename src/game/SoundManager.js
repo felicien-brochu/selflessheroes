@@ -1,6 +1,11 @@
 const soundDefs = [{
   key: 'fireworks_sfx'
 }, {
+  key: 'lose_sfx',
+  config: {
+    volume: 0.04
+  }
+}, {
   key: 'tests_sfx',
   config: {
     loop: true,
