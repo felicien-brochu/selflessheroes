@@ -4,6 +4,11 @@ export default class Direction {
     this.dy = dy
   }
 
+  setForced(dx, dy) {
+    this._dx = dx
+    this._dy = dy
+  }
+
   get dx() {
     return this._dx
   }

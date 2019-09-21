@@ -3,14 +3,18 @@ import Character from '../Character'
 import StepAction from '../actions/StepAction'
 import WaitAction from '../actions/WaitAction'
 import Direction from '../Direction'
+import PathFinder from './PathFinder'
+import TerrainType from '../map/TerrainType'
 
 export default class PathFinderAI extends AI {
   constructor(world, character, x, y) {
     super(world, character)
-    this.switchX = x
-    this.switchY = y
+
+    this.targetX = x
+    this.targetY = y
 
     this.buildPath()
+    this.pathIndex = 0
   }
 
   step(rng) {
@@ -25,63 +29,22 @@ export default class PathFinderAI extends AI {
   }
 
   buildPath() {
-    this.path = []
-    this.pathIndex = 0
+    const collides = (x, y) => {
+      let terrainType = this.world.map.getTerrainTypeAt(x, y)
+      let collidesTerrain = terrainType === TerrainType.wall || terrainType === TerrainType.hole
+      let collidingObjects = this.world.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire || o instanceof Cauldron || (o instanceof Character && !o.dead))
 
-    this.map = []
-    for (var i = 0; i < this.world.map.height; i++) {
-      let row = []
-      for (var j = 0; j < this.world.map.width; j++) {
-        row.push(this.world.map.isFloor(j, i) ? 1000000000 : 0)
-      }
-      this.map.push(row)
+      return collidesTerrain || collidingObjects.length > 0
     }
 
-    let res = this.buildRec(this.character.x, this.character.y, 0, [])
-    if (res) {
-      this.path = res[0]
-    }
-  }
-
-  buildRec(x, y, length, path) {
-    let map = this.map
-    path.push([x, y])
-    if (x === this.switchX && y === this.switchY) {
-      return [path, length]
-    }
-    map[y][x] = length
-    length++
-    let min = 1000000000000000000000
-    let res = null
-    if (map[y][x + 1] > length) {
-      let r = this.buildRec(x + 1, y, length, path.slice(0))
-      if (r !== null && r[1] < min) {
-        res = r
-        min = r[1]
-      }
-    }
-    if (map[y][x - 1] > length) {
-      let r = this.buildRec(x - 1, y, length, path.slice(0))
-      if (r !== null && r[1] < min) {
-        res = r
-        min = r[1]
-      }
-    }
-    if (map[y + 1][x] > length) {
-      let r = this.buildRec(x, y + 1, length, path.slice(0))
-      if (r !== null && r[1] < min) {
-        res = r
-        min = r[1]
-      }
-    }
-    if (map[y - 1][x] > length) {
-      let r = this.buildRec(x, y - 1, length, path.slice(0))
-      if (r !== null && r[1] < min) {
-        res = r
-        min = r[1]
-      }
-    }
-    return res
+    let pathFinder = new PathFinder(collides, this.world.map.width, this.world.map.height)
+    this.path = pathFinder.findPath({
+      x: this.character.x,
+      y: this.character.y
+    }, {
+      x: this.targetX,
+      y: this.targetY
+    })
   }
 
   isDone() {

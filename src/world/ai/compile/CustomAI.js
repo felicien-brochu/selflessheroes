@@ -83,6 +83,10 @@ export default class CustomAI extends AI {
     this.context.observations = []
   }
 
+  hasEnded() {
+    return this.lastActionCursor >= this.statements.length
+  }
+
   getDebugContext() {
     return {
       variables: this.variables,
@@ -95,7 +99,7 @@ export default class CustomAI extends AI {
       cursor: this.cursor,
       lastActionCursor: this.lastActionCursor,
       lastActionStatement: this.lastActionStatement,
-      ended: this.lastActionCursor >= this.statements.length
+      ended: this.hasEnded(),
     }
   }
 }

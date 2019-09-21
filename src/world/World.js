@@ -1,6 +1,7 @@
 import Map from './map/Map'
 
 import CharacterDeathReason from './objects/CharacterDeathReason'
+import Character from './objects/Character'
 import Hero from './objects/Hero'
 import Npc from './objects/Npc'
 import Switch from './objects/Switch'
@@ -13,15 +14,21 @@ import Symbol from './objects/Symbol'
 import AIConfig from './objects/AIConfig'
 import PathConfig from './objects/PathConfig'
 import Marker from './objects/Marker'
+import TerrainType from './map/TerrainType'
 
 import NpcAIFactory from './ai/NpcAIFactory'
 import IdleAI from './ai/IdleAI'
+import PathFinder from './ai/PathFinder'
 
+import StepAction from './actions/StepAction'
+
+import Direction from './Direction'
 import EventLog from './EventLog'
 
 import {
   namedObjectListToObject
 } from './utils'
+
 
 export default class World {
   constructor(level, aiFactory, rng) {
@@ -314,7 +321,7 @@ export default class World {
         let collidesWall = this.map.isWall(x, y)
         let collidesBonfire = this.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire).length > 0
         let collidesCauldron = this.getWorldObjectsAt(x, y).filter(o => o instanceof Cauldron).length > 0
-        let collidingHeroes = this.getCharactersAt(x, y).filter(c => !c.dead && c instanceof Hero)
+        let collidingHeroes = this.getCharactersAt(x, y).filter(c => !c.dead && c.ai.hasStepAvailable() && c instanceof Hero)
         let collidesHero = collidingHeroes.length > 0
 
         if (collidesWall || collidesBonfire || collidesCauldron) {
@@ -356,6 +363,60 @@ export default class World {
             }
           }
         }
+    }
+
+    this.moveEndedHeroesOut()
+  }
+
+  moveEndedHeroesOut() {
+    let endedHeroes = this.getCharacters().filter(c => !c.ai.hasStepAvailable() && c instanceof Hero)
+
+    for (let hero of endedHeroes) {
+      let x = hero.x
+      let y = hero.y
+
+      if (this.getCharactersAt(x, y).filter(c => c !== hero).length > 0) {
+        const collidesNoHero = (x, y) => {
+          let terrainType = this.map.getTerrainTypeAt(x, y)
+          let collidesTerrain = terrainType === TerrainType.wall || terrainType === TerrainType.hole
+          let collidingObjects = this.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire || o instanceof Cauldron || (o instanceof Character && o !== hero && !o.dead))
+
+          return collidesTerrain || collidingObjects.length > 0
+        }
+
+        const collides = (x, y) => {
+          let terrainType = this.map.getTerrainTypeAt(x, y)
+          let collidesTerrain = terrainType === TerrainType.wall || terrainType === TerrainType.hole
+          let collidingObjects = this.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire || o instanceof Cauldron)
+
+          return collidesTerrain || collidingObjects.length > 0
+        }
+        let pathFinder = new PathFinder(collides, this.map.width, this.map.height)
+
+        for (let dir of freeDirSearchTree) {
+          let newX = x + dir.x
+          let newY = y + dir.y
+
+          if (!collidesNoHero(newX, newY)) {
+            let path = pathFinder.findPath({
+              x: x,
+              y: y
+            }, {
+              x: newX,
+              y: newY
+            })
+
+            if (path.length > 0) {
+              let direction = new Direction(newX - x, newY - y)
+              direction.setForced(newX - x, newY - y)
+              let stepAction = new StepAction(direction)
+              hero.move(direction)
+              hero.lastAction = stepAction
+              break;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -459,4 +520,20 @@ export default class World {
     }
     return context
   }
+}
+
+const freeDirSearchTree = []
+const r = 3
+for (let y = -r; y <= r; y++) {
+  for (let x = -r; x <= r; x++) {
+    if (y !== 0 || x !== 0) {
+      let d = x ** 2 + y ** 2
+      freeDirSearchTree.push({
+        x: x,
+        y: y,
+      })
+    }
+  }
+  const module = a => a.x ** 2 + a.y ** 2
+  freeDirSearchTree.sort((a, b) => module(a) - module(b))
 }
