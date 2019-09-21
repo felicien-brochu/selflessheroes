@@ -391,7 +391,13 @@ export default class World {
 
           return collidesTerrain || collidingObjects.length > 0
         }
-        let pathFinder = new PathFinder(collides, this.map.width, this.map.height)
+
+        let pathFinder = new PathFinder(collides, this.map.width, this.map.height, {
+          x: x - freeDirSearchRadius,
+          y: y - freeDirSearchRadius,
+          width: freeDirSearchRadius * 2 + 3,
+          height: freeDirSearchRadius * 2 + 3
+        })
 
         for (let dir of freeDirSearchTree) {
           let newX = x + dir.x
@@ -523,9 +529,9 @@ export default class World {
 }
 
 const freeDirSearchTree = []
-const r = 3
-for (let y = -r; y <= r; y++) {
-  for (let x = -r; x <= r; x++) {
+const freeDirSearchRadius = 2
+for (let y = -freeDirSearchRadius; y <= freeDirSearchRadius; y++) {
+  for (let x = -freeDirSearchRadius; x <= freeDirSearchRadius; x++) {
     if (y !== 0 || x !== 0) {
       let d = x ** 2 + y ** 2
       freeDirSearchTree.push({
