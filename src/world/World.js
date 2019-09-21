@@ -364,12 +364,10 @@ export default class World {
           }
         }
     }
-
-    this.moveEndedHeroesOut()
   }
 
   moveEndedHeroesOut() {
-    let endedHeroes = this.getCharacters().filter(c => !c.ai.hasStepAvailable() && c instanceof Hero)
+    let endedHeroes = this.getCharacters().filter(c => !c.ai.hasStepAvailable() && !c.lastAction && c instanceof Hero)
 
     for (let hero of endedHeroes) {
       let x = hero.x
@@ -427,6 +425,8 @@ export default class World {
   }
 
   resolveActionConsequences(characterActions) {
+    this.moveEndedHeroesOut()
+
     for (let mySwitch of this.switches) {
       if (this.characters.some(character => character.overlaps(mySwitch) && !character.dead)) {
         mySwitch.enable()
