@@ -374,6 +374,7 @@ export default {
     },
 
     showTestFailedModal() {
+      this.$sound.play('lose_sfx')
       this.$refs.modalLayer.addModal({
         component: WarningModal,
         key: 'level_test_failed_modal',
