@@ -83,6 +83,21 @@ export default class LevelSolutions extends StorageWrapper {
     return true
   }
 
+  importFromSaved(json) {
+    this.id = json.id
+    this.solutionID = json.solutionID
+    this.score = LevelScore.buildFromJSON(json.score)
+
+    for (let solutionConfig of json.solutions) {
+      let solution = new Solution(`${this.storageKey}.solutions[${solutionConfig.id}]`)
+      solution.importFromSaved(solutionConfig)
+      this.solutions.push(solution)
+    }
+
+    this.loaded = true
+    this.save(false)
+  }
+
   toJSON() {
     let o = super.toJSON()
     Object.assign(o, {

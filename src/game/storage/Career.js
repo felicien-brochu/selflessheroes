@@ -71,6 +71,19 @@ export default class Career extends StorageWrapper {
     return true
   }
 
+  importFromSaved(json) {
+    this.name = json.name
+
+    for (let levelConfig of json.levels) {
+      let level = new LevelSolutions(`${this.storageKey}.levels[${levelConfig.id}]`)
+      level.importFromSaved(levelConfig)
+      this.levels.push(level)
+    }
+
+    this.loaded = true
+    this.save(false)
+  }
+
   toJSON() {
     let o = super.toJSON()
     Object.assign(o, {

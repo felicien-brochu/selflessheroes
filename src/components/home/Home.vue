@@ -1,11 +1,20 @@
 <template>
 <div class="home"
   @mousedown="handleClickOutside"
-  @touchstart="handleClickOutside">
+  @touchstart="handleClickOutside"
+  @drop.prevent.stop="handleDrop"
+  @dragover.prevent="handleDragOver">
 
   <header></header>
 
   <modal-layer ref="modalLayer" />
+
+  <div class="career-file-drop-overlay"
+    v-if="careerFileDragged"
+    @dragleave.prevent="handleDragLeave">
+    <div class="career-file-drop-text"
+      v-bbcode>{{$text('home_drop_career_file')}}</div>
+  </div>
 
   <card-list class="career-list"
     :itemWidth="280"
@@ -22,15 +31,15 @@
       <div class="buttons-container">
         <button class="svae-button mdi mdi-content-save-move"
           type="button"
-          :title="$text('save_career_button')"
-          @click="saveCareer(career.id, $event)"
-          @touchstart="saveCareer(career.id, $event)" />
+          :title="$text('home_save_career_button')"
+          @click.prevent="saveCareer(career.id, $event)"
+          @touchstart.prevent="saveCareer(career.id, $event)" />
 
         <button class="remove-button mdi mdi-minus-circle"
           type="button"
-          :title="$text('remove_career_button')"
-          @click="deleteCareer(career.id, $event)"
-          @touchstart="deleteCareer(career.id, $event)" />
+          :title="$text('home_remove_career_button')"
+          @click.prevent="deleteCareer(career.id, $event)"
+          @touchstart.prevent="deleteCareer(career.id, $event)" />
       </div>
 
       <div class="career-name"
@@ -74,7 +83,7 @@
         <h3 v-text-fit="{
 		      alignHoriz: true,
 		      alignVert: true
-		    }">{{$text('new_game')}}</h3>
+		    }">{{$text('home_new_game')}}</h3>
 
         <div class="name-input-wrapper">
 
@@ -85,7 +94,7 @@
               name="name"
               autocomplete="off"
               v-focus
-              :placeholder="$text('new_game_name_placeholder')" />
+              :placeholder="$text('home_new_game_name_placeholder')" />
           </div>
 
           <button class="mdi mdi-arrow-right"
@@ -126,7 +135,8 @@ export default {
     return {
       name: null,
       newCareer: false,
-      storage: storage
+      storage: storage,
+      careerFileDragged: false,
     }
   },
 
@@ -168,18 +178,71 @@ export default {
       }
     },
 
+    handleDragOver(e) {
+      if (e.dataTransfer.types.includes("Files") && e.dataTransfer.items.length > 0) {
+        e.dataTransfer.effectAllowed = "all"
+        this.careerFileDragged = true
+      }
+      else {
+        e.dataTransfer.effectAllowed = "none"
+      }
+    },
+
+    handleDragLeave(e) {
+      this.careerFileDragged = false
+    },
+
+    handleDrop(e) {
+      this.careerFileDragged = false
+
+      if (e.dataTransfer.types.includes("Files") && e.dataTransfer.items && e.dataTransfer.items.length > 0) {
+        let file = e.dataTransfer.items[0].getAsFile()
+        if (file.name.endsWith(".shsv")) {
+          this.loadSavedCareer(file)
+          return
+        }
+      }
+      this.showWrongFormatFileModal()
+    },
+
     saveCareer(careerID, e) {
-      e.preventDefault()
       storage.saveCareer(careerID)
     },
 
+    loadSavedCareer(file) {
+      let reader = new FileReader()
+
+      reader.onload = e => {
+        let json = e.target.result
+
+        try {
+          storage.loadSavedCareer(json)
+        }
+        catch (ex) {
+          console.error("Error while loading saved game from .shsv file", ex)
+          this.showWrongFormatFileModal()
+        }
+      }
+      reader.readAsText(file, "UTF-8")
+    },
+
+    showWrongFormatFileModal() {
+      this.$refs.modalLayer.addModal({
+        component: Modal,
+        key: 'load-saved-career-error',
+        props: {
+          text: this.$text('home_wrong_file_format_error'),
+          cancelable: false
+        }
+      })
+    },
+
     deleteCareer(careerID, e) {
-      e.preventDefault()
       this.$refs.modalLayer.addModal({
         component: Modal,
         key: 'remove-career-warning',
         props: {
-          text: this.$text('remove_career_warning'),
+          text: this.$text('home_remove_career_warning'),
           cancelable: true,
           confirmValue: careerID,
           confirmLabel: this.$text('modal_confirm_yes'),
@@ -224,6 +287,29 @@ export default {
         background-repeat: no-repeat;
         background-position: center;
         display: inline-table;
+    }
+
+    .career-file-drop-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #222c;
+        z-index: 10000;
+        display: table;
+        box-sizing: border-box;
+
+        .career-file-drop-text {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 35px;
+            font-weight: 500;
+            padding: 0 80px;
+            text-shadow: 2px 2px 5px #222;
+            white-space: pre;
+        }
     }
 
     h1 {

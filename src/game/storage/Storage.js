@@ -51,6 +51,19 @@ export class Storage extends StorageWrapper {
     saveAs(blob, `Selfless Heroes - ${career.name}.shsv`)
   }
 
+  loadSavedCareer(json) {
+    let savedJSON = JSON.parse(json)
+    let careerJSON = savedJSON.career
+
+    const id = StorageWrapper.getAvailableID(this.careers)
+    const career = new Career(`${this.storageKey}.careers[${id}]`)
+    career.set(id)
+    career.importFromSaved(careerJSON)
+    this.careers.push(career)
+
+    this.save(false)
+  }
+
   deleteCareer(careerID) {
     let career = this.getCareer(careerID)
     career.clear()

@@ -31,6 +31,18 @@ export default class Solution extends StorageWrapper {
     this.save(false)
   }
 
+  importFromSaved(json) {
+    this.id = json.id
+    this.name = json.name
+    this.editorType = json.editorType
+    this.codeHistory = CodeHistory.buildFromJSON(json.codeHistory)
+    this.score = SolutionScore.buildFromJSON(json.score)
+    this.hasOpen = json.hasOpen
+
+    this.loaded = true
+    this.save(false)
+  }
+
   load(data) {
     this.id = data.id
     this.name = data.name
