@@ -68,17 +68,20 @@ export default {
     this.graphCode = this.$parent
     this.graphCode.$on('nodes-change', this.handleNodesChange)
     this.graphCode.$on('scroll', this.updateLinkPaths)
-    this.rsPane = this.$parent.$parent.$parent.$parent.$parent
-    this.rsPane.$on('resize', this.updateLinkPaths)
-    this.rsPane.$on('update:size', this.updateLinkPaths)
+
+    this.editorPane = document.querySelector('#rs-pane .Pane:not(:first-child)')
+    this.resizeObserver = new ResizeObserver(this.updateLinkPaths)
+    this.resizeObserver.observe(this.editorPane)
+
     window.addEventListener('resize', this.updateLinkPaths)
   },
 
   beforeDestroy() {
     this.graphCode.$off('nodes-change', this.handleNodesChange)
     this.graphCode.$off('scroll', this.updateLinkPaths)
-    this.rsPane.$off('resize', this.updateLinkPaths)
-    this.rsPane.$off('update:size', this.updateLinkPaths)
+
+    this.resizeObserver.unobserve(this.editorPane)
+
     window.removeEventListener('resize', this.updateLinkPaths)
 
     this.updateLinkPaths.cancel()

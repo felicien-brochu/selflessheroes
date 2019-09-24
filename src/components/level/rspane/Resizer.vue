@@ -109,4 +109,9 @@ export default {
   height: 100vh;
   cursor: col-resize;
 }
+
+.Resizer.rowsres.inactive,
+.Resizer.columnsres.inactive {
+  cursor: initial;
+}
 </style>

@@ -31,7 +31,8 @@
       @drop-node="handleDropNode"
       @node-change="handleNodeChange"
       @start-edit="$emit('start-edit')"
-      @select-follow-hero="$emit('select-follow-hero', $event)">
+      @select-follow-hero="$emit('select-follow-hero', $event)"
+      @change-min-width="handleGraphCodeChangeMinWidth">
 
       <transition :duration="{enter: 1000, leave: 0}"
         appear
@@ -277,7 +278,12 @@ export default {
       if (this.$refs.jumpLinkLayer) {
         this.$refs.jumpLinkLayer.updateLinkPaths()
       }
-    }
+    },
+
+    handleGraphCodeChangeMinWidth(minWidth) {
+      this.$emit('change-min-width', minWidth)
+      this.$refs.jumpLinkLayer.updateLinkPaths()
+    },
   }
 }
 </script>

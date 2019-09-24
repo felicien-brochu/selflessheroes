@@ -11,8 +11,7 @@
 
   </pane-comp>
 
-  <resizer-comp v-if="allowResize"
-    @mousedown.native="onMouseDown"
+  <resizer-comp @mousedown.native="onMouseDown"
     @touchstart.native="onTouchStart"
     :splitTo="splitTo"
     :resizerColor="resizerColor"
@@ -20,11 +19,13 @@
     :resizerThickness="resizerThickness"
     :resizerBorderThickness="resizerBorderThickness"
     :class="{
-          rowsres: splitTo === 'rows',
-          columnsres: splitTo === 'columns'}"></resizer-comp>
+      rowsres: splitTo === 'rows',
+      columnsres: splitTo === 'columns',
+			inactive: !allowResize,
+		}"></resizer-comp>
 
   <pane-comp ref="pane2"
-    :class="{column: splitTo === 'columns', row: splitTo === 'rows'}"
+    :class="{column: splitTo === 'columns', row: splitTo === 'rows', 'animate-resize': !allowResize}"
     :style="iStyleSecond">
 
     <slot name='secondPane'></slot>
@@ -340,40 +341,44 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 *,
-*:before,
-*:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  position: relative;
+*:after,
+*:before {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
 }
 
 .root {
-  height: min-content;
-  width: 100%;
+    height: min-content;
+    width: 100%;
 }
 
 .columns {
-  flex-direction: row;
-  left: 0;
-  right: 0;
+    flex-direction: row;
+    left: 0;
+    right: 0;
 }
 
 .rows {
-  flex-direction: column;
-  bottom: 0;
-  top: 0;
-  min-height: 100%;
-  width: 100%;
+    flex-direction: column;
+    bottom: 0;
+    top: 0;
+    min-height: 100%;
+    width: 100%;
 }
 
 .pane-rs {
-  display: flex;
-  flex: 1;
-  position: absolute;
-  outline: none;
-  overflow: hidden;
+    display: flex;
+    flex: 1;
+    position: absolute;
+    outline: none;
+    overflow: hidden;
+
+    .animate-resize {
+        transition: width 500ms ease;
+    }
 }
 </style>

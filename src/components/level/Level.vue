@@ -18,9 +18,10 @@
   <resize-split-pane id="rs-pane"
     split-to="columns"
     @resize="handleEditorResize"
-    :allow-resize="true"
+    :allow-resize="editorType === 'code'"
     :size="editorWidth"
-    :min-size="320"
+    :minSize="320"
+    :maxSize="480"
     :resizerThickness="2"
     units="pixels"
     resizerColor="#4b5261"
@@ -73,7 +74,8 @@
       @code-change="handleCodeChange"
       @start-edit="handleStartEdit"
       @select-follow-hero="followHeroIndex = $event"
-      @change-type="handleEditorTypeChange" />
+      @change-type="handleEditorTypeChange"
+      @change-min-width="handleEditorMinWidthChange" />
 
   </resize-split-pane>
 </div>
@@ -148,7 +150,7 @@ export default {
         fatal: [],
         undefinedLiterals: []
       },
-      editorWidth: 350
+      editorWidth: 350,
     }
   },
 
@@ -475,6 +477,13 @@ export default {
       this.solution.save()
     },
 
+    handleEditorMinWidthChange(editorMinWidth) {
+      let newEditorWidth = Math.min(480, Math.max(editorMinWidth, 320))
+      if (this.editorWidth < newEditorWidth || (this.editorWidth > 350 && this.editorWidth > newEditorWidth)) {
+        this.handleEditorResize(newEditorWidth)
+      }
+    },
+
 
     handleStartEdit() {
       if (this.playing) {
@@ -483,6 +492,7 @@ export default {
     },
 
     handleEditorResize(editorWidth) {
+      this.editorWidth = editorWidth
       if (this.gameScene) {
         this.gameScene.handleEditorResize(editorWidth)
       }

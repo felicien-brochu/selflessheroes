@@ -41,7 +41,8 @@
           :followHeroIndex="followHeroIndex"
           @code-change="handleGraphCodeChange"
           @select-follow-hero="$emit('select-follow-hero', $event)"
-          @start-edit="$emit('start-edit')" />
+          @start-edit="$emit('start-edit')"
+          @change-min-width="$emit('change-min-width', $event)" />
       </transition>
 
     </template>

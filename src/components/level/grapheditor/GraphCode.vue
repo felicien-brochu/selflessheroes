@@ -62,6 +62,13 @@ export default {
     this.dropHandler = null
     this.dropScrollTop = 0
     this.dragStartScrollTop = -1
+
+    this.resizeObserver = new ResizeObserver(this.handleNodeContainerResize)
+    this.resizeObserver.observe(this.$refs.nodeContainer)
+  },
+
+  beforeDestroy() {
+    this.resizeObserver.unobserve(this.$refs.nodeContainer)
   },
 
   watch: {
@@ -222,7 +229,12 @@ export default {
 
     handleFollowHeroCursorLineChange(line) {
       this.scrollAnimator.showLine(line)
-    }
+    },
+
+    handleNodeContainerResize() {
+      let editorMinWidth = this.$refs.nodeContainer.offsetLeft + this.$refs.nodeContainer.offsetWidth + 1
+      this.$emit('change-min-width', editorMinWidth)
+    },
   }
 }
 </script>
@@ -254,6 +266,7 @@ export default {
         & > .node-container {
             padding-top: $line-margin;
             padding-bottom: $node-line-height + $line-margin + 10;
+            padding-right: 16px;
             z-index: 10;
         }
     }
