@@ -23,6 +23,7 @@ const messages = {
 
     new_game: "new game:",
     new_game_name_placeholder: "Pseudo",
+    save_career_button: "Save as…",
     remove_career_button: "Remove",
     remove_career_warning: "Are you really sure to delete this profile?\nAll progression will be lost.",
 
@@ -279,6 +280,7 @@ const messages = {
 
     new_game: "nouvelle partie\u00A0:",
     new_game_name_placeholder: "Pseudo",
+    save_career_button: "Enregistrer sous…",
     remove_career_button: "Supprimer",
     remove_career_warning: "Êtes-vous vraiment sûr de vouloir supprimer cette partie\u00A0?\nToute progression sera perdue.",
 

@@ -66,6 +66,30 @@ export default class StorageWrapper {
     return {}
   }
 
+  discardToJSON() {
+    this.discardedToJSON = this.toJSON
+    this.toJSON = () => {
+      let json = {}
+      Object.assign(json, this)
+      json.loaded = undefined
+      json.storageKey = undefined
+
+      return json
+    }
+
+    for (let saveableObject of this.getSaveables()) {
+      saveableObject.get().discardToJSON()
+    }
+  }
+
+  restoreToJSON() {
+    this.toJSON = this.discardedToJSON
+    this.discardedToJSON = undefined
+    for (let saveableObject of this.getSaveables()) {
+      saveableObject.get().restoreToJSON()
+    }
+  }
+
   getSaveables() {
     let saveables = []
     for (let key in this) {

@@ -1,6 +1,9 @@
 import StorageWrapper from './StorageWrapper'
 import Preferences from './Preferences'
 import Career from './Career'
+import {
+  saveAs
+} from 'file-saver'
 
 const storageVersion = '[AIV]{version}[/AIV]'
 
@@ -29,6 +32,23 @@ export class Storage extends StorageWrapper {
 
   getCareer(id) {
     return this.careers.find(c => c.get().id === id)
+  }
+
+  saveCareer(careerID) {
+    let career = this.getCareer(careerID)
+    let savedObject = {
+      version: storageVersion,
+      career: career,
+    }
+
+    career.discardToJSON()
+    let savedString = JSON.stringify(savedObject)
+    career.restoreToJSON()
+
+    var blob = new Blob([savedString], {
+      type: "application/selflessheroes;charset=utf-8"
+    })
+    saveAs(blob, `Selfless Heroes - ${career.name}.shsv`)
   }
 
   deleteCareer(careerID) {

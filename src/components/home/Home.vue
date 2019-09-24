@@ -19,11 +19,19 @@
       tag="li"
       :to="career.url">
 
-      <button class="remove-button mdi mdi-minus-circle"
-        type="button"
-        :title="$text('remove_career_button')"
-        @click="deleteCareer(career.id, $event)"
-        @touchstart="deleteCareer(career.id, $event)" />
+      <div class="buttons-container">
+        <button class="svae-button mdi mdi-content-save-move"
+          type="button"
+          :title="$text('save_career_button')"
+          @click="saveCareer(career.id, $event)"
+          @touchstart="saveCareer(career.id, $event)" />
+
+        <button class="remove-button mdi mdi-minus-circle"
+          type="button"
+          :title="$text('remove_career_button')"
+          @click="deleteCareer(career.id, $event)"
+          @touchstart="deleteCareer(career.id, $event)" />
+      </div>
 
       <div class="career-name"
         v-text-fit="{
@@ -160,6 +168,11 @@ export default {
       }
     },
 
+    saveCareer(careerID, e) {
+      e.preventDefault()
+      storage.saveCareer(careerID)
+    },
+
     deleteCareer(careerID, e) {
       e.preventDefault()
       this.$refs.modalLayer.addModal({
@@ -245,21 +258,28 @@ export default {
             display: flex;
             flex-direction: column;
 
-            .remove-button {
+            .buttons-container {
                 position: absolute;
                 top: 0;
                 right: 0;
-                margin: 14px 16px;
-                width: 24px;
-                height: 24px;
-                color: white;
-                opacity: 0;
-                font-size: 24px;
-                line-height: 24px;
-                transition: all 100ms ease;
-                opacity: 0.1;
-                &:hover {
-                    opacity: 0.5;
+                display: flex;
+                margin: 14px 12px;
+
+                & > button {
+                    width: 24px;
+                    height: 24px;
+                    color: white;
+                    font-size: 24px;
+                    line-height: 24px;
+                    box-sizing: content-box;
+                    padding: 0 4px;
+
+                    transition: all 100ms ease;
+                    opacity: 0.2;
+
+                    &:hover {
+                        opacity: 0.5;
+                    }
                 }
             }
 
