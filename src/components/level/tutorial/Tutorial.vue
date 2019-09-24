@@ -1,8 +1,6 @@
 <template>
 <div class="tutorial"
-  v-show="started && !ended"
-  @mousedown="handleOutsideClick"
-  @touchstart="handleOutsideClick">
+  v-show="started && !ended">
 
   <tutorial-modal v-if="step"
     ref="modal"
@@ -75,14 +73,6 @@ export default {
 
       if (this.ended) {
         this.$emit('end')
-      }
-    },
-
-    handleOutsideClick(e) {
-      let target = e.touches && e.touches[0].target || e.target
-      e.stopPropagation()
-      if (target === this.$el) {
-        this.nextStep()
       }
     },
 
