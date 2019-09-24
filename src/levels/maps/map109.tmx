@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="18" height="9" tilewidth="32" tileheight="32" infinite="0" nextlayerid="282" nextobjectid="163">
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="287" nextobjectid="163">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
   <image source="tileset.png" trans="000000" width="340" height="680"/>
   <terraintypes>
@@ -9,172 +9,176 @@
   </terraintypes>
  </tileset>
  <objectgroup id="14" name="camera">
-  <object id="12" name="frame" type="frame" x="18" y="1" width="539" height="285"/>
-  <object id="15" name="strategy" type="cameraStrategy" x="35" y="190">
+  <object id="12" name="frame" type="frame" x="50" y="33" width="539" height="285"/>
+  <object id="15" name="strategy" type="cameraStrategy" x="67" y="222">
    <point/>
   </object>
  </objectgroup>
- <layer id="259" name="checkers" width="18" height="9">
+ <layer id="282" name="checkers" width="20" height="11">
   <data encoding="csv">
-69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
-0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
-69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
-0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
-69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
-0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
-69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
-0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
-69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,
+0,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,
+0,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,
+0,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,
+0,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="260" name="path" width="18" height="9">
+ <layer id="283" name="path" width="20" height="11">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,80,80,80,80,80,80,80,79,79,80,80,80,80,80,80,80,0,
-0,80,79,79,79,79,79,79,79,79,79,79,79,79,79,79,80,0,
-0,80,79,0,0,0,0,0,0,0,0,0,0,0,0,79,80,0,
-0,80,79,0,80,80,80,80,80,80,80,80,80,80,0,79,80,0,
-0,80,79,0,0,0,0,0,0,0,0,0,0,0,0,79,80,0,
-0,80,79,79,79,79,79,79,79,79,79,79,79,79,79,79,80,0,
-0,80,80,80,80,80,80,80,79,79,80,80,80,80,80,80,80,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,79,79,80,80,80,80,80,80,80,0,0,
+0,0,80,79,79,79,79,79,79,79,79,79,79,79,79,79,79,80,0,0,
+0,0,80,79,0,0,0,0,0,0,0,0,0,0,0,0,79,80,0,0,
+0,0,80,79,0,80,80,80,80,80,80,80,80,80,80,0,79,80,0,0,
+0,0,80,79,0,0,0,0,0,0,0,0,0,0,0,0,79,80,0,0,
+0,0,80,79,79,79,79,79,79,79,79,79,79,79,79,79,79,80,0,0,
+0,0,80,80,80,80,80,80,80,79,79,80,80,80,80,80,80,80,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <objectgroup id="2" name="objects">
-  <object id="121" name="egg" type="egg" x="147" y="145">
+  <object id="121" name="egg" type="egg" x="179" y="177">
    <properties>
     <property name="showLottery" type="bool" value="true"/>
     <property name="value" value="rng(0,99)"/>
    </properties>
    <point/>
   </object>
-  <object id="122" name="egg" type="egg" x="176" y="146">
+  <object id="122" name="egg" type="egg" x="208" y="178">
    <properties>
     <property name="showLottery" type="bool" value="true"/>
     <property name="value" value="rng(0,99)"/>
    </properties>
    <point/>
   </object>
-  <object id="123" name="egg" type="egg" x="211" y="146">
+  <object id="123" name="egg" type="egg" x="243" y="178">
    <properties>
     <property name="showLottery" type="bool" value="true"/>
     <property name="value" value="rng(0,99)"/>
    </properties>
    <point/>
   </object>
-  <object id="124" name="egg" type="egg" x="244" y="143">
+  <object id="124" name="egg" type="egg" x="276" y="175">
    <properties>
     <property name="showLottery" type="bool" value="true"/>
     <property name="value" value="rng(0,99)"/>
    </properties>
    <point/>
   </object>
-  <object id="125" name="egg" type="egg" x="272" y="144">
+  <object id="125" name="egg" type="egg" x="304" y="176">
    <properties>
     <property name="showLottery" type="bool" value="true"/>
     <property name="value" value="rng(0,99)"/>
    </properties>
    <point/>
   </object>
-  <object id="126" name="egg" type="egg" x="304" y="146">
+  <object id="126" name="egg" type="egg" x="336" y="178">
    <properties>
     <property name="showLottery" type="bool" value="true"/>
     <property name="value" value="rng(0,99)"/>
    </properties>
    <point/>
   </object>
-  <object id="127" name="egg" type="egg" x="336" y="144">
+  <object id="127" name="egg" type="egg" x="368" y="176">
    <properties>
     <property name="showLottery" type="bool" value="true"/>
     <property name="value" value="rng(0,99)"/>
    </properties>
    <point/>
   </object>
-  <object id="128" name="egg" type="egg" x="367" y="144">
+  <object id="128" name="egg" type="egg" x="399" y="176">
    <properties>
     <property name="showLottery" type="bool" value="true"/>
     <property name="value" value="rng(0,99)"/>
    </properties>
    <point/>
   </object>
-  <object id="129" name="egg" type="egg" x="404" y="142">
+  <object id="129" name="egg" type="egg" x="436" y="174">
    <properties>
     <property name="showLottery" type="bool" value="true"/>
     <property name="value" value="rng(0,99)"/>
    </properties>
    <point/>
   </object>
-  <object id="130" name="egg" type="egg" x="434" y="146">
+  <object id="130" name="egg" type="egg" x="466" y="178">
    <properties>
     <property name="showLottery" type="bool" value="true"/>
     <property name="value" value="rng(0,99)"/>
    </properties>
    <point/>
   </object>
-  <object id="33" name="hero" type="hero" x="145" y="147">
+  <object id="33" name="hero" type="hero" x="177" y="179">
    <properties>
     <property name="initialDirection" value="s"/>
     <property name="item" type="int" value="121"/>
    </properties>
    <point/>
   </object>
-  <object id="131" name="hero" type="hero" x="175.5" y="142.5">
+  <object id="131" name="hero" type="hero" x="207.5" y="174.5">
    <properties>
     <property name="initialDirection" value="s"/>
     <property name="item" type="int" value="122"/>
    </properties>
    <point/>
   </object>
-  <object id="132" name="hero" type="hero" x="212" y="145">
+  <object id="132" name="hero" type="hero" x="244" y="177">
    <properties>
     <property name="initialDirection" value="s"/>
     <property name="item" type="int" value="123"/>
    </properties>
    <point/>
   </object>
-  <object id="133" name="hero" type="hero" x="245" y="145.5">
+  <object id="133" name="hero" type="hero" x="277" y="177.5">
    <properties>
     <property name="initialDirection" value="s"/>
     <property name="item" type="int" value="124"/>
    </properties>
    <point/>
   </object>
-  <object id="134" name="hero" type="hero" x="273" y="147">
+  <object id="134" name="hero" type="hero" x="305" y="179">
    <properties>
     <property name="initialDirection" value="s"/>
     <property name="item" type="int" value="125"/>
    </properties>
    <point/>
   </object>
-  <object id="135" name="hero" type="hero" x="305" y="147.5">
+  <object id="135" name="hero" type="hero" x="337" y="179.5">
    <properties>
     <property name="initialDirection" value="s"/>
     <property name="item" type="int" value="126"/>
    </properties>
    <point/>
   </object>
-  <object id="136" name="hero" type="hero" x="336" y="149.5">
+  <object id="136" name="hero" type="hero" x="368" y="181.5">
    <properties>
     <property name="initialDirection" value="s"/>
     <property name="item" type="int" value="127"/>
    </properties>
    <point/>
   </object>
-  <object id="137" name="hero" type="hero" x="366" y="146.5">
+  <object id="137" name="hero" type="hero" x="398" y="178.5">
    <properties>
     <property name="initialDirection" value="s"/>
     <property name="item" type="int" value="128"/>
    </properties>
    <point/>
   </object>
-  <object id="138" name="hero" type="hero" x="401.5" y="146">
+  <object id="138" name="hero" type="hero" x="433.5" y="178">
    <properties>
     <property name="initialDirection" value="s"/>
     <property name="item" type="int" value="129"/>
    </properties>
    <point/>
   </object>
-  <object id="139" name="hero" type="hero" x="435.5" y="147.5">
+  <object id="139" name="hero" type="hero" x="467.5" y="179.5">
    <properties>
     <property name="initialDirection" value="s"/>
     <property name="item" type="int" value="130"/>
@@ -182,43 +186,49 @@
    <point/>
   </object>
  </objectgroup>
- <layer id="279" name="types" width="18" height="9">
+ <layer id="284" name="types" width="20" height="11">
   <data encoding="csv">
-70,70,70,70,70,70,70,70,79,79,70,70,70,70,70,70,70,70,
-70,80,80,80,80,80,80,80,79,79,80,80,80,80,80,80,80,70,
-70,80,79,79,79,79,79,79,79,79,79,79,79,79,79,79,80,70,
-70,80,79,70,70,70,70,70,70,70,70,70,70,70,70,79,80,70,
-70,80,79,70,80,80,80,80,80,80,80,80,80,80,70,79,80,70,
-70,80,79,70,70,70,70,70,70,70,70,70,70,70,70,79,80,70,
-70,80,79,79,79,79,79,79,79,79,79,79,79,79,79,79,80,70,
-70,80,80,80,80,80,80,80,79,79,80,80,80,80,80,80,80,70,
-70,70,70,70,70,70,70,70,79,79,70,70,70,70,70,70,70,70
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,
+79,70,70,70,70,70,70,70,70,79,79,70,70,70,70,70,70,70,70,79,
+79,70,80,80,80,80,80,80,80,79,79,80,80,80,80,80,80,80,70,79,
+79,70,80,79,79,79,79,79,79,79,79,79,79,79,79,79,79,80,70,79,
+79,70,80,79,70,70,70,70,70,70,70,70,70,70,70,70,79,80,70,79,
+79,70,80,79,70,80,80,80,80,80,80,80,80,80,80,70,79,80,70,79,
+79,70,80,79,70,70,70,70,70,70,70,70,70,70,70,70,79,80,70,79,
+79,70,80,79,79,79,79,79,79,79,79,79,79,79,79,79,79,80,70,79,
+79,70,80,80,80,80,80,80,80,79,79,80,80,80,80,80,80,80,70,79,
+79,70,70,70,70,70,70,70,70,79,79,70,70,70,70,70,70,70,70,79,
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79
 </data>
  </layer>
- <layer id="280" name="ground" width="18" height="9">
+ <layer id="285" name="ground" width="20" height="11">
   <data encoding="csv">
-1,2,2,5,3,2,5,5,0,0,5,4,5,5,4,3,2,6,
-11,122,27,134,27,123,7,154,0,0,40,152,9,124,30,124,20,16,
-11,28,62,63,62,63,62,62,0,0,62,63,62,63,62,63,143,16,
-21,121,0,1,2,2,4,4,4,4,5,5,3,2,6,0,7,26,
-21,19,0,31,152,20,152,28,142,28,122,17,121,39,36,0,144,16,
-21,141,0,41,42,43,43,42,53,43,52,52,53,45,46,0,37,16,
-11,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,144,26,
-31,154,39,133,17,151,9,154,0,0,20,134,39,141,20,133,40,36,
-41,42,52,52,42,43,42,52,0,0,53,52,43,42,53,52,45,46
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1,2,2,4,2,4,3,2,0,0,2,3,4,4,2,4,2,6,0,
+0,11,132,37,154,29,123,39,132,0,0,37,134,10,121,19,141,18,16,0,
+0,11,9,62,63,62,62,62,62,0,0,63,63,63,63,62,63,132,16,0,
+0,11,122,0,1,2,3,2,5,5,5,5,2,4,2,6,0,40,26,0,
+0,21,38,0,31,123,8,123,28,143,9,144,28,153,17,36,0,124,16,0,
+0,21,143,0,41,42,43,53,42,42,53,53,53,53,45,46,0,39,16,0,
+0,21,28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,121,16,0,
+0,31,121,40,132,39,141,8,132,0,0,17,152,10,144,40,151,37,36,0,
+0,41,42,43,43,53,42,52,42,0,0,53,52,42,53,52,42,45,46,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="281" name="floor_shadow" width="18" height="9">
+ <layer id="286" name="floor_shadow" width="20" height="11">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,81,65,65,65,65,65,76,0,0,77,65,65,65,65,65,82,0,
-0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,
-0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,
-0,66,0,0,77,65,65,65,65,65,65,65,65,76,0,0,66,0,
-0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,
-0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,
-0,84,65,65,65,65,65,76,0,0,77,65,65,65,65,65,83,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,81,65,65,65,65,65,76,0,0,77,65,65,65,65,65,82,0,0,
+0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,0,
+0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,0,
+0,0,66,0,0,77,65,65,65,65,65,65,65,65,76,0,0,66,0,0,
+0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,0,
+0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,0,
+0,0,84,65,65,65,65,65,76,0,0,77,65,65,65,65,65,83,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
 </map>
