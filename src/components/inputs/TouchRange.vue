@@ -6,8 +6,8 @@
   :disabled="disabled"
   :value="value"
   @input="emit($event.target.value)"
-  @touchmove="touchmove"
-  @touchstart="touchmove">
+  @touchmove.prevent="touchmove"
+  @touchstart.prevent="touchmove">
 </template>
 
 <script>
@@ -44,7 +44,6 @@ export default {
       this.$emit('input', Number(val))
     },
     touchmove(e) {
-      e.preventDefault()
       const width = e.target.clientWidth
       const rate = Math.max(0, Math.min(width, e.touches[0].pageX - e.target.getBoundingClientRect().x)) / width
       let value = rate * this.range + this.min

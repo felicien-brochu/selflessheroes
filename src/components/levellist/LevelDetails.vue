@@ -69,17 +69,17 @@
                 <button type="button"
                   class="mdi mdi-pencil"
                   :title="$text('level_details_rename_solution_button')"
-                  @mousedown="selectRenamedSolution(solution.id, solution.name, $event)"
-                  @touchstart="selectRenamedSolution(solution.id, solution.name, $event)" /><button type="button"
+                  @mousedown.stop.prevent="selectRenamedSolution(solution.id, solution.name, $event)"
+                  @touchstart.stop.prevent="selectRenamedSolution(solution.id, solution.name, $event)" /><button type="button"
                   class="mdi mdi-content-copy"
                   :title="$text('level_details_duplicate_solution_button')"
-                  @mousedown="duplicateSolution(solution.id, $event)"
-                  @touchstart="duplicateSolution(solution.id, $event); $event.preventDefault()" /><button v-if="solutions.length > 1"
+                  @mousedown.stop.prevent="duplicateSolution(solution.id, $event)"
+                  @touchstart.stop.prevent="duplicateSolution(solution.id, $event)" /><button v-if="solutions.length > 1"
                   type="button"
                   class="mdi mdi-delete"
                   :title="$text('level_details_delete_solution_button')"
-                  @mousedown="deleteSolution(solution.id, $event)"
-                  @touchstart="deleteSolution(solution.id, $event); $event.preventDefault()" />
+                  @mousedown.stop.prevent="deleteSolution(solution.id, $event)"
+                  @touchstart.stop.prevent="deleteSolution(solution.id, $event)" />
 
               </template>
 
@@ -132,8 +132,8 @@
       <button type="button"
         class="add-button mdi mdi-plus-circle"
         :title="$text('level_details_add_solution_button')"
-        @mousedown="createSolution"
-        @touchstart="createSolution" />
+        @mousedown.stop.prevent="createSolution"
+        @touchstart.stop.prevent="createSolution" />
 
     </div>
 
@@ -216,24 +216,18 @@ export default {
     },
 
     createSolution(e) {
-      e.stopPropagation()
-      e.preventDefault()
       let solution = this.levelSolutions.createDefaultSolution(this.level)
       this.renamedSolutionID = solution.id
       this.renamedSolutionName = solution.name
     },
 
     duplicateSolution(solutionID, e) {
-      e.stopPropagation()
-      e.preventDefault()
       let solution = this.levelSolutions.duplicateSolution(solutionID, this.$text('level_details_duplicate_solution_suffix'))
       this.renamedSolutionID = solution.id
       this.renamedSolutionName = solution.name
     },
 
     deleteSolution(solutionID, e) {
-      e.stopPropagation()
-
       this.$refs.modalLayer.addModal({
         component: Modal,
         key: 'delete-solution-warning',
@@ -255,8 +249,6 @@ export default {
     },
 
     selectRenamedSolution(solutionID, name, e) {
-      e.stopPropagation()
-      e.preventDefault()
       this.renamedSolutionID = solutionID
       this.renamedSolutionName = name
     },

@@ -23,7 +23,7 @@
         :score="level.score"
         :class="{'selected': level.id === selectedID}"
         @mousedown.native="selectLevel(level.level.id, level.unlocked)"
-        @touchstart.native="$event.preventDefault(); selectLevel(level.id, level.unlocked)" />
+        @touchstart.native.prevent="selectLevel(level.id, level.unlocked)" />
     </card-list>
   </div>
 

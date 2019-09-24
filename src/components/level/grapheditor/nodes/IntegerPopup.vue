@@ -3,7 +3,7 @@
   <div ref="input"
     class="integer-input"
     @mousedown="handlePopupClick"
-    @touchstart="handlePopupTouchStart">
+    @touchstart.prevent="handlePopupClick">
 
     <button class="minus-button mdi mdi-minus"
       @mousedown="decrement"
@@ -82,11 +82,6 @@ export default {
         number = this.max
       }
       this.integer = number
-    },
-
-    handlePopupTouchStart(e) {
-      e.preventDefault()
-      this.handlePopupClick(e)
     },
 
     handlePopupClick(e) {

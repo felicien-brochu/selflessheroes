@@ -20,7 +20,7 @@
 						'selected': index === selectedTab
 					}"
           @mousedown="selectTab(index)"
-          @touchstart="$event.preventDefault(); selectTab(index)">
+          @touchstart.prevent="selectTab(index)">
           <palette-statement v-if="tab.type === 'statement-tab'"
             :statement="tab.statement" />
 

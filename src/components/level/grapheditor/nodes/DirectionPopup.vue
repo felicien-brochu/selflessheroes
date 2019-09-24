@@ -6,7 +6,8 @@
 				'selected': selectedDirectionNames.includes(dir),
 				'no-value': notHere && dir === 'here'
 			}"
-      @click="handleDirectionClick(dir)">
+      @mousedown.prevent.stop="handleDirectionClick(dir)"
+      @touchstart.prevent.stop="handleDirectionClick(dir)">
       <button class="tile" />
       <div :class="{
 				'tile-icon': true,

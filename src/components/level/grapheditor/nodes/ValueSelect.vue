@@ -3,20 +3,20 @@
 	'value-select': true,
 	'no-background': isDirection
 	}"
-  @mousedown="handleClickContainer"
-  @touchstart="handleClickContainer">
+  @mousedown.prevent.stop="handleClickContainer"
+  @touchstart.prevent.stop="handleClickContainer">
 
   <div ref="labelContainer"
     class="label-container">
     <direction-value v-if="isDirection"
       :value="value"
       :notHere="directionNotHere"
-      @mousedown.native="handleEditDirection"
-      @touchstart.native="handleEditDirection" />
+      @mousedown.native.prevent.stop="handleEditDirection"
+      @touchstart.native.prevent.stop="handleEditDirection" />
     <div v-else-if="isInteger"
       class="label number-label"
-      @mousedown="handleEditInteger"
-      @touchstart="handleEditInteger">
+      @mousedown.prevent.stop="handleEditInteger"
+      @touchstart.prevent.stop="handleEditInteger">
       <div class="label-text">{{label}}</div>
     </div>
     <div v-else
@@ -24,8 +24,8 @@
 				'label': true,
 				'arithmetic-operator': isArithmeticOperator
 			}"
-      @mousedown="handleDropDown"
-      @touchstart="handleDropDown"><i v-if="icon.length > 0"
+      @mousedown.prevent.stop="handleDropDown"
+      @touchstart.prevent.stop="handleDropDown"><i v-if="icon.length > 0"
         :class="`icon-${icon}`" />
       <div class="label-text">{{label}}</div>
     </div>
@@ -194,12 +194,10 @@ export default {
     },
 
     handleDropDown(e) {
-      e.stopPropagation()
       this.openDropDownList()
     },
 
     handleEditDirection(e) {
-      e.stopPropagation()
       this.editDirection()
     },
 

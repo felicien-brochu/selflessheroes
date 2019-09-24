@@ -35,14 +35,14 @@
             type="button"
             :title="$text('level_help_button')"
             @mousedown="showHelpModal"
-            @touchstart="$event.preventDefault(); showHelpModal()" />
+            @touchstart.prevent="showHelpModal" />
         </li>
         <li>
           <button class="objective-button mdi mdi-flag-variant"
             type="button"
             :title="$text('level_objective_button')"
             @mousedown="showObjectiveModal"
-            @touchstart="$event.preventDefault(); showObjectiveModal()" />
+            @touchstart.prevent="showObjectiveModal" />
         </li>
       </ul>
 

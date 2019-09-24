@@ -15,7 +15,7 @@
         type="button"
         :title="backButtonTitle"
         @mousedown="goBack"
-        @touchstart="$event.preventDefault(); goBack()" />
+        @touchstart.prevent="goBack" />
     </transition>
 
     <transition name="delay"
@@ -26,7 +26,7 @@
         type="button"
         :title="$text('navigation_exit_button')"
         @mousedown="exitApp"
-        @touchstart="$event.preventDefault(); exitApp()" />
+        @touchstart.prevent="exitApp" />
     </transition>
 
     <button class="menu-button mdi mdi-menu-open"
@@ -34,7 +34,7 @@
       type="button"
       :title="$text('navigation_menu_button')"
       @mousedown="openMenu"
-      @touchstart="$event.preventDefault(); openMenu()" />
+      @touchstart.prevent="openMenu" />
 
   </div>
 

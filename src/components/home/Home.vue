@@ -74,7 +74,7 @@
       </li>
 
       <form v-else
-        @submit="createCareer"
+        @submit.prevent="createCareer"
         action="/"
         method="post"
         class="career-item new-career-form"
@@ -169,7 +169,6 @@ export default {
           })
         }
       }
-      e.preventDefault()
     },
 
     handleClickOutside(e) {

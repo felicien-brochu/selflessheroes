@@ -4,7 +4,7 @@
 	'disabled': !startDragEvent
 	}"
   @mouseup="handleDrop"
-  @touchend="handleDrop"
+  @touchend.prevent="handleDrop"
   @mousemove="handleDragOver"
   @touchmove="handleDragOver"
   @mouseleave="handleDragOut"
@@ -80,9 +80,6 @@ export default {
     },
 
     handleDrop(e) {
-      if (e.type === 'touchend') {
-        e.preventDefault()
-      }
       this.clearDragContainer()
       this.destroyTouchEventProxy()
       this.$emit('drop', e)
