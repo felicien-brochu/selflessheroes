@@ -29,11 +29,11 @@
       :to="career.url">
 
       <div class="buttons-container">
-        <button class="svae-button mdi mdi-content-save-move"
+        <button class="save-button mdi mdi-content-save-move"
           type="button"
           :title="$text('home_save_career_button')"
-          @click.prevent="saveCareer(career.id, $event)"
-          @touchstart.prevent="saveCareer(career.id, $event)" />
+          @click.prevent="saveCareerFile(career.id, $event)"
+          @touchstart.prevent="saveCareerFile(career.id, $event)" />
 
         <button class="remove-button mdi mdi-minus-circle"
           type="button"
@@ -73,36 +73,53 @@
 
       </li>
 
-      <form v-else
-        @submit.prevent="createCareer"
-        action="/"
-        method="post"
-        class="career-item new-career-form"
-        key="new-career-form">
+      <li v-else
+        class="career-item new-career-form">
+        <form @submit.prevent="createCareer"
+          action="/"
+          method="post"
+          key="new-career-form">
 
-        <h3 v-text-fit="{
-		      alignHoriz: true,
-		      alignVert: true
-		    }">{{$text('home_new_game')}}</h3>
+          <h3 v-text-fit="{
+			      alignHoriz: true,
+			      alignVert: true
+			    }">{{$text('home_new_game')}}</h3>
 
-        <div class="name-input-wrapper">
+          <div class="name-input-wrapper">
 
-          <div class="input-wrapper">
-            <input id="name"
-              v-model="name"
+            <input id="new-career-name"
+              v-model="newCareerName"
               type="text"
-              name="name"
+              name="newCareerName"
               autocomplete="off"
               v-focus
-              :placeholder="$text('home_new_game_name_placeholder')" />
+              :placeholder="$text('home_new_career_name_placeholder')" />
+
+            <button class="mdi mdi-arrow-right"
+              type="submit"
+              :disabled="!newCareerName || newCareerName.length <= 0" />
+
           </div>
+        </form>
 
-          <button class="mdi mdi-arrow-right"
-            type="submit" />
+        <div class="or-separator">{{$text('home_new_career_or_separator')}}</div>
 
-        </div>
+        <form @submit.prevent=""
+          class="load-career-form"
+          action="/"
+          method="post"
+          key="load-career-form">
 
-      </form>
+          <input id="saved-game-file"
+            type="file"
+            name="savedGameFile"
+            accept=".shsv"
+            @change="handleSavedGameFileChange" />
+          <label for="saved-game-file"
+            v-bbcode>{{$text('home_load_career_button')}}</label>
+
+        </form>
+      </li>
 
     </transition>
 
@@ -133,7 +150,7 @@ export default {
 
   data: function() {
     return {
-      name: null,
+      newCareerName: null,
       newCareer: false,
       storage: storage,
       careerFileDragged: false,
@@ -158,8 +175,8 @@ export default {
 
   methods: {
     createCareer(e) {
-      if (this.name && this.name.length > 0) {
-        let career = storage.createCareer(this.name)
+      if (this.newCareerName && this.newCareerName.length > 0) {
+        let career = storage.createCareer(this.newCareerName)
         if (career) {
           this.$router.push({
             name: 'level-list',
@@ -204,8 +221,18 @@ export default {
       this.showWrongFormatFileModal()
     },
 
-    saveCareer(careerID, e) {
-      storage.saveCareer(careerID)
+    handleSavedGameFileChange(e) {
+      let file = e.target.files[0]
+      if (file.name.endsWith(".shsv")) {
+        this.loadSavedCareer(file)
+      }
+      else {
+        this.showWrongFormatFileModal()
+      }
+    },
+
+    saveCareerFile(careerID, e) {
+      storage.saveCareerFile(careerID)
     },
 
     loadSavedCareer(file) {
@@ -215,7 +242,16 @@ export default {
         let json = e.target.result
 
         try {
-          storage.loadSavedCareer(json)
+          let career = storage.loadSavedCareer(json)
+
+          if (career) {
+            this.$router.push({
+              name: 'level-list',
+              params: {
+                careerID: career.id
+              }
+            })
+          }
         }
         catch (ex) {
           console.error("Error while loading saved game from .shsv file", ex)
@@ -325,6 +361,11 @@ export default {
         outline: none;
         padding: 0;
         cursor: pointer;
+        transition: opacity ease 500ms;
+
+        &[disabled] {
+            opacity: 0.3;
+        }
     }
 
     .career-list {
@@ -438,45 +479,82 @@ export default {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-bottom: 80px;
+            padding: 30px;
             cursor: default;
 
             h3 {
                 font-weight: 500;
-                margin: 0 0 25px;
-                width: 220px;
+                margin: 0 auto 10px;
+                width: 200px;
                 height: 36px;
                 text-transform: capitalize;
             }
 
             .name-input-wrapper {
                 display: flex;
+                border-radius: 3px;
+                background-color: #353c4a;
                 flex-direction: row;
-                justify-content: center;
+                justify-content: start;
 
-                .input-wrapper {
-                    margin-left: 5px;
-
-                    input[type=text] {
-                        border-radius: 5px;
-                        border: none;
-                        font-size: 24px;
-                        padding: 7px 12px;
-                        box-sizing: border-box;
-                        width: 100%;
-                        font-family: inherit;
-                        font-weight: 500;
-                        color: $default-card-color;
-                    }
+                input[type=text] {
+                    min-width: 0;
+                    box-sizing: border-box;
+                    font-size: 24px;
+                    color: white;
+                    font-weight: 500;
+                    padding: 11px 0 11px 17px;
+                    background: none;
+                    font-family: inherit;
+                    border: none;
                 }
 
                 button {
                     color: white;
-                    font-size: 44px;
+                    font-size: 30px;
                     line-height: 40px;
-                    padding: 0;
-                    margin-left: 6px;
+                    padding: 0 9px 0 6px;
                     flex-shrink: 0;
+                    flex-grow: 0;
+                }
+            }
+
+            .or-separator {
+                font-size: 30px;
+                font-weight: 500;
+                text-align: center;
+                margin: 20px 0;
+            }
+
+            .load-career-form {
+                margin: 0 auto;
+                max-width: 100%;
+
+                input {
+                    display: none;
+                }
+
+                input + label {
+                    text-align: center;
+                    display: block;
+                    width: 220px;
+                    box-sizing: border-box;
+                    cursor: pointer;
+                    font-weight: 500;
+                    font-size: 19px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    padding: 13px 18px;
+                    border-radius: 3px;
+                    box-shadow: inset 0 0 10px 3px #0003, 0 0 10px 0 #0003;
+                    background-color: hsl(220, 18%, 29%);
+                    color: #d4d4d4;
+
+                    &:hover {
+                        color: #e5e5e5;
+                        background-color: hsl(220, 18%, 32%);
+                    }
                 }
             }
         }

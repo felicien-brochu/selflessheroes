@@ -22,7 +22,9 @@ const messages = {
     screen_size_warning_2: "Selfless Heroes is designed to work on desktop, laptop and tablet. To play this game, you must have a screen size of at least {minMaxDimension}\u00A0x\u00A0{minMinDimension} pixels: your screen is only {maxDimension}\u00A0x\u00A0{minDimension} pixels.",
 
     home_new_game: "new game:",
-    home_new_game_name_placeholder: "Pseudo",
+    home_new_career_name_placeholder: "pseudo",
+    home_new_career_or_separator: "or",
+    home_load_career_button: "%%mdi mdi-content-save-move$%% Load a game",
     home_save_career_button: "Save as…",
     home_remove_career_button: "Remove",
     home_remove_career_warning: "Are you really sure to delete this game?\nAll progression will be lost.",
@@ -281,7 +283,9 @@ const messages = {
     screen_size_warning_2: "Selfless Heroes est conçu pour fonctionner sur ordinateur et tablette. Pour jouer à ce jeu, vous devez avoir un écran d'une taille minimum de {minMaxDimension}\u00A0x\u00A0{minMinDimension} pixels\u00A0: votre écran ne fait que {maxDimension}\u00A0x\u00A0{minDimension} pixels.",
 
     home_new_game: "nouvelle partie\u00A0:",
-    home_new_game_name_placeholder: "Pseudo",
+    home_new_career_name_placeholder: "pseudo",
+    home_new_career_or_separator: "ou",
+    home_load_career_button: "%%mdi mdi-content-save-move$%% Charger une partie",
     home_save_career_button: "Enregistrer sous…",
     home_remove_career_button: "Supprimer",
     home_remove_career_warning: "Êtes-vous vraiment sûr de vouloir supprimer cette partie\u00A0?\nToute progression sera perdue.",

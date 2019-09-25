@@ -34,7 +34,7 @@ export class Storage extends StorageWrapper {
     return this.careers.find(c => c.get().id === id)
   }
 
-  saveCareer(careerID) {
+  saveCareerFile(careerID) {
     let career = this.getCareer(careerID)
     let savedObject = {
       version: storageVersion,
@@ -62,6 +62,8 @@ export class Storage extends StorageWrapper {
     this.careers.push(career)
 
     this.save(false)
+
+    return career
   }
 
   deleteCareer(careerID) {
