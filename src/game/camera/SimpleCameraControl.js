@@ -18,8 +18,6 @@ export default class FollowCharactersCameraControl extends CameraControl {
   }
 
   init() {
-    let characterFrame = this.getCharacterFrame()
-
     this.camera.setZoom(this.getTargetZoom())
     this.resizeCameraViewport()
     this.resizeBounds()
@@ -27,13 +25,14 @@ export default class FollowCharactersCameraControl extends CameraControl {
   }
 
   getFrameCenter() {
-    let target = this.getTargetFrame()
+    let target = this.frame
     let marginLeft = this.margin.left / this.camera.zoom
     let marginRight = (this.margin.right + this.floatingPanelWidth) / this.camera.zoom
     let marginTop = this.margin.top / this.camera.zoom
     let marginBottom = this.margin.bottom / this.camera.zoom
     let centerX = target.x - marginLeft + ((target.width + marginLeft + marginRight) / 2)
     let centerY = target.y - marginTop + ((target.height + marginTop + marginBottom) / 2)
+
     return {
       x: centerX,
       y: centerY
@@ -46,7 +45,7 @@ export default class FollowCharactersCameraControl extends CameraControl {
   }
 
   getTargetZoom() {
-    let target = this.getTargetFrame()
+    let target = this.frame
     let hZoom = (this.availableWidth - (this.margin.left + this.margin.right)) / target.width
     let vZoom = (this.visibleHeight - (this.margin.top + this.margin.bottom)) / target.height
     let zoom = Math.min(hZoom, vZoom)
@@ -73,23 +72,12 @@ export default class FollowCharactersCameraControl extends CameraControl {
   }
 
   resizeBounds() {
-    let maxDimension = Math.max(this.mapWidth, this.mapHeight)
-    this.camera.setBounds(-(maxDimension / 2), -(maxDimension / 2), maxDimension * 2, maxDimension * 2)
-  }
-
-  getTargetFrame() {
-    let characterFrame = this.getCharacterFrame()
-
-    return {
-      x: characterFrame.x,
-      y: characterFrame.y,
-      width: characterFrame.width,
-      height: characterFrame.height,
-    }
-  }
-
-  getCharacterFrame() {
-    return this.frame
+    let targetZoom = Math.max(0.1, this.getTargetZoom() - 0.5)
+    let width = this.visibleWidth / targetZoom
+    let height = this.visibleHeight / targetZoom
+    let xOrigin = -(width - (this.mapWidth)) / 2
+    let yOrigin = -(height - (this.mapHeight)) / 2
+    this.camera.setBounds(xOrigin, yOrigin, width, height)
   }
 
   update(delta) {
