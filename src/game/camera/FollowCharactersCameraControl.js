@@ -27,7 +27,6 @@ export default class FollowCharactersCameraControl extends CameraControl {
 
     this.camera.setZoom(this.getTargetZoom())
     this.resizeCameraViewport()
-    this.resizeBounds()
     this.centerFrame()
   }
 
@@ -68,17 +67,11 @@ export default class FollowCharactersCameraControl extends CameraControl {
       this.visibleHeight = visibleHeight
       this.floatingPanelWidth = floatingPanelWidth
       this.resizeCameraViewport()
-      this.resizeBounds()
     }
   }
 
   resizeCameraViewport() {
     this.camera.setViewport(0, 0, this.visibleWidth, this.visibleHeight)
-  }
-
-  resizeBounds() {
-    let maxDimension = Math.max(this.mapWidth, this.mapHeight)
-    this.camera.setBounds(-(maxDimension / 2), -(maxDimension / 2), maxDimension * 2, maxDimension * 2)
   }
 
   getTargetFrame() {

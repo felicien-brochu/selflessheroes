@@ -20,14 +20,13 @@ export default class FollowCharactersCameraControl extends CameraControl {
   init() {
     this.camera.setZoom(this.getTargetZoom())
     this.resizeCameraViewport()
-    this.resizeBounds()
     this.centerFrame()
   }
 
   getFrameCenter() {
     let target = this.frame
     let marginLeft = this.margin.left / this.camera.zoom
-    let marginRight = (this.margin.right + this.floatingPanelWidth) / this.camera.zoom
+    let marginRight = Math.max(this.margin.right, this.floatingPanelWidth) / this.camera.zoom
     let marginTop = this.margin.top / this.camera.zoom
     let marginBottom = this.margin.bottom / this.camera.zoom
     let centerX = target.x - marginLeft + ((target.width + marginLeft + marginRight) / 2)
@@ -63,21 +62,11 @@ export default class FollowCharactersCameraControl extends CameraControl {
       this.visibleHeight = visibleHeight
       this.floatingPanelWidth = floatingPanelWidth
       this.resizeCameraViewport()
-      this.resizeBounds()
     }
   }
 
   resizeCameraViewport() {
     this.camera.setViewport(0, 0, this.visibleWidth, this.visibleHeight)
-  }
-
-  resizeBounds() {
-    let targetZoom = Math.max(0.1, this.getTargetZoom() - 0.5)
-    let width = this.visibleWidth / targetZoom
-    let height = this.visibleHeight / targetZoom
-    let xOrigin = -(width - (this.mapWidth)) / 2
-    let yOrigin = -(height - (this.mapHeight)) / 2
-    this.camera.setBounds(xOrigin, yOrigin, width, height)
   }
 
   update(delta) {

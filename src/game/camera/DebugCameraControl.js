@@ -42,7 +42,6 @@ export default class DebugCameraControl extends CameraControl {
   init() {
     this.setInitialZoom()
     this.resizeCameraViewport()
-    this.resizeBounds()
     this.centerFrame()
   }
 
@@ -76,7 +75,6 @@ export default class DebugCameraControl extends CameraControl {
       this.visibleHeight = visibleHeight
       this.floatingPanelWidth = floatingPanelWidth
       this.resizeCameraViewport()
-      this.resizeBounds()
     }
   }
 
@@ -96,34 +94,6 @@ export default class DebugCameraControl extends CameraControl {
 
   resizeCameraViewport() {
     this.camera.setViewport(0, 0, this.visibleWidth, this.visibleHeight)
-  }
-
-  resizeBounds() {
-    let camera = this.camera
-
-    let minWidth = this.mapWidth + 2 * xMargin
-    let minHeight = this.mapHeight + 2 * yMargin
-    let width
-    let height
-    let x
-    let y
-
-    if (camera.zoom * minWidth < this.visibleWidth) {
-      x = -((this.visibleWidth / camera.zoom) - this.mapWidth) / 2
-      width = this.visibleWidth / camera.zoom
-    } else {
-      x = -xMargin
-      width = minWidth
-    }
-
-    if (camera.zoom * minHeight < this.visibleHeight) {
-      y = -((this.visibleHeight / camera.zoom) - this.mapHeight) / 2
-      height = this.visibleHeight / camera.zoom
-    } else {
-      y = -yMargin
-      height = minHeight
-    }
-    camera.setBounds(x, y, width, height)
   }
 
   update(delta) {
@@ -174,9 +144,7 @@ export default class DebugCameraControl extends CameraControl {
     let zoomChanged = cam.zoom !== zoom
 
     if (zoomChanged) {
-      cam.zoomTo(zoom, 100, Phaser.Math.Easing.Linear.Linear, false, (cam, progress) => {
-        this.resizeBounds()
-      }, this)
+      cam.zoomTo(zoom, 100, Phaser.Math.Easing.Linear.Linear, false, (cam, progress) => {}, this)
     }
   }
 }
