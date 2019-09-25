@@ -232,8 +232,8 @@ export default {
     },
 
     handleNodeContainerResize() {
-      let editorMinWidth = this.$refs.nodeContainer.offsetLeft + this.$refs.nodeContainer.offsetWidth + 1
-      this.$emit('change-min-width', editorMinWidth)
+      let editorPreferredWidth = this.$refs.nodeContainer.offsetLeft + this.$refs.nodeContainer.offsetWidth + 9
+      this.$emit('change-preferred-width', editorPreferredWidth)
     },
   }
 }
@@ -266,7 +266,7 @@ export default {
         & > .node-container {
             padding-top: $line-margin;
             padding-bottom: $node-line-height + $line-margin + 10;
-            padding-right: 16px;
+            padding-right: 8px;
             z-index: 10;
         }
     }

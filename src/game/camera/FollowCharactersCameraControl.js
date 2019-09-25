@@ -6,12 +6,12 @@ const zoomSpeed = 0.03
 const translationSpeed = 0.05
 
 export default class FollowCharactersCameraControl extends CameraControl {
-  constructor(config, scene, camera, visibleWidth, visibleHeight, mapWidth, mapHeight, margin) {
+  constructor(config, scene, camera, visibleWidth, visibleHeight, floatingPanelWidth, mapWidth, mapHeight, margin) {
     var controlConfig = {
       camera: camera,
     }
 
-    super(config, scene, camera, controlConfig, visibleWidth, visibleHeight, mapWidth, mapHeight, margin)
+    super(config, scene, camera, controlConfig, visibleWidth, visibleHeight, floatingPanelWidth, mapWidth, mapHeight, margin)
 
     this.frame = this.config.frame
   }
@@ -34,7 +34,7 @@ export default class FollowCharactersCameraControl extends CameraControl {
   getFrameCenter() {
     let target = this.getTargetFrame()
     let marginLeft = this.margin.left / this.camera.zoom
-    let marginRight = this.margin.right / this.camera.zoom
+    let marginRight = (this.margin.right + this.floatingPanelWidth) / this.camera.zoom
     let marginTop = this.margin.top / this.camera.zoom
     let marginBottom = this.margin.bottom / this.camera.zoom
     let centerX = target.x - marginLeft + ((target.width + marginLeft + marginRight) / 2)
@@ -52,23 +52,21 @@ export default class FollowCharactersCameraControl extends CameraControl {
 
   getTargetZoom() {
     let target = this.getTargetFrame()
-    let hZoom = (this.visibleWidth - (this.margin.left + this.margin.right)) / target.width
+    let hZoom = (this.availableWidth - (this.margin.left + this.margin.right)) / target.width
     let vZoom = (this.visibleHeight - (this.margin.top + this.margin.bottom)) / target.height
     let zoom = Math.min(hZoom, vZoom)
     return zoom
   }
 
-  onResize(visibleWidth, visibleHeight) {
-    this.setVisibleSize(visibleWidth, visibleHeight)
-    this.camera.setZoom(this.getTargetZoom())
-    this.resizeCameraViewport()
-    this.centerFrame()
+  onResize(visibleWidth, visibleHeight, floatingPanelWidth) {
+    this.setVisibleSize(visibleWidth, visibleHeight, floatingPanelWidth)
   }
 
-  setVisibleSize(visibleWidth, visibleHeight) {
-    if (visibleWidth !== this.visibleWidth || visibleHeight !== this.visibleHeight) {
+  setVisibleSize(visibleWidth, visibleHeight, floatingPanelWidth) {
+    if (visibleWidth !== this.visibleWidth || visibleHeight !== this.visibleHeight || this.floatingPanelWidth !== floatingPanelWidth) {
       this.visibleWidth = visibleWidth
       this.visibleHeight = visibleHeight
+      this.floatingPanelWidth = floatingPanelWidth
       this.resizeCameraViewport()
       this.resizeBounds()
     }

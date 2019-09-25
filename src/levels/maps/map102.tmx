@@ -49,7 +49,7 @@
 </data>
  </layer>
  <objectgroup id="14" name="camera">
-  <object id="12" name="frame" type="frame" x="51" y="33" width="411" height="443"/>
+  <object id="12" name="frame" type="frame" x="51" y="33" width="411" height="430"/>
   <object id="15" name="strategy" type="cameraStrategy" x="3" y="126">
    <point/>
   </object>

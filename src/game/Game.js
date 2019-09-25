@@ -43,6 +43,7 @@ export default class extends Phaser.Scene {
     this.runner.events.on('before-step', this.beforeStep)
     this.runner.events.on('after-step', this.afterStep)
     this.editorWidth = 350
+    this.floatingPanelWidth = 120
     this.cameraConfig = null
 
     this.customEvents = new EventEmitter()
@@ -232,11 +233,12 @@ export default class extends Phaser.Scene {
       camera,
       window.innerWidth - 350,
       window.innerHeight,
+      this.floatingPanelWidth,
       this.map.widthInPixels,
       this.map.heightInPixels, {
-        top: 80,
-        right: 112 + 50,
-        bottom: 87 + 80,
+        top: 100,
+        right: 50,
+        bottom: 87 + 60,
         left: 50
       })
 
@@ -506,13 +508,15 @@ export default class extends Phaser.Scene {
     return this.compilerConfig
   }
 
-  handleResize(width, height, ratio) {
-    this.cameraControl.onResize(window.innerWidth - this.editorWidth, window.innerHeight)
+  handleResize() {
+    this.cameraControl.onResize(window.innerWidth - this.editorWidth, window.innerHeight, this.floatingPanelWidth)
   }
 
-  handleEditorResize(editorWidth) {
+  handleEditorResize(editorWidth, floatingPanelWidth) {
     this.editorWidth = editorWidth
-    this.cameraControl.onResize(window.innerWidth - this.editorWidth, window.innerHeight)
+    this.floatingPanelWidth = floatingPanelWidth
+
+    this.cameraControl.onResize(window.innerWidth - this.editorWidth, window.innerHeight, this.floatingPanelWidth)
   }
 
   handleSpeedChange(speedIndex) {

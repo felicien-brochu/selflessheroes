@@ -195,6 +195,18 @@
                  "width":256.5,
                  "x":33,
                  "y":29.5
+                }, 
+                {
+                 "height":0,
+                 "id":20,
+                 "name":"strategy",
+                 "point":true,
+                 "rotation":0,
+                 "type":"cameraStrategy",
+                 "visible":true,
+                 "width":0,
+                 "x":-8,
+                 "y":130
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -239,7 +251,7 @@
          "y":0
         }],
  "nextlayerid":124,
- "nextobjectid":20,
+ "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2019.03.13",

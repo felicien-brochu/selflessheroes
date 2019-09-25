@@ -32,7 +32,7 @@
       @node-change="handleNodeChange"
       @start-edit="$emit('start-edit')"
       @select-follow-hero="$emit('select-follow-hero', $event)"
-      @change-min-width="handleGraphCodeChangeMinWidth">
+      @change-preferred-width="handleGraphCodeChangePreferredWidth">
 
       <transition :duration="{enter: 1000, leave: 0}"
         appear
@@ -280,8 +280,8 @@ export default {
       }
     },
 
-    handleGraphCodeChangeMinWidth(minWidth) {
-      this.$emit('change-min-width', minWidth)
+    handleGraphCodeChangePreferredWidth(preferredWidth) {
+      this.$emit('change-preferred-width', preferredWidth)
       this.$refs.jumpLinkLayer.updateLinkPaths()
     },
   }

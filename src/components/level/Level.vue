@@ -21,7 +21,7 @@
     :allow-resize="editorType === 'code'"
     :size="editorWidth"
     :minSize="320"
-    :maxSize="480"
+    :maxSize="getEditorMaxSize()"
     :resizerThickness="2"
     units="pixels"
     resizerColor="#4b5261"
@@ -75,7 +75,7 @@
       @start-edit="handleStartEdit"
       @select-follow-hero="followHeroIndex = $event"
       @change-type="handleEditorTypeChange"
-      @change-min-width="handleEditorMinWidthChange" />
+      @change-preferred-width="handleEditorPreferredWidthChange" />
 
   </resize-split-pane>
 </div>
@@ -151,6 +151,7 @@ export default {
         undefinedLiterals: []
       },
       editorWidth: 350,
+      editorPreferredWidth: 350,
     }
   },
 
@@ -185,6 +186,8 @@ export default {
       leading: false,
       trailing: true
     })
+
+    this.applyNextPreferredEditorWidth = true
   },
 
   mounted() {
@@ -218,6 +221,20 @@ export default {
         }
       }
     }
+  },
+
+  watch: {
+    worldState: function(newState, oldState) {
+      this.$nextTick(() => {
+        this.handleEditorResize()
+      })
+    },
+
+    followHeroIndex: function(newIndex, oldIndex) {
+      this.$nextTick(() => {
+        this.handleEditorResize()
+      })
+    },
   },
 
   methods: {
@@ -265,6 +282,10 @@ export default {
       }
       else {
         this.compileCode()
+      }
+
+      if (this.editorType === 'graph') {
+        this.applyNextPreferredEditorWidth = true
       }
     },
 
@@ -465,6 +486,7 @@ export default {
         this.insertHistoryCorrection()
         this.solution.save()
       }
+      // Graph code change
       else {
         this.pushHistory()
         this.solution.save()
@@ -475,12 +497,19 @@ export default {
       this.editorType = editorType
       this.solution.editorType = editorType
       this.solution.save()
+      if (this.editorType === 'graph') {
+        this.applyNextPreferredEditorWidth = true
+      }
+      else {
+        this.handleEditorResize(this.editorPreferredWidth)
+      }
     },
 
-    handleEditorMinWidthChange(editorMinWidth) {
-      let newEditorWidth = Math.min(480, Math.max(editorMinWidth, 320))
-      if (this.editorWidth < newEditorWidth || (this.editorWidth > 350 && this.editorWidth > newEditorWidth)) {
-        this.handleEditorResize(newEditorWidth)
+    handleEditorPreferredWidthChange(editorPreferredWidth) {
+      this.editorPreferredWidth = Math.min(480, Math.max(editorPreferredWidth, 350))
+      if (this.applyNextPreferredEditorWidth) {
+        this.handleEditorResize(this.editorPreferredWidth)
+        this.applyNextPreferredEditorWidth = false
       }
     },
 
@@ -491,11 +520,34 @@ export default {
       }
     },
 
-    handleEditorResize(editorWidth) {
+    handleEditorResize(editorWidth = this.editorWidth) {
       this.editorWidth = editorWidth
       if (this.gameScene) {
-        this.gameScene.handleEditorResize(editorWidth)
+        let floatingPanelWidth = 0
+
+        if (this.worldState.steps === 0) {
+          if (this.editorType === 'graph') {
+            let palette = document.querySelector(".palette")
+            if (palette) {
+              floatingPanelWidth = palette.offsetWidth
+            }
+          }
+        }
+        else {
+          if (this.followHeroIndex >= 0) {
+            let variableDebugger = document.querySelector(".variable-debugger")
+            if (variableDebugger) {
+              floatingPanelWidth = variableDebugger.offsetWidth
+            }
+          }
+        }
+
+        this.gameScene.handleEditorResize(editorWidth, floatingPanelWidth)
       }
+    },
+
+    getEditorMaxSize() {
+      return window.innerWidth - 360
     },
 
     handlePlayPause(play) {

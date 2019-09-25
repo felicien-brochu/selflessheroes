@@ -41,7 +41,7 @@
 </data>
  </layer>
  <objectgroup id="14" name="camera">
-  <object id="12" name="frame" type="frame" x="50" y="32.333" width="378.333" height="314.485"/>
+  <object id="12" name="frame" type="frame" x="50" y="32.333" width="378.333" height="303.485"/>
  </objectgroup>
  <objectgroup id="2" name="objects">
   <object id="11" name="switch" type="switch" x="147" y="243">

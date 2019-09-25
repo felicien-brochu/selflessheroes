@@ -19,13 +19,13 @@
          "name":"camera",
          "objects":[
                 {
-                 "height":157.333333333333,
+                 "height":140.333,
                  "id":12,
                  "name":"frame",
                  "rotation":0,
                  "type":"frame",
                  "visible":true,
-                 "width":377.666666666667,
+                 "width":377.667,
                  "x":51,
                  "y":33
                 }, 

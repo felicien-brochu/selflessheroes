@@ -8,7 +8,7 @@ const xMargin = 64
 const yMargin = 64
 
 export default class DebugCameraControl extends CameraControl {
-  constructor(config, scene, camera, visibleWidth, visibleHeight, mapWidth, mapHeight, margin) {
+  constructor(config, scene, camera, visibleWidth, visibleHeight, floatingPanelWidth, mapWidth, mapHeight, margin) {
     scene.mouseWheelToUpDown = scene.plugins.get('rexMouseWheelToUpDown').add(scene)
     var cursorKeys = scene.mouseWheelToUpDown.createCursorKeys()
     var cursors = scene.input.keyboard.addKeys({
@@ -33,7 +33,7 @@ export default class DebugCameraControl extends CameraControl {
       }
     }
 
-    super(config, scene, camera, controlConfig, visibleWidth, visibleHeight, mapWidth, mapHeight, margin)
+    super(config, scene, camera, controlConfig, visibleWidth, visibleHeight, floatingPanelWidth, mapWidth, mapHeight, margin)
 
     this.frame = this.config.frame
     this.origDragPoint = null
@@ -48,7 +48,7 @@ export default class DebugCameraControl extends CameraControl {
 
   centerFrame() {
     let marginLeft = this.margin.left / this.camera.zoom
-    let marginRight = this.margin.right / this.camera.zoom
+    let marginRight = (this.margin.right + this.floatingPanelWidth) / this.camera.zoom
     let marginTop = this.margin.top / this.camera.zoom
     let marginBottom = this.margin.bottom / this.camera.zoom
     let centerX = this.frame.x - marginLeft + ((this.frame.width + marginLeft + marginRight) / 2)
@@ -57,7 +57,7 @@ export default class DebugCameraControl extends CameraControl {
   }
 
   setInitialZoom() {
-    let hZoom = (this.visibleWidth - (this.margin.left + this.margin.right)) / this.frame.width
+    let hZoom = (this.availableWidth - (this.margin.left + this.margin.right)) / this.frame.width
     let vZoom = (this.visibleHeight - (this.margin.top + this.margin.bottom)) / this.frame.height
     let zoom = Math.min(hZoom, vZoom)
     zoom = Math.max(zoom, minZoom)
@@ -65,15 +65,16 @@ export default class DebugCameraControl extends CameraControl {
     this.camera.setZoom(zoom)
   }
 
-  onResize(visibleWidth, visibleHeight) {
-    this.setVisibleSize(visibleWidth, visibleHeight)
+  onResize(visibleWidth, visibleHeight, floatingPanelWidth) {
+    this.setVisibleSize(visibleWidth, visibleHeight, floatingPanelWidth)
     this.init()
   }
 
-  setVisibleSize(visibleWidth, visibleHeight) {
-    if (visibleWidth !== this.visibleWidth || visibleHeight !== this.visibleHeight) {
+  setVisibleSize(visibleWidth, visibleHeight, floatingPanelWidth) {
+    if (visibleWidth !== this.visibleWidth || visibleHeight !== this.visibleHeight || this.floatingPanelWidth !== floatingPanelWidth) {
       this.visibleWidth = visibleWidth
       this.visibleHeight = visibleHeight
+      this.floatingPanelWidth = floatingPanelWidth
       this.resizeCameraViewport()
       this.resizeBounds()
     }

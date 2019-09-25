@@ -42,7 +42,7 @@
           @code-change="handleGraphCodeChange"
           @select-follow-hero="$emit('select-follow-hero', $event)"
           @start-edit="$emit('start-edit')"
-          @change-min-width="$emit('change-min-width', $event)" />
+          @change-preferred-width="$emit('change-preferred-width', $event)" />
       </transition>
 
     </template>

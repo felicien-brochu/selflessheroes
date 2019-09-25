@@ -98,7 +98,7 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="14" name="camera" visible="0">
+ <objectgroup id="14" name="camera">
   <object id="12" name="frame" type="frame" x="49.333" y="30.333" width="412" height="433.818"/>
  </objectgroup>
  <layer id="130" name="types" width="16" height="16">

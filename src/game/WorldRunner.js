@@ -75,11 +75,11 @@ export default class WorldRunner {
 
   play(immediateStep = true) {
     if (this.isPaused() && !this.gameOverDeclared) {
-      this.emitStateChange()
       if (immediateStep) {
         this.step()
       }
       this.timerID = setInterval(this.step.bind(this), this.stepInterval)
+      this.emitStateChange()
     }
   }
 

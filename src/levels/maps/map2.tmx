@@ -38,8 +38,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="14" name="camera" visible="0">
-  <object id="12" name="frame" type="frame" x="49.333" y="32.333" width="347" height="283.818" visible="0"/>
+ <objectgroup id="14" name="camera">
+  <object id="12" name="frame" type="frame" x="49.333" y="32.333" width="347" height="268.818"/>
  </objectgroup>
  <objectgroup id="2" name="objects">
   <object id="11" name="switch" type="switch" x="144.333" y="215">

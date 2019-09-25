@@ -31,19 +31,19 @@
          "name":"camera",
          "objects":[
                 {
-                 "height":283.818,
+                 "height":268.818,
                  "id":12,
                  "name":"frame",
                  "rotation":0,
                  "type":"frame",
-                 "visible":false,
+                 "visible":true,
                  "width":347,
                  "x":49.333,
                  "y":32.333
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
