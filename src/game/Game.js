@@ -176,7 +176,6 @@ export default class extends Phaser.Scene {
       sprite.on('step-to', this.updateCharacterDirection, this)
       sprite.on('observe', this.updateCharacterObservations, this)
       sprite.on('die', this.onHeroDeath, this)
-      sprite.setInteractive()
       sprite.on('pointerdown', () => this.handleClick(sprite), this)
 
       this.observations.set(sprite, [])

@@ -20,6 +20,8 @@ let assets = [
 export default class HeroS extends CharacterS {
   constructor(scene, hero, tileWidth, tileHeight) {
     super(scene, hero, assets[hero.color], tileWidth, tileHeight, 0, -19)
+    this.setInteractive()
+    this.input.hitArea.setTo(0, 14, 32, 40)
   }
 
   getScreamAsset() {
