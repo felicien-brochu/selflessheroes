@@ -61,8 +61,75 @@ import ModalLayer from './modal/ModalLayer'
 import Modal from './modal/Modal'
 import MenuModal from './menu/MenuModal'
 import ProposeFullscreenModal from './menu/ProposeFullscreenModal'
+import lang from '../lang'
+const $text = lang.text.bind(lang)
 
 export default {
+  metaInfo: {
+    title: $text('head_title'),
+    htmlAttrs: {
+      lang: lang.currentLanguage,
+    },
+    // noscript: [{
+    //   innerHTML: `
+    // 		<header></header>
+    // 		<div class="noscript-text">${$text('noscript_message')}</div>
+    // 		`
+    // }],
+    meta: [
+      // 	{
+      //   vmid: "fb:app_id",
+      //   property: "fb:app_id",
+      //   content: FB_APP_ID,
+      // },
+      {
+        vmid: "twitter:card",
+        property: "twitter:card",
+        content: "summary",
+      }, {
+        vmid: "og:type",
+        property: "og:type",
+        content: "website",
+      }, {
+        vmid: "og:url",
+        property: "og:url",
+        content: `${SERVER_PROTOCOL}://${SERVER_DOMAIN}`,
+      }, {
+        vmid: "og:title",
+        property: "og:title",
+        content: $text('head_meta_og_title'),
+      }, {
+        vmid: "og:description",
+        property: "og:description",
+        content: $text('head_meta_og_description'),
+      }, {
+        vmid: "og:image",
+        property: "og:image",
+        content: `${SERVER_PROTOCOL}://${SERVER_DOMAIN}/icons/favicon-96x96.png`,
+      }, {
+        vmid: "og:image:type",
+        property: "og:image:type",
+        content: "image/png",
+      }, {
+        vmid: "og:image:width",
+        property: "og:image:width",
+        content: "96",
+      }, {
+        vmid: "og:image:height",
+        property: "og:image:height",
+        content: "96",
+      }, {
+        vmid: "keywords",
+        name: "keywords",
+        content: $text('head_meta_keywords'),
+      }, {
+        vmid: "description",
+        name: "description",
+        content: $text('head_meta_description'),
+      }
+    ]
+  },
+
   components: {
     ModalLayer
   },

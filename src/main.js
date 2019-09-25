@@ -7,6 +7,8 @@ import App from './components/App'
 import lang from './lang'
 import VueRouter from 'vue-router'
 import VueHotkey from 'v-hotkey'
+import VueMeta from 'vue-meta'
+
 import TextFitDirective from './components/util/TextFitDirective'
 import BBCodeDirective from './components/util/BBCodeDirective'
 import ScreenDimension from './components/util/ScreenDimension'
@@ -14,6 +16,7 @@ import ScreenDimension from './components/util/ScreenDimension'
 Vue.directive('text-fit', TextFitDirective)
 Vue.directive('bbcode', BBCodeDirective)
 Vue.use(VueHotkey)
+Vue.use(VueMeta)
 Vue.use(VueRouter)
 Vue.prototype.$text = lang.text.bind(lang)
 

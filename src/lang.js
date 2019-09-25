@@ -6,6 +6,14 @@ const messages = {
   'en': {
     no_text: "[no-text]",
 
+    head_title: "Selfless Heroes",
+    head_meta_og_title: "Selfless Heroes",
+    head_meta_og_description: "Selfless Heroes is a game that will teach you how to program without you noticing. Solve puzzles and help your heroes emerge victorious from the dungeon!",
+    head_meta_description: "Selfless Heroes is a game that will teach you how to program without you noticing. Solve puzzles and help your heroes emerge victorious from the dungeon!",
+    head_meta_keywords: "puzzle game, video game, serious game, programming, development, puzzle, education, fun, logic, algorithm",
+
+    noscript_message: "Selfless Heroes requires Javascript to be enabled in order to work normally",
+
     app_fullscreen_modal: "In order to have the best game experience,\nit is recommended to go fullscreen",
     app_fullscreen_modal_stop_propose: "Don't show this message again",
     navigation_exit_button: "Exit",
@@ -267,6 +275,10 @@ const messages = {
 
 
   'fr': {
+    head_meta_og_description: "Selfless Heroes est un jeu qui vous apprendra à programmer sans que vous ne le remarquiez. Résolvez des énigmes et aidez vos héros à sortir victorieux du donjon !",
+    head_meta_description: "Selfless Heroes est un jeu qui vous apprendra à programmer sans que vous ne le remarquiez. Résolvez des énigmes et aidez vos héros à sortir victorieux du donjon !",
+    head_meta_keywords: "jeu de réflexion, jeu vidéo, serious game, programmation, développement, énigme, éducation, divertissement, logique, algorithme, algorithm",
+
     app_fullscreen_modal: "Afin d'avoir la meilleure expérience de jeu possible,\nil est recommandé de jouer en plein écran.",
     app_fullscreen_modal_stop_propose: "Ne plus afficher ce message",
     navigation_exit_button: "Quitter",

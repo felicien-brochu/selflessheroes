@@ -123,6 +123,9 @@ const config = {
     new webpack.DefinePlugin({
       ENV: JSON.stringify(env),
       SHOW_STATS: JSON.stringify(env === 'development'),
+      SERVER_DOMAIN: JSON.stringify(process.env.SERVER_DOMAIN),
+      SERVER_PROTOCOL: JSON.stringify(process.env.SERVER_PROTOCOL),
+      FB_APP_ID: JSON.stringify(process.env.FB_APP_ID),
     }),
     new CopyWebpackPlugin(copiedFiles),
     new WebpackAutoInject({

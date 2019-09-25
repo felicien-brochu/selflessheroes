@@ -11,12 +11,12 @@
   "main": "src/electron.js",
   "scripts": {
     "start": "npm run serve:dev",
-    "build-dev": "cross-env NODE_ENV=development webpack --env.platform=web --progress",
-    "build": "cross-env NODE_ENV=production webpack --env.platform=web --progress",
-    "serve:dev": "cross-env NODE_ENV=development webpack-dev-server --env.platform=web --progress --colors --host 0.0.0.0",
-    "serve:prod": "cross-env NODE_ENV=production webpack-dev-server --env.platform=web --progress --colors --host 0.0.0.0",
+    "build-dev": "cross-env NODE_ENV=development env-cmd -f ./deploy.env webpack --env.platform=web --progress",
+    "build": "cross-env NODE_ENV=production env-cmd -f ./deploy.env webpack --env.platform=web --progress",
+    "serve:dev": "cross-env NODE_ENV=development env-cmd -f ./deploy.env webpack-dev-server --env.platform=web --progress --colors --host 0.0.0.0",
+    "serve:prod": "cross-env NODE_ENV=production env-cmd -f ./deploy.env webpack-dev-server --env.platform=web --progress --colors --host 0.0.0.0",
     "deploy": "npm run build & env-cmd -f ./deploy.env sh ./scripts/deploy.sh",
-    "build-electron": "cross-env NODE_ENV=production webpack --env.platform=electron --progress",
+    "build-electron": "cross-env NODE_ENV=production env-cmd -f ./deploy.env webpack --env.platform=electron --progress",
     "electron": "npm run build-electron & node ./build-electron.js",
     "electron:win64": "npm run build-electron & node ./build-electron.js win64",
     "electron:win32": "npm run build-electron & node ./build-electron.js win32",
@@ -76,6 +76,7 @@
     "string-template": "^1.0.0",
     "v-hotkey": "^0.3.1",
     "vue": "^2.6.10",
+    "vue-meta": "^2.2.2",
     "vue-router": "^3.0.6"
   }
 }
