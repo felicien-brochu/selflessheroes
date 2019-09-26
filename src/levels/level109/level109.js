@@ -41,18 +41,14 @@ const level = {
     fr: "Trie les %%icon icon-hero$%% héros du plus petit à gauche au plus grand à droite\n\n%%icon mdi mdi-information-outline$%% Les héros peuvent échanger de place quand ils vont dans des directions opposées au même moment",
   },
 
-  startingCode: "",
-  startingEditorType: "graph",
   maxStep: 400,
   speedTarget: 27,
   lengthTarget: 4,
 
   compilerConfig: {
     excludePrimary: ['assign'],
-    variables: 0,
     terrainTypes: ['wall', 'floor'],
     objectTypes: ['hero', 'egg', 'nothing'],
-    valueFunctions: [],
     actionFunctions: ['step_once'],
     leftComparisonExpressions: ['direction', 'myitem'],
     rightComparisonExpressions: ['object_type', 'terrain_type', 'direction', 'myitem']

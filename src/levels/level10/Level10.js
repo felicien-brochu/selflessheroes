@@ -41,18 +41,15 @@ const level = {
     en: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the heroes must survive\n\n\n%%icon mdi mdi-information-outline$%% copy/paste the code from the previous level to go faster",
     fr: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: aucun héro ne doit mourir\n\n\n%%icon mdi mdi-information-outline$%% Pour aller plus vite, copie/colle le code du niveau précédent",
   },
-  startingCode: "",
-  startingEditorType: "graph",
+
   maxStep: 200,
   speedTarget: 69,
   lengthTarget: 8,
 
   compilerConfig: {
     excludePrimary: ['assign'],
-    variables: 0,
     terrainTypes: ['hole', 'floor', 'wall'],
     objectTypes: ['bonfire', 'nothing'],
-    valueFunctions: [],
     actionFunctions: ['step_once', 'fireball'],
     leftComparisonExpressions: ['direction'],
     rightComparisonExpressions: ['object_type', 'terrain_type']

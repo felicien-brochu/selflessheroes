@@ -118,18 +118,14 @@ const level = {
     fr: "Ces %%icon icon-egg$%% œufs ont été éparpillés dans la pièce. Range-les tous en bas.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: les %%icon icon-egg$%% œufs doivent rester sur la même ligne verticale et dans l'ordre où tu les as trouvés",
   },
 
-  startingCode: "",
-  startingEditorType: "graph",
   maxStep: 1000,
   speedTarget: 131,
   lengthTarget: 13,
 
   compilerConfig: {
     excludePrimary: ['assign'],
-    variables: 0,
     terrainTypes: ['wall', 'floor'],
     objectTypes: ['egg', 'hero', 'nothing'],
-    valueFunctions: [],
     actionFunctions: ['step_once', 'take', 'drop'],
     leftComparisonExpressions: ['direction', 'myitem'],
     rightComparisonExpressions: ['object_type', 'terrain_type']

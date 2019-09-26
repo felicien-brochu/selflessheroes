@@ -38,18 +38,15 @@ const level = {
     en: "Lit all %%icon icon-bonfire$%% bonfires",
     fr: "Allume tous les %%icon icon-bonfire$%% feux",
   },
-  startingCode: "",
-  startingEditorType: "graph",
+
   maxStep: 200,
   speedTarget: 62,
   lengthTarget: 8,
 
   compilerConfig: {
     excludePrimary: ['assign'],
-    variables: 0,
     terrainTypes: ['hole', 'floor', 'wall'],
     objectTypes: ['bonfire', 'nothing'],
-    valueFunctions: [],
     actionFunctions: ['step_once', 'fireball'],
     leftComparisonExpressions: ['direction'],
     rightComparisonExpressions: ['object_type', 'terrain_type']

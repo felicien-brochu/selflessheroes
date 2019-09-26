@@ -42,18 +42,15 @@ const level = {
     en: "Put the %%icon icon-egg$%% egg into the %%icon icon-cauldron$%% cauldron",
     fr: "Mets l'%%icon icon-egg$%% œuf dans le %%icon icon-cauldron$%% chaudron",
   },
-  startingCode: "",
-  startingEditorType: "graph",
+
   maxStep: 100,
   speedTarget: 22,
   lengthTarget: 5,
 
   compilerConfig: {
     excludePrimary: ['assign'],
-    variables: 0,
     terrainTypes: ['wall', 'floor'],
     objectTypes: ['egg', 'nothing'],
-    valueFunctions: [],
     actionFunctions: ['take', 'drop'],
     leftComparisonExpressions: ['direction', 'myitem'],
     rightComparisonExpressions: ['terrain_type', 'object_type']

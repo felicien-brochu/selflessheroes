@@ -16,21 +16,14 @@ const level = {
     en: "Put the %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons",
     fr: "Mets les %%icon icon-egg$%% œufs dans les %%icon icon-cauldron$%% chaudrons",
   },
-  startingCode: "",
-  startingEditorType: "graph",
+
   maxStep: 50,
   speedTarget: 3,
   lengthTarget: 3,
 
   compilerConfig: {
     excludePrimary: ['assign', 'if', 'else', 'endif', 'jump', 'anchor'],
-    variables: 0,
-    terrainTypes: [],
-    objectTypes: [],
-    valueFunctions: [],
     actionFunctions: ['step_once', 'take', 'drop'],
-    leftComparisonExpressions: [],
-    rightComparisonExpressions: []
   },
 
   ruleset: {

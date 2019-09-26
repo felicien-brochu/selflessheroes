@@ -58,18 +58,14 @@ const level = {
     }
   },
 
-  startingCode: "",
-  startingEditorType: "graph",
   maxStep: 200,
   speedTarget: 24,
   lengthTarget: 7,
 
   compilerConfig: {
     excludePrimary: ['assign'],
-    variables: 0,
     terrainTypes: ['wall', 'floor'],
     objectTypes: ['egg', 'cauldron', 'nothing'],
-    valueFunctions: [],
     actionFunctions: ['take', 'drop'],
     leftComparisonExpressions: ['direction', 'myitem'],
     rightComparisonExpressions: ['direction', 'object_type', 'terrain_type', 'myitem']

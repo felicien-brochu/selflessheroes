@@ -117,8 +117,8 @@ const level = {
   },
   messages: {
     loss_reason_took_label_egg: {
-      en: "Don't move the %%icon icon-egg$%% eggs used to label the %%icon icon-cauldron$%% cauldrons",
-      fr: "Ne déplace pas les %%icon icon-egg$%% œufs qui servent à numéroter les %%icon icon-cauldron$%% chaudrons",
+      en: "Don't move the %%icon icon-egg$%% eggs used to label the %%icon icon-cauldron$%% cauldrons, otherwise you will not know into which %%icon icon-cauldron$%% cauldron to put the %%icon icon-egg$%% eggs.",
+      fr: "Ne déplace pas les %%icon icon-egg$%% œufs qui servent à numéroter les %%icon icon-cauldron$%% chaudrons, sinon tu ne sauras plus dans quel %%icon icon-cauldron$%% chaudron il faut mettre les %%icon icon-egg$%% œufs.",
     },
     loss_reason_wrong_egg_in_cauldron: {
       en: "You put an %%icon icon-egg$%% egg in the wrong %%icon icon-cauldron$%% cauldron\n\n.The %%icon icon-cauldron$%% cauldrons are labelled from 0 to 9 by the eggs in front of them. Put the %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons of same value.",
@@ -126,18 +126,14 @@ const level = {
     }
   },
 
-  startingCode: "",
-  startingEditorType: "graph",
   maxStep: 200,
   speedTarget: 37,
   lengthTarget: 11,
 
   compilerConfig: {
     excludePrimary: ['assign'],
-    variables: 0,
     terrainTypes: ['wall', 'floor'],
     objectTypes: ['egg', 'cauldron', 'hero', 'nothing'],
-    valueFunctions: [],
     actionFunctions: ['step_once', 'take', 'drop'],
     leftComparisonExpressions: ['direction', 'myitem'],
     rightComparisonExpressions: ['direction', 'object_type', 'terrain_type', 'myitem']

@@ -16,8 +16,8 @@ const level = {
     en: "Help the %%icon icon-hero$%% heroes to walk on the %%icon icon-switch$%% switches",
     fr: "Aide les %%icon icon-hero$%% héros à aller sur les %%icon icon-switch$%% boutons",
   },
+
   startingCode: "step(s)\nstep(s)\n",
-  startingEditorType: "graph",
   maxStep: 100,
   speedTarget: 3,
   lengthTarget: 3,
@@ -25,13 +25,7 @@ const level = {
 
   compilerConfig: {
     excludePrimary: ['assign', 'if', 'else', 'endif', 'jump', 'anchor'],
-    variables: 0,
-    terrainTypes: [],
-    objectTypes: ['switch'],
-    valueFunctions: [],
     actionFunctions: ['step_once'],
-    leftComparisonExpressions: ['direction'],
-    rightComparisonExpressions: ['object_type']
   },
 
   ruleset: {
