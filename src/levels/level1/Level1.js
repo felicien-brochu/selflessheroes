@@ -13,8 +13,8 @@ const level = {
     fr: "Premiers pas",
   },
   objective: {
-    en: "Help the heroes to walk on the %%icon icon-switch$%% switches",
-    fr: "Aide les personnages à aller sur les %%icon icon-switch$%% boutons",
+    en: "Help the %%icon icon-hero$%% heroes to walk on the %%icon icon-switch$%% switches",
+    fr: "Aide les %%icon icon-hero$%% héros à aller sur les %%icon icon-switch$%% boutons",
   },
   startingCode: "step(s)\nstep(s)\n",
   startingEditorType: "graph",

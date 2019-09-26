@@ -268,9 +268,9 @@ const messages = {
 
     level_test_failed_modal: "Some of the tests failed.\nWe reproduced the same situation as in these failed attempts.",
     loss_reason_too_many_steps: "Your program takes too much time!",
-    loss_reason_all_hero_ended: "Your characters fell asleep before completing the objective",
-    loss_reason_all_hero_dead: "All your characters are dead",
-    loss_reason_one_hero_dead: "One of your characters is dead",
+    loss_reason_all_hero_ended: "Your heroes fell asleep before completing the objective",
+    loss_reason_all_hero_dead: "All your heroes are dead",
+    loss_reason_one_hero_dead: "One of your heroes is dead",
   },
 
 
@@ -493,9 +493,9 @@ const messages = {
 
     level_test_failed_modal: "Certains tests ont échoué.\nNous avons reproduit une des situations problématiques.",
     loss_reason_too_many_steps: "Votre programme prend trop de temps\u00A0!",
-    loss_reason_all_hero_ended: "Vos personnages se sont endormis avant de remplir l'objectif",
-    loss_reason_all_hero_dead: "Tous vos personnages sont morts",
-    loss_reason_one_hero_dead: "Un de vos personnages est mort",
+    loss_reason_all_hero_ended: "Vos héros se sont endormis avant de remplir l'objectif",
+    loss_reason_all_hero_dead: "Tous vos héros sont morts",
+    loss_reason_one_hero_dead: "Un de vos héros est mort",
   }
 }
 

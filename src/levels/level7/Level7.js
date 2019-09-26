@@ -28,8 +28,8 @@ const level = {
     fr: "Virage serré",
   },
   objective: {
-    en: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the characters must survive",
-    fr: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: aucun personnage ne doit mourir",
+    en: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the heroes must survive",
+    fr: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: aucun héro ne doit mourir",
   },
   startingCode: "if w != wall :\n\tstep(w)\nelse\n\tstep(e)\nendif\n",
   startingEditorType: "graph",
