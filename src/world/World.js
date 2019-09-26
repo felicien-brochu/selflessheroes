@@ -57,6 +57,7 @@ export default class World {
 
     this.hasWon = false
     this.hasLost = false
+    this.lossReason = null
     this.gameOver = false
     this.steps = 0
 
@@ -512,6 +513,7 @@ export default class World {
 
   declareLoss() {
     this.hasLost = true
+    this.lossReason = this.ruleset.getLossReason()
     this.declareGameOver()
   }
 
