@@ -265,7 +265,7 @@ export default {
 
         & > .node-container {
             padding-top: $line-margin;
-            padding-bottom: $node-line-height + $line-margin + 10;
+            padding-bottom: 50vh;
             padding-right: 8px;
             z-index: 10;
         }
