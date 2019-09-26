@@ -78,7 +78,7 @@ const comparisonExpressionMap = {
 export default class CompilerConfig {
   constructor({
     excludePrimary = [],
-    variables = 3,
+    variables = 0,
     terrainTypes = [],
     objectTypes = [],
     valueFunctions = [],
