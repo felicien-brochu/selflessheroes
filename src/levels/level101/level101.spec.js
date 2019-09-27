@@ -4,7 +4,7 @@ export default {
   level: level,
   deterministic: true,
   specs: [{
-    type: ["speed", "length"],
+    type: ["length", "speed"],
     code: `
 take(e)
 step(se)
