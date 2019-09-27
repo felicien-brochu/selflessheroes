@@ -168,7 +168,7 @@ export default class LevelSpecTester {
     } else if (expectedLossReasonFrequency < frequency) {
       this.fail(label, `expected loss reason ${expectedLossReason} not that frequent: ${expectedLossReasonFrequency} < ${frequency}`)
     } else {
-      this.pass(label)
+      this.pass(`${label} ${chalk.gray(`(frequency: ${expectedLossReasonFrequency} >= ${frequency})`)}`)
     }
   }
 }
