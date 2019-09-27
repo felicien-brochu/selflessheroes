@@ -104,7 +104,6 @@ const level = {
         type: 'simple',
         eggConfig: {
           value: 'rng(0,6)',
-          showLottery: true,
         }
       }
     }
