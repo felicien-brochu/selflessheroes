@@ -16,6 +16,23 @@ export default class EggsMatrixGenerator {
 
     if (this.strategy.type === 'random_columns') {
       this.generateRandomColumns(world)
+    } else if (this.strategy.type === 'simple') {
+      this.generateSimpleMatrix(world)
+    }
+  }
+
+  generateSimpleMatrix(world) {
+    for (let x = this.originMarker.x; x < this.originMarker.x + this.width; x++) {
+      for (let y = this.originMarker.y; y < this.originMarker.y + this.height; y++) {
+        let eggConfig = {
+          id: world.getAvailableObjectID(),
+          x: x,
+          y: y,
+          ...this.strategy.eggConfig,
+        }
+
+        world.createObject('egg', eggConfig)
+      }
     }
   }
 

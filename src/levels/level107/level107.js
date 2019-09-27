@@ -100,9 +100,7 @@ const level = {
       height: 10,
 
       strategy: {
-        type: 'random_columns',
-        minEggs: 10,
-        maxEggs: 10,
+        type: 'simple',
         eggConfig: {
           value: 'rng(0,99)',
         }
@@ -116,9 +114,7 @@ const level = {
       height: 10,
 
       strategy: {
-        type: 'random_columns',
-        minEggs: 10,
-        maxEggs: 10,
+        type: 'simple',
         eggConfig: {
           value: 'rng(0,99)',
         }
@@ -132,9 +128,7 @@ const level = {
       height: 10,
 
       strategy: {
-        type: 'random_columns',
-        minEggs: 10,
-        maxEggs: 10,
+        type: 'simple',
         eggConfig: {
           value: 'rng(0,99)',
         }
@@ -148,9 +142,7 @@ const level = {
       height: 10,
 
       strategy: {
-        type: 'random_columns',
-        minEggs: 10,
-        maxEggs: 10,
+        type: 'simple',
         eggConfig: {
           value: 'rng(0,99)',
         }
@@ -164,9 +156,7 @@ const level = {
       height: 10,
 
       strategy: {
-        type: 'random_columns',
-        minEggs: 10,
-        maxEggs: 10,
+        type: 'simple',
         eggConfig: {
           value: 'rng(0,99)',
         }

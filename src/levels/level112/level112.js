@@ -101,9 +101,7 @@ const level = {
       height: 4,
 
       strategy: {
-        type: 'random_columns',
-        minEggs: 4,
-        maxEggs: 4,
+        type: 'simple',
         eggConfig: {
           value: 'rng(0,6)',
           showLottery: true,
