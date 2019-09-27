@@ -245,4 +245,14 @@ export default class Compiler {
     }
   }
 
+  computeCodeLength() {
+    let codeLength = 0
+    for (let statement of this.statements) {
+      if (!(statement.type === 'AnchorStatement') && !(statement.type === 'EndIfStatement')) {
+        codeLength++
+      }
+    }
+    return codeLength
+  }
+
 }

@@ -76,8 +76,6 @@ import TestGraph from './TestGraph'
 import ScoreStarsAnimation from './ScoreStarsAnimation'
 import WinLevelTestWorker from './WinLevelTest.worker.js'
 import Compiler from '../../../world/ai/compile/Compiler'
-import AnchorStatement from '../../../world/ai/compile/statements/AnchorStatement'
-import EndIfStatement from '../../../world/ai/compile/statements/EndIfStatement'
 
 export default {
   components: {
@@ -108,7 +106,7 @@ export default {
     compiler.compile()
     return {
       tests: [],
-      statements: compiler.statements,
+      codeLength: compiler.computeCodeLength(),
       testAnimationEnded: false,
       hasPriorSpeed: this.levelSolutions.score.minStep >= 0,
       priorSpeedText: this.$text('win_modal_prior_code_speed', {
@@ -124,16 +122,6 @@ export default {
   computed: {
     hasWon: function() {
       return this.tests.every(test => !test.hasLost)
-    },
-
-    codeLength: function() {
-      let codeLength = 0
-      for (let statement of this.statements) {
-        if (!(statement instanceof AnchorStatement) && !(statement instanceof EndIfStatement)) {
-          codeLength++
-        }
-      }
-      return codeLength
     },
 
     averageStep: function() {
