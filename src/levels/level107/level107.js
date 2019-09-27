@@ -1,30 +1,5 @@
 import map from './map107.json'
 
-/* length: 7
-take(s)
-a:
-step(s)
-if here > myitem :
-	drop(e)
-	take(here)
-endif
-drop(s)
-jump a
-*/
-
-/* speed: 43.565
-step(s)
-take(here)
-a:
-step(s)
-if here > myitem :
-	drop(e)
-	take(here)
-endif
-drop(s)
-jump a
-*/
-
 const winCondition = {
   beforeStart() {
     this.cauldronTargetValues = []
@@ -100,7 +75,7 @@ const level = {
   },
 
   maxStep: 400,
-  speedTarget: 44,
+  speedTarget: 45,
   lengthTarget: 7,
 
   compilerConfig: {

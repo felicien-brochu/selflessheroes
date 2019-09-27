@@ -1,90 +1,5 @@
 import map from './map112.json'
 
-/* length: 23
-g:
-take(n)
-e:
-step(s)
-if s != cauldron :
-	jump e
-endif
-b:
-if here < myitem :
-	step(e)
-	jump b
-endif
-f:
-if here > myitem :
-	step(w)
-	jump f
-endif
-drop(s)
-c:
-step(n)
-d:
-if n != egg &&
-  e != hole :
-	step(e)
-	jump d
-endif
-if n != egg :
-	step(n)
-	a:
-	if n != egg &&
-	  w != hole :
-		step(w)
-		jump a
-	endif
-endif
-if n != egg :
-	jump c
-endif
-jump g
-*/
-
-/* speed: 1470
-g:
-take(n)
-e:
-step(s)
-step(s)
-if s != cauldron :
-	jump e
-endif
-b:
-if here < myitem :
-	step(e)
-	jump b
-endif
-f:
-if here > myitem :
-	step(w)
-	jump f
-endif
-drop(s)
-c:
-step(n)
-d:
-if n != egg &&
-  e != hole :
-	step(e)
-	jump d
-endif
-if n != egg :
-	step(n)
-	a:
-	if n != egg &&
-	  w != hole :
-		step(w)
-		jump a
-	endif
-endif
-if n != egg :
-	jump c
-endif
-jump g
-*/
-
 const winCondition = {
   beforeStart() {
     let eggsOriginMarker = this.world.findConfigObjectByID(99)
@@ -155,7 +70,7 @@ const level = {
       fr: "Ne déplace pas les %%icon icon-egg$%% œufs qui servent à numéroter les %%icon icon-cauldron$%% chaudrons, sinon tu ne sauras plus dans quel %%icon icon-cauldron$%% chaudron il faut mettre les %%icon icon-egg$%% œufs.",
     },
     loss_reason_wrong_egg_in_cauldron: {
-      en: "You put an %%icon icon-egg$%% egg in the wrong %%icon icon-cauldron$%% cauldron\n\n.The %%icon icon-cauldron$%% cauldrons are labelled from 0 to 6 by the eggs in front of them. Put the top %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons of same value.",
+      en: "You put an %%icon icon-egg$%% egg in the wrong %%icon icon-cauldron$%% cauldron.\n\nThe %%icon icon-cauldron$%% cauldrons are labelled from 0 to 6 by the eggs in front of them. Put the top %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons of same value.",
       fr: "Tu as mis un %%icon icon-egg$%% œuf dans le mauvais %%icon icon-cauldron$%% chaudron.\n\nLes %%icon icon-cauldron$%% chaudrons sont numérotés de 0 à 6 par les œufs devant eux. Mets les %%icon icon-egg$%% œufs du haut dans les %%icon icon-cauldron$%% chaudrons qui sont de la même valeur.",
     }
   },

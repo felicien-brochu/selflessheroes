@@ -1,18 +1,5 @@
 import map from './map121.json'
 
-/* length: 8, speed: 58
-a:
-take(s)
-if myitem < 5 :
-	write(0)
-else
-	write(9)
-endif
-drop(s)
-step(s)
-jump a
-*/
-
 const winCondition = {
   beforeStart() {
     this.startEggs = new Map()

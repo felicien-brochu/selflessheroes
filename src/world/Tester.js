@@ -51,7 +51,7 @@ export default class Tester {
     })
   }
 
-  getStats() {
+  getStats(seriesSampleSize = this.sampleSize) {
     let avg = this.tests.reduce((acc, test) => acc + test.steps, 0) / this.tests.length
     let max = this.tests.reduce((acc, test) => Math.max(acc, test.steps), 0)
     let min = this.tests.reduce((acc, test) => Math.min(acc, test.steps), Infinity)
@@ -62,15 +62,16 @@ export default class Tester {
     let seriesAverage = []
     let lostSeries = 0
 
-    for (let i = 0; i < this.sampleSize - this.targetSampleSize + 1; i++) {
+    for (let i = 0; i < seriesSampleSize; i++) {
       let seriesAvg = 0
-      let lost = false
-      for (let j = i; j < i + this.targetSampleSize; j++) {
-        seriesAvg += this.tests[j].steps
+      let seriesLost = false
+      for (let j = 0; j < this.targetSampleSize; j++) {
+        let test = this.tests[Math.floor(Math.random() * this.sampleSize)]
+        seriesAvg += test.steps
 
-        if (!lost && this.tests[j].hasLost) {
+        if (!seriesLost && test.hasLost) {
           lostSeries++
-          lost = true
+          seriesLost = true
         }
       }
       seriesAvg /= this.targetSampleSize
@@ -112,10 +113,10 @@ export default class Tester {
     console.debug("max:   ", max, ` (${(max - avg) / Math.sqrt(variance)} σ)`)
     console.debug("min:   ", min, ` (${(avg - min) / Math.sqrt(variance)} σ)`)
     console.debug("lost:  ", `${(lost / this.sampleSize) * 100}%`)
-    console.debug("lostSr:", `${(lostSeries / (this.sampleSize - this.targetSampleSize + 1)) * 100}%`)
+    console.debug("lostSr:", `${(lostSeries / (this.sampleSize)) * 100}%`)
     console.debug("σ:     ", Math.sqrt(variance))
     console.debug("σ²:    ", variance)
-    console.debug("max 20:", maxAvg, `(over ${this.sampleSize - this.targetSampleSize + 1} samples)`)
+    console.debug("max 20:", maxAvg, `(over ${this.sampleSize} samples)`)
     console.debug("10%   :", seriesAverage[Math.floor((seriesAverage.length - 1) * 0.9)])
     console.debug("5%    :", seriesAverage[Math.floor((seriesAverage.length - 1) * 0.95)])
     console.debug("1%    :", seriesAverage[Math.floor((seriesAverage.length - 1) * 0.99)])

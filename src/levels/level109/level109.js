@@ -1,24 +1,5 @@
 import map from './map109.json'
 
-/* length: 4
-a:
-if w > myitem :
-	step(w)
-endif
-step(e)
-jump a
-*/
-
-/* speed: 23.7065
-a:
-if w > myitem :
-	step(w)
-else
-	step(e)
-endif
-jump a
-*/
-
 const winCondition = {
   beforeStart() {
     this.eggsByValue = this.world.eggs.slice().sort((a, b) => a.value - b.value)

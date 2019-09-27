@@ -1,31 +1,5 @@
 import map from './map106.json'
 
-/* length: 6
-a:
-take(w)
-drop(e)
-if nw < sw :
-	take(sw)
-endif
-take(nw)
-jump a
-*/
-
-/* speed: 23
-a:
-take(w)
-drop(e)
-if sw > nw :
-	take(sw)
-else
-	take(nw)
-endif
-drop(e)
-take(w)
-drop(e)
-jump a
-*/
-
 const winCondition = {
   beforeStart() {
     this.maxEggValue = this.world.eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
@@ -50,7 +24,7 @@ const notMaximumEggLossCondition = {
   },
 
   getReason() {
-    return 'not_maximum_egg_loss_condition'
+    return 'loss_reason_not_maximum_egg_in_cauldron'
   }
 }
 
@@ -65,7 +39,7 @@ const level = {
     fr: "Mets l'%%icon icon-egg$%% œuf de valeur maximum\ndans le %%icon icon-cauldron$%% chaudron\n\n%%icon mdi mdi-information-outline$%% En cas d'égalité, choisis l'un des deux",
   },
   messages: {
-    not_maximum_egg_loss_condition: {
+    loss_reason_not_maximum_egg_in_cauldron: {
       en: "You put an %%icon icon-egg$%% egg which is not the maximum into the %%icon icon-cauldron$%% cauldron",
       fr: "Tu as mis un %%icon icon-egg$%% œuf qui n'est pas le maximum dans le %%icon icon-cauldron$%% chaudron",
     }

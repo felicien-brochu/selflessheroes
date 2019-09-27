@@ -1,33 +1,5 @@
 import map from './map104.json'
 
-/* length: 6
-a:
-step(s)
-if s < 4 :
-	take(s)
-endif
-if s == cauldron :
-	drop(s)
-endif
-jump a
-*/
-
-/* speed: 29
-a:
-step(s)
-if s >= 4 :
-	jump a
-endif
-take(s)
-b:
-step(s)
-step(s)
-if s != cauldron :
-	jump b
-endif
-drop(s)
-*/
-
 const winCondition = {
   check() {
     const cauldronIDs = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]

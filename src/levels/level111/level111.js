@@ -1,56 +1,5 @@
 import map from './map111.json'
 
-/* length: 11
-take(s)
-step(s)
-step(s)
-step(s)
-b:
-if here != myitem :
-	if here > myitem :
-		step(w)
-	else
-		step(e)
-	endif
-	jump b
-endif
-drop(s)
-*/
-
-/* speed: 34.05
-take(s)
-step(s)
-step(s)
-if s != myitem :
-	if s > myitem :
-		a:
-		if sw != myitem :
-			step(w)
-			jump a
-		endif
-		c:
-		step(sw)
-		if s != cauldron :
-			jump c
-		endif
-	else
-		b:
-		if se != myitem :
-			step(e)
-			jump b
-		endif
-		d:
-		step(se)
-		if s != cauldron :
-			jump d
-		endif
-	endif
-else
-	step(s)
-endif
-drop(s)
-*/
-
 const winCondition = {
   beforeStart() {
     let eggsOriginMarker = this.world.findConfigObjectByID(99)
@@ -121,7 +70,7 @@ const level = {
       fr: "Ne déplace pas les %%icon icon-egg$%% œufs qui servent à numéroter les %%icon icon-cauldron$%% chaudrons, sinon tu ne sauras plus dans quel %%icon icon-cauldron$%% chaudron il faut mettre les %%icon icon-egg$%% œufs.",
     },
     loss_reason_wrong_egg_in_cauldron: {
-      en: "You put an %%icon icon-egg$%% egg in the wrong %%icon icon-cauldron$%% cauldron\n\n.The %%icon icon-cauldron$%% cauldrons are labelled from 0 to 9 by the eggs in front of them. Put the %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons of same value.",
+      en: "You put an %%icon icon-egg$%% egg in the wrong %%icon icon-cauldron$%% cauldron.\n\nThe %%icon icon-cauldron$%% cauldrons are labelled from 0 to 9 by the eggs in front of them. Put the %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons of same value.",
       fr: "Tu as mis un %%icon icon-egg$%% œuf dans le mauvais %%icon icon-cauldron$%% chaudron.\n\nLes %%icon icon-cauldron$%% chaudrons sont numérotés de 0 à 9 par les œufs devant eux. Mets les %%icon icon-egg$%% œufs dans les %%icon icon-cauldron$%% chaudrons qui sont de la même valeur.",
     }
   },

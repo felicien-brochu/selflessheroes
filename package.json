@@ -15,6 +15,9 @@
     "build": "cross-env NODE_ENV=production env-cmd -f ./deploy.env webpack --env.platform=web --progress",
     "serve:dev": "cross-env NODE_ENV=development env-cmd -f ./deploy.env webpack-dev-server --env.platform=web --progress --colors --host 0.0.0.0",
     "serve:prod": "cross-env NODE_ENV=production env-cmd -f ./deploy.env webpack-dev-server --env.platform=web --progress --colors --host 0.0.0.0",
+    "build-tests": "cross-env NODE_ENV=development webpack --config ./tests/webpack.config.js --progress",
+    "watch-tests": "cross-env NODE_ENV=development webpack --config ./tests/webpack.config.js --progress --watch",
+    "tests": "npm run build-tests & node ./tests/test_levels.js",
     "deploy": "npm run build & env-cmd -f ./deploy.env sh ./scripts/deploy.sh",
     "build-electron": "cross-env NODE_ENV=production env-cmd -f ./deploy.env webpack --env.platform=electron --progress",
     "electron": "npm run build-electron & node ./build-electron.js",
@@ -29,6 +32,7 @@
     "@babel/preset-env": "^7.4.5",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.6",
+    "chalk": "^2.4.2",
     "clean-webpack-plugin": "^2.0.2",
     "copy-webpack-plugin": "^5.0.3",
     "cross-env": "^5.2.0",
@@ -46,6 +50,7 @@
     "file-loader": "^3.0.1",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.6.0",
+    "minimist": "^1.2.0",
     "node-sass": "^4.12.0",
     "node-sass-magic-importer": "^5.3.2",
     "preload-webpack-plugin": "^3.0.0-beta.3",
@@ -60,6 +65,7 @@
     "webpack-auto-inject-version": "^1.2.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.7.0",
+    "webpack-node-externals": "^1.7.2",
     "worker-loader": "^2.0.0"
   },
   "dependencies": {

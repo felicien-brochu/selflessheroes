@@ -1,20 +1,5 @@
 import map from './map110.json'
 
-/* length: 7, speed: 24.184
-a:
-if n >= s &&
-  n >= w :
-	take(n)
-endif
-if s >= w &&
-  s >= n :
-	take(s)
-endif
-take(w)
-drop(e)
-jump a
-*/
-
 const winCondition = {
   beforeStart() {
     this.maxEggValue = this.world.eggs.reduce((max, egg) => Math.max(egg.value, max), 0)

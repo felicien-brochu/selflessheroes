@@ -1,47 +1,5 @@
 import map from './map105.json'
 
-/* length: 9
-a:
-b:
-step(s)
-if s != cauldron :
-	jump b
-endif
-drop(s)
-c:
-if n >= 4 ||
-  n != egg :
-	step(n)
-	jump c
-endif
-take(n)
-jump a
-*/
-
-/* speed: 132
-step(s)
-a:
-step(s)
-d:
-if here >= 4 :
-	jump a
-endif
-take(here)
-b:
-step(s)
-step(s)
-if s != cauldron :
-	jump b
-endif
-drop(s)
-c:
-step(n)
-if n == egg :
-	jump c
-endif
-jump d
-*/
-
 const winCondition = {
   beforeStart() {
     this.selectedEggs = this.world.eggs.filter(egg => egg.value < 4).map(egg => egg.shallowCopy())
@@ -109,7 +67,7 @@ const level = {
   },
 
   maxStep: 1000,
-  speedTarget: 144,
+  speedTarget: 145,
   lengthTarget: 9,
 
   compilerConfig: {

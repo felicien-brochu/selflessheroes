@@ -1,30 +1,5 @@
 import map from './map12.json'
 
-/* speed: 245, length: 13
-a:
-b:
-if s == floor :
-	step(s)
-	jump b
-endif
-c:
-if w == floor :
-	step(w)
-	jump c
-endif
-d:
-if n == floor :
-	step(n)
-	jump d
-endif
-e:
-if e == floor :
-	step(e)
-	jump e
-endif
-jump a
-*/
-
 const level = {
   mapConfig: map,
   name: {

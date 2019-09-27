@@ -1,29 +1,5 @@
 import map from './map102.json'
 
-/* length: 4
-a:
-take(here)
-step(s)
-drop(here)
-jump a
-*/
-
-/* speed: 29
-a:
-step(s)
-if s != egg :
-	jump a
-endif
-take(s)
-b:
-step(s)
-step(s)
-if s != cauldron :
-	jump b
-endif
-drop(s)
-*/
-
 const winCondition = {
   check() {
     const cauldronIDs = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
@@ -37,6 +13,23 @@ const winCondition = {
   }
 }
 
+const multipleEggsInCauldronLossCondition = {
+  check() {
+    const cauldronIDs = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
+    for (let id of cauldronIDs) {
+      let cauldron = this.world.findWorldObjectByID(id)
+      if (cauldron && cauldron.items.length > 1) {
+        return true
+      }
+    }
+    return false
+  },
+
+  getReason() {
+    return 'loss_reason_multiple_eggs_in_cauldron'
+  }
+}
+
 const level = {
   mapConfig: map,
   name: {
@@ -44,8 +37,14 @@ const level = {
     fr: "À table !",
   },
   objective: {
-    en: "These %%icon icon-egg$%% eggs were randomly scattered throughout the room. Put them into the %%icon icon-cauldron$%% cauldrons to prepare the dinner.",
-    fr: "Ces %%icon icon-egg$%% œufs ont été éparpillés au hasard dans la pièce. Mets-les dans les %%icon icon-cauldron$%% chaudrons pour préparer le dîner.",
+    en: "These %%icon icon-egg$%% eggs were randomly scattered throughout the room. Put one %%icon icon-egg$%% egg in each %%icon icon-cauldron$%% cauldron to prepare the dinner.",
+    fr: "Ces %%icon icon-egg$%% œufs ont été éparpillés au hasard dans la pièce. Mets-en un dans chaque %%icon icon-cauldron$%% chaudron pour préparer le dîner.",
+  },
+  messages: {
+    loss_reason_multiple_eggs_in_cauldron: {
+      en: "You put multiple %%icon icon-egg$%% eggs in one %%icon icon-cauldron$%% cauldron",
+      fr: "Tu as mis plusieurs %%icon icon-egg$%% œufs dans un %%icon icon-cauldron$%% chaudron",
+    }
   },
 
   maxStep: 400,
@@ -63,7 +62,7 @@ const level = {
 
   ruleset: {
     win: winCondition,
-    lose: 'default_loss'
+    lose: [multipleEggsInCauldronLossCondition, 'or', 'default_loss']
   },
 
   worldGenerator: {
