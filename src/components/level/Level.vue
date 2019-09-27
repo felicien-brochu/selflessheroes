@@ -410,7 +410,7 @@ export default {
     showLossModal() {
       if (!this.lossModalDisplayed) {
         this.$sound.play('lose_sfx')
-        const lossReason = this.level.getLossReasonTemplate(this.worldState.lossReason)
+        const lossReason = this.$text(this.level.getLossReasonTemplate(this.worldState.lossReason))
         this.lossModalDisplayed = true
         this.$refs.modalLayer.addModal({
           component: WarningModal,

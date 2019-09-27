@@ -126,12 +126,9 @@ export default class Level extends WorldLevel {
   }
 
   getLossReasonTemplate(lossReason) {
-    let message
-    if (DefaultLossReason.has(lossReason)) {
-      message = lang.text(lossReason)
-    } else {
-      message = lang.text(this.prefixMessageKey(lossReason))
+    if (!DefaultLossReason.has(lossReason)) {
+      lossReason = this.prefixMessageKey(lossReason)
     }
-    return message
+    return lossReason
   }
 }
