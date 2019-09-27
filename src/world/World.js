@@ -239,15 +239,21 @@ export default class World {
         let x = character.x + action.direction.dx
         let y = character.y + action.direction.dy
 
-        let blockingObjects = this.getWorldObjectsAt(x, y).filter(o => o instanceof Item || o instanceof Bonfire)
+        let worldObjects = this.getWorldObjectsAt(x, y)
+        let blockingObjects = worldObjects.filter(o => o instanceof Item || o instanceof Bonfire || o instanceof Switch || o instanceof Spikes)
         if (blockingObjects.length === 0 && (this.map.isFloor(x, y) || this.map.isHole(x, y))) {
           character.dropItem(action.direction)
         }
 
         // Put inside cauldron if there is one on the drop square
-        let cauldrons = this.getWorldObjectsAt(x, y).filter(o => o instanceof Cauldron)
+        let cauldrons = worldObjects.filter(o => o instanceof Cauldron)
         if (cauldrons.length > 0) {
           cauldrons[0].putItem(item)
+        }
+
+        // Put inside a hole if it's on one => remove egg from game
+        if (this.map.isHole(x, y)) {
+          item.throwInHole()
         }
       }
     }

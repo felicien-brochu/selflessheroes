@@ -104,12 +104,33 @@ export default class EggS extends Phaser.GameObjects.Container {
         tween.setCallback('onComplete', () => this.onTweenComplete(), [])
 
         if (!this.removed && this.egg.removed) {
-          this.scene.tweens.add({
-            targets: this,
-            alpha: 0,
-            ease: 'Stepped',
-            delay: duration
+          // Check if the egg fell in a hole in event log
+          let fellLogs = world.eventLog.search({
+            type: 'egg-fell-in-hole',
+            step: world.steps,
+            eggID: this.egg.id
           })
+          if (fellLogs.length > 0) {
+            // Modify path to fall beneath the ground
+            this.path = new Phaser.Curves.Path(this.x, this.y)
+            let bump = this.y > y ? -20 : 0
+            this.path.cubicBezierTo(x, y + 32, this.x, this.y + bump, x, y - 100)
+
+            this.scene.tweens.add({
+              targets: this,
+              alpha: 0,
+              ease: 'Quad.easeIn',
+              delay: duration / 2,
+              duration: duration / 4
+            })
+          } else {
+            this.scene.tweens.add({
+              targets: this,
+              alpha: 0,
+              ease: 'Stepped',
+              delay: duration
+            })
+          }
         }
 
       } else {

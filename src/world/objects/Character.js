@@ -59,6 +59,10 @@ export default class Character extends WorldObject {
     this.dead = isDead
     this.deathReason = deathReason
     if (isDead) {
+      this.removed = true
+      if (this.item) {
+        this.item.removed = true
+      }
       this.events.emit('die', this)
     }
   }

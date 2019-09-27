@@ -50,6 +50,11 @@ export default class Egg extends Item {
     }
   }
 
+  throwInHole() {
+    this.removed = true
+    this.events.emit('fell-in-hole', this)
+  }
+
   getObjectType() {
     return ObjectType.egg
   }
