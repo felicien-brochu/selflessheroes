@@ -2,7 +2,6 @@ import WorldLevel from '../world/Level'
 import CompilerConfig from '../world/ai/compile/CompilerConfig'
 import DefaultLossReason from '../world/rules/conditions/DefaultLossReason'
 import WorldGeneratorFactory from '../world/generator/WorldGeneratorFactory'
-import lang from '../lang'
 import BasicTutorialConfig from '../components/level/tutorial/BasicTutorialConfig'
 import AdvancedTutorialConfig from '../components/level/tutorial/AdvancedTutorialConfig'
 
@@ -38,52 +37,40 @@ export default class Level extends WorldLevel {
     }
     this.worldGenerator = worldGenerator
     this.messages = messages || null
-
-    this.installMessages()
   }
 
-  installMessages() {
+  installMessages(lang) {
+    let name = `level${this.id}`
     if (this.name) {
-      lang.pushMessage(this.getNameMessageKey(), this.name)
+      name = this.name
     }
+    lang.pushMessage(this.getNameMessageKey(), name)
+
+    let objective = `objective of level${this.id}`
     if (this.objective) {
-      lang.pushMessage(this.getObjectiveMessageKey(), this.objective)
+      objective = this.objective
     }
+    lang.pushMessage(this.getObjectiveMessageKey(), objective)
+
     if (this.messages) {
       for (let message in this.messages) {
         if (this.messages.hasOwnProperty(message)) {
-          lang.pushMessage(this.prefixMessageName(message), this.messages[message])
+          lang.pushMessage(this.prefixMessageKey(message), this.messages[message])
         }
       }
     }
   }
 
   getNameMessageKey() {
-    return this.prefixMessageName('name')
+    return this.prefixMessageKey('name')
   }
 
   getObjectiveMessageKey() {
-    return this.prefixMessageName('objective')
+    return this.prefixMessageKey('objective')
   }
 
-  prefixMessageName(name) {
+  prefixMessageKey(name) {
     return `level${this.id}_${name}`
-  }
-
-  getName() {
-    let name = `level${this.id}`
-    if (this.name) {
-      name = lang.text(this.getNameMessageKey())
-    }
-    return name
-  }
-
-  getObjective() {
-    let objective = lang.text('no_text')
-    if (this.objective) {
-      objective = lang.text(this.getObjectiveMessageKey())
-    }
-    return objective
   }
 
   get tutorial() {
@@ -143,7 +130,7 @@ export default class Level extends WorldLevel {
     if (DefaultLossReason.has(lossReason)) {
       message = lang.text(lossReason)
     } else {
-      message = lang.text(this.prefixMessageName(lossReason))
+      message = lang.text(this.prefixMessageKey(lossReason))
     }
     return message
   }

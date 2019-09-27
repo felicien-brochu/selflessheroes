@@ -3,11 +3,12 @@ const glob = require('glob')
 const chalk = require('chalk')
 const LevelSpecTester = require('../tests-build/LevelSpecTester.js').default
 const argv = require('minimist')(process.argv.slice(2), {
-  boolean: ["fast"],
-  string: ["speed-sample-size"],
+  boolean: ["fast", "slow", "stop-on-fail"],
+  string: ["speed-sample-size", "length-sample-size"],
   alias: {
     "fast": ["f"],
     "speed-sample-size": ["s"],
+    "length-sample-size": ["l"],
   }
 })
 
@@ -34,35 +35,60 @@ console.log()
 
 
 let speedSampleSize = 2000
+let lengthSampleSize = 2000
+let stopOnFail = false
 
 if (argv.fast) {
   speedSampleSize = 200
+  lengthSampleSize = 200
+}
+
+if (argv.slow) {
+  speedSampleSize = 20000
+  lengthSampleSize = 20000
 }
 
 if (argv["speed-sample-size"]) {
   speedSampleSize = parseInt(argv["speed-sample-size"])
 }
+if (argv["length-sample-size"]) {
+  lengthSampleSize = parseInt(argv["length-sample-size"])
+}
+
+if (argv["stop-on-fail"] !== undefined) {
+  stopOnFail = argv["stop-on-fail"]
+}
+
+const testerConf = {
+  stopOnFail: stopOnFail,
+  speedSampleSize: speedSampleSize,
+  lengthSampleSize: lengthSampleSize,
+  lossReasonSampleSize: 20,
+  speedConfidence: 0.999,
+  speedTestLostTolerance: 0.002,
+  lengthTestLostTolerance: 0.002,
+}
+console.log("Tester config:")
+console.log(chalk.gray("stopOnFail:              ") + testerConf.stopOnFail)
+console.log(chalk.gray("speedSampleSize:         ") + testerConf.speedSampleSize)
+console.log(chalk.gray("lengthSampleSize:        ") + testerConf.lengthSampleSize)
+console.log(chalk.gray("lossReasonSampleSize:    ") + testerConf.lossReasonSampleSize)
+console.log(chalk.gray("speedConfidence:         ") + testerConf.speedConfidence)
+console.log(chalk.gray("speedTestLostTolerance:  ") + testerConf.speedTestLostTolerance)
+console.log(chalk.gray("lengthTestLostTolerance: ") + testerConf.lengthTestLostTolerance)
+console.log()
 
 let globalReport = {
   fail: 0,
   pass: 0,
 }
-
 let startTime = Date.now()
 
 for (let levelSpec of levelSpecs) {
   const spec = require(levelSpec).default
   spec.file = levelSpec.replace(/.*\//, '')
 
-  const tester = new LevelSpecTester(spec, {
-    stopOnFail: false,
-    speedSampleSize: speedSampleSize,
-    lengthSampleSize: 20,
-    lossReasonSampleSize: 20,
-    speedConfidence: 0.998,
-    speedTestLostTolerance: 0.002,
-    lengthTestLostTolerance: 0.002,
-  })
+  const tester = new LevelSpecTester(spec, testerConf)
   let report = tester.test()
 
   globalReport.fail += report.fail

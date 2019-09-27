@@ -1,3 +1,4 @@
+import lang from '../lang'
 import Level from './Level'
 
 import levelTest from './level0/level0'
@@ -171,6 +172,14 @@ class LevelManager {
   constructor(levels, categories) {
     this.levels = levels
     this.categories = categories
+
+    this.installMessages()
+  }
+
+  installMessages() {
+    for (let level of levels) {
+      level.installMessages(lang)
+    }
   }
 
   getList(levels) {

@@ -9,9 +9,9 @@ export default class LevelSpecTester {
     this.config = Object.assign({
       stopOnFail: false,
       speedSampleSize: 2000,
-      lengthSampleSize: 20,
+      lengthSampleSize: 2000,
       lossReasonSampleSize: 20,
-      speedConfidence: 0.998,
+      speedConfidence: 0.999,
       speedTestLostTolerance: 0.002,
       lengthTestLostTolerance: 0.002,
     }, config)
@@ -30,7 +30,7 @@ export default class LevelSpecTester {
     this.passCount = 0
 
     console.log()
-    console.log(chalk.bgBlack.whiteBright(`-- ${this.spec.file} (${this.level.getName()}) --`))
+    console.log(chalk.bgBlack.whiteBright(`===> ${this.spec.file} (${this.level.name.en}) `))
 
     const deterministic = !!this.spec.deterministic
 

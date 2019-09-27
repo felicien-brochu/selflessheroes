@@ -10,7 +10,7 @@
 		maxFontSize: 40,
 		minFontSize: 30
 	}">{{
-	level.getName()
+	$text(level.getNameMessageKey())
 	}}</h3>
 
   <score-stars :score="score"
