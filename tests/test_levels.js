@@ -39,8 +39,8 @@ let lengthSampleSize = 2000
 let stopOnFail = false
 
 if (argv.fast) {
-  speedSampleSize = 200
-  lengthSampleSize = 200
+  speedSampleSize = 100
+  lengthSampleSize = 20
 }
 
 if (argv.slow) {
