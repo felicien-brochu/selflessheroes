@@ -44,6 +44,8 @@ export default class EggS extends Phaser.GameObjects.Container {
     this.add(this.textSprite)
     this.add(this.writeSmokeSprite)
     this.setSize(this.sprite.width, this.sprite.height)
+
+    this.tweenPool = []
   }
 
   beforeStep(world) {
@@ -101,7 +103,8 @@ export default class EggS extends Phaser.GameObjects.Container {
         })
         this.moving = true
 
-        tween.setCallback('onComplete', () => this.onTweenComplete(), [])
+        this.tweenPool.push(tween)
+        tween.on('complete', this.onTweenComplete, this)
 
         if (!this.removed && this.egg.removed) {
           // Check if the egg fell in a hole in event log
@@ -162,7 +165,8 @@ export default class EggS extends Phaser.GameObjects.Container {
       })
       this.moving = true
 
-      tween.setCallback('onComplete', () => this.onTweenComplete(), [])
+      this.tweenPool.push(tween)
+      tween.on('complete', this.onTweenComplete, this)
     }
 
     this.lastEgg = this.egg.shallowCopy()
@@ -213,7 +217,9 @@ export default class EggS extends Phaser.GameObjects.Container {
     }
   }
 
-  onTweenComplete() {
+  onTweenComplete(tween) {
+    this.tweenPool.splice(this.tweenPool.indexOf(tween), 1)
+
     this.updatePathPosition()
     if (this.lastEgg.ownerID !== null) {
       let characterSprite = this.scene.getCharacterSprite(this.lastEgg.ownerID)
@@ -246,8 +252,9 @@ export default class EggS extends Phaser.GameObjects.Container {
     this.updateDepth()
   }
 
-  destroy() {
+  destroy(fromScene) {
+    this.tweenPool.forEach(tween => tween.off('complete'))
     this.stopLottery()
-    super.destroy()
+    super.destroy(fromScene)
   }
 }

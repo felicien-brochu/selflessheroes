@@ -7,11 +7,13 @@ export default class FireworksS extends Phaser.GameObjects.Sprite {
     this.delay = delay
     this.setTint(tint)
     this.timeoutID
+    this.tween = null
 
     this.init()
   }
 
   init() {
+    this.tween = null
     this.setVisible(false)
     this.follower = {
       t: 0,
@@ -31,7 +33,7 @@ export default class FireworksS extends Phaser.GameObjects.Sprite {
     this.setScale(size / 100)
     this.path = path
 
-    let tween = this.scene.tweens.add({
+    this.tween = this.scene.tweens.add({
       targets: this.follower,
       t: 1,
       ease: 'Expo.easeOut',
@@ -46,9 +48,7 @@ export default class FireworksS extends Phaser.GameObjects.Sprite {
       this.timeoutID = -1
     }, this.delay)
 
-    tween.setCallback('onComplete', () => {
-      this.init()
-    }, [])
+    this.tween.on('complete', this.init, this)
   }
 
   preUpdate(time, delta) {
@@ -58,5 +58,12 @@ export default class FireworksS extends Phaser.GameObjects.Sprite {
       this.x = this.follower.vec.x
       this.y = this.follower.vec.y + 100
     }
+  }
+
+  destroy(fromScene) {
+    if (this.tween) {
+      this.tween.off('complete')
+    }
+    super.destroy(fromScene)
   }
 }

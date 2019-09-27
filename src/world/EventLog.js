@@ -31,6 +31,15 @@ export default class EventLog {
     for (let hero of this.world.heroes) {
       hero.events.off('die', this.onHeroDie)
     }
+
+    for (let egg of this.world.eggs) {
+      egg.events.off('write', this.onWriteEgg)
+      egg.events.off('fell-in-hole', this.onEggFellInHole)
+    }
+
+    for (let cauldron of this.world.cauldrons) {
+      cauldron.events.off('put-item', this.onPutItemInCauldron)
+    }
   }
 
   logEvent(type, data, step = this.world.steps) {
