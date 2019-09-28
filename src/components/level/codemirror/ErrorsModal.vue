@@ -104,12 +104,6 @@ $main-color: #4d2e4a;
             padding: 0;
             border-radius: 12px;
             overflow: auto;
-
-            -webkit-touch-callout: text;
-            -webkit-user-select: text;
-            -khtml-user-select: text;
-            -moz-user-select: text;
-            -ms-user-select: text;
             user-select: text;
 
             li {

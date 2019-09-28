@@ -86,17 +86,12 @@ export default {
 
 <style scoped>
 .Resizer {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   z-index: 5;
-  -moz-background-clip: padding-box;
-  -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
 
 .Resizer:hover {
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 

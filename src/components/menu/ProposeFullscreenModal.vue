@@ -100,7 +100,6 @@ export default {
             cursor: pointer;
         }
 
-        /* checkbox aspect */
         [type="checkbox"]:checked + label:before,
         [type="checkbox"]:not(:checked) + label:before {
             content: '';
@@ -114,7 +113,7 @@ export default {
             border-radius: 3px;
             box-shadow: inset 0 1px 3px rgba(0,0,0,.3);
         }
-        /* checked mark aspect */
+
         [type="checkbox"]:checked + label:after,
         [type="checkbox"]:not(:checked) + label:after {
             content: '✔';
@@ -125,27 +124,18 @@ export default {
             font-weight: 600;
             color: #5d84c7;
             line-height: 1.75;
-            -webkit-transition: all 0.1s;
-            -moz-transition: all 0.1s;
-            -ms-transition: all 0.1s;
             transition: all 0.1s;
         }
-        /* checked mark aspect changes */
+
         [type="checkbox"]:not(:checked) + label:after {
             opacity: 0;
-            -webkit-transform: scale(0);
-            -moz-transform: scale(0);
-            -ms-transform: scale(0);
             transform: scale(0);
         }
         [type="checkbox"]:checked + label:after {
             opacity: 1;
-            -webkit-transform: scale(1);
-            -moz-transform: scale(1);
-            -ms-transform: scale(1);
             transform: scale(1);
         }
-        /* disabled checkbox */
+
         [type="checkbox"]:disabled:checked + label:before,
         [type="checkbox"]:disabled:not(:checked) + label:before {
             box-shadow: none;
@@ -158,7 +148,7 @@ export default {
         [type="checkbox"]:disabled + label {
             color: #aaa;
         }
-        /* accessibility */
+
         [type="checkbox"]:checked:focus + label:before,
         [type="checkbox"]:not(:checked):focus + label:before {
             border: 1px dotted blue;

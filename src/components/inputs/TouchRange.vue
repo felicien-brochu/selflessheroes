@@ -108,10 +108,6 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
     width: $thumb-width + $adjustment;
 }
 
-@mixin disabled {
-    // cursor: not-allowed;
-}
-
 [type='range'] {
     -webkit-appearance: none;
     background: transparent;
@@ -130,14 +126,6 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
         outline: 0;
 
         &::-webkit-slider-runnable-track {
-            background: lighten($track-color, $contrast);
-        }
-
-        &::-ms-fill-lower {
-            background: $track-color;
-        }
-
-        &::-ms-fill-upper {
             background: lighten($track-color, $contrast);
         }
     }
@@ -167,59 +155,6 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
 
     &::-moz-range-thumb {
         @include thumb(-4);
-    }
-
-    &::-ms-track {
-        @include track;
-        background: transparent;
-        border-color: transparent;
-        border-width: ($thumb-height / 2) 0;
-        color: transparent;
-    }
-
-    &::-ms-fill-lower {
-        @include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
-        background: $ie-bottom-track-color;
-        border: $track-border-width solid $track-border-color;
-        border-radius: ($track-radius * 2);
-    }
-
-    &::-ms-fill-upper {
-        @include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
-        background: $track-color;
-        border: $track-border-width solid $track-border-color;
-        border-radius: ($track-radius * 2);
-    }
-
-    &::-ms-thumb {
-        @include thumb(-4);
-        margin-top: $track-height / 4;
-    }
-
-    &:disabled {
-        &::-webkit-slider-thumb {
-            @include disabled;
-        }
-
-        &::-moz-range-thumb {
-            @include disabled;
-        }
-
-        &::-ms-thumb {
-            @include disabled;
-        }
-
-        &::-webkit-slider-runnable-track {
-            @include disabled;
-        }
-
-        &::-ms-fill-lower {
-            @include disabled;
-        }
-
-        &::-ms-fill-upper {
-            @include disabled;
-        }
     }
 }
 </style>

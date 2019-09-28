@@ -192,7 +192,6 @@ export default {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: justify-content;
     width: 100%;
     padding: 0;
 

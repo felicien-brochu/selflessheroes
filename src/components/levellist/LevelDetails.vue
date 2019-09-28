@@ -385,7 +385,6 @@ $level-details-color: #3C404A;
                 bottom: 13px;
                 right: 17px;
                 font-size: 41px;
-                text-shadow: 1px 0 10px 3px #000;
 
                 &:active,
                 &:hover {
@@ -410,6 +409,7 @@ $level-details-color: #3C404A;
                     flex-grow: 1;
                     border-radius: 8px;
                     min-height: 250px;
+                    min-width: max-content;
 
                     li {
                         display: flex;

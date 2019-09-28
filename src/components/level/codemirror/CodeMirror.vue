@@ -270,7 +270,6 @@ export default {
 
 .CodeMirror.cm-s-one-dark {
     font-family: Consolas, 'DejaVu Sans Mono', monospace;
-    font-weight: 250;
     font-size: 18px;
     line-height: 26px;
     color: #abb2bf;
