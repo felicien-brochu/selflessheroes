@@ -321,6 +321,7 @@ $level-details-color: #3C404A;
         .level-score {
             display: flex;
             justify-content: flex-end;
+            flex-wrap: wrap;
             line-height: 37px;
             padding-right: 26px + 10px;
             margin-bottom: 16px;
@@ -341,7 +342,7 @@ $level-details-color: #3C404A;
         }
 
         .score {
-            width: 130px;
+            min-width: 130px;
             text-align: center;
             flex-shrink: 0;
 
@@ -443,6 +444,7 @@ $level-details-color: #3C404A;
                         }
 
                         .name-container {
+                            display: flex;
                             flex-grow: 1;
 
                             .name {
