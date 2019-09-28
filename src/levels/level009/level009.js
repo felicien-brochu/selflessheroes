@@ -13,7 +13,7 @@ const level = {
 
   maxStep: 200,
   speedTarget: 62,
-  lengthTarget: 8,
+  lengthTarget: 7,
 
   compilerConfig: {
     excludePrimary: ['assign'],
