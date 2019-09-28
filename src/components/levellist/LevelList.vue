@@ -70,7 +70,7 @@ export default {
   created() {
     if (!this.career) {
       this.$router.replace({
-        name: 'home'
+        name: 'home',
       })
     }
 
@@ -78,18 +78,29 @@ export default {
   },
 
   beforeRouteEnter(to, from, next) {
-    next(vm => {
-      if (vm.$router.levelListScroll && vm.$router.levelListScroll.path !== to.path) {
-        vm.$router.levelListScroll = null
-      }
+    let careerID = parseInt(to.params.careerID)
+    let career = storage.getCareer(careerID)
+    if (!career) {
+      next({
+        name: 'home',
+        replace: true,
+      })
+    }
 
-      if (vm.$router.levelListScroll) {
-        vm.$el.scrollTop = vm.$router.levelListScroll.scrollTop
-      }
-      else {
-        vm.scrollToLastCategory()
-      }
-    })
+    else {
+      next(vm => {
+        if (vm.$router.levelListScroll && vm.$router.levelListScroll.path !== to.path) {
+          vm.$router.levelListScroll = null
+        }
+
+        if (vm.$router.levelListScroll) {
+          vm.$el.scrollTop = vm.$router.levelListScroll.scrollTop
+        }
+        else {
+          vm.scrollToLastCategory()
+        }
+      })
+    }
   },
 
   beforeRouteLeave(to, from, next) {

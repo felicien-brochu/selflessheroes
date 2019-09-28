@@ -142,9 +142,7 @@ export default {
       transitioning: false
     }
   },
-  beforeRouteEnter(to, from, next) {
-    next()
-  },
+
   beforeRouteUpdate(to, from, next) {
     const toDepth = to.path.split('/').length
     const fromDepth = from.path.split('/').length

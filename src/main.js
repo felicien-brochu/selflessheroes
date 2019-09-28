@@ -47,6 +47,12 @@ const router = new VueRouter({
       path: 'sizewarning',
       component: ScreenSizeWarning,
       name: 'screen-size-warning'
+    }, {
+      path: '*',
+      redirect: {
+        name: 'home',
+        replace: true,
+      }
     }]
   }],
 })
