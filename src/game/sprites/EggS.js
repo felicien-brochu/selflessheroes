@@ -1,5 +1,7 @@
 import Phaser from 'phaser'
 
+const minStepIntervalAnims = 0
+
 export default class EggS extends Phaser.GameObjects.Container {
   constructor(scene, egg, tileWidth, tileHeight, offsetX = 0, offsetY = -3) {
     let x = (egg.x + 0.5) * tileWidth + offsetX,
@@ -53,6 +55,31 @@ export default class EggS extends Phaser.GameObjects.Container {
       this.stopLottery()
     }
 
+    this.handleWriteActions(world)
+    this.handleDropInCauldron(world)
+
+    if (!this.egg.owner) {
+      if (this.lastEgg.ownerID) {
+        this.handleDroppedByOwner(world)
+      } else {
+        this.setNormalPosition()
+      }
+    } else if (!this.lastEgg.ownerID) {
+      this.handleTakenByOwner(world)
+    }
+
+    this.lastEgg = this.egg.shallowCopy()
+    this.updateText(this.egg.value)
+  }
+
+  afterStep(world) {}
+
+  setNormalPosition() {
+    this.x = (this.egg.x + 0.5) * this.tileWidth + this.offsetX
+    this.y = (this.egg.y + 0.5) * this.tileHeight + this.offsetY
+  }
+
+  handleWriteActions(world) {
     // Check for write action in event log
     let writeLogs = world.eventLog.search({
       type: 'egg-write',
@@ -62,7 +89,9 @@ export default class EggS extends Phaser.GameObjects.Container {
     if (writeLogs.length > 0) {
       this.writeSmokeSprite.play('write_smoke')
     }
+  }
 
+  handleDropInCauldron(world) {
     // Check for drop in cauldron in event log
     let cauldronDropLogs = world.eventLog.search({
       type: 'put-item-cauldron',
@@ -72,108 +101,137 @@ export default class EggS extends Phaser.GameObjects.Container {
     if (cauldronDropLogs.length > 0) {
       this.scene.soundManager.play('cauldron_drop_sfx')
     }
-
-    if (!this.egg.owner) {
-      let x = (this.egg.x + 0.5) * this.tileWidth + this.offsetX
-      let y = (this.egg.y + 0.5) * this.tileHeight + this.offsetY
-
-      if (this.lastEgg.ownerID) {
-        let characterSprite = this.scene.getCharacterSprite(this.lastEgg.ownerID)
-        this.x = characterSprite.x + characterSprite.itemContainer.x
-        this.y = characterSprite.y + characterSprite.itemContainer.y
-        characterSprite.updateItem()
-
-        this.path = new Phaser.Curves.Path(this.x, this.y)
-        let bump = this.y > y ? -50 : 0
-        this.path.cubicBezierTo(x, y, this.x, this.y + bump, x, y - 100)
-        this.follower = {
-          t: 0,
-          vec: new Phaser.Math.Vector2()
-        }
-        const maxDuration = Math.min(Math.max(this.scene.runner.stepInterval / 1.5, 200), this.scene.runner.stepInterval)
-        const constPortion = 300
-        let duration = (this.path.getCurveLengths()[0] + constPortion) / (100 + constPortion) * this.scene.runner.stepInterval / 1.5
-        duration = Math.min(duration, maxDuration)
-
-        let tween = this.scene.tweens.add({
-          targets: this.follower,
-          t: 1,
-          ease: 'Quad.easeInOut',
-          duration: duration
-        })
-        this.moving = true
-
-        this.tweenPool.push(tween)
-        tween.on('complete', this.onTweenComplete, this)
-
-        if (!this.removed && this.egg.removed) {
-          // Check if the egg fell in a hole in event log
-          let fellLogs = world.eventLog.search({
-            type: 'egg-fell-in-hole',
-            step: world.steps,
-            eggID: this.egg.id
-          })
-          if (fellLogs.length > 0) {
-            // Modify path to fall beneath the ground
-            this.path = new Phaser.Curves.Path(this.x, this.y)
-            let bump = this.y > y ? -20 : 0
-            this.path.cubicBezierTo(x, y + 32, this.x, this.y + bump, x, y - 100)
-
-            this.scene.tweens.add({
-              targets: this,
-              alpha: 0,
-              ease: 'Quad.easeIn',
-              delay: duration / 2,
-              duration: duration / 4
-            })
-          } else {
-            this.scene.tweens.add({
-              targets: this,
-              alpha: 0,
-              ease: 'Stepped',
-              delay: duration
-            })
-          }
-        }
-
-      } else {
-        this.x = x
-        this.y = y
-      }
-    } else if (!this.lastEgg.ownerID) {
-      let characterSprite = this.scene.getCharacterSprite(this.egg.owner.id)
-
-      this.path = new Phaser.Curves.Path(this.x, this.y)
-      let x = characterSprite.x + characterSprite.itemContainer.x
-      let y = characterSprite.y + characterSprite.itemContainer.y
-      this.path.cubicBezierTo(x, y, this.x, this.y, x, y - 50)
-      this.follower = {
-        t: 0,
-        vec: new Phaser.Math.Vector2()
-      }
-
-      const maxDuration = Math.min(Math.max(this.scene.runner.stepInterval / 1.5, 200), this.scene.runner.stepInterval)
-      const constPortion = 300
-      let duration = (this.path.getCurveLengths()[0] + constPortion) / (100 + constPortion) * this.scene.runner.stepInterval / 1.5
-      duration = Math.min(duration, maxDuration)
-
-      let tween = this.scene.tweens.add({
-        targets: this.follower,
-        t: 1,
-        ease: 'Quad.easeInOut',
-        duration: duration
-      })
-      this.moving = true
-
-      this.tweenPool.push(tween)
-      tween.on('complete', this.onTweenComplete, this)
-    }
-
-    this.lastEgg = this.egg.shallowCopy()
-    this.updateText(this.egg.value)
   }
 
-  afterStep(world) {}
+  handleDroppedByOwner(world) {
+    let characterSprite = this.scene.getCharacterSprite(this.lastEgg.ownerID)
+    this.x = characterSprite.x + characterSprite.itemContainer.x
+    this.y = characterSprite.y + characterSprite.itemContainer.y
+    characterSprite.updateItem()
+
+    let x = (this.egg.x + 0.5) * this.tileWidth + this.offsetX
+    let y = (this.egg.y + 0.5) * this.tileHeight + this.offsetY
+
+    const stepInterval = this.scene.runner.stepInterval
+    const justRemoved = !this.removed && this.egg.removed
+    let fellInHole = false
+
+    if (justRemoved) {
+      // Check if the egg fell in a hole in event log
+      let fellLogs = world.eventLog.search({
+        type: 'egg-fell-in-hole',
+        step: world.steps,
+        eggID: this.egg.id
+      })
+      fellInHole = fellLogs.length > 0
+    }
+
+    if (stepInterval > minStepIntervalAnims) {
+      this.startDropAnimation(x, y, justRemoved, fellInHole)
+    } else {
+      this.x = x
+      this.y = y
+
+      if (justRemoved) {
+        this.alpha = 0
+      }
+    }
+  }
+
+  startDropAnimation(x, y, justRemoved, fellInHole) {
+    this.killAllTweens(false)
+    const stepInterval = this.scene.runner.stepInterval
+    this.path = new Phaser.Curves.Path(this.x, this.y)
+
+    let bump = -50
+    const droppedDownward = this.y <= y
+    if (droppedDownward) {
+      bump = 0
+    }
+    if (fellInHole) {
+      // Modify path to fall beneath the ground
+      y += 32
+    }
+
+    this.path.cubicBezierTo(x, y, this.x, this.y + bump, x, y - 100)
+    this.follower = {
+      t: 0,
+      vec: new Phaser.Math.Vector2()
+    }
+    const maxDuration = Math.min(Math.max(stepInterval / 1.5, 200), stepInterval)
+    const constPortion = 300
+    let duration = (this.path.getCurveLengths()[0] + constPortion) / (100 + constPortion) * stepInterval / 1.5
+    duration = Math.min(duration, maxDuration)
+
+    let tween = this.scene.tweens.add({
+      targets: this.follower,
+      t: 1,
+      ease: 'Quad.easeInOut',
+      duration: duration
+    })
+
+    this.moving = true
+    this.tweenPool.push(tween)
+    tween.on('complete', this.onTweenComplete, this)
+
+    if (justRemoved) {
+      this.scene.tweens.add({
+        targets: this,
+        alpha: 0,
+        ease: fellInHole ? 'Quad.easeIn' : 'Stepped',
+        delay: fellInHole ? duration / 2 : duration,
+        duration: fellInHole ? duration / 4 : 0,
+      })
+    }
+  }
+
+  handleTakenByOwner(world) {
+    const stepInterval = this.scene.runner.stepInterval
+    let characterSprite = this.scene.getCharacterSprite(this.egg.owner.id)
+    let x = characterSprite.x + characterSprite.itemContainer.x
+    let y = characterSprite.y + characterSprite.itemContainer.y
+
+    if (stepInterval > minStepIntervalAnims) {
+      this.startTakenAnimation(x, y)
+
+    } else {
+      this.x = x
+      this.y = y
+      characterSprite.updateItem()
+    }
+  }
+
+  afterTakenAnimation() {
+    let characterSprite = this.scene.getCharacterSprite(this.lastEgg.ownerID)
+    characterSprite.updateItem()
+  }
+
+  startTakenAnimation(x, y) {
+    this.killAllTweens(false)
+    const stepInterval = this.scene.runner.stepInterval
+    this.path = new Phaser.Curves.Path(this.x, this.y)
+    this.path.cubicBezierTo(x, y, this.x, this.y, x, y - 50)
+    this.follower = {
+      t: 0,
+      vec: new Phaser.Math.Vector2()
+    }
+
+    const maxDuration = Math.min(Math.max(stepInterval / 1.5, 200), stepInterval)
+    const constPortion = 300
+    let duration = (this.path.getCurveLengths()[0] + constPortion) / (100 + constPortion) * stepInterval / 1.5
+    duration = Math.min(duration, maxDuration)
+
+    let tween = this.scene.tweens.add({
+      targets: this.follower,
+      t: 1,
+      ease: 'Quad.easeInOut',
+      duration: duration
+    })
+    this.moving = true
+
+    this.tweenPool.push(tween)
+    tween.on('complete', this.onTweenComplete, this)
+  }
 
   startValueLottery() {
     const lottery = () => {
@@ -218,14 +276,25 @@ export default class EggS extends Phaser.GameObjects.Container {
   }
 
   onTweenComplete(tween) {
-    this.tweenPool.splice(this.tweenPool.indexOf(tween), 1)
+    if (this.tweenPool.includes(tween)) {
+      this.tweenPool.splice(this.tweenPool.indexOf(tween), 1)
+    }
 
     this.updatePathPosition()
-    if (this.lastEgg.ownerID !== null) {
-      let characterSprite = this.scene.getCharacterSprite(this.lastEgg.ownerID)
-      characterSprite.updateItem()
-    }
     this.moving = false
+    if (this.lastEgg.ownerID !== null) {
+      this.afterTakenAnimation()
+    }
+  }
+
+  killAllTweens(removeListeners = true) {
+    this.tweenPool.forEach(tween => {
+      if (removeListeners) {
+        tween.off('complete')
+      }
+      tween.stop()
+    })
+    this.tweenPool = []
   }
 
   updateDepth() {
@@ -253,7 +322,7 @@ export default class EggS extends Phaser.GameObjects.Container {
   }
 
   destroy(fromScene) {
-    this.tweenPool.forEach(tween => tween.off('complete'))
+    this.killAllTweens(true)
     this.stopLottery()
     super.destroy(fromScene)
   }
