@@ -22,13 +22,16 @@ export default class Career extends StorageWrapper {
   }
 
   createUnlockedLevelSolutions(levels) {
+    let createdLevels = []
     for (let category of levels) {
       for (let level of category.levels) {
         if (level.unlocked && !this.getLevel(level.id)) {
           this.createLevel(level.level)
+          createdLevels.push(level)
         }
       }
     }
+    return createdLevels
   }
 
   createLevel(levelConfig) {

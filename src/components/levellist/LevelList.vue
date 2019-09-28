@@ -74,7 +74,15 @@ export default {
       })
     }
 
-    this.career.createUnlockedLevelSolutions(this.careerLevels)
+    this.createdLevels = this.career.createUnlockedLevelSolutions(this.careerLevels)
+  },
+
+  mounted() {
+    let newCategory = this.careerLevels.find(category => this.createdLevels.some(level => level.id === category.levels[0].id))
+    if (newCategory) {
+      let newCategoryIndex = this.careerLevels.indexOf(newCategory)
+      this.scrollToCategory(newCategoryIndex)
+    }
   },
 
   beforeRouteEnter(to, from, next) {
@@ -120,12 +128,18 @@ export default {
 
     scrollToLastCategory() {
       if (this.$refs.categories.length > 1) {
+        this.scrollToCategory(this.$refs.categories.length - 1)
+      }
+    },
+
+    scrollToCategory(index) {
+      if (index < this.$refs.categories.length) {
         setTimeout(() => {
-          let category = this.$refs.categories[this.$refs.categories.length - 1].$el
+          let category = this.$refs.categories[index].$el
           SmoothScrollTo(category, 1300, -80, this.$el)
         }, 300)
       }
-    }
+    },
   }
 }
 </script>
