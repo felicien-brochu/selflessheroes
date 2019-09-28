@@ -7,8 +7,8 @@ const level = {
     fr: "Tourne autour du pot",
   },
   objective: {
-    en: "Trigger all the %%icon icon-switch$%% switches\n\n%%icon mdi mdi-information-outline$%% Once you triggered a red %%icon icon-switch$%% switch, it stays triggered. Even if you don't stay on it.",
-    fr: "Active tous les %%icon icon-switch$%% boutons\n\n%%icon mdi mdi-information-outline$%% Dès qu'un %%icon icon-switch$%% bouton rouge est activé, il le reste. Même si le héro ne reste pas dessus.",
+    en: "Trigger all the %%icon icon-switch-red$%% switches\n\n%%icon mdi mdi-information-outline$%% Once you triggered a red %%icon icon-switch-red$%% switch, it stays triggered. Even if you don't stay on it.",
+    fr: "Active tous les %%icon icon-switch-red$%% boutons\n\n%%icon mdi mdi-information-outline$%% Dès qu'un %%icon icon-switch-red$%% bouton rouge est activé, il le reste. Même si le héro ne reste pas dessus.",
   },
 
   maxStep: 2000,
