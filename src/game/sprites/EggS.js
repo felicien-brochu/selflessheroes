@@ -143,12 +143,15 @@ export default class EggS extends Phaser.GameObjects.Container {
     const stepInterval = this.scene.runner.stepInterval
     this.path = new Phaser.Curves.Path(this.x, this.y)
 
-    let bump = -50
-    const droppedDownward = this.y <= y
+    let bump = -30
+    const droppedDownward = this.egg.y >= this.lastEgg.y
     if (droppedDownward) {
       bump = 0
     }
     if (fellInHole) {
+      if (!droppedDownward) {
+        bump = -50
+      }
       // Modify path to fall beneath the ground
       y += 32
     }
