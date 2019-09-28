@@ -97,7 +97,10 @@ export default class WorldRunner {
 
   doOneStep() {
     this.pause()
+    let speed = this.speed
+    this.speed = Speeds.values[Speeds.stepOnce]
     this.step()
+    this.speed = speed
   }
 
   setSpeed(speed) {
