@@ -29,6 +29,7 @@ import level110 from './level110/level110'
 import level111 from './level111/level111'
 import level112 from './level112/level112'
 import level113 from './level113/level113'
+import level114 from './level114/level114'
 import level121 from './level121/level121'
 
 const levels = [
@@ -58,6 +59,7 @@ const levels = [
   new Level(111, level111),
   new Level(112, level112),
   new Level(113, level113),
+  new Level(114, level114),
   new Level(121, level121),
 
   new Level(0, levelTest),
@@ -153,6 +155,10 @@ const categories = [{
     }, {
       id: 113,
       unlock: [111],
+    }, {
+      id: 114,
+      unlock: [113],
+      bonus: true,
     }, {
       id: 121,
       unlock: [113],
