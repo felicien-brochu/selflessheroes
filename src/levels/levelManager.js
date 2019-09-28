@@ -1,20 +1,20 @@
 import lang from '../lang'
 import Level from './Level'
 
-import levelTest from './level0/level0'
+import levelTest from './level000/level000'
 
-import level1 from './level1/level1'
-import level2 from './level2/level2'
-import level3 from './level3/level3'
-import level4 from './level4/level4'
-import level5 from './level5/level5'
-import level6 from './level6/level6'
-import level7 from './level7/level7'
-import level8 from './level8/level8'
-import level9 from './level9/level9'
-import level10 from './level10/level10'
-import level11 from './level11/level11'
-import level12 from './level12/level12'
+import level001 from './level001/level001'
+import level002 from './level002/level002'
+import level003 from './level003/level003'
+import level004 from './level004/level004'
+import level005 from './level005/level005'
+import level006 from './level006/level006'
+import level007 from './level007/level007'
+import level008 from './level008/level008'
+import level009 from './level009/level009'
+import level010 from './level010/level010'
+import level011 from './level011/level011'
+import level012 from './level012/level012'
 
 import level101 from './level101/level101'
 import level102 from './level102/level102'
@@ -30,21 +30,22 @@ import level111 from './level111/level111'
 import level112 from './level112/level112'
 import level113 from './level113/level113'
 import level114 from './level114/level114'
-import level121 from './level121/level121'
+
+import level201 from './level201/level201'
 
 const levels = [
-  new Level(1, level1),
-  new Level(2, level2),
-  new Level(3, level3),
-  new Level(4, level4),
-  new Level(5, level5),
-  new Level(6, level6),
-  new Level(7, level7),
-  new Level(8, level8),
-  new Level(9, level9),
-  new Level(10, level10),
-  new Level(11, level11),
-  new Level(12, level12),
+  new Level(1, level001),
+  new Level(2, level002),
+  new Level(3, level003),
+  new Level(4, level004),
+  new Level(5, level005),
+  new Level(6, level006),
+  new Level(7, level007),
+  new Level(8, level008),
+  new Level(9, level009),
+  new Level(10, level010),
+  new Level(11, level011),
+  new Level(12, level012),
 
   new Level(101, level101),
   new Level(102, level102),
@@ -60,7 +61,8 @@ const levels = [
   new Level(112, level112),
   new Level(113, level113),
   new Level(114, level114),
-  new Level(121, level121),
+
+  new Level(201, level201),
 
   new Level(0, levelTest),
 ]
@@ -159,11 +161,16 @@ const categories = [{
       id: 114,
       unlock: [113],
       bonus: true,
-    }, {
-      id: 121,
-      unlock: [113],
-    }]
-  }
+    }, ]
+  }, {
+    name: 'variables',
+    color: 'yellow',
+    unlock: [111],
+    levels: [{
+      id: 201,
+      unlock: [],
+    }, ]
+  },
 ]
 
 if (ENV === 'development') {
