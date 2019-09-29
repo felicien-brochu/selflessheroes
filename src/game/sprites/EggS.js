@@ -32,8 +32,9 @@ export default class EggS extends Phaser.GameObjects.Container {
     this.updateText(this.egg.value)
 
     this.writeSmokeSprite = new Phaser.GameObjects.Sprite(scene, 0, 0, 'write_smoke')
-    this.writeSmokeSprite.setFrame(4)
+    this.writeSmokeSprite.setScale(0.85)
 
+    this.updateTextTimeoutID = -1
     this.lotteryIntervalID = -1
     if (this.egg.showLottery && this.egg.hasValueGenerator()) {
       this.startValueLottery()
@@ -69,7 +70,16 @@ export default class EggS extends Phaser.GameObjects.Container {
     }
 
     this.lastEgg = this.egg.shallowCopy()
-    this.updateText(this.egg.value)
+
+    if (!this.hasWriteActions(world)) {
+      this.updateText(this.egg.value)
+    } else {
+      const stepInterval = this.scene.runner.stepInterval
+      this.updateTextTimeoutID = setTimeout(() => {
+        this.updateText(this.egg.value)
+        this.updateTextTimeoutID = -1
+      }, this.scene.runner.stepInterval / 4)
+    }
   }
 
   afterStep(world) {}
@@ -80,15 +90,22 @@ export default class EggS extends Phaser.GameObjects.Container {
   }
 
   handleWriteActions(world) {
+    if (this.hasWriteActions(world)) {
+      this.writeSmokeSprite.play('write_smoke')
+      const stepInterval = this.scene.runner.stepInterval
+      this.writeSmokeSprite.anims.msPerFrame = stepInterval / 20
+      this.scene.soundManager.play('write_sfx')
+    }
+  }
+
+  hasWriteActions(world) {
     // Check for write action in event log
     let writeLogs = world.eventLog.search({
       type: 'egg-write',
       step: world.steps,
       eggID: this.egg.id
     })
-    if (writeLogs.length > 0) {
-      this.writeSmokeSprite.play('write_smoke')
-    }
+    return writeLogs.length > 0
   }
 
   handleDropInCauldron(world) {
@@ -327,6 +344,9 @@ export default class EggS extends Phaser.GameObjects.Container {
   destroy(fromScene) {
     this.killAllTweens(true)
     this.stopLottery()
+    if (this.updateTextTimeoutID >= 0) {
+      clearTimeout(this.updateTextTimeoutID)
+    }
     super.destroy(fromScene)
   }
 }

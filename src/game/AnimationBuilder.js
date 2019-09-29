@@ -427,8 +427,8 @@ const anims = {
   write_smoke: {
     sprite: 'write_smoke',
     start: 0,
-    end: 4,
-    frameRate: 20,
+    end: 9,
+    frameRate: 30,
     repeat: 0
   },
   fireworks1: {
