@@ -6,32 +6,31 @@ export default {
     type: ["length"],
     code: `
 c:
-b:
-if w == hero :
-	if w > here :
-		take(w)
-		drop(here)
-	endif
-else
-	if here > e :
-		take(e)
-		drop(here)
-	endif
-endif
-if w == hero &&
-  e != wall ||
-  e == hero &&
-  ne == hole :
-	step(e)
-	jump b
-endif
 a:
-step(w)
-if w == hero &&
-  nw == hole ||
-  e == hero &&
-  w != wall :
+if w > here &&
+  w == hero :
+	take(w)
+	drop(here)
+endif
+if e < here &&
+  e == hero :
+	take(e)
+	drop(here)
+endif
+if ne == hole &&
+  e == hero ||
+  e != wall &&
+  w == hero :
+	step(e)
 	jump a
+endif
+b:
+if nw == hole &&
+  w == hero ||
+  w != wall &&
+  e == hero :
+	step(w)
+	jump b
 endif
 jump c
 		`,
