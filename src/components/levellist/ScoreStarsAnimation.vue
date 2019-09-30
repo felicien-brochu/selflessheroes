@@ -109,7 +109,7 @@ export default {
       this.step++
 
       if (this.step < this.steps.length) {
-        this.programAnimationStep(1000)
+        this.programAnimationStep(800)
       }
       else {
         this.timeoutID = setTimeout(() => this.onAnimationEnd(), 800)
@@ -177,7 +177,7 @@ export default {
             }
             animation-name: bounce;
             animation-iteration-count: 3;
-            animation-duration: 1000ms;
+            animation-duration: 800ms;
             animation-timing-function: ease;
         }
 
