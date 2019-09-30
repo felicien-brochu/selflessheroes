@@ -5,29 +5,21 @@ export default {
   specs: [{
     type: ["length"],
     code: `
-a:
+c:
+b:
 step(s)
 if s != wall :
-	jump a
-endif
-d:
-b:
-if here == egg ||
-  n != egg :
-	step(n)
 	jump b
 endif
-take(n)
-c:
-if s != wall :
-	if here == egg ||
-	  s != egg :
-		step(s)
-		jump c
-	endif
-endif
+a:
 drop(here)
-jump d
+if n != egg ||
+  here != nothing :
+	step(n)
+	jump a
+endif
+take(n)
+jump c
 		`,
   }, {
     type: ["speed"],
