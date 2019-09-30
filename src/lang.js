@@ -338,7 +338,7 @@ const messages = {
     tutorial_advanced_step_redo: "Rétablit la dernière modification",
     tutorial_advanced_step_delete: "Supprime toutes les instructions",
     tutorial_advanced_step_editor_switch: "Passe à l'éditeur de code.\nAvec l'éditeur de code, vous pouvez copier le programme d'un niveau pour le réutiliser dans un autre.\nLes joueurs les plus avancés peuvent l'utiliser pour créer leur programme directement en code.",
-    tutorial_advanced_step_game: "Pour mieux suivre le comportement d'un héro, sélectionne-le en cliquant dessus.\nQuand le programme est lancé, un curseur bleu apparaîtra à gauche des instructions pour montrer à quelle étape du programme se trouve le héro sélectionné.",
+    tutorial_advanced_step_game: "Pour mieux suivre le comportement d'un héro, sélectionne-le en cliquant dessus.\nQuand le programme est lancé, un curseur bleu apparaît à côté des instructions pour montrer à quelle étape du programme se trouve le héro sélectionné.",
     tutorial_advanced_step_play_pause: "Lance ou pause le programme",
     tutorial_advanced_step_step: "Exécute le programme étape par étape",
     tutorial_advanced_step_stop: "Arrête le programme",
@@ -362,7 +362,7 @@ const messages = {
 
     level_help_tab_if_statement_1: "%%statement branching-statement$si%% permet d'exécuter des instructions seulement si une condition est vraie.",
     level_help_tab_if_statement_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Si la case à ta droite est un mur, alors va à gauche. Sinon va à droite\".",
-    level_help_tab_if_statement_3: "%%statement branching-statement$si%% vérifie si la condition est vraie, dans quel cas les instructions à l'intérieur du %%statement branching-statement$si%% (celles à droite de la barre verticale grise) seront exécutées. Sinon les instructions à l'intérieur du %%statement branching-statement$sinon%% (si il y en a un) seront exécutées.",
+    level_help_tab_if_statement_3: "%%statement branching-statement$si%% vérifie si la condition est vraie. Si c'est le cas, les instructions à l'intérieur du %%statement branching-statement$si%% (celles à droite de la barre verticale grise) seront exécutées. Sinon les instructions à l'intérieur du %%statement branching-statement$sinon%%, s'il y en a un, seront exécutées.",
     level_help_tab_if_statement_4: "%%statement branching-statement$sinon%% ne fait pas partie du %%statement branching-statement$si%% à la base. Pour le faire apparaître, glisse une instruction au-dessus du %%statement branching-statement$si%%.\nPour le faire disparaître, enlève toutes les instructions à l'intérieur du %%statement branching-statement$sinon%%.",
     level_help_tab_if_statement_6: "Clique sur le bouton plus pour ajouter une autre condition.",
     level_help_tab_if_statement_7: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Si la case à ta droite est un mur ou si la case à ta droite est un trou, alors va à gauche\".",
