@@ -7,7 +7,7 @@ const getTop = function(element, start) {
   return element.getBoundingClientRect().top + start
 }
 
-export default function(scrollTo, speed = 1, minDuration = 0, maxDuration = 1300, offset = 0, container = window, callback) {
+export default function(scrollTo, speed = 1, minDistance = 100, maxDuration = 1300, offset = 0, container = window, callback) {
   const requestAnimationFrame = window.requestAnimationFrame ||
     window.mozRequestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
@@ -29,8 +29,16 @@ export default function(scrollTo, speed = 1, minDuration = 0, maxDuration = 1300
     end = container.scrollHeight - window.innerHeight
   }
 
+  const distance = Math.abs(end - startPoint)
+  if (distance < minDistance) {
+    if (typeof callback === 'function') {
+      callback()
+    }
+    return
+  }
+
   // Speed is in px/ms
-  const duration = Math.max(Math.min(Math.abs(end - startPoint) / speed, maxDuration), minDuration)
+  let duration = Math.min(distance / speed, maxDuration)
 
   const clock = Date.now()
   const step = function() {

@@ -152,7 +152,7 @@ export default {
     scrollToCategory(index, callback) {
       if (index < this.$refs.categories.length) {
         let category = this.$refs.categories[index].$el
-        SmoothScrollTo(category, 0.77, 0, 1300, -80, this.$el, callback)
+        SmoothScrollTo(category, 0.77, 200, 1300, -80, this.$el, callback)
       }
     },
 
@@ -174,13 +174,15 @@ export default {
     scrollToLevel(levelID, callback) {
       let levelItem = this.$refs.levelItems.find(item => item.level.id === levelID)
       if (levelItem) {
-        let offset = -(window.innerHeight - 310) / 2
-        SmoothScrollTo(levelItem.$el, 0.4, 0, 1300, offset, this.$el, callback)
-      }
-      else {
-        if (typeof callback === 'function') {
-          callback()
+        let itemBox = levelItem.$el.getBoundingClientRect()
+        if (itemBox.top - 115 < 0 || itemBox.bottom + 115 > window.innerHeight) {
+          let offset = -(window.innerHeight - 310) / 2
+          SmoothScrollTo(levelItem.$el, 0.4, 100, 1300, offset, this.$el, callback)
+          return
         }
+      }
+      if (typeof callback === 'function') {
+        callback()
       }
     },
 
