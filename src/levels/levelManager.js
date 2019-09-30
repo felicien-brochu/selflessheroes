@@ -227,9 +227,6 @@ class LevelManager {
         let level = this.getLevelByID(levelConf.id)
         let score = null
         let levelSolutions = career.getLevel(levelConf.id)
-        if (levelSolutions) {
-          score = levelSolutions.score
-        }
         let unlocked = this.isLevelUnlocked(level, winList)
 
         if (!(levelConf.bonus && !unlocked))
@@ -237,7 +234,7 @@ class LevelManager {
             id: levelConf.id,
             level: level,
             bonus: !!levelConf.bonus,
-            score: score,
+            solutions: levelSolutions,
             unlocked: unlocked,
           })
       }

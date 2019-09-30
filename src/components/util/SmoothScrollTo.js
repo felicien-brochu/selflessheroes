@@ -7,7 +7,7 @@ const getTop = function(element, start) {
   return element.getBoundingClientRect().top + start
 }
 
-export default function(scrollTo, duration = 500, offset = 0, container = window) {
+export default function(scrollTo, speed = 1, minDuration = 0, maxDuration = 1300, offset = 0, container = window, callback) {
   const requestAnimationFrame = window.requestAnimationFrame ||
     window.mozRequestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
@@ -29,6 +29,9 @@ export default function(scrollTo, duration = 500, offset = 0, container = window
     end = container.scrollHeight - window.innerHeight
   }
 
+  // Speed is in px/ms
+  const duration = Math.max(Math.min(Math.abs(end - startPoint) / speed, maxDuration), minDuration)
+
   const clock = Date.now()
   const step = function() {
     // the time elapsed from the beginning of the scroll
@@ -42,6 +45,10 @@ export default function(scrollTo, duration = 500, offset = 0, container = window
     }
 
     container === window ? container.scrollTo(0, position) : (container.scrollTop = position)
+
+    if (elapsed >= duration && typeof callback === 'function') {
+      callback()
+    }
   }
   step()
 }

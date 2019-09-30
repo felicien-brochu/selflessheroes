@@ -16,12 +16,16 @@
       :parentPadding="30"
       ref="categories">
       <level-item v-for="level in category.levels"
-        :key="level.id"
+        ref="levelItems"
+        :key="'level' + level.id"
         :level="level.level"
         :locked="!level.unlocked"
+        :newlyUnlocked="level.newlyUnlocked"
+        :revealed="level.revealed"
         :bonus="level.bonus"
         :score="level.score"
         :class="{'selected': level.id === selectedID}"
+        @show-score-animation-end="handleShowScoreAnimationEnd"
         @mousedown.native="selectLevel(level.level.id, level.unlocked)"
         @touchstart.native.prevent="selectLevel(level.id, level.unlocked)" />
     </card-list>
@@ -60,6 +64,23 @@ export default {
   data: function() {
     let career = storage.getCareer(this.careerID)
     let careerLevels = levelManager.getCareerList(career).filter(category => category.unlocked)
+    this.createdLevels = career.createUnlockedLevelSolutions(careerLevels)
+    this.scoreAnimationsPlaying = 0
+    for (let category of careerLevels) {
+      for (let level of category.levels) {
+        level.newlyUnlocked = this.createdLevels.some(lvl => level.id === lvl.id)
+        level.revealed = level.unlocked && !level.newlyUnlocked
+        if (level.solutions) {
+          if (level.solutions.score.hasToShowScore(level.level)) {
+            this.scoreAnimationsPlaying++
+          }
+
+          level.score = level.solutions.score.clone()
+          level.solutions.score.show()
+          level.solutions.save()
+        }
+      }
+    }
     return {
       career: career,
       careerLevels: careerLevels,
@@ -73,15 +94,11 @@ export default {
         name: 'home',
       })
     }
-
-    this.createdLevels = this.career.createUnlockedLevelSolutions(this.careerLevels)
   },
 
   mounted() {
-    let newCategory = this.careerLevels.find(category => this.createdLevels.some(level => level.id === category.levels[0].id))
-    if (newCategory) {
-      let newCategoryIndex = this.careerLevels.indexOf(newCategory)
-      this.scrollToCategory(newCategoryIndex)
+    if (this.scoreAnimationsPlaying <= 0) {
+      this.revealNewlyUnlockedLevels()
     }
   },
 
@@ -105,7 +122,7 @@ export default {
           vm.$el.scrollTop = vm.$router.levelListScroll.scrollTop
         }
         else {
-          vm.scrollToLastCategory()
+          setTimeout(() => vm.scrollToLastUnlockedLevel(), 300)
         }
       })
     }
@@ -126,20 +143,72 @@ export default {
       }
     },
 
-    scrollToLastCategory() {
+    scrollToLastCategory(callback) {
       if (this.$refs.categories.length > 1) {
-        this.scrollToCategory(this.$refs.categories.length - 1)
+        this.scrollToCategory(this.$refs.categories.length - 1, callback)
       }
     },
 
-    scrollToCategory(index) {
+    scrollToCategory(index, callback) {
       if (index < this.$refs.categories.length) {
-        setTimeout(() => {
-          let category = this.$refs.categories[index].$el
-          SmoothScrollTo(category, 1300, -80, this.$el)
-        }, 300)
+        let category = this.$refs.categories[index].$el
+        SmoothScrollTo(category, 0.77, 0, 1300, -80, this.$el, callback)
       }
     },
+
+    scrollToLastUnlockedLevel(callback) {
+      let lastLevel = null
+      for (let category of this.careerLevels) {
+        for (let level of category.levels) {
+          if (level.unlocked) {
+            lastLevel = level
+          }
+        }
+      }
+
+      if (lastLevel) {
+        this.scrollToLevel(lastLevel.id)
+      }
+    },
+
+    scrollToLevel(levelID, callback) {
+      let levelItem = this.$refs.levelItems.find(item => item.level.id === levelID)
+      if (levelItem) {
+        let offset = -(window.innerHeight - 310) / 2
+        SmoothScrollTo(levelItem.$el, 0.4, 0, 1300, offset, this.$el, callback)
+      }
+      else {
+        if (typeof callback === 'function') {
+          callback()
+        }
+      }
+    },
+
+    handleShowScoreAnimationEnd() {
+      this.scoreAnimationsPlaying--
+
+      if (this.scoreAnimationsPlaying <= 0) {
+        this.revealNewlyUnlockedLevels()
+      }
+    },
+
+    revealNewlyUnlockedLevels() {
+      for (let category of this.careerLevels) {
+        for (let level of category.levels) {
+          if (level.newlyUnlocked && !level.revealed) {
+            this.revealNewlyUnlockedLevel(level)
+            return
+          }
+        }
+      }
+    },
+
+    revealNewlyUnlockedLevel(level) {
+      this.scrollToLevel(level.id, () => {
+        level.revealed = true
+        setTimeout(() => this.revealNewlyUnlockedLevels(), 250)
+      })
+    }
   }
 }
 </script>

@@ -112,18 +112,29 @@ export default class LevelSolutions extends StorageWrapper {
 }
 
 class LevelScore {
-  constructor(won = false, minStep = -1, minLength = -1) {
+  constructor(won = false, minStep = -1, minLength = -1, shownWon = false, shownMinStep = -1, shownMinLength = -1) {
     this.won = won
     this.minStep = minStep
     this.minLength = minLength
+    this.shownWon = shownWon
+    this.shownMinStep = shownMinStep
+    this.shownMinLength = shownMinLength
   }
 
   static buildFromJSON(jsonObject) {
-    return new LevelScore(jsonObject.won, jsonObject.minStep, jsonObject.minLength)
+    return new LevelScore(jsonObject.won, jsonObject.minStep, jsonObject.minLength, jsonObject.shownWon, jsonObject.shownMinStep, jsonObject.shownMinLength)
   }
 
   hasWon() {
     return this.won
+  }
+
+  hasWonSpeedTarget(level) {
+    return this.minStep >= 0 && this.minStep <= level.speedTarget
+  }
+
+  hasWonLengthTarget(level) {
+    return this.minLength >= 0 && this.minLength <= level.lengthTarget
   }
 
   getStarCount(level) {
@@ -149,5 +160,45 @@ class LevelScore {
     if (this.minLength < 0 || this.minLength > codeLength) {
       this.minLength = codeLength
     }
+  }
+
+  hasToShowScore(level) {
+    return this.hasToShowWon() || this.hasToShowWonSpeedTarget(level) || this.hasToShowWonLengthTarget(level)
+  }
+
+  hasToShowWon() {
+    return !this.shownWon && this.won
+  }
+
+  hasToShowWonSpeedTarget(level) {
+    return this.hasWonSpeedTarget(level) &&
+      (this.shownMinStep < 0 || this.shownMinStep > level.speedTarget)
+  }
+
+  hasToShowWonLengthTarget(level) {
+    return this.hasWonLengthTarget(level) &&
+      (this.shownMinLength < 0 || this.shownMinLength > level.lengthTarget)
+  }
+
+  show() {
+    this.showWon()
+    this.showMinStep()
+    this.showMinLength()
+  }
+
+  showWon() {
+    this.shownWon = this.won
+  }
+
+  showMinStep() {
+    this.shownMinStep = this.minStep
+  }
+
+  showMinLength() {
+    this.shownMinLength = this.minLength
+  }
+
+  clone() {
+    return new LevelScore(this.won, this.minStep, this.minLength, this.shownWon, this.shownMinStep, this.shownMinLength)
   }
 }

@@ -1,7 +1,7 @@
 <template>
 <li :class="{
 	'level-item': true,
-	'locked': locked,
+	'locked': locked || (newlyUnlocked && !revealed),
 	'bonus': bonus,
 }">
   <h3 v-text-fit="{
@@ -13,28 +13,40 @@
 	$text(level.getNameMessageKey())
 	}}</h3>
 
-  <score-stars :score="score"
+  <score-stars-animation :score="score"
     :level="level"
-    v-show="!locked" />
+    v-show="!locked"
+    @show-score-animation-end="$emit('show-score-animation-end')"
+    :class="{
+			'hidden': newlyUnlocked && !revealed,
+		}" />
 
   <div v-if="bonus"
-    class="bonus-label"><i class="mdi mdi-star" />&nbsp;{{$text('level_list_bonus_label')}}&nbsp;<i class="mdi mdi-star" /></div>
+    :class="{
+			'bonus-label': true,
+			'hidden': newlyUnlocked && !revealed,
+		}"><i class="mdi mdi-star" />&nbsp;{{$text('level_list_bonus_label')}}&nbsp;<i class="mdi mdi-star" /></div>
 </li>
 </template>
 
 <script>
-import ScoreStars from './ScoreStars'
+import ScoreStarsAnimation from './ScoreStarsAnimation'
 
 export default {
   components: {
-    ScoreStars
+    ScoreStarsAnimation,
   },
 
   props: {
     'level': Object,
+    'score': Object,
     'locked': Boolean,
     'bonus': Boolean,
-    'score': Object,
+    'newlyUnlocked': {
+      type: Boolean,
+      default: false,
+    },
+    'revealed': Boolean,
   }
 }
 </script>
@@ -52,6 +64,7 @@ export default {
 
     &:not(.locked) {
         @include home-card($default-card-color, true);
+        transition-property: background-color, color, transform;
     }
 
     &.locked {
@@ -68,20 +81,30 @@ export default {
         margin: 0;
     }
 
-    .score-stars {
-        margin-top: 55px;
-        width: 155px;
-        height: 84px;
+    .score-stars-animation-level {
+        margin-top: 47px;
+        width: 183px;
+        height: 100px;
+
+        transition: opacity 250ms ease;
+        &.hidden {
+            opacity: 0;
+        }
     }
 
     .bonus-label {
-        margin-top: 14px;
+        margin-top: 6px;
         color: #fbb811;
         background-color: #394249;
         font-size: 13px;
         font-weight: bold;
         padding: 8px 12px;
         border-radius: 17px;
+
+        transition: opacity 250ms ease;
+        &.hidden {
+            opacity: 0;
+        }
     }
 }
 </style>
