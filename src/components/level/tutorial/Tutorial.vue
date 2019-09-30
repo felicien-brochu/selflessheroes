@@ -1,6 +1,8 @@
 <template>
 <div class="tutorial"
-  v-show="started && !ended">
+  v-show="started && !ended"
+  @mousedown.stop
+  @touchdown.stop>
 
   <tutorial-modal v-if="step"
     ref="modal"
