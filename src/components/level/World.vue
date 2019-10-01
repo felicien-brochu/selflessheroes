@@ -42,7 +42,6 @@ export default {
     this.gameScene.customEvents.removeListener('follow-hero-change', this.handleFollowHeroChange)
     this.gameScene.runner.events.removeListener('world-state-change', this.handleWorldStateChange)
     this.game.destroy(true)
-    Vue.prototype.$sound = undefined
     Vue.prototype.$gameScene = undefined
   },
 
@@ -63,7 +62,6 @@ export default {
       this.gameScene.customEvents.on('follow-hero-change', this.handleFollowHeroChange)
       this.gameScene.runner.events.on('world-state-change', this.handleWorldStateChange)
       this.gameScene.setFollowHero(this.followHeroIndex)
-      Vue.prototype.$sound = this.gameScene.soundManager
       Vue.prototype.$gameScene = this.gameScene
 
       this.$emit('ready', this.gameScene, this.gameScene.getWorldState(), this.gameScene.getCompilerConfig())

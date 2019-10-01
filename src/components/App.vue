@@ -143,6 +143,11 @@ export default {
     }
   },
 
+  created() {
+    this.$sound.setVolumePreference(mainStorage.preferences.soundVolume)
+    this.$music.setVolumePreference(mainStorage.preferences.musicVolume)
+  },
+
   beforeRouteUpdate(to, from, next) {
     const toDepth = to.path.split('/').length
     const fromDepth = from.path.split('/').length
@@ -236,6 +241,9 @@ export default {
         },
         handlers: {
           close: () => {
+            mainStorage.save()
+          },
+          'preference-change': () => {
             mainStorage.save()
           }
         }

@@ -122,7 +122,7 @@ export default {
   },
 
   data: function() {
-    let career = storage.get().getCareer(this.careerID)
+    let career = storage.getCareer(this.careerID)
     let levelSolutions = career.getLevel(this.levelID)
     let solution = levelSolutions.getCurrentSolution()
     let level = levelManager.getLevelByID(this.levelID)
@@ -191,6 +191,7 @@ export default {
   },
 
   mounted() {
+    this.$music.play('level1')
     this.solution.hasOpen = true
     this.solution.save()
 
@@ -354,6 +355,7 @@ export default {
 
     showWinModal() {
       if (!this.winModalDisplayed) {
+        // this.$music.stopAll(0.1)
         this.winModalDisplayed = true
 
         this.$refs.modalLayer.addModal({
@@ -387,7 +389,10 @@ export default {
         if (action === 'confirm') {
           this.goBack()
         }
-        this.stop()
+        else {
+          this.$music.play('level1', {}, 0.1)
+          this.stop()
+        }
       }
       else {
         let failedTest = e.tests.find(test => test.hasLost)
@@ -397,19 +402,22 @@ export default {
     },
 
     showTestFailedModal() {
-      this.$sound.play('lose_sfx')
+      this.$sound.play('level_lose', {}, 0.1)
       this.$refs.modalLayer.addModal({
         component: WarningModal,
         key: 'level_test_failed_modal',
         props: {
           text: this.$text('level_test_failed_modal')
+        },
+        handlers: {
+          close: () => this.$music.play('level1')
         }
       })
     },
 
     showLossModal() {
       if (!this.lossModalDisplayed) {
-        this.$sound.play('lose_sfx')
+        this.$sound.play('level_lose')
         const lossReason = this.$text(this.level.getLossReasonTemplate(this.worldState.lossReason))
         this.lossModalDisplayed = true
         this.$refs.modalLayer.addModal({

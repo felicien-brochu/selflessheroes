@@ -108,11 +108,12 @@ export default {
       this[this.steps[this.step]] = true
       this.step++
 
+      this.$sound.play('level_list_star')
       if (this.step < this.steps.length) {
-        this.programAnimationStep(800)
+        this.programAnimationStep(300)
       }
       else {
-        this.timeoutID = setTimeout(() => this.onAnimationEnd(), 800)
+        this.timeoutID = setTimeout(() => this.onAnimationEnd(), 400)
       }
     },
 
@@ -155,18 +156,18 @@ export default {
         transform: translate(-50%, -50%) scale(0.85);
 
         &.animated {
-            @keyframes bounce {
+            @keyframes nobounce {
                 0% {
                     transform: translate(-50%, -50%) scale(0.85);
                 }
                 12% {
-                    transform: translate(-50%, -50%) scale(1);
+                    transform: translate(-50%, -50%) scale(0.85);
                 }
                 23% {
-                    transform: translate(-50%, -50%) scale(1.01);
+                    transform: translate(-50%, -50%) scale(0.85);
                 }
                 33% {
-                    transform: translate(-50%, -50%) scale(1);
+                    transform: translate(-50%, -50%) scale(0.85);
                 }
                 80% {
                     transform: translate(-50%, -50%) scale(0.85);
@@ -175,9 +176,9 @@ export default {
                     transform: translate(-50%, -50%) scale(0.85);
                 }
             }
-            animation-name: bounce;
+            animation-name: nobounce;
             animation-iteration-count: 3;
-            animation-duration: 800ms;
+            animation-duration: 300ms;
             animation-timing-function: ease;
         }
 

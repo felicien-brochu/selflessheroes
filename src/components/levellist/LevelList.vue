@@ -97,6 +97,7 @@ export default {
   },
 
   mounted() {
+    this.$music.play('levellist')
     if (this.scoreAnimationsPlaying <= 0) {
       this.revealNewlyUnlockedLevels()
     }
@@ -208,6 +209,7 @@ export default {
     revealNewlyUnlockedLevel(level) {
       this.scrollToLevel(level.id, () => {
         level.revealed = true
+        this.$sound.play('level_list_unlock')
         setTimeout(() => this.revealNewlyUnlockedLevels(), 250)
       })
     }

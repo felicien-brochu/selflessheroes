@@ -145,11 +145,11 @@ export default {
     },
 
     playTestsSound() {
-      this.$sound.play('tests_sfx')
+      this.$sound.play('level_tests')
     },
 
     stopTestsSound() {
-      this.$sound.stop('tests_sfx')
+      this.$sound.stop('level_tests')
     },
 
     testAnimationStep(timestamp) {

@@ -1,30 +1,22 @@
 const soundDefs = [{
-  key: 'fireworks_sfx'
-}, {
-  key: 'lose_sfx',
+  key: 'fireworks_sfx',
   config: {
-    volume: 0.04
-  }
-}, {
-  key: 'tests_sfx',
-  config: {
-    loop: true,
-    volume: 0.5
+    volume: 0.01
   }
 }, {
   key: 'hero_scream_sfx',
   config: {
-    volume: 0.05
+    volume: 0.2
   }
 }, {
   key: 'npc_scream_sfx',
   config: {
-    volume: 0.1
+    volume: 0.5
   }
 }, {
   key: 'step_sfx',
   config: {
-    volume: 1
+    volume: 0.4
   }
 }, {
   key: 'fireball_sfx',
@@ -39,22 +31,22 @@ const soundDefs = [{
 }, {
   key: 'light_sfx',
   config: {
-    volume: 0.1
+    volume: 0.3
   }
 }, {
   key: 'cauldron_drop_sfx',
   config: {
-    volume: 0.1
+    volume: 0.25
   }
 }, {
   key: 'spikes_on_sfx',
   config: {
-    volume: 0.1
+    volume: 0.3
   }
 }, {
   key: 'spikes_off_sfx',
   config: {
-    volume: 0.1
+    volume: 0.3
   }
 }]
 

@@ -4,6 +4,11 @@ import LevelList from './components/levellist/LevelList'
 import Level from './components/level/Level'
 import ScreenSizeWarning from './components/screensizewarning/ScreenSizeWarning'
 import App from './components/App'
+import storage from './game/storage/Storage'
+import {
+  soundManager,
+  musicManager
+} from './components/audio/AudioManager'
 import lang from './lang'
 import VueRouter from 'vue-router'
 import VueHotkey from 'v-hotkey'
@@ -19,6 +24,13 @@ Vue.use(VueHotkey)
 Vue.use(VueMeta)
 Vue.use(VueRouter)
 Vue.prototype.$text = lang.text.bind(lang)
+
+soundManager.init()
+musicManager.init()
+Vue.prototype.$sound = soundManager
+Vue.prototype.$music = musicManager
+
+
 
 const router = new VueRouter({
   routes: [{

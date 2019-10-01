@@ -33,8 +33,7 @@
           :volume="preferences.soundVolume" />
       </td>
     </tr>
-    <tr class="sound-preference"
-      v-if="false">
+    <tr class="sound-preference">
       <td>{{$text('menu_music_label')}}</td>
       <td>
         <volume tag="div"
@@ -59,6 +58,7 @@ export default {
     ToggleButton,
     Volume
   },
+
   props: {
     'preferences': {
       type: Object
@@ -82,6 +82,16 @@ export default {
     }
   },
 
+  created() {
+    this.onPreferenceChange = this.onPreferenceChange.bind(this)
+    this.preferences.soundVolume.events.on('change', this.onPreferenceChange)
+    this.preferences.musicVolume.events.on('change', this.onPreferenceChange)
+  },
+
+  beforeDestroy() {
+    this.preferences.soundVolume.events.off('change', this.onPreferenceChange)
+  },
+
   computed: {
     showFullscreenPreference: function() {
       return !isElectron()
@@ -98,6 +108,10 @@ export default {
 
     cancel() {
       this.$refs.modal.cancel()
+    },
+
+    onPreferenceChange() {
+      this.$emit('preference-change')
     },
 
     isFullscreenEnabled() {

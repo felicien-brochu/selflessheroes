@@ -111,7 +111,9 @@ export default class extends Phaser.Scene {
   }
 
   playOneCelebration(rect) {
-    this.sound.play('fireworks_sfx')
+    this.sound.play('fireworks_sfx', {
+      volume: 0.4,
+    })
     let rb = (min, max) => Math.random() * (max - min) + min
     let interval = (min, max, count, index) => min + ((max - min) / count - 1) * index
 
