@@ -1,4 +1,4 @@
-import map from './map113.json'
+import map from './map115.json'
 
 const winCondition = {
   check() {
@@ -30,12 +30,12 @@ const eggInHoleLossCondition = {
 const level = {
   mapConfig: map,
   name: {
-    en: "Sorting",
-    fr: "Tri",
+    en: "Sorting 2",
+    fr: "Tri 2",
   },
   objective: {
-    en: "Sort the %%icon icon-egg$%% eggs from the smallest on the left to the largest on the right.\n\n%%icon mdi mdi-information-outline$%% At the end, the %%icon icon-egg$%% eggs must be on the floor in the same line as at the beginning.",
-    fr: "Trie les %%icon icon-egg$%% œufs du plus petit à gauche au plus grand à droite.\n\n%%icon mdi mdi-information-outline$%% À la fin, les %%icon icon-egg$%% œufs doivent être au sol sur la même ligne qu'au début.",
+    en: "Sort the %%icon icon-egg$%% eggs from the smallest on the left to the largest on the right.\n\n%%icon mdi mdi-information-outline$%% This time, your %%icon icon-hero$%% heroes will have to cooperate.",
+    fr: "Trie les %%icon icon-egg$%% œufs du plus petit à gauche au plus grand à droite.\n\n%%icon mdi mdi-information-outline$%% Cette fois, vos %%icon icon-hero$%% héros devront coopérer.",
   },
   messages: {
     loss_reason_egg_in_hole: {
@@ -45,13 +45,13 @@ const level = {
   },
 
   maxStep: 8000,
-  speedTarget: 600,
-  lengthTarget: 14,
+  speedTarget: 630,
+  lengthTarget: 13,
 
   compilerConfig: {
     excludePrimary: ['assign'],
     terrainTypes: ['wall', 'hole', 'floor'],
-    objectTypes: ['egg', 'nothing'],
+    objectTypes: ['egg', 'hero', 'nothing'],
     actionFunctions: ['step_once', 'take', 'drop'],
     leftComparisonExpressions: ['direction', 'myitem'],
     rightComparisonExpressions: ['direction', 'object_type', 'terrain_type', 'myitem']
@@ -59,14 +59,14 @@ const level = {
 
   ruleset: {
     win: [winCondition],
-    lose: [eggInHoleLossCondition, 'or', 'default_loss']
+    lose: [eggInHoleLossCondition, 'or', 'one_hero_dead', 'or', 'default_loss']
   },
 
   worldGenerator: {
     type: 'eggs_matrix',
     config: {
       originMarkerID: 99,
-      width: 13,
+      width: 14,
       height: 1,
 
       strategy: {

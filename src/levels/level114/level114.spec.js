@@ -5,78 +5,65 @@ export default {
   specs: [{
     type: ["length"],
     code: `
-c:
 a:
-if w > here &&
-  w == hero :
-	take(w)
-	drop(here)
-endif
-if e < here &&
-  e == hero :
-	take(e)
-	drop(here)
-endif
-if ne == hole &&
-  e == hero ||
-  e != wall &&
-  w == hero :
-	step(e)
-	jump a
-endif
 b:
-if nw == hole &&
-  w == hero ||
-  w != wall &&
-  e == hero :
-	step(w)
+step(e)
+if s <= se &&
+  e != wall :
 	jump b
 endif
-jump c
+if e == wall :
+	c:
+	step(w)
+	if w != wall :
+		jump c
+	endif
+endif
+take(s)
+drop(here)
+take(se)
+drop(s)
+take(here)
+drop(se)
+jump a
 		`,
   }, {
     type: ["speed"],
     code: `
-a:
+e:
 b:
-if w == hero :
-	if w > here :
-		take(w)
-		drop(here)
-	endif
-else
-	if here > e :
-		take(e)
-		drop(here)
-	endif
-endif
-if w == hero &&
-  e != wall ||
-  e == hero &&
-  ne == hole :
-	step(e)
+a:
+step(e)
+if s <= se &&
+  e != wall :
 	jump b
 endif
-c:
-if w == hero :
-	if w > here :
-		take(w)
-		drop(here)
-	endif
-else
-	if here > e :
-		take(e)
-		drop(here)
-	endif
+if e != wall :
+	take(s)
+	drop(here)
+	take(se)
+	drop(s)
+	take(here)
+	drop(se)
+	jump a
 endif
-if w == hero &&
-  nw == hole ||
-  e == hero &&
+d:
+c:
+step(w)
+if s >= sw &&
   w != wall :
-	step(w)
+	jump d
+endif
+if w != wall :
+	take(s)
+	drop(here)
+	take(sw)
+	drop(s)
+	take(here)
+	drop(sw)
 	jump c
 endif
-jump a
+jump e
 		`,
   }, {
     type: ["lossReason"],
@@ -84,19 +71,10 @@ jump a
     frequency: 1,
     code: `
 a:
-take(here)
+take(s)
 drop(n)
 step(w)
 jump a
-		`,
-  }, {
-    type: ["lossReason"],
-    lossReason: 'loss_reason_one_hero_dead',
-    frequency: 1,
-    code: `
-if e == hero :
-	step(n)
-endif
 		`,
   }, ]
 }
