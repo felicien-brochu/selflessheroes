@@ -1,7 +1,6 @@
 import Item from './Item'
 import ObjectType from './ObjectType'
 
-const rngRegExp = /^rng\(([0-9]+),([0-9]+)\)$/
 
 export default class Egg extends Item {
   constructor(config) {
@@ -13,20 +12,23 @@ export default class Egg extends Item {
     super(config)
 
     this.initValueGenerator()
+    this.initLottery()
   }
 
   initValueGenerator() {
-    if (typeof this.value === 'string') {
-      let matches
-      if (matches = this.value.match(rngRegExp)) {
-        this.generateValue = (rng) => {
-          const min = parseInt(matches[1])
-          const max = parseInt(matches[2])
+    if (typeof this.value === 'string' && valueGeneratorRegExp.test(this.value)) {
+      this.generateValue = createValueGenerator(this.value)
+    } else {
+      this.value = parseInt(this.value)
+    }
+  }
 
-          return Math.floor(rng() * (max - min + 1)) + min
-        }
+  initLottery() {
+    if (this.showLottery) {
+      if (this.lottery) {
+        this.nextLotteryValue = createValueGenerator(this.lottery)
       } else {
-        this.value = parseInt(this.value)
+        this.nextLotteryValue = this.generateValue
       }
     }
   }
@@ -65,4 +67,16 @@ export default class Egg extends Item {
       value: this.value
     })
   }
+}
+
+const valueGeneratorRegExp = /^rng\(([0-9]+),([0-9]+)\)$/
+
+function createValueGenerator(generatorDef) {
+  let matches
+  if (matches = generatorDef.match(valueGeneratorRegExp)) {
+    const min = parseInt(matches[1])
+    const max = parseInt(matches[2])
+    return rng => Math.floor(rng() * (max - min + 1)) + min
+  }
+  throw new Error(`Value generator definition "${generatorDef}" does not match the pattern "rng(min,max)"`)
 }

@@ -78,6 +78,7 @@ const level = {
         maxEggs: 1,
         eggConfig: {
           value: 'rng(0,3)',
+          lottery: 'rng(0,9)',
           showLottery: true
         }
       }
@@ -95,6 +96,7 @@ const level = {
         maxEggs: 7,
         eggConfig: {
           value: 'rng(4,9)',
+          lottery: 'rng(0,9)',
           showLottery: true
         }
       }

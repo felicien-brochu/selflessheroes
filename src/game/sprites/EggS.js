@@ -36,7 +36,7 @@ export default class EggS extends Phaser.GameObjects.Container {
 
     this.updateTextTimeoutID = -1
     this.lotteryIntervalID = -1
-    if (this.egg.showLottery && this.egg.hasValueGenerator()) {
+    if (this.egg.showLottery) {
       this.startValueLottery()
     }
 
@@ -257,7 +257,7 @@ export default class EggS extends Phaser.GameObjects.Container {
     const lottery = () => {
       let newValue
       do {
-        newValue = this.egg.generateValue(Math.random)
+        newValue = this.egg.nextLotteryValue(Math.random)
       } while (newValue == this.egg.value)
       this.updateText(newValue)
     }
