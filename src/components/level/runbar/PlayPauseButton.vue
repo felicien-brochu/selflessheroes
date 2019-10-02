@@ -4,7 +4,8 @@
 		'play-pause-button': true,
 		'pause-button': !paused,
 		'play-button': paused
-		}" />
+	}"
+  :title="paused ? $text('run_bar_play_button') : $text('run_bar_pause_button')" />
 </template>
 
 <script>

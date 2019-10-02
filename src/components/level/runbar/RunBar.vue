@@ -11,11 +11,13 @@
 
   <button class="step-button"
     @click="$emit('step')"
-    :disabled="!readyToPlay" />
+    :disabled="!readyToPlay"
+    :title="$text('run_bar_step_button')" />
 
   <button class="stop-button"
     @click="$emit('stop')"
-    :disabled="!worldStarted" />
+    :disabled="!worldStarted"
+    :title="$text('run_bar_stop_button')" />
 
   <speed-range @change="$emit('speed-change', $event)" />
 

@@ -1,5 +1,6 @@
 <template>
-<div class="speed-range">
+<div class="speed-range"
+  :title="$text('run_bar_speed_range')">
 
   <touch-range :value="speed"
     :min="0"

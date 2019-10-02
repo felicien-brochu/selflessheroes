@@ -154,6 +154,12 @@ const messages = {
     win_modal_ok_button: "ok",
     win_modal_continue_edit_button: "improve",
 
+    run_bar_play_button: "Run",
+    run_bar_pause_button: "Pause",
+    run_bar_step_button: "Step by step",
+    run_bar_stop_button: "Stop",
+    run_bar_speed_range: "Speed",
+
     editor_bar_undo_button: "Undo",
     editor_bar_redo_button: "Redo",
     editor_bar_delete_button: "Delete",
@@ -409,6 +415,12 @@ const messages = {
     win_modal_prior_code_length: "votre solution la plus courte faisait %%score-number${minLength}%% lignes",
     win_modal_ok_button: "ok",
     win_modal_continue_edit_button: "améliorer",
+
+    run_bar_play_button: "Lancer",
+    run_bar_pause_button: "Pause",
+    run_bar_step_button: "Étape par étape",
+    run_bar_stop_button: "Stop",
+    run_bar_speed_range: "Vitesse",
 
     editor_bar_undo_button: "Annuler",
     editor_bar_redo_button: "Rétablir",
