@@ -3,6 +3,7 @@
 	'level-item': true,
 	'locked': locked || (newlyUnlocked && !revealed),
 	'bonus': bonus,
+	'boss': boss,
 }">
   <h3 v-text-fit="{
 		alignHoriz: true,
@@ -21,11 +22,16 @@
 			'hidden': newlyUnlocked && !revealed,
 		}" />
 
-  <div v-if="bonus"
+  <div v-if="hasBonusLabel"
     :class="{
 			'bonus-label': true,
 			'hidden': newlyUnlocked && !revealed,
 		}"><i class="mdi mdi-star" />&nbsp;{{$text('level_list_bonus_label')}}&nbsp;<i class="mdi mdi-star" /></div>
+  <div v-if="boss"
+    :class="{
+			'boss-label': true,
+			'hidden': newlyUnlocked && !revealed,
+		}"><i class="mdi mdi-skull-crossbones" />&nbsp;{{$text('level_list_boss_label')}}&nbsp;<i class="mdi mdi-skull-crossbones" /></div>
 </li>
 </template>
 
@@ -42,12 +48,19 @@ export default {
     'score': Object,
     'locked': Boolean,
     'bonus': Boolean,
+    'boss': Boolean,
     'newlyUnlocked': {
       type: Boolean,
       default: false,
     },
     'revealed': Boolean,
-  }
+  },
+
+  computed: {
+    hasBonusLabel: function() {
+      return this.bonus && !this.boss
+    }
+  },
 }
 </script>
 
@@ -65,6 +78,14 @@ export default {
     &:not(.locked) {
         @include home-card($default-card-color, true);
         transition-property: background-color, color, transform;
+
+        &.boss {
+            @include home-card(#344553, true);
+            background-color: #344553;
+            h3 {
+                font-weight: bold;
+            }
+        }
     }
 
     &.locked {
@@ -92,11 +113,11 @@ export default {
         }
     }
 
-    .bonus-label {
+    .bonus-label,
+    .boss-label {
         margin-top: 6px;
-        color: #fbb811;
-        background-color: #394249;
         font-size: 13px;
+        color: #fbb811;
         font-weight: bold;
         padding: 8px 12px;
         border-radius: 17px;
@@ -105,6 +126,14 @@ export default {
         &.hidden {
             opacity: 0;
         }
+    }
+
+    .bonus-label {
+        background-color: #394249;
+    }
+
+    .boss-label {
+        background-color: #2b353e;
     }
 }
 </style>

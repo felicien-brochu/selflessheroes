@@ -41,6 +41,7 @@ const messages = {
 
     level_list_back_button: "Back",
     level_list_bonus_label: "BONUS",
+    level_list_boss_label: "BOSS",
 
     level_details_edit_button: "play",
     level_details_edit_button_tooltip: "Play",
@@ -314,6 +315,7 @@ const messages = {
 
     level_list_back_button: "Retour",
     level_list_bonus_label: "BONUS",
+    level_list_boss_label: "BOSS",
 
     level_details_edit_button: "jouer",
     level_details_edit_button_tooltip: "Jouer",

@@ -105,10 +105,11 @@ const categories = [{
       id: 11,
       unlock: [10],
       bonus: true,
+      boss: true,
     }, {
       id: 12,
       unlock: [11],
-      bonus: true,
+      unlockShown: [11],
     }, ]
   },
   {
@@ -154,13 +155,16 @@ const categories = [{
       id: 112,
       unlock: [111],
       bonus: true,
+      unlockShown: [111],
     }, {
       id: 113,
       unlock: [111],
+      unlockShown: [111],
     }, {
       id: 114,
       unlock: [113],
       bonus: true,
+      unlockShown: [111],
     }, ]
   }, {
     name: 'variables',
@@ -227,13 +231,15 @@ class LevelManager {
         let level = this.getLevelByID(levelConf.id)
         let score = null
         let levelSolutions = career.getLevel(levelConf.id)
-        let unlocked = this.isLevelUnlocked(level, winList)
+        let unlocked = this.isLevelUnlocked(levelConf, winList)
+        let unlockShown = this.isLevelShownUnlocked(levelConf, winList)
 
-        if (!(levelConf.bonus && !unlocked))
+        if (!(levelConf.bonus && !unlocked) && unlockShown)
           category.levels.push({
             id: levelConf.id,
             level: level,
             bonus: !!levelConf.bonus,
+            boss: !!levelConf.boss,
             solutions: levelSolutions,
             unlocked: unlocked,
           })
@@ -248,20 +254,13 @@ class LevelManager {
     return this.isUnlocked(category.unlock, winList)
   }
 
-  isLevelUnlocked(level, winList) {
-    let unlockTree
-    for (let category of this.categories) {
-      let levelConf = category.levels.find(lvl => lvl.id === level.id)
-      if (levelConf) {
-        unlockTree = levelConf.unlock
-        break
-      }
-    }
+  isLevelShownUnlocked(levelConf, winList) {
+    let unlockTree = levelConf.unlockShown ? levelConf.unlockShown : []
+    return this.isUnlocked(unlockTree, winList)
+  }
 
-    if (!unlockTree) {
-      return false
-    }
-
+  isLevelUnlocked(levelConf, winList) {
+    let unlockTree = levelConf.unlock ? levelConf.unlock : []
     return this.isUnlocked(unlockTree, winList)
   }
 
