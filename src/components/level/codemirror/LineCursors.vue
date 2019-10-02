@@ -115,8 +115,13 @@ export default {
         }
         else {
           let statements = heroContext.statements
-          let lastStatement = statements[statements.length - 1]
-          line = lastStatement.line + lastStatement.code.length
+          if (statements.length > 0) {
+            let lastStatement = statements[statements.length - 1]
+            line = lastStatement.line + lastStatement.code.length
+          }
+          else {
+            line = 0
+          }
         }
         let selected = i === this.followHeroIndex
 
