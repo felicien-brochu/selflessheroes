@@ -423,7 +423,7 @@ export default class World {
               let stepAction = new StepAction(direction)
               hero.move(direction)
               hero.lastAction = stepAction
-              break;
+              break
             }
           }
         }
@@ -549,5 +549,12 @@ for (let y = -freeDirSearchRadius; y <= freeDirSearchRadius; y++) {
     }
   }
   const module = a => a.x ** 2 + a.y ** 2
-  freeDirSearchTree.sort((a, b) => module(a) - module(b))
+  freeDirSearchTree.sort((a, b) => {
+    let moduleDiff = module(a) - module(b)
+    if (moduleDiff !== 0) {
+      return moduleDiff
+    } else {
+      return 1000 * (a.y - b.y) + (a.x - b.x)
+    }
+  })
 }
