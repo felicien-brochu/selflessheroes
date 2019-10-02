@@ -119,7 +119,7 @@ $main-color: #4d2e4a;
                     width: 90px;
                     box-sizing: border-box;
                     flex-shrink: 0;
-                    color: darken($main-color, 12%);
+                    color: lighten($main-color, 25%);
                     font-weight: 600;
                     display: flex;
                     align-items: center;
