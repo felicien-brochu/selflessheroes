@@ -30,6 +30,8 @@
       <i class="mdi mdi-format-list-numbered" />:<span class="score-target"><span class="target-number">{{level.lengthTarget}}</span> {{$text('level_modal_length_target_unit')}}</span>
     </div>
 
+    <p class="secondary-objectives-difficulty-warning"><i class="mdi mdi-information-outline" /> {{$text('level_modal_secondary_objectives_difficulty_warning')}}</p>
+
   </div>
 </modal>
 </template>
@@ -170,6 +172,14 @@ export default {
                         color: #86b36d;
                     }
                 }
+            }
+
+            .secondary-objectives-difficulty-warning {
+                font-style: italic;
+                font-size: 14px;
+                color: #8f95a2;
+                margin: 4px 0 7px;
+                max-width: 390px;
             }
         }
     }

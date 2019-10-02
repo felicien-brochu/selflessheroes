@@ -19,12 +19,12 @@
       :tests="tests"
       :level="level"
       @animation-end="handleAnimationEnd" />
-
     <score-stars-animation v-if="testAnimationEnded && hasWon"
       :level="level"
       :hasWon="hasWon"
       :codeLength="codeLength"
       :averageStep="averageStep" />
+    <p class="testing-explanation">{{$text('win_modal_testing_explanation')}}</p>
   </div>
 
   <transition name="fade-expand"
@@ -65,6 +65,7 @@
 					'not-won': levelSolutions.score.minLength > level.lengthTarget
 				}"
         v-bbcode>{{priorLengthText}}</p>
+      <p class="secondary-objectives-difficulty-warning"><i class="mdi mdi-information-outline" /> {{$text('level_modal_secondary_objectives_difficulty_warning')}}</p>
     </div>
   </transition>
 </modal>
@@ -243,6 +244,8 @@ export default {
 
         .test-graph-container {
             position: relative;
+            white-space: initial;
+            margin-bottom: 14px;
 
             .score-stars-animation {
                 width: 100%;
@@ -251,6 +254,15 @@ export default {
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
+            }
+
+            .testing-explanation {
+                font-style: italic;
+                font-size: 14px;
+                color: #8f95a2;
+                max-width: 430px;
+                text-align: center;
+                margin: 10px auto 0;
             }
         }
 
@@ -277,8 +289,8 @@ export default {
             .score {
                 text-align: start;
                 font-size: 20px;
-                margin: 20px 25px 5px;
-                color: transparentize(white, 0.3);
+                margin: 5px 25px;
+                color: transparentize(white, 0.1);
 
                 i {
                     vertical-align: middle;
@@ -327,10 +339,18 @@ export default {
             }
             .prior-score-phrase {
                 font-size: 16px;
-                color: #8f95a2;
+                color: #cecece;
                 .score {
                     font-size: 17px;
                 }
+            }
+
+            .secondary-objectives-difficulty-warning {
+                font-style: italic;
+                font-size: 14px;
+                color: #8f95a2;
+                margin: 15px 0 0 7px;
+                max-width: 390px;
             }
         }
     }

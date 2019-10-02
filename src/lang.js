@@ -80,9 +80,6 @@ const messages = {
     tutorial_advanced_step_speed: "Speed setting",
     tutorial_advanced_step_menu: "Open the menu",
 
-    level_modal_speed_target_unit: "cycles",
-    level_modal_length_target_unit: "lines",
-
     level_back_button: "Back to level list",
     level_help_button: "Help",
     level_objective_button: "Objective",
@@ -144,9 +141,14 @@ const messages = {
     level_help_tab_calc_function_2: "You could read the above example as \"Set the variable b to a + 2\".",
     level_help_tab_calc_function_3: "%%type-variable$$b%% %%type-operator$=%% %%type-function$calc%%(%%type-variable$$a%% %%type-operator$+%% %%type-literal$2%%)\n",
 
+    level_modal_speed_target_unit: "cycles",
+    level_modal_length_target_unit: "lines",
+    level_modal_secondary_objectives_difficulty_warning: "secondary objectives can be very difficult and it is often impossible to achieve both with the same solution",
+
     level_objective_modal_objective_title: "objective",
     level_objective_modal_secondary_objectives_title: "secondary objectives",
 
+    win_modal_testing_explanation: "your solution is tested to make sure it works every time",
     win_modal_prior_code_speed: "your fastest was %%score-number${minStep}%% cycles",
     win_modal_prior_code_length: "your smallest was %%score-number${minLength}%% lines",
     win_modal_ok_button: "ok",
@@ -345,9 +347,6 @@ const messages = {
     tutorial_advanced_step_speed: "Réglage de vitesse",
     tutorial_advanced_step_menu: "Ouvre le menu",
 
-    level_modal_speed_target_unit: "cycles",
-    level_modal_length_target_unit: "lignes",
-
     level_back_button: "Retour à la liste des niveaux",
     level_help_button: "Aide",
     level_objective_button: "Objectif",
@@ -397,9 +396,15 @@ const messages = {
     level_help_tab_calc_function_1: "%%statement assign-statement$calc%% fait un calcul et met le résultat dans une variable.",
     level_help_tab_calc_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Donne la valeur a + 2 à la variable b\".",
 
+
+    level_modal_speed_target_unit: "cycles",
+    level_modal_length_target_unit: "lignes",
+    level_modal_secondary_objectives_difficulty_warning: "les objectifs secondaires peuvent être très difficiles et il est souvent impossible de réussir les deux avec la même solution",
+
     level_objective_modal_objective_title: "objectif",
     level_objective_modal_secondary_objectives_title: "objectifs secondaires",
 
+    win_modal_testing_explanation: "votre solution est testée pour s'assurer qu'elle marche à chaque fois",
     win_modal_prior_code_speed: "votre meilleur temps était %%score-number${minStep}%% cycles",
     win_modal_prior_code_length: "votre solution la plus courte faisait %%score-number${minLength}%% lignes",
     win_modal_ok_button: "ok",
