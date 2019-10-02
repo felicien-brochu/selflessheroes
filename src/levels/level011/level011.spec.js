@@ -57,5 +57,20 @@ c:
 step(e)
 jump c
 		`,
+  }, {
+    type: ["lossReason"],
+    lossReason: 'loss_reason_all_hero_dead',
+    frequency: 1,
+    code: ``,
+  }, {
+    type: ["lossReason"],
+    lossReason: 'loss_reason_all_hero_dead',
+    frequency: 1,
+    code: `
+step(n)
+step(w)
+step(n)
+step(w)
+		`,
   }, ]
 }

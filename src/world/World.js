@@ -330,8 +330,15 @@ export default class World {
         let collidesCauldron = this.getWorldObjectsAt(x, y).filter(o => o instanceof Cauldron).length > 0
         let collidingHeroes = this.getCharactersAt(x, y).filter(c => !c.dead && c.ai.hasStepAvailable() && c instanceof Hero)
         let collidesHero = collidingHeroes.length > 0
+        let collidingNPCs = this.getCharactersAt(x, y).filter(c => !c.dead && c instanceof Npc)
+        let collidesComingNPC = collidingNPCs.some(npc => {
+          let npcStepAction = stepActions.find(a => a.character === npc)
+          return npcStepAction &&
+            npcStepAction.action.direction.dx === -action.direction.dx &&
+            npcStepAction.action.direction.dy === -action.direction.dy
+        })
 
-        if (collidesWall || collidesBonfire || collidesCauldron) {
+        if (collidesWall || collidesBonfire || collidesCauldron || collidesComingNPC) {
           stepActions.splice(i, 1)
           i--
         } else if (!collidesHero || character instanceof Npc) {
@@ -357,7 +364,11 @@ export default class World {
             let x2 = stepAction2.character.x + stepAction2.action.direction.dx
             let y2 = stepAction2.character.y + stepAction2.action.direction.dy
 
-            if (x1 === stepAction2.character.x &&
+            if ((
+                (stepAction1.character instanceof Hero && stepAction2.character instanceof Hero) ||
+                (stepAction1.character instanceof Npc && stepAction2.character instanceof Npc)
+              ) &&
+              x1 === stepAction2.character.x &&
               y1 === stepAction2.character.y &&
               x2 === stepAction1.character.x &&
               y2 === stepAction1.character.y) {
@@ -380,7 +391,7 @@ export default class World {
       let x = hero.x
       let y = hero.y
 
-      if (this.getCharactersAt(x, y).filter(c => c !== hero).length > 0) {
+      if (this.getCharactersAt(x, y).filter(c => c !== hero && c instanceof Hero).length > 0) {
         const collidesNoHero = (x, y) => {
           let terrainType = this.map.getTerrainTypeAt(x, y)
           let collidesTerrain = terrainType === TerrainType.wall || terrainType === TerrainType.hole
