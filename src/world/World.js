@@ -385,13 +385,13 @@ export default class World {
   }
 
   moveEndedHeroesOut() {
-    let endedHeroes = this.getCharacters().filter(c => !c.ai.hasStepAvailable() && !c.lastAction && c instanceof Hero)
+    let endedHeroes = this.getCharacters().filter(c => c instanceof Hero && !c.ai.hasStepAvailable() && !c.lastAction && !c.dead)
 
     for (let hero of endedHeroes) {
       let x = hero.x
       let y = hero.y
 
-      if (this.getCharactersAt(x, y).filter(c => c !== hero && c instanceof Hero).length > 0) {
+      if (this.getCharactersAt(x, y).filter(c => c instanceof Hero && c !== hero && !c.dead).length > 0) {
         const collidesNoHero = (x, y) => {
           let terrainType = this.map.getTerrainTypeAt(x, y)
           let collidesTerrain = terrainType === TerrainType.wall || terrainType === TerrainType.hole
