@@ -3,22 +3,102 @@ const glob = require('glob')
 const chalk = require('chalk')
 const LevelSpecTester = require('../tests-build/LevelSpecTester.js').default
 const argv = require('minimist')(process.argv.slice(2), {
-  boolean: ["fast", "slow", "stop-on-fail"],
-  string: ["speed-sample-size", "length-sample-size"],
+  boolean: [
+    "help",
+    "fast",
+    "slow",
+    "stop-on-fail",
+  ],
+  string: [
+    "speed-sample-size",
+    "length-sample-size",
+    "loss-sample-size",
+    "speed-confidence",
+    "speed-lost-tolerance",
+    "length-lost-tolerance",
+  ],
   alias: {
-    "fast": ["f"],
+    "help": ["h"],
+    "fast": ["F"],
+    "slow": ["S"],
     "speed-sample-size": ["s"],
-    "length-sample-size": ["l"],
+    "length-sample-size": ["c"],
+    "loss-sample-size": ["l"],
   }
 })
 
+let stopOnFail = false
+let speedSampleSize = 2000
+let lengthSampleSize = 500
+let lossReasonSampleSize = 20
+let speedConfidence = 0.999
+let speedTestLostTolerance = 0.002
+let lengthTestLostTolerance = 0.002
+
+const fastPreset = {
+  speedSampleSize: 100,
+  lengthSampleSize: 20,
+  lossReasonSampleSize: 20,
+}
+
+const slowPreset = {
+  speedSampleSize: 20000,
+  lengthSampleSize: 5000,
+  lossReasonSampleSize: 1000,
+}
+
+if (argv["help"]) {
+  console.log(
+    `
+tests_levels tests Selfless Heroes levels *.spec.js files
+
+Usage: node test_levels.js [--options] [-- regexpFilters] [!]
+
+
+  --help, -h                           Show this help message
+
+  regexpFilters                        List of regexps to filter .spec.js files to test
+
+  --stop-on-fail, !                    Stops the tests as soon as one fails
+
+  --fast, -F                           Execute fast tests (-s ${fastPreset.speedSampleSize} -c ${fastPreset.lengthSampleSize} -l ${fastPreset.lossReasonSampleSize})
+
+  --slow, -S                           Execute slow tests (-s ${slowPreset.speedSampleSize} -c ${slowPreset.lengthSampleSize} -l ${slowPreset.lossReasonSampleSize})
+
+  --speed-sample-size, -s              Sample size for speed tests (default: ${speedSampleSize})
+
+  --length-sample-size, -c             Sample size for code length tests (default: ${lengthSampleSize})
+
+  --loss-sample-size, -l               Sample size for loss reason tests (default: ${lossReasonSampleSize})
+
+  --speed-confidence                   Speed tests minimum confidence in speed (default: ${speedConfidence})
+
+  --speed-lost-tolerance               Speed tests losses tolerance ratio (default: ${speedTestLostTolerance})
+
+  --length-lost-tolerance              Length tests losses tolerance ratio (default: ${lengthTestLostTolerance})
+`)
+  process.exit(0)
+}
+
+
+
 let levelSpecs = glob.sync(path.resolve(__dirname, '../tests-build/') + '/level*.spec.js')
 if (argv._.length > 0) {
-  let regexps = argv._.map(str => new RegExp(str))
-  levelSpecs = levelSpecs.filter(specFile => {
-    let name = specFile.replace(/^.*\//, '').replace(/\.spec\.js$/, '')
-    return regexps.some(regexp => regexp.test(name))
-  })
+  let specFilters = argv._.slice()
+
+  let exclamationPointIndex = argv._.indexOf("!")
+  if (exclamationPointIndex >= 0) {
+    stopOnFail = true
+    specFilters.splice(exclamationPointIndex, 1)
+  }
+
+  if (specFilters.length > 0) {
+    let regexps = specFilters.map(str => new RegExp(str))
+    levelSpecs = levelSpecs.filter(specFile => {
+      let name = specFile.replace(/^.*\//, '').replace(/\.spec\.js$/, '')
+      return regexps.some(regexp => regexp.test(name))
+    })
+  }
 }
 
 
@@ -34,39 +114,50 @@ levelSpecs.map(specFile => specFile.replace(/^.*\//, '')).forEach(name => {
 console.log()
 
 
-let speedSampleSize = 2000
-let lengthSampleSize = 2000
-let stopOnFail = false
 
-if (argv.fast) {
-  speedSampleSize = 100
-  lengthSampleSize = 20
-}
 
 if (argv.slow) {
-  speedSampleSize = 20000
-  lengthSampleSize = 20000
+  speedSampleSize = slowPreset.speedSampleSize
+  lengthSampleSize = slowPreset.lengthSampleSize
+  lossReasonSampleSize = slowPreset.lossReasonSampleSize
 }
 
+if (argv.fast) {
+  speedSampleSize = fastPreset.speedSampleSize
+  lengthSampleSize = fastPreset.lengthSampleSize
+  lossReasonSampleSize = fastPreset.lossReasonSampleSize
+}
+
+if (argv["stop-on-fail"]) {
+  stopOnFail = argv["stop-on-fail"]
+}
 if (argv["speed-sample-size"]) {
   speedSampleSize = parseInt(argv["speed-sample-size"])
 }
 if (argv["length-sample-size"]) {
   lengthSampleSize = parseInt(argv["length-sample-size"])
 }
-
-if (argv["stop-on-fail"] !== undefined) {
-  stopOnFail = argv["stop-on-fail"]
+if (argv["loss-sample-size"]) {
+  lossReasonSampleSize = parseInt(argv["loss-sample-size"])
+}
+if (argv["speed-confidence"]) {
+  speedConfidence = parseFloat(argv["speed-confidence"])
+}
+if (argv["speed-lost-tolerance"]) {
+  speedTestLostTolerance = parseFloat(argv["speed-lost-tolerance"])
+}
+if (argv["length-lost-tolerance"]) {
+  lengthTestLostTolerance = parseFloat(argv["length-lost-tolerance"])
 }
 
 const testerConf = {
   stopOnFail: stopOnFail,
   speedSampleSize: speedSampleSize,
   lengthSampleSize: lengthSampleSize,
-  lossReasonSampleSize: 20,
-  speedConfidence: 0.999,
-  speedTestLostTolerance: 0.002,
-  lengthTestLostTolerance: 0.002,
+  lossReasonSampleSize: lossReasonSampleSize,
+  speedConfidence: speedConfidence,
+  speedTestLostTolerance: speedTestLostTolerance,
+  lengthTestLostTolerance: lengthTestLostTolerance,
 }
 console.log("Tester config:")
 console.log(chalk.gray("stopOnFail:              ") + testerConf.stopOnFail)

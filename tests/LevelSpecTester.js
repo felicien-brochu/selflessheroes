@@ -103,16 +103,16 @@ export default class LevelSpecTester {
   }
 
   testSpeed(spec, stats, tests, tester) {
-    const label = "SPEED TEST"
     let speedThreshold = stats.seriesAverage[Math.floor((stats.seriesAverage.length - 1) * this.config.speedConfidence)]
     let lostRatio = stats.lost / tester.sampleSize
+    const label = `SPEED TEST ${chalk.gray(`(speed: ${speedThreshold} <= ${this.level.speedTarget}, lostRatio: ${lostRatio} <= ${this.config.speedTestLostTolerance})`)}`
 
     if (Math.round(speedThreshold) > this.level.speedTarget) {
       this.fail(label, `speed threshold too big: ${speedThreshold} > ${this.level.speedTarget}`)
     } else if (lostRatio > this.config.speedTestLostTolerance) {
       this.fail(label, `lost ratio too big: ${lostRatio} > ${this.config.speedTestLostTolerance}`)
     } else {
-      this.pass(`${label} ${chalk.gray(`(speed: ${speedThreshold} <= ${this.level.speedTarget}, lostRatio: ${lostRatio} <= ${this.config.speedTestLostTolerance})`)}`)
+      this.pass(label)
     }
   }
 
@@ -123,22 +123,21 @@ export default class LevelSpecTester {
   }
 
   testLength(spec, stats, tests, tester) {
-    const label = "LENGTH TEST"
     let lostRatio = stats.lost / tester.sampleSize
     let codeLength = tester.compiler.computeCodeLength()
+    const label = `LENGTH TEST ${chalk.gray(`(lines: ${codeLength} <= ${this.level.lengthTarget}, lostRatio: ${lostRatio} <= ${this.config.lengthTestLostTolerance})`)}`
 
     if (codeLength > this.level.lengthTarget) {
       this.fail(label, `too much lines: ${codeLength} > ${this.level.lengthTarget}`)
     } else if (lostRatio > this.config.lengthTestLostTolerance) {
       this.fail(label, `lost ratio too big: ${lostRatio} > ${this.config.lengthTestLostTolerance}`)
     } else {
-      this.pass(`${label} ${chalk.gray(`(lines: ${codeLength} <= ${this.level.lengthTarget}, lostRatio: ${lostRatio} <= ${this.config.lengthTestLostTolerance})`)}`)
+      this.pass(label)
     }
   }
 
   testLossReason(spec, stats, tests, tester) {
     let expectedLossReason = spec.lossReason
-    const label = `LOSS REASON TEST ${expectedLossReason}`
     if (!expectedLossReason) {
       this.fail(label, 'no loss reason specified in spec')
       return
@@ -163,12 +162,14 @@ export default class LevelSpecTester {
 
     let expectedLossReasonFrequency = tests.reduce((acc, test) => test.hasLost && test.lossReason === expectedLossReason ? acc + 1 : acc, 0) / tester.sampleSize
 
+    const label = `LOSS REASON TEST ${expectedLossReason} ${chalk.gray(`(frequency: ${expectedLossReasonFrequency} >= ${frequency})`)}`
+
     if (noOther && otherLossReasons.length > 0) {
       this.fail(label, `other loss reason detected: ${otherLossReasons}`)
     } else if (expectedLossReasonFrequency < frequency) {
       this.fail(label, `expected loss reason ${expectedLossReason} not that frequent: ${expectedLossReasonFrequency} < ${frequency}`)
     } else {
-      this.pass(`${label} ${chalk.gray(`(frequency: ${expectedLossReasonFrequency} >= ${frequency})`)}`)
+      this.pass(label)
     }
   }
 }
