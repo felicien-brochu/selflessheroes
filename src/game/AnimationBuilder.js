@@ -127,6 +127,11 @@ const anims = {
     start: 4,
     end: 7
   },
+  pied_piper_idle: {
+    start: 0,
+    end: 7,
+    frameRate: 6,
+  },
   big_demon_idle: {
     start: 0,
     end: 3
