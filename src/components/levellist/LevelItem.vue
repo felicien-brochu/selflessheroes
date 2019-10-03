@@ -5,14 +5,26 @@
 	'bonus': bonus,
 	'boss': boss,
 }">
-  <h3 v-text-fit="{
-		alignHoriz: true,
-		alignVert: true,
-		maxFontSize: 40,
-		minFontSize: 30
-	}">{{
-	$text(level.getNameMessageKey())
+
+  <div v-if="bossName"
+    class="boss-title">
+    <div :class="[
+				'boss-icon',
+				`boss-icon-${bossName}`,
+			]" />
+  </div>
+
+  <h3 v-else
+    v-text-fit="{
+			alignHoriz: true,
+			alignVert: true,
+			maxFontSize: 40,
+			minFontSize: 30
+		}">{{
+		$text(level.getNameMessageKey())
 	}}</h3>
+
+
 
   <score-stars-animation :score="score"
     :level="level"
@@ -49,6 +61,7 @@ export default {
     'locked': Boolean,
     'bonus': Boolean,
     'boss': Boolean,
+    'bossName': String,
     'newlyUnlocked': {
       type: Boolean,
       default: false,
@@ -81,7 +94,6 @@ export default {
 
         &.boss {
             @include home-card(#344553, true);
-            background-color: #344553;
             h3 {
                 font-weight: bold;
             }
@@ -100,6 +112,29 @@ export default {
         text-align: center;
         font-weight: 500;
         margin: 0;
+    }
+
+    .boss-title {
+        height: 40px;
+
+        .boss-icon {
+            height: 160px;
+            width: 160px;
+            position: absolute;
+            top: 15px;
+            right: 50%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: translateX(50%);
+        }
+
+        .boss-icon-ogre {
+            background-image: url("../images/boss-icon-ogre.png");
+        }
+
+        .boss-icon-pied-piper {
+            background-image: url("../images/boss-icon-pied-piper.png");
+        }
     }
 
     .score-stars-animation-level {

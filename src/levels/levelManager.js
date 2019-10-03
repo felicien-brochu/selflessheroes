@@ -108,6 +108,7 @@ const categories = [{
       unlock: [10],
       bonus: true,
       boss: true,
+      bossName: "ogre",
     }, {
       id: 12,
       unlock: [11],
@@ -162,6 +163,7 @@ const categories = [{
       unlock: [111],
       bonus: true,
       boss: true,
+      bossName: "pied-piper",
     }, {
       id: 114,
       unlock: [113],
@@ -246,6 +248,7 @@ class LevelManager {
             level: level,
             bonus: !!levelConf.bonus,
             boss: !!levelConf.boss,
+            bossName: levelConf.bossName,
             solutions: levelSolutions,
             unlocked: unlocked,
           })

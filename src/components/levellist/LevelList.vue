@@ -24,6 +24,7 @@
         :revealed="level.revealed"
         :bonus="level.bonus"
         :boss="level.boss"
+        :bossName="level.bossName"
         :score="level.score"
         :class="{'selected': level.id === selectedID}"
         @show-score-animation-end="handleShowScoreAnimationEnd"
