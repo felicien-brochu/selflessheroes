@@ -42,13 +42,13 @@
           @touchstart.prevent="deleteCareer(career.id, $event)" />
       </div>
 
-      <div class="career-name"
+      <h3 class="career-name"
         v-text-fit="{
 		      alignHoriz: true,
 		      alignVert: true
 		    }">{{
 				career.name
-			}}</div>
+			}}</h3>
 
       <div class="stars-count">
         <i class="star-icon"><span :class="{
@@ -487,6 +487,7 @@ export default {
             cursor: default;
 
             h3 {
+                font-family: 'Roboto', Arial, sans-serif;
                 font-weight: 500;
                 margin: 0 auto 10px;
                 width: 200px;

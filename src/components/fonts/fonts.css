@@ -7,6 +7,10 @@
 	src: url("./Digits/digits.woff2") format("woff2"), url("./Digits/digits.woff") format("woff"), url("./Digits/digits.ttf") format("truetype"), url("./Digits/digits.svg") format("svg");
 }
 @font-face {
+	font-family: "Born2bSportyV2";
+	src: url("./Born2bSportyV2/Born2bSportyV2.woff2") format("woff2"), url("./Born2bSportyV2/Born2bSportyV2.woff") format("woff"), url("./Born2bSportyV2/Born2bSportyV2.ttf") format("truetype"), url("./Born2bSportyV2/Born2bSportyV2.svg") format("svg");
+}
+@font-face {
 	font-family: 'Roboto';
 	src: url("./Roboto/roboto_regular/Roboto-Regular-webfont.eot");
 	src: url("./Roboto/roboto_regular/Roboto-Regular-webfont.eot?#iefix") format('embedded-opentype'), url("./Roboto/roboto_regular/Roboto-Regular-webfont.woff2") format('woff2'), url("./Roboto/roboto_regular/Roboto-Regular-webfont.woff") format('woff'), url("./Roboto/roboto_regular/Roboto-Regular-webfont.ttf") format('truetype'), url("./Roboto/roboto_regular/Roboto-Regular-webfont.svg#robotoregular") format('svg');

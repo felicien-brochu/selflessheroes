@@ -11,6 +11,15 @@ $default-card-color: #406f96;
 	min-height: 310px;
 	margin: 15px;
 	border-radius: 8px;
+
+	h3 {
+		font-family: 'Born2bSportyV2', 'Roboto', Arial, sans-serif;
+		width: 220px;
+		font-size: 60px;
+		text-align: center;
+		font-weight: 500;
+		margin: 0;
+	}
 }
 @mixin home-card($card-color, $animate: true, $text-color: white) {
 	@include card-box;

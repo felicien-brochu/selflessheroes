@@ -17,12 +17,10 @@
   <h3 v-else
     v-text-fit="{
 			alignHoriz: true,
-			alignVert: true,
-			maxFontSize: 40,
-			minFontSize: 30
-		}">{{
-		$text(level.getNameMessageKey())
-	}}</h3>
+			alignVert: false,
+			maxFontSize: 50,
+			minFontSize: 40
+		}">{{$text(level.getNameMessageKey())}}</h3>
 
 
 
@@ -82,21 +80,22 @@ export default {
 
 .level-item {
     @include card-box;
-    padding: 49px 0 30px;
+    padding: 29px 0 30px;
     flex-direction: column;
     align-items: center;
     margin-right: 20px;
     display: flex;
 
+    h3 {
+        height: 60px;
+    }
+
     &:not(.locked) {
-        @include home-card($default-card-color, true);
+        @include home-card(#325068, true);
         transition-property: background-color, color, transform;
 
         &.boss {
             @include home-card(#344553, true);
-            h3 {
-                font-weight: bold;
-            }
         }
     }
 
@@ -105,17 +104,8 @@ export default {
         cursor: default;
     }
 
-    h3 {
-        width: 220px;
-        height: 40px;
-        font-size: 40px;
-        text-align: center;
-        font-weight: 500;
-        margin: 0;
-    }
-
     .boss-title {
-        height: 40px;
+        height: 60px;
 
         .boss-icon {
             height: 160px;
@@ -138,7 +128,7 @@ export default {
     }
 
     .score-stars-animation-level {
-        margin-top: 47px;
+        margin-top: 53px;
         width: 183px;
         height: 100px;
 
@@ -164,7 +154,7 @@ export default {
     }
 
     .bonus-label {
-        background-color: #394249;
+        background-color: #2f3b46;
     }
 
     .boss-label {

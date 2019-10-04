@@ -97,8 +97,9 @@ export default {
             }
 
             .level-label {
+                font-family: 'Born2bSportyV2', 'Roboto', Arial, sans-serif;
                 font-weight: bold;
-                font-size: 30px;
+                font-size: 40px;
                 margin-left: 10px;
             }
         }
@@ -180,6 +181,7 @@ export default {
                 color: #8f95a2;
                 margin: 4px 0 7px;
                 max-width: 390px;
+                font-weight: 500;
             }
         }
     }

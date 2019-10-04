@@ -351,6 +351,7 @@ export default {
                 color: #8f95a2;
                 margin: 15px 0 0 7px;
                 max-width: 390px;
+                font-weight: 500;
             }
         }
     }
