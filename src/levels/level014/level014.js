@@ -1,4 +1,4 @@
-import map from './map012.json'
+import map from './map014.json'
 
 const level = {
   mapConfig: map,
