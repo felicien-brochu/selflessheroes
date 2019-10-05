@@ -213,10 +213,12 @@ export default class World {
     }
 
     this.ruleset.step()
-    if (this.ruleset.hasLost()) {
-      this.declareLoss()
-    } else if (this.ruleset.hasWon()) {
-      this.declareWin()
+    if (!this.gameOver) {
+      if (this.ruleset.hasLost()) {
+        this.declareLoss()
+      } else if (this.ruleset.hasWon()) {
+        this.declareWin()
+      }
     }
   }
 
