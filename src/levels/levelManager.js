@@ -14,6 +14,8 @@ import level008 from './level008/level008'
 import level009 from './level009/level009'
 import level010 from './level010/level010'
 import level011 from './level011/level011'
+import level012 from './level012/level012'
+import level013 from './level013/level013'
 import level014 from './level014/level014'
 
 import level101 from './level101/level101'
@@ -46,6 +48,8 @@ const levels = [
   new Level(9, level009),
   new Level(10, level010),
   new Level(11, level011),
+  new Level(12, level012),
+  new Level(13, level013),
   new Level(14, level014),
 
   new Level(101, level101),
@@ -110,8 +114,16 @@ const categories = [{
       boss: true,
       bossName: "ogre",
     }, {
-      id: 14,
+      id: 12,
       unlock: [11],
+      unlockShown: [11],
+    }, {
+      id: 13,
+      unlock: [12],
+      unlockShown: [11],
+    }, {
+      id: 14,
+      unlock: [13],
       unlockShown: [11],
     }, ]
   },
