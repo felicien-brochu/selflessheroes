@@ -91,8 +91,11 @@ export default {
     }
 
     &:not(.locked) {
-        @include home-card(#325068, true);
+        @include home-card(#325068, true, #a0bfdb);
         transition-property: background-color, color, transform;
+        h3 {
+            text-shadow: 0 0 10px #2f3e4b;
+        }
 
         &.boss {
             @include home-card(#344553, true);
@@ -100,7 +103,7 @@ export default {
     }
 
     &.locked {
-        @include home-card(#3C404A, false, transparentize(white, 0.7));
+        @include home-card(#3C404A, false, transparentize(white, 0.8));
         cursor: default;
     }
 
