@@ -1,11 +1,5 @@
 import map from './map001.json'
 
-/* speed: 3, length: 3
-step(s)
-step(s)
-step(s)
-*/
-
 const level = {
   mapConfig: map,
   name: {
