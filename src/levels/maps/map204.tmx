@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="16" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="293" nextobjectid="125">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
+  <image source="tileset.png" trans="000000" width="340" height="680"/>
+  <terraintypes>
+   <terrain name="floor" tile="79"/>
+   <terrain name="wall" tile="69"/>
+   <terrain name="hole" tile="78"/>
+  </terraintypes>
+ </tileset>
+ <layer id="285" name="checkers" width="16" height="13" visible="0">
+  <data encoding="csv">
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69
+</data>
+ </layer>
+ <objectgroup id="14" name="camera">
+  <object id="12" name="frame" type="frame" x="50" y="32" width="412" height="332"/>
+  <object id="15" name="strategy" type="cameraStrategy" x="3" y="126">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="286" name="path" width="16" height="13">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="2" name="objects">
+  <object id="33" name="hero" type="hero" x="111" y="87">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="34" name="hero" type="hero" x="142" y="89">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="35" name="hero" type="hero" x="175" y="85">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="36" name="hero" type="hero" x="208" y="85">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="37" name="hero" type="hero" x="238" y="87">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="38" name="hero" type="hero" x="272" y="83">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="121" name="hero" type="hero" x="307" y="86">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="122" name="hero" type="hero" x="340" y="86">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="123" name="hero" type="hero" x="370" y="88">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="124" name="hero" type="hero" x="404" y="84">
+   <properties>
+    <property name="initialDirection" value="s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="99" name="eggs_origin" type="marker" x="113" y="344">
+   <point/>
+  </object>
+  <object id="120" name="eggs_origin" type="marker" x="109" y="113">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="290" name="types" width="16" height="13">
+  <data encoding="csv">
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,70,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,70,70,79,
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79
+</data>
+ </layer>
+ <layer id="291" name="ground" width="16" height="13">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1,2,5,2,4,4,4,4,4,2,2,3,2,6,0,
+0,11,37,143,20,124,18,152,20,154,29,134,30,134,16,0,
+0,11,121,9,142,30,154,8,152,7,151,17,134,19,26,0,
+0,11,10,124,8,141,20,154,7,152,29,142,7,154,16,0,
+0,11,142,39,142,18,131,40,153,10,121,40,151,39,26,0,
+0,21,29,132,40,153,7,123,7,141,30,123,27,123,16,0,
+0,21,152,8,144,10,133,28,131,27,151,29,144,19,26,0,
+0,21,28,141,39,154,20,124,8,123,8,122,27,153,16,0,
+0,21,152,8,152,37,141,38,131,17,124,39,154,39,16,0,
+0,31,8,122,10,153,37,121,27,144,7,133,40,133,36,0,
+0,41,42,52,42,52,53,52,53,43,43,43,42,45,46,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="292" name="floor_shadow" width="16" height="13">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,12,13,13,13,13,13,13,13,13,13,13,15,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,32,33,33,33,33,33,33,33,33,33,33,35,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>
