@@ -1,31 +1,12 @@
 const builder = require('electron-builder')
-const Platform = builder.Platform
-const Arch = builder.Arch
 
 process.env.ELECTRON_BUILDER_CACHE = './.cache/electron-builder/'
-
-var target = Platform.WINDOWS.createTarget('portable', Arch.x64)
-var target = Platform.WINDOWS.createTarget('portable', Arch.ia32)
-const targetArgs = {
-  'win32': Platform.WINDOWS.createTarget('portable', Arch.ia32),
-  'win64': Platform.WINDOWS.createTarget('portable', Arch.x64),
-  'linux32': Platform.LINUX.createTarget(Arch.ia32),
-  'linux64': Platform.LINUX.createTarget(Arch.x64),
-  'macos': Platform.MAC.createTarget(),
-  'default': Platform.WINDOWS.createTarget('portable', Arch.x64)
-}
-
-var targets = process.argv.filter(arg => !!targetArgs[arg]).map(arg => targetArgs[arg])
-if (targets.length === 0) {
-  targets.push(targetArgs.default)
-}
 
 const config = {
   appId: "fr.felicienbrochu.selflessheroes",
   productName: "Selfless Heroes",
   copyright: "Copyright © 2019 Félicien Brochu",
   directories: {
-    app: '.',
     output: 'electron-dist',
     buildResources: 'dist'
   },
@@ -47,21 +28,22 @@ const config = {
     allowToChangeInstallationDirectory: true
   },
   win: {
-    target: ['portable']
+    target: ["portable", "nsis"],
   },
   mac: {
+    target: ["dmg"],
     category: "public.app-category.puzzle-games",
-    target: ["dmg"]
   },
   linux: {
-    target: "AppImage",
-    category: "Game"
+    target: ["deb"],
+    category: "Game",
+    icon: "android-icon-512x512.png",
+    packageCategory: "games",
   }
 }
 
 builder
   .build({
-    targets: targets[0],
     config: config,
   })
   .then(message => {

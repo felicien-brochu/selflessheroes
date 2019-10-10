@@ -1,8 +1,10 @@
 {
   "name": "selflessheroes",
   "version": "0.1.0",
-  "description": "An AI sandbox game.",
+  "description": "Selfless Heroes is a game that will teach you how to program without you noticing. Solve puzzles and help your heroes emerge victorious from the dungeon!",
+  "keywords": ["puzzle game", "video game", "serious game", "programming", "development", "puzzle", "education", "fun", "logic", "algorithm"],
   "author": "Félicien Brochu <felicien.brochu@gmail.com>",
+  "homepage": "https://selflessheroes.fr",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/felicien-brochu/selflessheroes.git"
@@ -17,15 +19,11 @@
     "serve:prod": "cross-env NODE_ENV=production env-cmd -f ./deploy.env webpack-dev-server --env.platform=web --progress --colors --host 0.0.0.0",
     "build-tests": "cross-env NODE_ENV=development webpack --config ./tests/webpack.config.js --progress",
     "watch-tests": "cross-env NODE_ENV=development webpack --config ./tests/webpack.config.js --progress --watch",
-    "test": "yarn build-tests & node ./tests/test_levels.js",
-    "deploy": "yarn build & env-cmd -f ./deploy.env sh ./scripts/deploy.sh",
+    "test": "yarn build-tests && node ./tests/test_levels.js",
+    "deploy": "yarn build && env-cmd -f ./deploy.env sh ./scripts/deploy.sh",
     "build-electron": "cross-env NODE_ENV=production env-cmd -f ./deploy.env webpack --env.platform=electron --progress",
-    "electron": "yarn build-electron & node ./build-electron.js",
-    "electron:win64": "yarn build-electron & node ./build-electron.js win64",
-    "electron:win32": "yarn build-electron & node ./build-electron.js win32",
-    "electron:linux64": "yarn build-electron & node ./build-electron.js linux64",
-    "electron:linux32": "yarn build-electron & node ./build-electron.js linux32",
-    "electron:macos": "yarn build-electron & node ./build-electron.js macos"
+    "pack-electron": "node ./build-electron.js",
+    "electron": "yarn build-electron && yarn pack-electron"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
