@@ -21,7 +21,7 @@ const config = {
     "dist/assets/**/*",
     "dist/workers/**/*",
   ],
-  compression: "normal",
+  compression: "maximum",
   win: {
     target: ["portable", "nsis"],
   },
