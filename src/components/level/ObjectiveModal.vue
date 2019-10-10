@@ -98,7 +98,6 @@ export default {
 
             .level-label {
                 font-family: 'Born2bSportyV2', 'Roboto', Arial, sans-serif;
-                font-weight: bold;
                 font-size: 40px;
                 margin-left: 10px;
             }

@@ -337,7 +337,6 @@ $level-details-color: #3C404A;
 
                 .level-label {
                     font-family: 'Born2bSportyV2', 'Roboto', Arial, sans-serif;
-                    font-weight: bold;
                     font-size: 40px;
                     margin-left: 10px;
                     margin-right: 30px;
