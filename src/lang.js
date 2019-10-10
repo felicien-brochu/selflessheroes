@@ -286,7 +286,7 @@ const messages = {
   'fr': {
     head_meta_og_description: "Selfless Heroes est un jeu qui vous apprendra à programmer sans que vous ne le remarquiez. Résolvez des énigmes et aidez vos héros à sortir victorieux du donjon !",
     head_meta_description: "Selfless Heroes est un jeu qui vous apprendra à programmer sans que vous ne le remarquiez. Résolvez des énigmes et aidez vos héros à sortir victorieux du donjon !",
-    head_meta_keywords: "jeu de réflexion, jeu vidéo, serious game, programmation, développement, énigme, éducation, divertissement, logique, algorithme, algorithm",
+    head_meta_keywords: "jeu de réflexion, jeu vidéo, serious game, programmation, développement, énigme, éducation, divertissement, logique, algorithme",
 
     app_fullscreen_modal: "Afin d'avoir la meilleure expérience de jeu possible,\nil est recommandé de jouer en plein écran.",
     app_fullscreen_modal_stop_propose: "Ne plus afficher ce message",
