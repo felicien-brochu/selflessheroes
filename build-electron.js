@@ -22,13 +22,13 @@ const config = {
     "dist/workers/**/*",
   ],
   compression: "normal",
+  win: {
+    target: ["portable", "nsis"],
+  },
   nsis: {
     oneClick: false,
     perMachine: true,
     allowToChangeInstallationDirectory: true
-  },
-  win: {
-    target: ["portable", "nsis"],
   },
   mac: {
     target: ["dmg"],
@@ -36,10 +36,13 @@ const config = {
   },
   linux: {
     target: ["deb"],
+    synopsis: "Selfless Heroes is a puzzle game that will teach you how to program without you noticing",
     category: "Game",
-    icon: "android-icon-512x512.png",
+    executableName: "Selfless Heroes",
+  },
+  deb: {
     packageCategory: "games",
-  }
+  },
 }
 
 builder
