@@ -6154,6 +6154,13 @@ promise-inflight@^1.0.1:
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
+prompt-sync@^4.1.7:
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/prompt-sync/-/prompt-sync-4.1.7.tgz#8465d6a83ce35db7fcc5cb73936ba54a8f2b8517"
+  integrity sha512-EPdLWdZCgNAxF8haGg1CKOL/F5KZiRtuqgoWc1EGefX+fX+5qsB8vI52+qzl1jgADO6AiLaIcioicxRgQEy5xA==
+  dependencies:
+    strip-ansi "^5.0.0"
+
 proxy-addr@~2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-2.0.5.tgz#34cbd64a2d81f4b1fd21e76f9f06c8a45299ee34"

@@ -2,7 +2,18 @@
   "name": "selflessheroes",
   "version": "0.1.0",
   "description": "Selfless Heroes is a game that will teach you how to program without you noticing. Solve puzzles and help your heroes emerge victorious from the dungeon!",
-  "keywords": ["puzzle game", "video game", "serious game", "programming", "development", "puzzle", "education", "fun", "logic", "algorithm"],
+  "keywords": [
+    "puzzle game",
+    "video game",
+    "serious game",
+    "programming",
+    "development",
+    "puzzle",
+    "education",
+    "fun",
+    "logic",
+    "algorithm"
+  ],
   "author": "Félicien Brochu <felicien.brochu@gmail.com>",
   "homepage": "https://selflessheroes.fr",
   "repository": {
@@ -12,6 +23,7 @@
   "license": "CC-BY-NC-ND-4.0",
   "main": "src/electron.js",
   "scripts": {
+    "init-env": "node ./scripts/init.js",
     "start": "yarn serve:dev",
     "build-dev": "cross-env NODE_ENV=development platform=web env-cmd -f ./deploy.env webpack --progress",
     "build": "cross-env NODE_ENV=production platform=web env-cmd -f ./deploy.env webpack --progress",
@@ -51,6 +63,7 @@
     "node-sass": "^4.12.0",
     "node-sass-magic-importer": "^5.3.2",
     "preload-webpack-plugin": "^3.0.0-beta.3",
+    "prompt-sync": "^4.1.7",
     "resolve-url-loader": "^3.0.0-beta.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
