@@ -27,6 +27,10 @@ if (platform === 'electron') {
   copiedFiles.push({
     from: 'src/icons/android-icon-512x512.png',
     to: 'icon.png'
+  }, {
+    context: 'src/icons/appx',
+    from: '**',
+    to: 'appx'
   })
 }
 

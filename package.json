@@ -13,16 +13,15 @@
   "main": "src/electron.js",
   "scripts": {
     "start": "yarn serve:dev",
-    "build-dev": "cross-env NODE_ENV=development env-cmd -f ./deploy.env webpack --env.platform=web --progress",
-    "build": "cross-env NODE_ENV=production env-cmd -f ./deploy.env webpack --env.platform=web --progress",
-    "serve:dev": "cross-env NODE_ENV=development env-cmd -f ./deploy.env webpack-dev-server --env.platform=web --progress --colors --host 0.0.0.0",
-    "serve:prod": "cross-env NODE_ENV=production env-cmd -f ./deploy.env webpack-dev-server --env.platform=web --progress --colors --host 0.0.0.0",
+    "build-dev": "cross-env NODE_ENV=development platform=web env-cmd -f ./deploy.env webpack --progress",
+    "build": "cross-env NODE_ENV=production platform=web env-cmd -f ./deploy.env webpack --progress",
+    "serve:dev": "cross-env NODE_ENV=development platform=web env-cmd -f ./deploy.env webpack-dev-server --progress --colors --host 0.0.0.0",
+    "serve:prod": "cross-env NODE_ENV=production platform=web env-cmd -f ./deploy.env webpack-dev-server --progress --colors --host 0.0.0.0",
     "build-tests": "cross-env NODE_ENV=development webpack --config ./tests/webpack.config.js --progress",
-    "watch-tests": "cross-env NODE_ENV=development webpack --config ./tests/webpack.config.js --progress --watch",
     "test": "yarn build-tests && node ./tests/test_levels.js",
     "deploy": "yarn build && env-cmd -f ./deploy.env sh ./scripts/deploy.sh",
-    "build-electron": "cross-env NODE_ENV=production env-cmd -f ./deploy.env webpack --env.platform=electron --progress",
-    "pack-electron": "node ./build-electron.js",
+    "build-electron": "cross-env NODE_ENV=production platform=electron env-cmd -f ./deploy.env webpack --progress",
+    "pack-electron": "node ./scripts/build-electron.js",
     "electron": "yarn build-electron && yarn pack-electron"
   },
   "devDependencies": {
