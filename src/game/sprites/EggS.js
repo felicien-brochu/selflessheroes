@@ -274,9 +274,7 @@ export default class EggS extends Phaser.GameObjects.Container {
   }
 
   updateText(value) {
-    let text = value.toString()
-    let length = text.length > 3 ? 3 : text.length
-    text = text.substring(text.length - length)
+    let text = this.formatInteger(value)
 
     if (text !== this.textSprite.text) {
       this.textSprite.setText(text)
@@ -293,6 +291,24 @@ export default class EggS extends Phaser.GameObjects.Container {
       this.textSprite.setFontSize(fontSize)
       this.textSprite.setDisplayOrigin((this.textSprite.width - fontSize / 5) / 2, fontSize / 2)
     }
+  }
+
+  formatInteger(value) {
+    let text = ''
+    if (value >= 1e3 || value <= -1e2) {
+      if (value >= 1e10) {
+        text = '∞'
+      } else if (value <= -1e2) {
+        text = '-∞'
+      } else {
+        let exponent = Math.floor(Math.log10(Math.abs(value)))
+        let base = Math.floor(value / (10 ** exponent))
+        text = `${base}^${exponent}`
+      }
+    } else {
+      text = value.toString()
+    }
+    return text
   }
 
   onTweenComplete(tween) {

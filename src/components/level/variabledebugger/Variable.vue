@@ -5,17 +5,16 @@
   <div class="variable-value">
 
     <div v-if="isRawType"
-      :class="{
-				'raw-value': true,
-				'small': variable.getDominantValue().value.toString().length >= 3
-			}">{{variable.getDominantValue().value.toString()}}</div>
+      class="raw-value"
+      :style="{fontSize: rawValue.fontSize}">{{rawValue.value}}</div>
 
     <i v-else-if="isIconType"
       :class="icon" />
 
     <i v-else-if="isEgg"
-      class="egg-value icon-egg"> {{
-				eggDigits
+      class="egg-value icon-egg"
+      :style="{fontSize: eggDigits.fontSize}"> {{
+				eggDigits.value
 			}}</i>
 
   </div>
@@ -53,6 +52,38 @@ export default {
       let type = this.variable.getDominantValue().type
       return type === ExpressionTypes.integer || type === ExpressionTypes.boolean
     },
+    rawValue: function() {
+      let rawValue = ''
+      let value = this.variable.getDominantValue()
+      if (value.type === ExpressionTypes.integer) {
+        value = value.value
+        if (value >= 1e3 || value <= -1e3) {
+          if (value === Infinity) {
+            rawValue = '∞'
+          }
+          else if (value === -Infinity) {
+            rawValue = '-∞'
+          }
+          else {
+            let exponent = Math.floor(Math.log10(Math.abs(value)))
+            let base = Math.floor(value / (10 ** exponent))
+            rawValue = `${base}^${exponent}`
+          }
+        }
+        else {
+          rawValue = value.toString()
+        }
+      }
+      else if (value.type === ExpressionTypes.boolean) {
+        rawValue = value.value.toString()
+      }
+
+      let fontSize = Math.min(16, 30 / rawValue.length)
+      return {
+        value: rawValue,
+        fontSize: `${fontSize}px`,
+      }
+    },
     isIconType: function() {
       let value = this.variable.getDominantValue()
       return value.type === ExpressionTypes.terrainType ||
@@ -88,10 +119,30 @@ export default {
     },
     eggDigits: function() {
       let egg = this.variable.getDominantValue().value
-      let text = egg.value.toString()
-      let length = text.length > 2 ? 2 : text.length
-      text = text.substring(text.length - length)
-      return text
+      let value = egg.value
+      let text = ''
+      if (value >= 1e3 || value <= -1e2) {
+        if (value >= 1e10) {
+          text = '∞'
+        }
+        else if (value <= -1e2) {
+          text = '-∞'
+        }
+        else {
+          let exponent = Math.floor(Math.log10(Math.abs(value)))
+          let base = Math.floor(value / (10 ** exponent))
+          text = `${base}^${exponent}`
+        }
+      }
+      else {
+        text = value.toString()
+      }
+
+      let fontSize = Math.min(9, 18 / text.length)
+      return {
+        value: text,
+        fontSize: `${fontSize}px`,
+      }
     }
   }
 }
@@ -141,10 +192,6 @@ export default {
             font-family: Digits, Roboto, sans-serif;
             font-size: 16px;
             text-align: center;
-
-            &.small {
-                font-size: 11px;
-            }
         }
 
         .egg-value {
@@ -154,7 +201,6 @@ export default {
             font-family: Digits, monospace;
             color: #302d24;
             font-size: 9px;
-            padding-left: 2px;
             box-sizing: border-box;
             width: 32px;
             height: 32px;

@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata>
-Created by FontForge 20190413 at Sun Jun 02 14:40:59 2019
+Created by FontForge 20190413 at Sat Oct 12 09:01:11 2019
  By felicien
 Copyright gama27 2019
 </metadata>
@@ -16,10 +16,10 @@ Copyright gama27 2019
     panose-1="0 0 4 0 0 0 0 0 0 0"
     ascent="4096"
     descent="0"
-    bbox="0 0 3276 4096"
+    bbox="0 0 4096 4912"
     underline-thickness="204"
     underline-position="307"
-    unicode-range="U+0020-0039"
+    unicode-range="U+0020-221E"
   />
 <missing-glyph horiz-adv-x="3969" 
 d="M3081 50l-1506 1978l-1506 -1978h3012zM50 69l1506 1979l-1506 1978v-3957v0zM3100 69v3957l-1506 -1978l1506 -1979v0zM1575 2067l1506 1979h-3012l1506 -1979v0zM0 0v4096h3150v-4096h-3150z" />
@@ -51,5 +51,11 @@ d="M819 0v1638h819v-1638h-819zM1638 1638v819h819v-819h-819zM2457 2457v819h-2457v
 d="M2457 819v819h-1638v-819h1638zM2457 2457v819h-1638v-819h1638zM0 0v4096h3276v-4096h-3276z" />
     <glyph glyph-name="nine" unicode="9" 
 d="M2457 2457v819h-1638v-819h1638zM0 0v819h2457v819h-2457v2458h3276v-4096h-3276z" />
+    <glyph glyph-name="hyphen" unicode="-" horiz-adv-x="2963" 
+d="M0 2458.4l2058.5 -0.399979v-822l-2058.5 0.399979v822z" />
+    <glyph glyph-name="asciicircum" unicode="^" horiz-adv-x="4896" 
+d="M2463 4096v-821.6h816v821.6h-816zM1641 4096v816h822v-816h-822zM819 4096v-821.6h822v821.6h-822zM2463 1636h816v-821.6h-816v821.6zM1641 2459v-2459h2455v2458.4zM0 2458.4l819 -0.399979v-2458h-819v2458.4z" />
+    <glyph glyph-name="infinity" unicode="&#x221e;" 
+d="M3279 412.6h-816v814.4h816v-814.4zM3279 2870.6v-1643.6h817v1644zM2463 3687v-816.4h816v816.4h-816zM819 1227v-814.4h822v814.4h-822zM1641 2870.6v-1643.6h822v1643.6h-822zM819 3687v-816.4h822v816.4h-822zM0 2871v-1644h819v1643.6z" />
   </font>
 </defs></svg>

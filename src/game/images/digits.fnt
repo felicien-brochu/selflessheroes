@@ -18,7 +18,7 @@
 
     <char id="61" x="2" y="122" width="8" height="10" xoffset="0" yoffset="0" xadvance="10" page="0" chnl="15"/>
     <char id="43" x="2" y="134" width="8" height="10" xoffset="0" yoffset="0" xadvance="10" page="0" chnl="15"/>
-    <char id="45" x="2" y="146" width="8" height="10" xoffset="0" yoffset="0" xadvance="10" page="0" chnl="15"/>
+    <char id="45" x="2" y="146" width="6" height="10" xoffset="0" yoffset="0" xadvance="8" page="0" chnl="15"/>
     <char id="42" x="2" y="158" width="8" height="10" xoffset="0" yoffset="0" xadvance="10" page="0" chnl="15"/>
     <char id="47" x="2" y="170" width="8" height="10" xoffset="0" yoffset="0" xadvance="10" page="0" chnl="15"/>
     <char id="37" x="2" y="182" width="8" height="10" xoffset="0" yoffset="0" xadvance="10" page="0" chnl="15"/>
@@ -52,6 +52,8 @@
     <char id="120" x="1" y="574" width="10" height="14" xoffset="0" yoffset="-4" xadvance="12" page="0" chnl="15"/>
     <char id="121" x="1" y="590" width="10" height="14" xoffset="0" yoffset="-1" xadvance="12" page="0" chnl="15"/>
     <char id="122" x="1" y="606" width="10" height="14" xoffset="0" yoffset="-4" xadvance="12" page="0" chnl="15"/>
+
+    <char id="94" x="1" y="638" width="10" height="14" xoffset="0" yoffset="-4" xadvance="12" page="0" chnl="15"/>
 
   </chars>
 </font>
