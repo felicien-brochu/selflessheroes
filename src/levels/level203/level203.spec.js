@@ -24,10 +24,10 @@ if w == hero :
 endif
 b:
 $a = set(sw)
-take(s)
-write($a)
-drop(s)
 step(s)
+take(here)
+write($a)
+drop(here)
 jump b
 		`,
   }, {
