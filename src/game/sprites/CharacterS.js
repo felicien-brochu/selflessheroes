@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import CalculationS from './CalculationS'
 import CharacterDeathReason from '../../world/objects/CharacterDeathReason'
 import Direction from '../../world/Direction'
 
@@ -44,6 +45,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     this.sleepSprite = new Phaser.GameObjects.Sprite(scene, 0, 0, 'sleep_zzz')
     this.sleepSprite.depth = 1
     this.sleepSprite.setVisible(false)
+    this.calculationSprite = null
 
     this.itemContainer = new Phaser.GameObjects.Container(scene, 0, itemContainerInitialY)
     this.updateItem()
@@ -193,12 +195,19 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     }
 
     if (this.character.ai &&
-      this.character.ai.context &&
-      this.character.ai.context.observations &&
-      this.character.ai.context.observations.length > 0) {
-      this.emit('observe', this, this.character.ai.context.observations)
-      this.scene.updateCharacterObservations(this, this.character.ai.context.observations)
+      this.character.ai.context) {
+      if (this.character.ai.context.observations &&
+        this.character.ai.context.observations.length > 0) {
+        this.emit('observe', this, this.character.ai.context.observations)
+        this.scene.updateCharacterObservations(this, this.character.ai.context.observations)
+      }
+
+      this.hideCalculation()
+      if (this.character.ai.context.calculation) {
+        this.showCalculation(this.character.ai.context.calculation)
+      }
     }
+
     if (!this.moving) {
       this.afterStepAnimation()
     }
@@ -246,6 +255,20 @@ export default class CharacterS extends Phaser.GameObjects.Container {
         itemSprite.x = 0
         itemSprite.y = 0
       }
+    }
+  }
+
+  showCalculation(calculation) {
+    this.calculationSprite = new CalculationS(this.scene, calculation)
+    this.calculationSprite.y = -18
+    this.scene.add.existing(this.calculationSprite)
+    this.add(this.calculationSprite)
+  }
+
+  hideCalculation() {
+    if (this.calculationSprite) {
+      this.calculationSprite.destroy()
+      this.calculationSprite = null
     }
   }
 

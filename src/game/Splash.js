@@ -64,6 +64,10 @@ import direction_ne from './images/direction_ne.png'
 import direction_se from './images/direction_se.png'
 import direction_sw from './images/direction_sw.png'
 import direction_nw from './images/direction_nw.png'
+import calculation_left from './images/calculation_left.png'
+import calculation_right from './images/calculation_right.png'
+import calculation_middle from './images/calculation_middle.png'
+import calculation_bubbles from './images/calculation_bubbles.png'
 
 import fireworks1 from './images/fireworks1.png'
 import fireworks2 from './images/fireworks2.png'
@@ -300,6 +304,10 @@ export default class extends Phaser.Scene {
     this.load.image('direction_se', direction_se)
     this.load.image('direction_sw', direction_sw)
     this.load.image('direction_nw', direction_nw)
+    this.load.image('calculation_left', calculation_left)
+    this.load.image('calculation_right', calculation_right)
+    this.load.image('calculation_middle', calculation_middle)
+    this.load.image('calculation_bubbles', calculation_bubbles)
 
     // AUDIO
     this.load.audio('fireworks_sfx', fireworks_sfx)

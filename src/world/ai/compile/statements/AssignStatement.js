@@ -122,7 +122,15 @@ export default class AssignStatement extends PrimaryStatement {
   }
 
   execute(context) {
-    context.variables[this.variable.name] = this.value.computeValue(context)
+    context.calculation = {
+      type: 'unknown',
+      variable: this.variable.name,
+      result: null,
+      operands: [],
+    }
+    let computedValue = this.value.computeValue(context)
+    context.calculation.result = computedValue
+    context.variables[this.variable.name] = computedValue
     return {
       step: true,
       complete: true,

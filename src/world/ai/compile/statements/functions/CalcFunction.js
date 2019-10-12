@@ -157,6 +157,18 @@ export default class CalcFunction extends ValueFunction {
         break
     }
 
+    context.calculation.type = 'calc'
+    context.calculation.operands.push({
+      type: 'value',
+      value: leftValue,
+    }, {
+      type: 'operator',
+      value: operator,
+    }, {
+      type: 'value',
+      value: rightValue,
+    })
+
     return ExpressionValue.integer(value)
   }
 }

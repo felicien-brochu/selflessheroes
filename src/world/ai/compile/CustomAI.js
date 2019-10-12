@@ -21,6 +21,7 @@ export default class CustomAI extends AI {
       character: this.character,
       variables: this.variables,
       observations: [],
+      calculation: null,
       lastGoto: null,
       rng: Math.random
     }
@@ -81,6 +82,7 @@ export default class CustomAI extends AI {
   prepareContext(rng) {
     this.context.rng = rng
     this.context.observations = []
+    this.context.calculation = null
   }
 
   hasEnded() {

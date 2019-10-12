@@ -88,7 +88,14 @@ export default class SetFunction extends ValueFunction {
   }
 
   computeValue(context) {
-    return this.params[0].computeValue(context)
+    let computedValue = this.params[0].computeValue(context)
+
+    context.calculation.type = 'set'
+    context.calculation.operands.push({
+      type: 'value',
+      value: computedValue,
+    })
+    return computedValue
   }
 }
 
