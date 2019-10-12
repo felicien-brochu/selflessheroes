@@ -1,25 +1,11 @@
 import Phaser from 'phaser'
 
 import CharacterS from './CharacterS'
-
-let assets = [
-  'knight_orange',
-  'knight_pink',
-  'knight_green',
-  'knight_blue',
-  'knight_purple',
-  'knight_red',
-  'knight_turquoise',
-  'knight_yellow',
-  'knight_dark_blue',
-  'knight_fuchsia',
-  'knight_hollywood_green',
-]
-
+import heroColors from '../../shared/heroColors'
 
 export default class HeroS extends CharacterS {
   constructor(scene, hero, tileWidth, tileHeight) {
-    super(scene, hero, assets[hero.color], tileWidth, tileHeight, 0, -19)
+    super(scene, hero, `knight_${heroColors[hero.color]}`, tileWidth, tileHeight, 0, -19)
     this.setInteractive()
     this.input.hitArea.setTo(0, 14, 32, 40)
   }
