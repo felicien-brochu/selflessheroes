@@ -11,6 +11,9 @@ export default class Level extends WorldLevel {
     mapConfig,
     name,
     objective,
+    messages,
+    bossTellsSomething,
+    bossName,
     startingCode,
     startingEditorType,
     maxStep,
@@ -20,11 +23,13 @@ export default class Level extends WorldLevel {
     compilerConfig,
     ruleset,
     worldGenerator,
-    messages,
   }) {
     super(id, mapConfig, maxStep)
     this.name = name
     this.objective = objective
+    this.messages = messages || null
+    this.bossTellsSomething = !!bossTellsSomething
+    this.bossName = bossName || null
     this.startingCode = startingCode || ''
     this.startingEditorType = startingEditorType || 'graph'
     this.speedTarget = speedTarget || 20
@@ -36,7 +41,6 @@ export default class Level extends WorldLevel {
       lose: 'default_loss'
     }
     this.worldGenerator = worldGenerator
-    this.messages = messages || null
   }
 
   installMessages(lang) {
@@ -67,6 +71,10 @@ export default class Level extends WorldLevel {
 
   getObjectiveMessageKey() {
     return this.prefixMessageKey('objective')
+  }
+
+  getBossTellMessageKey() {
+    return this.prefixMessageKey('boss_tell')
   }
 
   prefixMessageKey(name) {

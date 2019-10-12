@@ -120,14 +120,6 @@ export default {
             background-repeat: no-repeat;
             transform: translateX(50%);
         }
-
-        .boss-icon-ogre {
-            background-image: url("../images/boss-icon-ogre.png");
-        }
-
-        .boss-icon-pied-piper {
-            background-image: url("../images/boss-icon-pied-piper.png");
-        }
     }
 
     .score-stars-animation-level {

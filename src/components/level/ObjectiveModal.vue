@@ -16,6 +16,17 @@
   </div>
   <div class="objective-modal-content">
 
+    <div v-if="level.bossTellsSomething"
+      class="boss-tell-container">
+      <div :class="['boss-icon', `boss-icon-${level.bossName}`]" />
+      <div class="boss-tell-balloon-container">
+        <div class="speech-spike" />
+        <div class="boss-tell-balloon">{{
+					$text(level.getBossTellMessageKey())
+				}}</div>
+      </div>
+    </div>
+
     <h4>{{$text('level_objective_modal_objective_title')}}</h4>
     <div class="objective-text"
       v-bbcode>{{$text(level.getObjectiveMessageKey())}}</div>
@@ -30,7 +41,7 @@
       <i class="mdi mdi-format-list-numbered" />:<span class="score-target"><span class="target-number">{{level.lengthTarget}}</span> {{$text('level_modal_length_target_unit')}}</span>
     </div>
 
-    <p class="secondary-objectives-difficulty-warning"><i class="mdi mdi-information-outline" /> {{$text('level_modal_secondary_objectives_difficulty_warning')}}</p>
+    <p class="secondary-objectives-difficulty-warning"><i class="mdi mdi-information-outline" />{{$text('level_modal_secondary_objectives_difficulty_warning')}}</p>
 
   </div>
 </modal>
@@ -82,7 +93,7 @@ export default {
 
 .objective-modal {
     padding: 37px 50px 30px;
-    min-width: 485px;
+    min-width: 492px;
 
     .modal-content {
         display: flex;
@@ -91,6 +102,7 @@ export default {
         .level-name {
             display: flex;
             flex-grow: 1;
+            margin-bottom: 25px;
 
             .score-stars {
                 width: 64px;
@@ -100,6 +112,50 @@ export default {
                 font-family: 'Born2bSportyV2', 'Roboto', Arial, sans-serif;
                 font-size: 40px;
                 margin-left: 10px;
+            }
+        }
+
+        .boss-tell-container {
+            display: flex;
+            align-items: stretch;
+            margin-bottom: 12px;
+
+            .boss-icon {
+                min-width: 100px;
+                min-height: 80px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: bottom;
+            }
+
+            .boss-tell-balloon-container {
+                position: relative;
+                margin-left: 40px;
+                white-space: normal;
+
+                .boss-tell-balloon {
+                    background-color: #282C34;
+                    margin-bottom: 12px;
+                    border-radius: 8px;
+                    padding: 10px 18px 12px 12px;
+                    color: #8f95a2;
+                    font-style: italic;
+                    font-size: 18px;
+                    white-space: pre-line;
+                }
+
+                .speech-spike {
+                    position: absolute;
+                    z-index: -1;
+                    display: block;
+                    width: 0;
+                    border-style: solid;
+                    border-width: 30px 30px 30px 0;
+                    border-color: transparent #282C34;
+                    left: -14px;
+                    bottom: -6px;
+                    transform: translateY(-50%) scaleY(0.55) rotate(230deg);
+                }
             }
         }
 
@@ -115,13 +171,12 @@ export default {
                 font-weight: 500;
                 font-size: 20px;
                 opacity: 0.5;
-                margin-top: 25px;
             }
 
             .objective-text {
                 text-align: center;
                 font-size: 20px;
-                margin: 0 25px 10px;
+                margin: 0 25px 35px;
 
                 .icon {
                     width: 24px;
@@ -177,10 +232,21 @@ export default {
             .secondary-objectives-difficulty-warning {
                 font-style: italic;
                 font-size: 14px;
-                color: #8f95a2;
+                color: #7b8292;
                 margin: 4px 0 7px;
-                max-width: 390px;
+                text-align: start;
                 font-weight: 500;
+                background-color: #373b44;
+                border-radius: 6px;
+                padding: 8px 12px;
+                box-sizing: border-box;
+
+                i.mdi-information-outline {
+                    float: left;
+                    font-size: 23px;
+                    margin-right: 6px;
+                    line-height: 28px;
+                }
             }
         }
     }

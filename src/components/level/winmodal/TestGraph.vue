@@ -284,6 +284,8 @@ export default {
         }
     }
     .tests-graph {
+        display: block;
+        margin: auto;
         width: 430px;
         background: #2f333d;
         border-radius: 8px;

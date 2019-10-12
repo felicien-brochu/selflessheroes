@@ -65,7 +65,7 @@
 					'not-won': levelSolutions.score.minLength > level.lengthTarget
 				}"
         v-bbcode>{{priorLengthText}}</p>
-      <p class="secondary-objectives-difficulty-warning"><i class="mdi mdi-information-outline" /> {{$text('level_modal_secondary_objectives_difficulty_warning')}}</p>
+      <p class="secondary-objectives-difficulty-warning"><i class="mdi mdi-information-outline" />{{$text('level_modal_secondary_objectives_difficulty_warning')}}</p>
     </div>
   </transition>
 </modal>
@@ -241,6 +241,7 @@ export default {
         display: flex;
         flex-direction: column;
         overflow: hidden auto;
+        max-width: 430px;
 
         .test-graph-container {
             position: relative;
@@ -346,12 +347,20 @@ export default {
             }
 
             .secondary-objectives-difficulty-warning {
+                max-width: 430px;
                 font-style: italic;
                 font-size: 14px;
                 color: #8f95a2;
-                margin: 15px 0 0 7px;
-                max-width: 390px;
+                text-align: start;
+                margin: 15px 7px 0;
                 font-weight: 500;
+
+                i.mdi-information-outline {
+                    float: left;
+                    font-size: 23px;
+                    margin-right: 6px;
+                    line-height: 28px;
+                }
             }
         }
     }
