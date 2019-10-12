@@ -45,6 +45,7 @@ const terrainTypeMap = {
 const objectTypeMap = {
   nothing: 'nothing',
   hero: 'hero',
+  npc: 'npc',
   switch: 'switch',
   bonfire: 'bonfire',
   cauldron: 'cauldron',

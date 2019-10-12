@@ -263,6 +263,7 @@ const messages = {
 
     drop_down_list_object_type_nothing: "nothing",
     drop_down_list_object_type_hero: "hero",
+    drop_down_list_object_type_npc: "beast",
     drop_down_list_object_type_switch: "switch",
     drop_down_list_object_type_bonfire: "bonfire",
     drop_down_list_object_type_cauldron: "cauldron",
@@ -497,6 +498,7 @@ const messages = {
 
     drop_down_list_object_type_nothing: "rien",
     drop_down_list_object_type_hero: "héro",
+    drop_down_list_object_type_npc: "monstre",
     drop_down_list_object_type_switch: "bouton",
     drop_down_list_object_type_bonfire: "feu",
     drop_down_list_object_type_cauldron: "chaudron",
