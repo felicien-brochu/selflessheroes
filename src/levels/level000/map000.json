@@ -265,7 +265,7 @@
                         {
                          "name":"value",
                          "type":"int",
-                         "value":9
+                         "value":78
                         }],
                  "rotation":0,
                  "type":"egg",
@@ -273,6 +273,42 @@
                  "width":0,
                  "x":204,
                  "y":211
+                }, 
+                {
+                 "height":0,
+                 "id":45,
+                 "name":"npc",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"race",
+                         "type":"string",
+                         "value":"ogre"
+                        }],
+                 "rotation":0,
+                 "type":"npc",
+                 "visible":true,
+                 "width":0,
+                 "x":111,
+                 "y":240
+                }, 
+                {
+                 "height":0,
+                 "id":46,
+                 "name":"spikes",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"enabled",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"spikes",
+                 "visible":true,
+                 "width":0,
+                 "x":142,
+                 "y":274
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -317,7 +353,7 @@
          "y":0
         }],
  "nextlayerid":111,
- "nextobjectid":45,
+ "nextobjectid":47,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2019.03.13",

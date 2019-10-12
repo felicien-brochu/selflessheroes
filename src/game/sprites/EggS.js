@@ -285,11 +285,16 @@ export default class EggS extends Phaser.GameObjects.Container {
       } else if (text.length < 3) {
         fontSize = 7
       } else {
-        fontSize = 6
+        fontSize = 5
       }
 
       this.textSprite.setFontSize(fontSize)
       this.textSprite.setDisplayOrigin((this.textSprite.width - fontSize / 5) / 2, fontSize / 2)
+      if (this.textSprite.width > 16) {
+        this.textSprite.setScale(16 / this.textSprite.width)
+      } else {
+        this.textSprite.setScale(1)
+      }
     }
   }
 

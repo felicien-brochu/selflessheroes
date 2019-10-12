@@ -15,11 +15,6 @@ export default class CalculationS extends Phaser.GameObjects.Container {
     this.rightSprite = new Phaser.GameObjects.Sprite(scene, 20, 0, 'calculation_right')
     this.bubblesSprite = new Phaser.GameObjects.Sprite(scene, 12, 11.5, 'calculation_bubbles')
 
-    this.scene.add.existing(this.middleSprite)
-    this.scene.add.existing(this.leftSprite)
-    this.scene.add.existing(this.rightSprite)
-    this.scene.add.existing(this.bubblesSprite)
-
     this.add(this.middleSprite)
     this.add(this.leftSprite)
     this.add(this.rightSprite)
@@ -63,10 +58,35 @@ export default class CalculationS extends Phaser.GameObjects.Container {
   }
 
   buildSetContent() {
-    let value = this.calculation.operands[0].value
+    const value = this.calculation.operands[0].value
+    const dominantValue = value.getDominantValue()
+
     let text = this.calculation.variable.substring(1)
     text += ' = '
 
+    if (this.isRawType(value)) {
+      if (dominantValue.hasIntegerValue()) {
+        text += this.formatInteger(dominantValue.getFirstIntegerValue().value)
+      } else {
+        text += dominantValue.value.toString()
+      }
+    } else {
+      text += '          '
+
+      if (this.isIconType(value)) {
+        let valueSprite = new Phaser.GameObjects.Sprite(this.scene, 7, 0, this.getIcon(value))
+        valueSprite.setScale(10 / valueSprite.width)
+        this.add(valueSprite)
+      } else if (this.isEgg(value)) {
+        let eggSprite = new EggIconS(this.scene, 7.5, 0, dominantValue.value)
+        eggSprite.setScale(0.5)
+        this.add(eggSprite)
+      }
+    }
+
+    this.leftSprite.x = -15
+    this.rightSprite.x = 15
+    this.middleSprite.setScale(4.3, 1)
     this.displayText(text)
   }
 
@@ -116,20 +136,20 @@ export default class CalculationS extends Phaser.GameObjects.Container {
         value.value.type !== ObjectType.egg)
   }
 
-  icon(variable) {
+  getIcon(variable) {
     let value = variable.getDominantValue()
     let icon = ''
     if (value.type === ExpressionTypes.object) {
       let obj = value.value
       if (obj.type === ObjectType.hero) {
-        icon = `hero-${heroColors[obj.color % heroColors.length]}`
+        icon = `knight_${heroColors[obj.color % heroColors.length]}`
       } else {
-        icon = `icon-${ObjectType.keyOf(obj.type)}`
+        icon = `${ObjectType.keyOf(obj.type)}_icon`
       }
     } else if (value.type === ExpressionTypes.objectType) {
-      icon = `icon-${ObjectType.keyOf(value.value)}`
+      icon = `${ObjectType.keyOf(value.value)}_icon`
     } else if (value.type === ExpressionTypes.terrainType) {
-      icon = `icon-${TerrainType.keyOf(value.value)}`
+      icon = `${TerrainType.keyOf(value.value)}_icon`
     }
 
     return icon
@@ -146,6 +166,64 @@ export default class CalculationS extends Phaser.GameObjects.Container {
     let text = egg.value.toString()
     let length = text.length > 2 ? 2 : text.length
     text = text.substring(text.length - length)
+    return text
+  }
+}
+
+class EggIconS extends Phaser.GameObjects.Container {
+  constructor(scene, x, y, egg) {
+    super(scene, x, y)
+    this.egg = egg
+    this.sprite = new Phaser.GameObjects.Sprite(scene, 0, 0, 'egg_icon')
+    this.sprite.setScale(0.48)
+
+    this.textSprite = new Phaser.GameObjects.BitmapText(scene, 0, 0.5, 'digits_font')
+    this.updateText(this.egg.value)
+
+    this.add(this.sprite)
+    this.add(this.textSprite)
+  }
+
+  updateText(value) {
+    let text = this.formatInteger(value)
+
+    if (text !== this.textSprite.text) {
+      this.textSprite.setText(text)
+
+      let fontSize
+      if (text.length < 2) {
+        fontSize = 8
+      } else if (text.length < 3) {
+        fontSize = 7
+      } else {
+        fontSize = 5
+      }
+
+      this.textSprite.setFontSize(fontSize)
+      this.textSprite.setDisplayOrigin((this.textSprite.width - fontSize / 5) / 2, fontSize / 2)
+      if (this.textSprite.width > 14) {
+        this.textSprite.setScale(14 / this.textSprite.width)
+      } else {
+        this.textSprite.setScale(1)
+      }
+    }
+  }
+
+  formatInteger(value) {
+    let text = ''
+    if (value >= 1e3 || value <= -1e2) {
+      if (value >= 1e10) {
+        text = '∞'
+      } else if (value <= -1e2) {
+        text = '-∞'
+      } else {
+        let exponent = Math.floor(Math.log10(Math.abs(value)))
+        let base = Math.floor(value / (10 ** exponent))
+        text = `${base}^${exponent}`
+      }
+    } else {
+      text = value.toString()
+    }
     return text
   }
 }

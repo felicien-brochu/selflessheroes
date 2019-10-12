@@ -64,10 +64,22 @@ import direction_ne from './images/direction_ne.png'
 import direction_se from './images/direction_se.png'
 import direction_sw from './images/direction_sw.png'
 import direction_nw from './images/direction_nw.png'
+
 import calculation_left from './images/calculation_left.png'
 import calculation_right from './images/calculation_right.png'
 import calculation_middle from './images/calculation_middle.png'
 import calculation_bubbles from './images/calculation_bubbles.png'
+import wall_icon from '../components/images/wall-icon.png'
+import floor_icon from '../components/images/floor-icon.png'
+import hole_icon from '../components/images/hole-icon.png'
+import switch_icon from '../components/images/switch-icon.png'
+import nothing_icon from '../components/images/nothing-icon.png'
+import hero_icon from '../components/images/hero-icon.png'
+import npc_icon from '../components/images/npc-icon.png'
+import bonfire_icon from '../components/images/bonfire-icon.png'
+import cauldron_icon from '../components/images/cauldron-icon.png'
+import spikes_icon from '../components/images/spikes-icon.png'
+import egg_icon from '../components/images/egg-icon.png'
 
 import fireworks1 from './images/fireworks1.png'
 import fireworks2 from './images/fireworks2.png'
@@ -308,6 +320,17 @@ export default class extends Phaser.Scene {
     this.load.image('calculation_right', calculation_right)
     this.load.image('calculation_middle', calculation_middle)
     this.load.image('calculation_bubbles', calculation_bubbles)
+    this.load.image('wall_icon', wall_icon)
+    this.load.image('floor_icon', floor_icon)
+    this.load.image('hole_icon', hole_icon)
+    this.load.image('switch_icon', switch_icon)
+    this.load.image('nothing_icon', nothing_icon)
+    this.load.image('hero_icon', hero_icon)
+    this.load.image('npc_icon', npc_icon)
+    this.load.image('bonfire_icon', bonfire_icon)
+    this.load.image('cauldron_icon', cauldron_icon)
+    this.load.image('spikes_icon', spikes_icon)
+    this.load.image('egg_icon', egg_icon)
 
     // AUDIO
     this.load.audio('fireworks_sfx', fireworks_sfx)

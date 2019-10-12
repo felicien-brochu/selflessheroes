@@ -201,6 +201,7 @@ export default {
             font-family: Digits, monospace;
             color: #302d24;
             font-size: 9px;
+            padding-left: 2px;
             box-sizing: border-box;
             width: 32px;
             height: 32px;
