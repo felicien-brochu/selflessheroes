@@ -15,7 +15,7 @@ export default class Spikes extends WorldObject {
 
   initTriggers(world) {
     if (typeof this.triggers === 'string') {
-      let triggerIDs = this.triggers.split(',').map(id => parseInt(id))
+      let triggerIDs = this.triggers.split(',').filter(id => id.length > 0).map(id => parseInt(id))
       this.triggers = []
 
       for (let id of triggerIDs) {
@@ -25,13 +25,7 @@ export default class Spikes extends WorldObject {
   }
 
   checkTriggers() {
-    let triggered = true
-    for (let trigger of this.triggers) {
-      if (trigger.isDisabled()) {
-        triggered = false
-        break
-      }
-    }
+    let triggered = this.triggers.length > 0 && this.triggers.every(trigger => trigger.isEnabled())
 
     if ((triggered && !this.initialyEnabled) || (!triggered && this.initialyEnabled)) {
       this.enable()
