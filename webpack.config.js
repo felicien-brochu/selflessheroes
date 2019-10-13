@@ -2,6 +2,9 @@ var webpack = require('webpack')
 const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const {
+  BaseHrefWebpackPlugin
+} = require('base-href-webpack-plugin')
 const PreloadWebpackPlugin = require('preload-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
@@ -57,7 +60,13 @@ const config = {
   devServer: {
     contentBase: 'dist',
     port: 3000,
-    historyApiFallback: true
+    historyApiFallback: {
+      index: 'index.html',
+      rewrites: [{
+        from: /./,
+        to: '/'
+      }]
+    }
   },
   module: {
     rules: [{
@@ -101,7 +110,7 @@ const config = {
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
-          outputPath: 'assets/images'
+          outputPath: 'assets/images',
         }
       },
       {
@@ -109,7 +118,7 @@ const config = {
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
-          outputPath: 'assets/fonts'
+          outputPath: 'assets/fonts',
         }
       },
       {
@@ -117,7 +126,7 @@ const config = {
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
-          outputPath: 'assets/audio'
+          outputPath: 'assets/audio',
         }
       }
     ],
@@ -140,9 +149,9 @@ const config = {
     new MiniCssExtractPlugin(),
     new VueLoader.VueLoaderPlugin(),
     new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src', 'index.ejs'),
       filename: path.join(__dirname, 'dist', 'index.html'),
-      template: path.join(__dirname, 'src', 'index.html'),
-      inject: true
+      minify: false,
     }),
     new PreloadWebpackPlugin({
       rel: 'preload',
@@ -156,6 +165,12 @@ const config = {
     },
     extensions: ['*', '.js', '.vue', '.json', ]
   },
+}
+
+if (platform !== 'electron') {
+  config.plugins.push(new BaseHrefWebpackPlugin({
+    baseHref: '/',
+  }))
 }
 
 if (env === 'production') {

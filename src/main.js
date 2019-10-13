@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import isElectron from 'is-electron'
 import Home from './components/home/Home'
 import LevelList from './components/levellist/LevelList'
 import Level from './components/level/Level'
@@ -33,6 +34,7 @@ Vue.prototype.$music = musicManager
 
 
 const router = new VueRouter({
+  mode: isElectron() ? 'hash' : 'history',
   routes: [{
     path: '/',
     component: App,
