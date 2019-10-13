@@ -102,6 +102,11 @@ import CodeHistory from '../../game/storage/CodeHistory'
 import levelManager from '../../levels/levelManager'
 
 export default {
+  metaInfo: (vm) => {
+    return {
+      title: vm.$text(vm.level.getNameMessageKey()),
+    }
+  },
   components: {
     World,
     Editor,
@@ -159,14 +164,16 @@ export default {
     let career = storage.getCareer(Number(to.params.careerID))
     if (!career) {
       next({
-        name: 'home'
+        name: 'home',
+        replace: true,
       })
       return
     }
     let levelSolutions = career.getLevel(Number(to.params.levelID))
     if (!levelSolutions) {
       next({
-        name: 'home'
+        name: 'home',
+        replace: true,
       })
       return
     }

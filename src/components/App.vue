@@ -66,7 +66,12 @@ const $text = lang.text.bind(lang)
 
 export default {
   metaInfo: {
-    title: $text('head_title'),
+    titleTemplate: (titleChunk) => {
+      // If undefined or blank then we don't need the hyphen
+      return titleChunk ? $text('head_title_template', {
+        title: titleChunk
+      }) : $text('head_title')
+    },
     htmlAttrs: {
       lang: lang.currentLanguage,
     },
@@ -211,19 +216,7 @@ export default {
     },
 
     goBack() {
-      if (this.$route.name === 'level-list') {
-        this.$router.push({
-          name: 'home'
-        })
-      }
-      else if (this.$route.name === 'level') {
-        this.$router.push({
-          name: 'level-list',
-          params: {
-            careerID: this.$route.params.careerID
-          }
-        })
-      }
+      this.$router.go(-1)
     },
 
     exitApp() {

@@ -7,6 +7,9 @@ const messages = {
     no_text: "[no-text]",
 
     head_title: "Selfless Heroes",
+    head_title_template: "{title} - Selfless Heroes",
+    title_levellist: "Levels",
+
     head_meta_og_title: "Selfless Heroes",
     head_meta_og_description: "Selfless Heroes is a game that will teach you how to program without you noticing. Solve puzzles and help your heroes emerge victorious from the dungeon!",
     head_meta_description: "Selfless Heroes is a game that will teach you how to program without you noticing. Solve puzzles and help your heroes emerge victorious from the dungeon!",
@@ -285,6 +288,10 @@ const messages = {
 
 
   'fr': {
+    head_title: "Selfless Heroes",
+    head_title_template: "{title} - Selfless Heroes",
+    title_levellist: "Niveaux",
+
     head_meta_og_description: "Selfless Heroes est un jeu qui vous apprendra à programmer sans que vous ne le remarquiez. Résolvez des énigmes et aidez vos héros à sortir victorieux du donjon !",
     head_meta_description: "Selfless Heroes est un jeu qui vous apprendra à programmer sans que vous ne le remarquiez. Résolvez des énigmes et aidez vos héros à sortir victorieux du donjon !",
     head_meta_keywords: "jeu de réflexion, jeu vidéo, serious game, programmation, développement, énigme, éducation, divertissement, logique, algorithme",

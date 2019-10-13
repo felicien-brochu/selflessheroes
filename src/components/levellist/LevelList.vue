@@ -52,6 +52,11 @@ import storage from '../../game/storage/Storage'
 import SmoothScrollTo from '../util/SmoothScrollTo'
 
 export default {
+  metaInfo: (vm) => {
+    return {
+      title: vm.$text('title_levellist'),
+    }
+  },
   components: {
     LevelItem,
     LevelDetails,
