@@ -82,6 +82,13 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+router.visitedRoutes = []
+router.afterEach((to, from) => {
+  if (to.name && !router.visitedRoutes.includes(to.name)) {
+    router.visitedRoutes.push(to.name)
+  }
+})
+
 const app = new Vue({
   router
 }).$mount('#app-container')

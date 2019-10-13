@@ -216,7 +216,29 @@ export default {
     },
 
     goBack() {
-      this.$router.go(-1)
+      if (this.$route.name === 'level-list') {
+        if (this.$router.visitedRoutes.includes('home')) {
+          this.$router.back()
+        }
+        else {
+          this.$router.replace({
+            name: 'home'
+          })
+        }
+      }
+      else if (this.$route.name === 'level') {
+        if (this.$router.visitedRoutes.includes('level-list')) {
+          this.$router.back()
+        }
+        else {
+          this.$router.replace({
+            name: 'level-list',
+            params: {
+              careerID: this.$route.params.careerID
+            }
+          })
+        }
+      }
     },
 
     exitApp() {

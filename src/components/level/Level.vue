@@ -619,13 +619,18 @@ export default {
     },
 
     goBack() {
-      this.$router.push({
-        name: 'level-list',
-        params: {
-          careerID: this.career.id
-        }
-      })
-    }
+      if (this.$router.visitedRoutes.includes('level-list')) {
+        this.$router.back()
+      }
+      else {
+        this.$router.replace({
+          name: 'level-list',
+          params: {
+            careerID: this.career.id
+          }
+        })
+      }
+    },
   }
 }
 </script>
