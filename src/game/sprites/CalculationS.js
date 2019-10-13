@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import ExpressionTypes from '../../world/ai/compile/statements/ExpressionTypes'
 import ObjectType from '../../world/objects/ObjectType'
 import TerrainType from '../../world/map/TerrainType'
+import heroColors from '../../shared/heroColors'
 
 export default class CalculationS extends Phaser.GameObjects.Container {
 
@@ -142,7 +143,7 @@ export default class CalculationS extends Phaser.GameObjects.Container {
     if (value.type === ExpressionTypes.object) {
       let obj = value.value
       if (obj.type === ObjectType.hero) {
-        icon = `knight_${heroColors[obj.color % heroColors.length]}`
+        icon = `hero_${heroColors[obj.color % heroColors.length]}`
       } else {
         icon = `${ObjectType.keyOf(obj.type)}_icon`
       }

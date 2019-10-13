@@ -80,6 +80,17 @@ import bonfire_icon from '../components/images/bonfire-icon.png'
 import cauldron_icon from '../components/images/cauldron-icon.png'
 import spikes_icon from '../components/images/spikes-icon.png'
 import egg_icon from '../components/images/egg-icon.png'
+import hero_blue from '../components/images/hero-blue.png'
+import hero_dark_blue from '../components/images/hero-dark-blue.png'
+import hero_fuchsia from '../components/images/hero-fuchsia.png'
+import hero_green from '../components/images/hero-green.png'
+import hero_hollywood_green from '../components/images/hero-hollywood-green.png'
+import hero_orange from '../components/images/hero-orange.png'
+import hero_pink from '../components/images/hero-pink.png'
+import hero_purple from '../components/images/hero-purple.png'
+import hero_red from '../components/images/hero-red.png'
+import hero_turquoise from '../components/images/hero-turquoise.png'
+import hero_yellow from '../components/images/hero-yellow.png'
 
 import fireworks1 from './images/fireworks1.png'
 import fireworks2 from './images/fireworks2.png'
@@ -331,6 +342,17 @@ export default class extends Phaser.Scene {
     this.load.image('cauldron_icon', cauldron_icon)
     this.load.image('spikes_icon', spikes_icon)
     this.load.image('egg_icon', egg_icon)
+    this.load.image('hero_blue', hero_blue)
+    this.load.image('hero_dark_blue', hero_dark_blue)
+    this.load.image('hero_fuchsia', hero_fuchsia)
+    this.load.image('hero_green', hero_green)
+    this.load.image('hero_hollywood_green', hero_hollywood_green)
+    this.load.image('hero_orange', hero_orange)
+    this.load.image('hero_pink', hero_pink)
+    this.load.image('hero_purple', hero_purple)
+    this.load.image('hero_red', hero_red)
+    this.load.image('hero_turquoise', hero_turquoise)
+    this.load.image('hero_yellow', hero_yellow)
 
     // AUDIO
     this.load.audio('fireworks_sfx', fireworks_sfx)
