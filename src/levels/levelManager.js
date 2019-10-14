@@ -210,7 +210,7 @@ const categories = [{
   },
 ]
 
-if (ENV === 'development') {
+if (LEVEL_DEV) {
   categories.push({
     name: 'other',
     color: 'gray',

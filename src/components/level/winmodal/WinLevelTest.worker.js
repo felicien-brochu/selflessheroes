@@ -10,7 +10,7 @@ self.addEventListener('message', e => {
   let tester = new Tester(level, code, sampleSize)
   let tests = tester.test()
 
-  if (SHOW_STATS) {
+  if (LEVEL_DEV) {
     tester.printStats()
   }
 

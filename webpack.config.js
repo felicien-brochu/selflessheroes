@@ -14,7 +14,8 @@ const WebpackAutoInject = require('webpack-auto-inject-version')
 const VueLoader = require('vue-loader')
 
 const env = process.env.NODE_ENV
-const platform = process.env.platform
+const platform = process.env.TARGET_PLATFORM
+const levelDev = process.env.LEVEL_DEV
 
 const copiedFiles = [{
   context: 'src/icons',
@@ -136,7 +137,7 @@ const config = {
     new webpack.DefinePlugin({
       ENV: JSON.stringify(env),
       IS_ELECTRON: JSON.stringify(platform === 'electron'),
-      SHOW_STATS: JSON.stringify(env === 'development'),
+      LEVEL_DEV: JSON.stringify(env === 'development' && !!levelDev),
       SERVER_DOMAIN: JSON.stringify(process.env.SERVER_DOMAIN),
       SERVER_PROTOCOL: JSON.stringify(process.env.SERVER_PROTOCOL),
       FB_APP_ID: JSON.stringify(process.env.FB_APP_ID),
