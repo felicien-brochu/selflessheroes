@@ -7,7 +7,7 @@ const messages = {
     no_text: "[no-text]",
 
     head_title: "Selfless Heroes",
-    head_title_template: "{title} - Selfless Heroes",
+    head_title_template: "Selfless Heroes - {title}",
     title_levellist: "Levels",
 
     head_meta_og_title: "Selfless Heroes",
@@ -289,7 +289,7 @@ const messages = {
 
   'fr': {
     head_title: "Selfless Heroes",
-    head_title_template: "{title} - Selfless Heroes",
+    head_title_template: "Selfless Heroes - {title}",
     title_levellist: "Niveaux",
 
     head_meta_og_description: "Selfless Heroes est un jeu qui vous apprendra à programmer sans que vous ne le remarquiez. Résolvez des énigmes et aidez vos héros à sortir victorieux du donjon !",
