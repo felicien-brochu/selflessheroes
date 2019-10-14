@@ -195,6 +195,7 @@ export default {
     })
 
     this.applyNextPreferredEditorWidth = true
+    this.objectiveModalShown = false
   },
 
   mounted() {
@@ -298,24 +299,31 @@ export default {
     },
 
     showObjectiveModal() {
-      this.$refs.modalLayer.addModal({
-        component: ObjectiveModal,
-        key: 'level_objective_modal',
-        props: {
-          level: this.level,
-          solution: this.solution
-        },
-        handlers: {
-          close: this.handleObjectiveModalClose
-        }
-      })
+      if (!this.objectiveModalShown) {
+        this.$refs.modalLayer.addModal({
+          component: ObjectiveModal,
+          key: 'level_objective_modal',
+          props: {
+            level: this.level,
+            solution: this.solution
+          },
+          handlers: {
+            close: this.handleObjectiveModalClose
+          }
+        })
+        this.objectiveModalShown = true
+        this.$nextTick(() => this.handleEditorResize())
+      }
     },
 
     handleObjectiveModalClose() {
+      this.objectiveModalShown = false
+
       if (this.openingSequence) {
         this.openingSequence = false
         this.checkTutorialTreated()
       }
+      this.handleEditorResize()
     },
 
     showHelpModal() {
@@ -539,20 +547,25 @@ export default {
       this.editorWidth = editorWidth
       if (this.gameScene) {
         let floatingPanelWidth = 0
-
-        if (this.worldState.steps === 0) {
-          if (this.editorType === 'graph') {
-            let palette = document.querySelector(".palette")
-            if (palette) {
-              floatingPanelWidth = palette.offsetWidth
-            }
-          }
+        if (this.objectiveModalShown) {
+          const objectiveModal = document.querySelector('.objective-modal')
+          floatingPanelWidth = objectiveModal.offsetWidth - editorWidth + 50
         }
         else {
-          if (this.followHeroIndex >= 0) {
-            let variableDebugger = document.querySelector(".variable-debugger")
-            if (variableDebugger) {
-              floatingPanelWidth = variableDebugger.offsetWidth
+          if (this.worldState.steps === 0) {
+            if (this.editorType === 'graph') {
+              let palette = document.querySelector(".palette")
+              if (palette) {
+                floatingPanelWidth = palette.offsetWidth
+              }
+            }
+          }
+          else {
+            if (this.followHeroIndex >= 0) {
+              let variableDebugger = document.querySelector(".variable-debugger")
+              if (variableDebugger) {
+                floatingPanelWidth = variableDebugger.offsetWidth
+              }
             }
           }
         }

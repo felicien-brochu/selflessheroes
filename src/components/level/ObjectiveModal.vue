@@ -1,59 +1,72 @@
 <template>
-<modal class="objective-modal"
-  ref="modal"
-  type="info"
-  :cancelable="false"
-  v-bind="$props"
-  @close="$emit('close')"
-  @confirm="$emit('confirm', $event)"
-  @cancel="$emit('cancel', $event)">
+<transition name="objective-slide"
+  appear>
 
-  <div class="level-name">
-    <score-stars :score="solution.score"
-      :level="level" />
+  <div class="objective-modal"
+    ref="modal"
+    type="info"
+    :cancelable="false"
+    v-bind="$props"
+    @close="$emit('close')"
+    @confirm="$emit('confirm', $event)"
+    @cancel="$emit('cancel', $event)">
+    <div class="modal-content">
 
-    <div class="level-label">{{$text(level.getNameMessageKey())}}</div>
-  </div>
-  <div class="objective-modal-content">
+      <div class="level-name">
+        <score-stars :score="solution.score"
+          :level="level" />
 
-    <div v-if="level.bossTellsSomething"
-      class="boss-tell-container">
-      <div :class="['boss-icon', `boss-icon-${level.bossName}`]" />
-      <div class="boss-tell-balloon-container">
-        <div class="speech-spike" />
-        <div class="boss-tell-balloon">{{
+        <div class="level-label">{{$text(level.getNameMessageKey())}}</div>
+      </div>
+      <div class="objective-modal-content">
+
+        <div v-if="level.bossTellsSomething"
+          class="boss-tell-container">
+          <div :class="['boss-icon', `boss-icon-${level.bossName}`]" />
+          <div class="boss-tell-balloon-container">
+            <div class="speech-spike" />
+            <div class="boss-tell-balloon">{{
 					$text(level.getBossTellMessageKey())
 				}}</div>
+          </div>
+        </div>
+
+        <h4>{{$text('level_objective_modal_objective_title')}}</h4>
+        <div class="objective-text"
+          v-bbcode>{{$text(level.getObjectiveMessageKey())}}</div>
+
+        <h4>{{$text('level_objective_modal_secondary_objectives_title')}}</h4>
+
+        <div class="score">
+          <i class="mdi mdi-clock-fast" />:<span class="score-target"><span class="target-number">{{level.speedTarget}}</span> {{$text('level_modal_speed_target_unit')}}</span>
+        </div>
+
+        <div class="score">
+          <i class="mdi mdi-format-list-numbered" />:<span class="score-target"><span class="target-number">{{level.lengthTarget}}</span> {{$text('level_modal_length_target_unit')}}</span>
+        </div>
+
+        <p class="secondary-objectives-difficulty-warning"><i class="mdi mdi-information-outline" />{{$text('level_modal_secondary_objectives_difficulty_warning')}}</p>
+
       </div>
     </div>
-
-    <h4>{{$text('level_objective_modal_objective_title')}}</h4>
-    <div class="objective-text"
-      v-bbcode>{{$text(level.getObjectiveMessageKey())}}</div>
-
-    <h4>{{$text('level_objective_modal_secondary_objectives_title')}}</h4>
-
-    <div class="score">
-      <i class="mdi mdi-clock-fast" />:<span class="score-target"><span class="target-number">{{level.speedTarget}}</span> {{$text('level_modal_speed_target_unit')}}</span>
+    <div class="button-container">
+      <button type="submit"
+        :title="$text('modal_confirm_button')"
+        @click="confirm()"
+        @touchstart="confirm()">{{
+			$text('modal_confirm_button')
+		}}</button>
     </div>
-
-    <div class="score">
-      <i class="mdi mdi-format-list-numbered" />:<span class="score-target"><span class="target-number">{{level.lengthTarget}}</span> {{$text('level_modal_length_target_unit')}}</span>
-    </div>
-
-    <p class="secondary-objectives-difficulty-warning"><i class="mdi mdi-information-outline" />{{$text('level_modal_secondary_objectives_difficulty_warning')}}</p>
-
   </div>
-</modal>
+
+</transition>
 </template>
 
 <script>
-import Modal from '../modal/Modal'
 import ScoreStars from '../levellist/ScoreStars'
 
 export default {
   components: {
-    Modal,
     ScoreStars
   },
   props: {
@@ -77,12 +90,14 @@ export default {
   },
 
   methods: {
-    confirm() {
-      this.$refs.modal.confirm()
+    confirm(confirmValue) {
+      this.$emit('confirm', confirmValue)
+      this.$emit('close')
     },
 
-    cancel() {
-      this.$refs.modal.cancel()
+    cancel(confirmValue) {
+      this.$emit('cancel', confirmValue)
+      this.$emit('close')
     }
   }
 }
@@ -92,8 +107,35 @@ export default {
 @import './mixins';
 
 .objective-modal {
-    padding: 37px 50px 30px;
+    $modal-color: #3C404A;
+    $text-color: white;
+    background-color: $modal-color;
+    color: $text-color;
+
+    .close-button {
+        color: $text-color;
+    }
+
+    .button-container button {
+        background-color: lighten($modal-color, 10%);
+        color: $text-color;
+
+        &:hover:not(:active) {
+            background-color: lighten($modal-color, 12%);
+        }
+    }
+    padding: 30px;
+    width: max-content;
     min-width: 492px;
+    position: absolute;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    // box-shadow: inset 20px 0 50px 0 #00000033, 0 0 100px 10px #000000aa;
+    box-shadow: 0 0 100px 10px #000000aa;
+    border-left: solid 2px #4b5261;
+    height: 100vh;
+    right: 0;
 
     .modal-content {
         display: flex;
@@ -146,7 +188,6 @@ export default {
 
                 .speech-spike {
                     position: absolute;
-                    z-index: -1;
                     display: block;
                     width: 0;
                     border-style: solid;
@@ -252,7 +293,34 @@ export default {
     }
 
     .button-container {
-        margin-top: 17px;
+        margin-top: 20px;
+        min-width: 300px;
+        display: flex;
+        justify-content: space-evenly;
+
+        button {
+            font-weight: 500;
+            min-width: 100px;
+            font-size: 21px;
+            padding: 9px 20px;
+            border-radius: 3px;
+            border: none;
+            box-shadow: inset 0 0 10px 3px #0003, 0 0 10px 0 #0003;
+            cursor: pointer;
+        }
     }
+}
+
+.objective-slide-enter-active {
+    transition: transform 0.35s ease;
+}
+
+.objective-slide-leave-active {
+    transition: transform 0.2s ease;
+}
+
+.objective-slide-enter,
+.objective-slide-leave-to {
+    transform: translate(100%);
 }
 </style>
