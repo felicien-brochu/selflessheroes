@@ -17,6 +17,7 @@ const messages = {
 
     noscript_message: "Selfless Heroes requires Javascript to be enabled in order to work normally",
 
+    app_exit_warning_modal: "Are you sure you want to\nleave Selfless Heroes?",
     app_fullscreen_modal: "In order to have the best game experience,\nit is recommended to go fullscreen",
     app_fullscreen_modal_stop_propose: "Don't show this message again",
     navigation_exit_button: "Exit",
@@ -296,6 +297,7 @@ const messages = {
     head_meta_description: "Selfless Heroes est un jeu qui vous apprendra à programmer sans que vous ne le remarquiez. Résolvez des énigmes et aidez vos héros à sortir victorieux du donjon !",
     head_meta_keywords: "jeu de réflexion, jeu vidéo, serious game, programmation, développement, énigme, éducation, divertissement, logique, algorithme",
 
+    app_exit_warning_modal: "Êtes-vous sûr de vouloir\nquitter Selfless Heroes ?",
     app_fullscreen_modal: "Afin d'avoir la meilleure expérience de jeu possible,\nil est recommandé de jouer en plein écran.",
     app_fullscreen_modal_stop_propose: "Ne plus afficher ce message",
     navigation_exit_button: "Quitter",

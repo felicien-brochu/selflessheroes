@@ -242,7 +242,20 @@ export default {
 
     exitApp() {
       if (IS_ELECTRON) {
-        window.close()
+        this.$refs.modalLayer.addModal({
+          component: Modal,
+          key: 'exit-warning-modal',
+          props: {
+            text: this.$text('app_exit_warning_modal'),
+            type: 'info',
+            cancelable: true,
+            confirmLabel: this.$text('modal_confirm_yes'),
+            cancelLabel: this.$text('modal_cancel_no')
+          },
+          handlers: {
+            confirm: () => window.close(),
+          }
+        })
       }
     },
 
