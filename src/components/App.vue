@@ -55,7 +55,6 @@
 </template>
 
 <script>
-import isElectron from 'is-electron'
 import mainStorage from '../game/storage/Storage'
 import ModalLayer from './modal/ModalLayer'
 import Modal from './modal/Modal'
@@ -175,7 +174,7 @@ export default {
     },
 
     showExitButton: function() {
-      return isElectron() && (this.$route.name === 'home' || this.$route.name === 'screen-size-warning')
+      return IS_ELECTRON && (this.$route.name === 'home' || this.$route.name === 'screen-size-warning')
     },
 
     showMenuButton: function() {
@@ -242,7 +241,7 @@ export default {
     },
 
     exitApp() {
-      if (isElectron()) {
+      if (IS_ELECTRON) {
         window.close()
       }
     },
@@ -266,7 +265,7 @@ export default {
     },
 
     proposeFullscreen() {
-      if (!document.fullscreenElement && document.body.requestFullscreen && !isElectron() && mainStorage.preferences.proposeFullscreen) {
+      if (!document.fullscreenElement && document.body.requestFullscreen && !IS_ELECTRON && mainStorage.preferences.proposeFullscreen) {
         this.$refs.modalLayer.addModal({
           component: ProposeFullscreenModal,
           key: 'app_fullscreen_modal',

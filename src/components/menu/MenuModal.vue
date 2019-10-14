@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import isElectron from 'is-electron'
 import Modal from '../modal/Modal'
 import Volume from './Volume'
 import ToggleButton from '../inputs/ToggleButton'
@@ -94,7 +93,7 @@ export default {
 
   computed: {
     showFullscreenPreference: function() {
-      return !isElectron()
+      return !IS_ELECTRON
     },
     fullscreenToggleTitle: function() {
       return this.fullscreenEnabled ? this.$text('menu_disable_fullscreen') : this.$text('menu_enable_fullscreen')

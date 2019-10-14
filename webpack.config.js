@@ -135,6 +135,7 @@ const config = {
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       ENV: JSON.stringify(env),
+      IS_ELECTRON: JSON.stringify(platform === 'electron'),
       SHOW_STATS: JSON.stringify(env === 'development'),
       SERVER_DOMAIN: JSON.stringify(process.env.SERVER_DOMAIN),
       SERVER_PROTOCOL: JSON.stringify(process.env.SERVER_PROTOCOL),
