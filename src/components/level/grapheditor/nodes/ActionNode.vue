@@ -4,7 +4,7 @@
   @touchstart="handleDragStart">
 
   <div class="function-label">
-    {{$text(`graph_node_function_${statement.constructor.keyword}`)}}
+    {{$text(`graph_node_function_${statement.function.constructor.keyword}`)}}
   </div>
 
   <value-select v-for="(param, index) in params"
@@ -35,7 +35,7 @@ export default {
   mixins: [FunctionMixin],
   data: function() {
     return {
-      func: this.statement,
+      func: this.statement.function,
       autoPopSelectDone: false
     }
   },

@@ -57,7 +57,6 @@ const config = {
     maxEntrypointSize: 1000000,
     maxAssetSize: 1000000
   },
-  devtool: env === 'development' ? 'inline-source-map' : undefined,
   devServer: {
     contentBase: 'dist',
     port: 3000,

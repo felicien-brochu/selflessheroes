@@ -1,6 +1,5 @@
-import ValueFunction from './ValueFunction'
+import FunctionExpression from './FunctionExpression'
 import ExpressionValue from '../ExpressionValue'
-import ExpressionTypes from '../ExpressionTypes'
 import VariableIdentifier from '../VariableIdentifier'
 import ArithmeticOperatorLiteral from '../literals/ArithmeticOperatorLiteral'
 import {
@@ -13,18 +12,12 @@ import {
 import IntegerLiteral from '../literals/IntegerLiteral'
 import MyItemLiteral from '../literals/MyItemLiteral'
 import DirectionLiteral from '../literals/DirectionLiteral'
-import Direction from '../../../../Direction'
 import {
-  MismatchStatementException,
   InvalidNumberOfParamsException,
   InvalidFunctionParamsException
 } from '../../CompilerException'
-import {
-  createUnitExpression,
-  extractParams
-} from '../../utils'
 
-export default class CalcFunction extends ValueFunction {
+export default class CalcFunction extends FunctionExpression {
   constructor(parent, line, column) {
     super('CalcFunction', parent, line, column)
   }
@@ -53,75 +46,6 @@ export default class CalcFunction extends ValueFunction {
         type: VariableIdentifier
       }]
     ]
-  }
-
-  compile(config, context) {
-    super.compile(config, context)
-
-    let joinedCode = this.code.join(' ')
-    let res = joinedCode.match(CalcFunction.correctCodeRegExp)
-    if (!res) {
-      throw new MismatchStatementException('you try to compile as a calc function a statement which is not one', this, {
-        template: 'exception_mismatch_function_template',
-        values: {
-          keyword: {
-            template: `function_${this.constructor.keyword}`
-          }
-        }
-      })
-    }
-
-    let paramsJoinedCode = res[2]
-    let params = extractParams(paramsJoinedCode, this.code, this.line, this.column)
-
-    if (params.length !== 3) {
-      throw new InvalidNumberOfParamsException('\'calc\' function requires exactly 3 parameters', this, {
-        template: 'exception_invalid_params_calc_function_template',
-        values: {
-          keyword: {
-            template: `function_${this.constructor.keyword}`
-          },
-          operators: [
-            addOperator,
-            substractOperator,
-            multiplyOperator,
-            moduloOperator,
-            divideOperator
-          ]
-        }
-      })
-    }
-    this.params = []
-    params.forEach((param, index) => this.compileParam(param, index, config, context))
-  }
-
-  compileParam(paramCode, index, config, context) {
-    let param
-    if (index === 1) {
-      param = createUnitExpression(paramCode.code, [ArithmeticOperatorLiteral], this, paramCode.line, paramCode.column)
-    } else {
-      param = createUnitExpression(paramCode.code, [IntegerLiteral, MyItemLiteral, DirectionLiteral, VariableIdentifier], this, paramCode.line, paramCode.column)
-    }
-    this.params.push(param)
-
-    if (param.type === 'InvalidExpression') {
-      throw new InvalidFunctionParamsException('\'calc\' function requires exactly 3 parameters', param, {
-        template: 'exception_invalid_params_calc_function_template',
-        values: {
-          keyword: {
-            template: `function_${this.constructor.keyword}`
-          },
-          operators: [
-            addOperator,
-            substractOperator,
-            multiplyOperator,
-            moduloOperator,
-            divideOperator
-          ]
-        }
-      })
-    }
-    param.compile(config, context)
   }
 
   computeValue(context) {
@@ -171,8 +95,42 @@ export default class CalcFunction extends ValueFunction {
 
     return ExpressionValue.integer(value)
   }
+
+  onInvalidNumberOfParams(rawParams, config, context) {
+    throw new InvalidNumberOfParamsException('\'calc\' function requires exactly 3 parameters', this, {
+      template: 'exception_invalid_params_calc_function_template',
+      values: {
+        keyword: {
+          template: `function_${this.constructor.keyword}`
+        },
+        operators: [
+          addOperator,
+          substractOperator,
+          multiplyOperator,
+          moduloOperator,
+          divideOperator
+        ]
+      }
+    })
+  }
+
+  onInvalidParam(index, param, config, context) {
+    throw new InvalidFunctionParamsException('\'calc\' function requires exactly 3 parameters', param, {
+      template: 'exception_invalid_params_calc_function_template',
+      values: {
+        keyword: {
+          template: `function_${this.constructor.keyword}`
+        },
+        operators: [
+          addOperator,
+          substractOperator,
+          multiplyOperator,
+          moduloOperator,
+          divideOperator
+        ]
+      }
+    })
+  }
 }
 
 CalcFunction.keyword = 'calc'
-CalcFunction.correctCodeRegExp = /^\s*(calc\s*\((.*)\))\s*$/
-CalcFunction.codeRegExp = /^\s*(calc\s*\((.*)\)).*$/

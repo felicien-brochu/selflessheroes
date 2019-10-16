@@ -18,9 +18,10 @@ import SimpleBooleanExpression from '../../../../world/ai/compile/statements/Sim
 import {
   compOperators
 } from '../../../../world/ai/compile/statements/SimpleBooleanExpression'
+import ActionStatement from '../../../../world/ai/compile/statements/ActionStatement'
 import VariableIdentifier from '../../../../world/ai/compile/statements/VariableIdentifier'
-import ActionFunction from '../../../../world/ai/compile/statements/functions/ActionFunction'
-import ValueFunction from '../../../../world/ai/compile/statements/functions/ValueFunction'
+import ValueFunctions from '../../../../world/ai/compile/statements/functions/ValueFunctions'
+import ActionFunctions from '../../../../world/ai/compile/statements/functions/ActionFunctions'
 
 export const lineMargin = 12
 export const lineHeight = 46
@@ -54,7 +55,7 @@ export default class NodeBuilder {
         if (statement instanceof JumpStatement) {
           nodeClass = Vue.extend(JumpNode)
         } else
-        if (statement instanceof ActionFunction) {
+        if (statement instanceof ActionStatement) {
           nodeClass = Vue.extend(ActionNode)
         }
 
@@ -132,8 +133,13 @@ export default class NodeBuilder {
       props = {
         compilerConfig: compilerConfig
       }
-    } else
-    if (statement instanceof ValueFunction) {
+    } else if (Object.values(ActionFunctions).some(funcType => statement instanceof funcType)) {
+      let actionStatement = new ActionStatement(-1, -1)
+      actionStatement.function = statement
+      actionStatement.function.parent = actionStatement
+      statement = actionStatement
+      nodeClass = Vue.extend(ActionNode)
+    } else if (Object.values(ValueFunctions).some(funcType => statement instanceof funcType)) {
       let assignStatement = new AssignStatement(-1, -1)
       assignStatement.value = statement
       assignStatement.value.parent = assignStatement
@@ -142,12 +148,8 @@ export default class NodeBuilder {
       assignStatement.variable = variable
       statement = assignStatement
       nodeClass = Vue.extend(AssignNode)
-    } else
-    if (statement instanceof JumpStatement) {
+    } else if (statement instanceof JumpStatement) {
       nodeClass = Vue.extend(JumpNode)
-    } else
-    if (statement instanceof ActionFunction) {
-      nodeClass = Vue.extend(ActionNode)
     }
 
     let node = new nodeClass({

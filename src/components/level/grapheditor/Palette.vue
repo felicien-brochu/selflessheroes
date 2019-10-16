@@ -65,7 +65,7 @@ export default {
         return []
       }
 
-      let primaryStatements = [...this.compilerConfig.getAllowedPrimaryStatements(), ...this.compilerConfig.valueFunctions]
+      let primaryStatements = [...this.compilerConfig.getAllowedPrimaryStatements(), ...this.compilerConfig.actionFunctions, ...this.compilerConfig.valueFunctions]
       let statementClasses = primaryStatements.filter(statementClass => paletteStatements.indexOf(statementClass) >= 0)
       let statements = statementClasses.map(statementClass => {
         return {

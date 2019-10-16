@@ -5,6 +5,7 @@ import ElseStatement from './statements/ElseStatement'
 import EndIfStatement from './statements/EndIfStatement'
 import JumpStatement from './statements/JumpStatement'
 import AnchorStatement from './statements/AnchorStatement'
+import ActionStatement from './statements/ActionStatement'
 import BooleanExpression from './statements/BooleanExpression'
 import ActionFunctions from './statements/functions/ActionFunctions'
 import SetFunction from './statements/functions/SetFunction'
@@ -32,14 +33,15 @@ const primaryStatementMap = {
   else: ElseStatement,
   endif: EndIfStatement,
   jump: JumpStatement,
-  anchor: AnchorStatement
+  anchor: AnchorStatement,
+  action: ActionStatement,
 }
 
 const terrainTypeMap = {
   wall: 'wall',
   hole: 'hole',
   floor: 'floor',
-  void: 'void'
+  void: 'void',
 }
 
 const objectTypeMap = {
@@ -50,12 +52,12 @@ const objectTypeMap = {
   bonfire: 'bonfire',
   cauldron: 'cauldron',
   spikes: 'spikes',
-  egg: 'egg'
+  egg: 'egg',
 }
 
 const valueFunctionMap = {
   set: SetFunction,
-  calc: CalcFunction
+  calc: CalcFunction,
 }
 
 const actionFunctionMap = {
@@ -64,7 +66,7 @@ const actionFunctionMap = {
   fireball: FireBallFunction,
   take: TakeFunction,
   drop: DropFunction,
-  write: WriteFunction
+  write: WriteFunction,
 }
 
 const comparisonExpressionMap = {
@@ -73,7 +75,7 @@ const comparisonExpressionMap = {
   direction: DirectionLiteral,
   integer: IntegerLiteral,
   variable: VariableIdentifier,
-  myitem: MyItemLiteral
+  myitem: MyItemLiteral,
 }
 
 export default class CompilerConfig {
@@ -110,7 +112,7 @@ export default class CompilerConfig {
       terrainTypes: [
         'wall',
         'hole',
-        'floor'
+        'floor',
       ],
       objectTypes: [
         'hero',
@@ -119,23 +121,23 @@ export default class CompilerConfig {
         'cauldron',
         'spikes',
         'egg',
-        'nothing'
+        'nothing',
       ],
       valueFunctions: [
         'set',
-        'calc'
+        'calc',
       ],
       actionFunctions: [
         'step',
         'fireball',
         'take',
         'drop',
-        'write'
+        'write',
       ],
       leftComparisonExpressions: [
         'direction',
         'myitem',
-        'variable'
+        'variable',
       ],
       rightComparisonExpressions: [
         'terrain_type',
@@ -143,9 +145,24 @@ export default class CompilerConfig {
         'direction',
         'integer',
         'myitem',
-        'variable'
+        'variable',
       ]
     })
+  }
+
+  static getKnownFunctions() {
+    let knownFunctions = []
+    for (let funcKey in valueFunctionMap) {
+      if (valueFunctionMap.hasOwnProperty(funcKey)) {
+        knownFunctions.push(valueFunctionMap[funcKey])
+      }
+    }
+    for (let funcKey in actionFunctionMap) {
+      if (actionFunctionMap.hasOwnProperty(funcKey)) {
+        knownFunctions.push(actionFunctionMap[funcKey])
+      }
+    }
+    return knownFunctions
   }
 
   getAllowedVariableIdentifiers() {
@@ -157,14 +174,14 @@ export default class CompilerConfig {
   }
 
   getAllowedPrimaryStatements() {
-    return this.primaryStatements.concat(this.actionFunctions)
+    return this.primaryStatements
   }
 
   getPrimaryStatements() {
-    let functions = []
-    for (let key in ActionFunctions) {
-      functions.push(ActionFunctions[key])
+    let primaryStatements = []
+    for (let key in primaryStatementMap) {
+      primaryStatements.push(primaryStatementMap[key])
     }
-    return this.primaryStatements.concat(functions)
+    return primaryStatements
   }
 }
