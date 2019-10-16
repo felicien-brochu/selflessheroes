@@ -1,4 +1,6 @@
 import Expression from '../Expression'
+import DirectionLiteral from '../literals/DirectionLiteral'
+import Direction from '../../../../Direction'
 import {
   MismatchStatementException,
   InvalidNumberOfParamsException,
@@ -98,8 +100,17 @@ class FunctionExpression extends Expression {
     }
     param.compile(config, context)
 
+    this.checkDirectionNotHere(param, index)
+
     if (!this.hasFiniteNumberOfParams() && index >= paramTypes.length) {
       this.checkDuplicateParams(param)
+    }
+  }
+
+  checkDirectionNotHere(param, index) {
+    const paramType = this.getParamCurrentType(index)
+    if (paramType.type === DirectionLiteral && !!paramType.notHere && param.name === 'here') {
+      this.onHereDirectionNotHere(param)
     }
   }
 
@@ -163,6 +174,19 @@ class FunctionExpression extends Expression {
 
   onInvalidParam(index, param, config, context) {
     throw new InvalidFunctionParamsException(`Wrong param for '${this.constructor.keyword}' function`, param)
+  }
+
+  onHereDirectionNotHere(param) {
+    throw new InvalidFunctionParamsException(`'the '${this.constructor.keyword}' function does not accept 'here' param as a direction`, param, {
+      template: 'exception_invalid_direction_not_here_param_template',
+      values: {
+        keyword: {
+          template: `function_${this.constructor.keyword}`
+        },
+        param: param.code.join(' ').trim(),
+        allowedValues: Direction.names.filter(dir => dir !== 'here')
+      }
+    })
   }
 
   onDuplicateParams(duplicateParam) {

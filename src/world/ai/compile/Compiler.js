@@ -68,6 +68,7 @@ export default class Compiler {
         try {
           currentStatement.compile(this.config, this.context)
         } catch (exception) {
+          // console.log("### Compiler error:", exception)
           this.exceptions.fatal.push(exception)
         }
 
