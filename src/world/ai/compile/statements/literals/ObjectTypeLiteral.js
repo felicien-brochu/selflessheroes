@@ -57,6 +57,10 @@ export default class ObjectTypeLiteral extends Expression {
   computeValue(context) {
     return ExpressionValue.objectType(this.value)
   }
+
+  static notNothingValidator(objectType) {
+    return objectType !== ObjectType.nothing
+  }
 }
 
 ObjectTypeLiteral.codeRegExp = /^\s*(\w+)\s*$/

@@ -10,6 +10,7 @@ import BooleanExpression from './statements/BooleanExpression'
 import ActionFunctions from './statements/functions/ActionFunctions'
 import SetFunction from './statements/functions/SetFunction'
 import CalcFunction from './statements/functions/CalcFunction'
+import NearestFunction from './statements/functions/NearestFunction'
 import StepOnceFunction from './statements/functions/StepOnceFunction'
 import StepFunction from './statements/functions/StepFunction'
 import FireBallFunction from './statements/functions/FireBallFunction'
@@ -58,6 +59,7 @@ const objectTypeMap = {
 const valueFunctionMap = {
   set: SetFunction,
   calc: CalcFunction,
+  nearest: NearestFunction,
 }
 
 const actionFunctionMap = {
@@ -126,6 +128,7 @@ export default class CompilerConfig {
       valueFunctions: [
         'set',
         'calc',
+        'nearest',
       ],
       actionFunctions: [
         'step',
