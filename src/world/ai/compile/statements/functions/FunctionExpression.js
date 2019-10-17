@@ -53,7 +53,7 @@ class FunctionExpression extends Expression {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(this.constructor.codeRegExp)
     if (!res) {
-      this.onInvalidFunctionGeneralFormat()
+      this.onInvalidFunctionGeneralFormat(config)
     }
   }
 
@@ -68,7 +68,7 @@ class FunctionExpression extends Expression {
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(this.constructor.codeRegExp)
     if (!res) {
-      this.onInvalidFunctionFormat()
+      this.onInvalidFunctionFormat(config)
     }
   }
 
@@ -78,7 +78,7 @@ class FunctionExpression extends Expression {
 
     if ((this.hasFiniteNumberOfParams() && rawParams.length !== paramTypes.length) ||
       (!this.hasFiniteNumberOfParams() && rawParams.length < paramTypes.length)) {
-      this.onInvalidNumberOfParams(rawParams, config, context)
+      this.onInvalidNumberOfParams(config)
     }
 
     this.params = []
@@ -87,41 +87,58 @@ class FunctionExpression extends Expression {
 
   compileParam(paramCode, index, config, context) {
     let paramTypes = this.getParamTypes()
-    let allowedTypesIndex = index
-    if (!this.hasFiniteNumberOfParams() && allowedTypesIndex >= paramTypes.length) {
-      allowedTypesIndex = paramTypes.length - 1
+    let allowedTypes
+    if (!this.hasFiniteNumberOfParams() && index >= paramTypes.length) {
+      allowedTypes = paramTypes[paramTypes.length - 1]
+    } else {
+      allowedTypes = paramTypes[index]
     }
-    let allowedTypes = this.getParamTypes()[allowedTypesIndex].map(type => type.type)
-    let param = createUnitExpression(paramCode.code, allowedTypes, this, paramCode.line, paramCode.column)
+    let param = createUnitExpression(paramCode.code, allowedTypes.map(type => type.type), this, paramCode.line, paramCode.column)
     this.params.push(param)
 
     if (param.type === 'InvalidExpression') {
-      this.onInvalidParam(index, param, config, context)
+      this.onInvalidParam(index, param, config)
     }
     param.compile(config, context)
 
-    this.validateParam(param, index, config)
+    this.validateParam(index, param, config)
 
     if (!this.hasFiniteNumberOfParams() && index >= paramTypes.length) {
-      this.checkDuplicateParams(param)
+      this.checkDuplicateParams(index, param, config)
+      this.checkMultipleParamType(index, param, config)
     }
   }
 
-  validateParam(param, index, config) {
+  validateParam(index, param, config) {
     const paramType = this.getParamCurrentType(index)
     if (paramType && typeof paramType.validator === 'function' && !paramType.validator(param.value)) {
-      this.onParamValidationFailed(param, config)
+      this.onParamValidationFailed(index, param, config)
     }
   }
 
-  checkDuplicateParams(param) {
+  checkDuplicateParams(index, param, config) {
     let paramTypes = this.getParamTypes()
     if (this.params.some((p, index) => index >= paramTypes.length - 1 && p !== param && p.name === param.name)) {
-      this.onDuplicateParams(param)
+      this.onDuplicateParams(index, param, config)
     }
   }
 
-  onInvalidFunctionGeneralFormat() {
+  checkMultipleParamType(index, param, config) {
+    let paramTypes = this.getParamTypes()
+    if (!this.hasFiniteNumberOfParams() && index >= paramTypes.length) {
+      const lastType = this.getParamCurrentType(paramTypes.length - 1)
+      if (!lastType.multiple) {
+        this.onInvalidNumberOfParams(config)
+      } else {
+        const paramType = this.getParamCurrentType(index)
+        if (paramType.type !== lastType.type) {
+          this.onMultipleParamSeveralTypes(index, param, config)
+        }
+      }
+    }
+  }
+
+  onInvalidFunctionGeneralFormat(config) {
     throw new MismatchStatementException('you try to compile as a function a statement which is not one', this, {
       template: 'exception_mismatch_function_template',
       values: {
@@ -168,26 +185,38 @@ class FunctionExpression extends Expression {
     })
   }
 
-  onInvalidNumberOfParams(rawParams, config, context) {
+  onInvalidNumberOfParams(config) {
     throw new InvalidNumberOfParamsException(`'${this.constructor.keyword}' function requires ${this.getParamTypes().length} parameters`, this)
   }
 
-  onInvalidParam(index, param, config, context) {
+  onInvalidParam(index, param, config) {
     throw new InvalidFunctionParamsException(`Wrong param for '${this.constructor.keyword}' function`, param)
   }
 
-  onParamValidationFailed(param, config) {
+  onParamValidationFailed(index, param, config) {
     throw new InvalidFunctionParamsException(`Param validation failed for '${this.constructor.keyword}' function`, param)
   }
 
-  onDuplicateParams(duplicateParam) {
-    throw new InvalidFunctionParamsException(`you cannot pass the same parameter twice`, duplicateParam, {
+  onDuplicateParams(index, param, config) {
+    throw new InvalidFunctionParamsException(`you cannot pass the same parameter twice`, param, {
       template: 'exception_duplicate_param_template',
       values: {
         keyword: {
           template: `function_${this.constructor.keyword}`
         },
-        param: duplicateParam.code.join(' ').trim()
+        param: param.code.join(' ').trim()
+      }
+    })
+  }
+
+  onMultipleParamSeveralTypes(index, param, config) {
+    throw new InvalidFunctionParamsException(`you cannot pass different types of params in multiple param`, param, {
+      template: 'exception_multiple_param_several_types_template',
+      values: {
+        keyword: {
+          template: `function_${this.constructor.keyword}`
+        },
+        param: param.code.join(' ').trim()
       }
     })
   }

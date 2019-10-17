@@ -96,7 +96,7 @@ export default class CalcFunction extends FunctionExpression {
     return ExpressionValue.integer(value)
   }
 
-  onInvalidNumberOfParams(rawParams, config, context) {
+  onInvalidNumberOfParams(config) {
     throw new InvalidNumberOfParamsException('\'calc\' function requires exactly 3 parameters', this, {
       template: 'exception_invalid_params_calc_function_template',
       values: {
@@ -114,7 +114,7 @@ export default class CalcFunction extends FunctionExpression {
     })
   }
 
-  onInvalidParam(index, param, config, context) {
+  onInvalidParam(index, param, config) {
     throw new InvalidFunctionParamsException('\'calc\' function requires exactly 3 parameters', param, {
       template: 'exception_invalid_params_calc_function_template',
       values: {

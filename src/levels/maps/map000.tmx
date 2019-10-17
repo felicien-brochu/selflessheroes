@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="15" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="117" nextobjectid="48">
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="15" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="117" nextobjectid="64">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
   <image source="tileset.png" trans="000000" width="340" height="680"/>
   <terraintypes>
@@ -71,31 +71,25 @@
   <object id="9" name="hero" type="hero" x="144" y="147.333">
    <point/>
   </object>
-  <object id="28" name="egg" type="egg" x="177" y="151">
+  <object id="28" name="egg" type="egg" x="80" y="86">
    <properties>
     <property name="value" type="int" value="9"/>
    </properties>
    <point/>
   </object>
-  <object id="31" name="bonfire" type="bonfire" x="337" y="189">
+  <object id="31" name="bonfire" type="bonfire" x="235" y="215">
    <properties>
     <property name="value" type="int" value="7"/>
    </properties>
    <point/>
   </object>
-  <object id="32" name="switch" type="switch" x="370" y="277">
+  <object id="32" name="switch" type="switch" x="336" y="213">
    <properties>
     <property name="value" type="int" value="7"/>
    </properties>
    <point/>
   </object>
-  <object id="39" name="bonfire" type="bonfire" x="111" y="150">
-   <properties>
-    <property name="enabled" type="bool" value="true"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="40" name="bonfire" type="bonfire" x="303" y="308">
+  <object id="39" name="bonfire" type="bonfire" x="207" y="213">
    <properties>
     <property name="enabled" type="bool" value="true"/>
    </properties>
@@ -110,7 +104,7 @@
   <object id="43" name="hero" type="hero" x="173" y="216">
    <point/>
   </object>
-  <object id="44" name="egg" type="egg" x="204" y="211">
+  <object id="44" name="egg" type="egg" x="305" y="278">
    <properties>
     <property name="value" type="int" value="78"/>
    </properties>
@@ -122,15 +116,69 @@
    </properties>
    <point/>
   </object>
-  <object id="46" name="spikes" type="spikes" x="142" y="274">
+  <object id="46" name="spikes" type="spikes" x="397" y="278">
    <properties>
     <property name="enabled" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
-  <object id="47" name="switch" type="switch" x="401" y="207">
+  <object id="47" name="switch" type="switch" x="369" y="183">
    <properties>
     <property name="value" type="int" value="7"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="48" name="hero" type="hero" x="336" y="120">
+   <point/>
+  </object>
+  <object id="49" name="hero" type="hero" x="302" y="88">
+   <point/>
+  </object>
+  <object id="50" name="hero" type="hero" x="398" y="83">
+   <point/>
+  </object>
+  <object id="51" name="hero" type="hero" x="176" y="303">
+   <point/>
+  </object>
+  <object id="52" name="hero" type="hero" x="82" y="306">
+   <point/>
+  </object>
+  <object id="53" name="hero" type="hero" x="80" y="83">
+   <point/>
+  </object>
+  <object id="54" name="hero" type="hero" x="117" y="83">
+   <point/>
+  </object>
+  <object id="55" name="hero" type="hero" x="151" y="80">
+   <point/>
+  </object>
+  <object id="56" name="hero" type="hero" x="182" y="82">
+   <point/>
+  </object>
+  <object id="57" name="hero" type="hero" x="113" y="308">
+   <point/>
+  </object>
+  <object id="58" name="hero" type="hero" x="78" y="246">
+   <point/>
+  </object>
+  <object id="59" name="hero" type="hero" x="366" y="303">
+   <point/>
+  </object>
+  <object id="60" name="hero" type="hero" x="238" y="306">
+   <point/>
+  </object>
+  <object id="61" name="hero" type="hero" x="205" y="310">
+   <point/>
+  </object>
+  <object id="62" name="egg" type="egg" x="368" y="82">
+   <properties>
+    <property name="value" type="int" value="9"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="63" name="egg" type="egg" x="81" y="303">
+   <properties>
+    <property name="value" type="int" value="9"/>
    </properties>
    <point/>
   </object>

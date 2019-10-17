@@ -2,10 +2,6 @@ import FunctionExpression from './FunctionExpression'
 import ObjectTypeLiteral from '../literals/ObjectTypeLiteral'
 import ExpressionValue from '../ExpressionValue'
 import ObjectType from '../../../../objects/ObjectType'
-import Bonfire from '../../../../objects/Bonfire'
-import Cauldron from '../../../../objects/Cauldron'
-import TerrainType from '../../../../map/TerrainType'
-import PathFinder from '../../../PathFinder'
 import {
   InvalidNumberOfParamsException,
   InvalidFunctionParamsException
@@ -41,33 +37,17 @@ export default class SetFunction extends FunctionExpression {
   }
 
   findNearestObject(objectType, character, world) {
-    const collides = (x, y) => {
-      let terrainType = world.map.getTerrainTypeAt(x, y)
-      let collidesTerrain = terrainType === TerrainType.wall || terrainType === TerrainType.hole
-      let collidingObjects = world.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire || o instanceof Cauldron)
-
-      return collidesTerrain || collidingObjects.length > 0
-    }
-    const pathFinder = new PathFinder(collides, world.map.width, world.map.height)
-
     let selectedObjects = world.getWorldObjects().filter(o => o.getObjectType() === objectType && o.id !== character.id)
-    let paths = selectedObjects.map(object => ({
+    let distances = selectedObjects.map(object => ({
       object: object,
-      path: pathFinder.findPath({
-        x: character.x,
-        y: character.y,
-      }, {
-        x: object.x,
-        y: object.y,
-      })
+      distance: character.distanceFrom(object),
     }))
+    let shortestDistance = distances.reduce((acc, dist) => !acc || dist.distance < acc.distance ? dist : acc, null)
 
-    let shortestPath = paths.reduce((acc, path) => path.path.length > 0 && (!acc || path.path.length < acc.path.length) ? path : acc, null)
-
-    return shortestPath && shortestPath.object
+    return shortestDistance && shortestDistance.object
   }
 
-  onInvalidNumberOfParams(rawParams, config, context) {
+  onInvalidNumberOfParams(config) {
     throw new InvalidNumberOfParamsException('\'nearest\' function requires exactly 1 ObjectTypeLiteral parameter', this, {
       template: 'exception_invalid_params_one_object_type_param_template',
       values: {
@@ -79,7 +59,7 @@ export default class SetFunction extends FunctionExpression {
     })
   }
 
-  onInvalidParam(index, param, config, context) {
+  onInvalidParam(index, param, config) {
     throw new InvalidFunctionParamsException(`\'nearest\' function requires 1 parameter of type ObjectTypeLiteral`, param, {
       template: 'exception_invalid_object_type_param_template',
       values: {
@@ -92,7 +72,7 @@ export default class SetFunction extends FunctionExpression {
     })
   }
 
-  onParamValidationFailed(param, config) {
+  onParamValidationFailed(index, param, config) {
     throw new InvalidFunctionParamsException(`'the '${this.constructor.keyword}' function does not accept 'nothing' param as an object type`, param, {
       template: 'exception_invalid_object_type_param_not_nothing_template',
       values: {

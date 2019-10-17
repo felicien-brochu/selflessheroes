@@ -31,7 +31,7 @@ export default class WriteFunction extends FunctionExpression {
     }
   }
 
-  onInvalidNumberOfParams(rawParams, config, context) {
+  onInvalidNumberOfParams(config) {
     throw new InvalidNumberOfParamsException('\'write\' function requires exactly 1 integer literal or variable identifier parameter', this, {
       template: 'exception_invalid_params_one_integer_or_variable_template',
       values: {
@@ -42,7 +42,7 @@ export default class WriteFunction extends FunctionExpression {
     })
   }
 
-  onInvalidParam(index, param, config, context) {
+  onInvalidParam(index, param, config) {
     throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid integer literal or variable identifier`, param, {
       template: 'exception_invalid_integer_or_variable_param_template',
       values: {

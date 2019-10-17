@@ -10,9 +10,21 @@ export default class PathFinder {
     this.height = height
     this.grid = null
     this.searchWindow = searchWindow
-    this.pathFinder = new pathfinding.AStarFinder({
+
+    // AStarFinder
+    // BestFirstFinder
+    // BreadthFirstFinder
+    // DijkstraFinder
+    // BiAStarFinder
+    // BiBestFirstFinder
+    // BiBreadthFirstFinder
+    // BiDijkstraFinder
+    // IDAStarFinder
+    // JumpPointFinder
+    this.pathFinder = new pathfinding.BiAStarFinder({
       allowDiagonal: true,
       dontCrossCorners: false,
+      heuristic: pathfinding.Heuristic.euclidean, // manhattan, euclidean, octile, chebyshev
     })
 
     if (searchWindow) {

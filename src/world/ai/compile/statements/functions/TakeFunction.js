@@ -30,7 +30,7 @@ export default class TakeFunction extends FunctionExpression {
     }
   }
 
-  onInvalidNumberOfParams(rawParams, config, context) {
+  onInvalidNumberOfParams(config) {
     throw new InvalidNumberOfParamsException('\'take\' function requires exactly 1 direction parameter', this, {
       template: 'exception_invalid_params_one_dir_template',
       values: {
@@ -42,7 +42,7 @@ export default class TakeFunction extends FunctionExpression {
     })
   }
 
-  onInvalidParam(index, param, config, context) {
+  onInvalidParam(index, param, config) {
     throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid direction literal`, param, {
       template: 'exception_invalid_direction_param_template',
       values: {

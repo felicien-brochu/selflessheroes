@@ -26,6 +26,10 @@ export default class WorldObject {
     return this.x === object.x && this.y === object.y
   }
 
+  distanceFrom(object) {
+    return Math.sqrt((this.x - object.x) ** 2 + (this.y - object.y) ** 2)
+  }
+
   getObjectType() {
     throw new Error('Needs subclass implementation')
   }

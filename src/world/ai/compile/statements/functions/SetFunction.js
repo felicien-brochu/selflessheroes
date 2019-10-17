@@ -39,7 +39,7 @@ export default class SetFunction extends FunctionExpression {
     return computedValue
   }
 
-  onInvalidNumberOfParams(rawParams, config, context) {
+  onInvalidNumberOfParams(config) {
     throw new InvalidNumberOfParamsException('\'set\' function requires exactly 1 parameter', this, {
       template: 'exception_invalid_params_one_dir_integer_variable_myitem_template',
       values: {
@@ -50,7 +50,7 @@ export default class SetFunction extends FunctionExpression {
     })
   }
 
-  onInvalidParam(index, param, config, context) {
+  onInvalidParam(index, param, config) {
     throw new InvalidFunctionParamsException(`\'set\' function requires 1 parameter of type DirectionLiteral, IntegerLiteral, VariableIdentifier or MyItemLiteral`, param, {
       template: 'exception_invalid_dir_integer_variable_myitem_param_template',
       values: {

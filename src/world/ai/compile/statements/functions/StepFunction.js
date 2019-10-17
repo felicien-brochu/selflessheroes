@@ -1,7 +1,10 @@
 import FunctionExpression from './FunctionExpression'
 import DirectionLiteral from '../literals/DirectionLiteral'
+import VariableIdentifier from '../VariableIdentifier'
+import WorldObjectFinder from '../../../WorldObjectFinder'
 import Direction from '../../../../Direction'
 import StepAction from '../../../../actions/StepAction'
+import WaitAction from '../../../../actions/WaitAction'
 import {
   InvalidNumberOfParamsException,
   InvalidFunctionParamsException
@@ -18,11 +21,21 @@ export default class StepFunction extends FunctionExpression {
         type: DirectionLiteral,
         multiple: true,
         validator: DirectionLiteral.notHereValidator,
+      }, {
+        type: VariableIdentifier,
       }]
     ]
   }
 
   computeValue(context) {
+    if (this.params[0] instanceof DirectionLiteral) {
+      return this.stepToDirection(context)
+    } else if (this.params[0] instanceof VariableIdentifier) {
+      return this.stepToVariable(context)
+    }
+  }
+
+  stepToDirection(context) {
     let r = context.rng()
     let dir = Direction.here
 
@@ -41,32 +54,69 @@ export default class StepFunction extends FunctionExpression {
     }
   }
 
-  onInvalidNumberOfParams(rawParams, config, context) {
-    throw new InvalidNumberOfParamsException('\'step\' function requires at least 1 parameter', this, {
-      template: 'exception_invalid_params_one_more_dir_template',
+  stepToVariable(context) {
+    let complete = true
+    let step = true
+    let action = new WaitAction()
+
+    let variable = this.params[0].computeValue(context)
+    let objectValue = variable.getFirstObjectValue()
+
+    if (!!objectValue) {
+      let target = objectValue.value
+
+      // If we arrived at destination
+      if (WorldObjectFinder.hasArrivedAtObject(context.character, target)) {
+        if (context.character.ai.lastActionCursor === context.character.ai.cursor) {
+          step = false
+          action = null
+        }
+      } else { // Step toward destination
+        complete = false
+        let objectFinder = new WorldObjectFinder(target, context.character, context.world)
+        let direction = objectFinder.findDirection()
+        if (!direction.equals(Direction.here)) {
+          action = new StepAction(direction)
+        }
+      }
+    }
+
+    return {
+      step: step,
+      complete: complete,
+      goto: null,
+      action: action,
+    }
+  }
+
+  onInvalidNumberOfParams(config) {
+    throw new InvalidNumberOfParamsException('\'step\' function requires one or several direction params or a variable identifier', this, {
+      template: 'exception_invalid_params_one_more_dir_variable_template',
       values: {
         keyword: {
           template: `function_${this.constructor.keyword}`
         },
-        directions: Direction.names.filter(dir => dir !== 'here')
+        allowedDirections: Direction.names.filter(dir => dir !== 'here'),
+        allowedVariables: config.getAllowedVariableIdentifiers(),
       }
     })
   }
 
-  onInvalidParam(index, param, config, context) {
-    throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid direction literal`, param, {
-      template: 'exception_invalid_direction_param_template',
+  onInvalidParam(index, param, config) {
+    throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid DirectionLiteral or VariableIdentifier`, param, {
+      template: 'exception_invalid_dir_variable_param_template',
       values: {
         keyword: {
           template: `function_${this.constructor.keyword}`
         },
         param: param.code.join(' ').trim(),
-        allowedValues: Direction.names.filter(dir => dir !== 'here')
+        allowedDirections: Direction.names.filter(dir => dir !== 'here'),
+        allowedVariables: config.getAllowedVariableIdentifiers(),
       }
     })
   }
 
-  onParamValidationFailed(param, config) {
+  onParamValidationFailed(index, param, config) {
     throw new InvalidFunctionParamsException(`'the '${this.constructor.keyword}' function does not accept 'here' param as a direction`, param, {
       template: 'exception_invalid_direction_param_not_here_template',
       values: {

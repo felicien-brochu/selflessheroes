@@ -31,7 +31,7 @@ export default class StepOnceFunction extends FunctionExpression {
     }
   }
 
-  onInvalidNumberOfParams(rawParams, config, context) {
+  onInvalidNumberOfParams(config) {
     throw new InvalidNumberOfParamsException('\'step\' function requires exactly 1 direction parameter', this, {
       template: 'exception_invalid_params_one_dir_template',
       values: {
@@ -43,7 +43,7 @@ export default class StepOnceFunction extends FunctionExpression {
     })
   }
 
-  onInvalidParam(index, param, config, context) {
+  onInvalidParam(index, param, config) {
     throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid direction literal`, param, {
       template: 'exception_invalid_direction_param_template',
       values: {
@@ -56,7 +56,7 @@ export default class StepOnceFunction extends FunctionExpression {
     })
   }
 
-  onParamValidationFailed(param, config) {
+  onParamValidationFailed(index, param, config) {
     throw new InvalidFunctionParamsException(`'the '${this.constructor.keyword}' function does not accept 'here' param as a direction`, param, {
       template: 'exception_invalid_direction_param_not_here_template',
       values: {
