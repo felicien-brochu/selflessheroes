@@ -71,6 +71,10 @@ export default class DirectionLiteral extends Expression {
 
     return ExpressionValue.composite(res)
   }
+
+  static notHereValidator(direction) {
+    return !Direction.here.equals(direction)
+  }
 }
 
 DirectionLiteral.codeRegExp = /^\s*(\w+)\s*$/

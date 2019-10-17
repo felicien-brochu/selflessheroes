@@ -17,7 +17,6 @@ export default class DropFunction extends FunctionExpression {
       [{
         type: DirectionLiteral,
         multiple: false,
-        notHere: false
       }]
     ]
   }

@@ -110,7 +110,7 @@ export default {
       anchor,
       directions,
       multiple,
-      notHere,
+      validator,
       parentType
     }) {
       this.closePopup()
@@ -119,7 +119,7 @@ export default {
       this.popupProps = {
         directions: directions,
         multiple: multiple,
-        notHere: notHere,
+        validator: validator,
         anchor: anchor,
         frame: this.graphCode.$el,
         parentType: parentType

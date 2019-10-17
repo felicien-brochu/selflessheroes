@@ -4,7 +4,7 @@
     <li v-for="dir in directionNames"
       :class="{
 				'selected': selectedDirectionNames.includes(dir),
-				'no-value': notHere && dir === 'here'
+				'no-value': directionHasNoValue(dir),
 			}"
       @mousedown.prevent.stop="handleDirectionClick(dir)"
       @touchstart.prevent.stop="handleDirectionClick(dir)">
@@ -40,9 +40,9 @@ export default {
     'multiple': {
       type: Boolean
     },
-    'notHere': {
-      type: Boolean,
-      default: false
+    'validator': {
+      type: Function,
+      default: null
     }
   },
   data: function() {
@@ -77,8 +77,12 @@ export default {
       }
     },
 
+    directionHasNoValue(dirName) {
+      return this.validator && !this.validator(Direction[dirName])
+    },
+
     handleDirectionClick(dirName) {
-      if (this.notHere && dirName === 'here') {
+      if (this.validator && !this.validator(Direction[dirName])) {
         return
       }
       if (!this.selectedDirections.some(direction => direction.name === dirName)) {

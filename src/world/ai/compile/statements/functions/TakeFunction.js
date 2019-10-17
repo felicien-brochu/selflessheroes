@@ -17,7 +17,6 @@ export default class TakeFunction extends FunctionExpression {
       [{
         type: DirectionLiteral,
         multiple: false,
-        notHere: false
       }]
     ]
   }

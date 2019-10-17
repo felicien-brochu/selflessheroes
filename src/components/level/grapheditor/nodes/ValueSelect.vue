@@ -42,6 +42,7 @@ import VariableIdentifier from '../../../../world/ai/compile/statements/Variable
 import ObjectTypeLiteral from '../../../../world/ai/compile/statements/literals/ObjectTypeLiteral'
 import TerrainTypeLiteral from '../../../../world/ai/compile/statements/literals/TerrainTypeLiteral'
 import DirectionLiteral from '../../../../world/ai/compile/statements/literals/DirectionLiteral'
+import Direction from '../../../../world/Direction'
 import IntegerLiteral from '../../../../world/ai/compile/statements/literals/IntegerLiteral'
 import MyItemLiteral from '../../../../world/ai/compile/statements/literals/MyItemLiteral'
 import ArithmeticOperatorLiteral from '../../../../world/ai/compile/statements/literals/ArithmeticOperatorLiteral'
@@ -124,16 +125,24 @@ export default {
         (this.types.length === 1 && this.types[0].type === DirectionLiteral)
     },
     directionNotHere: function() {
-      return (this.value instanceof DirectionLiteral &&
-          this.types.some(type => type.type === DirectionLiteral &&
-            type.notHere)) ||
-        (Array.isArray(this.value) &&
-          this.value.length >= 1 &&
-          this.value[0] instanceof DirectionLiteral &&
-          this.types.some(type => type.type === DirectionLiteral && type.notHere)) ||
-        (this.types.length === 1 &&
-          this.types[0].type === DirectionLiteral &&
-          this.types[0].notHere)
+      let type = null
+      if (this.value instanceof DirectionLiteral) {
+        type = this.types.find(type => type.type === DirectionLiteral)
+      }
+      else if (Array.isArray(this.value) &&
+        this.value.length >= 1 &&
+        this.value[0] instanceof DirectionLiteral) {
+        type = this.types.find(type => type.type === DirectionLiteral)
+      }
+      else if (this.types.length === 1 &&
+        this.types[0].type === DirectionLiteral) {
+        type = this.types[0]
+      }
+      else {
+        return false
+      }
+
+      return typeof type.validator === 'function' && !type.validator(Direction.here)
     },
     isInteger: function() {
       return this.value instanceof IntegerLiteral
@@ -272,7 +281,7 @@ export default {
         anchor: this.$el,
         directions: directions,
         multiple: directionType.multiple,
-        notHere: directionType.notHere,
+        validator: directionType.validator,
         parentType: this.parentType
       })
     },

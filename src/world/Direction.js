@@ -32,7 +32,7 @@ export default class Direction {
   }
 
   equals(dir) {
-    return this.dx === dir.dx && this.dy === dir.dy
+    return !!dir && this.dx === dir.dx && this.dy === dir.dy
   }
 
   getName() {

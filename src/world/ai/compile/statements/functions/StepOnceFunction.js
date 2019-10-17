@@ -17,7 +17,7 @@ export default class StepOnceFunction extends FunctionExpression {
       [{
         type: DirectionLiteral,
         multiple: false,
-        notHere: true
+        validator: DirectionLiteral.notHereValidator,
       }]
     ]
   }
@@ -46,6 +46,19 @@ export default class StepOnceFunction extends FunctionExpression {
   onInvalidParam(index, param, config, context) {
     throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid direction literal`, param, {
       template: 'exception_invalid_direction_param_template',
+      values: {
+        keyword: {
+          template: `function_${this.constructor.keyword}`
+        },
+        param: param.code.join(' ').trim(),
+        allowedValues: Direction.names.filter(dir => dir !== 'here')
+      }
+    })
+  }
+
+  onParamValidationFailed(param, config) {
+    throw new InvalidFunctionParamsException(`'the '${this.constructor.keyword}' function does not accept 'here' param as a direction`, param, {
+      template: 'exception_invalid_direction_param_not_here_template',
       values: {
         keyword: {
           template: `function_${this.constructor.keyword}`
