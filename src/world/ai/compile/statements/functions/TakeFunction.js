@@ -1,6 +1,10 @@
 import FunctionExpression from './FunctionExpression'
 import DirectionLiteral from '../literals/DirectionLiteral'
+import VariableIdentifier from '../VariableIdentifier'
+import WorldObjectFinder from '../../../WorldObjectFinder'
 import Direction from '../../../../Direction'
+import StepAction from '../../../../actions/StepAction'
+import WaitAction from '../../../../actions/WaitAction'
 import TakeAction from '../../../../actions/TakeAction'
 import {
   InvalidNumberOfParamsException,
@@ -16,17 +20,57 @@ export default class TakeFunction extends FunctionExpression {
     return [
       [{
         type: DirectionLiteral,
-        multiple: false,
+      }, {
+        type: VariableIdentifier,
       }]
     ]
   }
 
   computeValue(context) {
+    if (this.params[0] instanceof DirectionLiteral) {
+      return this.takeFromDirection(context)
+    } else if (this.params[0] instanceof VariableIdentifier) {
+      return this.takeFromVariable(context)
+    }
+  }
+
+  takeFromDirection(context) {
     return {
       step: true,
       complete: true,
       goto: null,
       action: new TakeAction(this.params[0].value)
+    }
+  }
+
+  takeFromVariable(context) {
+    let complete = true
+    let action = new WaitAction()
+
+    let variable = this.params[0].computeValue(context)
+    let objectValue = variable.getFirstObjectValue()
+
+    if (!!objectValue) {
+      let target = objectValue.value
+
+      // If we arrived at destination we take
+      if (WorldObjectFinder.hasArrivedAroundObject(context.character, target)) {
+        action = new TakeAction(new Direction(target.x - context.character.x, target.y - context.character.y))
+      } else { // Step toward destination
+        complete = false
+        let objectFinder = new WorldObjectFinder(target, context.character, context.world)
+        let direction = objectFinder.findDirection()
+        if (!direction.equals(Direction.here)) {
+          action = new StepAction(direction)
+        }
+      }
+    }
+
+    return {
+      step: true,
+      complete: complete,
+      goto: null,
+      action: action,
     }
   }
 

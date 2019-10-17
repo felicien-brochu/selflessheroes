@@ -22,6 +22,10 @@ export default class WorldObjectFinder {
     )
   }
 
+  static hasArrivedAroundObject(character, target) {
+    return character.distanceFrom(target) < 2
+  }
+
   findDirection() {
     let direction = Direction.here
     let path = this.findPath()

@@ -179,9 +179,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"value",
-                         "type":"int",
-                         "value":7
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",
@@ -283,14 +283,19 @@
                         {
                          "name":"enabled",
                          "type":"bool",
-                         "value":true
+                         "value":false
+                        }, 
+                        {
+                         "name":"triggers",
+                         "type":"string",
+                         "value":"32,47"
                         }],
                  "rotation":0,
                  "type":"spikes",
                  "visible":true,
                  "width":0,
-                 "x":397,
-                 "y":278
+                 "x":113,
+                 "y":245
                 }, 
                 {
                  "height":0,
@@ -299,9 +304,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"value",
-                         "type":"int",
-                         "value":7
+                         "name":"autoDisable",
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"switch",

@@ -2,6 +2,7 @@ import FunctionExpression from './FunctionExpression'
 import ObjectTypeLiteral from '../literals/ObjectTypeLiteral'
 import ExpressionValue from '../ExpressionValue'
 import ObjectType from '../../../../objects/ObjectType'
+import Item from '../../../../objects/Item'
 import {
   InvalidNumberOfParamsException,
   InvalidFunctionParamsException
@@ -37,7 +38,7 @@ export default class SetFunction extends FunctionExpression {
   }
 
   findNearestObject(objectType, character, world) {
-    let selectedObjects = world.getWorldObjects().filter(o => o.getObjectType() === objectType && o.id !== character.id)
+    let selectedObjects = world.getWorldObjects().filter(o => o.getObjectType() === objectType && o.id !== character.id && !(o instanceof Item && o.owner))
     let distances = selectedObjects.map(object => ({
       object: object,
       distance: character.distanceFrom(object),

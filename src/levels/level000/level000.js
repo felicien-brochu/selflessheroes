@@ -10,12 +10,12 @@ const level = {
   compilerConfig: {
     excludePrimary: [],
     terrainTypes: ['wall', 'floor'],
-    objectTypes: ['hero', 'egg', 'nothing', 'bonfire', 'npc', 'switch', 'spikes'],
+    objectTypes: ['nothing', 'hero', 'egg', 'cauldron', 'bonfire', 'npc', 'switch', 'spikes'],
     actionFunctions: ['step', 'fireball', 'take', 'drop', 'write'],
     valueFunctions: ['set', 'calc', 'nearest'],
     variables: 5,
-    leftComparisonExpressions: ['direction', 'myitem'],
-    rightComparisonExpressions: ['object_type', 'terrain_type', 'direction', 'myitem']
+    leftComparisonExpressions: ['direction', 'myitem', 'variable'],
+    rightComparisonExpressions: ['object_type', 'terrain_type', 'direction', 'myitem', 'variable']
   },
 }
 

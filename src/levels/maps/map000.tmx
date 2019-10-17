@@ -85,7 +85,7 @@
   </object>
   <object id="32" name="switch" type="switch" x="336" y="213">
    <properties>
-    <property name="value" type="int" value="7"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
@@ -116,15 +116,16 @@
    </properties>
    <point/>
   </object>
-  <object id="46" name="spikes" type="spikes" x="397" y="278">
+  <object id="46" name="spikes" type="spikes" x="113" y="245">
    <properties>
-    <property name="enabled" type="bool" value="true"/>
+    <property name="enabled" type="bool" value="false"/>
+    <property name="triggers" value="32,47"/>
    </properties>
    <point/>
   </object>
   <object id="47" name="switch" type="switch" x="369" y="183">
    <properties>
-    <property name="value" type="int" value="7"/>
+    <property name="autoDisable" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
