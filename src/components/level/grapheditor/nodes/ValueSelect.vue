@@ -259,7 +259,7 @@ export default {
       this.popupLayer.createDropDownList({
         listener: this.handleSelectDropDownItem,
         anchor: this.$el,
-        types: this.types.map(type => type.type),
+        types: this.types,
         value: this.value,
         parentType: this.parentType
       })

@@ -77,34 +77,34 @@ export default {
     items: function() {
       let items = []
       for (let type of this.types) {
-        if (type === DirectionLiteral) {
+        if (type.type === DirectionLiteral) {
           items.push(this.createDirectionItem())
         }
-        else if (type === IntegerLiteral) {
+        else if (type.type === IntegerLiteral) {
           items.push(this.createIntegerLiteralItem())
         }
-        else if (type === MyItemLiteral) {
+        else if (type.type === MyItemLiteral) {
           items.push(this.createMyItemLiteralItem())
         }
-        else if (type === VariableIdentifier) {
+        else if (type.type === VariableIdentifier) {
           items = items.concat(this.createVariableItems())
         }
-        else if (type === ObjectTypeLiteral) {
-          items = items.concat(this.createObjectTypeItems())
+        else if (type.type === ObjectTypeLiteral) {
+          items = items.concat(this.createObjectTypeItems(type))
         }
-        else if (type === TerrainTypeLiteral) {
-          items = items.concat(this.createTerrainTypeItems())
+        else if (type.type === TerrainTypeLiteral) {
+          items = items.concat(this.createTerrainTypeItems(type))
         }
-        else if (type === 'comparisonOperator') {
+        else if (type.type === 'comparisonOperator') {
           items = items.concat(this.createComparisonOperatorItems())
         }
-        else if (type === 'booleanOperator') {
+        else if (type.type === 'booleanOperator') {
           items = items.concat(this.createBooleanOperatorItems())
         }
-        else if (type === 'newBooleanOperator') {
+        else if (type.type === 'newBooleanOperator') {
           items = items.concat(this.createNewBooleanOperatorItems())
         }
-        else if (type === ArithmeticOperatorLiteral) {
+        else if (type.type === ArithmeticOperatorLiteral) {
           items = items.concat(this.createArithmeticOperatorItems())
         }
       }
@@ -178,9 +178,13 @@ export default {
       return items
     },
 
-    createObjectTypeItems() {
+    createObjectTypeItems(type) {
       let items = []
-      for (let objectType of this.compilerConfig.objectTypes) {
+      let validObjectTypes = this.compilerConfig.objectTypes
+      if (typeof type.validator === 'function') {
+        validObjectTypes = validObjectTypes.filter(type.validator)
+      }
+      for (let objectType of validObjectTypes) {
         let literal = new ObjectTypeLiteral(null)
         literal.name = objectType
         literal.value = ObjectType[objectType]
@@ -194,9 +198,13 @@ export default {
       return items
     },
 
-    createTerrainTypeItems() {
+    createTerrainTypeItems(type) {
       let items = []
-      for (let terrainType of this.compilerConfig.terrainTypes) {
+      let validTerrainTypes = this.compilerConfig.terrainTypes
+      if (typeof type.validator === 'function') {
+        validTerrainTypes = validTerrainTypes.filter(type.validator)
+      }
+      for (let terrainType of validTerrainTypes) {
         let literal = new TerrainTypeLiteral(null)
         literal.name = terrainType
         literal.value = TerrainType[terrainType]
