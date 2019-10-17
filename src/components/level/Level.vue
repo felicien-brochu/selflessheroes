@@ -272,7 +272,7 @@ export default {
         setTimeout(this.showWinModal.bind(this), 700)
       }
       else if (this.worldState.hasLost) {
-        setTimeout(this.showLossModal.bind(this), 500)
+        setTimeout(() => this.showLossModal(), 500)
       }
     },
 
@@ -431,15 +431,16 @@ export default {
     },
 
     showLossModal() {
-      if (!this.lossModalDisplayed) {
+      let lossReason = this.worldState.lossReason
+      if (!this.lossModalDisplayed && lossReason) {
         this.$sound.play('level_lose')
-        const lossReason = this.$text(this.level.getLossReasonTemplate(this.worldState.lossReason))
+        const lossReasonText = this.$text(this.level.getLossReasonTemplate(lossReason))
         this.lossModalDisplayed = true
         this.$refs.modalLayer.addModal({
           component: WarningModal,
           key: 'level_loss_modal',
           props: {
-            text: lossReason
+            text: lossReasonText
           },
           handlers: {
             close: () => {
