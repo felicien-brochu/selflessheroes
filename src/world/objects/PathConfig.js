@@ -7,7 +7,7 @@ export default class PathConfig extends ConfigObject {
       stepRythm: 1,
     }, config)
 
-    super(config)
+    super('path', config)
 
     this.path = this.config.polygon || this.config.polyline
   }

@@ -479,14 +479,6 @@ export default class World {
     }
   }
 
-  getWorldObjectsAt(x, y) {
-    return this.getWorldObjects().filter(o => o.x === x && o.y === y && !(o instanceof Item && o.owner))
-  }
-
-  getCharactersAt(x, y) {
-    return this.getCharacters().filter(c => c.x === x && c.y === y)
-  }
-
   getWorldObjects() {
     return [
       ...this.heroes,
@@ -519,6 +511,18 @@ export default class World {
 
   findConfigObjectByID(id) {
     return this.configObjects.find(o => o.id === id)
+  }
+
+  getWorldObjectsAt(x, y) {
+    return this.getWorldObjects().filter(o => o.x === x && o.y === y && !(o instanceof Item && o.owner))
+  }
+
+  getConfigObjectsAt(x, y) {
+    return this.configObjects.filter(o => o.x === x && o.y === y)
+  }
+
+  getCharactersAt(x, y) {
+    return this.getCharacters().filter(c => c.x === x && c.y === y)
   }
 
   getCharacters() {

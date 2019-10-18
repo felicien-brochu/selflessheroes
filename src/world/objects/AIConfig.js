@@ -6,6 +6,6 @@ export default class AIConfig extends ConfigObject {
       type: "idle",
     }, config)
 
-    super(config)
+    super('ai', config)
   }
 }

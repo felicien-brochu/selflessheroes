@@ -1,6 +1,7 @@
 export default class ConfigObject {
-  constructor(config) {
+  constructor(type, config) {
     this.config = config
+    this.type = type
     Object.assign(this, config)
   }
 }
