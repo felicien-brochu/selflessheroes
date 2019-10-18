@@ -75,28 +75,55 @@ export default class DropFunction extends FunctionExpression {
   }
 
   onInvalidNumberOfParams(config) {
-    throw new InvalidNumberOfParamsException('\'drop\' function requires exactly 1 parameter', this, {
-      template: 'exception_invalid_params_one_dir_template',
-      values: {
-        keyword: {
-          template: `function_${this.constructor.keyword}`
-        },
-        directions: Direction.names
-      }
-    })
+    if (config.variables > 0) {
+      throw new InvalidNumberOfParamsException(`'${this.constructor.keyword}' function requires 1 direction parameter or a variable identifier`, this, {
+        template: 'exception_invalid_params_one_dir_variable_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          },
+          allowedDirections: Direction.names,
+          allowedVariables: config.getAllowedVariableIdentifiers(),
+        }
+      })
+    } else {
+      throw new InvalidNumberOfParamsException(`'${this.constructor.keyword}' function requires exactly 1 direction parameter`, this, {
+        template: 'exception_invalid_params_one_dir_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          },
+          directions: Direction.names.filter(dir => dir !== 'here')
+        }
+      })
+    }
   }
 
   onInvalidParam(index, param, config) {
-    throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid direction literal`, param, {
-      template: 'exception_invalid_direction_param_template',
-      values: {
-        keyword: {
-          template: `function_${this.constructor.keyword}`
-        },
-        param: param.code.join(' ').trim(),
-        allowedValues: Direction.names
-      }
-    })
+    if (config.variables > 0) {
+      throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid DirectionLiteral or VariableIdentifier`, param, {
+        template: 'exception_invalid_dir_variable_param_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          },
+          param: param.code.join(' ').trim(),
+          allowedDirections: Direction.names.filter(dir => dir !== 'here'),
+          allowedVariables: config.getAllowedVariableIdentifiers(),
+        }
+      })
+    } else {
+      throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid direction literal`, param, {
+        template: 'exception_invalid_direction_param_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          },
+          param: param.code.join(' ').trim(),
+          allowedValues: Direction.names.filter(dir => dir !== 'here')
+        }
+      })
+    }
   }
 }
 

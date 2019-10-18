@@ -32,26 +32,50 @@ export default class WriteFunction extends FunctionExpression {
   }
 
   onInvalidNumberOfParams(config) {
-    throw new InvalidNumberOfParamsException('\'write\' function requires exactly 1 integer literal or variable identifier parameter', this, {
-      template: 'exception_invalid_params_one_integer_or_variable_template',
-      values: {
-        keyword: {
-          template: `function_${this.constructor.keyword}`
+    if (config.variables > 0) {
+      throw new InvalidNumberOfParamsException(`'${this.constructor.keyword}' function requires exactly 1 integer literal or variable identifier parameter`, this, {
+        template: 'exception_invalid_params_one_integer_or_variable_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          },
+          allowedVariables: config.getAllowedVariableIdentifiers(),
         }
-      }
-    })
+      })
+    } else {
+      throw new InvalidNumberOfParamsException(`'${this.constructor.keyword}' function requires exactly 1 integer literal parameter`, this, {
+        template: 'exception_invalid_params_one_integer_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          },
+        }
+      })
+    }
   }
 
   onInvalidParam(index, param, config) {
-    throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid integer literal or variable identifier`, param, {
-      template: 'exception_invalid_integer_or_variable_param_template',
-      values: {
-        keyword: {
-          template: `function_${this.constructor.keyword}`
-        },
-        param: param.code.join(' ').trim()
-      }
-    })
+    if (config.variables > 0) {
+      throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid integer literal or variable identifier`, param, {
+        template: 'exception_invalid_integer_or_variable_param_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          },
+          param: param.code.join(' ').trim()
+        }
+      })
+    } else {
+      throw new InvalidFunctionParamsException(`'${param.code.join(' ').trim()}' is not a valid integer literal`, param, {
+        template: 'exception_invalid_integer_param_template',
+        values: {
+          keyword: {
+            template: `function_${this.constructor.keyword}`
+          },
+          param: param.code.join(' ').trim()
+        }
+      })
+    }
   }
 }
 
