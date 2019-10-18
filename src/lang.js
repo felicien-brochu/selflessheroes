@@ -335,7 +335,7 @@ const messages = {
     home_load_career_button: "%%mdi mdi-content-save-move$%% Charger une partie",
     home_save_career_button: "Enregistrer sous…",
     home_remove_career_button: "Supprimer",
-    home_remove_career_warning: "Êtes-vous vraiment sûr de vouloir supprimer cette partie\u00A0?\nToute progression sera perdue.",
+    home_remove_career_warning: "Es-tu vraiment sûr de vouloir supprimer cette partie\u00A0?\nToute progression sera perdue.",
     home_drop_career_file: "Charger une partie sauvegardée\n%%mdi mdi-content-save-move$%% fichier .shsv",
     home_wrong_file_format_error: "Ce fichier n'est pas un fichier .shsv valide",
 
@@ -353,7 +353,7 @@ const messages = {
     level_details_delete_solution_button: "Supprimer",
     level_details_rename_solution_button: "Renommer",
     level_details_name_input_placeholder: "nom",
-    level_details_delete_solution_warning: "Êtes-vous vraiment sûr de vouloir supprimer cette solution\u00A0?",
+    level_details_delete_solution_warning: "Es-tu vraiment sûr de vouloir supprimer cette solution\u00A0?",
 
     modal_confirm_button: "ok",
     modal_cancel_button: "annuler",
@@ -373,7 +373,7 @@ const messages = {
     tutorial_advanced_step_undo: "Annule la dernière modification",
     tutorial_advanced_step_redo: "Rétablit la dernière modification",
     tutorial_advanced_step_delete: "Supprime toutes les instructions",
-    tutorial_advanced_step_editor_switch: "Passe à l'éditeur de code.\nAvec l'éditeur de code, vous pouvez copier le programme d'un niveau pour le réutiliser dans un autre.\nLes joueurs les plus avancés peuvent l'utiliser pour créer leur programme directement en code.",
+    tutorial_advanced_step_editor_switch: "Passe à l'éditeur de code.\nAvec l'éditeur de code, tu peux copier le programme d'un niveau pour le réutiliser dans un autre.\nLes joueurs les plus avancés peuvent l'utiliser pour créer leur programme directement en code.",
     tutorial_advanced_step_game: "Pour mieux suivre le comportement d'un héro, sélectionne-le en cliquant dessus.\nQuand le programme est lancé, un curseur bleu apparaît à côté des instructions pour montrer à quelle étape du programme se trouve le héro sélectionné.",
     tutorial_advanced_step_play_pause: "Lance ou pause le programme",
     tutorial_advanced_step_step: "Exécute le programme étape par étape",
@@ -402,7 +402,7 @@ const messages = {
 
     level_help_tab_jump_statement_1: "%%statement branching-statement$saut%% permet de sauter en avant ou en arrière dans le programme.",
     level_help_tab_jump_statement_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Va à droite en boucle\".",
-    level_help_tab_jump_statement_4: "La première ligne crée une \"ancre\" appelée \"a\". La troisième ligne dit de retourner à cette ancre.\nVous pouvez nommer vos ancres avec le nom de votre choix. Chaque jump doit correspondre à une ancre unique.",
+    level_help_tab_jump_statement_4: "La première ligne crée une \"ancre\" appelée \"a\". La troisième ligne dit de retourner à cette ancre.\nTu peux nommer les ancres avec le nom de ton choix. Chaque jump doit correspondre à une ancre unique.",
     level_help_tab_jump_statement_5: "On utilise souvent %%statement branching-statement$saut%% avec %%statement branching-statement$si%% pour créer des boucles qui s'arrêtent dans certaines conditions.",
     level_help_tab_jump_statement_6: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Va à droite tant que la case à ta droite n'est pas un mur\".",
 
@@ -438,9 +438,9 @@ const messages = {
     level_objective_modal_objective_title: "objectif",
     level_objective_modal_secondary_objectives_title: "objectifs secondaires",
 
-    win_modal_testing_explanation: "votre solution est testée pour s'assurer qu'elle marche à chaque fois",
-    win_modal_prior_code_speed: "votre meilleur temps était %%score-number${minStep}%% cycles",
-    win_modal_prior_code_length: "votre solution la plus courte faisait %%score-number${minLength}%% lignes",
+    win_modal_testing_explanation: "la solution est testée pour s'assurer qu'elle marche à chaque fois",
+    win_modal_prior_code_speed: "ton meilleur temps était %%score-number${minStep}%% cycles",
+    win_modal_prior_code_length: "ta solution la plus courte faisait %%score-number${minLength}%% lignes",
     win_modal_ok_button: "ok",
     win_modal_continue_edit_button: "améliorer",
 
@@ -456,7 +456,7 @@ const messages = {
     editor_bar_switch_to_graph: "Passer à l'éditeur graphique",
     editor_bar_switch_to_code: "Passer à l'éditeur de code",
 
-    code_state_ok_tooltip: "Votre code est prêt à être exécuté",
+    code_state_ok_tooltip: "Ton code est prêt à être exécuté",
     code_state_not_runnable_tooltip: "Des instructions sont incomplètes\u00A0:\nclique pour plus de détails",
     code_state_not_compilable_tooltip: "Le code contient une erreur\u00A0:\nclique pour plus de détails",
     code_state_ok_modal: "Le code est prêt à être exécuté",
@@ -550,10 +550,10 @@ const messages = {
 
 
     level_test_failed_modal: "Certains tests ont échoué.\nNous avons reproduit une des situations problématiques.",
-    loss_reason_too_many_steps: "Votre programme prend trop de temps\u00A0!",
-    loss_reason_all_hero_ended: "Vos héros se sont endormis avant de remplir l'objectif",
-    loss_reason_all_hero_dead: "Tous vos héros sont morts",
-    loss_reason_one_hero_dead: "Un de vos héros est mort",
+    loss_reason_too_many_steps: "Ton programme prend trop de temps\u00A0!",
+    loss_reason_all_hero_ended: "Les héros se sont endormis avant de remplir l'objectif",
+    loss_reason_all_hero_dead: "Tous les héros sont morts",
+    loss_reason_one_hero_dead: "Un des héros est mort",
   }
 }
 

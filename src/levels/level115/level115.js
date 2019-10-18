@@ -35,7 +35,7 @@ const level = {
   },
   objective: {
     en: "Sort the %%icon icon-egg$%% eggs from the smallest on the left to the largest on the right.\n\n%%icon mdi mdi-information-outline$%% This time, your %%icon icon-hero$%% heroes will have to cooperate.",
-    fr: "Trie les %%icon icon-egg$%% œufs du plus petit à gauche au plus grand à droite.\n\n%%icon mdi mdi-information-outline$%% Cette fois, vos %%icon icon-hero$%% héros devront coopérer.",
+    fr: "Trie les %%icon icon-egg$%% œufs du plus petit à gauche au plus grand à droite.\n\n%%icon mdi mdi-information-outline$%% Cette fois, les %%icon icon-hero$%% héros devront coopérer.",
   },
   messages: {
     loss_reason_egg_in_hole: {

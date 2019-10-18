@@ -68,7 +68,7 @@ const level = {
   },
   objective: {
     en: "Copy the %%icon icon-egg$%% left eggs to the %%icon icon-egg$%% right eggs.\n\n%%icon mdi mdi-information-outline$%% Your heroes are now able to memorize things. Use %%statement assign-statement$set%% to memorize the value of an egg and thus be able to write it later.\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: you must not move the %%icon icon-egg$%% eggs that are on the left",
-    fr: "Recopie les %%icon icon-egg$%% œufs de gauche sur les %%icon icon-egg$%% œufs de droite.\n\n%%icon mdi mdi-information-outline$%% Vos héros sont maintenant capables de garder des choses en mémoire. Utilise %%statement assign-statement$init%% pour mémoriser la valeur d'un œuf et ainsi pouvoir l'écrire plus tard.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: tu ne dois pas bouger les %%icon icon-egg$%% œufs qui sont à gauche.",
+    fr: "Recopie les %%icon icon-egg$%% œufs de gauche sur les %%icon icon-egg$%% œufs de droite.\n\n%%icon mdi mdi-information-outline$%% Les héros sont maintenant capables de garder des choses en mémoire. Utilise %%statement assign-statement$init%% pour mémoriser la valeur d'un œuf et ainsi pouvoir l'écrire plus tard.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: tu ne dois pas bouger les %%icon icon-egg$%% œufs qui sont à gauche.",
   },
   messages: {
     loss_reason_wrong_value_on_egg: {
