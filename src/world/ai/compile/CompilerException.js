@@ -79,6 +79,12 @@ export class ForbiddenVariableIdentifierException extends StatementException {
   }
 }
 
+export class ForbiddenIntegerLiteralException extends StatementException {
+  constructor(message, statement, template) {
+    super('ForbiddenIntegerLiteralException', message, statement, template)
+  }
+}
+
 export class ForbiddenValueFunctionException extends StatementException {
   constructor(message, statement, template) {
     super('ForbiddenValueFunctionException', message, statement, template)

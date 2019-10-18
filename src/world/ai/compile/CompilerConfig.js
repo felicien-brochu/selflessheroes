@@ -84,6 +84,8 @@ export default class CompilerConfig {
   constructor({
     excludePrimary = [],
     variables = 0,
+    minInteger = 0,
+    maxInteger = 99,
     terrainTypes = [],
     objectTypes = [],
     valueFunctions = [],
@@ -99,7 +101,9 @@ export default class CompilerConfig {
     }
 
     this.variables = variables
-    this.terrainTypes = terrainTypes.map(key => terrainTypeMap[key])
+    this.minInteger = minInteger,
+      this.maxInteger = maxInteger,
+      this.terrainTypes = terrainTypes.map(key => terrainTypeMap[key])
     this.objectTypes = objectTypes.map(key => objectTypeMap[key])
     this.valueFunctions = valueFunctions.map(key => valueFunctionMap[key])
     this.actionFunctions = actionFunctions.map(key => actionFunctionMap[key])
@@ -111,6 +115,8 @@ export default class CompilerConfig {
     return new CompilerConfig({
       excludePrimary: [],
       variables: 3,
+      minInteger: 0,
+      maxInteger: 99,
       terrainTypes: [
         'wall',
         'hole',

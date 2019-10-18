@@ -1,7 +1,8 @@
 import Expression from '../Expression'
 import ExpressionValue from '../ExpressionValue'
 import {
-  MismatchStatementException
+  MismatchStatementException,
+  ForbiddenIntegerLiteralException
 } from '../../CompilerException'
 
 export default class IntegerLiteral extends Expression {
@@ -18,6 +19,16 @@ export default class IntegerLiteral extends Expression {
     }
 
     this.value = parseInt(res[1], 10)
+    if (this.value < config.minInteger || this.value > config.maxInteger) {
+      throw new ForbiddenIntegerLiteralException(`'${this.code.join(' ').trim()}' is out of bound: it must be in range [${config.minInteger}:${config.maxInteger}]`, this, {
+        template: 'exception_forbidden_integer_template',
+        values: {
+          value: this.value,
+          min: config.minInteger,
+          max: config.maxInteger,
+        }
+      })
+    }
   }
 
   decompile(indent, line, column) {
@@ -33,4 +44,4 @@ export default class IntegerLiteral extends Expression {
   }
 }
 
-IntegerLiteral.codeRegExp = /^\s*(\d+)\s*$/
+IntegerLiteral.codeRegExp = /^\s*(-?\d+)\s*$/

@@ -140,7 +140,9 @@ export default {
         value: integer,
         anchor: anchor,
         frame: this.graphCode.$el,
-        parentType: parentType
+        parentType: parentType,
+        min: this.compilerConfig.minInteger,
+        max: this.compilerConfig.maxInteger,
       }
       this.popupComponent = IntegerPopup
       this.selectValueListener = listener

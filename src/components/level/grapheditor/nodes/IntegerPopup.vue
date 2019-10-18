@@ -44,7 +44,7 @@ export default {
   },
   data: function() {
     return {
-      integer: this.value ? this.value.value : this.min,
+      integer: this.value ? this.value.value : 0,
 
       centeredX: true,
       centeredY: true,
@@ -108,9 +108,11 @@ export default {
 
         .number {
             text-align: center;
-            width: 36px;
+            min-width: 26px;
             font-size: 22px;
             font-weight: 500;
+            padding-left: 7px;
+            padding-right: 7px;
         }
 
         .minus-button,

@@ -14,6 +14,8 @@ const level = {
     actionFunctions: ['step', 'fireball', 'take', 'drop', 'write'],
     valueFunctions: ['set', 'calc', 'nearest'],
     variables: 5,
+    minInteger: -5,
+    maxInteger: 10857,
     leftComparisonExpressions: ['direction', 'myitem', 'variable'],
     rightComparisonExpressions: ['object_type', 'terrain_type', 'direction', 'myitem', 'variable']
   },
