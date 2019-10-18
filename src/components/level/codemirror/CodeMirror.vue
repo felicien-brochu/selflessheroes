@@ -89,7 +89,7 @@ export default {
   },
 
   created() {
-    this.debouncedCreateExceptionMarkers = _debounce(this.createExceptionMarkers, 2500, {
+    this.debouncedCreateExceptionMarkers = _debounce(this.createExceptionMarkers, 1000, {
       leading: false,
       trailing: true
     })
