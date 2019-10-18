@@ -66,6 +66,7 @@
       :compilerConfig="compilerConfig"
       :worldReady="worldReady"
       :playing="playing"
+      :inBackground="objectiveModalShown || openingSequence"
       :compilerExceptions="compilerExceptions"
       :debugContext="worldState.debugContext"
       :followHeroIndex="followHeroIndex"
@@ -150,6 +151,7 @@ export default {
       followHeroIndex: -1,
       lossModalDisplayed: false,
       winModalDisplayed: false,
+      objectiveModalShown: false,
       openingSequence: true,
       compilerExceptions: {
         fatal: [],
@@ -195,7 +197,6 @@ export default {
     })
 
     this.applyNextPreferredEditorWidth = true
-    this.objectiveModalShown = false
   },
 
   mounted() {

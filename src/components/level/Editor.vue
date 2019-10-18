@@ -36,7 +36,7 @@
           :compilerConfig="compilerConfig"
           :worldReady="worldReady"
           :playing="playing"
-          :hidePalette="playing"
+          :hidePalette="playing || inBackground"
           :debugContext="debugContext"
           :followHeroIndex="followHeroIndex"
           @code-change="handleGraphCodeChange"
@@ -101,6 +101,10 @@ export default {
     'playing': {
       type: Boolean,
       default: false
+    },
+    'inBackground': {
+      type: Boolean,
+      default: true
     },
     'debugContext': {
       type: Object
