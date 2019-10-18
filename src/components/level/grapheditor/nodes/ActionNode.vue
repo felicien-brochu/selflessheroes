@@ -13,6 +13,7 @@
     :key="index"
     :types="param.types"
     :value="param.value"
+    :compilerConfig="compilerConfig"
     parentType="action"
     @select="handleSelectParam(index, $event)"
     @start-edit="$emit('start-edit')" />
@@ -23,6 +24,7 @@
 <script>
 import DirectionLiteral from '../../../../world/ai/compile/statements/literals/DirectionLiteral'
 import IntegerLiteral from '../../../../world/ai/compile/statements/literals/IntegerLiteral'
+import VariableIdentifier from '../../../../world/ai/compile/statements/VariableIdentifier'
 import Node from './Node'
 import ValueSelect from './ValueSelect'
 import FunctionMixin from './FunctionMixin'
@@ -44,9 +46,13 @@ export default {
     autoPopSelect: function() {
       if (this.params.length === 1) {
         let param = this.params[0]
+        let types = param.types
+        if (this.compilerConfig.variables === 0) {
+          types = types.filter(type => type.type !== VariableIdentifier)
+        }
         // If the types possible are only integer literal or direction
-        if (param.types.length === 1 &&
-          (param.types[0].type === DirectionLiteral || param.types[0].type === IntegerLiteral)) {
+        if (types.length === 1 &&
+          (types[0].type === DirectionLiteral || types[0].type === IntegerLiteral)) {
           return true
         }
       }

@@ -6,6 +6,7 @@
     parentType="branching"
     :value="expression.leftExpression"
     :types="leftExpressionTypes"
+    :compilerConfig="compilerConfig"
     @select="handleSelectLeftExpression"
     @start-edit="$emit('start-edit')" />
 
@@ -15,6 +16,7 @@
     :value="expression.operator"
     :types="comparisonOperatorTypes"
     :labelFunc="comparisonOperatorLabelFunc"
+    :compilerConfig="compilerConfig"
     @select="handleSelectComparisonOperator"
     @start-edit="$emit('start-edit')" />
 
@@ -23,6 +25,7 @@
     parentType="branching"
     :value="expression.rightExpression"
     :types="rightExpressionTypes"
+    :compilerConfig="compilerConfig"
     @select="handleSelectRightExpression"
     @start-edit="$emit('start-edit')" />
 
@@ -35,6 +38,7 @@
       :value="operator"
       :types="newBooleanOperatorTypes"
       :labelFunc="newBooleanOperatorLabelFunc"
+      :compilerConfig="compilerConfig"
       @select="$emit('add-condition', $event)"
       @start-edit="$emit('start-edit')" />
 
@@ -44,6 +48,7 @@
       :value="operator"
       :types="booleanOperatorTypes"
       :labelFunc="newBooleanOperatorLabelFunc"
+      :compilerConfig="compilerConfig"
       @select="handleAddOrDeleteBooleanOperator"
       @start-edit="$emit('start-edit')" />
 
@@ -53,6 +58,7 @@
       :value="operator"
       :types="booleanOperatorTypes"
       :labelFunc="booleanOperatorLabelFunc"
+      :compilerConfig="compilerConfig"
       @select="handleSelectOrDeleteBooleanOperator"
       @start-edit="$emit('start-edit')" />
   </div>

@@ -123,16 +123,15 @@ export default class NodeBuilder {
   static buildNewNode(statementClass, compilerConfig) {
     let statement = new statementClass(-1, -1)
     let nodeClass = null
-    let props = {}
+    let props = {
+      compilerConfig: compilerConfig
+    }
     if (statement instanceof IfStatement) {
       statement.condition = new BooleanExpression(statement, -1, -1)
       let expression = new SimpleBooleanExpression(statement.condition, -1, -1)
       expression.operator = compOperators[0]
       statement.condition.expressions.push(expression)
       nodeClass = Vue.extend(IfNode)
-      props = {
-        compilerConfig: compilerConfig
-      }
     } else if (Object.values(ActionFunctions).some(funcType => statement instanceof funcType)) {
       let actionStatement = new ActionStatement(-1, -1)
       actionStatement.function = statement

@@ -14,7 +14,11 @@
       @mousedown.native.prevent.stop="handleEditDirection"
       @touchstart.native.prevent.stop="handleEditDirection" />
     <div v-else-if="isInteger"
-      class="label number-label"
+      :class="{
+				'label': true,
+				'number-label': true,
+				'no-drop-down': !hasDropDown
+			}"
       @mousedown.prevent.stop="handleEditInteger"
       @touchstart.prevent.stop="handleEditInteger">
       <div class="label-text">{{label}}</div>
@@ -68,6 +72,9 @@ export default {
     'labelFunc': {
       type: Function
     },
+    'compilerConfig': {
+      type: Object
+    },
     'parentType': {
       type: String,
       validator: value => {
@@ -120,9 +127,10 @@ export default {
       return icon
     },
     isDirection: function() {
+      let types = this.compilerConfig.filterParamTypes(this.types)
       return this.value instanceof DirectionLiteral ||
         (Array.isArray(this.value) && this.value.length >= 1 && this.value[0] instanceof DirectionLiteral) ||
-        (this.types.length === 1 && this.types[0].type === DirectionLiteral)
+        (types.length === 1 && types[0].type === DirectionLiteral)
     },
     directionNotHere: function() {
       let type = null
@@ -145,13 +153,24 @@ export default {
       return typeof type.validator === 'function' && !type.validator(Direction.here)
     },
     isInteger: function() {
-      return this.value instanceof IntegerLiteral
+      let types = this.compilerConfig.filterParamTypes(this.types)
+      return this.value instanceof IntegerLiteral || (types.length === 1 && types[0].type === IntegerLiteral)
     },
     isArithmeticOperator: function() {
       return this.value instanceof ArithmeticOperatorLiteral
     },
     hasDropDown: function() {
-      return !(this.types.length === 1 && (this.types[0].type === DirectionLiteral || this.types[0].type === IntegerLiteral || this.types[0].type === 'booleanOperator' || this.types[0].type === 'newBooleanOperator'))
+      let types = this.types
+      if (this.compilerConfig.variables === 0) {
+        types = types.filter(type => type.type !== VariableIdentifier)
+      }
+
+      return !(types.length === 1 && (
+        types[0].type === DirectionLiteral ||
+        types[0].type === IntegerLiteral ||
+        types[0].type === 'booleanOperator' ||
+        types[0].type === 'newBooleanOperator'
+      ))
     }
   },
 
@@ -357,6 +376,10 @@ export default {
             &.arithmetic-operator,
             &.number-label {
                 font-size: 20px;
+
+                &.no-drop-down {
+                    padding-right: 5px;
+                }
             }
 
             .label-text {

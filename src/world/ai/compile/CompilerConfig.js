@@ -187,4 +187,17 @@ export default class CompilerConfig {
     }
     return primaryStatements
   }
+
+  isParamTypeAvailable(type) {
+    return (type.type === TerrainTypeLiteral && this.terrainTypes.length > 0) ||
+      (type.type === ObjectTypeLiteral && this.objectTypes.length > 0) ||
+      (type.type === VariableIdentifier && this.variables > 0) ||
+      type.type === DirectionLiteral ||
+      type.type === IntegerLiteral ||
+      type.type === MyItemLiteral
+  }
+
+  filterParamTypes(types) {
+    return types.filter(type => this.isParamTypeAvailable(type))
+  }
 }

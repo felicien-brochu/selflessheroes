@@ -5,6 +5,7 @@
 
   <value-select :types="variableTypes"
     :value="statement.variable"
+    :compilerConfig="compilerConfig"
     parentType="assign"
     @select="handleSelectVariable"
     @start-edit="$emit('start-edit')" />
@@ -22,6 +23,7 @@
       :key="index"
       :types="param.types"
       :value="param.value"
+      :compilerConfig="compilerConfig"
       parentType="assign"
       @select="handleSelectParam(index, $event)"
       @start-edit="$emit('start-edit')" />
