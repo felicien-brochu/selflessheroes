@@ -324,7 +324,11 @@ export default {
     handleDeleteCondition(expression) {
       let index = this.statement.condition.expressions.indexOf(expression)
       if (index >= 0) {
-        this.statement.condition.operators.splice(index - 1, 1)
+        let operatorIndex = index
+        if (operatorIndex >= this.statement.condition.operators.length) {
+          operatorIndex = this.statement.condition.operators.length - 1
+        }
+        this.statement.condition.operators.splice(operatorIndex, 1)
         this.statement.condition.expressions.splice(index, 1)
         this.$emit('change', this)
       }
