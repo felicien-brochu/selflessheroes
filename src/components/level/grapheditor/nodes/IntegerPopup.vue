@@ -44,7 +44,7 @@ export default {
   },
   data: function() {
     return {
-      integer: this.value ? this.value.value : 0,
+      integer: this.value ? this.value.value : (0 >= this.min && 0 <= this.max ? 0 : this.min),
 
       centeredX: true,
       centeredY: true,
