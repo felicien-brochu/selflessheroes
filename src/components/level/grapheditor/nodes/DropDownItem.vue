@@ -10,7 +10,16 @@
 				`icon-${icon}`
 			]"
     :alt="label" />
-  <span class="drop-down-item-label">{{ label }}</span>
+
+  <span v-if="labelIcon"
+    :class="[
+				'drop-down-item-label',
+				'mdi',
+				`mdi-${labelIcon}`
+			]"
+    :title="label" />
+  <span v-else
+    class="drop-down-item-label">{{ label }}</span>
 </li>
 </template>
 
@@ -27,6 +36,10 @@ export default {
     'label': {
       type: String,
       default: 'item'
+    },
+    'labelIcon': {
+      type: String,
+      default: null
     },
     'icon': {
       type: String

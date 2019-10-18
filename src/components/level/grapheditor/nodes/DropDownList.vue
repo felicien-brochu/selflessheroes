@@ -9,6 +9,7 @@
 		}"
     :value="item.value"
     :label="item.label"
+    :labelIcon="item.labelIcon"
     :icon="item.icon"
     :selected="item.selected"
     @select-value="handleItemSelectValue" />
@@ -243,8 +244,10 @@ export default {
       let items = this.createNewBooleanOperatorItems()
       items.push({
         label: this.$text('operator_boolean_delete'),
+        labelIcon: 'trash-can-outline',
         value: 'delete',
-        selected: false
+        selected: false,
+        booleanOperator: true
       })
       return items
     },
