@@ -378,7 +378,8 @@ export default {
                 font-size: 20px;
 
                 &.no-drop-down {
-                    padding-right: 5px;
+                    padding-right: 8px;
+                    padding-left: 7px;
                 }
             }
 
