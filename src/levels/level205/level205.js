@@ -48,8 +48,8 @@ const displacedNumberedEggLossCondition = {
 const level = {
   mapConfig: map,
   name: {
-    en: "+1",
-    fr: "+1",
+    en: "Something more",
+    fr: "Quelque chose en plus",
   },
   objective: {
     en: "Add 1 to all %%icon icon-egg$%% eggs.\n\n%%icon mdi mdi-information-outline$%% Your heroes are now able to do calculations. Use %%statement assign-statement$calc%% to calculate.",
