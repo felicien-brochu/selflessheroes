@@ -19,7 +19,7 @@
 			alignHoriz: true,
 			alignVert: false,
 			maxFontSize: 50,
-			minFontSize: 40
+			minFontSize: 39
 		}">{{$text(level.getNameMessageKey())}}</h3>
 
 

@@ -163,6 +163,10 @@
     }
     // Sub 1 at the very end, this is closer to what we wanted.
     innerSpan.style.fontSize = (mid - 1) + 'px';
+    while (innerSpan.scrollWidth > originalWidth) {
+      innerSpan.style.fontSize = mid - 2 + 'px'
+      mid--
+    }
 
     // Our height is finalized. If we are aligning vertically, set that up.
     if (settings.alignVert) {
