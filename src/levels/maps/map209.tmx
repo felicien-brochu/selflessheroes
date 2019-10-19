@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="27" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="345" nextobjectid="403">
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="27" height="21" tilewidth="32" tileheight="32" infinite="0" nextlayerid="347" nextobjectid="529">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
   <image source="tileset.png" trans="000000" width="340" height="680"/>
   <terraintypes>
@@ -165,823 +165,544 @@
 </data>
  </layer>
  <objectgroup id="2" name="objects">
-  <object id="33" name="hero" type="hero" x="402" y="121">
-   <properties>
-    <property name="initialDirection" value="w"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="34" name="hero" type="hero" x="461" y="159">
+  <object id="33" name="hero" type="hero" x="81" y="118">
    <properties>
     <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="35" name="hero" type="hero" x="401" y="183">
-   <properties>
-    <property name="initialDirection" value="w"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="36" name="hero" type="hero" x="462" y="217">
+  <object id="34" name="hero" type="hero" x="76" y="157">
    <properties>
     <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="37" name="hero" type="hero" x="397" y="253">
-   <properties>
-    <property name="initialDirection" value="w"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="38" name="hero" type="hero" x="457" y="283">
+  <object id="35" name="hero" type="hero" x="80" y="180">
    <properties>
     <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="121" name="hero" type="hero" x="398" y="314">
-   <properties>
-    <property name="initialDirection" value="w"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="122" name="hero" type="hero" x="460" y="349">
+  <object id="36" name="hero" type="hero" x="77" y="215">
    <properties>
     <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="123" name="hero" type="hero" x="402" y="376">
-   <properties>
-    <property name="initialDirection" value="w"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="124" name="hero" type="hero" x="461" y="412">
+  <object id="37" name="hero" type="hero" x="76" y="250">
    <properties>
     <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="144" name="hero" type="hero" x="401" y="441">
-   <properties>
-    <property name="initialDirection" value="w"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="239" name="hero" type="hero" x="463" y="469">
+  <object id="38" name="hero" type="hero" x="72" y="281">
    <properties>
     <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="240" name="hero" type="hero" x="403" y="504">
-   <properties>
-    <property name="initialDirection" value="w"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="241" name="hero" type="hero" x="462" y="536">
+  <object id="121" name="hero" type="hero" x="77" y="311">
    <properties>
     <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="242" name="hero" type="hero" x="402" y="564">
+  <object id="122" name="hero" type="hero" x="75" y="347">
    <properties>
-    <property name="initialDirection" value="w"/>
+    <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="145" name="egg" type="egg" x="145" y="117">
+  <object id="123" name="hero" type="hero" x="81" y="373">
    <properties>
-    <property name="value" value="5"/>
+    <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="243" name="egg" type="egg" x="465" y="115">
+  <object id="124" name="hero" type="hero" x="76" y="410">
    <properties>
-    <property name="value" value="-4"/>
+    <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="244" name="egg" type="egg" x="593" y="114">
+  <object id="144" name="hero" type="hero" x="80" y="438">
    <properties>
-    <property name="value" value="-7"/>
+    <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="245" name="egg" type="egg" x="270" y="114">
+  <object id="239" name="hero" type="hero" x="78" y="467">
    <properties>
-    <property name="value" value="4"/>
+    <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="246" name="egg" type="egg" x="751" y="117">
+  <object id="240" name="hero" type="hero" x="82" y="501">
    <properties>
-    <property name="value" value="-10"/>
+    <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="247" name="egg" type="egg" x="339" y="150">
+  <object id="241" name="hero" type="hero" x="77" y="534">
    <properties>
-    <property name="value" value="-2"/>
+    <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="248" name="egg" type="egg" x="242" y="149">
+  <object id="242" name="hero" type="hero" x="81" y="561">
    <properties>
-    <property name="value" value="7"/>
+    <property name="initialDirection" value="e"/>
    </properties>
    <point/>
   </object>
-  <object id="249" name="egg" type="egg" x="658" y="184">
-   <properties>
-    <property name="value" value="-13"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="250" name="egg" type="egg" x="434" y="184">
-   <properties>
-    <property name="value" value="-4"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="251" name="egg" type="egg" x="403" y="183">
-   <properties>
-    <property name="value" value="3"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="252" name="egg" type="egg" x="531" y="207">
-   <properties>
-    <property name="value" value="-10"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="253" name="egg" type="egg" x="242" y="206">
-   <properties>
-    <property name="value" value="1"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="254" name="egg" type="egg" x="306" y="212">
-   <properties>
-    <property name="value" value="1"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="255" name="egg" type="egg" x="176" y="212">
-   <properties>
-    <property name="value" value="10"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="256" name="egg" type="egg" x="113" y="247">
-   <properties>
-    <property name="value" value="4"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="257" name="egg" type="egg" x="210" y="247">
-   <properties>
-    <property name="value" value="3"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="258" name="egg" type="egg" x="271" y="245">
+  <object id="145" name="egg" type="egg" x="433" y="116">
    <properties>
     <property name="value" value="2"/>
    </properties>
    <point/>
   </object>
-  <object id="259" name="egg" type="egg" x="370" y="243">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="260" name="egg" type="egg" x="399" y="243">
-   <properties>
-    <property name="value" value="2"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="261" name="egg" type="egg" x="690" y="246">
-   <properties>
-    <property name="value" value="-6"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="262" name="egg" type="egg" x="431" y="246">
-   <properties>
-    <property name="value" value="3"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="263" name="egg" type="egg" x="562" y="240">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="264" name="egg" type="egg" x="723" y="247">
-   <properties>
-    <property name="value" value="-4"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="265" name="egg" type="egg" x="431" y="277">
-   <properties>
-    <property name="value" value="-4"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="266" name="egg" type="egg" x="459" y="278">
-   <properties>
-    <property name="value" value="4"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="267" name="egg" type="egg" x="303" y="306">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="268" name="egg" type="egg" x="336" y="310">
-   <properties>
-    <property name="value" value="2"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="269" name="egg" type="egg" x="235" y="313">
-   <properties>
-    <property name="value" value="6"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="270" name="egg" type="egg" x="690" y="309">
-   <properties>
-    <property name="value" value="-7"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="271" name="egg" type="egg" x="497" y="302">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="272" name="egg" type="egg" x="143" y="313">
+  <object id="423" name="egg" type="egg" x="144" y="116">
    <properties>
     <property name="value" value="12"/>
    </properties>
    <point/>
   </object>
-  <object id="273" name="egg" type="egg" x="558" y="305">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="274" name="egg" type="egg" x="751" y="311">
-   <properties>
-    <property name="value" value="-5"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="275" name="egg" type="egg" x="623" y="305">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="276" name="egg" type="egg" x="367" y="310">
-   <properties>
-    <property name="value" value="9"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="277" name="egg" type="egg" x="464" y="337">
-   <properties>
-    <property name="value" value="-5"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="278" name="egg" type="egg" x="204" y="345">
-   <properties>
-    <property name="value" value="6"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="279" name="egg" type="egg" x="719" y="344">
-   <properties>
-    <property name="value" value="-2"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="280" name="egg" type="egg" x="562" y="373">
-   <properties>
-    <property name="value" value="-8"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="281" name="egg" type="egg" x="272" y="373">
-   <properties>
-    <property name="value" value="4"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="282" name="egg" type="egg" x="371" y="374">
+  <object id="425" name="egg" type="egg" x="369" y="149">
    <properties>
     <property name="value" value="3"/>
    </properties>
    <point/>
   </object>
-  <object id="283" name="egg" type="egg" x="528" y="368">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="284" name="egg" type="egg" x="621" y="371">
-   <properties>
-    <property name="value" value="-1"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="285" name="egg" type="egg" x="240" y="372">
-   <properties>
-    <property name="value" value="13"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="286" name="egg" type="egg" x="431" y="406">
-   <properties>
-    <property name="value" value="-4"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="287" name="egg" type="egg" x="396" y="399">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="288" name="egg" type="egg" x="176" y="408">
-   <properties>
-    <property name="value" value="9"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="289" name="egg" type="egg" x="497" y="406">
-   <properties>
-    <property name="value" value="1"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="290" name="egg" type="egg" x="595" y="399">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="291" name="egg" type="egg" x="689" y="408">
-   <properties>
-    <property name="value" value="-1"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="292" name="egg" type="egg" x="305" y="433">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="293" name="egg" type="egg" x="366" y="436">
-   <properties>
-    <property name="value" value="1"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="294" name="egg" type="egg" x="752" y="436">
-   <properties>
-    <property name="value" value="-9"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="295" name="egg" type="egg" x="243" y="437">
-   <properties>
-    <property name="value" value="9"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="296" name="egg" type="egg" x="433" y="436">
-   <properties>
-    <property name="value" value="5"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="297" name="egg" type="egg" x="658" y="433">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="298" name="egg" type="egg" x="114" y="471">
-   <properties>
-    <property name="value" value="6"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="299" name="egg" type="egg" x="496" y="466">
-   <properties>
-    <property name="value" value="-3"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="300" name="egg" type="egg" x="274" y="467">
-   <properties>
-    <property name="value" value="12"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="301" name="egg" type="egg" x="716" y="503">
-   <properties>
-    <property name="value" value="-13"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="302" name="egg" type="egg" x="372" y="501">
-   <properties>
-    <property name="value" value="1"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="303" name="egg" type="egg" x="147" y="503">
-   <properties>
-    <property name="value" value="9"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="304" name="egg" type="egg" x="465" y="497">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="305" name="egg" type="egg" x="334" y="499">
-   <properties>
-    <property name="value" value="5"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="306" name="egg" type="egg" x="530" y="495">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="307" name="egg" type="egg" x="208" y="502">
-   <properties>
-    <property name="value" value="11"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="308" name="egg" type="egg" x="754" y="500">
-   <properties>
-    <property name="value" value="-5"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="309" name="egg" type="egg" x="628" y="496">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="310" name="egg" type="egg" x="243" y="501">
-   <properties>
-    <property name="value" value="13"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="311" name="egg" type="egg" x="659" y="533">
-   <properties>
-    <property name="value" value="-11"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="312" name="egg" type="egg" x="398" y="532">
-   <properties>
-    <property name="value" value="6"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="313" name="egg" type="egg" x="305" y="561">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="314" name="egg" type="egg" x="271" y="562">
-   <properties>
-    <property name="value" value="2"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="315" name="egg" type="egg" x="176" y="562">
-   <properties>
-    <property name="value" value="6"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="316" name="egg" type="egg" x="109" y="564">
-   <properties>
-    <property name="value" value="9"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="317" name="egg" type="egg" x="428" y="562">
-   <properties>
-    <property name="value" value="0"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="318" name="egg" type="egg" x="720" y="562">
-   <properties>
-    <property name="value" value="-8"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="319" name="egg" type="egg" x="235" y="561">
+  <object id="427" name="egg" type="egg" x="306" y="150">
    <properties>
     <property name="value" value="8"/>
    </properties>
    <point/>
   </object>
-  <object id="320" name="egg" type="egg" x="525" y="561">
+  <object id="429" name="egg" type="egg" x="239" y="178">
+   <properties>
+    <property name="value" value="7"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="431" name="egg" type="egg" x="114" y="181">
+   <properties>
+    <property name="value" value="14"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="433" name="egg" type="egg" x="146" y="214">
+   <properties>
+    <property name="value" value="9"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="435" name="egg" type="egg" x="494" y="214">
+   <properties>
+    <property name="value" value="3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="437" name="egg" type="egg" x="336" y="239">
+   <properties>
+    <property name="value" value="1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="439" name="egg" type="egg" x="206" y="243">
+   <properties>
+    <property name="value" value="6"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="441" name="egg" type="egg" x="175" y="243">
+   <properties>
+    <property name="value" value="14"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="443" name="egg" type="egg" x="560" y="244">
+   <properties>
+    <property name="value" value="3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="445" name="egg" type="egg" x="268" y="276">
    <properties>
     <property name="value" value="0"/>
    </properties>
    <point/>
   </object>
-  <object id="321" name="egg" type="egg" x="690" y="563">
+  <object id="447" name="egg" type="egg" x="113" y="276">
    <properties>
-    <property name="value" value="-4"/>
+    <property name="value" value="6"/>
    </properties>
    <point/>
   </object>
-  <object id="322" name="egg" type="egg" x="593" y="562">
+  <object id="449" name="egg" type="egg" x="237" y="276">
+   <properties>
+    <property name="value" value="3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="451" name="egg" type="egg" x="526" y="275">
+   <properties>
+    <property name="value" value="5"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="453" name="egg" type="egg" x="719" y="270">
    <properties>
     <property name="value" value="0"/>
    </properties>
    <point/>
   </object>
-  <object id="149" name="marker" type="marker" x="304" y="116">
+  <object id="455" name="egg" type="egg" x="623" y="276">
+   <properties>
+    <property name="value" value="4"/>
+   </properties>
    <point/>
   </object>
-  <object id="323" name="marker" type="marker" x="336" y="111">
+  <object id="465" name="egg" type="egg" x="144" y="308">
+   <properties>
+    <property name="value" value="4"/>
+   </properties>
    <point/>
   </object>
-  <object id="324" name="marker" type="marker" x="367" y="112">
+  <object id="467" name="egg" type="egg" x="399" y="307">
+   <properties>
+    <property name="value" value="2"/>
+   </properties>
    <point/>
   </object>
-  <object id="325" name="marker" type="marker" x="402" y="111">
+  <object id="469" name="egg" type="egg" x="303" y="308">
+   <properties>
+    <property name="value" value="8"/>
+   </properties>
    <point/>
   </object>
-  <object id="326" name="marker" type="marker" x="431" y="111">
+  <object id="471" name="egg" type="egg" x="686" y="308">
+   <properties>
+    <property name="value" value="2"/>
+   </properties>
    <point/>
   </object>
-  <object id="327" name="marker" type="marker" x="271" y="141">
+  <object id="473" name="egg" type="egg" x="303" y="336">
+   <properties>
+    <property name="value" value="0"/>
+   </properties>
    <point/>
   </object>
-  <object id="328" name="marker" type="marker" x="464" y="145">
+  <object id="475" name="egg" type="egg" x="432" y="341">
+   <properties>
+    <property name="value" value="1"/>
+   </properties>
    <point/>
   </object>
-  <object id="329" name="marker" type="marker" x="240" y="177">
+  <object id="477" name="egg" type="egg" x="270" y="338">
+   <properties>
+    <property name="value" value="9"/>
+   </properties>
    <point/>
   </object>
-  <object id="330" name="marker" type="marker" x="305" y="176">
+  <object id="479" name="egg" type="egg" x="530" y="343">
+   <properties>
+    <property name="value" value="6"/>
+   </properties>
    <point/>
   </object>
-  <object id="331" name="marker" type="marker" x="497" y="175">
+  <object id="481" name="egg" type="egg" x="208" y="373">
+   <properties>
+    <property name="value" value="4"/>
+   </properties>
    <point/>
   </object>
-  <object id="332" name="marker" type="marker" x="203" y="205">
+  <object id="483" name="egg" type="egg" x="492" y="373">
+   <properties>
+    <property name="value" value="6"/>
+   </properties>
    <point/>
   </object>
-  <object id="333" name="marker" type="marker" x="272" y="207">
+  <object id="485" name="egg" type="egg" x="115" y="405">
+   <properties>
+    <property name="value" value="8"/>
+   </properties>
    <point/>
   </object>
-  <object id="334" name="marker" type="marker" x="336" y="209">
+  <object id="487" name="egg" type="egg" x="592" y="402">
+   <properties>
+    <property name="value" value="2"/>
+   </properties>
    <point/>
   </object>
-  <object id="335" name="marker" type="marker" x="498" y="208">
+  <object id="489" name="egg" type="egg" x="337" y="432">
+   <properties>
+    <property name="value" value="1"/>
+   </properties>
    <point/>
   </object>
-  <object id="336" name="marker" type="marker" x="242" y="244">
+  <object id="491" name="egg" type="egg" x="240" y="435">
+   <properties>
+    <property name="value" value="13"/>
+   </properties>
    <point/>
   </object>
-  <object id="337" name="marker" type="marker" x="305" y="244">
+  <object id="493" name="egg" type="egg" x="177" y="466">
+   <properties>
+    <property name="value" value="6"/>
+   </properties>
    <point/>
   </object>
-  <object id="338" name="marker" type="marker" x="334" y="243">
+  <object id="495" name="egg" type="egg" x="559" y="466">
+   <properties>
+    <property name="value" value="3"/>
+   </properties>
    <point/>
   </object>
-  <object id="339" name="marker" type="marker" x="371" y="242">
+  <object id="497" name="egg" type="egg" x="271" y="499">
+   <properties>
+    <property name="value" value="2"/>
+   </properties>
    <point/>
   </object>
-  <object id="340" name="marker" type="marker" x="466" y="243">
+  <object id="499" name="egg" type="egg" x="464" y="497">
+   <properties>
+    <property name="value" value="1"/>
+   </properties>
    <point/>
   </object>
-  <object id="341" name="marker" type="marker" x="501" y="243">
+  <object id="501" name="egg" type="egg" x="238" y="498">
+   <properties>
+    <property name="value" value="9"/>
+   </properties>
    <point/>
   </object>
-  <object id="342" name="marker" type="marker" x="532" y="242">
+  <object id="503" name="egg" type="egg" x="366" y="501">
+   <properties>
+    <property name="value" value="10"/>
+   </properties>
    <point/>
   </object>
-  <object id="343" name="marker" type="marker" x="563" y="243">
+  <object id="505" name="egg" type="egg" x="209" y="533">
+   <properties>
+    <property name="value" value="4"/>
+   </properties>
    <point/>
   </object>
-  <object id="344" name="marker" type="marker" x="595" y="240">
+  <object id="507" name="egg" type="egg" x="176" y="537">
+   <properties>
+    <property name="value" value="8"/>
+   </properties>
    <point/>
   </object>
-  <object id="345" name="marker" type="marker" x="306" y="274">
+  <object id="509" name="egg" type="egg" x="143" y="535">
+   <properties>
+    <property name="value" value="10"/>
+   </properties>
    <point/>
   </object>
-  <object id="346" name="marker" type="marker" x="594" y="273">
+  <object id="511" name="egg" type="egg" x="560" y="532">
+   <properties>
+    <property name="value" value="0"/>
+   </properties>
    <point/>
   </object>
-  <object id="347" name="marker" type="marker" x="303" y="303">
+  <object id="513" name="egg" type="egg" x="532" y="531">
+   <properties>
+    <property name="value" value="2"/>
+   </properties>
    <point/>
   </object>
-  <object id="348" name="marker" type="marker" x="399" y="304">
+  <object id="515" name="egg" type="egg" x="497" y="532">
+   <properties>
+    <property name="value" value="6"/>
+   </properties>
    <point/>
   </object>
-  <object id="349" name="marker" type="marker" x="441" y="304">
+  <object id="517" name="egg" type="egg" x="303" y="563">
+   <properties>
+    <property name="value" value="1"/>
+   </properties>
    <point/>
   </object>
-  <object id="350" name="marker" type="marker" x="469" y="304">
+  <object id="519" name="egg" type="egg" x="273" y="563">
+   <properties>
+    <property name="value" value="3"/>
+   </properties>
    <point/>
   </object>
-  <object id="351" name="marker" type="marker" x="499" y="305">
+  <object id="521" name="egg" type="egg" x="177" y="566">
+   <properties>
+    <property name="value" value="7"/>
+   </properties>
    <point/>
   </object>
-  <object id="352" name="marker" type="marker" x="528" y="305">
+  <object id="523" name="egg" type="egg" x="625" y="559">
+   <properties>
+    <property name="value" value="0"/>
+   </properties>
    <point/>
   </object>
-  <object id="353" name="marker" type="marker" x="562" y="304">
+  <object id="525" name="egg" type="egg" x="114" y="566">
+   <properties>
+    <property name="value" value="17"/>
+   </properties>
    <point/>
   </object>
-  <object id="354" name="marker" type="marker" x="595" y="303">
+  <object id="527" name="egg" type="egg" x="436" y="565">
+   <properties>
+    <property name="value" value="8"/>
+   </properties>
    <point/>
   </object>
-  <object id="355" name="marker" type="marker" x="627" y="303">
+  <object id="149" name="marker" type="marker" x="497" y="117" visible="0">
    <point/>
   </object>
-  <object id="356" name="marker" type="marker" x="657" y="303">
+  <object id="424" name="marker" type="marker" x="530" y="112" visible="0">
    <point/>
   </object>
-  <object id="357" name="marker" type="marker" x="304" y="339">
+  <object id="426" name="marker" type="marker" x="462" y="145" visible="0">
    <point/>
   </object>
-  <object id="358" name="marker" type="marker" x="399" y="334">
+  <object id="428" name="marker" type="marker" x="564" y="146" visible="0">
    <point/>
   </object>
-  <object id="359" name="marker" type="marker" x="658" y="337">
+  <object id="430" name="marker" type="marker" x="464" y="178" visible="0">
    <point/>
   </object>
-  <object id="360" name="marker" type="marker" x="302" y="368">
+  <object id="432" name="marker" type="marker" x="560" y="177" visible="0">
    <point/>
   </object>
-  <object id="361" name="marker" type="marker" x="402" y="368">
+  <object id="434" name="marker" type="marker" x="431" y="210" visible="0">
    <point/>
   </object>
-  <object id="362" name="marker" type="marker" x="467" y="367">
+  <object id="436" name="marker" type="marker" x="593" y="209" visible="0">
    <point/>
   </object>
-  <object id="363" name="marker" type="marker" x="525" y="368">
+  <object id="438" name="marker" type="marker" x="367" y="240" visible="0">
    <point/>
   </object>
-  <object id="364" name="marker" type="marker" x="590" y="369">
+  <object id="440" name="marker" type="marker" x="401" y="241" visible="0">
    <point/>
   </object>
-  <object id="365" name="marker" type="marker" x="656" y="369">
+  <object id="442" name="marker" type="marker" x="623" y="240" visible="0">
    <point/>
   </object>
-  <object id="366" name="marker" type="marker" x="302" y="401">
+  <object id="444" name="marker" type="marker" x="658" y="238" visible="0">
    <point/>
   </object>
-  <object id="367" name="marker" type="marker" x="397" y="402">
+  <object id="446" name="marker" type="marker" x="269" y="271" visible="0">
    <point/>
   </object>
-  <object id="368" name="marker" type="marker" x="466" y="400">
+  <object id="448" name="marker" type="marker" x="304" y="272" visible="0">
    <point/>
   </object>
-  <object id="369" name="marker" type="marker" x="528" y="401">
+  <object id="450" name="marker" type="marker" x="339" y="273" visible="0">
    <point/>
   </object>
-  <object id="370" name="marker" type="marker" x="588" y="400">
+  <object id="452" name="marker" type="marker" x="687" y="272" visible="0">
    <point/>
   </object>
-  <object id="371" name="marker" type="marker" x="655" y="397">
+  <object id="454" name="marker" type="marker" x="720" y="272" visible="0">
    <point/>
   </object>
-  <object id="372" name="marker" type="marker" x="304" y="432">
+  <object id="456" name="marker" type="marker" x="752" y="274" visible="0">
    <point/>
   </object>
-  <object id="373" name="marker" type="marker" x="400" y="434">
+  <object id="466" name="marker" type="marker" x="273" y="304" visible="0">
    <point/>
   </object>
-  <object id="374" name="marker" type="marker" x="466" y="432">
+  <object id="468" name="marker" type="marker" x="463" y="306" visible="0">
    <point/>
   </object>
-  <object id="375" name="marker" type="marker" x="528" y="435">
+  <object id="470" name="marker" type="marker" x="558" y="306" visible="0">
    <point/>
   </object>
-  <object id="376" name="marker" type="marker" x="592" y="432">
+  <object id="472" name="marker" type="marker" x="752" y="306" visible="0">
    <point/>
   </object>
-  <object id="377" name="marker" type="marker" x="661" y="432">
+  <object id="474" name="marker" type="marker" x="304" y="338" visible="0">
    <point/>
   </object>
-  <object id="378" name="marker" type="marker" x="305" y="464">
+  <object id="476" name="marker" type="marker" x="463" y="337" visible="0">
    <point/>
   </object>
-  <object id="379" name="marker" type="marker" x="399" y="466">
+  <object id="478" name="marker" type="marker" x="557" y="334" visible="0">
    <point/>
   </object>
-  <object id="380" name="marker" type="marker" x="656" y="467">
+  <object id="480" name="marker" type="marker" x="719" y="336" visible="0">
    <point/>
   </object>
-  <object id="381" name="marker" type="marker" x="304" y="499">
+  <object id="482" name="marker" type="marker" x="340" y="368" visible="0">
    <point/>
   </object>
-  <object id="382" name="marker" type="marker" x="402" y="496">
+  <object id="484" name="marker" type="marker" x="690" y="370" visible="0">
    <point/>
   </object>
-  <object id="383" name="marker" type="marker" x="431" y="496">
+  <object id="486" name="marker" type="marker" x="370" y="396" visible="0">
    <point/>
   </object>
-  <object id="384" name="marker" type="marker" x="466" y="493">
+  <object id="488" name="marker" type="marker" x="657" y="400" visible="0">
    <point/>
   </object>
-  <object id="385" name="marker" type="marker" x="498" y="492">
+  <object id="490" name="marker" type="marker" x="369" y="432" visible="0">
    <point/>
   </object>
-  <object id="386" name="marker" type="marker" x="533" y="495">
+  <object id="492" name="marker" type="marker" x="654" y="430" visible="0">
    <point/>
   </object>
-  <object id="387" name="marker" type="marker" x="566" y="493">
+  <object id="494" name="marker" type="marker" x="369" y="463" visible="0">
    <point/>
   </object>
-  <object id="388" name="marker" type="marker" x="597" y="495">
+  <object id="496" name="marker" type="marker" x="660" y="465" visible="0">
    <point/>
   </object>
-  <object id="389" name="marker" type="marker" x="626" y="490">
+  <object id="498" name="marker" type="marker" x="337" y="497" visible="0">
    <point/>
   </object>
-  <object id="390" name="marker" type="marker" x="658" y="494">
+  <object id="500" name="marker" type="marker" x="498" y="500" visible="0">
    <point/>
   </object>
-  <object id="391" name="marker" type="marker" x="305" y="529">
+  <object id="502" name="marker" type="marker" x="532" y="501" visible="0">
    <point/>
   </object>
-  <object id="392" name="marker" type="marker" x="592" y="529">
+  <object id="504" name="marker" type="marker" x="688" y="502" visible="0">
    <point/>
   </object>
-  <object id="393" name="marker" type="marker" x="303" y="563">
+  <object id="506" name="marker" type="marker" x="337" y="530" visible="0">
    <point/>
   </object>
-  <object id="394" name="marker" type="marker" x="338" y="566">
+  <object id="508" name="marker" type="marker" x="434" y="530" visible="0">
    <point/>
   </object>
-  <object id="395" name="marker" type="marker" x="372" y="564">
+  <object id="510" name="marker" type="marker" x="467" y="530" visible="0">
    <point/>
   </object>
-  <object id="396" name="marker" type="marker" x="401" y="563">
+  <object id="512" name="marker" type="marker" x="561" y="528" visible="0">
    <point/>
   </object>
-  <object id="397" name="marker" type="marker" x="437" y="567">
+  <object id="514" name="marker" type="marker" x="595" y="530" visible="0">
    <point/>
   </object>
-  <object id="398" name="marker" type="marker" x="466" y="562">
+  <object id="516" name="marker" type="marker" x="693" y="527" visible="0">
    <point/>
   </object>
-  <object id="399" name="marker" type="marker" x="497" y="561">
+  <object id="518" name="marker" type="marker" x="337" y="563" visible="0">
    <point/>
   </object>
-  <object id="400" name="marker" type="marker" x="526" y="563">
+  <object id="520" name="marker" type="marker" x="369" y="562" visible="0">
    <point/>
   </object>
-  <object id="401" name="marker" type="marker" x="559" y="566">
+  <object id="522" name="marker" type="marker" x="400" y="564" visible="0">
    <point/>
   </object>
-  <object id="402" name="marker" type="marker" x="593" y="561">
+  <object id="524" name="marker" type="marker" x="626" y="561" visible="0">
+   <point/>
+  </object>
+  <object id="526" name="marker" type="marker" x="657" y="563" visible="0">
+   <point/>
+  </object>
+  <object id="528" name="marker" type="marker" x="688" y="563" visible="0">
    <point/>
   </object>
  </objectgroup>
