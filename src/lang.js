@@ -297,7 +297,7 @@ const messages = {
 
 
     level_test_failed_modal: "Some of the tests failed.\nWe reproduced the same situation as in these failed attempts.",
-    loss_reason_too_many_steps: "Your program takes too much time!",
+    loss_reason_too_many_steps: "Your program takes too much time",
     loss_reason_all_hero_ended: "Your heroes fell asleep before completing the objective",
     loss_reason_all_hero_dead: "All your heroes are dead",
     loss_reason_one_hero_dead: "One of your heroes is dead",
@@ -550,7 +550,7 @@ const messages = {
 
 
     level_test_failed_modal: "Certains tests ont échoué.\nNous avons reproduit une des situations problématiques.",
-    loss_reason_too_many_steps: "Ton programme prend trop de temps\u00A0!",
+    loss_reason_too_many_steps: "Ton programme prend trop de temps",
     loss_reason_all_hero_ended: "Les héros se sont endormis avant de remplir l'objectif",
     loss_reason_all_hero_dead: "Tous les héros sont morts",
     loss_reason_one_hero_dead: "Un des héros est mort",

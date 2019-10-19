@@ -20,8 +20,8 @@ const level = {
     fr: "Stégano-graphie",
   },
   objective: {
-    en: "Move the %%icon icon-egg$%% eggs down of as many squares as their number to discover the hidden image.\nThen bring %%icon icon-hero$%% heroes all the way down.",
-    fr: "Déplace les %%icon icon-egg$%% œufs vers le bas d'autant de cases que leur numéro pour découvrir l'image cachée.\nEnsuite fais descendre les %%icon icon-hero$%% héros tout en bas.",
+    en: "Move the %%icon icon-egg$%% eggs down of as many squares as their number to discover the hidden image.\nThen bring %%icon icon-hero$%% heroes all the way down.\n\n%%icon mdi mdi-information-outline$%% Use %%statement assign-statement$calc%% and %%icon icon-variable$%% %%statement assign-statement$ a%% variable to count your steps.",
+    fr: "Déplace les %%icon icon-egg$%% œufs vers le bas d'autant de cases que leur numéro pour découvrir l'image cachée.\nEnsuite fais descendre les %%icon icon-hero$%% héros tout en bas.\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement assign-statement$calc%% et la variable %%icon icon-variable$%% %%statement assign-statement$ a%% pour compter tes pas.",
   },
 
   maxStep: 300,

@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="21" height="17" tilewidth="32" tileheight="32" infinite="0" nextlayerid="334" nextobjectid="239">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
+  <image source="tileset.png" trans="000000" width="340" height="680"/>
+  <terraintypes>
+   <terrain name="floor" tile="79"/>
+   <terrain name="wall" tile="69"/>
+   <terrain name="hole" tile="78"/>
+  </terraintypes>
+ </tileset>
+ <layer id="325" name="checkers" width="21" height="17">
+  <data encoding="csv">
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0
+</data>
+ </layer>
+ <objectgroup id="14" name="camera">
+  <object id="12" name="frame" type="frame" x="50" y="32" width="571" height="463"/>
+  <object id="15" name="strategy" type="cameraStrategy" x="3" y="126">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="326" name="path" width="21" height="17">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="331" name="types" width="21" height="17">
+  <data encoding="csv">
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,79,
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79
+</data>
+ </layer>
+ <layer id="332" name="ground" width="21" height="17">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1,2,3,5,4,4,4,5,5,3,5,2,5,4,5,4,5,2,6,0,
+0,11,27,152,8,131,28,152,18,131,20,142,37,134,39,142,19,123,19,16,0,
+0,11,151,27,151,37,122,10,141,27,152,38,151,39,134,39,121,9,124,16,0,
+0,21,30,131,8,141,40,133,7,134,7,132,30,151,18,121,19,143,37,16,0,
+0,11,152,39,153,20,152,27,142,10,134,38,152,7,122,39,121,9,153,16,0,
+0,11,39,122,30,121,9,152,19,141,8,122,30,142,37,134,29,122,7,16,0,
+0,21,132,40,132,7,154,7,131,20,141,17,154,19,132,9,123,18,121,16,0,
+0,11,29,133,30,153,27,151,10,122,30,122,19,131,37,124,18,154,29,16,0,
+0,11,124,39,154,38,124,40,124,28,121,29,124,8,143,30,154,38,153,26,0,
+0,21,27,143,40,154,27,132,19,154,9,124,30,122,17,132,28,153,38,26,0,
+0,21,143,10,153,38,132,7,134,17,143,29,133,17,134,19,152,19,122,16,0,
+0,11,10,153,10,132,30,133,30,131,8,142,7,121,39,142,37,123,37,26,0,
+0,21,131,10,142,37,151,10,152,19,122,18,154,17,134,8,133,39,133,16,0,
+0,31,29,144,38,152,40,141,18,133,7,141,29,144,20,141,40,122,27,36,0,
+0,41,42,43,52,53,42,53,43,52,43,52,42,53,53,53,52,52,45,46,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="333" name="floor_shadow" width="21" height="17">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,12,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,15,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,32,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,35,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="330" name="Copy of Tile Layer 6" width="21" height="17">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1610612806,1610612806,1610612806,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612806,0,0,0,1610612806,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612806,0,0,0,1610612806,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612806,0,0,0,70,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1610612806,1610612806,1610612806,1610612806,1610612806,1610612806,1610612806,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1610612806,0,0,0,0,0,70,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1610612806,0,0,1610612806,0,0,70,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1610612806,0,0,1610612806,0,0,70,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1610612806,0,0,0,0,0,70,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1610612806,70,70,70,70,70,70,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="2" name="objects">
+  <object id="33" name="hero" type="hero" x="82" y="115">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="34" name="hero" type="hero" x="80" y="151">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="35" name="hero" type="hero" x="81" y="177">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="36" name="hero" type="hero" x="81" y="209">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="37" name="hero" type="hero" x="77" y="247">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="38" name="hero" type="hero" x="76" y="275">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="121" name="hero" type="hero" x="78" y="308">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="122" name="hero" type="hero" x="79" y="341">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="123" name="hero" type="hero" x="82" y="370">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="124" name="hero" type="hero" x="80" y="404">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="144" name="hero" type="hero" x="81" y="435">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="145" name="egg" type="egg" x="271" y="117">
+   <properties>
+    <property name="value" value="4"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="173" name="egg" type="egg" x="368" y="114">
+   <properties>
+    <property name="value" value="2"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="174" name="egg" type="egg" x="110" y="116">
+   <properties>
+    <property name="value" value="11"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="175" name="egg" type="egg" x="207" y="151">
+   <properties>
+    <property name="value" value="5"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="176" name="egg" type="egg" x="462" y="150">
+   <properties>
+    <property name="value" value="1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="177" name="egg" type="egg" x="304" y="182">
+   <properties>
+    <property name="value" value="2"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="178" name="egg" type="egg" x="274" y="183">
+   <properties>
+    <property name="value" value="7"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="179" name="egg" type="egg" x="145" y="215">
+   <properties>
+    <property name="value" value="7"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="180" name="egg" type="egg" x="402" y="214">
+   <properties>
+    <property name="value" value="3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="181" name="egg" type="egg" x="239" y="245">
+   <properties>
+    <property name="value" value="8"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="182" name="egg" type="egg" x="302" y="276">
+   <properties>
+    <property name="value" value="1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="183" name="egg" type="egg" x="211" y="278">
+   <properties>
+    <property name="value" value="5"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="184" name="egg" type="egg" x="405" y="277">
+   <properties>
+    <property name="value" value="0"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="185" name="egg" type="egg" x="113" y="276">
+   <properties>
+    <property name="value" value="10"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="186" name="egg" type="egg" x="178" y="277">
+   <properties>
+    <property name="value" value="9"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="187" name="egg" type="egg" x="272" y="277">
+   <properties>
+    <property name="value" value="7"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="188" name="egg" type="egg" x="528" y="272">
+   <properties>
+    <property name="value" value="0"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="189" name="egg" type="egg" x="207" y="308">
+   <properties>
+    <property name="value" value="4"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="190" name="egg" type="egg" x="114" y="310">
+   <properties>
+    <property name="value" value="13"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="191" name="egg" type="egg" x="278.333" y="339.667">
+   <properties>
+    <property name="value" value="2"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="192" name="egg" type="egg" x="237" y="342.667">
+   <properties>
+    <property name="value" value="6"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="193" name="egg" type="egg" x="495" y="342.333">
+   <properties>
+    <property name="value" value="1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="194" name="egg" type="egg" x="337.333" y="370.667">
+   <properties>
+    <property name="value" value="0"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="195" name="egg" type="egg" x="176" y="373.667">
+   <properties>
+    <property name="value" value="8"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="196" name="egg" type="egg" x="400.333" y="372.333">
+   <properties>
+    <property name="value" value="4"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="197" name="egg" type="egg" x="145" y="405">
+   <properties>
+    <property name="value" value="6"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="198" name="egg" type="egg" x="463" y="406.667">
+   <properties>
+    <property name="value" value="2"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="199" name="egg" type="egg" x="146.667" y="434">
+   <properties>
+    <property name="value" value="6"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="200" name="egg" type="egg" x="370.667" y="432">
+   <properties>
+    <property name="value" value="0"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="201" name="egg" type="egg" x="267.333" y="437.667">
+   <properties>
+    <property name="value" value="4"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="202" name="egg" type="egg" x="432" y="433.333">
+   <properties>
+    <property name="value" value="0"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="203" name="egg" type="egg" x="210" y="436.667">
+   <properties>
+    <property name="value" value="8"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="204" name="egg" type="egg" x="300" y="436.333">
+   <properties>
+    <property name="value" value="6"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="205" name="egg" type="egg" x="176" y="435.667">
+   <properties>
+    <property name="value" value="11"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="149" name="marker" type="marker" x="398" y="117">
+   <point/>
+  </object>
+  <object id="206" name="marker" type="marker" x="431" y="110">
+   <point/>
+  </object>
+  <object id="207" name="marker" type="marker" x="466" y="110">
+   <point/>
+  </object>
+  <object id="208" name="marker" type="marker" x="371" y="147">
+   <point/>
+  </object>
+  <object id="209" name="marker" type="marker" x="499" y="146">
+   <point/>
+  </object>
+  <object id="210" name="marker" type="marker" x="366" y="176">
+   <point/>
+  </object>
+  <object id="211" name="marker" type="marker" x="498" y="175">
+   <point/>
+  </object>
+  <object id="212" name="marker" type="marker" x="368" y="209">
+   <point/>
+  </object>
+  <object id="213" name="marker" type="marker" x="496" y="211">
+   <point/>
+  </object>
+  <object id="214" name="marker" type="marker" x="495" y="239">
+   <point/>
+  </object>
+  <object id="215" name="marker" type="marker" x="338" y="276">
+   <point/>
+  </object>
+  <object id="216" name="marker" type="marker" x="374" y="276">
+   <point/>
+  </object>
+  <object id="217" name="marker" type="marker" x="402" y="275">
+   <point/>
+  </object>
+  <object id="218" name="marker" type="marker" x="435" y="275">
+   <point/>
+  </object>
+  <object id="219" name="marker" type="marker" x="466" y="272">
+   <point/>
+  </object>
+  <object id="220" name="marker" type="marker" x="496" y="273">
+   <point/>
+  </object>
+  <object id="221" name="marker" type="marker" x="530" y="274">
+   <point/>
+  </object>
+  <object id="222" name="marker" type="marker" x="337" y="304">
+   <point/>
+  </object>
+  <object id="223" name="marker" type="marker" x="530" y="306">
+   <point/>
+  </object>
+  <object id="224" name="marker" type="marker" x="340" y="336">
+   <point/>
+  </object>
+  <object id="225" name="marker" type="marker" x="433" y="339">
+   <point/>
+  </object>
+  <object id="226" name="marker" type="marker" x="531" y="338">
+   <point/>
+  </object>
+  <object id="227" name="marker" type="marker" x="341" y="367">
+   <point/>
+  </object>
+  <object id="228" name="marker" type="marker" x="431" y="369">
+   <point/>
+  </object>
+  <object id="229" name="marker" type="marker" x="530" y="368">
+   <point/>
+  </object>
+  <object id="230" name="marker" type="marker" x="337" y="397">
+   <point/>
+  </object>
+  <object id="231" name="marker" type="marker" x="526" y="402">
+   <point/>
+  </object>
+  <object id="232" name="marker" type="marker" x="337" y="438">
+   <point/>
+  </object>
+  <object id="233" name="marker" type="marker" x="369" y="437">
+   <point/>
+  </object>
+  <object id="234" name="marker" type="marker" x="396" y="434">
+   <point/>
+  </object>
+  <object id="235" name="marker" type="marker" x="434" y="433">
+   <point/>
+  </object>
+  <object id="236" name="marker" type="marker" x="467" y="435">
+   <point/>
+  </object>
+  <object id="237" name="marker" type="marker" x="496" y="435">
+   <point/>
+  </object>
+  <object id="238" name="marker" type="marker" x="526" y="435">
+   <point/>
+  </object>
+ </objectgroup>
+</map>
