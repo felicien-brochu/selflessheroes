@@ -15,8 +15,8 @@ const winCondition = {
 const level = {
   mapConfig: map,
   name: {
-    en: "Stegano-graphy 2",
-    fr: "Stégano-graphie 2",
+    en: "Pixel art 2",
+    fr: "Pixel art 2",
   },
   objective: {
     en: "Move the %%icon icon-egg$%% eggs right of as many squares as their number to discover the hidden image\n\n%%icon mdi mdi-information-outline$%% You can use %%statement action-statement$write%% anything you want on %%icon icon-egg$%% eggs",
