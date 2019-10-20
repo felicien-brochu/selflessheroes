@@ -24,8 +24,8 @@ const level = {
   },
 
   maxStep: 10000,
-  speedTarget: 1614,
-  lengthTarget: 52,
+  speedTarget: 1596,
+  lengthTarget: 50,
 
   compilerConfig: {
     terrainTypes: ['wall', 'floor'],

@@ -8,9 +8,9 @@ export default {
     code: `
 j:
 take(here)
-$e = set(myitem)
+$e = calc(myitem + 1)
 a:
-if $e > 0 :
+if $e > 1 :
 	if e == egg :
 		$c = calc($c + 1)
 	endif
@@ -19,10 +19,9 @@ if $e > 0 :
 	jump a
 endif
 drop(here)
-$e = set(1)
-$g = set(1)
+$g = set(0)
 b:
-if $g <= $b :
+if $g < $b :
 	$e = calc($e * 2)
 	$g = calc($g + 1)
 	jump b
@@ -32,7 +31,6 @@ $f = calc($a / 2)
 $f = calc($f % $e)
 $d = calc($d - $f)
 $f = calc($a / 2)
-$g = set($b)
 c:
 if $g < $c :
 	$e = calc($e * 2)
@@ -85,9 +83,9 @@ if here != egg :
 endif
 j:
 take(here)
-$e = set(myitem)
+$e = calc(myitem + 1)
 a:
-if $e > 0 :
+if $e > 1 :
 	if e == egg :
 		$c = calc($c + 1)
 	endif
@@ -96,10 +94,9 @@ if $e > 0 :
 	jump a
 endif
 drop(here)
-$e = set(1)
-$g = set(1)
+$g = set(0)
 b:
-if $g <= $b :
+if $g < $b :
 	$e = calc($e * 2)
 	$g = calc($g + 1)
 	jump b
@@ -109,7 +106,6 @@ $f = calc($a / 2)
 $f = calc($f % $e)
 $d = calc($d - $f)
 $f = calc($a / 2)
-$g = set($b)
 c:
 if $g < $c :
 	$e = calc($e * 2)
