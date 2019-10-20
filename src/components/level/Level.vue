@@ -324,7 +324,7 @@ export default {
         this.openingSequence = false
         this.checkTutorialTreated()
       }
-      this.handleEditorResize()
+      this.$nextTick(() => this.handleEditorResize())
     },
 
     showHelpModal() {
