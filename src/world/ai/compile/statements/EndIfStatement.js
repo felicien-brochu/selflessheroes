@@ -14,6 +14,8 @@ export default class EndIfStatement extends PrimaryStatement {
   }
 
   compile(config, context) {
+    this.checkIsAllowed(config, 'type_endif')
+
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(EndIfStatement.codeRegExp)
     if (!res) {

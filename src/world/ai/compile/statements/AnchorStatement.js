@@ -19,6 +19,8 @@ export default class AnchorStatement extends PrimaryStatement {
   }
 
   compile(config, context) {
+    this.checkIsAllowed(config, 'type_anchor')
+
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(AnchorStatement.codeRegExp)
     if (!res) {

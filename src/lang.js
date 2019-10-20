@@ -183,6 +183,7 @@ const messages = {
 
     exception_mismatch_statement_template: "you wrote something erroneous after this {statementType}.",
     exception_mismatch_keyword_template: "you wrote something erroneous after this %%keyword${statementType}%%.",
+    exception_forbidden_primary_statement_template: "%%keyword${statementType}%% is not available in this level.",
     exception_mismatch_function_template: "you wrote something erroneous after the function %%function${keyword}()%%.",
     exception_invalid_variable_identifier_template: "%%variable${variable}%% variable name is not allowed. Use one of the following instead: %%variable${allowedIdentifiers}%%.",
     exception_forbidden_integer_template: "%%number${value}%% number is either too small or too large: numbers must be between %%number${min}%% and %%number${max}%%.",
@@ -467,6 +468,7 @@ const messages = {
 
     exception_mismatch_statement_template: "tu as écrit quelque chose d'erroné après cette {statementType}.",
     exception_mismatch_keyword_template: "tu as écrit quelque chose d'erroné après ce %%keyword${statementType}%%.",
+    exception_forbidden_primary_statement_template: "%%keyword${statementType}%% n'est pas disponible dans ce niveau.",
     exception_mismatch_function_template: "tu as écrit quelque chose d'erroné après la fonction %%function${keyword}()%%.",
     exception_invalid_variable_identifier_template: "%%variable${variable}%% n'est pas un nom de variable autorisé. Utilise un des noms suivants\u00A0: %%variable${allowedIdentifiers}%%.",
     exception_forbidden_integer_template: "%%number${value}%% est soit trop petit soit trop grand\u00A0: les nombres doivent être entre %%number${min}%% et %%number${max}%%.",

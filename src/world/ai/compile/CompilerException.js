@@ -73,6 +73,12 @@ export class MismatchStatementException extends StatementException {
   }
 }
 
+export class ForbiddenPrimaryStatementException extends StatementException {
+  constructor(message, statement, template) {
+    super('ForbiddenPrimaryStatementException', message, statement, template)
+  }
+}
+
 export class ForbiddenVariableIdentifierException extends StatementException {
   constructor(message, statement, template) {
     super('ForbiddenVariableIdentifierException', message, statement, template)

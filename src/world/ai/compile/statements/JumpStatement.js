@@ -24,6 +24,8 @@ export default class JumpStatement extends PrimaryStatement {
   }
 
   compile(config, context) {
+    this.checkIsAllowed(config, 'type_jump')
+
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(JumpStatement.correctCodeRegExp)
     if (!res) {

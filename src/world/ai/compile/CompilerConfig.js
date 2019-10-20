@@ -93,17 +93,17 @@ export default class CompilerConfig {
     leftComparisonExpressions = [],
     rightComparisonExpressions = []
   }) {
-    this.primaryStatements = []
+    this.allowedPrimaryStatements = []
     for (let key in primaryStatementMap) {
       if (excludePrimary.indexOf(key) < 0) {
-        this.primaryStatements.push(primaryStatementMap[key])
+        this.allowedPrimaryStatements.push(primaryStatementMap[key])
       }
     }
 
     this.variables = variables
-    this.minInteger = minInteger,
-      this.maxInteger = maxInteger,
-      this.terrainTypes = terrainTypes.map(key => terrainTypeMap[key])
+    this.minInteger = minInteger
+    this.maxInteger = maxInteger
+    this.terrainTypes = terrainTypes.map(key => terrainTypeMap[key])
     this.objectTypes = objectTypes.map(key => objectTypeMap[key])
     this.valueFunctions = valueFunctions.map(key => valueFunctionMap[key])
     this.actionFunctions = actionFunctions.map(key => actionFunctionMap[key])
@@ -183,7 +183,7 @@ export default class CompilerConfig {
   }
 
   getAllowedPrimaryStatements() {
-    return this.primaryStatements
+    return this.allowedPrimaryStatements
   }
 
   getPrimaryStatements() {

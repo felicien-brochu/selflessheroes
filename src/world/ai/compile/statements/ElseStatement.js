@@ -19,6 +19,8 @@ export default class ElseStatement extends PrimaryStatement {
   }
 
   compile(config, context) {
+    this.checkIsAllowed(config, 'type_else')
+
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(ElseStatement.codeRegExp)
     if (!res) {

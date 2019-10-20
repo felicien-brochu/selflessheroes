@@ -1,4 +1,7 @@
 import Statement from './Statement'
+import {
+  ForbiddenPrimaryStatementException
+} from '../CompilerException'
 
 export default class PrimaryStatement extends Statement {
   constructor(type, line, column) {
@@ -27,6 +30,19 @@ export default class PrimaryStatement extends Statement {
 
   isCodeComplete() {
     throw new Error('Needs subclass implementation.')
+  }
+
+  checkIsAllowed(config, statementTypeTemplate) {
+    if (!config.getAllowedPrimaryStatements().includes(this.constructor)) {
+      throw new ForbiddenPrimaryStatementException(`you try to compile a primary statement which is not allowed`, this, {
+        template: 'exception_forbidden_primary_statement_template',
+        values: {
+          statementType: {
+            template: statementTypeTemplate
+          }
+        }
+      })
+    }
   }
 
   execute(context) {

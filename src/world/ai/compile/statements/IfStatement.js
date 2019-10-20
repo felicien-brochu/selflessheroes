@@ -37,6 +37,8 @@ export default class IfStatement extends PrimaryStatement {
   }
 
   compile(config, context) {
+    this.checkIsAllowed(config, 'type_if')
+
     let joinedCode = this.code.join(' ')
     let groups = joinedCode.match(IfStatement.correctCodeRegExp)
     if (!groups) {

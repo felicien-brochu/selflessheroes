@@ -33,6 +33,8 @@ export default class AssignStatement extends PrimaryStatement {
   }
 
   compile(config, context) {
+    this.checkIsAllowed(config, 'type_assign')
+
     let joinedCode = this.code.join(' ')
     let res = joinedCode.match(AssignStatement.codeRegExp)
     if (!res) {

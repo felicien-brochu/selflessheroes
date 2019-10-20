@@ -84,7 +84,7 @@ export default class Compiler {
         template: 'exception_open_statement_template',
         values: {
           keyword: {
-            template: `type_${currentStatement.keyword}`
+            template: `type_${currentStatement.constructor.keyword}`
           }
         }
       }))
