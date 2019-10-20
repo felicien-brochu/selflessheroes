@@ -24,7 +24,7 @@ const level = {
   },
 
   maxStep: 3000,
-  speedTarget: 269,
+  speedTarget: 293,
   lengthTarget: 13,
 
   compilerConfig: {

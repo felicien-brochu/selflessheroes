@@ -19,22 +19,22 @@ const level = {
     fr: "Pixel art 3",
   },
   objective: {
-    en: "Move the %%icon icon-egg$%% eggs right of as many squares as their number to discover the hidden image (if the number is negative, move them left)\n\n%%icon mdi mdi-information-outline$%% You can %%statement action-statement$write%% anything you want on %%icon icon-egg$%% eggs",
-    fr: "Déplace les %%icon icon-egg$%% œufs vers la droite d'autant de cases que leur numéro pour découvrir l'image cachée (si le nombre est négatif, déplace les vers la gauche)\n\n%%icon mdi mdi-information-outline$%% Tu peux %%statement action-statement$écrire%% ce que tu veux sur les %%icon icon-egg$%% œufs",
+    en: "Move the %%icon icon-egg$%% eggs right of as many squares as their number to discover the hidden image\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: this level is really very difficult\n(I had trouble finishing it myself 😅)",
+    fr: "Déplace les %%icon icon-egg$%% œufs vers la droite d'autant de cases que leur numéro pour découvrir l'image cachée\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: ce niveau est vraiment très difficile\n(moi-même j'ai eu du mal à le finir 😅)",
   },
 
   maxStep: 10000,
-  speedTarget: 550,
-  lengthTarget: 18,
+  speedTarget: 1614,
+  lengthTarget: 52,
 
   compilerConfig: {
     terrainTypes: ['wall', 'floor'],
-    objectTypes: ['hero', 'egg', 'nothing'],
-    actionFunctions: ['step_once', 'take', 'drop', 'write'],
+    objectTypes: ['egg', 'hero', 'nothing'],
+    actionFunctions: ['step_once', 'take', 'drop'],
     valueFunctions: ['set', 'calc'],
-    maxInteger: 20,
-    minInteger: -20,
-    variables: 1,
+    maxInteger: 2,
+    minInteger: 0,
+    variables: 8,
     leftComparisonExpressions: ['direction', 'myitem', 'variable'],
     rightComparisonExpressions: ['object_type', 'terrain_type', 'integer', 'myitem', 'variable']
   },
