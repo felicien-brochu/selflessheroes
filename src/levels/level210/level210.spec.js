@@ -53,6 +53,7 @@ jump b
     type: ["speed"],
     code: `
 if e == wall :
+	$b = calc(10 * 10)
 	c:
 	if w != hero :
 		jump c
@@ -67,7 +68,7 @@ if e == wall :
 	if w == egg :
 		jump f
 	endif
-	$a = calc($a / 10)
+	$a = calc($a / $b)
 	g:
 	take(here)
 	write($a)
@@ -81,7 +82,6 @@ $a = calc($a + here)
 if n == egg :
 	jump a
 endif
-$a = calc($a / 10)
 take(here)
 write($a)
 step(s)
