@@ -270,7 +270,6 @@ export default {
         .score-container {
             display: flex;
             flex-direction: column;
-            transform: scale(1);
             opacity: 1;
 
             &.fade-expand-enter-active {
