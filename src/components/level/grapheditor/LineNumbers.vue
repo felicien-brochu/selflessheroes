@@ -96,15 +96,6 @@ export default {
     }
   },
 
-  watch: {
-    debugContext: function() {
-      this.updateFollowHeroCursorLine()
-    },
-    followHeroIndex: function() {
-      this.updateFollowHeroCursorLine()
-    }
-  },
-
   computed: {
     numbers: function() {
       let lineNumbers = []
@@ -164,6 +155,10 @@ export default {
         }
 
         let selected = i === this.followHeroIndex
+
+        if (selected) {
+          this.$emit('follow-hero-cursor-line-change', line)
+        }
 
         cursors.push({
           heroIndex: i,
@@ -253,19 +248,6 @@ export default {
       }
       return line
     },
-
-    updateFollowHeroCursorLine() {
-      let heroContext = this.debugContext.heroes[this.followHeroIndex]
-      if (heroContext) {
-        let cursor = this.debugContext.heroes[this.followHeroIndex].cursor
-        let line = this.getStatementLine(this.statements[cursor])
-
-        if (line !== this.followHeroCursorLine) {
-          this.followHeroCursorLine = line
-          this.$emit('follow-hero-cursor-line-change', line)
-        }
-      }
-    }
   }
 }
 </script>
