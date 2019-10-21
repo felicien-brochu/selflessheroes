@@ -120,7 +120,7 @@
   </object>
   <object id="125" name="hero" type="hero" x="433" y="111">
    <properties>
-    <property name="initialDirection" value="n"/>
+    <property name="initialDirection" value="w"/>
    </properties>
    <point/>
   </object>

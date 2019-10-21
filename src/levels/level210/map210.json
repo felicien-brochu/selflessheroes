@@ -265,7 +265,7 @@
                         {
                          "name":"initialDirection",
                          "type":"string",
-                         "value":"n"
+                         "value":"w"
                         }],
                  "rotation":0,
                  "type":"hero",
