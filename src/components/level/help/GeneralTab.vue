@@ -52,6 +52,7 @@ export default {
         margin-bottom: 14px;
 
         .mdi-arrow-right-circle {
+            display: inline-flex;
             font-size: 25px;
             margin-left: 8px;
             vertical-align: bottom;
