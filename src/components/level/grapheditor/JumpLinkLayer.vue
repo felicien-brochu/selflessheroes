@@ -37,6 +37,7 @@
 <script>
 import Vue from 'vue'
 import _throttle from 'lodash.throttle'
+import ResizeObserver from 'resize-observer-polyfill'
 import NodeBuilder from './nodes/NodeBuilder'
 import AnchorStatement from '../../../world/ai/compile/statements/AnchorStatement'
 import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'

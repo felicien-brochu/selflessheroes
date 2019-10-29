@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import ResizeObserver from 'resize-observer-polyfill'
 import IfStatement from '../../../world/ai/compile/statements/IfStatement'
 import ElseStatement from '../../../world/ai/compile/statements/ElseStatement'
 import NodeBuilder from './nodes/NodeBuilder'
