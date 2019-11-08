@@ -27,8 +27,9 @@ $b = nearest(egg)
 take($b)
 if $a == 0 :
 	b:
-	$a = calc($a + 1)
-	if $a <= myitem :
+	if myitem <= 3 &&
+	  $a < myitem :
+		$a = calc($a + 1)
 		jump b
 	endif
 endif
