@@ -70,7 +70,7 @@ export default {
 
   data: function() {
     let career = storage.getCareer(this.careerID)
-    let careerLevels = levelManager.getCareerList(career).filter(category => category.unlocked)
+    let careerLevels = levelManager.getCareerList(career)
     this.createdLevels = career.createUnlockedLevelSolutions(careerLevels)
     this.scoreAnimationsPlaying = 0
     for (let category of careerLevels) {

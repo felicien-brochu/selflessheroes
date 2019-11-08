@@ -156,7 +156,7 @@ const categories = [{
     unlock: [10],
     levels: [{
       id: 101,
-      unlock: [],
+      unlock: [10],
     }, {
       id: 102,
       unlock: [101],
@@ -214,7 +214,7 @@ const categories = [{
     unlock: [111],
     levels: [{
       id: 201,
-      unlock: [],
+      unlock: [111],
     }, {
       id: 202,
       unlock: [201],
