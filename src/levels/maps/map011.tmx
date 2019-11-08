@@ -42,7 +42,7 @@
  </layer>
  <objectgroup id="14" name="camera">
   <object id="12" name="frame" type="frame" x="1.265" y="67.3433" width="320.933" height="287.786"/>
-  <object id="237" name="strategy" type="cameraStrategy" x="-49.3333" y="254.667">
+  <object id="237" name="strategy" type="strategy" x="-49.3333" y="254.667">
    <properties>
     <property name="strategy" value="follow_characters"/>
    </properties>

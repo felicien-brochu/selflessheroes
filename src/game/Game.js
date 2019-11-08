@@ -14,7 +14,8 @@ import Direction from '../world/Direction'
 import CharacterDeathReason from '../world/objects/CharacterDeathReason'
 import {
   tiledObjectToObject,
-  namedObjectListToObject
+  namedObjectListToObject,
+  typedObjectListToObject
 } from '../world/utils'
 import Compiler from '../world/ai/compile/Compiler'
 import CompilerConfig from '../world/ai/compile/CompilerConfig'
@@ -111,7 +112,7 @@ export default class extends Phaser.Scene {
     }
 
     if (objectLayers.camera) {
-      let config = namedObjectListToObject(objectLayers.camera.objects)
+      let config = typedObjectListToObject(objectLayers.camera.objects)
 
       if (config) {
         if (config.frame) {

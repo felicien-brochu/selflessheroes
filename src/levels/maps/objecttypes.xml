@@ -7,7 +7,7 @@
  <objecttype name="bonfire" color="#ffff01">
   <property name="enabled" type="bool" default="false"/>
  </objecttype>
- <objecttype name="cameraStrategy" color="#ff2fff">
+ <objecttype name="strategy" color="#ff2fff">
   <property name="strategy" type="string" default="default"/>
  </objecttype>
  <objecttype name="cauldron" color="#3ca41c">

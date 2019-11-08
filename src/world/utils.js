@@ -18,3 +18,11 @@ export function namedObjectListToObject(list) {
   }
   return o
 }
+
+export function typedObjectListToObject(list) {
+  let o = {}
+  for (let object of list) {
+    o[object.type] = object
+  }
+  return o
+}

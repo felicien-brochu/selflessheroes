@@ -88,7 +88,7 @@
  </objectgroup>
  <objectgroup id="14" name="camera">
   <object id="19" name="frame" type="frame" x="33" y="29.5" width="256.5" height="239"/>
-  <object id="20" name="strategy" type="cameraStrategy" x="-8" y="130">
+  <object id="20" name="strategy" type="strategy" x="-8" y="130">
    <point/>
   </object>
  </objectgroup>

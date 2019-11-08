@@ -30,7 +30,7 @@
  </layer>
  <objectgroup id="14" name="camera">
   <object id="12" name="frame" type="frame" x="50" y="32" width="443" height="429"/>
-  <object id="15" name="strategy" type="cameraStrategy" x="3" y="126">
+  <object id="15" name="strategy" type="strategy" x="3" y="126">
    <point/>
   </object>
  </objectgroup>

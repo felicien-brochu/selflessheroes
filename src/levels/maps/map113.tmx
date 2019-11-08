@@ -25,7 +25,7 @@
  </layer>
  <objectgroup id="14" name="camera">
   <object id="12" name="frame" type="frame" x="50" y="32.3333" width="506.333" height="269.667"/>
-  <object id="15" name="strategy" type="cameraStrategy" x="-66.3333" y="182.667">
+  <object id="15" name="strategy" type="strategy" x="-66.3333" y="182.667">
    <point/>
   </object>
  </objectgroup>
