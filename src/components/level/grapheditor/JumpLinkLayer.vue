@@ -41,6 +41,7 @@ import ResizeObserver from 'resize-observer-polyfill'
 import NodeBuilder from './nodes/NodeBuilder'
 import AnchorStatement from '../../../world/ai/compile/statements/AnchorStatement'
 import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'
+import CloneStatement from '../../../world/ai/compile/statements/CloneStatement'
 
 const arrowWidth = 16
 
@@ -146,7 +147,7 @@ export default {
       let jumps = []
 
       for (let node of this.nodes) {
-        if (node.statement instanceof JumpStatement) {
+        if (node.statement instanceof JumpStatement || node.statement instanceof CloneStatement) {
           jumps.push(node)
         }
         else if (node.statement instanceof AnchorStatement) {

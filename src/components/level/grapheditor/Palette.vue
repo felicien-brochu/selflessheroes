@@ -22,12 +22,14 @@ from './PaletteStatementType'
 
 import IfStatement from '../../../world/ai/compile/statements/IfStatement'
 import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'
+import CloneStatement from '../../../world/ai/compile/statements/CloneStatement'
 import ActionFunctions from '../../../world/ai/compile/statements/functions/ActionFunctions'
 import ValueFunctions from '../../../world/ai/compile/statements/functions/ValueFunctions'
 
 const branchingStatements = [
   IfStatement,
-  JumpStatement
+  JumpStatement,
+  CloneStatement
 ]
 const actionFunctions = Object.values(ActionFunctions)
 const valueFunctions = Object.values(ValueFunctions)

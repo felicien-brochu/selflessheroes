@@ -23,6 +23,10 @@ CodeMirror.defineSimpleMode('selflessheroes', {
       regex: /(jump)(\s+)([a-zA-Z]+\w*)/,
       token: ['keyword', null, 'bracket']
     },
+    {
+      regex: /(clone)(\s+)([a-zA-Z]+\w*)(\s+)([a-zA-Z]+\w*)/,
+      token: ['keyword', null, 'atom', null, 'bracket']
+    },
 
     // indent and dedent properties guide autoindentation
     {
@@ -44,7 +48,7 @@ CodeMirror.defineSimpleMode('selflessheroes', {
     // Rules are matched in the order in which they appear, so there is
     // no ambiguity between this one and the one above
     {
-      regex: /(?:if|else|endif|jump)\b/,
+      regex: /(?:if|else|endif|jump|clone)\b/,
       token: 'keyword'
     },
     {

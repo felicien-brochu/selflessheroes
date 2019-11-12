@@ -105,7 +105,7 @@ export default class Compiler {
     }
 
     try {
-      this.compileJumpLinks()
+      this.compileAnchorLinks()
     } catch (exception) {
       this.exceptions.fatal.push(exception)
     }
@@ -205,24 +205,24 @@ export default class Compiler {
     })
   }
 
-  compileJumpLinks() {
+  compileAnchorLinks() {
     this.statements.forEach(statement => {
-      if (statement.type === 'JumpStatement') {
-        let jumpStatement = statement
-        let anchorStatement = this.statements.find(s => s.type === 'AnchorStatement' && s.name === jumpStatement.anchor)
+      if (statement.type === 'JumpStatement' || statement.type === 'CloneStatement') {
+        let linkedStatement = statement
+        let anchorStatement = this.statements.find(s => s.type === 'AnchorStatement' && s.name === linkedStatement.anchor)
         if (!anchorStatement) {
-          throw new JumpToUnknownAnchorException(`jump to unknown anchor '${jumpStatement.anchor}'`, jumpStatement, {
+          throw new JumpToUnknownAnchorException(`jump to unknown anchor '${linkedStatement.anchor}'`, linkedStatement, {
             template: 'exception_jump_to_unknown_anchor_template',
             values: {
-              anchorName: jumpStatement.anchor ? jumpStatement.anchor : '',
+              anchorName: linkedStatement.anchor ? linkedStatement.anchor : '',
               jumpKeyword: {
-                template: 'type_jump'
+                template: `type_${statement.constructor.keyword}`
               }
             }
           })
         }
 
-        jumpStatement.setAnchorStatement(anchorStatement)
+        linkedStatement.setAnchorStatement(anchorStatement)
       }
     })
   }

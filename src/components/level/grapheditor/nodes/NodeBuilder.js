@@ -4,6 +4,7 @@ import AnchorNode from './AnchorNode'
 import AssignNode from './AssignNode'
 import IfNode from './IfNode'
 import JumpNode from './JumpNode'
+import CloneNode from './CloneNode'
 import ActionNode from './ActionNode'
 
 import Linter from '../../../../world/ai/compile/Linter'
@@ -13,6 +14,7 @@ import ElseStatement from '../../../../world/ai/compile/statements/ElseStatement
 import EndIfStatement from '../../../../world/ai/compile/statements/EndIfStatement'
 import IfStatement from '../../../../world/ai/compile/statements/IfStatement'
 import JumpStatement from '../../../../world/ai/compile/statements/JumpStatement'
+import CloneStatement from '../../../../world/ai/compile/statements/CloneStatement'
 import BooleanExpression from '../../../../world/ai/compile/statements/BooleanExpression'
 import SimpleBooleanExpression from '../../../../world/ai/compile/statements/SimpleBooleanExpression'
 import {
@@ -54,6 +56,9 @@ export default class NodeBuilder {
         } else
         if (statement instanceof JumpStatement) {
           nodeClass = Vue.extend(JumpNode)
+        } else
+        if (statement instanceof CloneStatement) {
+          nodeClass = Vue.extend(CloneNode)
         } else
         if (statement instanceof ActionStatement) {
           nodeClass = Vue.extend(ActionNode)
@@ -149,6 +154,8 @@ export default class NodeBuilder {
       nodeClass = Vue.extend(AssignNode)
     } else if (statement instanceof JumpStatement) {
       nodeClass = Vue.extend(JumpNode)
+    } else if (statement instanceof CloneStatement) {
+      nodeClass = Vue.extend(CloneNode)
     }
 
     let node = new nodeClass({
@@ -226,7 +233,8 @@ export default class NodeBuilder {
 
     let insertStatements
     if (isNew) {
-      if (insertStatement instanceof JumpStatement) {
+      if (insertStatement instanceof JumpStatement ||
+        insertStatement instanceof CloneStatement) {
         // Add matching AnchorNode
         let anchor = new AnchorStatement(-1, -1)
         anchor.name = AnchorStatement.getAvailableName(statements)
@@ -269,7 +277,7 @@ export default class NodeBuilder {
       numberOfStatements = 1 + statements.indexOf(toRemove.endIfStatement) - statements.indexOf(toRemove)
     }
     statements.splice(index, numberOfStatements)
-    Linter.removeOrphanJumps(statements)
+    Linter.removeOrphanLinkedStatements(statements)
     Linter.removeOrphanAnchors(statements)
     Linter.removeEmptyElse(statements)
   }

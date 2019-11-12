@@ -177,17 +177,26 @@ export default {
 
       for (let newException of this.compilerExceptions.fatal) {
         let boundaries = newException.statement.getTrimedCodeBoundaries()
+        this.addExceptionMarker(boundaries, 'cm-compiler-exception')
 
-        this.exceptionMarkers.push(this.editor.markText({
-          line: boundaries.start.line,
-          ch: boundaries.start.column
-        }, {
-          line: boundaries.end.line,
-          ch: boundaries.end.column + 1
-        }, {
-          className: 'cm-compiler-exception'
-        }))
       }
+
+      for (let undefinedLiteral of this.compilerExceptions.undefinedLiterals) {
+        let boundaries = undefinedLiteral.getTrimedCodeBoundaries()
+        this.addExceptionMarker(boundaries, 'cm-undefined-literal')
+      }
+    },
+
+    addExceptionMarker(boundaries, markerClass) {
+      this.exceptionMarkers.push(this.editor.markText({
+        line: boundaries.start.line,
+        ch: boundaries.start.column
+      }, {
+        line: boundaries.end.line,
+        ch: boundaries.end.column + 1
+      }, {
+        className: markerClass
+      }))
     },
 
     handleFollowHeroCursorLineChange(line) {

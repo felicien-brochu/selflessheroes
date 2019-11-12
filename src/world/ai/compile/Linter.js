@@ -1,5 +1,6 @@
 import IfStatement from './statements/IfStatement'
 import JumpStatement from './statements/JumpStatement'
+import CloneStatement from './statements/CloneStatement'
 import AnchorStatement from './statements/AnchorStatement'
 import InvalidStatement from './statements/InvalidStatement'
 import PrimaryStatement from './statements/PrimaryStatement'
@@ -20,11 +21,12 @@ export default class Linter {
     return changed
   }
 
-  static removeOrphanJumps(statements) {
+  static removeOrphanLinkedStatements(statements) {
     let changed = false
     for (let i = 0; i < statements.length; i++) {
       let statement = statements[i]
-      if (statement instanceof JumpStatement && statements.indexOf(statement.anchorStatement) < 0) {
+      if ((statement instanceof JumpStatement || statement instanceof CloneStatement) &&
+        statements.indexOf(statement.anchorStatement) < 0) {
         statements.splice(i, 1)
         i--
         changed = true
@@ -134,14 +136,14 @@ export default class Linter {
 
   static jumpToUniqueAnchor(statements) {
     let changed = false
-    let jumps = statements.filter(statement => statement instanceof JumpStatement)
+    let linkedStatements = statements.filter(statement => statement instanceof JumpStatement || statement instanceof CloneStatement)
 
-    for (let jump of jumps) {
-      if (jumps.some(j => j !== jump && j.anchorStatement === jump.anchorStatement)) {
+    for (let linkedStatement of linkedStatements) {
+      if (linkedStatements.some(j => j !== linkedStatement && j.anchorStatement === linkedStatement.anchorStatement)) {
         let anchor = new AnchorStatement(-1, -1)
         anchor.name = AnchorStatement.getAvailableName(statements)
-        statements.splice(statements.indexOf(jump.anchorStatement) + 1, 0, anchor)
-        jump.setAnchorStatement(anchor)
+        statements.splice(statements.indexOf(linkedStatement.anchorStatement) + 1, 0, anchor)
+        linkedStatement.setAnchorStatement(anchor)
         changed = true
       }
     }

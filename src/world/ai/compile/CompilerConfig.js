@@ -4,6 +4,7 @@ import IfStatement from './statements/IfStatement'
 import ElseStatement from './statements/ElseStatement'
 import EndIfStatement from './statements/EndIfStatement'
 import JumpStatement from './statements/JumpStatement'
+import CloneStatement from './statements/CloneStatement'
 import AnchorStatement from './statements/AnchorStatement'
 import ActionStatement from './statements/ActionStatement'
 import BooleanExpression from './statements/BooleanExpression'
@@ -34,6 +35,7 @@ const primaryStatementMap = {
   else: ElseStatement,
   endif: EndIfStatement,
   jump: JumpStatement,
+  clone: CloneStatement,
   anchor: AnchorStatement,
   action: ActionStatement,
 }

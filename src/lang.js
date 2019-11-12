@@ -232,6 +232,7 @@ const messages = {
     type_endif: "endif",
     type_if: "if",
     type_jump: "jump",
+    type_clone: "clone",
     type_direction: "direction",
 
     function_step: "step",
@@ -247,6 +248,7 @@ const messages = {
     graph_node_if: "if",
     graph_node_else: "else",
     graph_node_jump: "jump",
+    graph_node_clone: "clone",
 
     graph_node_function_step: "step",
     graph_node_function_fireball: "fireball",
@@ -515,6 +517,7 @@ const messages = {
     graph_node_if: "si",
     graph_node_else: "sinon",
     graph_node_jump: "saut",
+    graph_node_clone: "clone",
 
     graph_node_function_step: "aller",
     graph_node_function_fireball: "boule de feu",
