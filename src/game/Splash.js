@@ -54,6 +54,7 @@ import explosion from './images/explosion.png'
 import ashes from './images/ashes.png'
 import sleep_zzz from './images/sleep_zzz.png'
 import write_smoke from './images/write_smoke.png'
+import cloning from './images/cloning.png'
 import follow_cursor from './images/follow_cursor.png'
 import observation from './images/observation.png'
 import direction_e from './images/direction_e.png'
@@ -104,6 +105,7 @@ import step_sfx from './audio/step.mp3'
 import fireball_sfx from './audio/fireball.mp3'
 import write_sfx from './audio/write.mp3'
 import light_sfx from './audio/light.mp3'
+import cloning_sfx from './audio/cloning.mp3'
 import cauldron_drop_sfx from './audio/cauldron_drop.mp3'
 import spikes_on_sfx from './audio/spikes_on.mp3'
 import spikes_off_sfx from './audio/spikes_off.mp3'
@@ -309,6 +311,10 @@ export default class extends Phaser.Scene {
       frameWidth: 48,
       frameHeight: 48
     })
+    this.load.spritesheet('cloning', cloning, {
+      frameWidth: 34,
+      frameHeight: 34
+    })
     this.load.spritesheet('fireworks1', fireworks1, {
       frameWidth: 100,
       frameHeight: 100
@@ -362,6 +368,7 @@ export default class extends Phaser.Scene {
     this.load.audio('fireball_sfx', fireball_sfx)
     this.load.audio('write_sfx', write_sfx)
     this.load.audio('light_sfx', light_sfx)
+    this.load.audio('cloning_sfx', cloning_sfx)
     this.load.audio('cauldron_drop_sfx', cauldron_drop_sfx)
     this.load.audio('spikes_on_sfx', spikes_on_sfx)
     this.load.audio('spikes_off_sfx', spikes_off_sfx)

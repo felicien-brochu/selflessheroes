@@ -27,6 +27,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
 
     this.lastTileX = character.x
     this.lastTileY = character.y
+    this.brightness = 0xff
     this.updateDepth()
 
     this.depthOffset = 0
@@ -143,6 +144,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
       this.stopMoving()
     }
 
+
     if (this.character.lastAction) {
       if (this.character.lastAction.type === 'StepAction') {
         this.newActionState = stateRun
@@ -158,6 +160,8 @@ export default class CharacterS extends Phaser.GameObjects.Container {
         this.lastTileX = this.character.x
         this.lastTileY = this.character.y
       }
+    } else if (this.hasJustBeenCloned()) {
+      this.playClonedAnimation()
     }
 
     if (!this.character.ai.hasStepAvailable() && !this.scene.runner.world.hasWon) {
@@ -169,13 +173,16 @@ export default class CharacterS extends Phaser.GameObjects.Container {
       this.emit('die', this)
       if (this.character.deathReason === CharacterDeathReason.burnt ||
         this.character.deathReason === CharacterDeathReason.spikes ||
-        this.character.deathReason === CharacterDeathReason.touchedEnemy) {
+        this.character.deathReason === CharacterDeathReason.touchedEnemy ||
+        this.character.deathReason === CharacterDeathReason.failedCloning) {
+        let delay = this.character.deathReason === CharacterDeathReason.burnt ||
+          this.character.deathReason === CharacterDeathReason.failedCloning ? 200 : 0
         setTimeout(() => {
           // Check if destroyed
           if (this.scene) {
             this.sprite.play('ashes', true)
           }
-        }, this.character.deathReason === CharacterDeathReason.burnt ? 200 : 0)
+        }, delay)
         this.scene.soundManager.play(this.getScreamAsset())
       }
       this.depthOffset = -14
@@ -241,6 +248,40 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     this.updateState()
   }
 
+  hasJustBeenCloned() {
+    let world = this.scene.runner.world
+    let clonedCharacterEvents = world.eventLog.search({
+      step: world.steps,
+      type: 'character-cloning',
+      cloneID: this.character.id,
+    })
+    return clonedCharacterEvents.length > 0
+  }
+
+  playClonedAnimation() {
+    const stepInterval = this.scene.runner.stepInterval
+    if (stepInterval > 100) {
+      this.brightness = 0
+      this.sprite.alpha = 0
+      this.sprite.scale = 0.1
+
+      let spriteTween = this.scene.tweens.add({
+        targets: this.sprite,
+        tint: 0xffffff,
+        alpha: 1,
+        scale: 1,
+        ease: 'Quad.easeOut',
+        duration: stepInterval / 2
+      })
+      let brightnessTween = this.scene.tweens.add({
+        targets: this,
+        brightness: 0xff,
+        ease: 'Quad.easeIn',
+        duration: stepInterval / 1.5
+      })
+    }
+  }
+
   updateItem() {
     if (this.itemContainer.length > 0) {
       if (!this.lastCharacter.item) {
@@ -272,11 +313,17 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     }
   }
 
+  updateBrightness() {
+    const brightness = Math.round(this.brightness)
+    this.sprite.tint = brightness * 0x10000 + brightness * 0x100 + brightness
+  }
+
   updateDepth() {
     this.depth = (this.y - this.offsetY) + this.depthOffset
   }
 
   update() {
+    this.updateBrightness()
     this.updateDepth()
   }
 

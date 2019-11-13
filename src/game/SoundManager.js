@@ -34,6 +34,11 @@ const soundDefs = [{
     volume: 0.3
   }
 }, {
+  key: 'cloning_sfx',
+  config: {
+    volume: 0.2
+  }
+}, {
   key: 'cauldron_drop_sfx',
   config: {
     volume: 0.25

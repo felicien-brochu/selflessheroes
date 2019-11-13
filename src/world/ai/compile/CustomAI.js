@@ -85,6 +85,16 @@ export default class CustomAI extends AI {
     this.context.calculation = null
   }
 
+  cloneToAnchor(anchorStatement, character) {
+    let clonedAI = new this.constructor(this.statements, this.compilerConfig, this.world, character)
+    clonedAI.cursor = this.statements.indexOf(anchorStatement)
+    clonedAI.lastActionCursor = this.lastActionCursor
+    clonedAI.variables = {
+      ...this.variables
+    }
+    return clonedAI
+  }
+
   hasEnded() {
     return this.lastActionCursor >= this.statements.length
   }

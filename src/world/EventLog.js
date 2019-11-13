@@ -12,9 +12,9 @@ export default class EventLog {
     this.onPutItemInCauldron = this.onPutItemInCauldron.bind(this)
   }
 
-  attach() {
+  attachAll() {
     for (let hero of this.world.heroes) {
-      hero.events.on('die', this.onHeroDie)
+      this.attachHero(hero)
     }
 
     for (let egg of this.world.eggs) {
@@ -27,7 +27,7 @@ export default class EventLog {
     }
   }
 
-  detach() {
+  detachAll() {
     for (let hero of this.world.heroes) {
       hero.events.off('die', this.onHeroDie)
     }
@@ -40,6 +40,10 @@ export default class EventLog {
     for (let cauldron of this.world.cauldrons) {
       cauldron.events.off('put-item', this.onPutItemInCauldron)
     }
+  }
+
+  attachHero(hero) {
+    hero.events.on('die', this.onHeroDie)
   }
 
   logEvent(type, data, step = this.world.steps) {

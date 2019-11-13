@@ -10,6 +10,7 @@ import CameraControlFactory from './camera/CameraControlFactory'
 import SoundManager from './SoundManager'
 import Speeds from './Speeds'
 import World from '../world/World'
+import ObjectType from '../world/objects/ObjectType'
 import Direction from '../world/Direction'
 import CharacterDeathReason from '../world/objects/CharacterDeathReason'
 import {
@@ -171,17 +172,7 @@ export default class extends Phaser.Scene {
     }
 
     for (let hero of this.world.heroes) {
-      let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight)
-      this.heroes.push(sprite)
-      this.add.existing(sprite)
-
-      sprite.on('step-to', this.updateCharacterDirection, this)
-      sprite.on('observe', this.updateCharacterObservations, this)
-      sprite.on('die', this.onHeroDeath, this)
-      sprite.on('pointerdown', () => this.handleClick(sprite), this)
-
-      this.observations.set(sprite, [])
-      this.directions.set(sprite, null)
+      this.createHeroSprite(hero)
     }
 
     for (let npc of this.world.npcs) {
@@ -214,6 +205,20 @@ export default class extends Phaser.Scene {
       let sprite = this.add.image((symbol.x + 0.5) * this.map.tileWidth, (symbol.y + 0.5) * this.map.tileHeight, `symbol_${symbol.symbol}`)
       this.symbols.push(sprite)
     }
+  }
+
+  createHeroSprite(hero) {
+    let sprite = new HeroS(this, hero, this.map.tileWidth, this.map.tileHeight)
+    this.heroes.push(sprite)
+    this.add.existing(sprite)
+
+    sprite.on('step-to', this.updateCharacterDirection, this)
+    sprite.on('observe', this.updateCharacterObservations, this)
+    sprite.on('die', this.onHeroDeath, this)
+    sprite.on('pointerdown', () => this.handleClick(sprite), this)
+
+    this.observations.set(sprite, [])
+    this.directions.set(sprite, null)
   }
 
   restartWorld(rngSeed) {
@@ -265,6 +270,7 @@ export default class extends Phaser.Scene {
   }
 
   beforeStep(world) {
+    this.handleNewCharacters()
     for (let sprite of this.getWorldObjectSprites()) {
       sprite.beforeStep(world)
     }
@@ -278,6 +284,41 @@ export default class extends Phaser.Scene {
   afterStep(world) {
     for (let sprite of this.getWorldObjectSprites()) {
       sprite.afterStep(world)
+    }
+  }
+
+  handleNewCharacters() {
+    const world = this.runner.world
+    let characterCloningEvents = world.eventLog.search({
+      step: world.steps,
+      type: 'character-cloning',
+    })
+
+    for (let event of characterCloningEvents) {
+      this.showCloningAnimation(event.clonePosition)
+    }
+
+    let clonedHeroEvents = characterCloningEvents.filter(event => event.cloneID !== null && event.cloneType === ObjectType.hero)
+    for (let event of clonedHeroEvents) {
+      let heroClone = world.findWorldObjectByID(event.cloneID)
+      if (heroClone) {
+        this.createHeroSprite(heroClone)
+      }
+    }
+  }
+
+  showCloningAnimation(clonePosition) {
+    this.soundManager.play('cloning_sfx')
+    const stepInterval = this.runner.stepInterval
+    if (stepInterval > 10) {
+      let x = clonePosition.x * this.map.tileWidth + 17
+      let y = clonePosition.y * this.map.tileHeight + 6
+      let cloningAnimation = this.add.sprite(x, y, 'cloning')
+      cloningAnimation.depth = y + 100
+      cloningAnimation.play('cloning', false)
+      cloningAnimation.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
+        cloningAnimation.destroy()
+      })
     }
   }
 
@@ -406,9 +447,13 @@ export default class extends Phaser.Scene {
   }
 
   updateFollowHero() {
-    this.updateObservations()
-    this.updateDirection()
-    this.updateFollowCursor()
+    if (this.followHeroIndex >= this.heroes.length) {
+      this.emitFollowHeroChange(-1)
+    } else {
+      this.updateObservations()
+      this.updateDirection()
+      this.updateFollowCursor()
+    }
   }
 
   updateFollowCursor() {

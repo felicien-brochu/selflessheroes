@@ -88,7 +88,7 @@ export default class CloneStatement extends PrimaryStatement {
       step: true,
       complete: true,
       goto: null,
-      action: new CloneAction(this.direction, this.anchorStatement)
+      action: new CloneAction(this.direction.value, this.anchorStatement)
     }
   }
 }

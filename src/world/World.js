@@ -1,5 +1,6 @@
 import Map from './map/Map'
 
+import ObjectType from './objects/ObjectType'
 import CharacterDeathReason from './objects/CharacterDeathReason'
 import Character from './objects/Character'
 import Hero from './objects/Hero'
@@ -64,7 +65,7 @@ export default class World {
     this.ruleset.beforeStart()
 
     this.eventLog = new EventLog(this)
-    this.eventLog.attach()
+    this.eventLog.attachAll()
   }
 
   parseObjects() {
@@ -227,6 +228,7 @@ export default class World {
     this.resolveTakeActions(characterActions)
     this.resolveDropActions(characterActions)
     this.resolveWriteActions(characterActions)
+    this.resolveCloneActions(characterActions)
     this.resolveFireBallActions(characterActions)
   }
 
@@ -285,6 +287,51 @@ export default class World {
       } of characterActions) {
       if (action && action.type === 'WriteAction' && character.item !== null && typeof character.item.write === 'function') {
         character.item.write(action.value)
+      }
+    }
+  }
+
+  resolveCloneActions(characterActions) {
+    for (let {
+        character,
+        action
+      } of characterActions) {
+      if (action && action.type === 'CloneAction') {
+        let clonedCharacter = character.clone(action.direction, action.anchorStatement)
+
+        let x = clonedCharacter.x
+        let y = clonedCharacter.y
+        let cloneOnFloor = this.map.isFloor(x, y)
+        let cloneCollidesActiveHero = !!this.getCharactersAt(x, y).find(c => !c.dead && c instanceof Hero && c.ai.hasStepAvailable())
+        let cloneCollidesNPC = !!this.getCharactersAt(x, y).find(c => !c.dead && c instanceof Npc)
+        let cloneCollidesObject = !!this.bonfires.find(b => b.x === x && b.y === y) ||
+          !!this.spikes.find(s => s.x === x && s.y === y && s.enabled) ||
+          !!this.cauldrons.find(b => b.x === x && b.y === y)
+
+        // Successful cloning
+        if (cloneOnFloor && !cloneCollidesActiveHero && !cloneCollidesNPC && !cloneCollidesObject) {
+          this.characters.push(clonedCharacter)
+          if (clonedCharacter.getObjectType() === ObjectType.hero) {
+            this.heroes.push(clonedCharacter)
+            this.eventLog.attachHero(clonedCharacter)
+          } else if (clonedCharacter.getObjectType() === ObjectType.npc) {
+            this.npcs.push(clonedCharacter)
+          }
+        } else {
+          // Failed cloning results in dying for the cloning character
+          character.setDead(true, CharacterDeathReason.failedCloning)
+          clonedCharacter = null
+        }
+
+        this.eventLog.logEvent('character-cloning', {
+          characterID: character.id,
+          cloneID: clonedCharacter ? clonedCharacter.id : null,
+          cloneType: clonedCharacter ? clonedCharacter.getObjectType() : null,
+          clonePosition: {
+            x: character.x + action.direction.dx,
+            y: character.y + action.direction.dy,
+          },
+        })
       }
     }
   }

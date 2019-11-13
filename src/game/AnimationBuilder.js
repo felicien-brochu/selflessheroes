@@ -436,6 +436,13 @@ const anims = {
     frameRate: 30,
     repeat: 0
   },
+  cloning: {
+    sprite: 'cloning',
+    start: 0,
+    end: 7,
+    frameRate: 12,
+    repeat: 0
+  },
   fireworks1: {
     sprite: 'fireworks1',
     start: 0,
