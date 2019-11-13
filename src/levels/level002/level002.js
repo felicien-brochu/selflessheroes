@@ -16,7 +16,7 @@ const level = {
   lengthTarget: 2,
 
   compilerConfig: {
-    excludePrimary: ['assign', 'if', 'else', 'endif', 'jump', 'anchor'],
+    excludePrimary: ['assign', 'if', 'else', 'endif', 'jump', 'anchor', 'clone'],
     objectTypes: ['switch'],
     actionFunctions: ['step_once'],
     leftComparisonExpressions: ['direction'],

@@ -100,7 +100,7 @@ const level = {
   bossName: "pied-piper",
 
   compilerConfig: {
-    excludePrimary: ['assign'],
+    excludePrimary: ['assign', 'clone'],
     terrainTypes: ['wall', 'hole', 'floor'],
     objectTypes: ['hero', 'nothing'],
     actionFunctions: ['step_once'],

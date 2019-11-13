@@ -67,7 +67,7 @@ const level = {
   lengthTarget: 2,
 
   compilerConfig: {
-    excludePrimary: ['if', 'else', 'endif', 'jump', 'anchor'],
+    excludePrimary: ['if', 'else', 'endif', 'jump', 'anchor', 'clone'],
     actionFunctions: ['write'],
     valueFunctions: ['set', 'calc'],
     variables: 1,

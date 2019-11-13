@@ -17,7 +17,7 @@ const level = {
   lengthTarget: 3,
 
   compilerConfig: {
-    excludePrimary: ['assign', 'jump', 'anchor'],
+    excludePrimary: ['assign', 'jump', 'anchor', 'clone'],
     terrainTypes: ['hole', 'floor'],
     objectTypes: ['switch', 'nothing'],
     actionFunctions: ['step_once'],

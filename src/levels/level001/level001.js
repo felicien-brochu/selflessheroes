@@ -18,7 +18,7 @@ const level = {
   tutorialConfig: 'basic_tutorial',
 
   compilerConfig: {
-    excludePrimary: ['assign', 'if', 'else', 'endif', 'jump', 'anchor'],
+    excludePrimary: ['assign', 'if', 'else', 'endif', 'jump', 'anchor', 'clone'],
     actionFunctions: ['step_once'],
   },
 

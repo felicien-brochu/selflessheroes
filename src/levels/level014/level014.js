@@ -16,7 +16,7 @@ const level = {
   lengthTarget: 13,
 
   compilerConfig: {
-    excludePrimary: ['assign'],
+    excludePrimary: ['assign', 'clone'],
     terrainTypes: ['wall', 'floor'],
     objectTypes: ['switch', 'nothing'],
     actionFunctions: ['step_once'],

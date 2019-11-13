@@ -87,6 +87,7 @@ const level = {
   lengthTarget: 7,
 
   compilerConfig: {
+    excludePrimary: ['clone'],
     terrainTypes: ['wall', 'floor'],
     objectTypes: ['egg', 'hero', 'nothing'],
     actionFunctions: ['step_once', 'take', 'drop', 'write'],

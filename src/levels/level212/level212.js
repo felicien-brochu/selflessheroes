@@ -24,7 +24,7 @@ const level = {
   lengthTarget: 5,
 
   compilerConfig: {
-    excludePrimary: ['if', 'else', 'endif'],
+    excludePrimary: ['if', 'else', 'endif', 'clone'],
     terrainTypes: ['wall', 'floor', 'hole'],
     objectTypes: ['cauldron', 'egg', 'hero'],
     actionFunctions: ['take', 'drop'],

@@ -25,7 +25,7 @@ const level = {
   bossName: "ogre",
 
   compilerConfig: {
-    excludePrimary: ['assign'],
+    excludePrimary: ['assign', 'clone'],
     terrainTypes: ['hole', 'floor', 'wall'],
     objectTypes: ['switch', 'spikes', 'nothing'],
     actionFunctions: ['step_once'],
