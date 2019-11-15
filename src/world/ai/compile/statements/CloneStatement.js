@@ -1,5 +1,6 @@
 import PrimaryStatement from './PrimaryStatement'
 import DirectionLiteral from './literals/DirectionLiteral'
+import Direction from '../../../Direction'
 import CloneAction from '../../../actions/CloneAction'
 import {
   createUnitExpression,
@@ -38,17 +39,40 @@ export default class CloneStatement extends PrimaryStatement {
     let res = groupsRegExp.exec(joinedCode)
     if (!res) {
       throw new MismatchStatementException('clone statements must have a direction and a target anchor', this, {
-        template: 'exception_mismatch_keyword_template',
+        template: 'exception_invalid_clone_params_template',
         values: {
           statementType: {
             template: 'type_clone'
-          }
+          },
+          allowedDirections: Direction.names.filter(dir => dir !== 'here'),
         }
       })
     }
     this.direction = createUnitExpression([res[2]], [DirectionLiteral], this, this.line, this.column + res[1].length)
-    this.direction.compile(config, context)
     this.anchor = res[4]
+
+    if (this.direction.type === 'InvalidExpression') {
+      throw new MismatchStatementException('clone statements must have a direction and a target anchor', this.direction, {
+        template: 'exception_invalid_direction_param_template',
+        values: {
+          param: this.direction.code.join(' ').trim(),
+          allowedValues: Direction.names.filter(dir => dir !== 'here'),
+        }
+      })
+    } else {
+      this.direction.compile(config, context)
+
+      if (this.direction.value === Direction.here) {
+        throw new MismatchStatementException('clone statements must have a direction and a target anchor', this.direction, {
+          template: 'exception_primary_statement_invalid_direction_param_not_here_template',
+          values: {
+            keyword: this.constructor.keyword,
+            param: this.direction.code.join(' ').trim(),
+            allowedValues: Direction.names.filter(dir => dir !== 'here'),
+          }
+        })
+      }
+    }
   }
 
   static getDirectionType() {
