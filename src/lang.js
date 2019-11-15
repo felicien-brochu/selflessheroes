@@ -145,6 +145,7 @@ const messages = {
     level_help_tab_calc_function_1: "%%statement assign-statement$calc%% makes a calculation and puts the result in a variable.",
     level_help_tab_calc_function_2: "You could read the above example as \"Set the variable b to a + 2\".",
     level_help_tab_calc_function_3: "%%type-variable$$b%% %%type-operator$=%% %%type-function$calc%%(%%type-variable$$a%% %%type-operator$+%% %%type-literal$2%%)\n",
+    level_help_tab_calc_function_4: "In Selfless Heroes, there is only integer numbers.\n\nThe operator %%type-operator$\"/\"%% is the integer division.\nFor example, %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04%%.\n\nThe operator %%type-operator$\"%\"%% is called \"modulo\". It calculates the remainder of the integer division.\nFor example, %%type-operator$9\u00A0%\u00A02\u00A0=\u00A01%% because %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04\u00A0remains\u00A01%%.",
 
     level_modal_speed_target_unit: "cycles",
     level_modal_length_target_unit: "lines",
@@ -434,6 +435,7 @@ const messages = {
 
     level_help_tab_calc_function_1: "%%statement assign-statement$calc%% fait un calcul et met le résultat dans une variable.",
     level_help_tab_calc_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Donne la valeur a + 2 à la variable b\".",
+    level_help_tab_calc_function_4: "Dans Selfless Heroes, il n'y a que des nombres entiers.\n\nL'opérateur %%type-operator$\"/\"%% est la division entière.\nPar exemple, %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04%%.\n\nL'opérateur %%type-operator$\"%\"%% est appelé \"modulo\". Il calcule le reste de la division entière.\nPar exemple, %%type-operator$9\u00A0%\u00A02\u00A0=\u00A01%% car %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04\u00A0reste\u00A01%%.",
 
 
     level_modal_speed_target_unit: "cycles",

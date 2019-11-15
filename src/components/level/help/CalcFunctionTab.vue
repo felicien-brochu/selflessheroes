@@ -18,6 +18,10 @@
   <h5>{{$text('level_help_tab_statement_code_example')}}</h5>
   <p class="code"
     v-bbcode>{{$text('level_help_tab_calc_function_3')}}</p>
+  <br />
+  <p v-bbcode>{{
+		$text('level_help_tab_calc_function_4')
+	}}</p>
 </div>
 </template>
 
