@@ -7,7 +7,7 @@
   <h5>{{$text('level_help_tab_statement_graph_code_example')}}</h5>
   <p>
     <simple-graph-code code="step(e w)"
-      :compilerConfig="defaultCompilerConfig" />
+      :compilerConfig="compilerConfig" />
 
     <span v-bbcode>{{
 		$text('level_help_tab_step_function_2')
@@ -32,11 +32,6 @@ export default {
   props: {
     compilerConfig: Object
   },
-  computed: {
-    defaultCompilerConfig: function() {
-      return CompilerConfig.getDefault()
-    }
-  }
 }
 </script>
 

@@ -139,7 +139,7 @@ export default class CompilerConfig {
         'nearest',
       ],
       actionFunctions: [
-        'step',
+        'step_once',
         'fireball',
         'take',
         'drop',
