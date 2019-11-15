@@ -55,6 +55,7 @@ from '../grapheditor/PaletteStatementType'
 
 import IfStatement from '../../../world/ai/compile/statements/IfStatement'
 import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'
+import CloneStatement from '../../../world/ai/compile/statements/CloneStatement'
 
 import StepFunction from '../../../world/ai/compile/statements/functions/StepFunction'
 import StepOnceFunction from '../../../world/ai/compile/statements/functions/StepOnceFunction'
@@ -71,7 +72,8 @@ import ValueFunctions from '../../../world/ai/compile/statements/functions/Value
 
 const branchingStatements = [
   IfStatement,
-  JumpStatement
+  JumpStatement,
+  CloneStatement,
 ]
 const actionFunctions = Object.values(ActionFunctions)
 const valueFunctions = Object.values(ValueFunctions)
@@ -84,6 +86,7 @@ const paletteStatements = [
 
 import IfStatementTab from './IfStatementTab'
 import JumpStatementTab from './JumpStatementTab'
+import CloneStatementTab from './CloneStatementTab'
 
 import StepFunctionTab from './StepFunctionTab'
 import StepOnceFunctionTab from './StepOnceFunctionTab'
@@ -102,6 +105,10 @@ const statementTabs = new Map([
   }],
   [JumpStatement, {
     component: JumpStatementTab,
+    props: {}
+  }],
+  [CloneStatement, {
+    component: CloneStatementTab,
     props: {}
   }],
   [StepFunction, {
