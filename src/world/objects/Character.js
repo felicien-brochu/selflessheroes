@@ -60,11 +60,11 @@ export default class Character extends WorldObject {
       ...this.config,
       id: this.world.getAvailableObjectID()
     }
+    cloneConfig.item = null
     let clonedCharacter = new this.constructor(cloneConfig, this.world)
     clonedCharacter.ai = this.ai.cloneToAnchor(anchorStatement, clonedCharacter)
     clonedCharacter.x = this.x + direction.dx
     clonedCharacter.y = this.y + direction.dy
-    clonedCharacter.item = null
 
     return clonedCharacter
   }

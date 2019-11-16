@@ -377,7 +377,7 @@ export default class World {
         let collidesWall = this.map.isWall(x, y)
         let collidesBonfire = this.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire).length > 0
         let collidesCauldron = this.getWorldObjectsAt(x, y).filter(o => o instanceof Cauldron).length > 0
-        let collidingHeroes = this.getCharactersAt(x, y).filter(c => !c.dead && c.ai.hasStepAvailable() && c instanceof Hero)
+        let collidingHeroes = this.getCharactersAt(x, y).filter(c => c instanceof Hero && !c.dead && (c.ai.hasStepAvailable() || c.ai.lastActionCursor !== c.ai.cursor))
         let collidesHero = collidingHeroes.length > 0
         let collidingNPCs = this.getCharactersAt(x, y).filter(c => !c.dead && c instanceof Npc)
         let collidesComingNPC = collidingNPCs.some(npc => {
