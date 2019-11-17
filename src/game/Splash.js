@@ -251,7 +251,7 @@ export default class extends Phaser.Scene {
       frameHeight: 64
     })
     this.load.spritesheet('pied_piper', pied_piper, {
-      frameWidth: 64,
+      frameWidth: 66,
       frameHeight: 56
     })
     // this.load.spritesheet('big_demon', big_demon, {
