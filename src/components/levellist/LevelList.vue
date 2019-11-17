@@ -283,7 +283,7 @@ export default {
             }
 
             &.category-color-purple {
-                background-color: #9166BD;
+                background-color: #654683;
             }
 
             &.category-color-orange {

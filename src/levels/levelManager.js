@@ -48,6 +48,8 @@ import level211 from './level211/level211'
 import level212 from './level212/level212'
 import level213 from './level213/level213'
 
+import level301 from './level301/level301'
+
 const levels = [
   new Level(1, level001),
   new Level(2, level002),
@@ -94,7 +96,7 @@ const levels = [
   new Level(212, level212),
   new Level(213, level213),
 
-  new Level(0, levelTest),
+  new Level(301, level301),
 ]
 
 const categories = [{
@@ -255,10 +257,20 @@ const categories = [{
       id: 213,
       unlock: [212],
     }, ]
+  }, {
+    name: 'variables',
+    color: 'purple',
+    unlock: [],
+    levels: [{
+      id: 301,
+      unlock: [],
+    }, ],
   },
 ]
 
 if (LEVEL_DEV) {
+  levels.push(new Level(0, levelTest))
+
   categories.push({
     name: 'other',
     color: 'gray',
