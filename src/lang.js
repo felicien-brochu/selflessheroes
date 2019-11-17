@@ -152,7 +152,7 @@ const messages = {
     level_help_tab_calc_function_3: "%%type-variable$$b%% %%type-operator$=%% %%type-function$calc%%(%%type-variable$$a%% %%type-operator$+%% %%type-literal$2%%)\n",
     level_help_tab_calc_function_4: "In Selfless Heroes, there is only integer numbers.\n\nThe operator %%type-operator$\"/\"%% is the integer division.\nFor example, %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04%%.\n\nThe operator %%type-operator$\"%\"%% is called \"modulo\". It calculates the remainder of the integer division.\nFor example, %%type-operator$9\u00A0%\u00A02\u00A0=\u00A01%% because %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04\u00A0remains\u00A01%%.",
 
-    level_modal_speed_target_unit: "cycles",
+    level_modal_speed_target_unit: "steps",
     level_modal_length_target_unit: "lines",
     level_modal_secondary_objectives_difficulty_warning: "secondary objectives can be very difficult and it is often impossible to achieve both with the same solution",
 
@@ -160,7 +160,7 @@ const messages = {
     level_objective_modal_secondary_objectives_title: "secondary objectives",
 
     win_modal_testing_explanation: "your solution is tested to make sure it works every time",
-    win_modal_prior_code_speed: "your fastest was %%score-number${minStep}%% cycles",
+    win_modal_prior_code_speed: "your fastest was %%score-number${minStep}%% steps",
     win_modal_prior_code_length: "your smallest was %%score-number${minLength}%% lines",
     win_modal_ok_button: "ok",
     win_modal_continue_edit_button: "improve",
@@ -447,7 +447,7 @@ const messages = {
     level_help_tab_calc_function_4: "Dans Selfless Heroes, il n'y a que des nombres entiers.\n\nL'opérateur %%type-operator$\"/\"%% est la division entière.\nPar exemple, %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04%%.\n\nL'opérateur %%type-operator$\"%\"%% est appelé \"modulo\". Il calcule le reste de la division entière.\nPar exemple, %%type-operator$9\u00A0%\u00A02\u00A0=\u00A01%% car %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04\u00A0reste\u00A01%%.",
 
 
-    level_modal_speed_target_unit: "cycles",
+    level_modal_speed_target_unit: "étapes",
     level_modal_length_target_unit: "lignes",
     level_modal_secondary_objectives_difficulty_warning: "les objectifs secondaires peuvent être très difficiles et il est souvent impossible de réussir les deux avec la même solution",
 
@@ -455,7 +455,7 @@ const messages = {
     level_objective_modal_secondary_objectives_title: "objectifs secondaires",
 
     win_modal_testing_explanation: "la solution est testée pour s'assurer qu'elle marche à chaque fois",
-    win_modal_prior_code_speed: "ton meilleur temps était %%score-number${minStep}%% cycles",
+    win_modal_prior_code_speed: "ton meilleur temps était %%score-number${minStep}%% étapes",
     win_modal_prior_code_length: "ta solution la plus courte faisait %%score-number${minLength}%% lignes",
     win_modal_ok_button: "ok",
     win_modal_continue_edit_button: "améliorer",
