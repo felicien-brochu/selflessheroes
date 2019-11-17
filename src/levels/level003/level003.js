@@ -7,8 +7,8 @@ const level = {
     fr: "Attention à la marche",
   },
   objective: {
-    en: "Trigger all the %%icon icon-switch$%% switches",
-    fr: "Active tous les %%icon icon-switch$%% boutons",
+    en: "Trigger all the %%icon icon-switch$%% switches.\n\n%%icon mdi mdi-information-outline$%% Check the help about %%statement branching-statement$if%% to better understand how it works.",
+    fr: "Active tous les %%icon icon-switch$%% boutons.\n\n%%icon mdi mdi-information-outline$%% Consulte l'aide à propos de %%statement branching-statement$si%% pour mieux comprendre comment ça marche.",
   },
 
   startingCode: "if e == switch:\n\tstep(e)\nendif\n",
