@@ -46,6 +46,15 @@ const messages = {
     level_list_back_button: "Back",
     level_list_bonus_label: "BONUS",
     level_list_boss_label: "BOSS",
+    level_list_premium_levels_button: "Unlock more levels",
+
+    premium_modal_title: "Premium content",
+    premium_modal_new_levels: "3 new level categories for a total of 30 additional levels",
+    premium_modal_new_actions: "New actions that completely change the way you play",
+    premium_modal_action_clone: "Creates a clone of the hero",
+    premium_modal_action_speach: "Heroes can speak to each other",
+    premium_modal_back_button: "back",
+    premium_modal_unlock_button: "unlock\npremium content",
 
     level_details_edit_button: "play",
     level_details_edit_button_tooltip: "Play",
@@ -353,6 +362,15 @@ const messages = {
     level_list_back_button: "Retour",
     level_list_bonus_label: "BONUS",
     level_list_boss_label: "BOSS",
+    level_list_premium_levels_button: "Débloquer plus de niveaux",
+
+    premium_modal_title: "Contenu premium",
+    premium_modal_new_levels: "3 nouvelles catégories de niveaux pour un total de 30 niveaux supplémentaires",
+    premium_modal_new_actions: "Des nouvelles actions qui changent complètement la façon de jouer",
+    premium_modal_action_clone: "Crée un clone du héro",
+    premium_modal_action_speach: "Les héros peuvent se parler",
+    premium_modal_back_button: "retour",
+    premium_modal_unlock_button: "débloquer\nle contenu premium",
 
     level_details_edit_button: "jouer",
     level_details_edit_button_tooltip: "Jouer",

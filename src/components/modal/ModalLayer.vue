@@ -1,6 +1,9 @@
 <template>
 <transition :duration="{enter: 200, leave: 150}">
-  <div class="modal-layer"
+  <div :class="{
+			'modal-layer': true,
+			'blurred': autoBlur && modals.length > 0,
+		}"
     v-show="modals.length > 0"
     @mousedown="handleOutsideClick"
     @touchstart="handleOutsideClick">
@@ -29,7 +32,11 @@ export default {
     'verticalPadding': {
       type: Number,
       default: 13
-    }
+    },
+    'autoBlur': {
+      type: Boolean,
+      default: false
+    },
   },
   data: function() {
     return {
@@ -116,6 +123,12 @@ export default {
     bottom: 0;
     right: 0;
     z-index: 200;
+    background-color: #282C3400;
+    transition: all 0.25s ease-out;
+
+    &.blurred {
+        background-color: #282C34dd;
+    }
 
     .modal {
         position: absolute;

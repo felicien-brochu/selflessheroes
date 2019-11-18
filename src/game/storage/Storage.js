@@ -12,6 +12,7 @@ export class Storage extends StorageWrapper {
     super(storageKey)
 
     this.version = storageVersion
+    this.isPremium = false
     this.preferences = new Preferences()
     this.careers = []
   }
@@ -91,6 +92,7 @@ export class Storage extends StorageWrapper {
 
   load(data) {
     this.version = data.version
+    this.isPremium = !!data.isPremium
     if (data.preferences) {
       this.preferences = Preferences.buildFromJSON(data.preferences)
     } else {
@@ -111,6 +113,7 @@ export class Storage extends StorageWrapper {
     let o = super.toJSON()
     Object.assign(o, {
       version: this.version,
+      isPremium: !!this.isPremium,
       preferences: this.preferences,
       careers: super.toIDArray(this.careers)
     })

@@ -1,5 +1,7 @@
 <template>
 <div class="level-list">
+  <modal-layer ref="modalLayer"
+    :autoBlur="true" />
 
   <header></header>
 
@@ -33,6 +35,14 @@
     </card-list>
   </div>
 
+  <div v-if="!career.isPremium"
+    class="premium-levels-button-container">
+    <button type="button"
+      class="premium-levels-button"
+      :title="$text('level_list_premium_levels_button')"
+      @click.prevent.stop="showPremiumModal">{{$text('level_list_premium_levels_button')}}</button>
+  </div>
+
   <transition name="fade-slide"
     appear>
     <level-details v-if="selectedID >= 0"
@@ -48,6 +58,8 @@ import levelManager from '../../levels/levelManager'
 import LevelItem from './LevelItem'
 import LevelDetails from './LevelDetails'
 import CardList from '../common/CardList'
+import PremiumModal from './PremiumModal'
+import ModalLayer from '../modal/ModalLayer'
 import storage from '../../game/storage/Storage'
 import SmoothScrollTo from '../util/SmoothScrollTo'
 
@@ -61,6 +73,7 @@ export default {
     LevelItem,
     LevelDetails,
     CardList,
+    ModalLayer,
   },
   props: {
     careerID: {
@@ -219,6 +232,21 @@ export default {
         this.$sound.play('level_list_unlock')
         setTimeout(() => this.revealNewlyUnlockedLevels(), 250)
       })
+    },
+
+    showPremiumModal() {
+      this.$refs.modalLayer.addModal({
+        component: PremiumModal,
+        key: 'premium_modal',
+        props: {},
+        handlers: {
+          confirm: this.showUnlockPremiumModal
+        }
+      })
+    },
+
+    showUnlockPremiumModal() {
+      console.log("####Show unlock premium modal")
     }
   }
 }
@@ -302,6 +330,26 @@ export default {
             justify-content: center;
             align-items: flex-start;
             align-content: flex-start;
+        }
+    }
+
+    .premium-levels-button-container {
+        button {
+            display: block;
+            background: #568AF2;
+            padding: 20px 24px;
+            margin: 0 auto 80px;
+            font-family: 'Roboto', Arial, sans-serif;
+            color: white;
+            font-size: 25px;
+            line-height: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+            border: none;
+
+            border-radius: 3px;
+            box-shadow: inset 0 0 10px 3px #0003, 0 0 10px 0 #0003;
         }
     }
 
