@@ -52,6 +52,39 @@ export class Storage extends StorageWrapper {
     saveAs(blob, `Selfless Heroes - ${career.name}.shsv`)
   }
 
+  activatePremium(activationKey) {
+    if (this.checkActivationKey(activationKey)) {
+      this.isPremium = true
+      this.save()
+      return true
+    } else {
+      return false
+    }
+  }
+
+  checkActivationKey(activationKey) {
+    let key = activationKey.replace(/[^0-9]/g, '')
+    if (key.length !== 11) {
+      return false
+    }
+    let a = parseInt(key.substring(0, 3))
+    let b = parseInt(key.substring(3, 6))
+    let c = parseInt(key.substring(6, 9))
+    let d = parseInt(key.substring(9, 11))
+
+    if (a === 0 || b === 0 || c === 0 || d === 0) {
+      return false
+    }
+
+    let res = ((a + c) * b) % 83 + 5
+
+    if (res !== d) {
+      return false
+    }
+
+    return true
+  }
+
   loadSavedCareer(json) {
     let savedJSON = JSON.parse(json)
     let careerJSON = savedJSON.career
@@ -107,7 +140,10 @@ export class Storage extends StorageWrapper {
     return true
   }
 
-  migrate() {}
+  migrate() {
+    this.version = storageVersion
+    this.save()
+  }
 
   toJSON() {
     let o = super.toJSON()

@@ -35,7 +35,7 @@
     </card-list>
   </div>
 
-  <div v-if="!career.isPremium"
+  <div v-if="!isPremium()"
     class="premium-levels-button-container">
     <button type="button"
       class="premium-levels-button"
@@ -59,7 +59,9 @@ import LevelItem from './LevelItem'
 import LevelDetails from './LevelDetails'
 import CardList from '../common/CardList'
 import PremiumModal from './PremiumModal'
+import UnlockPremiumModal from './UnlockPremiumModal'
 import ModalLayer from '../modal/ModalLayer'
+import Modal from '../modal/Modal'
 import storage from '../../game/storage/Storage'
 import SmoothScrollTo from '../util/SmoothScrollTo'
 
@@ -158,6 +160,10 @@ export default {
   },
 
   methods: {
+    isPremium() {
+      return storage.isPremium
+    },
+
     selectLevel(id, unlocked) {
       if (unlocked) {
         this.selectedID = id
@@ -246,8 +252,28 @@ export default {
     },
 
     showUnlockPremiumModal() {
-      console.log("####Show unlock premium modal")
-    }
+      this.$refs.modalLayer.addModal({
+        component: UnlockPremiumModal,
+        key: 'unlock_premium_modal',
+        props: {},
+        handlers: {
+          confirm: this.showPremiumActivatedModal
+        }
+      })
+    },
+
+    showPremiumActivatedModal() {
+      this.$refs.modalLayer.addModal({
+        component: Modal,
+        key: 'premium_activated_modal',
+        props: {
+          type: 'info',
+          cancelable: false,
+          text: this.$text('premium_activated_modal'),
+        },
+        handlers: {}
+      })
+    },
   }
 }
 </script>

@@ -11,6 +11,7 @@ export default class StorageWrapper {
         return null
       }
     }
+    this.loaded = true
     return this
   }
 

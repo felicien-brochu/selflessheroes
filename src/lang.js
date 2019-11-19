@@ -56,6 +56,14 @@ const messages = {
     premium_modal_back_button: "back",
     premium_modal_unlock_button: "unlock\npremium content",
 
+    unlock_premium_modal_title: "Unlock premium content",
+    unlock_premium_modal_get_key_button: "get activation key",
+    unlock_premium_modal_activation_key_label: "activation key:",
+    unlock_premium_modal_activation_key_placeholder: "XXX-XXX-XXX-XX",
+    unlock_premium_modal_wrong_activation_key: "This is not a valid activation key.",
+
+    premium_activated_modal: "Congratulations!\n\nYou've successfully unlocked Selfless Heroes premium content.",
+
     level_details_edit_button: "play",
     level_details_edit_button_tooltip: "Play",
     level_details_back_button: "back",
@@ -371,6 +379,13 @@ const messages = {
     premium_modal_action_speach: "Les héros peuvent se parler",
     premium_modal_back_button: "retour",
     premium_modal_unlock_button: "débloquer\nle contenu premium",
+
+    unlock_premium_modal_title: "Débloquer le contenu premium",
+    unlock_premium_modal_get_key_button: "obtenir une clé d'activation",
+    unlock_premium_modal_activation_key_label: "clé d'activation\u00A0:",
+    unlock_premium_modal_wrong_activation_key: "Cette clé d'activation n'est pas valide.",
+
+    premium_activated_modal: "Félicitations!\n\nLe contenu premium de Selfless Heroes est maintenant débloqué.",
 
     level_details_edit_button: "jouer",
     level_details_edit_button_tooltip: "Jouer",

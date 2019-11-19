@@ -139,6 +139,7 @@ const config = {
       LEVEL_DEV: JSON.stringify(env === 'development' && !!levelDev),
       SERVER_DOMAIN: JSON.stringify(process.env.SERVER_DOMAIN),
       SERVER_PROTOCOL: JSON.stringify(process.env.SERVER_PROTOCOL),
+      ACTIVATION_KEY_URL: JSON.stringify(process.env.ACTIVATION_KEY_URL),
       FB_APP_ID: JSON.stringify(process.env.FB_APP_ID),
     }),
     new CopyWebpackPlugin(copiedFiles),
