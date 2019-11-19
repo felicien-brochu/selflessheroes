@@ -258,8 +258,9 @@ const categories = [{
       unlock: [212],
     }, ]
   }, {
-    name: 'variables',
+    name: 'clone',
     color: 'purple',
+    premium: true,
     unlock: [],
     levels: [{
       id: 301,
@@ -301,7 +302,7 @@ class LevelManager {
     return this.levels
   }
 
-  getCareerList(career) {
+  getCareerList(career, premium) {
     let winList = []
     for (let i = 0; i < this.levels.length; i++) {
       let solutions = career.getLevel(this.levels[i].id)
@@ -313,6 +314,10 @@ class LevelManager {
 
     let careerList = []
     for (let categoryConf of this.categories) {
+      if (categoryConf.premium && !premium) {
+        continue
+      }
+
       let category = {
         name: categoryConf.name,
         color: categoryConf.color,

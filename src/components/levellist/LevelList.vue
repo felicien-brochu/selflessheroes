@@ -85,7 +85,7 @@ export default {
 
   data: function() {
     let career = storage.getCareer(this.careerID)
-    let careerLevels = levelManager.getCareerList(career)
+    let careerLevels = levelManager.getCareerList(career, storage.isPremium)
     this.createdLevels = career.createUnlockedLevelSolutions(careerLevels)
     this.scoreAnimationsPlaying = 0
     for (let category of careerLevels) {
@@ -271,7 +271,10 @@ export default {
           cancelable: false,
           text: this.$text('premium_activated_modal'),
         },
-        handlers: {}
+        handlers: {
+          // Reload page to show unlocked levels
+          close: () => window.location.reload()
+        }
       })
     },
   }
