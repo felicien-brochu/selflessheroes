@@ -43,6 +43,7 @@ const config = {
     app: [path.resolve(__dirname, 'src/main.js')],
     phaser: ['phaser']
   },
+  target: platform === 'electron' ? 'electron-renderer' : 'web',
   mode: env,
   output: {
     publicPath: '',

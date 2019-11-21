@@ -1,5 +1,3 @@
-// main.js
-
 'use strict'
 
 // Import parts of electron to use
@@ -8,6 +6,7 @@ const {
   protocol,
   BrowserWindow
 } = require('electron')
+const openLink = require('open')
 const path = require('path')
 const url = require('url')
 
@@ -29,7 +28,10 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1024,
     height: 768,
-    show: false
+    show: false,
+    webPreferences: {
+      nodeIntegrationInWorker: true,
+    },
   })
 
   // and load the index.html of the app.
@@ -46,6 +48,7 @@ function createWindow() {
     // mainWindow.maximize()
     mainWindow.show()
     mainWindow.setFullScreen(true)
+    mainWindow.openLink = openLink
 
     // Open the DevTools automatically if developing
     if (isDev) {

@@ -13,6 +13,7 @@
       class="link-button"
       :title="$text('unlock_premium_modal_get_key_button')"
       :href="activationKeyURL"
+      @click="onGetActivationKeyLinkClick"
       target="_blank">{{
 				$text('unlock_premium_modal_get_key_button')
 		}}<i class="mdi mdi-arrow-right-circle" /></a>
@@ -106,6 +107,14 @@ export default {
       }
       else {
         this.wrongActivationKey = true
+      }
+    },
+
+    onGetActivationKeyLinkClick(e) {
+      if (IS_ELECTRON) {
+        e.preventDefault()
+        const electronWindow = require('electron').remote.getCurrentWindow()
+        electronWindow.openLink(this.activationKeyURL)
       }
     },
 
