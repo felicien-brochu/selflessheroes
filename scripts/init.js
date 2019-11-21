@@ -25,6 +25,10 @@ let variables = [{
   name: 'SERVER_FOLDER',
   default: '/var/www/destination/on/server',
   value: '',
+}, {
+  name: 'ACTIVATION_KEY_URL',
+  default: 'https://urltoactivationkey',
+  value: '',
 }, ]
 
 let deployEnvContent = "# Deploy env variables\n\n"

@@ -10,7 +10,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const WebpackAutoInject = require('webpack-auto-inject-version')
 const VueLoader = require('vue-loader')
 
 const env = process.env.NODE_ENV
@@ -135,6 +134,7 @@ const config = {
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
+      GAME_VERSION: JSON.stringify(require("./package.json").version),
       ENV: JSON.stringify(env),
       IS_ELECTRON: JSON.stringify(platform === 'electron'),
       LEVEL_DEV: JSON.stringify(env === 'development' && !!levelDev),
@@ -144,11 +144,6 @@ const config = {
       FB_APP_ID: JSON.stringify(process.env.FB_APP_ID),
     }),
     new CopyWebpackPlugin(copiedFiles),
-    new WebpackAutoInject({
-      components: {
-        InjectAsComment: false
-      }
-    }),
     new MiniCssExtractPlugin(),
     new VueLoader.VueLoaderPlugin(),
     new HtmlWebpackPlugin({

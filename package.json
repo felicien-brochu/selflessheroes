@@ -74,7 +74,6 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.33.0",
-    "webpack-auto-inject-version": "^1.2.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.7.0",
     "webpack-node-externals": "^1.7.2",

@@ -5,7 +5,7 @@ import {
   saveAs
 } from 'file-saver'
 
-const storageVersion = '[AIV]{version}[/AIV]'
+const storageVersion = GAME_VERSION
 
 export class Storage extends StorageWrapper {
   constructor(storageKey) {

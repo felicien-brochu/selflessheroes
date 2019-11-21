@@ -95,7 +95,7 @@ export default {
       return CompilerConfig.getDefault()
     },
     activationKeyURL: function() {
-      return ACTIVATION_KEY_URL
+      return ACTIVATION_KEY_URL + '?fromGame=true&gameVersion=' + GAME_VERSION
     }
   },
 
