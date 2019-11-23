@@ -7,12 +7,10 @@ export default {
     code: `
 a:
 step(s)
-if s < 4 :
-	take(s)
+if here < 4 :
+	take(here)
 endif
-if s == cauldron :
-	drop(s)
-endif
+drop(s)
 jump a
 		`,
   }, {
