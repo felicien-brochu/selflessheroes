@@ -30,8 +30,7 @@
         :score="level.score"
         :class="{'selected': level.id === selectedID}"
         @show-score-animation-end="handleShowScoreAnimationEnd"
-        @mousedown.native="selectLevel(level.level.id, level.unlocked)"
-        @touchstart.native.prevent="selectLevel(level.id, level.unlocked)" />
+        @mousedown.native="selectLevel(level.level.id, level.unlocked)" />
     </card-list>
   </div>
 
