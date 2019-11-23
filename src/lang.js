@@ -1,4 +1,7 @@
 import format from 'string-template'
+import {
+  getUserLocales
+} from 'get-user-locale'
 
 const messages = {
   default: 'en',
@@ -611,13 +614,12 @@ const messages = {
 }
 
 class Idiom {
-  constructor(messages, languages) {
+  constructor(messages, locales) {
     this.messages = messages
-    this.languages = languages
-
     this.currentLanguage = messages.default
 
-    let supportedLanguage = languages.find(lang => !!this.messages[lang])
+    this.languages = locales.map(l => l.substring(0, 2))
+    let supportedLanguage = this.languages.find(lang => !!this.messages[lang])
     if (supportedLanguage) {
       this.currentLanguage = supportedLanguage
     }
@@ -685,8 +687,4 @@ class Idiom {
     return format(template, values)
   }
 }
-let languages = []
-if (typeof window !== 'undefined') {
-  languages = window.navigator.languages
-}
-export default new Idiom(messages, languages)
+export default new Idiom(messages, getUserLocales())
