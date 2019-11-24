@@ -143,7 +143,8 @@ export default {
   data() {
     return {
       transitionName: 'slide-left',
-      transitioning: false
+      transitioning: false,
+      requestFullscreenHasFailed: false,
     }
   },
 
@@ -292,6 +293,10 @@ export default {
             confirm: () => {
               document.body.requestFullscreen().catch(err => {
                 console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`)
+                if (!this.requestFullscreenHasFailed) {
+                  this.requestFullscreenHasFailed = true
+                  this.proposeFullscreen()
+                }
               })
             }
           }
