@@ -8,6 +8,9 @@ html {
 	padding: 0;
 	min-width: 100vw;
 	min-height: 100vh;
+	@supports (-webkit-overflow-scrolling: touch) {
+		min-height: calc(var(--vh, 1vh) * 100);
+	}
 	background-color: black;
 	font-family: 'Roboto', Arial, sans-serif;
 
@@ -49,6 +52,9 @@ ul {
 
 noscript {
 	min-height: 100vh;
+	@supports (-webkit-overflow-scrolling: touch) {
+		min-height: calc(var(--vh, 1vh) * 100);
+	}
 	display: block;
 	background-color: #282c34;
 	box-sizing: border-box;

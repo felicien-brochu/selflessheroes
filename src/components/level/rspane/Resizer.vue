@@ -84,29 +84,32 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .Resizer {
-  box-sizing: border-box;
-  z-index: 5;
-  background-clip: padding-box;
+    box-sizing: border-box;
+    z-index: 5;
+    background-clip: padding-box;
 }
 
 .Resizer:hover {
-  transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .Resizer.rowsres {
-  cursor: row-resize;
-  width: 100%;
+    cursor: row-resize;
+    width: 100%;
 }
 
 .Resizer.columnsres {
-  height: 100vh;
-  cursor: col-resize;
+    height: 100vh;
+    @supports (-webkit-overflow-scrolling: touch) {
+        height: calc(var(--vh, 1vh) * 100);
+    }
+    cursor: col-resize;
 }
 
-.Resizer.rowsres.inactive,
-.Resizer.columnsres.inactive {
-  cursor: initial;
+.Resizer.columnsres.inactive,
+.Resizer.rowsres.inactive {
+    cursor: initial;
 }
 </style>

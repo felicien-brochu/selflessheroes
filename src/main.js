@@ -121,3 +121,14 @@ function storageAvailable(type) {
       storage.length !== 0;
   }
 }
+
+// 100vh fix for iOS
+if (CSS.supports('-webkit-overflow-scrolling', 'touch')) {
+  function updateVHCssProperty() {
+    let vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
+  }
+
+  window.addEventListener('resize', updateVHCssProperty)
+  updateVHCssProperty()
+}

@@ -216,6 +216,9 @@ export default {
 <style lang="scss">
 .editors-container {
     height: 100vh;
+    @supports (-webkit-overflow-scrolling: touch) {
+        height: calc(var(--vh, 1vh) * 100);
+    }
     display: flex;
     flex-direction: column;
     padding-left: 1px;

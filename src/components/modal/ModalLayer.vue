@@ -125,6 +125,9 @@ export default {
         justify-content: center;
         padding: 24px;
         min-height: 100vh;
+        @supports (-webkit-overflow-scrolling: touch) {
+            min-height: calc(var(--vh, 1vh) * 100);
+        }
         box-sizing: border-box;
         align-items: center;
 

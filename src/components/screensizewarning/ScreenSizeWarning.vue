@@ -47,6 +47,9 @@ export default {
 <style lang="scss">
 .screen-size-warning {
     min-height: 100vh;
+    @supports (-webkit-overflow-scrolling: touch) {
+        min-height: calc(var(--vh, 1vh) * 100);
+    }
     color: #ABB2BF;
     background-color: #282C34;
     overflow: auto;

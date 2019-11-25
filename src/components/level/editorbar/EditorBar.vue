@@ -144,6 +144,7 @@ export default {
 
 <style lang="scss">
 .editor-bar {
+    font-size: 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -153,6 +154,7 @@ export default {
 
     button {
         font-size: 32px;
+        max-width: 48px;
         background: none;
         outline: none;
         border: none;
@@ -161,7 +163,9 @@ export default {
         margin: 0 7px;
     }
 
-    .vue-js-switch {}
+    .vue-js-switch {
+        font-size: 0;
+    }
 
     .center-container {
         flex: 1;
@@ -172,6 +176,7 @@ export default {
     }
 
     .code-state-container {
+        font-size: 0;
         width: 16px;
         height: 16px;
         line-height: 0;
@@ -182,6 +187,7 @@ export default {
         }
 
         .code-state {
+            font-size: 0;
             height: 16px;
             width: 16px;
             margin: 0;

@@ -135,6 +135,9 @@ export default {
     box-shadow: 0 0 100px 10px #000000aa;
     border-left: solid 2px #4b5261;
     height: 100vh;
+    @supports (-webkit-overflow-scrolling: touch) {
+        height: calc(var(--vh, 1vh) * 100);
+    }
     right: 0;
 
     .modal-content {
