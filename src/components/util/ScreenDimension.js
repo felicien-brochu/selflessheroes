@@ -14,8 +14,8 @@ export default class ScreenDimension {
   }
 
   static get() {
-    let width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width
-    let height = (window.innerHeight > 0) ? window.innerHeight : window.screen.height
+    let width = (window.screen.width > 0) ? window.screen.width : window.innerWidth
+    let height = (window.screen.height > 0) ? window.screen.height : window.innerHeight
     let maxDimension = Math.max(width, height)
     let minDimension = Math.min(width, height)
 
