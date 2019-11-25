@@ -136,7 +136,7 @@ export default {
 .unlock-premium-modal {
     background: #3C404A;
     border-radius: 12px;
-    box-shadow: inset 0 0 30px 10px #00000033, 0 0 30px 10px #00000044;
+    box-shadow: inset 0 0 30px 10px rgba(0,0,0,0.2), 0 0 30px 10px rgba(0,0,0,0.26);
 
     .modal-content {
         white-space: pre-line;
@@ -186,7 +186,7 @@ export default {
             font-size: 18px;
             font-weight: 500;
             border-radius: 16px;
-            box-shadow: 0 0 7px 0 #00000066;
+            box-shadow: 0 0 7px 0 rgba(0,0,0,0.4);
             line-height: 32px;
             margin-bottom: 14px;
 

@@ -124,13 +124,13 @@ $main-color: #4d2e4a;
                     display: flex;
                     align-items: center;
                     padding: 10px 8px 10px 12px;
-                    text-align: start;
+                    text-align: left;
                     border-right: solid 2px darken($main-color, 4%);
                 }
                 .error-description {
                     color: white;
                     padding: 10px 12px;
-                    text-align: start;
+                    text-align: left;
                     white-space: pre-line;
 
                     .code-segment {

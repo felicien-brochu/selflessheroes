@@ -15,7 +15,7 @@ export default () => ({
   type: Phaser.AUTO,
   parent: 'world-content',
   localStorageName: 'selflessheroes',
-  backgroundColor: '#00000000',
+  backgroundColor: 'rgba(0, 0, 0, 0)',
   plugins: {
     global: [{
       key: 'rexMouseWheelToUpDown',

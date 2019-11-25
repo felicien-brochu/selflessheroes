@@ -106,7 +106,7 @@ export default {
 .premium-modal {
     background: #3C404A;
     border-radius: 12px;
-    box-shadow: inset 0 0 30px 10px #00000033, 0 0 30px 10px #00000044;
+    box-shadow: inset 0 0 30px 10px rgba(0,0,0,0.2), 0 0 30px 10px rgba(0,0,0,0.26);
 
     .modal-content {
         h3 {
@@ -118,7 +118,7 @@ export default {
         ul.premium-content-list {
             list-style: disc;
             padding-left: 28px;
-            text-align: start;
+            text-align: left;
             font-size: 20px;
         }
 

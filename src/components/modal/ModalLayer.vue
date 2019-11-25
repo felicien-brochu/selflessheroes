@@ -111,13 +111,13 @@ export default {
     bottom: 0;
     right: 0;
     z-index: 200;
-    background-color: #282C3400;
+    background-color: rgba(40,44,52,0);
     transition: all 0.25s ease-out;
     overflow-x: hidden;
     overflow-y: auto;
 
     &.blurred {
-        background-color: #282C34dd;
+        background-color: rgba(40,43,51,0.86);
     }
 
     .modal-scroll-container {

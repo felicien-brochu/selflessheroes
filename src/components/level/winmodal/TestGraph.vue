@@ -15,7 +15,7 @@
           :y="scalePoint.y + 3"
           font-family="Roboto"
           font-size="10"
-          fill="#fff9">{{scalePoint.label}}</text>
+          fill="rgba(255,255,255,0.6)">{{scalePoint.label}}</text>
 
         <line :key="'dash' + scalePoint.y"
           x1="27"
@@ -23,14 +23,14 @@
           x2="30"
           :y2="scalePoint.y"
           stroke-width="1"
-          stroke="#fff2" />
+          stroke="rgba(255,255,255,0.13)" />
 
         <line :key="'scaleLine' + scalePoint.y"
           x1="30"
           :x2="400 + 30"
           :y1="scalePoint.y"
           :y2="scalePoint.y"
-          stroke="#fff2" />
+          stroke="rgba(255,255,255,0.13)" />
       </template>
 
       <template v-for="(test, index) in tests">
@@ -40,7 +40,7 @@
           stroke-width="1"
           y1="0"
           y2="240"
-          stroke="#fff2" />
+          stroke="rgba(255,255,255,0.13)" />
 
         <rect class="test-bar"
           :key="'bar' + index"
@@ -49,7 +49,7 @@
           y="240"
           width="14"
           height="0"
-          fill="#779666" />
+          fill="rgba(119,150,102,1)" />
       </template>
 
       <line ref="speedTargetLine"
@@ -58,7 +58,7 @@
         :x2="400 + 30"
         y2="80"
         stroke-width="1"
-        stroke="#fffa" />
+        stroke="rgba(255,255,255,0.6)" />
     </template>
   </svg>
 </div>
@@ -289,7 +289,7 @@ export default {
         width: 430px;
         background: #2f333d;
         border-radius: 8px;
-        box-shadow: inset 0 0 20px 0 #252930b3;
+        box-shadow: inset 0 0 20px 0 rgba(37,41,48,0.7);
     }
 }
 </style>

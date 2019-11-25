@@ -312,7 +312,7 @@ $selected-color: #535866;
                     & > li {
                         padding: 3px 7px 4px;
                         border-radius: 6px 0 0 6px;
-                        text-align: start;
+                        text-align: left;
                         width: 100%;
                         box-sizing: border-box;
                         cursor: pointer;
@@ -338,7 +338,7 @@ $selected-color: #535866;
                     color: transparentize(white, 0.2);
                     font-size: 18px;
                     padding: 23px 15px 20px 23px;
-                    text-align: start;
+                    text-align: left;
                     white-space: normal;
                     border-radius: 0 10px 10px 0;
 

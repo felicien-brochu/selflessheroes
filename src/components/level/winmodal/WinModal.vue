@@ -233,11 +233,11 @@ export default {
     color: white;
     padding: 45px 50px 30px;
     border-radius: 12px;
-    box-shadow: inset 0 0 30px 10px #00000033, 0 0 30px 10px #000000;
+    box-shadow: inset 0 0 30px 10px rgba(0,0,0,0.2), 0 0 30px 10px rgba(0,0,0,1);
     background-color: #282c34;
 
     .modal-content {
-        text-align: start;
+        text-align: left;
         display: flex;
         flex-direction: column;
         overflow: hidden auto;
@@ -287,7 +287,7 @@ export default {
             }
 
             .score {
-                text-align: start;
+                text-align: left;
                 font-size: 20px;
                 margin: 5px 25px;
                 color: transparentize(white, 0.1);
@@ -350,7 +350,7 @@ export default {
                 font-style: italic;
                 font-size: 14px;
                 color: #8f95a2;
-                text-align: start;
+                text-align: left;
                 margin: 15px 7px 0;
                 font-weight: 500;
 

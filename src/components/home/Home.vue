@@ -337,7 +337,7 @@ export default {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #222c;
+        background-color: rgba(33,33,33,0.8);
         z-index: 10000;
         display: table;
         box-sizing: border-box;
@@ -458,7 +458,7 @@ export default {
 
         .add-button-wrapper {
             @include card-box;
-            border: dashed #ffffff1a 8px;
+            border: dashed rgba(254,254,254,0.1) 8px;
             display: flex;
             align-self: flex-start;
             align-items: center;
@@ -475,7 +475,7 @@ export default {
 
             &:hover {
                 background-color: lighten(#282C34, 10%);
-                border-color: #ffffff00;
+                border-color: rgba(254, 254, 254, 0);
                 button {
                     opacity: 0.7;
                 }
@@ -555,7 +555,7 @@ export default {
                     text-overflow: ellipsis;
                     padding: 13px 18px;
                     border-radius: 3px;
-                    box-shadow: inset 0 0 10px 3px #0003, 0 0 10px 0 #0003;
+                    box-shadow: inset 0 0 10px 3px rgba(0,0,0,0.2), 0 0 10px 0 rgba(0,0,0,0.2);
                     background-color: hsl(220, 18%, 29%);
                     color: #d4d4d4;
 

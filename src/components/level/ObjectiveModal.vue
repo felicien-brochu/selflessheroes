@@ -131,8 +131,7 @@ export default {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    // box-shadow: inset 20px 0 50px 0 #00000033, 0 0 100px 10px #000000aa;
-    box-shadow: 0 0 100px 10px #000000aa;
+    box-shadow: 0 0 100px 10px rgba(0,0,0,0.66);
     border-left: solid 2px #4b5261;
     height: 100vh;
     @supports (-webkit-overflow-scrolling: touch) {
@@ -210,7 +209,7 @@ export default {
             max-width: 500px;
 
             h4 {
-                text-align: start;
+                text-align: left;
                 margin: 0 0 10px;
                 font-weight: 500;
                 font-size: 20px;
@@ -248,7 +247,7 @@ export default {
             }
 
             .score {
-                text-align: start;
+                text-align: left;
                 font-size: 20px;
                 margin: 0 25px 5px;
 
@@ -278,7 +277,7 @@ export default {
                 font-size: 14px;
                 color: #7b8292;
                 margin: 4px 0 7px;
-                text-align: start;
+                text-align: left;
                 font-weight: 500;
                 background-color: #373b44;
                 border-radius: 6px;
@@ -308,7 +307,7 @@ export default {
             padding: 9px 20px;
             border-radius: 3px;
             border: none;
-            box-shadow: inset 0 0 10px 3px #0003, 0 0 10px 0 #0003;
+            box-shadow: inset 0 0 10px 3px rgba(0,0,0,0.2), 0 0 10px 0 rgba(0,0,0,0.2);
             cursor: pointer;
         }
     }

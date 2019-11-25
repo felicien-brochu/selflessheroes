@@ -1,7 +1,6 @@
 @mixin no-select {
 	user-select: none;
 }
-// $default-card-color: #583455;
 $default-card-color: #406f96;
 @mixin card-box {
 	box-sizing: border-box;
@@ -26,14 +25,14 @@ $default-card-color: #406f96;
 	background-color: $card-color;
 	color: $text-color;
 	cursor: pointer;
-	box-shadow: inset 0 0 30px 10px #00000033, 0 0 30px 10px #00000022;
+	box-shadow: inset 0 0 30px 10px rgba(0,0,0,0.2), 0 0 30px 10px rgba(0,0,0,0.133);
 	@if $animate {
 		transition-property: transform;
 		transition-duration: 0.25s;
 		transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1) scale(1);
 
 		&:hover {
-			box-shadow: inset 0 0 30px 10px #00000033, 0 0 50px 10px #00000045;
+			box-shadow: inset 0 0 30px 10px rgba(0,0,0,0.2), 0 0 50px 10px rgba(0,0,0,0.27);
 			transform: matrix3d(1,0,0.00,0.0001,0.00,1,0.00,0,0,0,1,0,0,0,0,1) scale(1.1);
 			background-color: lighten($card-color, 1%);
 		}

@@ -261,7 +261,7 @@ $modal-color: #568AF2;
     flex-direction: row;
     align-items: center;
     border-radius: 8px;
-    box-shadow: 0 0 100px 10px #00000066;
+    box-shadow: 0 0 100px 10px rgba(0,0,0,0.4);
     padding: 20px 15px 20px 30px;
     max-width: 400px;
 

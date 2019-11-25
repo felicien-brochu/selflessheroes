@@ -151,7 +151,7 @@ export default {
 
             tr {
                 td {
-                    text-align: start;
+                    text-align: left;
 
                     &:first-child {
                         padding-right: 28px;

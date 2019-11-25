@@ -184,7 +184,7 @@ export default {
     display: flex;
     flex-direction: column;
     border-radius: 8px;
-    box-shadow: inset 0 0 30px 10px #00000033, 0 0 100px 10px #000000aa;
+    box-shadow: inset 0 0 30px 10px rgba(0,0,0,0.2), 0 0 100px 10px rgba(0,0,0,0.66);
 
     button {
         background: none;
@@ -217,7 +217,7 @@ export default {
             font-size: 21px;
             padding: 9px 20px;
             border-radius: 3px;
-            box-shadow: inset 0 0 10px 3px #0003, 0 0 10px 0 #0003;
+            box-shadow: inset 0 0 10px 3px rgba(0,0,0,0.2), 0 0 10px 0 rgba(0,0,0,0.2);
         }
     }
 

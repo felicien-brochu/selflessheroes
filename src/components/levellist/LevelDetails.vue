@@ -274,7 +274,7 @@ $level-details-color: #3C404A;
 
 .level-details {
     position: relative;
-    background-color: #282C34dd;
+    background-color: rgba(40,43,51,0.86);
 
     .level-details-modal {
         position: absolute;
@@ -291,7 +291,7 @@ $level-details-color: #3C404A;
         box-sizing: border-box;
         background: $level-details-color;
         border-radius: 12px;
-        box-shadow: inset 0 0 30px 10px #00000033, 0 0 30px 10px #00000044;
+        box-shadow: inset 0 0 30px 10px rgba(0,0,0,0.2), 0 0 30px 10px rgba(0,0,0,0.26);
         display: flex;
         flex-direction: column;
         max-width: 800px;
@@ -392,7 +392,7 @@ $level-details-color: #3C404A;
 
                 &:active,
                 &:hover {
-                    text-shadow: 0 0 5px #fff4;
+                    text-shadow: 0 0 5px rgba(255,255,255,0.26);
                 }
             }
 
@@ -512,7 +512,7 @@ $level-details-color: #3C404A;
                 color: white;
                 border: none;
                 border-radius: 3px;
-                box-shadow: inset 0 0 10px 3px #0003, 0 0 10px 0 #0003;
+                box-shadow: inset 0 0 10px 3px rgba(0,0,0,0.2), 0 0 10px 0 rgba(0,0,0,0.2);
 
                 &:hover:not(:active) {
                     background-color: lighten($level-details-color, 12%);
