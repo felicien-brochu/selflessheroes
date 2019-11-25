@@ -30,7 +30,7 @@
 		}"
     :key="path.key"
     :d="path.path"
-    :marker-end="`url(#arrow${path.focused ? '-focused' : ''})`" />
+    :marker-end="`url(${baseUrl}#arrow${path.focused ? '-focused' : ''})`" />
 </svg>
 </template>
 
@@ -52,10 +52,17 @@ export default {
       default: -1
     }
   },
+
   data: function() {
     return {
       links: new Map(),
       linkPaths: []
+    }
+  },
+
+  computed: {
+    baseUrl: function() {
+      return this.$router.currentRoute.fullPath
     }
   },
 
