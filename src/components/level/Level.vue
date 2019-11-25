@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import _debounce from 'lodash.debounce'
 import _throttle from 'lodash.throttle'
 import World from './World'
@@ -203,6 +204,7 @@ export default {
     this.$music.play('level1')
     this.solution.hasOpen = true
     this.solution.save()
+    Vue.prototype.$levelModalLayer = this.$refs.modalLayer
 
     this.showObjectiveModal()
   },
@@ -211,6 +213,7 @@ export default {
     this.debouncedSetWorldState.flush()
     this.debouncedCompileCode.cancel()
     this.debouncedPushHistory.flush()
+    Vue.prototype.$levelModalLayer = undefined
   },
 
   computed: {

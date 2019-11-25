@@ -5,6 +5,7 @@
   :cancelable="false"
   :confirmValue="confirmValue"
   v-bind="$props"
+  internalScroll
   @close="$emit('close')"
   @confirm="$emit('confirm', $event)"
   @cancel="$emit('cancel', $event)">

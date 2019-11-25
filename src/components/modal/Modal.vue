@@ -1,22 +1,21 @@
 <template>
 <transition :name="transition"
   appear>
-  <div :class="['modal', `modal-${type}`]"
+  <div :class="cssClasses"
     :style="{
-		maxWidth: `${maxWidth}px`,
-		maxHeight: `${maxHeight}px`
-	}">
+				maxWidth: `${maxWidth}px`,
+				maxHeight: internalScroll ? `${maxHeight}px` : 'none'
+			}">
+
     <button class="close-button mdi mdi-close"
       v-if="!hideButtons && !hideCloseButton"
       type="button"
       :title="$text('modal_close_button')"
-      @click="cancel"
-      @touchstart="cancel" />
+      @click="cancel()" />
 
     <div class="modal-content"
       :style="{
-				maxWidth: `${maxWidth - 120}px`,
-				maxHeight: `${maxHeight - 160}px`
+				maxWidth: `${maxWidth - 120}px`
 			}">
       <slot>{{text}}</slot>
     </div>
@@ -27,15 +26,13 @@
       <button v-if="cancelable"
         type="button"
         :title="cancelButtonLabel"
-        @click="cancel()"
-        @touchstart="cancel()">{{
+        @click="cancel()">{{
 					cancelButtonLabel
 				}}</button>
 
       <button type="submit"
         :title="confirmButtonLabel"
-        @click="confirm()"
-        @touchstart="confirm()">{{
+        @click="confirm()">{{
 				confirmButtonLabel
 			}}</button>
 
@@ -70,6 +67,14 @@ export default {
       type: Number,
       default: window.innerHeight
     },
+    'hideTransition': {
+      type: Boolean,
+      default: false
+    },
+    'internalScroll': {
+      type: Boolean,
+      default: false
+    },
     'hideButtons': {
       type: Boolean,
       default: false
@@ -89,6 +94,13 @@ export default {
   },
 
   computed: {
+    cssClasses: function() {
+      let classes = ['modal', `modal-${this.type}`]
+      if (this.internalScroll) {
+        classes.push('internal-scroll')
+      }
+      return classes
+    },
     maxWidth: function() {
       let maxWidth = Math.min(720, this.frameWidth)
       maxWidth = Math.max(420, maxWidth)
@@ -114,6 +126,10 @@ export default {
         default:
           transition = 'pop'
       }
+
+      if (this.hideTransition) {
+        transition = 'hide-transition'
+      }
       return transition
     }
   },
@@ -125,8 +141,8 @@ export default {
     },
 
     cancel(confirmValue = this.confirmValue) {
-      this.$emit('cancel', confirmValue)
       this.$emit('close')
+      this.$emit('cancel', confirmValue)
     }
   }
 }
@@ -214,12 +230,12 @@ export default {
     }
 
     &.pop-enter {
-        transform: translate(-50%, -50%) scale(0.5) rotate(10deg);
+        transform: scale(0.5) rotate(10deg);
         opacity: 0;
     }
 
     &.pop-leave-to {
-        transform: translate(-50%, -50%) scale(0) rotate(10deg);
+        transform: scale(0) rotate(10deg);
         opacity: 0;
     }
 
@@ -234,7 +250,21 @@ export default {
     &.fade-slide-enter,
     &.fade-slide-leave-to {
         opacity: 0;
-        transform: translateX(-50%) translateY(calc(-50% - 50px));
+        transform: translateY(-50px);
+    }
+
+    &.hide-transition-enter-active {
+        transition: all 0.2s step-end;
+        display: none !important;
+    }
+
+    &.hide-transition-leave-active {
+        transition: all 0.25s step-start;
+    }
+
+    &.hide-transition-leave-to {
+        opacity: 0;
+        transform: translateY(-50px);
     }
 }
 
@@ -243,7 +273,6 @@ export default {
     text-align: center;
     white-space: pre-wrap;
     word-wrap: break-word;
-    overflow: auto;
 
     .icon {
         width: 30px;
@@ -251,6 +280,12 @@ export default {
         display: inline-block;
         background-size: cover;
         vertical-align: bottom;
+    }
+}
+
+.internal-scroll {
+    .modal-content {
+        overflow: auto;
     }
 }
 </style>

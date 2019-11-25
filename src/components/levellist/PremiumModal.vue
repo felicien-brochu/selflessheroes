@@ -90,13 +90,13 @@ export default {
 
   methods: {
     confirm() {
-      this.$emit('confirm')
       this.$emit('close')
+      this.$emit('confirm')
     },
 
     cancel() {
-      this.$emit('cancel')
       this.$emit('close')
+      this.$emit('cancel')
     }
   }
 }

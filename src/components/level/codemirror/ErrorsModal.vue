@@ -87,7 +87,7 @@ export default {
 
 <style lang="scss">
 $main-color: #4d2e4a;
-.modal.errors-modal {
+.errors-modal {
     .modal-content {
 
         h3 {

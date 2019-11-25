@@ -3,8 +3,6 @@
   @mousedown="$emit('start-edit')"
   @touchstart="$emit('start-edit')">
 
-  <modal-layer ref="modalLayer" />
-
   <line-cursors v-show="playing"
     ref="lineCursors"
     :debugContext="debugContext"
@@ -205,7 +203,7 @@ export default {
 
     showCodeStateDetails(codeState) {
       if (codeState === 'code-ok') {
-        this.$refs.modalLayer.addModal({
+        this.$levelModalLayer.addModal({
           component: Modal,
           key: 'code_state_ok_modal',
           props: {
@@ -215,7 +213,7 @@ export default {
         })
       }
       else if (codeState === 'code-not-runnable') {
-        this.$refs.modalLayer.addModal({
+        this.$levelModalLayer.addModal({
           component: CodeModal,
           key: 'code_state_not_runnable_modal',
           props: {
@@ -225,7 +223,7 @@ export default {
         })
       }
       else if (codeState === 'code-not-compilable') {
-        this.$refs.modalLayer.addModal({
+        this.$levelModalLayer.addModal({
           component: ErrorsModal,
           key: 'code_state_not_compilable_modal',
           props: {

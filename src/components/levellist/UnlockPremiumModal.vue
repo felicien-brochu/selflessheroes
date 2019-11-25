@@ -4,6 +4,7 @@
   :hideButtons="true"
   :frameWidth="frameWidth"
   :frameHeight="frameHeight"
+  :hideTransition="true"
   type="info"
   @close="$emit('close')"
   @confirm="$emit('confirm', $event)"

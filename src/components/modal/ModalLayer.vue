@@ -2,22 +2,25 @@
 <transition :duration="{enter: 200, leave: 150}">
   <div :class="{
 			'modal-layer': true,
-			'blurred': autoBlur && modals.length > 0,
+			'blurred': autoBlur && !!modal,
 		}"
-    v-show="modals.length > 0"
-    @mousedown="handleOutsideClick"
-    @touchstart="handleOutsideClick">
+    v-show="!!modal">
+    <div class="modal-scroll-container"
+      ref="scrollContainer"
+      @mousedown.stop="handleOutsideClick"
+      @touchstart.stop="handleOutsideClick">
 
-    <component v-for="(modal, index) in modals"
-      ref="modals"
-      :key="modal.key"
-      :is="modal.component"
-      :frameWidth="frameWidth"
-      :frameHeight="frameHeight"
-      v-bind="modal.props"
-      v-on="modal.handlers"
-      @close="removeModal(index)" />
+      <component v-if="!!modal"
+        ref="modal"
+        :key="modal.key"
+        :is="modal.component"
+        :frameWidth="frameWidth"
+        :frameHeight="frameHeight"
+        v-bind="modal.props"
+        v-on="modal.handlers"
+        @close="closeModal" />
 
+    </div>
   </div>
 </transition>
 </template>
@@ -31,7 +34,7 @@ export default {
     },
     'verticalPadding': {
       type: Number,
-      default: 13
+      default: 24
     },
     'autoBlur': {
       type: Boolean,
@@ -40,7 +43,7 @@ export default {
   },
   data: function() {
     return {
-      modals: [],
+      modal: null,
       width: window.innerWidth,
       height: window.innerHeight
     }
@@ -76,34 +79,19 @@ export default {
     //   }
     // }
     addModal(modalOptions) {
-      let sameModal = this.modals.find(m => m.key === modalOptions.key)
-      if (sameModal) {
-        this.closeModal(this.modals.indexOf(sameModal))
-      }
-      else {
-        this.modals.push(modalOptions)
-      }
+      this.modal = modalOptions
     },
 
-    closeModal(index) {
-      this.$refs.modals[index].cancel()
-    },
-
-    removeModal(index) {
-      this.modals.splice(index, 1)
-    },
-
-    closeLastModal() {
-      if (this.modals.length > 0) {
-        this.closeModal(this.modals.length - 1)
-      }
+    closeModal() {
+      this.modal = null
     },
 
     handleOutsideClick(e) {
       let target = e.touches && e.touches[0].target || e.target
-      e.stopPropagation()
-      if (target === this.$el) {
-        this.closeLastModal()
+      if (target === this.$el || target === this.$refs.scrollContainer) {
+        if (this.$refs.modal) {
+          this.$refs.modal.$emit('close')
+        }
       }
     },
 
@@ -125,17 +113,28 @@ export default {
     z-index: 200;
     background-color: #282C3400;
     transition: all 0.25s ease-out;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     &.blurred {
         background-color: #282C34dd;
     }
 
-    .modal {
-        position: absolute;
-        top: 50%;
-        left: 50%;
+    .modal-scroll-container {
+        display: flex;
+        justify-content: center;
+        padding: 24px;
+        min-height: 100vh;
+        box-sizing: border-box;
+        align-items: center;
 
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        .modal {
+            // position: absolute;
+            // top: 50%;
+            // left: 50%;
+            //
+            // transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        }
     }
 }
 </style>

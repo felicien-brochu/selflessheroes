@@ -2,7 +2,7 @@
 <transition name="objective-slide"
   appear>
 
-  <div class="objective-modal"
+  <div class="objective-modal internal-scroll"
     ref="modal"
     type="info"
     :cancelable="false"
