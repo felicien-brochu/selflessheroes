@@ -375,9 +375,6 @@ export default {
             font-size: 25px;
             line-height: 25px;
             font-weight: 500;
-            cursor: pointer;
-            outline: none;
-            border: none;
 
             border-radius: 3px;
             box-shadow: inset 0 0 10px 3px rgba(0,0,0,0.2), 0 0 10px 0 rgba(0,0,0,0.2);

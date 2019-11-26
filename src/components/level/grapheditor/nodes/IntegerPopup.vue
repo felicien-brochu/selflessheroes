@@ -120,9 +120,7 @@ export default {
             width: 30px;
             height: 30px;
             background-color: transparentize(white, 0.7);
-            border: none;
             font-weight: 900;
-            padding: 0;
             color: inherit;
             text-align: center;
             border-radius: 5px;

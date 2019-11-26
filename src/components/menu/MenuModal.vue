@@ -27,17 +27,17 @@
       </td>
     </tr>
     <tr class="sound-preference">
-      <td>{{$text('menu_sound_label')}}</td>
-      <td>
-        <volume tag="div"
-          :volume="preferences.soundVolume" />
-      </td>
-    </tr>
-    <tr class="sound-preference">
       <td>{{$text('menu_music_label')}}</td>
       <td>
         <volume tag="div"
           :volume="preferences.musicVolume" />
+      </td>
+    </tr>
+    <tr class="sound-preference">
+      <td>{{$text('menu_sound_label')}}</td>
+      <td>
+        <volume tag="div"
+          :volume="preferences.soundVolume" />
       </td>
     </tr>
   </table>

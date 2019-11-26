@@ -52,14 +52,9 @@ export default {
 
 <style lang="scss">
 .mute-button {
-    background: none;
-    border: none;
-    outline: none;
     pointer-events: all;
-    cursor: pointer;
     font-size: 38px;
     color: transparentize(white, 0.2);
-    padding: 0;
 
     &:hover {
         color: white;

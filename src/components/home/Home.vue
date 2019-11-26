@@ -363,11 +363,6 @@ export default {
     }
 
     button {
-        background: none;
-        border: none;
-        outline: none;
-        padding: 0;
-        cursor: pointer;
         transition: opacity ease 500ms;
 
         &[disabled] {

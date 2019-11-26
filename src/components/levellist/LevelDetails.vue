@@ -297,11 +297,6 @@ $level-details-color: #3C404A;
         max-width: 800px;
 
         button {
-            margin: 0;
-            background: none;
-            outline: none;
-            border: none;
-            cursor: pointer;
             color: white;
         }
 
@@ -483,12 +478,8 @@ $level-details-color: #3C404A;
 
                         .edit-button-container {
                             width: 26px;
-                            button {
-                                padding: 0;
-
-                                &::before {
-                                    font-size: 22px;
-                                }
+                            button::before {
+                                font-size: 22px;
                             }
                         }
                     }

@@ -266,12 +266,6 @@ $modal-color: #568AF2;
     max-width: 400px;
 
     button {
-        margin: 0;
-        padding: 0;
-        background: none;
-        outline: none;
-        border: none;
-        cursor: pointer;
         color: white;
         font-size: 30px;
     }

@@ -691,13 +691,8 @@ export default {
                         margin-left: 12px;
 
                         button {
-                            background: none;
-                            border: none;
-                            outline: none;
                             pointer-events: all;
                             color: transparentize(white, 0.2);
-                            padding: 0;
-                            cursor: pointer;
                             font-size: 32px;
 
                             &:hover {

@@ -186,14 +186,6 @@ export default {
     border-radius: 8px;
     box-shadow: inset 0 0 30px 10px rgba(0,0,0,0.2), 0 0 100px 10px rgba(0,0,0,0.66);
 
-    button {
-        background: none;
-        border: none;
-        outline: none;
-        padding: 0;
-        cursor: pointer;
-    }
-
     .close-button {
         position: absolute;
         top: 0;

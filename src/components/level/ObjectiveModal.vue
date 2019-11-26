@@ -306,9 +306,7 @@ export default {
             font-size: 21px;
             padding: 9px 20px;
             border-radius: 3px;
-            border: none;
             box-shadow: inset 0 0 10px 3px rgba(0,0,0,0.2), 0 0 10px 0 rgba(0,0,0,0.2);
-            cursor: pointer;
         }
     }
 }

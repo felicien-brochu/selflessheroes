@@ -155,10 +155,6 @@ export default {
     button {
         font-size: 32px;
         max-width: 48px;
-        background: none;
-        outline: none;
-        border: none;
-        cursor: pointer;
         height: 40px;
         margin: 0 7px;
     }

@@ -333,15 +333,10 @@ export default {
         transition: opacity 0.5s ease;
 
         button {
-            background: none;
-            border: none;
-            outline: none;
             pointer-events: all;
-            cursor: pointer;
             font-size: 44px;
             line-height: 40px;
             color: transparentize(white, 0.2);
-            padding: 0;
 
             &:hover {
                 color: white;
