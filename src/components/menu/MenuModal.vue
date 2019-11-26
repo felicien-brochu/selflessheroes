@@ -40,9 +40,22 @@
           :volume="preferences.soundVolume" />
       </td>
     </tr>
+    <tr class="link-preference">
+      <td>{{$text('menu_credits_label')}}</td>
+      <td>
+        <external-link :title="$text('menu_credits_link')"
+          :href="creditsURL">{{
+							$text('menu_credits_link')
+					}}</external-link>
+      </td>
+    </tr>
+    <tr>
+      <td>{{$text('menu_game_version_label')}}</td>
+      <td class="game-version">{{
+				gameVersion
+      }}</td>
+    </tr>
   </table>
-
-  </div>
 </modal>
 </template>
 
@@ -50,12 +63,14 @@
 import Modal from '../modal/Modal'
 import Volume from './Volume'
 import ToggleButton from '../inputs/ToggleButton'
+import ExternalLink from '../common/ExternalLink'
 
 export default {
   components: {
     Modal,
     ToggleButton,
-    Volume
+    Volume,
+    ExternalLink,
   },
 
   props: {
@@ -93,10 +108,16 @@ export default {
 
   computed: {
     showFullscreenPreference: function() {
-      return !IS_ELECTRON
+      return !IS_ELECTRON && typeof document.body.requestFullscreen === 'function'
     },
     fullscreenToggleTitle: function() {
       return this.fullscreenEnabled ? this.$text('menu_disable_fullscreen') : this.$text('menu_enable_fullscreen')
+    },
+    creditsURL: function() {
+      return CREDITS_URL + '?fromGame=true&gameVersion=' + GAME_VERSION
+    },
+    gameVersion: function() {
+      return GAME_VERSION
     }
   },
 
@@ -148,6 +169,22 @@ export default {
         .menu-modal-content {
             overflow: auto;
             max-width: 500px;
+
+            .link-preference {
+                & > td {
+                    padding-top: 20px;
+
+                    .external-link {
+                        margin: 5px;
+                    }
+                }
+            }
+
+            .game-version {
+                font-family: 'Consolas', monospace;
+                user-select: text;
+                padding: 7px;
+            }
 
             tr {
                 td {

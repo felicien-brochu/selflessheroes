@@ -29,6 +29,10 @@ let variables = [{
   name: 'ACTIVATION_KEY_URL',
   default: 'https://urltoactivationkey',
   value: '',
+}, {
+  name: 'CREDITS_URL',
+  default: 'https://urltocredits',
+  value: '',
 }, ]
 
 let deployEnvContent = "# Deploy env variables\n\n"

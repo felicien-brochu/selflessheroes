@@ -10,14 +10,11 @@
   @confirm="$emit('confirm', $event)"
   @cancel="$emit('cancel', $event)">
   <h3>{{$text('unlock_premium_modal_title')}}</h3>
-  <p><a type="button"
-      class="link-button"
-      :title="$text('unlock_premium_modal_get_key_button')"
-      :href="activationKeyURL"
-      @click="onGetActivationKeyLinkClick"
-      target="_blank">{{
+  <p>
+    <external-link :title="$text('unlock_premium_modal_get_key_button')"
+      :href="activationKeyURL">{{
 				$text('unlock_premium_modal_get_key_button')
-		}}<i class="mdi mdi-arrow-right-circle" /></a>
+		}}</external-link>
   </p>
 
   <form @submit.prevent="activatePremium">
@@ -59,12 +56,14 @@
 
 <script>
 import Modal from '../modal/Modal'
+import ExternalLink from '../common/ExternalLink'
 import CompilerConfig from '../../world/ai/compile/CompilerConfig'
 import storage from '../../game/storage/Storage'
 
 export default {
   components: {
     Modal,
+    ExternalLink,
   },
   directives: {
     focus: {
@@ -108,14 +107,6 @@ export default {
       }
       else {
         this.wrongActivationKey = true
-      }
-    },
-
-    onGetActivationKeyLinkClick(e) {
-      if (IS_ELECTRON) {
-        e.preventDefault()
-        const electronWindow = require('electron').remote.getCurrentWindow()
-        electronWindow.openLink(this.activationKeyURL)
       }
     },
 
