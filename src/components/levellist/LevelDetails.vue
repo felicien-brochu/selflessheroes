@@ -66,21 +66,6 @@
 						solution.name
 					}}</span>
 
-                <button type="button"
-                  class="mdi mdi-pencil"
-                  :title="$text('level_details_rename_solution_button')"
-                  @mousedown.stop.prevent="selectRenamedSolution(solution.id, solution.name, $event)"
-                  @touchstart.stop.prevent="selectRenamedSolution(solution.id, solution.name, $event)" /><button type="button"
-                  class="mdi mdi-content-copy"
-                  :title="$text('level_details_duplicate_solution_button')"
-                  @mousedown.stop.prevent="duplicateSolution(solution.id, $event)"
-                  @touchstart.stop.prevent="duplicateSolution(solution.id, $event)" /><button v-if="solutions.length > 1"
-                  type="button"
-                  class="mdi mdi-delete"
-                  :title="$text('level_details_delete_solution_button')"
-                  @mousedown.stop.prevent="deleteSolution(solution.id, $event)"
-                  @touchstart.stop.prevent="deleteSolution(solution.id, $event)" />
-
               </template>
 
               <form v-else
@@ -94,6 +79,23 @@
                   @blur="renameSolution" />
               </form>
 
+            </div>
+
+            <div class="action-buttons-container">
+              <button type="button"
+                class="mdi mdi-pencil"
+                :title="$text('level_details_rename_solution_button')"
+                @mousedown.stop.prevent="selectRenamedSolution(solution.id, solution.name, $event)"
+                @touchstart.stop.prevent="selectRenamedSolution(solution.id, solution.name, $event)" /><button type="button"
+                class="mdi mdi-content-copy"
+                :title="$text('level_details_duplicate_solution_button')"
+                @mousedown.stop.prevent="duplicateSolution(solution.id, $event)"
+                @touchstart.stop.prevent="duplicateSolution(solution.id, $event)" /><button v-if="solutions.length > 1"
+                type="button"
+                class="mdi mdi-delete"
+                :title="$text('level_details_delete_solution_button')"
+                @mousedown.stop.prevent="deleteSolution(solution.id, $event)"
+                @touchstart.stop.prevent="deleteSolution(solution.id, $event)" />
             </div>
 
             <div class="score speed-score">
@@ -349,6 +351,7 @@ $level-details-color: #3C404A;
                 font-size: 24px;
                 margin-right: 5px;
                 opacity: 0.5;
+                vertical-align: bottom;
             }
 
             .score-number {
@@ -450,20 +453,6 @@ $level-details-color: #3C404A;
                                 vertical-align: middle;
                             }
 
-                            button {
-                                font-size: 18px;
-                                opacity: 0.5;
-
-                                &:active,
-                                &:hover {
-                                    opacity: 1;
-                                }
-
-                                &::before {
-                                    vertical-align: middle;
-                                }
-                            }
-
                             input[type="text"] {
                                 padding: 3px 6px;
                                 border-radius: 5px;
@@ -476,8 +465,27 @@ $level-details-color: #3C404A;
                             }
                         }
 
+                        .action-buttons-container {
+                            button {
+                                font-size: 18px;
+                                opacity: 0.5;
+                                margin: 0 6px;
+
+                                &:active,
+                                &:hover {
+                                    opacity: 1;
+                                }
+
+                                &::before {
+                                    vertical-align: middle;
+                                }
+                            }
+                        }
+
                         .edit-button-container {
                             width: 26px;
+                            height: 26px;
+
                             button::before {
                                 font-size: 22px;
                             }
