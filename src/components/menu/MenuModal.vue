@@ -40,20 +40,14 @@
           :volume="preferences.soundVolume" />
       </td>
     </tr>
-    <tr class="link-preference">
-      <td>{{$text('menu_credits_label')}}</td>
+    <tr class="about-preference">
+      <td>v <span class="game-version">{{ gameVersion }}</span></td>
       <td>
         <external-link :title="$text('menu_credits_link')"
           :href="creditsURL">{{
-							$text('menu_credits_link')
+							$text('menu_credits_label')
 					}}</external-link>
       </td>
-    </tr>
-    <tr>
-      <td>{{$text('menu_game_version_label')}}</td>
-      <td class="game-version">{{
-				gameVersion
-      }}</td>
     </tr>
   </table>
 </modal>
@@ -170,9 +164,9 @@ export default {
             overflow: auto;
             max-width: 500px;
 
-            .link-preference {
+            .about-preference {
                 & > td {
-                    padding-top: 20px;
+                    padding-top: 30px;
 
                     .external-link {
                         margin: 5px;

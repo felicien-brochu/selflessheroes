@@ -32,9 +32,8 @@ const messages = {
     menu_music_label: "Music",
     mute_button_mute: "Mute",
     mute_button_unmute: "Unmute",
-    menu_credits_label: "Credits",
+    menu_credits_label: "credits",
     menu_credits_link: "view online",
-    menu_game_version_label: "Version",
 
     screen_size_warning_1: "The screen of your device is too small to play Selfless Heroes",
     screen_size_warning_2: "Selfless Heroes is designed to work on desktop, laptop and tablet. To play this game, you must have a screen size of at least {minMaxDimension}\u00A0x\u00A0{minMinDimension} pixels: your screen is only {maxDimension}\u00A0x\u00A0{minDimension} pixels.",
@@ -368,9 +367,8 @@ const messages = {
     menu_music_label: "Musique",
     mute_button_mute: "Désactiver le son",
     mute_button_unmute: "Activer le son",
-    menu_credits_label: "Crédits",
+    menu_credits_label: "crédits",
     menu_credits_link: "consulter en ligne",
-    menu_game_version_label: "Version",
 
     screen_size_warning_1: "L'écran de votre appareil est trop petit pour jouer à Selfless Heroes",
     screen_size_warning_2: "Selfless Heroes est conçu pour fonctionner sur ordinateur et tablette. Pour jouer à ce jeu, vous devez avoir un écran d'une taille minimum de {minMaxDimension}\u00A0x\u00A0{minMinDimension} pixels\u00A0: votre écran ne fait que {maxDimension}\u00A0x\u00A0{minDimension} pixels.",
