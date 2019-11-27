@@ -269,6 +269,7 @@ export default {
           type: 'info',
           cancelable: false,
           text: this.$text('premium_activated_modal'),
+          hideTransition: true,
         },
         handlers: {
           // Reload page to show unlocked levels

@@ -90,7 +90,7 @@ export default {
       let target = e.touches && e.touches[0].target || e.target
       if (target === this.$el || target === this.$refs.scrollContainer) {
         if (this.$refs.modal) {
-          this.$refs.modal.$emit('close')
+          this.$refs.modal.cancel()
         }
       }
     },

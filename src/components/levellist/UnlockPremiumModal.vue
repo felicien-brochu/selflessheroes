@@ -6,6 +6,7 @@
   :frameHeight="frameHeight"
   :hideTransition="true"
   type="info"
+  ref="modal"
   @close="$emit('close')"
   @confirm="$emit('confirm', $event)"
   @cancel="$emit('cancel', $event)">
@@ -111,13 +112,11 @@ export default {
     },
 
     confirm() {
-      this.$emit('confirm')
-      this.$emit('close')
+      this.$refs.modal.confirm()
     },
 
     cancel() {
-      this.$emit('cancel')
-      this.$emit('close')
+      this.$refs.modal.cancel()
     },
   }
 }

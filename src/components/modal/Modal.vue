@@ -136,8 +136,8 @@ export default {
 
   methods: {
     confirm(confirmValue = this.confirmValue) {
-      this.$emit('confirm', confirmValue)
       this.$emit('close')
+      this.$emit('confirm', confirmValue)
     },
 
     cancel(confirmValue = this.confirmValue) {
