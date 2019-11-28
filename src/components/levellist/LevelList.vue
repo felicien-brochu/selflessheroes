@@ -293,7 +293,8 @@ export default {
     color: #ABB2BF;
     background-color: #282C34;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 
     header {
         background-image: url("../images/level-list-banner.png");
