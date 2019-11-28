@@ -85,6 +85,7 @@ const comparisonExpressionMap = {
 export default class CompilerConfig {
   constructor({
     excludePrimary = [],
+    cloneIsDeadly = false,
     variables = 0,
     minInteger = 0,
     maxInteger = 99,
@@ -102,6 +103,7 @@ export default class CompilerConfig {
       }
     }
 
+    this.cloneIsDeadly = cloneIsDeadly
     this.variables = variables
     this.minInteger = minInteger
     this.maxInteger = maxInteger
@@ -116,6 +118,7 @@ export default class CompilerConfig {
   static getDefault() {
     return new CompilerConfig({
       excludePrimary: [],
+      cloneIsDeadly: false,
       variables: 3,
       minInteger: 0,
       maxInteger: 99,

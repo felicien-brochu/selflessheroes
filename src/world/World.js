@@ -319,7 +319,9 @@ export default class World {
           }
         } else {
           // Failed cloning results in dying for the cloning character
-          character.setDead(true, CharacterDeathReason.failedCloning)
+          if (action.deadly) {
+            character.setDead(true, CharacterDeathReason.failedCloning)
+          }
           clonedCharacter = null
         }
 

@@ -20,6 +20,7 @@ export default class CloneStatement extends PrimaryStatement {
     this.direction = null
     this.anchor = null
     this.anchorStatement = null
+    this.deadly = false
   }
 
   isCodeComplete() {
@@ -33,6 +34,8 @@ export default class CloneStatement extends PrimaryStatement {
 
   compile(config, context) {
     this.checkIsAllowed(config, 'type_clone')
+
+    this.deadly = config.cloneIsDeadly
 
     let joinedCode = this.code.join(' ')
     let groupsRegExp = /^(\s*clone\s+)(\w+)(\s+)(\w+)(\s*)$/
@@ -112,7 +115,7 @@ export default class CloneStatement extends PrimaryStatement {
       step: true,
       complete: true,
       goto: null,
-      action: new CloneAction(this.direction.value, this.anchorStatement)
+      action: new CloneAction(this.direction.value, this.anchorStatement, this.deadly)
     }
   }
 }
