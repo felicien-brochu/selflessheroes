@@ -130,5 +130,8 @@ if (CSS.supports('-webkit-overflow-scrolling', 'touch')) {
   }
 
   window.addEventListener('resize', updateVHCssProperty)
+  window.addEventListener('orientationchange', () => {
+    setTimeout(updateVHCssProperty, 200)
+  })
   updateVHCssProperty()
 }
