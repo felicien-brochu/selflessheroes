@@ -145,10 +145,10 @@ const messages = {
     level_help_tab_jump_statement_6: "You could read the above example as \"Step to the right as long as the square to the right is not a wall\".",
     level_help_tab_jump_statement_7: "%%type-bracket$a:%%\n%%type-function$step%%(%%type-literal$e%%)\n%%type-keyword$if%% %%type-literal$e%% %%type-operator$!=%% %%type-literal$wall%% :\n  %%type-keyword$jump%% %%type-bracket$a%%\n%%type-keyword$endif%%",
 
-    level_help_tab_clone_statement_1: "%%statement branching-statement$clone%% creates a clone of the hero next to him.\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: if you try to create a clone on a square already occupied (by a %%icon icon-hero$%% hero, a %%icon icon-cauldron$%% cauldron etc.) or on a forbidden square (like a %%icon icon-wall$%% wall), the cloning process will fail and the hero trying to clone himself will die.",
+    level_help_tab_clone_statement_1: "%%statement branching-statement$clone%% creates a clone of the hero next to him.",
     level_help_tab_clone_statement_2: "You could read the above example as \"Create a clone on your left. Then step to the right\".\n\nFor the created hero, %%statement branching-statement$clone%% acts like %%statement branching-statement$jump%%. In this example, the created clone won't step to the right because he will begin to follow instructions after the arrow of %%statement branching-statement$clone%%.",
     level_help_tab_clone_statement_3: "%%type-keyword$clone%% %%type-literal$w%% %%type-bracket$a%%\n%%type-function$step%%(%%type-literal$e%%)\n%%type-bracket$a:%%\n",
-    level_help_tab_clone_statement_4: "The created clone starts his life with the same variables values as his creator's.",
+    level_help_tab_clone_statement_4: "The created clone starts his life with the same variables values as his creator's.\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: if you try to create a clone on a square already occupied (by a %%icon icon-hero$%% hero, a %%icon icon-cauldron$%% cauldron etc.) or on a forbidden square (like a %%icon icon-wall$%% wall), the cloning process will fail. In certain levels, this failure causes the death of the hero trying to clone himself.",
 
     level_help_tab_step_function_1: "%%statement action-statement$step%% says to your hero to go in a direction. If you specify multiple directions, the hero will decide randomly between these directions.",
     level_help_tab_step_function_2: "You could read the above example as \"Go one step to the left or to the right\".",
@@ -476,9 +476,9 @@ const messages = {
     level_help_tab_jump_statement_5: "On utilise souvent %%statement branching-statement$saut%% avec %%statement branching-statement$si%% pour créer des boucles qui s'arrêtent dans certaines conditions.",
     level_help_tab_jump_statement_6: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Va à droite tant que la case à ta droite n'est pas un mur\".",
 
-    level_help_tab_clone_statement_1: "%%statement branching-statement$clone%% crée un clone du héro à côté de lui.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: si un héro essaie de créer un clone sur une case déjà occupée (par un %%icon icon-hero$%% héro, un %%icon icon-cauldron$%% chaudron etc.) ou sur un case interdite (un %%icon icon-wall$%% mur), le clonage échouera et le héro qui essaye de se cloner mourra.",
+    level_help_tab_clone_statement_1: "%%statement branching-statement$clone%% crée un clone du héro à côté de lui.",
     level_help_tab_clone_statement_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Crée un clone à ta gauche. Puis fais un pas sur ta droite\".\n\nPour le héro créé, %%statement branching-statement$clone%% a le même effet que %%statement branching-statement$saut%%. Dans cet exemple, le héro créé n'ira pas à droite puisqu'il suivra les instructions après la flèche de %%statement branching-statement$clone%%.",
-    level_help_tab_clone_statement_4: "Un clone commence sa vie avec les mêmes valeurs de variables que son créateur.",
+    level_help_tab_clone_statement_4: "Un clone commence sa vie avec les mêmes valeurs de variables que son créateur.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: si un héro essaie de créer un clone sur une case déjà occupée (par un %%icon icon-hero$%% héro, un %%icon icon-cauldron$%% chaudron etc.) ou sur un case interdite (un %%icon icon-wall$%% mur), le clonage échouera. Dans certains niveaux, l'échec du clonage tue le héro qui essaye de se cloner.",
 
     level_help_tab_step_function_1: "%%statement action-statement$aller%% dit au héro d'aller dans une direction. Si plusieurs directions sont données, le héro décidera au hasard entre ces directions.",
     level_help_tab_step_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Fais un pas à gauche ou à droite\".",

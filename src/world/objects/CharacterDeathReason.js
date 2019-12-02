@@ -1,9 +1,9 @@
 export default class CharacterDeathReason {}
 
-CharacterDeathReason.fall = Symbol('fallCharacterDeathReason')
-CharacterDeathReason.spikes = Symbol('spikesCharacterDeathReason')
-CharacterDeathReason.burnt = Symbol('burntCharacterDeathReason')
-CharacterDeathReason.touchedEnemy = Symbol('touchedEnemyCharacterDeathReason')
-CharacterDeathReason.failedCloning = Symbol('failedCloningCharacterDeathReason')
+CharacterDeathReason.fall = 'fall_character_death_reason'
+CharacterDeathReason.spikes = 'spikes_character_death_reason'
+CharacterDeathReason.burnt = 'burnt_character_death_reason'
+CharacterDeathReason.touchedEnemy = 'touched_enemy_character_death_reason'
+CharacterDeathReason.failedCloning = 'failed_cloning_character_death_reason'
 
 Object.freeze(CharacterDeathReason)

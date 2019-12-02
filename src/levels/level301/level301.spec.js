@@ -4,41 +4,50 @@ export default {
   level: level,
   deterministic: true,
   specs: [{
-    type: ["length"],
+    type: ["length", "speed"],
     code: `
-a:
-if s != wall &&
-  w == wall :
-	clone sw a
-endif
 b:
-if e != wall :
-	clone e b
+a:
+d:
+if ne != hero &&
+  ne == floor ||
+  nw != hero &&
+  nw == floor :
+	clone ne d
+	clone nw a
 endif
-		`,
-  }, {
-    type: ["speed"],
-    code: `
 c:
-b:
-a:
-if s != wall :
-	if w == wall :
-		clone sw b
-	endif
-	if e == wall :
-		clone se c
-	endif
-	clone s a
+if sw != hero &&
+  sw == floor :
+	clone sw b
+endif
+if se != hero &&
+  se == floor :
+	clone se c
 endif
 		`,
   }, {
     type: ["lossReason"],
-    lossReason: 'loss_reason_one_hero_dead',
+    lossReason: 'loss_reason_wrong_floor_cell',
     frequency: 1,
     code: `
+c:
+b:
 a:
-clone e a
+d:
+if se != hero &&
+  se == floor :
+	clone se d
+endif
+if sw != hero &&
+  sw == floor :
+	clone sw a
+endif
+if nw != hero &&
+  nw == floor :
+	clone nw b
+endif
+clone ne c
 		`,
   }, ]
 }

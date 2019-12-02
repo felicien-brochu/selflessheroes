@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="24" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="372" nextobjectid="176">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
+  <image source="tileset.png" trans="000000" width="340" height="680"/>
+  <terraintypes>
+   <terrain name="floor" tile="79"/>
+   <terrain name="wall" tile="69"/>
+   <terrain name="hole" tile="78"/>
+  </terraintypes>
+ </tileset>
+ <layer id="361" name="checkers" width="24" height="11">
+  <data encoding="csv">
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0
+</data>
+ </layer>
+ <objectgroup id="14" name="camera">
+  <object id="12" name="frame" type="frame" x="51" y="32" width="604" height="270"/>
+  <object id="15" name="strategy" type="strategy" x="-6" y="40">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="362" name="path" width="24" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,80,80,80,0,0,80,80,80,0,0,80,80,80,0,0,0,0,0,0,0,
+0,0,0,0,80,0,0,0,0,80,0,0,0,0,80,0,0,0,0,0,0,0,0,0,
+0,0,0,0,80,80,80,0,0,80,80,80,0,0,80,80,80,0,0,0,0,0,0,0,
+0,0,0,0,80,0,0,0,0,80,0,0,0,0,80,0,0,0,0,0,0,0,0,0,
+0,0,0,0,80,80,80,0,0,80,80,80,0,0,80,80,80,0,0,0,0,0,0,0,
+0,0,0,0,80,0,0,0,0,80,0,0,0,0,80,0,0,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="2" name="objects">
+  <object id="33" name="hero" type="hero" x="79.3333" y="275">
+   <properties>
+    <property name="initialDirection" value="e"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="163" name="switch" type="switch" x="208" y="209.333">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="164" name="switch" type="switch" x="208" y="147.333">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="165" name="switch" type="switch" x="207.333" y="79.3333">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="173" name="spikes" type="spikes" x="273.333" y="276.667">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+    <property name="triggers" value="163,164,165"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="166" name="switch" type="switch" x="368" y="214.666">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="167" name="switch" type="switch" x="368" y="152.666">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="168" name="switch" type="switch" x="367.333" y="84.6667">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="169" name="switch" type="switch" x="530.667" y="211.333">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="170" name="switch" type="switch" x="530.667" y="149.333">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="171" name="switch" type="switch" x="530" y="81.3333">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="172" name="switch" type="switch" x="622.667" y="276">
+   <properties>
+    <property name="autoDisable" type="bool" value="false"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="174" name="spikes" type="spikes" x="432" y="276">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+    <property name="triggers" value="166,167,168"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="175" name="spikes" type="spikes" x="591.333" y="274.667">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+    <property name="triggers" value="169,170,171"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="369" name="types" width="24" height="11">
+  <data encoding="csv">
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,
+79,79,79,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,79,79,79,79,79,79,
+79,79,79,70,80,80,80,70,70,80,80,80,70,70,80,80,80,70,79,79,79,79,79,79,
+79,79,79,70,80,70,70,70,70,80,70,70,70,70,80,70,70,70,79,79,79,79,79,79,
+79,79,79,70,80,80,80,70,70,80,80,80,70,70,80,80,80,70,79,79,79,79,79,79,
+79,79,79,70,80,70,70,70,70,80,70,70,70,70,80,70,70,70,79,79,79,79,79,79,
+79,79,79,70,80,80,80,70,70,80,80,80,70,70,80,80,80,70,79,79,79,79,79,79,
+79,70,70,70,80,70,70,70,70,80,70,70,70,70,80,70,70,70,70,70,70,79,79,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,80,70,79,79,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,79,79,79,
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79
+</data>
+ </layer>
+ <layer id="370" name="ground" width="24" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,1,2,3,2,6,1,2,3,2,6,1,2,4,2,6,0,0,0,0,0,0,
+0,0,0,11,143,19,152,36,11,27,152,40,36,11,131,10,151,36,0,0,0,0,0,0,
+0,0,0,11,39,3,3,26,11,151,3,3,26,21,30,3,3,26,0,0,0,0,0,0,
+0,0,0,21,123,29,123,36,11,30,142,38,36,11,121,28,134,36,0,0,0,0,0,0,
+0,0,0,11,39,3,3,26,11,154,3,3,26,21,40,3,3,26,0,0,0,0,0,0,
+0,0,0,11,123,37,124,36,11,27,121,39,36,21,143,30,143,36,0,0,0,0,0,0,
+0,1,2,2,29,3,3,5,2,121,3,3,4,2,29,3,3,3,2,2,6,0,0,0,
+0,31,152,10,134,7,132,8,141,8,143,10,123,30,154,29,134,20,131,18,36,0,0,0,
+0,41,42,43,53,52,42,42,42,42,52,42,53,52,42,53,42,52,53,45,46,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="371" name="floor_shadow" width="24" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,81,65,76,0,0,81,65,76,0,0,81,65,76,0,0,0,0,0,0,0,
+0,0,0,0,66,0,0,0,0,66,0,0,0,0,66,0,0,0,0,0,0,0,0,0,
+0,0,0,0,86,65,76,0,0,86,65,76,0,0,86,65,76,0,0,0,0,0,0,0,
+0,0,0,0,66,0,0,0,0,66,0,0,0,0,66,0,0,0,0,0,0,0,0,0,
+0,0,0,0,86,65,76,0,0,86,65,76,0,0,86,65,76,0,0,0,0,0,0,0,
+0,0,0,0,66,0,0,0,0,66,0,0,0,0,66,0,0,0,0,0,0,0,0,0,
+0,0,77,65,89,65,65,65,65,89,65,65,65,65,89,65,65,65,65,76,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

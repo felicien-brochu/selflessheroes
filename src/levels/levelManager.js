@@ -49,6 +49,8 @@ import level212 from './level212/level212'
 import level213 from './level213/level213'
 
 import level301 from './level301/level301'
+import level302 from './level302/level302'
+import level303 from './level303/level303'
 
 const levels = [
   new Level(1, level001),
@@ -97,6 +99,8 @@ const levels = [
   new Level(213, level213),
 
   new Level(301, level301),
+  new Level(302, level302),
+  new Level(303, level303),
 ]
 
 const categories = [{
@@ -264,7 +268,13 @@ const categories = [{
     unlock: [],
     levels: [{
       id: 301,
-      unlock: [],
+      unlock: [10],
+    }, {
+      id: 302,
+      unlock: [301],
+    }, {
+      id: 303,
+      unlock: [302],
     }, ],
   },
 ]
