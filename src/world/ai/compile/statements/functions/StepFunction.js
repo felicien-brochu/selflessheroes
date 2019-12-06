@@ -15,7 +15,7 @@ export default class StepFunction extends FunctionExpression {
     super('StepFunction', parent, line, column)
   }
 
-  getParamTypes() {
+  getRawParamTypes() {
     return [
       [{
         type: DirectionLiteral,

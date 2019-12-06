@@ -49,6 +49,8 @@ export default class ExpressionValue {
           return ExpressionValue.boolean(this.value.value)
         } else if (type === ExpressionTypes.direction && this.value.value instanceof Direction) {
           return ExpressionValue.direction(this.value.value)
+        } else if (type === ExpressionTypes.message && typeof this.value.value === "string") {
+          return ExpressionValue.message(this.value.value)
         } else if (this.value.item) {
           let item = this.value.item
           // Do not get objectType for items
@@ -58,6 +60,8 @@ export default class ExpressionValue {
             return ExpressionValue.boolean(item.value)
           } else if (type === ExpressionTypes.direction && item.value instanceof Direction) {
             return ExpressionValue.direction(item.value)
+          } else if (type === ExpressionTypes.message && typeof item.value === "string") {
+            return ExpressionValue.message(item.value)
           }
         }
       }
@@ -75,6 +79,7 @@ export default class ExpressionValue {
       ExpressionTypes.direction,
       ExpressionTypes.integer,
       ExpressionTypes.boolean,
+      ExpressionTypes.message,
     ]
 
     if (this.type === ExpressionTypes.composite) {
@@ -136,6 +141,14 @@ export default class ExpressionValue {
     return this.getFirstValueOfType(ExpressionTypes.direction)
   }
 
+  hasMessageValue() {
+    return this.hasValueOfType(ExpressionTypes.message)
+  }
+
+  getFirstMessageValue() {
+    return this.getFirstValueOfType(ExpressionTypes.message)
+  }
+
   static boolean(value) {
     return new ExpressionValue(ExpressionTypes.boolean, value)
   }
@@ -158,6 +171,10 @@ export default class ExpressionValue {
 
   static direction(value) {
     return new ExpressionValue(ExpressionTypes.direction, value)
+  }
+
+  static message(value) {
+    return new ExpressionValue(ExpressionTypes.message, value)
   }
 
   static composite(value) {

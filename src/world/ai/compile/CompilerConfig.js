@@ -8,7 +8,7 @@ import CloneStatement from './statements/CloneStatement'
 import AnchorStatement from './statements/AnchorStatement'
 import ActionStatement from './statements/ActionStatement'
 import BooleanExpression from './statements/BooleanExpression'
-import ActionFunctions from './statements/functions/ActionFunctions'
+
 import SetFunction from './statements/functions/SetFunction'
 import CalcFunction from './statements/functions/CalcFunction'
 import NearestFunction from './statements/functions/NearestFunction'
@@ -18,12 +18,20 @@ import FireBallFunction from './statements/functions/FireBallFunction'
 import TakeFunction from './statements/functions/TakeFunction'
 import DropFunction from './statements/functions/DropFunction'
 import WriteFunction from './statements/functions/WriteFunction'
+import TellFunction from './statements/functions/TellFunction'
+import ListenFunction from './statements/functions/ListenFunction'
+
 import VariableIdentifier from './statements/VariableIdentifier'
 import ObjectTypeLiteral from './statements/literals/ObjectTypeLiteral'
 import TerrainTypeLiteral from './statements/literals/TerrainTypeLiteral'
 import DirectionLiteral from './statements/literals/DirectionLiteral'
 import IntegerLiteral from './statements/literals/IntegerLiteral'
 import MyItemLiteral from './statements/literals/MyItemLiteral'
+import EveryoneLiteral from './statements/literals/EveryoneLiteral'
+import ArithmeticOperatorLiteral from './statements/literals/ArithmeticOperatorLiteral'
+import MessageLiteral, {
+  messages as knownMessages
+} from './statements/literals/MessageLiteral'
 
 import ObjectType from '../../objects/ObjectType'
 import TerrainType from '../../map/TerrainType'
@@ -71,15 +79,19 @@ const actionFunctionMap = {
   take: TakeFunction,
   drop: DropFunction,
   write: WriteFunction,
+  tell: TellFunction,
+  listen: ListenFunction,
 }
 
-const comparisonExpressionMap = {
+const expressionsMap = {
   terrain_type: TerrainTypeLiteral,
   object_type: ObjectTypeLiteral,
   direction: DirectionLiteral,
   integer: IntegerLiteral,
   variable: VariableIdentifier,
   myitem: MyItemLiteral,
+  everyone: EveryoneLiteral,
+  message: MessageLiteral,
 }
 
 export default class CompilerConfig {
@@ -89,12 +101,14 @@ export default class CompilerConfig {
     variables = 0,
     minInteger = 0,
     maxInteger = 99,
+    messages = 0,
     terrainTypes = [],
     objectTypes = [],
     valueFunctions = [],
     actionFunctions = [],
     leftComparisonExpressions = [],
-    rightComparisonExpressions = []
+    rightComparisonExpressions = [],
+    forbiddenExpressions = [],
   }) {
     this.allowedPrimaryStatements = []
     for (let key in primaryStatementMap) {
@@ -107,12 +121,27 @@ export default class CompilerConfig {
     this.variables = variables
     this.minInteger = minInteger
     this.maxInteger = maxInteger
+    this.messages = messages
     this.terrainTypes = terrainTypes.map(key => terrainTypeMap[key])
     this.objectTypes = objectTypes.map(key => objectTypeMap[key])
     this.valueFunctions = valueFunctions.map(key => valueFunctionMap[key])
     this.actionFunctions = actionFunctions.map(key => actionFunctionMap[key])
-    this.leftComparisonExpressions = leftComparisonExpressions.map(key => comparisonExpressionMap[key])
-    this.rightComparisonExpressions = rightComparisonExpressions.map(key => comparisonExpressionMap[key])
+    this.leftComparisonExpressions = leftComparisonExpressions.map(key => expressionsMap[key])
+    this.rightComparisonExpressions = rightComparisonExpressions.map(key => expressionsMap[key])
+    this.forbiddenExpressions = forbiddenExpressions.map(key => expressionsMap[key])
+
+    if (this.forbiddenExpressions.includes(TerrainTypeLiteral)) {
+      this.terrainTypes = []
+    }
+    if (this.forbiddenExpressions.includes(ObjectTypeLiteral)) {
+      this.objectTypes = []
+    }
+    if (this.forbiddenExpressions.includes(VariableIdentifier)) {
+      this.variables = 0
+    }
+    if (this.forbiddenExpressions.includes(MessageLiteral)) {
+      this.messages = 0
+    }
   }
 
   static getDefault() {
@@ -122,6 +151,7 @@ export default class CompilerConfig {
       variables: 3,
       minInteger: 0,
       maxInteger: 99,
+      messages: 8,
       terrainTypes: [
         'wall',
         'hole',
@@ -147,6 +177,7 @@ export default class CompilerConfig {
         'take',
         'drop',
         'write',
+        'tell',
       ],
       leftComparisonExpressions: [
         'direction',
@@ -160,7 +191,8 @@ export default class CompilerConfig {
         'integer',
         'myitem',
         'variable',
-      ]
+      ],
+      forbiddenExpressions: [],
     })
   }
 
@@ -187,6 +219,10 @@ export default class CompilerConfig {
     return names
   }
 
+  getAllowedMessageLiterals() {
+    return knownMessages.slice(0, this.messages)
+  }
+
   getAllowedPrimaryStatements() {
     return this.allowedPrimaryStatements
   }
@@ -199,16 +235,15 @@ export default class CompilerConfig {
     return primaryStatements
   }
 
-  isParamTypeAvailable(type) {
-    return (type.type === TerrainTypeLiteral && this.terrainTypes.length > 0) ||
-      (type.type === ObjectTypeLiteral && this.objectTypes.length > 0) ||
-      (type.type === VariableIdentifier && this.variables > 0) ||
-      type.type === DirectionLiteral ||
-      type.type === IntegerLiteral ||
-      type.type === MyItemLiteral
+  isExpressionTypeAvailable(type) {
+    return !this.forbiddenExpressions.includes(type) &&
+      !(type === VariableIdentifier && this.variables === 0) &&
+      !(type === TerrainTypeLiteral && this.terrainTypes.length === 0) &&
+      !(type === ObjectTypeLiteral && this.objectTypes.length === 0) &&
+      !(type === MessageLiteral && this.messages === 0)
   }
 
   filterParamTypes(types) {
-    return types.filter(type => this.isParamTypeAvailable(type))
+    return types.filter(type => this.isExpressionTypeAvailable(type.type))
   }
 }

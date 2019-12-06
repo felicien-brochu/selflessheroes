@@ -49,6 +49,8 @@ import DirectionLiteral from '../../../../world/ai/compile/statements/literals/D
 import Direction from '../../../../world/Direction'
 import IntegerLiteral from '../../../../world/ai/compile/statements/literals/IntegerLiteral'
 import MyItemLiteral from '../../../../world/ai/compile/statements/literals/MyItemLiteral'
+import EveryoneLiteral from '../../../../world/ai/compile/statements/literals/EveryoneLiteral'
+import MessageLiteral from '../../../../world/ai/compile/statements/literals/MessageLiteral'
 import ArithmeticOperatorLiteral from '../../../../world/ai/compile/statements/literals/ArithmeticOperatorLiteral'
 import ObjectType from '../../../../world/objects/ObjectType'
 import TerrainType from '../../../../world/map/TerrainType'
@@ -78,7 +80,7 @@ export default {
     'parentType': {
       type: String,
       validator: value => {
-        return ['branching', 'action', 'assign'].includes(value)
+        return ['branching', 'action', 'assign', 'speach'].includes(value)
       },
       default: 'branching'
     }
@@ -103,6 +105,12 @@ export default {
       else if (this.value instanceof MyItemLiteral) {
         return this.$text('drop_down_list_my_item_literal')
       }
+      else if (this.value instanceof EveryoneLiteral) {
+        return this.$text('drop_down_list_everyone_literal')
+      }
+      else if (this.value instanceof MessageLiteral) {
+        return this.$text(`drop_down_list_message_literal_${this.value.message}`)
+      }
       else if (this.value instanceof ObjectTypeLiteral) {
         return this.$text(`drop_down_list_object_type_${this.value.name}`)
       }
@@ -121,16 +129,21 @@ export default {
       else if (this.value instanceof MyItemLiteral) {
         icon = 'myitem'
       }
+      else if (this.value instanceof EveryoneLiteral) {
+        icon = 'everyone'
+      }
+      else if (this.value instanceof MessageLiteral) {
+        icon = `message-${this.value.message}`
+      }
       else if (this.value instanceof ObjectTypeLiteral || this.value instanceof TerrainTypeLiteral) {
         icon = this.value.name
       }
       return icon
     },
     isDirection: function() {
-      let types = this.compilerConfig.filterParamTypes(this.types)
       return this.value instanceof DirectionLiteral ||
         (Array.isArray(this.value) && this.value.length >= 1 && this.value[0] instanceof DirectionLiteral) ||
-        (types.length === 1 && types[0].type === DirectionLiteral)
+        (this.types.length === 1 && this.types[0].type === DirectionLiteral)
     },
     directionNotHere: function() {
       let type = null
@@ -153,8 +166,7 @@ export default {
       return typeof type.validator === 'function' && !type.validator(Direction.here)
     },
     isInteger: function() {
-      let types = this.compilerConfig.filterParamTypes(this.types)
-      return this.value instanceof IntegerLiteral || (types.length === 1 && types[0].type === IntegerLiteral)
+      return this.value instanceof IntegerLiteral || (this.types.length === 1 && this.types[0].type === IntegerLiteral)
     },
     isArithmeticOperator: function() {
       return this.value instanceof ArithmeticOperatorLiteral

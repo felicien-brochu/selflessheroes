@@ -1,7 +1,8 @@
 import Expression from '../Expression'
 import ExpressionValue from '../ExpressionValue'
 import {
-  MismatchStatementException
+  MismatchStatementException,
+  ForbiddenExpressionTypeException,
 } from '../../CompilerException'
 
 export const addOperator = '+'
@@ -32,6 +33,12 @@ export default class ArithmeticOperatorLiteral extends Expression {
     }
 
     this.operator = res[1]
+
+    if (!config.isExpressionTypeAvailable(this.constructor)) {
+      throw new ForbiddenExpressionTypeException(`'${this.code.join(' ').trim()}' ArithmeticOperatorLiteral are not available.`, this, {
+        template: 'exception_forbidden_arithmetic_operator_literal_type_template',
+      })
+    }
   }
 
   decompile(indent, line, column) {

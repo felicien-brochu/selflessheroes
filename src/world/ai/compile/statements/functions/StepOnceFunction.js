@@ -12,7 +12,7 @@ export default class StepOnceFunction extends FunctionExpression {
     super('StepOnceFunction', parent, line, column)
   }
 
-  getParamTypes() {
+  getRawParamTypes() {
     return [
       [{
         type: DirectionLiteral,

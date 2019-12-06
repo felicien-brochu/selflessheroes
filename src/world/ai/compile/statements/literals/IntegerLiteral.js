@@ -2,7 +2,8 @@ import Expression from '../Expression'
 import ExpressionValue from '../ExpressionValue'
 import {
   MismatchStatementException,
-  ForbiddenIntegerLiteralException
+  ForbiddenIntegerLiteralException,
+  ForbiddenExpressionTypeException,
 } from '../../CompilerException'
 
 export default class IntegerLiteral extends Expression {
@@ -19,6 +20,13 @@ export default class IntegerLiteral extends Expression {
     }
 
     this.value = parseInt(res[1], 10)
+
+    if (!config.isExpressionTypeAvailable(this.constructor)) {
+      throw new ForbiddenExpressionTypeException(`'${this.code.join(' ').trim()}' IntegerLiteral are not available.`, this, {
+        template: 'exception_forbidden_integer_literal_type_template',
+      })
+    }
+
     if (this.value < config.minInteger || this.value > config.maxInteger) {
       throw new ForbiddenIntegerLiteralException(`'${this.code.join(' ').trim()}' is out of bound: it must be in range [${config.minInteger}:${config.maxInteger}]`, this, {
         template: 'exception_forbidden_integer_template',

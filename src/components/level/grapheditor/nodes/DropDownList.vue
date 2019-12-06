@@ -33,6 +33,8 @@ import TerrainTypeLiteral from '../../../../world/ai/compile/statements/literals
 import DirectionLiteral from '../../../../world/ai/compile/statements/literals/DirectionLiteral'
 import IntegerLiteral from '../../../../world/ai/compile/statements/literals/IntegerLiteral'
 import MyItemLiteral from '../../../../world/ai/compile/statements/literals/MyItemLiteral'
+import EveryoneLiteral from '../../../../world/ai/compile/statements/literals/EveryoneLiteral'
+import MessageLiteral from '../../../../world/ai/compile/statements/literals/MessageLiteral'
 import ArithmeticOperatorLiteral from '../../../../world/ai/compile/statements/literals/ArithmeticOperatorLiteral'
 import ObjectType from '../../../../world/objects/ObjectType'
 import TerrainType from '../../../../world/map/TerrainType'
@@ -95,6 +97,12 @@ export default {
         }
         else if (type.type === TerrainTypeLiteral) {
           items = items.concat(this.createTerrainTypeItems(type))
+        }
+        else if (type.type === MessageLiteral) {
+          items = items.concat(this.createMessageItems(type))
+        }
+        else if (type.type === EveryoneLiteral) {
+          items = items.concat(this.createEveryoneLiteralItem())
         }
         else if (type.type === 'comparisonOperator') {
           items = items.concat(this.createComparisonOperatorItems())
@@ -164,6 +172,15 @@ export default {
       }
     },
 
+    createEveryoneLiteralItem() {
+      return {
+        label: this.$text('drop_down_list_everyone_literal'),
+        icon: 'everyone',
+        value: new EveryoneLiteral(null),
+        selected: this.value instanceof EveryoneLiteral
+      }
+    },
+
     createVariableItems() {
       let items = []
       for (let identifier of this.compilerConfig.getAllowedVariableIdentifiers()) {
@@ -214,6 +231,25 @@ export default {
           icon: literal.name,
           value: literal,
           selected: this.value instanceof TerrainTypeLiteral && this.value.value === literal.value
+        })
+      }
+      return items
+    },
+
+    createMessageItems(type) {
+      let items = []
+      let validMessages = this.compilerConfig.getAllowedMessageLiterals()
+      if (typeof type.validator === 'function') {
+        validMessages = validMessages.filter(type.validator)
+      }
+      for (let message of validMessages) {
+        let literal = new MessageLiteral(null)
+        literal.message = message
+        items.push({
+          label: this.$text(`drop_down_list_message_literal_${literal.message}`),
+          icon: `message-${literal.message}`,
+          value: literal,
+          selected: this.value instanceof MessageLiteral && this.value.message === literal.message
         })
       }
       return items

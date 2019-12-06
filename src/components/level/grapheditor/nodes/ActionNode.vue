@@ -1,5 +1,9 @@
 <template>
-<li class="node action-node"
+<li :class="{
+		'node': true,
+		'action-node': true,
+		'speach': func.constructor.isSpeachType
+	}"
   @mousedown="handleDragStart"
   @touchstart="handleDragStart">
 
@@ -7,16 +11,22 @@
     {{$text(`graph_node_function_${statement.function.constructor.keyword}`)}}
   </div>
 
-  <value-select v-for="(param, index) in params"
-    ref="valueSelects"
-    class="bright"
-    :key="index"
-    :types="param.types"
-    :value="param.value"
-    :compilerConfig="compilerConfig"
-    parentType="action"
-    @select="handleSelectParam(index, $event)"
-    @start-edit="$emit('start-edit')" />
+  <template v-for="(param, index) in params">
+    <value-select ref="valueSelects"
+      class="bright"
+      :key="index"
+      :types="param.types"
+      :value="param.value"
+      :compilerConfig="compilerConfig"
+      :parentType="func.constructor.isSpeachType ? 'speach' : 'action'"
+      @select="handleSelectParam(index, $event)"
+      @start-edit="$emit('start-edit')" />
+
+    <div v-if="param.afterWord"
+      class="after-word">
+      {{$text(param.afterWord)}}
+    </div>
+  </template>
 
 </li>
 </template>
@@ -83,8 +93,17 @@ export default {
         pointer-events: none;
     }
 
+    .after-word {
+        margin: 0 2px 0 7px;
+        pointer-events: none;
+    }
+
     .value-select {
         margin-left: 5px;
+    }
+
+    &.speach {
+        @include node-color($speach-color);
     }
 }
 </style>

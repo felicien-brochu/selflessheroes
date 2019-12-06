@@ -4,7 +4,8 @@
 	'place-holder': placeHolder,
 	'assign-statement': isAssignStatement,
 	'action-statement': isActionStatement,
-	'branching-statement': isBranchingStatement
+	'branching-statement': isBranchingStatement,
+	'speach-statement': isSpeachStatement
 }"
   @mousedown="handleMouseDown"
   @touchstart="handleMouseDown">{{label}}</li>
@@ -14,7 +15,8 @@
 import {
   assignStatementType,
   actionStatementType,
-  branchingStatementType
+  branchingStatementType,
+  speachStatementType
 }
 from './PaletteStatementType'
 
@@ -47,6 +49,9 @@ export default {
     },
     isBranchingStatement: function() {
       return this.isOfType(branchingStatementType)
+    },
+    isSpeachStatement: function() {
+      return this.isOfType(speachStatementType)
     },
   },
   methods: {
@@ -90,5 +95,8 @@ export default {
 }
 .branching-statement {
     @include node-color($branching-color);
+}
+.speach-statement {
+    @include node-color($speach-color);
 }
 </style>

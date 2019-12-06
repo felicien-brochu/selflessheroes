@@ -56,6 +56,8 @@ export default class World {
     this.level.generateWorld(this)
     this.initWorldObjects()
 
+    this.speachChannels = []
+
     this.hasWon = false
     this.hasLost = false
     this.lossReason = null
@@ -184,24 +186,36 @@ export default class World {
     return this.getAllObjects().reduce((max, object) => object.id > max ? object.id : max, 0) + 1
   }
 
+  getCharactersSortedByPriority() {
+    let characters = this.heroes.concat(this.npcs)
+
+    function priorityScore(a) {
+      return a.character.getStepPriority() * characters.length + a.index
+    }
+
+    let sortedCharacters = characters
+      .map((character, index) => ({
+        character: character,
+        index: index,
+      }))
+      .sort((a, b) => priorityScore(a) - priorityScore(b))
+      .map(a => a.character)
+
+    return sortedCharacters
+  }
+
   step() {
     this.steps++
     try {
+      this.speachChannels = []
+
       let characterActions = []
-      for (let hero of this.heroes) {
-        let action = hero.step(this.rng)
+      let characters = this.getCharactersSortedByPriority()
+      for (let character of characters) {
+        let action = character.step(this.rng)
 
         characterActions.push({
-          character: hero,
-          action: action
-        })
-      }
-
-      for (let npc of this.npcs) {
-        let action = npc.step(this.rng)
-
-        characterActions.push({
-          character: npc,
+          character: character,
           action: action
         })
       }
@@ -432,6 +446,21 @@ export default class World {
             }
           }
         }
+    }
+  }
+
+  addMessageOnChannel(message, channelKey) {
+    if (channelKey) {
+      let channel = this.speachChannels.find(ch => ch.key === channelKey)
+      if (!channel) {
+        channel = {
+          key: channelKey,
+          messages: []
+        }
+        this.speachChannels.push(channel)
+      }
+
+      channel.messages.push(message)
     }
   }
 

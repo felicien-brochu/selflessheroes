@@ -1,5 +1,6 @@
 import WorldObject from './WorldObject'
 import IdleAI from '../ai/IdleAI'
+import Direction from '../Direction'
 
 export default class Character extends WorldObject {
   constructor(config, world) {
@@ -16,6 +17,10 @@ export default class Character extends WorldObject {
     this.lastAction = null
     this.dead = false
     this.deathReason = null
+  }
+
+  getStepPriority() {
+    return this.ai.getStepPriority()
   }
 
   step(rng) {
@@ -67,6 +72,21 @@ export default class Character extends WorldObject {
     clonedCharacter.y = this.y + direction.dy
 
     return clonedCharacter
+  }
+
+  tell(message, channel) {
+    if (channel) {
+      let channelKey = null
+      if (channel instanceof Direction) {
+        channelKey = {
+          x: this.x + channel.dx,
+          y: this.y + channel.dy,
+        }
+      } else {
+        channelKey = channel
+      }
+      this.world.addMessageOnChannel(message, channelKey)
+    }
   }
 
   setDead(isDead, deathReason) {

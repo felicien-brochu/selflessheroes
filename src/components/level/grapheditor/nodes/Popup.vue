@@ -16,7 +16,7 @@ export default {
     'parentType': {
       type: String,
       validator: value => {
-        return ['branching', 'action', 'assign'].includes(value)
+        return ['branching', 'action', 'assign', 'speach'].includes(value)
       },
       default: 'branching'
     },
@@ -53,6 +53,9 @@ export default {
       }
       else if (this.parentType === 'assign') {
         return 'assign'
+      }
+      else if (this.parentType === 'speach') {
+        return 'speach'
       }
     }
   },
@@ -123,6 +126,11 @@ export default {
         $popup-assign-color: lighten($assign-color, 5%);
         background-color: $popup-assign-color;
         color: darken($popup-assign-color, $text-darken);
+    }
+    &.speach {
+        $popup-speach-color: lighten($speach-color, 5%);
+        background-color: $popup-speach-color;
+        color: darken($popup-speach-color, $text-darken);
     }
 }
 </style>

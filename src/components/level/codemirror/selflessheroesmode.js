@@ -6,7 +6,7 @@ CodeMirror.defineSimpleMode('selflessheroes', {
   start: [
     // The regex matches the token, the token property contains the type
     {
-      regex: /'(?:[^\\]|\\.)*?(?:'|$)/,
+      regex: /(?:'|")(?:[^\\]|\\.)*?(?:'|"|$)/,
       token: 'string'
     },
     // You can match multiple tokens at once. Note that the captured
@@ -52,7 +52,7 @@ CodeMirror.defineSimpleMode('selflessheroes', {
       token: 'keyword'
     },
     {
-      regex: /(?:n|e|s|w|ne|se|sw|nw|here|myitem|floor|wall|hole|nothing|hero|npc|switch|bonfire|cauldron|spikes|egg)\b/,
+      regex: /(?:n|e|s|w|ne|se|sw|nw|here|myitem|floor|wall|hole|nothing|hero|npc|switch|bonfire|cauldron|spikes|egg|everyone)\b/,
       token: 'atom'
     },
     {

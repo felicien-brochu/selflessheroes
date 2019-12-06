@@ -12,7 +12,7 @@ export default class FireBallFunction extends FunctionExpression {
     super('FireBallFunction', parent, line, column)
   }
 
-  getParamTypes() {
+  getRawParamTypes() {
     return [
       [{
         type: DirectionLiteral,

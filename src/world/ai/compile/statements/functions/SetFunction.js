@@ -13,7 +13,7 @@ export default class SetFunction extends FunctionExpression {
     super('SetFunction', parent, line, column)
   }
 
-  getParamTypes() {
+  getRawParamTypes() {
     return [
       [{
         type: DirectionLiteral,

@@ -2,6 +2,7 @@ import Statement from './Statement'
 import {
   ForbiddenPrimaryStatementException
 } from '../CompilerException'
+import StepPriority from '../../StepPriority'
 
 export default class PrimaryStatement extends Statement {
   constructor(type, line, column) {
@@ -75,5 +76,9 @@ export default class PrimaryStatement extends Statement {
       str += '\t'
     }
     return str
+  }
+
+  getStepPriority() {
+    return StepPriority.NORMAL
   }
 }

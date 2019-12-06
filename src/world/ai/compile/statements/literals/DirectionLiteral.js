@@ -1,7 +1,8 @@
 import Expression from '../Expression'
 import ExpressionValue from '../ExpressionValue'
 import {
-  MismatchStatementException
+  MismatchStatementException,
+  ForbiddenExpressionTypeException,
 } from '../../CompilerException'
 import {
   NotDecompilableStatementException
@@ -25,6 +26,12 @@ export default class DirectionLiteral extends Expression {
 
     this.name = joinedCode.trim()
     this.value = Direction[this.name]
+
+    if (!config.isExpressionTypeAvailable(this.constructor)) {
+      throw new ForbiddenExpressionTypeException(`'${this.code.join(' ').trim()}' DirectionLiteral are not available.`, this, {
+        template: 'exception_forbidden_direction_literal_type_template',
+      })
+    }
   }
 
   decompile(indent, line, column) {

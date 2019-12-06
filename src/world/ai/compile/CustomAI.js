@@ -3,6 +3,7 @@ import ExpressionValue from './statements/ExpressionValue'
 import AnchorStatement from './statements/AnchorStatement'
 import EmptyStatement from './statements/EmptyStatement'
 import EndIfStatement from './statements/EndIfStatement'
+import StepPriority from '../StepPriority'
 
 export default class CustomAI extends AI {
   constructor(statements, compilerConfig, world, character) {
@@ -31,6 +32,15 @@ export default class CustomAI extends AI {
     this.compilerConfig.getAllowedVariableIdentifiers().forEach(name => {
       this.variables[name] = ExpressionValue.integer(0)
     })
+  }
+
+  getStepPriority() {
+    if (this.cursor >= this.statements.length) {
+      return StepPriority.NORMAL
+    }
+
+    let statement = this.statements[this.cursor]
+    return statement.getStepPriority()
   }
 
   step(rng) {

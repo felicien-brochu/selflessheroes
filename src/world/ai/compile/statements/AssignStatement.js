@@ -123,6 +123,10 @@ export default class AssignStatement extends PrimaryStatement {
     return executable
   }
 
+  getStepPriority() {
+    return this.value.getStepPriority()
+  }
+
   execute(context) {
     context.calculation = {
       type: 'unknown',

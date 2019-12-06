@@ -2,7 +2,8 @@ import Expression from '../Expression'
 import ExpressionValue from '../ExpressionValue'
 import {
   MismatchStatementException,
-  ForbiddenObjectTypeLiteralException
+  ForbiddenObjectTypeLiteralException,
+  ForbiddenExpressionTypeException,
 } from '../../CompilerException'
 import {
   NotDecompilableStatementException
@@ -24,6 +25,12 @@ export default class ObjectTypeLiteral extends Expression {
     }
 
     this.name = joinedCode.trim()
+
+    if (!config.isExpressionTypeAvailable(this.constructor)) {
+      throw new ForbiddenExpressionTypeException(`'${this.code.join(' ').trim()}' ObjectTypeLiteral are not available.`, this, {
+        template: 'exception_forbidden_object_type_literal_type_template',
+      })
+    }
 
     if (!config.objectTypes.some(type => this.name === type)) {
       throw new ForbiddenObjectTypeLiteralException(`the object type literal '${this.name}' is forbidden. You may use the following object types: ${config.objectTypes}`, this, {

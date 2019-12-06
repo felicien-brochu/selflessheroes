@@ -1,3 +1,5 @@
+import StepPriority from './StepPriority'
+
 export default class AI {
   constructor(world, character) {
     this.world = world
@@ -6,6 +8,10 @@ export default class AI {
 
   step(rng) {
     throw new Error('Needs subclass implementation')
+  }
+
+  getStepPriority() {
+    return StepPriority.NORMAL
   }
 
   getDebugContext() {

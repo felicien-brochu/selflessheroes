@@ -79,6 +79,12 @@ export class ForbiddenPrimaryStatementException extends StatementException {
   }
 }
 
+export class ForbiddenExpressionTypeException extends StatementException {
+  constructor(message, statement, template) {
+    super('ForbiddenExpressionTypeException', message, statement, template)
+  }
+}
+
 export class ForbiddenVariableIdentifierException extends StatementException {
   constructor(message, statement, template) {
     super('ForbiddenVariableIdentifierException', message, statement, template)
@@ -88,6 +94,12 @@ export class ForbiddenVariableIdentifierException extends StatementException {
 export class ForbiddenIntegerLiteralException extends StatementException {
   constructor(message, statement, template) {
     super('ForbiddenIntegerLiteralException', message, statement, template)
+  }
+}
+
+export class ForbiddenMessageLiteralException extends StatementException {
+  constructor(message, statement, template) {
+    super('ForbiddenMessageLiteralException', message, statement, template)
   }
 }
 

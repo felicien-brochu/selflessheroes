@@ -12,7 +12,7 @@ export default class WriteFunction extends FunctionExpression {
     super('WriteFunction', parent, line, column)
   }
 
-  getParamTypes() {
+  getRawParamTypes() {
     return [
       [{
         type: IntegerLiteral

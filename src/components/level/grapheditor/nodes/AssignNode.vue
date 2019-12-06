@@ -1,5 +1,9 @@
 <template>
-<li class="node assign-node"
+<li :class="{
+		'node': true,
+		'assign-node': true,
+		'speach': func.constructor.isSpeachType
+	}"
   @mousedown="handleDragStart"
   @touchstart="handleDragStart">
 
@@ -24,7 +28,7 @@
       :types="param.types"
       :value="param.value"
       :compilerConfig="compilerConfig"
-      parentType="assign"
+      :parentType="func.constructor.isSpeachType ? 'speach' : 'assign'"
       @select="handleSelectParam(index, $event)"
       @start-edit="$emit('start-edit')" />
 

@@ -5,7 +5,8 @@ const types = {
   objectType: Symbol('objectTypeType'),
   terrainType: Symbol('terrainTypeType'),
   direction: Symbol('directionType'),
-  composite: Symbol('compositeType')
+  message: Symbol('messageType'),
+  composite: Symbol('compositeType'),
 }
 Object.freeze(types)
 

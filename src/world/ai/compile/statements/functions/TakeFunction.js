@@ -16,7 +16,7 @@ export default class TakeFunction extends FunctionExpression {
     super('TakeFunction', parent, line, column)
   }
 
-  getParamTypes() {
+  getRawParamTypes() {
     return [
       [{
         type: DirectionLiteral,

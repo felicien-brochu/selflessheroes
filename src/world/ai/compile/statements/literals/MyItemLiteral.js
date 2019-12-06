@@ -2,7 +2,8 @@ import Expression from '../Expression'
 import ExpressionValue from '../ExpressionValue'
 import ObjectType from '../../../../objects/ObjectType'
 import {
-  MismatchStatementException
+  MismatchStatementException,
+  ForbiddenExpressionTypeException,
 } from '../../CompilerException'
 
 export default class MyItemLiteral extends Expression {
@@ -15,6 +16,12 @@ export default class MyItemLiteral extends Expression {
     let res = joinedCode.match(MyItemLiteral.codeRegExp)
     if (!res) {
       throw new MismatchStatementException('you try to compile as a myitem literal a statement which is not one', this)
+    }
+
+    if (!config.isExpressionTypeAvailable(this.constructor)) {
+      throw new ForbiddenExpressionTypeException(`'${this.code.join(' ').trim()}' MyItemLiteral are not available.`, this, {
+        template: 'exception_forbidden_myitem_literal_type_template',
+      })
     }
   }
 

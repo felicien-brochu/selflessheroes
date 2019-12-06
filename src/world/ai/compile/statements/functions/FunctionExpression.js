@@ -1,6 +1,4 @@
 import Expression from '../Expression'
-import DirectionLiteral from '../literals/DirectionLiteral'
-import Direction from '../../../../Direction'
 import {
   MismatchStatementException,
   InvalidNumberOfParamsException,
@@ -14,11 +12,12 @@ import {
   subCode,
   createUnitExpression
 } from '../../utils'
+import StepPriority from '../../../StepPriority'
 
 class FunctionExpression extends Expression {
   constructor(type, parent, line, column) {
     super(type, parent, line, column)
-    this.params = this.getParamTypes().map(type => null)
+    this.params = this.getRawParamTypes().map(type => null)
   }
 
   static get keyword() {
@@ -40,6 +39,10 @@ class FunctionExpression extends Expression {
       return config.valueFunctions
     }
     return []
+  }
+
+  getParamTypes(config) {
+    return this.getRawParamTypes().map(types => config.filterParamTypes(types))
   }
 
   compile(config, context) {
@@ -74,7 +77,7 @@ class FunctionExpression extends Expression {
 
   compileParams(config, context) {
     let rawParams = this.extractParams()
-    let paramTypes = this.getParamTypes()
+    let paramTypes = this.getRawParamTypes()
 
     if ((this.hasFiniteNumberOfParams() && rawParams.length !== paramTypes.length) ||
       (!this.hasFiniteNumberOfParams() && rawParams.length < paramTypes.length)) {
@@ -86,7 +89,7 @@ class FunctionExpression extends Expression {
   }
 
   compileParam(paramCode, index, config, context) {
-    let paramTypes = this.getParamTypes()
+    let paramTypes = this.getRawParamTypes()
     let allowedTypes
     if (!this.hasFiniteNumberOfParams() && index >= paramTypes.length) {
       allowedTypes = paramTypes[paramTypes.length - 1]
@@ -110,27 +113,27 @@ class FunctionExpression extends Expression {
   }
 
   validateParam(index, param, config) {
-    const paramType = this.getParamCurrentType(index)
+    const paramType = this.getParamCurrentType(index, config)
     if (paramType && typeof paramType.validator === 'function' && !paramType.validator(param.value)) {
       this.onParamValidationFailed(index, param, config)
     }
   }
 
   checkDuplicateParams(index, param, config) {
-    let paramTypes = this.getParamTypes()
+    let paramTypes = this.getRawParamTypes()
     if (this.params.some((p, index) => index >= paramTypes.length - 1 && p !== param && p.name === param.name)) {
       this.onDuplicateParams(index, param, config)
     }
   }
 
   checkMultipleParamType(index, param, config) {
-    let paramTypes = this.getParamTypes()
+    let paramTypes = this.getRawParamTypes()
     if (!this.hasFiniteNumberOfParams() && index >= paramTypes.length) {
-      const lastType = this.getParamCurrentType(paramTypes.length - 1)
+      const lastType = this.getParamCurrentType(paramTypes.length - 1, config)
       if (!lastType.multiple) {
         this.onInvalidNumberOfParams(config)
       } else {
-        const paramType = this.getParamCurrentType(index)
+        const paramType = this.getParamCurrentType(index, config)
         if (paramType.type !== lastType.type) {
           this.onMultipleParamSeveralTypes(index, param, config)
         }
@@ -186,7 +189,7 @@ class FunctionExpression extends Expression {
   }
 
   onInvalidNumberOfParams(config) {
-    throw new InvalidNumberOfParamsException(`'${this.constructor.keyword}' function requires ${this.getParamTypes().length} parameters`, this)
+    throw new InvalidNumberOfParamsException(`'${this.constructor.keyword}' function requires ${this.getRawParamTypes().length} parameters`, this)
   }
 
   onInvalidParam(index, param, config) {
@@ -248,8 +251,8 @@ class FunctionExpression extends Expression {
     return executable
   }
 
-  getParamTypeAt(param, index) {
-    let types = this.getParamTypes()
+  getParamTypeAt(param, index, config) {
+    let types = this.getParamTypes(config)
     let paramTypes
     if (index >= types.length) {
       paramTypes = types[types.length - 1]
@@ -263,12 +266,12 @@ class FunctionExpression extends Expression {
     return paramType
   }
 
-  getParamTypes() {
+  getRawParamTypes() {
     throw new Error('Needs subclass implementation.')
   }
 
-  getParamCurrentType(index) {
-    return this.getParamTypeAt(this.params[index], index)
+  getParamCurrentType(index, config) {
+    return this.getParamTypeAt(this.params[index], index, config)
   }
 
   getParamsJoinedCode() {
@@ -282,7 +285,7 @@ class FunctionExpression extends Expression {
   }
 
   hasFiniteNumberOfParams() {
-    let paramTypes = this.getParamTypes()
+    let paramTypes = this.getRawParamTypes()
     return paramTypes.length === 0 || !paramTypes[paramTypes.length - 1].some(type => type.multiple)
   }
 
@@ -322,6 +325,10 @@ class FunctionExpression extends Expression {
     }
 
     return params
+  }
+
+  getStepPriority() {
+    return StepPriority.NORMAL
   }
 }
 

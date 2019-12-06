@@ -16,7 +16,7 @@ export default class DropFunction extends FunctionExpression {
     super('DropFunction', parent, line, column)
   }
 
-  getParamTypes() {
+  getRawParamTypes() {
     return [
       [{
         type: DirectionLiteral,

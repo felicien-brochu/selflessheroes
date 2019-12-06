@@ -22,7 +22,7 @@ export default class CalcFunction extends FunctionExpression {
     super('CalcFunction', parent, line, column)
   }
 
-  getParamTypes() {
+  getRawParamTypes() {
     return [
       [{
         type: MyItemLiteral

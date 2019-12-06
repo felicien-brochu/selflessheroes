@@ -56,6 +56,10 @@ class ActionStatement extends PrimaryStatement {
   execute(context) {
     return this.function.computeValue(context)
   }
+
+  getStepPriority() {
+    return this.function.getStepPriority()
+  }
 }
 
 ActionStatement.startLineRegExp = /^\s*((\w+)\s*\((.*)\))/
