@@ -244,6 +244,9 @@ export default {
                 .assign-statement {
                     @include node-color($assign-color);
                 }
+                .speach-statement {
+                    @include node-color($speach-color);
+                }
             }
 
             .score {

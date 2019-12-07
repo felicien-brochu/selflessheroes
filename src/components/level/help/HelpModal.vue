@@ -50,7 +50,8 @@ import PaletteStatement from '../grapheditor/PaletteStatement'
 import {
   assignStatementType,
   actionStatementType,
-  branchingStatementType
+  branchingStatementType,
+  speachStatementType
 }
 from '../grapheditor/PaletteStatementType'
 
@@ -233,15 +234,16 @@ export default {
       }
 
       let primaryStatements = [...this.compilerConfig.getAllowedPrimaryStatements(), ...this.compilerConfig.actionFunctions, ...this.compilerConfig.valueFunctions]
-      let statementClasses = primaryStatements.filter(statementClass => paletteStatements.indexOf(statementClass) >= 0)
+      let statementClasses = primaryStatements.filter(statementClass => paletteStatements.includes(statementClass))
       let statements = statementClasses.map(statementClass => {
         return {
           clazz: statementClass
         }
       })
-      let branching = statementClasses.filter(statementClass => branchingStatements.indexOf(statementClass) >= 0)
-      let actions = statementClasses.filter(statementClass => actionFunctions.indexOf(statementClass) >= 0)
-      let assign = statementClasses.filter(statementClass => valueFunctions.indexOf(statementClass) >= 0)
+      let branching = statementClasses.filter(statementClass => branchingStatements.includes(statementClass) && !statementClass.isSpeachType)
+      let actions = statementClasses.filter(statementClass => actionFunctions.includes(statementClass) && !statementClass.isSpeachType)
+      let assign = statementClasses.filter(statementClass => valueFunctions.includes(statementClass) && !statementClass.isSpeachType)
+      let speach = statementClasses.filter(statementClass => statementClass.isSpeachType)
       branching = branching.map(statementClass => {
         return {
           statementType: branchingStatementType,
@@ -260,11 +262,18 @@ export default {
           clazz: statementClass
         }
       })
+      speach = speach.map(statementClass => {
+        return {
+          statementType: speachStatementType,
+          clazz: statementClass
+        }
+      })
 
       return [
         ...branching,
         ...actions,
-        ...assign
+        ...assign,
+        ...speach
       ]
     }
   }
@@ -386,6 +395,9 @@ $selected-color: #535866;
                     }
                     .assign-statement {
                         @include node-color($assign-color);
+                    }
+                    .speach-statement {
+                        @include node-color($speach-color);
                     }
 
                     .icon {
