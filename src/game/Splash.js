@@ -70,6 +70,15 @@ import calculation_left from './images/calculation_left.png'
 import calculation_right from './images/calculation_right.png'
 import calculation_middle from './images/calculation_middle.png'
 import calculation_bubbles from './images/calculation_bubbles.png'
+import message_bubble from './images/message_bubble.png'
+import message_hey from './images/message_hey.png'
+import message_ho from './images/message_ho.png'
+import message_kiss from './images/message_kiss.png'
+import message_lol from './images/message_lol.png'
+import message_ok from './images/message_ok.png'
+import message_stop from './images/message_stop.png'
+import message_wait from './images/message_wait.png'
+import message_coffee from './images/message_coffee.png'
 import wall_icon from '../components/images/wall-icon.png'
 import floor_icon from '../components/images/floor-icon.png'
 import hole_icon from '../components/images/hole-icon.png'
@@ -337,6 +346,15 @@ export default class extends Phaser.Scene {
     this.load.image('calculation_right', calculation_right)
     this.load.image('calculation_middle', calculation_middle)
     this.load.image('calculation_bubbles', calculation_bubbles)
+    this.load.image('message_bubble', message_bubble)
+    this.load.image('message_hey', message_hey)
+    this.load.image('message_ho', message_ho)
+    this.load.image('message_kiss', message_kiss)
+    this.load.image('message_lol', message_lol)
+    this.load.image('message_ok', message_ok)
+    this.load.image('message_stop', message_stop)
+    this.load.image('message_wait', message_wait)
+    this.load.image('message_coffee', message_coffee)
     this.load.image('wall_icon', wall_icon)
     this.load.image('floor_icon', floor_icon)
     this.load.image('hole_icon', hole_icon)

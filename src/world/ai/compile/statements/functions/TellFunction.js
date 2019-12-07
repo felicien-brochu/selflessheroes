@@ -37,7 +37,13 @@ export default class TellFunction extends FunctionExpression {
     } else if (param2 instanceof EveryoneLiteral) {
       channel = 'everyone'
     }
-    context.character.tell(this.params[0].computeValue(context), channel)
+    let messageValue = this.params[0].computeValue(context)
+    context.character.tell(messageValue, channel)
+
+    context.calculation = {
+      type: 'message',
+      value: messageValue,
+    }
 
     return {
       step: true,

@@ -15,11 +15,13 @@ export default class CalculationS extends Phaser.GameObjects.Container {
     this.leftSprite = new Phaser.GameObjects.Sprite(scene, -20, 0, 'calculation_left')
     this.rightSprite = new Phaser.GameObjects.Sprite(scene, 20, 0, 'calculation_right')
     this.bubblesSprite = new Phaser.GameObjects.Sprite(scene, 12, 11.5, 'calculation_bubbles')
+    this.messageBubbleSprite = new Phaser.GameObjects.Sprite(scene, 2, 2.5, 'message_bubble')
 
     this.add(this.middleSprite)
     this.add(this.leftSprite)
     this.add(this.rightSprite)
     this.add(this.bubblesSprite)
+    this.add(this.messageBubbleSprite)
 
     this.middleSprite.setScale(6, 1)
 
@@ -31,10 +33,14 @@ export default class CalculationS extends Phaser.GameObjects.Container {
       this.buildCalcContent()
     } else if (this.calculation.type === 'set') {
       this.buildSetContent()
+    } else if (this.calculation.type === 'message') {
+      this.buildMessageContent()
     }
   }
 
   buildCalcContent() {
+    this.messageBubbleSprite.setVisible(false)
+
     let value1 = this.calculation.operands[0].value
     if (value1.hasIntegerValue()) {
       value1 = this.formatInteger(value1.getFirstIntegerValue().value)
@@ -59,6 +65,8 @@ export default class CalculationS extends Phaser.GameObjects.Container {
   }
 
   buildSetContent() {
+    this.messageBubbleSprite.setVisible(false)
+
     const value = this.calculation.operands[0].value
     const dominantValue = value.getDominantValue()
 
@@ -89,6 +97,17 @@ export default class CalculationS extends Phaser.GameObjects.Container {
     this.rightSprite.x = 15
     this.middleSprite.setScale(4.3, 1)
     this.displayText(text)
+  }
+
+  buildMessageContent() {
+    this.middleSprite.setVisible(false)
+    this.leftSprite.setVisible(false)
+    this.rightSprite.setVisible(false)
+    this.bubblesSprite.setVisible(false)
+
+    let messageSprite = new Phaser.GameObjects.Sprite(this.scene, 2, 0, `message_${this.calculation.value.value}`)
+    messageSprite.setScale(13 / messageSprite.height)
+    this.add(messageSprite)
   }
 
   formatInteger(value) {
