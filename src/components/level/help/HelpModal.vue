@@ -68,6 +68,10 @@ import WriteFunction from '../../../world/ai/compile/statements/functions/WriteF
 
 import SetFunction from '../../../world/ai/compile/statements/functions/SetFunction'
 import CalcFunction from '../../../world/ai/compile/statements/functions/CalcFunction'
+import NearestFunction from '../../../world/ai/compile/statements/functions/NearestFunction'
+
+import TellFunction from '../../../world/ai/compile/statements/functions/TellFunction'
+import ListenFunction from '../../../world/ai/compile/statements/functions/ListenFunction'
 
 import ActionFunctions from '../../../world/ai/compile/statements/functions/ActionFunctions'
 import ValueFunctions from '../../../world/ai/compile/statements/functions/ValueFunctions'
@@ -99,6 +103,10 @@ import WriteFunctionTab from './WriteFunctionTab'
 
 import SetFunctionTab from './SetFunctionTab'
 import CalcFunctionTab from './CalcFunctionTab'
+import NearestFunctionTab from './NearestFunctionTab'
+
+import TellFunctionTab from './TellFunctionTab'
+import ListenFunctionTab from './ListenFunctionTab'
 
 const statementTabs = new Map([
   [IfStatement, {
@@ -144,7 +152,19 @@ const statementTabs = new Map([
   [CalcFunction, {
     component: CalcFunctionTab,
     props: {}
-  }]
+  }],
+  [NearestFunction, {
+    component: NearestFunctionTab,
+    props: {}
+  }],
+  [TellFunction, {
+    component: TellFunctionTab,
+    props: {}
+  }],
+  [ListenFunction, {
+    component: ListenFunctionTab,
+    props: {}
+  }],
 ])
 
 export default {

@@ -178,6 +178,7 @@ export default class CompilerConfig {
         'drop',
         'write',
         'tell',
+        'listen',
       ],
       leftComparisonExpressions: [
         'direction',

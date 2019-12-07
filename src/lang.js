@@ -183,6 +183,21 @@ const messages = {
     level_help_tab_calc_function_3: "%%type-variable$$b%% %%type-operator$=%% %%type-function$calc%%(%%type-variable$$a%% %%type-operator$+%% %%type-literal$2%%)\n",
     level_help_tab_calc_function_4: "In Selfless Heroes, there is only integer numbers.\n\nThe operator %%type-operator$\"/\"%% is the integer division.\nFor example, %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04%%.\n\nThe operator %%type-operator$\"%\"%% is called \"modulo\". It calculates the remainder of the integer division.\nFor example, %%type-operator$9\u00A0%\u00A02\u00A0=\u00A01%% because %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04\u00A0remains\u00A01%%.",
 
+    level_help_tab_nearest_function_1: "%%statement assign-statement$nearest%% searches for the nearest object of a given type (%%icon icon-cauldron$%% cauldron, %%icon icon-egg$%%egg etc.) and puts the result in a variable.",
+    level_help_tab_nearest_function_2: "You could read the above example as \"Memorize the nearest egg in the variable a and then go get that egg\".",
+    level_help_tab_nearest_function_3: "%%type-variable$$a%% %%type-operator$=%% %%type-function$nearest%%(%%type-literal$egg%%)\n%%type-function$take%%(%%type-variable$$a%%)",
+
+    level_help_tab_tell_function_1: "%%statement speach-statement$tell%% allows you to say a message to other heroes.",
+    level_help_tab_tell_function_2: "You could read the above example as \"Tell \"ok\" to the hero on the right of you\".",
+    level_help_tab_tell_function_3: "%%type-function$tell%%(%%type-string$\"ok\"%% %%type-literal$e%%)",
+    level_help_tab_tell_function_4: "You can also %%statement speach-statement$tell%% a message to every %%icon icon-hero$%% hero of the level.",
+    level_help_tab_tell_function_5: "You could read the above example as \"Tell \"hey\" to everyone\".",
+    level_help_tab_tell_function_6: "%%type-function$tell%%(%%type-string$\"hey\"%% %%type-literal$everyone%%)",
+
+    level_help_tab_listen_function_1: "%%statement speach-statement$listen%% tells the hero to wait until he hears a specific message.",
+    level_help_tab_listen_function_2: "You could read the above example as \"Wait for a hero to tell you \"hey\" then go right\".",
+    level_help_tab_listen_function_3: "%%type-function$listen%%(%%type-string$\"hey\"%%)\n%%type-function$step%%(%%type-literal$e%%)",
+
     level_modal_speed_target_unit: "steps",
     level_modal_length_target_unit: "lines",
     level_modal_secondary_objectives_difficulty_warning: "secondary objectives can be very difficult and it is often impossible to achieve both with the same solution",
@@ -523,6 +538,16 @@ const messages = {
     level_help_tab_calc_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Donne la valeur a + 2 à la variable b\".",
     level_help_tab_calc_function_4: "Dans Selfless Heroes, il n'y a que des nombres entiers.\n\nL'opérateur %%type-operator$\"/\"%% est la division entière.\nPar exemple, %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04%%.\n\nL'opérateur %%type-operator$\"%\"%% est appelé \"modulo\". Il calcule le reste de la division entière.\nPar exemple, %%type-operator$9\u00A0%\u00A02\u00A0=\u00A01%% car %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04\u00A0reste\u00A01%%.",
 
+    level_help_tab_nearest_function_1: "%%statement assign-statement$plus proche%% cherche le plus proche objet d'un type donné (%%icon icon-cauldron$%% chaudron, %%icon icon-egg$%%œuf etc.) et met le résultat dans une variable.",
+    level_help_tab_nearest_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Mémorise l'œuf le plus proche dans la variable a puis va chercher cet œuf\".",
+
+    level_help_tab_tell_function_1: "%%statement speach-statement$dire%% permet de dire un message à d'autres héros.",
+    level_help_tab_tell_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Dis \"ok\" au héro à droite de toi\".",
+    level_help_tab_tell_function_4: "On peut également %%statement speach-statement$dire%% un message à tous les %%icon icon-hero$%% héros du niveau.",
+    level_help_tab_tell_function_5: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Dis \"hey\" à tous les héros\".",
+
+    level_help_tab_listen_function_1: "%%statement speach-statement$écouter%% dis au héro d'attendre jusqu'à ce qu'il entende un message spécifique.",
+    level_help_tab_listen_function_2: "On peut lire l'exemple ci-dessus comme suit\u00A0:\n\"Attends qu'un héro te dise \"hey\" puis va à droite\".",
 
     level_modal_speed_target_unit: "étapes",
     level_modal_length_target_unit: "lignes",
