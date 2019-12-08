@@ -1,50 +1,57 @@
-import level from './level012'
+import level from './level402'
 
 export default {
   level: level,
   deterministic: true,
   specs: [{
-    type: ["length", "speed"],
+    type: ["length"],
     code: `
-if w == floor :
-	listen("ok")
-endif
-tell("ok" e)
-step(s)
-step(s)
+a:
+clone ne b
+step(e)
+jump a
+b:
+c:
+step(ne)
+clone nw c
+step(e)
+		`,
+  }, {
+    type: ["speed"],
+    code: `
+a:
+step(e)
+clone ne b
+step(e)
+step(e)
+step(e)
+step(n)
+step(e)
+jump a
+b:
+c:
+step(ne)
+clone nw c
+step(e)
 		`,
   }, {
     type: ["lossReason"],
-    lossReason: 'loss_reason_wrong_order',
+    lossReason: 'loss_reason_too_mush_heroes',
     frequency: 1,
     code: `
-step(s)
-step(s)
+b:
+a:
+clone n a
+clone e b
 		`,
   }, {
     type: ["lossReason"],
-    lossReason: 'loss_reason_wrong_order',
+    lossReason: 'loss_reason_one_hero_dead',
     frequency: 1,
     code: `
-if e == floor :
-	listen("ok")
-endif
-tell("ok" w)
-step(s)
-step(s)
-		`,
-  }, {
-    type: ["lossReason"],
-    lossReason: 'loss_reason_moved_of_the_cross',
-    frequency: 1,
-    code: `
-if w == floor :
-	listen("ok")
-endif
-tell("ok" e)
-step(s)
-step(s)
-step(s)
+c:
+step(e)
+jump c
 		`,
   }, ]
 }

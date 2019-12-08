@@ -48,16 +48,16 @@ import level211 from './level211/level211'
 import level212 from './level212/level212'
 import level213 from './level213/level213'
 
-import level301 from './level301/level301'
-import level302 from './level302/level302'
-import level303 from './level303/level303'
-import level304 from './level304/level304'
-import level305 from './level305/level305'
-import level306 from './level306/level306'
-import level307 from './level307/level307'
-
 import level401 from './level401/level401'
 import level402 from './level402/level402'
+import level403 from './level403/level403'
+import level404 from './level404/level404'
+import level405 from './level405/level405'
+import level406 from './level406/level406'
+import level407 from './level407/level407'
+
+import level301 from './level301/level301'
+import level302 from './level302/level302'
 
 const levels = [
   new Level(1, level001),
@@ -107,14 +107,14 @@ const levels = [
 
   new Level(301, level301),
   new Level(302, level302),
-  new Level(303, level303),
-  new Level(304, level304),
-  new Level(305, level305),
-  new Level(306, level306),
-  new Level(307, level307),
 
   new Level(401, level401),
   new Level(402, level402),
+  new Level(403, level403),
+  new Level(404, level404),
+  new Level(405, level405),
+  new Level(406, level406),
+  new Level(407, level407),
 ]
 
 const categories = [{
@@ -276,8 +276,8 @@ const categories = [{
       unlock: [212],
     }, ]
   }, {
-    name: 'clone',
-    color: 'purple',
+    name: 'speach',
+    color: 'red',
     premium: true,
     unlock: [],
     levels: [{
@@ -286,26 +286,10 @@ const categories = [{
     }, {
       id: 302,
       unlock: [301],
-    }, {
-      id: 303,
-      unlock: [302],
-    }, {
-      id: 304,
-      unlock: [303],
-    }, {
-      id: 305,
-      unlock: [304],
-      bonus: true,
-    }, {
-      id: 306,
-      unlock: [304],
-    }, {
-      id: 307,
-      unlock: [306],
     }, ],
   }, {
-    name: 'speach',
-    color: 'red',
+    name: 'clone',
+    color: 'purple',
     premium: true,
     unlock: [],
     levels: [{
@@ -314,6 +298,22 @@ const categories = [{
     }, {
       id: 402,
       unlock: [401],
+    }, {
+      id: 403,
+      unlock: [402],
+    }, {
+      id: 404,
+      unlock: [403],
+    }, {
+      id: 405,
+      unlock: [404],
+      bonus: true,
+    }, {
+      id: 406,
+      unlock: [404],
+    }, {
+      id: 407,
+      unlock: [406],
     }, ],
   },
 ]

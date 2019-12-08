@@ -1,4 +1,4 @@
-import level from './level306'
+import level from './level406'
 
 export default {
   level: level,

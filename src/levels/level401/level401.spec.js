@@ -6,26 +6,48 @@ export default {
   specs: [{
     type: ["length", "speed"],
     code: `
-if w == hole :
-	listen("ok")
-endif
+b:
 a:
-if here != switch :
-	step(e)
-	jump a
+d:
+if ne != hero &&
+  ne == floor ||
+  nw != hero &&
+  nw == floor :
+	clone ne d
+	clone nw a
 endif
-tell("ok" se)
+c:
+if sw != hero &&
+  sw == floor :
+	clone sw b
+endif
+if se != hero &&
+  se == floor :
+	clone se c
+endif
 		`,
   }, {
     type: ["lossReason"],
-    lossReason: 'loss_reason_one_hero_dead',
+    lossReason: 'loss_reason_wrong_floor_cell',
     frequency: 1,
     code: `
+c:
+b:
 a:
-if here != switch :
-	step(e)
-	jump a
+d:
+if se != hero &&
+  se == floor :
+	clone se d
 endif
+if sw != hero &&
+  sw == floor :
+	clone sw a
+endif
+if nw != hero &&
+  nw == floor :
+	clone nw b
+endif
+clone ne c
 		`,
   }, ]
 }

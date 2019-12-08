@@ -1,4 +1,4 @@
-import map from './map307.json'
+import map from './map407.json'
 
 function maxValue(world) {
   return world.eggs.reduce((max, egg) => Math.max(max, egg.value), 0)

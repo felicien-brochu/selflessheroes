@@ -1,4 +1,4 @@
-import map from './map304.json'
+import map from './map404.json'
 
 const winCondition = {
   beforeStart() {

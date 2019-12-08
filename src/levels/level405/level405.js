@@ -1,4 +1,4 @@
-import map from './map305.json'
+import map from './map405.json'
 
 function findTargetEgg(world) {
   let xEgg = world.eggs.find(egg => egg.y === 2)

@@ -4,54 +4,47 @@ export default {
   level: level,
   deterministic: true,
   specs: [{
-    type: ["length"],
+    type: ["length", "speed"],
     code: `
-a:
-clone ne b
-step(e)
-jump a
-b:
-c:
-step(ne)
-clone nw c
-step(e)
-		`,
-  }, {
-    type: ["speed"],
-    code: `
-a:
-step(e)
-clone ne b
-step(e)
-step(e)
-step(e)
-step(n)
-step(e)
-jump a
-b:
-c:
-step(ne)
-clone nw c
-step(e)
+if w == floor :
+	listen("ok")
+endif
+tell("ok" e)
+step(s)
+step(s)
 		`,
   }, {
     type: ["lossReason"],
-    lossReason: 'loss_reason_too_mush_heroes',
+    lossReason: 'loss_reason_wrong_order',
     frequency: 1,
     code: `
-b:
-a:
-clone n a
-clone e b
+step(s)
+step(s)
 		`,
   }, {
     type: ["lossReason"],
-    lossReason: 'loss_reason_one_hero_dead',
+    lossReason: 'loss_reason_wrong_order',
     frequency: 1,
     code: `
-c:
-step(e)
-jump c
+if e == floor :
+	listen("ok")
+endif
+tell("ok" w)
+step(s)
+step(s)
+		`,
+  }, {
+    type: ["lossReason"],
+    lossReason: 'loss_reason_moved_of_the_cross',
+    frequency: 1,
+    code: `
+if w == floor :
+	listen("ok")
+endif
+tell("ok" e)
+step(s)
+step(s)
+step(s)
 		`,
   }, ]
 }

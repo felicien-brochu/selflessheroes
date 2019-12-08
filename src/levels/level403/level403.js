@@ -1,4 +1,4 @@
-import map from './map303.json'
+import map from './map403.json'
 
 const winCondition = {
   check() {
