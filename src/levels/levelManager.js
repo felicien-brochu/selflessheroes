@@ -293,9 +293,10 @@ const categories = [{
     }, {
       id: 303,
       unlock: [302],
+      bonus: true,
     }, {
       id: 304,
-      unlock: [303],
+      unlock: [302],
     }, ],
   }, {
     name: 'clone',
