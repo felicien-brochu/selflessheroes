@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="498" nextobjectid="264">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
+  <image source="tileset.png" trans="000000" width="340" height="680"/>
+  <terraintypes>
+   <terrain name="floor" tile="79"/>
+   <terrain name="wall" tile="69"/>
+   <terrain name="hole" tile="78"/>
+  </terraintypes>
+ </tileset>
+ <layer id="487" name="checkers" width="12" height="12">
+  <data encoding="csv">
+0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0
+</data>
+ </layer>
+ <objectgroup id="14" name="camera">
+  <object id="12" name="frame" type="frame" x="51" y="33" width="282.67" height="301"/>
+  <object id="15" name="strategy" type="strategy" x="-6" y="136">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="488" name="path" width="12" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="2" name="objects">
+  <object id="33" name="hero" type="hero" x="83.8333" y="310.834">
+   <point/>
+  </object>
+  <object id="202" name="hero" type="hero" x="113.666" y="308.667">
+   <point/>
+  </object>
+  <object id="203" name="hero" type="hero" x="146.333" y="310.334">
+   <point/>
+  </object>
+  <object id="204" name="hero" type="hero" x="176.666" y="310.667">
+   <point/>
+  </object>
+  <object id="212" name="hero" type="hero" x="208.5" y="312.167">
+   <point/>
+  </object>
+  <object id="213" name="hero" type="hero" x="238.333" y="310">
+   <point/>
+  </object>
+  <object id="214" name="hero" type="hero" x="271" y="311.667">
+   <point/>
+  </object>
+  <object id="215" name="hero" type="hero" x="301.333" y="312">
+   <point/>
+  </object>
+  <object id="240" name="hero" type="hero" x="84.5003" y="241.501">
+   <point/>
+  </object>
+  <object id="241" name="hero" type="hero" x="114.333" y="239.334">
+   <point/>
+  </object>
+  <object id="242" name="hero" type="hero" x="147" y="241.001">
+   <point/>
+  </object>
+  <object id="243" name="hero" type="hero" x="177.333" y="241.334">
+   <point/>
+  </object>
+  <object id="244" name="hero" type="hero" x="209.167" y="242.834">
+   <point/>
+  </object>
+  <object id="245" name="hero" type="hero" x="239" y="240.667">
+   <point/>
+  </object>
+  <object id="246" name="hero" type="hero" x="271.667" y="242.334">
+   <point/>
+  </object>
+  <object id="247" name="hero" type="hero" x="302" y="242.667">
+   <point/>
+  </object>
+  <object id="248" name="hero" type="hero" x="86.5003" y="174.834">
+   <point/>
+  </object>
+  <object id="249" name="hero" type="hero" x="116.333" y="172.667">
+   <point/>
+  </object>
+  <object id="250" name="hero" type="hero" x="149" y="174.334">
+   <point/>
+  </object>
+  <object id="251" name="hero" type="hero" x="179.333" y="174.667">
+   <point/>
+  </object>
+  <object id="252" name="hero" type="hero" x="211.167" y="176.167">
+   <point/>
+  </object>
+  <object id="253" name="hero" type="hero" x="241" y="174">
+   <point/>
+  </object>
+  <object id="254" name="hero" type="hero" x="273.667" y="175.667">
+   <point/>
+  </object>
+  <object id="255" name="hero" type="hero" x="304" y="176">
+   <point/>
+  </object>
+  <object id="256" name="hero" type="hero" x="84.5003" y="110.834">
+   <point/>
+  </object>
+  <object id="257" name="hero" type="hero" x="114.333" y="108.667">
+   <point/>
+  </object>
+  <object id="258" name="hero" type="hero" x="147" y="110.334">
+   <point/>
+  </object>
+  <object id="259" name="hero" type="hero" x="177.333" y="110.667">
+   <point/>
+  </object>
+  <object id="260" name="hero" type="hero" x="209.167" y="112.167">
+   <point/>
+  </object>
+  <object id="261" name="hero" type="hero" x="239" y="110">
+   <point/>
+  </object>
+  <object id="262" name="hero" type="hero" x="271.667" y="111.667">
+   <point/>
+  </object>
+  <object id="263" name="hero" type="hero" x="302" y="112">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="495" name="types" width="12" height="12">
+  <data encoding="csv">
+79,79,79,79,79,79,79,79,79,79,79,79,
+79,70,70,70,70,70,70,70,70,70,70,79,
+79,70,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,70,79,
+79,70,70,70,70,70,70,70,70,70,70,79,
+79,79,79,79,79,79,79,79,79,79,79,79
+</data>
+ </layer>
+ <layer id="496" name="ground" width="12" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,1,2,3,2,2,4,2,4,2,6,0,
+0,11,18,123,27,144,27,134,30,144,16,0,
+0,11,133,37,122,39,122,30,144,28,26,0,
+0,11,39,152,37,143,37,143,7,123,26,0,
+0,11,153,29,123,39,152,38,122,38,26,0,
+0,21,17,141,8,151,9,141,17,153,26,0,
+0,11,142,40,153,38,154,18,143,17,26,0,
+0,21,7,154,18,121,39,131,29,131,16,0,
+0,31,152,7,132,37,132,7,151,19,36,0,
+0,41,42,52,42,52,43,42,53,45,46,0,
+0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="497" name="floor_shadow" width="12" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,12,13,13,13,13,13,13,15,0,0,
+0,0,22,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,25,0,0,
+0,0,32,33,33,33,33,33,33,35,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>
