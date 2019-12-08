@@ -340,7 +340,7 @@ export default {
             }
 
             &.category-color-red {
-                background-color: #D03F3F;
+                background-color: #B2463C;
             }
 
             &.category-color-purple {
