@@ -70,8 +70,8 @@ const level = {
     fr: "Production en série",
   },
   objective: {
-    en: "Copy the left line on all the other lines\n\n%%icon mdi mdi-information-outline$%% If you can't find the solution, take inspiration from the level %%level-title$\"One at a time\"%%",
-    fr: "Recopie la ligne de gauche sur toutes les autres lignes\n\n%%icon mdi mdi-information-outline$%% Si tu ne trouves pas la solution, essaie de t'inspirer du niveau %%level-title$\"Chacun son tour\"%%",
+    en: "Copy the left column on all the other columns\n\n%%icon mdi mdi-information-outline$%% If you can't find the solution, take inspiration from the level %%level-title$\"One at a time\"%%",
+    fr: "Recopie la colonne de gauche sur toutes les autres colonnes\n\n%%icon mdi mdi-information-outline$%% Si tu ne trouves pas la solution, essaie de t'inspirer du niveau %%level-title$\"Chacun son tour\"%%",
   },
   messages: {
     loss_reason_wrong_value_on_egg: {
