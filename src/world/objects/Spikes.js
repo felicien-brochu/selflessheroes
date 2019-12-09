@@ -6,6 +6,7 @@ export default class Spikes extends WorldObject {
     config = Object.assign({
       enabled: false,
       triggers: [],
+      triggersNot: [],
     }, config)
 
     super(config)
@@ -14,20 +15,27 @@ export default class Spikes extends WorldObject {
   }
 
   initTriggers(world) {
-    if (typeof this.triggers === 'string') {
-      let triggerIDs = this.triggers.split(',').filter(id => id.length > 0).map(id => parseInt(id))
-      this.triggers = []
+    this.linkTriggers('triggers', world)
+    this.linkTriggers('triggersNot', world)
+  }
+
+  linkTriggers(triggersKey, world) {
+    if (typeof this[triggersKey] === 'string') {
+      let triggerIDs = this[triggersKey].split(',').filter(id => id.length > 0).map(id => parseInt(id))
+      this[triggersKey] = []
 
       for (let id of triggerIDs) {
-        this.triggers.push(world.findWorldObjectByID(id))
+        this[triggersKey].push(world.findWorldObjectByID(id))
       }
     }
   }
 
   checkTriggers() {
-    let triggered = this.triggers.length > 0 && this.triggers.every(trigger => trigger.isEnabled())
+    let triggersTriggered = (this.triggers.length > 0 || this.triggersNot.length > 0) && this.triggers.every(trigger => trigger.isEnabled())
+    let triggersNotTriggered = this.triggersNot.length > 0 && this.triggersNot.some(trigger => trigger.isEnabled())
 
-    if ((triggered && !this.initialyEnabled) || (!triggered && this.initialyEnabled)) {
+    if ((!this.initialyEnabled && triggersTriggered && !triggersNotTriggered) ||
+      (this.initialyEnabled && (!triggersTriggered || triggersNotTriggered))) {
       this.enable()
     } else {
       this.disable()

@@ -2,7 +2,7 @@
 <objecttypes>
  <objecttype name="ai" color="#aa0000">
   <property name="paths" type="string"/>
-  <property name="type" type="string" default="follow_path"/>
+  <property name="type" type="string" default=""/>
  </objecttype>
  <objecttype name="bonfire" color="#ffff01">
   <property name="enabled" type="bool" default="false"/>
@@ -20,6 +20,7 @@
  <objecttype name="frame" color="#ff2fff"/>
  <objecttype name="hero" color="#fc8844">
   <property name="initialDirection" type="string" default="e"/>
+  <property name="item" type="int" default="0"/>
  </objecttype>
  <objecttype name="marker" color="#55aaff"/>
  <objecttype name="npc" color="#a40002">
@@ -34,6 +35,7 @@
  <objecttype name="spikes" color="#75d8d9">
   <property name="enabled" type="bool" default="false"/>
   <property name="triggers" type="string"/>
+  <property name="triggersNot" type="string"/>
  </objecttype>
  <objecttype name="switch" color="#1064a4">
   <property name="autoDisable" type="bool" default="true"/>

@@ -103,6 +103,7 @@ export default class World {
     // Init spikes triggers
     for (let spikes of this.spikes) {
       spikes.initTriggers(this)
+      spikes.checkTriggers()
     }
 
     // Generate eggs values with rng if necessary
