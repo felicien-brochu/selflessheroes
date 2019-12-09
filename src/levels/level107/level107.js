@@ -64,13 +64,13 @@ const level = {
     fr: "Cueillette 2",
   },
   objective: {
-    en: "Put the maximum %%icon icon-egg$%% egg from each vertical line into the corresponding %%icon icon-cauldron$%% cauldron\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: don't put the other %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons",
-    fr: "Mets l'%%icon icon-egg$%% œuf maximum de chaque ligne verticale dans le %%icon icon-cauldron$%% chaudron correspondant\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: ne mets pas d'autres %%icon icon-egg$%% œufs que les maximums dans les %%icon icon-cauldron$%% chaudrons",
+    en: "Put the maximum %%icon icon-egg$%% egg from each column into the corresponding %%icon icon-cauldron$%% cauldron\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: don't put the other %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons",
+    fr: "Mets l'%%icon icon-egg$%% œuf maximum de chaque colonne dans le %%icon icon-cauldron$%% chaudron correspondant\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: ne mets pas d'autres %%icon icon-egg$%% œufs que les maximums dans les %%icon icon-cauldron$%% chaudrons",
   },
   messages: {
     loss_reason_one_egg_not_max: {
-      en: "You put an %%icon icon-egg$%% egg which is not the maximum of its vertical line into a %%icon icon-cauldron$%% cauldron",
-      fr: "Tu as mis un %%icon icon-egg$%% œuf qui n'est pas le maximum de sa ligne verticale dans un %%icon icon-cauldron$%% chaudron",
+      en: "You put an %%icon icon-egg$%% egg which is not the maximum of its column into a %%icon icon-cauldron$%% cauldron",
+      fr: "Tu as mis un %%icon icon-egg$%% œuf qui n'est pas le maximum de sa colonne dans un %%icon icon-cauldron$%% chaudron",
     }
   },
 

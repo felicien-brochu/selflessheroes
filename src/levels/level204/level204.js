@@ -79,13 +79,13 @@ const level = {
     fr: "Inspection",
   },
   objective: {
-    en: "Write the maximum of each line on the bottom %%icon icon-egg$%% eggs\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: you must not touch the top %%icon icon-egg$%% eggs",
-    fr: "Écris le maximum de chaque ligne sur les %%icon icon-egg$%% œufs du bas\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: tu ne dois pas toucher aux %%icon icon-egg$%% œufs du haut",
+    en: "Write the maximum of each column on the bottom %%icon icon-egg$%% eggs\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: you must not touch the top %%icon icon-egg$%% eggs",
+    fr: "Écris le maximum de chaque colonne sur les %%icon icon-egg$%% œufs du bas\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: tu ne dois pas toucher aux %%icon icon-egg$%% œufs du haut",
   },
   messages: {
     loss_reason_wrong_value_on_egg: {
-      en: "You wrote something else than the maximum value of the line on an %%icon icon-egg$%% egg",
-      fr: "Tu as écrit quelque chose d'autre que le maximum de la ligne sur un %%icon icon-egg$%% œuf",
+      en: "You wrote something else than the maximum value of the column on an %%icon icon-egg$%% egg",
+      fr: "Tu as écrit quelque chose d'autre que le maximum de la colonne sur un %%icon icon-egg$%% œuf",
     },
     loss_reason_numbered_egg_displaced: {
       en: "You must not touch the top %%icon icon-egg$%% eggs",

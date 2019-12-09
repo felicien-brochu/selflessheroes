@@ -54,13 +54,13 @@ const level = {
     fr: "Pas de jaloux",
   },
   objective: {
-    en: "For each line, calculate its average value and write it on all its %%icon icon-egg$%% eggs",
-    fr: "Pour chaque ligne, calcule sa moyenne et écris-la sur tous ses %%icon icon-egg$%% œufs",
+    en: "For each column, calculate its average value and write it on all its %%icon icon-egg$%% eggs",
+    fr: "Pour chaque colonne, calcule sa moyenne et écris-la sur tous ses %%icon icon-egg$%% œufs",
   },
   messages: {
     loss_reason_wrong_value_on_egg: {
-      en: "You wrote something else than the average value of its line on an %%icon icon-egg$%% egg",
-      fr: "Tu as écrit quelque chose d'autre que la moyenne de sa ligne sur un %%icon icon-egg$%% œuf",
+      en: "You wrote something else than the average value of its column on an %%icon icon-egg$%% egg",
+      fr: "Tu as écrit quelque chose d'autre que la moyenne de sa colonne sur un %%icon icon-egg$%% œuf",
     },
   },
 

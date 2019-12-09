@@ -48,8 +48,8 @@ const level = {
     fr: "Un peu de rangement",
   },
   objective: {
-    en: "These %%icon icon-egg$%% eggs were scattered throughout the room. Pack them all at the bottom of the room to tidy up.\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: the %%icon icon-egg$%% eggs must remain on their vertical line and in the order in which you found them",
-    fr: "Ces %%icon icon-egg$%% œufs ont été éparpillés dans la pièce. Range-les tous en bas.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: les %%icon icon-egg$%% œufs doivent rester sur la même ligne verticale et dans l'ordre où tu les as trouvés",
+    en: "These %%icon icon-egg$%% eggs were scattered throughout the room. Pack them all at the bottom of the room to tidy up.\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: the %%icon icon-egg$%% eggs must remain on their column and in the order in which you found them",
+    fr: "Ces %%icon icon-egg$%% œufs ont été éparpillés dans la pièce. Range-les tous en bas.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: les %%icon icon-egg$%% œufs doivent rester sur la même colonne et dans l'ordre où tu les as trouvés",
   },
 
   maxStep: 1000,

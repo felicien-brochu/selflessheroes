@@ -75,8 +75,8 @@ const level = {
   },
   messages: {
     loss_reason_wrong_value_on_egg: {
-      en: "You wrote a wrong number on this %%icon icon-egg$%% egg.\nCopy numbers of the left line.",
-      fr: "Tu as écrit un mauvais nombre sur cet %%icon icon-egg$%% œuf.\nCopie les nombres des œufs de la ligne de gauche.",
+      en: "You wrote a wrong number on this %%icon icon-egg$%% egg.\nCopy numbers of the left column.",
+      fr: "Tu as écrit un mauvais nombre sur cet %%icon icon-egg$%% œuf.\nCopie les nombres des œufs de la colonne de gauche.",
     },
     loss_reason_target_egg_displaced: {
       en: "You must not touch the %%icon icon-egg$%% eggs on the left",
