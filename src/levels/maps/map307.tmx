@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="17" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="611" nextobjectid="365">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
+  <image source="tileset.png" trans="000000" width="340" height="680"/>
+  <terraintypes>
+   <terrain name="floor" tile="79"/>
+   <terrain name="wall" tile="69"/>
+   <terrain name="hole" tile="78"/>
+  </terraintypes>
+ </tileset>
+ <layer id="603" name="checkers" width="17" height="15">
+  <data encoding="csv">
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69
+</data>
+ </layer>
+ <objectgroup id="14" name="camera">
+  <object id="12" name="frame" type="frame" x="50.6667" y="32.3333" width="442.67" height="396.666"/>
+  <object id="15" name="strategy" type="strategy" x="-38" y="136">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="604" name="path" width="17" height="15">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,0,0,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,0,0,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,0,0,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,0,0,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,0,0,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,0,0,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,0,0,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,0,0,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,0,0,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,0,0,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,0,0,80,80,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="2" name="objects">
+  <object id="33" name="hero" type="hero" x="80.667" y="84.168">
+   <point/>
+  </object>
+  <object id="326" name="hero" type="hero" x="463.667" y="81.3333">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="332" name="hero" type="hero" x="463" y="111">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="333" name="hero" type="hero" x="465" y="145">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="334" name="hero" type="hero" x="465" y="179">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="335" name="hero" type="hero" x="467" y="210">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="348" name="hero" type="hero" x="466" y="244">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="336" name="switch" type="switch" x="431" y="79">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="337" name="switch" type="switch" x="432" y="113">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="338" name="switch" type="switch" x="431" y="147">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="339" name="switch" type="switch" x="431" y="172">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="340" name="switch" type="switch" x="432" y="205">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="350" name="switch" type="switch" x="434" y="242">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="351" name="switch" type="switch" x="435" y="276">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="352" name="switch" type="switch" x="434" y="310">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="353" name="switch" type="switch" x="434" y="335">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="354" name="switch" type="switch" x="435" y="368">
+   <properties>
+    <property name="autoDisable" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="343" name="cross" type="symbol" x="335" y="83">
+   <point/>
+  </object>
+  <object id="344" name="cross" type="symbol" x="336" y="116">
+   <point/>
+  </object>
+  <object id="345" name="cross" type="symbol" x="337" y="144">
+   <point/>
+  </object>
+  <object id="346" name="cross" type="symbol" x="336" y="176">
+   <point/>
+  </object>
+  <object id="347" name="cross" type="symbol" x="335" y="211">
+   <point/>
+  </object>
+  <object id="349" name="cross" type="symbol" x="336" y="242">
+   <point/>
+  </object>
+  <object id="355" name="cross" type="symbol" x="334" y="282">
+   <point/>
+  </object>
+  <object id="356" name="cross" type="symbol" x="335" y="310">
+   <point/>
+  </object>
+  <object id="357" name="cross" type="symbol" x="334" y="342">
+   <point/>
+  </object>
+  <object id="358" name="cross" type="symbol" x="333" y="377">
+   <point/>
+  </object>
+  <object id="359" name="cross" type="symbol" x="334" y="408">
+   <point/>
+  </object>
+  <object id="360" name="hero" type="hero" x="461" y="270">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="361" name="hero" type="hero" x="463" y="304">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="362" name="hero" type="hero" x="463" y="338">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="363" name="hero" type="hero" x="465" y="369">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="364" name="hero" type="hero" x="464" y="403">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="608" name="types" width="17" height="15">
+  <data encoding="csv">
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,79,
+79,70,80,80,80,80,80,80,80,80,80,70,70,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,70,70,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,70,70,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,70,70,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,70,70,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,70,70,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,70,70,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,70,70,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,70,70,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,70,70,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,70,70,80,80,70,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,79,
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79
+</data>
+ </layer>
+ <layer id="609" name="ground" width="17" height="15">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1,2,2,2,4,4,2,2,5,2,6,1,2,2,6,0,
+0,11,154,28,134,7,132,29,143,30,151,16,11,30,124,16,0,
+0,11,17,143,37,121,37,153,18,142,29,16,11,132,38,26,0,
+0,11,132,39,151,37,123,17,154,20,152,26,21,27,121,16,0,
+0,21,20,123,27,132,27,124,39,134,27,16,11,132,10,26,0,
+0,21,142,27,121,27,131,38,151,39,134,16,21,39,154,16,0,
+0,11,8,143,9,123,8,144,10,154,39,26,21,143,28,26,0,
+0,21,131,18,122,20,142,7,142,37,122,26,21,39,152,16,0,
+0,11,9,123,30,133,9,153,28,151,39,26,11,124,20,26,0,
+0,11,144,8,152,8,143,10,134,19,122,16,21,17,153,26,0,
+0,11,28,132,10,132,27,142,38,133,18,26,11,123,27,16,0,
+0,31,154,37,141,30,121,28,154,29,143,36,31,27,123,36,0,
+0,41,42,43,42,42,43,43,42,53,45,46,41,42,45,46,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="610" name="floor_shadow" width="17" height="15">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,12,13,13,13,13,13,13,13,15,0,0,12,15,0,0,
+0,0,22,0,0,0,0,0,0,0,25,0,0,22,25,0,0,
+0,0,22,0,0,0,0,0,0,0,25,0,0,22,25,0,0,
+0,0,22,0,0,0,0,0,0,0,25,0,0,22,25,0,0,
+0,0,22,0,0,0,0,0,0,0,25,0,0,22,25,0,0,
+0,0,22,0,0,0,0,0,0,0,25,0,0,22,25,0,0,
+0,0,22,0,0,0,0,0,0,0,25,0,0,22,25,0,0,
+0,0,22,0,0,0,0,0,0,0,25,0,0,22,25,0,0,
+0,0,22,0,0,0,0,0,0,0,25,0,0,22,25,0,0,
+0,0,22,0,0,0,0,0,0,0,25,0,0,22,25,0,0,
+0,0,32,33,33,33,33,33,33,33,35,0,0,32,35,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>
