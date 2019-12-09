@@ -53,6 +53,7 @@ import level302 from './level302/level302'
 import level303 from './level303/level303'
 import level304 from './level304/level304'
 import level305 from './level305/level305'
+import level306 from './level306/level306'
 
 import level401 from './level401/level401'
 import level402 from './level402/level402'
@@ -113,6 +114,7 @@ const levels = [
   new Level(303, level303),
   new Level(304, level304),
   new Level(305, level305),
+  new Level(306, level306),
 
   new Level(401, level401),
   new Level(402, level402),
@@ -302,6 +304,9 @@ const categories = [{
     }, {
       id: 305,
       unlock: [304],
+    }, {
+      id: 306,
+      unlock: [305],
     }, ],
   }, {
     name: 'clone',
