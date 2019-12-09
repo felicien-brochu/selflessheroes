@@ -10,8 +10,8 @@ if w == hole :
 	listen("ok")
 endif
 a:
+step(e)
 if here != switch :
-	step(e)
 	jump a
 endif
 tell("ok" se)
