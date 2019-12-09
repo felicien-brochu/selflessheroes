@@ -255,11 +255,10 @@ export default class EggS extends Phaser.GameObjects.Container {
 
   startValueLottery() {
     const lottery = () => {
-      let newValue
-      do {
-        newValue = this.egg.nextLotteryValue(Math.random)
-      } while (newValue == this.egg.value)
-      this.updateText(newValue)
+      let newValue = this.egg.nextLotteryValue(Math.random)
+      if (newValue !== parseInt(this.textSprite.text)) {
+        this.updateText(newValue)
+      }
     }
     lottery()
     this.lotteryIntervalID = setInterval(lottery, 500)
