@@ -49,7 +49,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="objects">
-  <object id="33" name="hero" type="hero" x="111.667" y="211.168">
+  <object id="33" name="hero" type="hero" x="81.667" y="211.168">
    <point/>
   </object>
   <object id="326" name="hero" type="hero" x="176.667" y="79.3333">
@@ -76,7 +76,7 @@
    </properties>
    <point/>
   </object>
-  <object id="331" name="eggsOriginMarker" type="marker" x="112" y="209.333">
+  <object id="331" name="eggsOriginMarker" type="marker" x="80" y="211.333">
    <point/>
   </object>
  </objectgroup>

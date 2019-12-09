@@ -25,9 +25,9 @@ const level = {
     fr: "Compte les différents types d'%%icon icon-egg$%% œufs.\n\nÉcris le nombre d'%%icon icon-egg$%% œufs qui valent 0 sur l'œuf de gauche et le nombre d'%%icon icon-egg$%% œufs qui valent 1 sur l'œuf de droite.",
   },
 
-  maxStep: 400,
-  speedTarget: 118,
-  lengthTarget: 19,
+  maxStep: 600,
+  speedTarget: 184,
+  lengthTarget: 20,
 
   compilerConfig: {
     excludePrimary: ['clone'],
@@ -50,11 +50,13 @@ const level = {
     type: 'eggs_matrix',
     config: {
       originMarkerID: 331,
-      width: 6,
+      width: 8,
       height: 4,
 
       strategy: {
-        type: 'simple',
+        type: 'random_columns',
+        minEggs: 3,
+        maxEggs: 4,
         eggConfig: {
           value: 'rng(0,1)',
           showLottery: true

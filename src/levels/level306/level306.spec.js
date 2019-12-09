@@ -17,22 +17,26 @@ if n == wall :
 	write($a)
 	jump a
 endif
-	b:
-	if here == 0 :
-		tell("hey" everyone)
-	else
-		tell("lol" everyone)
+b:
+if here == 0 &&
+  here == egg :
+	tell("hey" everyone)
+endif
+if here == 1 &&
+  here == egg :
+	tell("lol" everyone)
+endif
+if e == wall :
+	c:
+	step(w)
+	if w != wall :
+		jump c
 	endif
-	if e != egg :
-		c:
-		step(w)
-		if here == egg :
-			jump c
-		endif
-		step(s)
-	endif
+	step(s)
+else
 	step(e)
-	jump b
+endif
+jump b
 		`,
   }, {
     type: ["speed"],
@@ -54,23 +58,27 @@ if n == wall :
 endif
 d:
 b:
-if here == 0 :
-	tell("hey" everyone)
-else
-	tell("lol" everyone)
+if here == egg :
+	if here == 0 :
+		tell("hey" everyone)
+	else
+		tell("lol" everyone)
+	endif
 endif
-if e == egg :
+if e != wall :
 	step(e)
 	jump b
 endif
 step(s)
 c:
-if here == 0 :
-	tell("hey" everyone)
-else
-	tell("lol" everyone)
+if here == egg :
+	if here == 0 :
+		tell("hey" everyone)
+	else
+		tell("lol" everyone)
+	endif
 endif
-if w == egg :
+if w != wall :
 	step(w)
 	jump c
 endif
