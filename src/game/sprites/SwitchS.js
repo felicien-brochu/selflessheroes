@@ -12,6 +12,7 @@ export default class SwitchS extends Phaser.GameObjects.Sprite {
     this.updateDepth()
     this.switch = mySwitch
     this.enabled = this.switch.isEnabled()
+    this.setFrame(this.enabled ? 1 : 0)
   }
 
   beforeStep(world) {

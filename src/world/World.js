@@ -100,15 +100,24 @@ export default class World {
       npc.ai = NpcAIFactory.buildAI(this, npc)
     }
 
+    // Generate eggs values with rng if necessary
+    for (let egg of this.eggs) {
+      egg.initValue(this.rng)
+    }
+
+    // Init switch enable state
+    for (let mySwitch of this.switches) {
+      if (this.characters.some(character => character.overlaps(mySwitch) && !character.dead)) {
+        mySwitch.enable()
+      } else {
+        mySwitch.disable()
+      }
+    }
+
     // Init spikes triggers
     for (let spikes of this.spikes) {
       spikes.initTriggers(this)
       spikes.checkTriggers()
-    }
-
-    // Generate eggs values with rng if necessary
-    for (let egg of this.eggs) {
-      egg.initValue(this.rng)
     }
   }
 
