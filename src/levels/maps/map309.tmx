@@ -130,7 +130,7 @@
    <properties>
     <property name="aiConfig" type="int" value="395"/>
     <property name="initialDirection" value="w"/>
-    <property name="race" value="big_zombie"/>
+    <property name="race" value="gatekeeper"/>
    </properties>
    <point/>
   </object>

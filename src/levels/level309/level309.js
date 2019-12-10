@@ -29,7 +29,7 @@ const level = {
   lengthTarget: 27,
 
   bossTellsSomething: true,
-  bossName: "big-zombie",
+  bossName: "gatekeeper",
 
   compilerConfig: {
     excludePrimary: ['clone'],

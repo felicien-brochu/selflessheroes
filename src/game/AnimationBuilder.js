@@ -111,11 +111,11 @@ const anims = {
     start: 4,
     end: 7
   },
-  big_zombie_idle: {
+  gatekeeper_idle: {
     start: 0,
     end: 3
   },
-  big_zombie_run: {
+  gatekeeper_run: {
     start: 4,
     end: 7
   },

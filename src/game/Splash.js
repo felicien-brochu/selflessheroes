@@ -33,7 +33,7 @@ import knight_hollywood_green from './images/knight_hollywood_green.png'
 import ogre from './images/ogre.png'
 import pied_piper from './images/pied_piper.png'
 // import big_demon from './images/big_demon.png'
-import big_zombie from './images/big_zombie.png'
+import gatekeeper from './images/gatekeeper.png'
 
 import switch_blue from './images/switch_blue.png'
 import switch_red from './images/switch_red.png'
@@ -251,7 +251,7 @@ export default class extends Phaser.Scene {
     //   frameWidth: 32,
     //   frameHeight: 48
     // })
-    // this.load.spritesheet('big_zombie', big_zombie, {
+    // this.load.spritesheet('gatekeeper', gatekeeper, {
     //   frameWidth: 64,
     //   frameHeight: 68
     // })
@@ -263,7 +263,7 @@ export default class extends Phaser.Scene {
       frameWidth: 66,
       frameHeight: 56
     })
-    this.load.spritesheet('big_zombie', big_zombie, {
+    this.load.spritesheet('gatekeeper', gatekeeper, {
       frameWidth: 64,
       frameHeight: 68
     })
