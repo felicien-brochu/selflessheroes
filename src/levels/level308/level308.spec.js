@@ -27,13 +27,12 @@ if w == switch ||
 		$b = calc($b - 1)
 		jump d
 	endif
-	tell("ho" everyone)
 	step(w)
+	tell("ho" everyone)
 	listen("ok")
 	if s == hero :
 		step(e)
 	endif
-	$b = set($a)
 	listen("wait")
 	jump c
 endif

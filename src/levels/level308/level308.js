@@ -65,7 +65,7 @@ const level = {
 
   maxStep: 1600,
   speedTarget: 445,
-  lengthTarget: 36,
+  lengthTarget: 35,
 
   compilerConfig: {
     excludePrimary: ['clone'],
