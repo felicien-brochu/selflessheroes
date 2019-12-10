@@ -24,6 +24,7 @@ export default class PathFinder {
     this.pathFinder = new pathfinding.BiAStarFinder({
       allowDiagonal: true,
       dontCrossCorners: false,
+      diagonalMovement: pathfinding.DiagonalMovement.Always, // Always, Never, IfAtMostOneObstacle, OnlyWhenNoObstacles
       heuristic: pathfinding.Heuristic.euclidean, // manhattan, euclidean, octile, chebyshev
     })
 
