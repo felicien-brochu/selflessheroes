@@ -6,12 +6,8 @@ export default {
   specs: [{
     type: ["length", "speed"],
     code: `
-$b = nearest(cauldron)
-a:
-$a = nearest(egg)
-take($a)
-drop($b)
-jump a
+$a = nearest(cauldron)
+drop($a)
 		`,
   }, ]
 }
