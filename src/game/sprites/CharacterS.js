@@ -355,7 +355,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
         duration: duration,
         ease: ease
       })
-      this.scene.soundManager.play('hero_scream_sfx', {
+      this.scene.soundManager.play(this.getScreamAsset(), {
         delay: duration / 1000
       })
     }
