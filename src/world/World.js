@@ -485,7 +485,7 @@ export default class World {
         const collidesNoHero = (x, y) => {
           let terrainType = this.map.getTerrainTypeAt(x, y)
           let collidesTerrain = terrainType === TerrainType.wall || terrainType === TerrainType.hole
-          let collidingObjects = this.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire || o instanceof Cauldron || (o instanceof Character && o !== hero && !o.dead))
+          let collidingObjects = this.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire || o instanceof Cauldron || o instanceof Spikes || (o instanceof Character && o !== hero && !o.dead))
 
           return collidesTerrain || collidingObjects.length > 0
         }
@@ -493,7 +493,7 @@ export default class World {
         const collides = (x, y) => {
           let terrainType = this.map.getTerrainTypeAt(x, y)
           let collidesTerrain = terrainType === TerrainType.wall || terrainType === TerrainType.hole
-          let collidingObjects = this.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire || o instanceof Cauldron)
+          let collidingObjects = this.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire || o instanceof Cauldron || o instanceof Spikes)
 
           return collidesTerrain || collidingObjects.length > 0
         }
