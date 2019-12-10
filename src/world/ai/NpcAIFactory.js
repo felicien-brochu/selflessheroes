@@ -1,5 +1,6 @@
 import IdleAI from './IdleAI'
 import FollowPathAI from './FollowPathAI'
+import GatekeeperAI from './GatekeeperAI'
 
 export default class NpcAIFactory {
   static buildAI(world, npc) {
@@ -12,6 +13,9 @@ export default class NpcAIFactory {
         break
       case 'follow_path':
         ai = new FollowPathAI(world, npc, aiConfig)
+        break
+      case 'gatekeeper':
+        ai = new GatekeeperAI(world, npc, aiConfig)
         break
       default:
         ai = new IdleAI(world, npc)

@@ -30,10 +30,10 @@ import knight_hollywood_green from './images/knight_hollywood_green.png'
 // import necromancer from './images/necromancer.png'
 // import wogol from './images/wogol.png'
 // import chort from './images/chort.png'
-// import big_zombie from './images/big_zombie.png'
 import ogre from './images/ogre.png'
 import pied_piper from './images/pied_piper.png'
 // import big_demon from './images/big_demon.png'
+import big_zombie from './images/big_zombie.png'
 
 import switch_blue from './images/switch_blue.png'
 import switch_red from './images/switch_red.png'
@@ -262,6 +262,10 @@ export default class extends Phaser.Scene {
     this.load.spritesheet('pied_piper', pied_piper, {
       frameWidth: 66,
       frameHeight: 56
+    })
+    this.load.spritesheet('big_zombie', big_zombie, {
+      frameWidth: 64,
+      frameHeight: 68
     })
     // this.load.spritesheet('big_demon', big_demon, {
     //   frameWidth: 64,
