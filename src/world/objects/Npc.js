@@ -5,6 +5,7 @@ export default class Npc extends Character {
   constructor(config, world) {
     config = Object.assign({
       race: '',
+      yOffset: 0,
     }, config)
 
     super(config, world)

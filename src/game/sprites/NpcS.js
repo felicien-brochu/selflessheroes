@@ -5,7 +5,7 @@ import CharacterS from './CharacterS'
 
 export default class NpcS extends CharacterS {
   constructor(scene, npc, tileWidth, tileHeight) {
-    super(scene, npc, npc.race, tileWidth, tileHeight, 0, -21)
+    super(scene, npc, npc.race, tileWidth, tileHeight, 0, -21 + npc.yOffset)
   }
 
   getScreamAsset() {
