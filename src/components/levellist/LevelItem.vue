@@ -26,7 +26,7 @@
 
   <score-stars-animation :score="score"
     :level="level"
-    v-show="!locked"
+    v-if="!locked"
     @show-score-animation-end="$emit('show-score-animation-end')"
     :class="{
 			'hidden': newlyUnlocked && !revealed,
@@ -37,7 +37,7 @@
 			'bonus-label': true,
 			'hidden': newlyUnlocked && !revealed,
 		}"><i class="mdi mdi-star" />&nbsp;{{$text('level_list_bonus_label')}}&nbsp;<i class="mdi mdi-star" /></div>
-  <div v-if="boss"
+  <div v-if="hasBossLabel"
     :class="{
 			'boss-label': true,
 			'hidden': newlyUnlocked && !revealed,
@@ -70,7 +70,11 @@ export default {
   computed: {
     hasBonusLabel: function() {
       return this.bonus && !this.boss
-    }
+    },
+
+    hasBossLabel: function() {
+      return this.boss && !this.locked
+    },
   },
 }
 </script>
@@ -85,6 +89,7 @@ export default {
     align-items: center;
     margin-right: 20px;
     display: flex;
+    position: relative;
 
     h3 {
         height: 60px;
@@ -105,14 +110,26 @@ export default {
     &.locked {
         @include home-card(#3C404A, false, transparentize(white, 0.8));
         cursor: default;
+
+        .boss-title {
+
+            .boss-icon {
+                opacity: 0.3;
+                width: 180px;
+                height: 180px;
+                top: 50%;
+                right: 50%;
+                transform: translate(50%, -50%);
+            }
+        }
     }
 
     .boss-title {
         height: 60px;
 
         .boss-icon {
-            height: 160px;
             width: 160px;
+            height: 160px;
             position: absolute;
             top: 15px;
             right: 50%;

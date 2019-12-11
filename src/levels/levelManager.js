@@ -170,7 +170,6 @@ const categories = [{
     }, {
       id: 11,
       unlock: [10],
-      bonus: true,
       boss: true,
     }, {
       id: 12,
@@ -232,7 +231,6 @@ const categories = [{
     }, {
       id: 113,
       unlock: [111],
-      bonus: true,
       boss: true,
     }, {
       id: 114,
@@ -285,7 +283,6 @@ const categories = [{
       id: 211,
       unlock: [209],
       boss: true,
-      bonus: true,
     }, {
       id: 212,
       unlock: [211],
@@ -334,7 +331,6 @@ const categories = [{
       id: 309,
       unlock: [307],
       boss: true,
-      bonus: true,
     }, ],
   }, {
     name: 'clone',
