@@ -1,6 +1,6 @@
 import levellist_music from './music/levellist_music.mp3'
 import level_music1 from './music/level_music1.mp3'
-import level_music2 from './music/level_music2.mp3'
+// import level_music2 from './music/level_music2.mp3'
 
 import level_lose from './sound/level_lose.mp3'
 import level_tests from './sound/level_tests.mp3'
@@ -45,11 +45,11 @@ const musics = {
     loopEnd: 124.735,
     loopStart: 0,
   },
-  level2: {
-    src: level_music2,
-    volume: 0.4,
-    loop: true,
-  },
+  // level2: {
+  //   src: level_music2,
+  //   volume: 0.4,
+  //   loop: true,
+  // },
 }
 
 class AudioManager {
