@@ -182,7 +182,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
         setTimeout(() => {
           // Check if destroyed
           if (this.scene) {
-            this.sprite.play('ashes', true)
+            this.onDeathOnFloor()
           }
         }, delay)
         this.scene.soundManager.play(this.getScreamAsset())
@@ -248,6 +248,13 @@ export default class CharacterS extends Phaser.GameObjects.Container {
     }
 
     this.updateState()
+  }
+
+  onDeathOnFloor() {
+    this.sprite.play('ashes', true)
+    this.itemContainer.setVisible(false)
+    this.sleepSprite.setVisible(false)
+    this.hideCalculation()
   }
 
   hasJustBeenCloned() {

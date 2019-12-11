@@ -56,7 +56,7 @@ export default class EggS extends Phaser.GameObjects.Container {
       this.stopLottery()
     }
 
-    if (this.egg.removed) {
+    if (this.egg.removed && !this.egg.owner) {
       this.setVisible(false)
     }
 

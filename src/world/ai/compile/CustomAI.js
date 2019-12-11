@@ -48,6 +48,10 @@ export default class CustomAI extends AI {
 
     this.prepareContext(rng)
 
+    if (this.character.dead) {
+      return null
+    }
+
     if (this.cursor >= this.statements.length) {
       this.lastActionCursor = this.cursor
     } else {
