@@ -245,10 +245,11 @@ const categories = [{
   }, {
     name: 'variables',
     color: 'yellow',
-    unlock: [111],
+    unlock: [113],
+    premium: true,
     levels: [{
       id: 201,
-      unlock: [111],
+      unlock: [113],
     }, {
       id: 202,
       unlock: [201],
@@ -300,10 +301,10 @@ const categories = [{
     name: 'speach',
     color: 'red',
     premium: true,
-    unlock: [],
+    unlock: [113],
     levels: [{
       id: 301,
-      unlock: [10],
+      unlock: [113],
     }, {
       id: 302,
       unlock: [301],
@@ -336,10 +337,10 @@ const categories = [{
     name: 'clone',
     color: 'purple',
     premium: true,
-    unlock: [],
+    unlock: [113],
     levels: [{
       id: 401,
-      unlock: [10],
+      unlock: [113],
     }, {
       id: 402,
       unlock: [401],
