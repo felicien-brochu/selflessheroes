@@ -27,7 +27,7 @@ const wrongEggOrderCondition = {
 
   check() {
     let cauldronEggs = this.world.cauldrons[0].items
-    if (cauldronEggs.length - this.droppedEggs > 1) {
+    if (cauldronEggs.length - this.droppedEggs.length > 1) {
       return true
     } else if (cauldronEggs.length - this.droppedEggs.length === 1) {
       let egg = cauldronEggs[cauldronEggs.length - 1]
@@ -56,8 +56,8 @@ const level = {
   },
   messages: {
     loss_reason_wrong_egg_order: {
-      en: "You put some %%icon icon-egg$%% egg into the %%icon icon-cauldron$%% cauldron in the wrong order. You must put them in ascending order into the cauldron.",
-      fr: "Tu as mis un %%icon icon-egg$%% œuf dans le %%icon icon-cauldron$%% chaudron dans le mauvais ordre. Tu dois les mettre en ordre croissant dans le chaudron.",
+      en: "You put some %%icon icon-egg$%% egg into the %%icon icon-cauldron$%% cauldron in the wrong order or at the same time as another. You must put them one by one in ascending order into the cauldron.",
+      fr: "Tu as mis un %%icon icon-egg$%% œuf dans le %%icon icon-cauldron$%% chaudron dans le mauvais ordre ou en même temps qu'un autre. Tu dois les mettre un par un en ordre croissant dans le chaudron.",
     },
   },
 

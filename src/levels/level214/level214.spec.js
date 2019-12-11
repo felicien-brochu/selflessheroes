@@ -72,5 +72,25 @@ endif
 drop($c)
 jump a
 		`,
+  }, {
+    type: ["lossReason"],
+    lossReason: 'loss_reason_wrong_egg_order',
+    frequency: 1,
+    code: `
+$b = nearest(cauldron)
+$a = nearest(egg)
+take($a)
+a:
+if $a > 0 :
+	$a = calc($c - 1)
+	jump a
+endif
+drop($b)
+b:
+$a = nearest(egg)
+take($a)
+drop($b)
+jump b
+		`,
   }, ]
 }
