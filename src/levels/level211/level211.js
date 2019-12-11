@@ -28,8 +28,8 @@ const level = {
     fr: "Kronos",
   },
   objective: {
-    en: "Looks like he's hungry. You better feed him what he asks for before he gets angry...",
-    fr: "On dirait qu'il est affamé. Tu ferais bien de lui donner à manger ce qu'il demande avant qu'il ne s'énerve...",
+    en: "Looks like he's starving. You better give him what he wants before he gets angry...",
+    fr: "On dirait qu'il est affamé. Tu ferais bien de lui donner ce qu'il veut avant qu'il ne s'énerve...",
   },
   messages: {
     boss_tell: {
