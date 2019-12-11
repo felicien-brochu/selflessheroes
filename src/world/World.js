@@ -248,12 +248,30 @@ export default class World {
   }
 
   resolveCharacterActions(characterActions) {
+    this.resolveEatActions(characterActions)
     this.resolveStepActions(characterActions)
     this.resolveTakeActions(characterActions)
     this.resolveDropActions(characterActions)
     this.resolveWriteActions(characterActions)
     this.resolveCloneActions(characterActions)
     this.resolveFireBallActions(characterActions)
+  }
+
+  resolveEatActions(characterActions) {
+    for (let {
+        character,
+        action
+      } of characterActions) {
+      if (action && action.type === 'EatAction') {
+        let x = character.x
+        let y = character.y
+
+        let eggToEat = this.eggs.find(egg => !egg.owner && !egg.removed && egg.x === x && egg.y === y)
+        if (eggToEat) {
+          eggToEat.removed = true
+        }
+      }
+    }
   }
 
   resolveDropActions(characterActions) {

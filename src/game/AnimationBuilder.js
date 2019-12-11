@@ -132,13 +132,15 @@ const anims = {
     end: 7,
     frameRate: 6,
   },
-  big_demon_idle: {
+  kronos_idle: {
     start: 0,
-    end: 3
+    end: 3,
+    frameRate: 8,
   },
-  big_demon_run: {
+  kronos_run: {
     start: 4,
-    end: 7
+    end: 7,
+    frameRate: 10,
   },
   knight_red_idle: {
     start: 0,

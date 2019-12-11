@@ -152,6 +152,8 @@ export default class CharacterS extends Phaser.GameObjects.Container {
         this.scene.throwFireBall(this.character, this.character.lastAction.direction)
         this.scene.soundManager.play('fireball_sfx')
         this.stateUpdateDelay += this.scene.runner.stepInterval / 2
+      } else if (this.character.lastAction.type === 'EatAction') {
+        this.scene.soundManager.play('swallow_sfx')
       }
 
       if (this.lastTileX !== this.character.x || this.lastTileY !== this.character.y) {

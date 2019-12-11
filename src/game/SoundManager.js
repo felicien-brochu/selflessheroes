@@ -53,6 +53,11 @@ const soundDefs = [{
   config: {
     volume: 0.3
   }
+}, {
+  key: 'swallow_sfx',
+  config: {
+    volume: 0.2
+  }
 }]
 
 export default class SoundManager {

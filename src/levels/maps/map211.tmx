@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="654" nextobjectid="480">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
+  <image source="tileset.png" trans="000000" width="340" height="680"/>
+  <terraintypes>
+   <terrain name="floor" tile="79"/>
+   <terrain name="wall" tile="69"/>
+   <terrain name="hole" tile="78"/>
+  </terraintypes>
+ </tileset>
+ <layer id="637" name="checkers" width="20" height="11">
+  <data encoding="csv">
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0,69,0
+</data>
+ </layer>
+ <objectgroup id="14" name="camera">
+  <object id="12" name="frame" type="frame" x="50.6667" y="32.3333" width="346.67" height="270.666"/>
+  <object id="15" name="strategy" type="strategy" x="-38" y="136">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="638" name="path" width="20" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,79,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,80,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="2" name="objects">
+  <object id="395" name="ai" type="ai" x="-38" y="165">
+   <properties>
+    <property name="type" value="kronos"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="33" name="hero" type="hero" x="270.667" y="89.1683">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="326" name="hero" type="hero" x="272" y="115">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="332" name="hero" type="hero" x="272" y="150">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="333" name="hero" type="hero" x="272" y="183.333">
+   <properties>
+    <property name="initialDirection" value="w"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="394" name="npc" type="npc" x="115" y="280.667">
+   <properties>
+    <property name="aiConfig" type="int" value="395"/>
+    <property name="initialDirection" value="e"/>
+    <property name="race" value="kronos"/>
+    <property name="yOffset" type="int" value="-6"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="432" name="cross" type="symbol" x="115" y="280.333">
+   <point/>
+  </object>
+  <object id="442" name="cross" type="symbol" x="146" y="272">
+   <point/>
+  </object>
+  <object id="443" name="cross" type="symbol" x="178" y="270">
+   <point/>
+  </object>
+  <object id="444" name="cross" type="symbol" x="206.667" y="272">
+   <point/>
+  </object>
+  <object id="445" name="cross" type="symbol" x="242" y="273.333">
+   <point/>
+  </object>
+  <object id="446" name="cross" type="symbol" x="114" y="210.667">
+   <point/>
+  </object>
+  <object id="447" name="cross" type="symbol" x="143.333" y="212">
+   <point/>
+  </object>
+  <object id="448" name="cross" type="symbol" x="174.667" y="212">
+   <point/>
+  </object>
+  <object id="449" name="cross" type="symbol" x="210" y="212.667">
+   <point/>
+  </object>
+  <object id="450" name="cross" type="symbol" x="241.333" y="211.333">
+   <point/>
+  </object>
+  <object id="451" name="cross" type="symbol" x="112" y="144.667">
+   <point/>
+  </object>
+  <object id="452" name="cross" type="symbol" x="144" y="144.667">
+   <point/>
+  </object>
+  <object id="453" name="cross" type="symbol" x="182" y="143.333">
+   <point/>
+  </object>
+  <object id="454" name="cross" type="symbol" x="216.667" y="142">
+   <point/>
+  </object>
+  <object id="455" name="cross" type="symbol" x="240" y="145.333">
+   <point/>
+  </object>
+  <object id="456" name="cross" type="symbol" x="115.333" y="82.6667">
+   <point/>
+  </object>
+  <object id="457" name="cross" type="symbol" x="142.667" y="82.6667">
+   <point/>
+  </object>
+  <object id="458" name="cross" type="symbol" x="178" y="82.6667">
+   <point/>
+  </object>
+  <object id="459" name="cross" type="symbol" x="204" y="82">
+   <point/>
+  </object>
+  <object id="460" name="cross" type="symbol" x="238.667" y="82">
+   <point/>
+  </object>
+  <object id="461" name="arrow_up" type="symbol" x="112.667" y="241.333">
+   <properties>
+    <property name="symbol" value="arrow_n"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="462" name="arrow_up" type="symbol" x="114" y="177.333">
+   <properties>
+    <property name="symbol" value="arrow_n"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="463" name="arrow_up" type="symbol" x="110.667" y="116.667">
+   <properties>
+    <property name="symbol" value="arrow_n"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="464" name="arrow_up" type="symbol" x="176.667" y="243.333">
+   <properties>
+    <property name="symbol" value="arrow_n"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="465" name="arrow_up" type="symbol" x="176" y="177.333">
+   <properties>
+    <property name="symbol" value="arrow_n"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="466" name="arrow_up" type="symbol" x="178" y="115.333">
+   <properties>
+    <property name="symbol" value="arrow_n"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="467" name="arrow_up" type="symbol" x="241.333" y="243.333">
+   <properties>
+    <property name="symbol" value="arrow_n"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="468" name="arrow_up" type="symbol" x="240" y="178.667">
+   <properties>
+    <property name="symbol" value="arrow_n"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="469" name="arrow_up" type="symbol" x="240" y="114.667">
+   <properties>
+    <property name="symbol" value="arrow_n"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="470" name="arrow_down" type="symbol" x="145.333" y="110.667">
+   <properties>
+    <property name="symbol" value="arrow_s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="471" name="arrow_down" type="symbol" x="142" y="177.333">
+   <properties>
+    <property name="symbol" value="arrow_s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="472" name="arrow_down" type="symbol" x="143.333" y="240">
+   <properties>
+    <property name="symbol" value="arrow_s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="473" name="arrow_down" type="symbol" x="207.333" y="116">
+   <properties>
+    <property name="symbol" value="arrow_s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="474" name="arrow_down" type="symbol" x="208" y="178">
+   <properties>
+    <property name="symbol" value="arrow_s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="475" name="arrow_down" type="symbol" x="208.667" y="240">
+   <properties>
+    <property name="symbol" value="arrow_s"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="476" name="egg" type="egg" x="113.333" y="210">
+   <properties>
+    <property name="value" value="1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="477" name="egg" type="egg" x="114" y="146">
+   <properties>
+    <property name="value" value="2"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="478" name="egg" type="egg" x="111.333" y="82.6667">
+   <properties>
+    <property name="value" value="3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="479" name="eggsOriginMarker" type="marker" x="301.333" y="80.6667">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="651" name="types" width="20" height="11">
+  <data encoding="csv">
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,
+79,70,70,70,70,70,70,79,70,70,70,70,70,70,79,79,79,79,79,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,70,79,79,79,79,79,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,70,79,79,79,79,79,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,70,79,79,79,79,79,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,70,79,79,79,79,79,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,70,79,79,79,79,79,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,70,79,79,79,79,79,79,
+79,70,80,80,80,80,80,80,80,80,80,80,80,70,79,79,79,79,79,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,70,79,79,79,79,79,79,
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79,79
+</data>
+ </layer>
+ <layer id="652" name="ground" width="20" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1,2,3,5,2,59,0,60,3,5,3,2,6,0,0,0,0,0,0,
+0,11,131,28,121,17,123,8,141,38,122,7,133,16,0,0,0,0,0,0,
+0,11,17,133,38,154,20,142,29,133,40,154,18,16,0,0,0,0,0,0,
+0,11,131,17,133,7,154,18,132,27,134,38,132,26,0,0,0,0,0,0,
+0,21,20,153,29,151,38,124,19,124,9,124,17,16,0,0,0,0,0,0,
+0,11,131,39,123,10,144,19,141,17,124,28,143,16,0,0,0,0,0,0,
+0,21,37,154,39,121,28,154,17,151,38,132,7,16,0,0,0,0,0,0,
+0,31,152,8,122,9,154,8,131,40,132,9,133,36,0,0,0,0,0,0,
+0,41,42,42,53,53,53,42,43,53,42,52,45,46,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="653" name="floor_shadow" width="20" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,12,13,13,13,13,13,13,13,13,13,15,0,0,0,0,0,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,
+0,0,22,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,
+0,0,32,33,33,33,33,33,33,33,33,33,35,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

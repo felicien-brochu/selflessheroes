@@ -44,6 +44,7 @@ import level207 from './level207/level207'
 import level208 from './level208/level208'
 import level209 from './level209/level209'
 import level210 from './level210/level210'
+import level211 from './level211/level211'
 import level212 from './level212/level212'
 import level213 from './level213/level213'
 import level214 from './level214/level214'
@@ -108,6 +109,7 @@ const levels = [
   new Level(208, level208),
   new Level(209, level209),
   new Level(210, level210),
+  new Level(211, level211),
   new Level(212, level212),
   new Level(213, level213),
   new Level(214, level214),
@@ -280,14 +282,22 @@ const categories = [{
       unlock: [209],
       bonus: true,
     }, {
-      id: 212,
+      id: 211,
       unlock: [209],
+      boss: true,
+      bonus: true,
+    }, {
+      id: 212,
+      unlock: [211],
+      unlockShown: [211],
     }, {
       id: 213,
       unlock: [212],
+      unlockShown: [211],
     }, {
       id: 214,
       unlock: [213],
+      unlockShown: [211],
     }, ]
   }, {
     name: 'speach',
@@ -324,6 +334,7 @@ const categories = [{
       id: 309,
       unlock: [307],
       boss: true,
+      bonus: true,
     }, ],
   }, {
     name: 'clone',

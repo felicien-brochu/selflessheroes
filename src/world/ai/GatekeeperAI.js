@@ -11,9 +11,7 @@ export default class GatekeeperAI extends AI {
     super(world, character)
 
     this.config = config
-    this.lastStep = -1000
     this.chasing = false
-
 
 
     this.chasedHero = this.world.findWorldObjectByID(this.config.chasedHero)

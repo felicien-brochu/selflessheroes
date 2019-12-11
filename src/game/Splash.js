@@ -32,7 +32,7 @@ import knight_hollywood_green from './images/knight_hollywood_green.png'
 // import chort from './images/chort.png'
 import ogre from './images/ogre.png'
 import pied_piper from './images/pied_piper.png'
-// import big_demon from './images/big_demon.png'
+import kronos from './images/kronos.png'
 import gatekeeper from './images/gatekeeper.png'
 
 import switch_blue from './images/switch_blue.png'
@@ -118,6 +118,7 @@ import cloning_sfx from './audio/cloning.mp3'
 import cauldron_drop_sfx from './audio/cauldron_drop.mp3'
 import spikes_on_sfx from './audio/spikes_on.mp3'
 import spikes_off_sfx from './audio/spikes_off.mp3'
+import swallow_sfx from './audio/swallow.mp3'
 
 // FONTS
 
@@ -251,10 +252,6 @@ export default class extends Phaser.Scene {
     //   frameWidth: 32,
     //   frameHeight: 48
     // })
-    // this.load.spritesheet('gatekeeper', gatekeeper, {
-    //   frameWidth: 64,
-    //   frameHeight: 68
-    // })
     this.load.spritesheet('ogre', ogre, {
       frameWidth: 64,
       frameHeight: 64
@@ -263,14 +260,15 @@ export default class extends Phaser.Scene {
       frameWidth: 66,
       frameHeight: 56
     })
+    this.load.spritesheet('kronos', kronos, {
+      frameWidth: 64,
+      frameHeight: 72
+    })
     this.load.spritesheet('gatekeeper', gatekeeper, {
       frameWidth: 64,
       frameHeight: 68
     })
-    // this.load.spritesheet('big_demon', big_demon, {
-    //   frameWidth: 64,
-    //   frameHeight: 72
-    // })
+
     this.load.spritesheet('switch_blue', switch_blue, {
       frameWidth: 32,
       frameHeight: 32
@@ -394,6 +392,7 @@ export default class extends Phaser.Scene {
     this.load.audio('cauldron_drop_sfx', cauldron_drop_sfx)
     this.load.audio('spikes_on_sfx', spikes_on_sfx)
     this.load.audio('spikes_off_sfx', spikes_off_sfx)
+    this.load.audio('swallow_sfx', swallow_sfx)
 
     // FONTS
     this.load.bitmapFont('digits_font', digits_font_texture, digits_font)

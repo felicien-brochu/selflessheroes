@@ -56,6 +56,10 @@ export default class EggS extends Phaser.GameObjects.Container {
       this.stopLottery()
     }
 
+    if (this.egg.removed) {
+      this.setVisible(false)
+    }
+
     this.handleWriteActions(world)
     this.handleDropInCauldron(world)
 
