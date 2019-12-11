@@ -11,9 +11,19 @@ export default class Tester {
     this.sampleSize = sampleSize
     this.targetSampleSize = targetSampleSize
 
+    this.tests = []
+
     this.compiler = new Compiler(code, level.buildCompilerConfig())
     this.aiFactory = this.compiler.compile()
-    this.tests = []
+
+    if (!this.aiFactory) {
+      if (this.compiler.exceptions.fatal.length > 0) {
+        throw this.compiler.exceptions.fatal[0]
+      }
+      if (this.compiler.exceptions.undefinedLiterals.length > 0) {
+        throw new Error("Undefined litterals in code")
+      }
+    }
   }
 
   test() {
