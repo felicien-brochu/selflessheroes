@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="14" height="9" tilewidth="32" tileheight="32" infinite="0" nextlayerid="594" nextobjectid="360">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" spacing="2" margin="1" tilecount="200" columns="10">
+  <image source="tileset.png" trans="000000" width="340" height="680"/>
+  <terraintypes>
+   <terrain name="floor" tile="79"/>
+   <terrain name="wall" tile="69"/>
+   <terrain name="hole" tile="78"/>
+  </terraintypes>
+ </tileset>
+ <layer id="589" name="checkers" width="14" height="9">
+  <data encoding="csv">
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0,
+0,69,0,69,0,69,0,69,0,69,0,69,0,69,
+69,0,69,0,69,0,69,0,69,0,69,0,69,0
+</data>
+ </layer>
+ <objectgroup id="14" name="camera">
+  <object id="12" name="frame" type="frame" x="50.6667" y="31.8333" width="347.17" height="205.333"/>
+  <object id="15" name="strategy" type="strategy" x="-38" y="136">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="590" name="path" width="14" height="9">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,80,80,80,80,80,80,80,80,80,80,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="2" name="objects">
+  <object id="326" name="hero" type="hero" x="143.834" y="121.5">
+   <point/>
+  </object>
+  <object id="327" name="hero" type="hero" x="173.167" y="118.833">
+   <point/>
+  </object>
+  <object id="332" name="hero" type="hero" x="210.5" y="118.833">
+   <point/>
+  </object>
+  <object id="333" name="hero" type="hero" x="239.833" y="116.167">
+   <point/>
+  </object>
+  <object id="334" name="hero" type="hero" x="275.833" y="121.5">
+   <point/>
+  </object>
+  <object id="335" name="hero" type="hero" x="305.167" y="118.833">
+   <point/>
+  </object>
+  <object id="328" name="egg" type="egg" x="144.833" y="148.5">
+   <properties>
+    <property name="showLottery" type="bool" value="true"/>
+    <property name="value" value="rng(0,4)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="329" name="egg" type="egg" x="174.167" y="149.833">
+   <properties>
+    <property name="showLottery" type="bool" value="true"/>
+    <property name="value" value="rng(0,9)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="338" name="egg" type="egg" x="210.833" y="145.167">
+   <properties>
+    <property name="showLottery" type="bool" value="true"/>
+    <property name="value" value="rng(0,9)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="339" name="egg" type="egg" x="240.167" y="146.5">
+   <properties>
+    <property name="showLottery" type="bool" value="true"/>
+    <property name="value" value="rng(0,9)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="340" name="egg" type="egg" x="274.166" y="144.5">
+   <properties>
+    <property name="showLottery" type="bool" value="true"/>
+    <property name="value" value="rng(0,9)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="341" name="egg" type="egg" x="303.5" y="145.833">
+   <properties>
+    <property name="showLottery" type="bool" value="true"/>
+    <property name="value" value="rng(0,9)"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="344" name="bonfire" type="bonfire" x="111" y="176.5">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="345" name="bonfire" type="bonfire" x="334.5" y="177">
+   <properties>
+    <property name="enabled" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="346" name="cross" type="symbol" x="144" y="177">
+   <point/>
+  </object>
+  <object id="347" name="cross" type="symbol" x="175.5" y="177">
+   <point/>
+  </object>
+  <object id="348" name="cross" type="symbol" x="207.5" y="177.5">
+   <point/>
+  </object>
+  <object id="349" name="cross" type="symbol" x="241" y="177.5">
+   <point/>
+  </object>
+  <object id="350" name="cross" type="symbol" x="271" y="178.5">
+   <point/>
+  </object>
+  <object id="351" name="cross" type="symbol" x="305.5" y="177.5">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="591" name="types" width="14" height="9">
+  <data encoding="csv">
+79,79,79,79,79,79,79,79,79,79,79,79,79,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,80,80,80,80,80,80,80,80,80,80,70,79,
+79,70,70,70,70,70,70,70,70,70,70,70,70,79,
+79,79,79,79,79,79,79,79,79,79,79,79,79,79
+</data>
+ </layer>
+ <layer id="592" name="ground" width="14" height="9">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1,2,4,2,4,5,5,3,3,5,2,6,0,
+0,11,131,20,151,27,154,28,124,37,121,10,16,0,
+0,11,30,152,28,141,9,124,39,154,10,132,26,0,
+0,11,133,17,142,39,152,37,143,17,132,18,16,0,
+0,11,17,121,40,134,17,144,17,141,28,122,26,0,
+0,31,134,39,131,18,153,40,154,9,121,9,36,0,
+0,41,42,43,53,43,52,52,52,53,42,45,46,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="593" name="floor_shadow" width="14" height="9">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,12,13,13,13,13,13,13,13,13,15,0,0,
+0,0,22,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,25,0,0,
+0,0,22,0,0,0,0,0,0,0,0,25,0,0,
+0,0,32,33,33,33,33,33,33,33,33,35,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>
