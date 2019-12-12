@@ -52,7 +52,7 @@ CodeMirror.defineSimpleMode('selflessheroes', {
       token: 'keyword'
     },
     {
-      regex: /(?:n|e|s|w|ne|se|sw|nw|here|myitem|floor|wall|hole|nothing|hero|npc|switch|bonfire|cauldron|spikes|egg|everyone)\b/,
+      regex: /(?:n|e|s|w|ne|se|sw|nw|here|myitem|floor|wall|hole|infected|nothing|hero|npc|switch|bonfire|cauldron|spikes|egg|everyone)\b/,
       token: 'atom'
     },
     {

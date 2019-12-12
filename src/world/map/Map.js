@@ -33,7 +33,8 @@ export default class Map {
 
     if (!Object.values(terrains).includes(TerrainType.floor) ||
       !Object.values(terrains).includes(TerrainType.wall) ||
-      !Object.values(terrains).includes(TerrainType.hole)) {
+      !Object.values(terrains).includes(TerrainType.hole) ||
+      !Object.values(terrains).includes(TerrainType.infected)) {
       throw new Error("one of the required terrains are missing from the map object: " + JSON.stringify(this.config))
     }
 
@@ -51,11 +52,15 @@ export default class Map {
   }
 
   isFloor(x, y) {
-    return this.getTerrainTypeAt(x, y) === TerrainType.floor
+    return this.getTerrainTypeAt(x, y) === TerrainType.floor || this.getTerrainTypeAt(x, y) === TerrainType.infected
   }
 
   isWall(x, y) {
     return this.getTerrainTypeAt(x, y) === TerrainType.wall
+  }
+
+  isInfected(x, y) {
+    return this.getTerrainTypeAt(x, y) === TerrainType.infected
   }
 
   getTerrainTypeAt(x, y) {

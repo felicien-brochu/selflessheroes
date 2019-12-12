@@ -6,6 +6,7 @@
    <terrain name="floor" tile="79"/>
    <terrain name="wall" tile="69"/>
    <terrain name="hole" tile="78"/>
+   <terrain name="infected" tile="77"/>
   </terraintypes>
  </tileset>
  <layer id="163" name="checkers" width="23" height="17" visible="0">

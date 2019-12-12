@@ -15,6 +15,7 @@ export default class TerrainType {
 TerrainType.floor = Symbol('floorType')
 TerrainType.wall = Symbol('wallType')
 TerrainType.hole = Symbol('holeType')
+TerrainType.infected = Symbol('infectedType')
 TerrainType.void = Symbol('voidType')
 
 Object.freeze(TerrainType)

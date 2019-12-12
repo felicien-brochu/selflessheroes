@@ -52,6 +52,7 @@ const terrainTypeMap = {
   wall: 'wall',
   hole: 'hole',
   floor: 'floor',
+  infected: 'infected',
   void: 'void',
 }
 

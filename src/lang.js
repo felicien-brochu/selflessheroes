@@ -368,6 +368,7 @@ const messages = {
     drop_down_list_terrain_type_wall: "wall",
     drop_down_list_terrain_type_floor: "floor",
     drop_down_list_terrain_type_hole: "hole",
+    drop_down_list_terrain_type_infected: "infected",
     drop_down_list_terrain_type_void: "nothing",
 
 
@@ -690,6 +691,7 @@ const messages = {
     drop_down_list_terrain_type_wall: "mur",
     drop_down_list_terrain_type_floor: "sol",
     drop_down_list_terrain_type_hole: "trou",
+    drop_down_list_terrain_type_infected: "infecté",
     drop_down_list_terrain_type_void: "vide",
 
 

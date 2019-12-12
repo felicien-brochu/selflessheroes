@@ -176,6 +176,7 @@ export default class CharacterS extends Phaser.GameObjects.Container {
       if (this.character.deathReason === CharacterDeathReason.burnt ||
         this.character.deathReason === CharacterDeathReason.spikes ||
         this.character.deathReason === CharacterDeathReason.touchedEnemy ||
+        this.character.deathReason === CharacterDeathReason.infected ||
         this.character.deathReason === CharacterDeathReason.failedCloning) {
         let delay = this.character.deathReason === CharacterDeathReason.burnt ||
           this.character.deathReason === CharacterDeathReason.failedCloning ? 200 : 0

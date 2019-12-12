@@ -9,6 +9,7 @@ import {
 } from '../../DecompilerException'
 import Direction from '../../../../Direction'
 import ObjectType from '../../../../objects/ObjectType'
+import TerrainType from '../../../../map/TerrainType'
 
 export default class DirectionLiteral extends Expression {
   constructor(parent, line, column) {
@@ -75,6 +76,9 @@ export default class DirectionLiteral extends Expression {
 
     let terrainType = context.world.map.getTerrainTypeAt(x, y)
     res.push(ExpressionValue.terrainType(terrainType))
+    if (terrainType === TerrainType.infected) {
+      res.push(ExpressionValue.terrainType(TerrainType.floor))
+    }
 
     return ExpressionValue.composite(res)
   }

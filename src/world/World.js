@@ -502,7 +502,7 @@ export default class World {
       if (this.getCharactersAt(x, y).filter(c => c instanceof Hero && c !== hero && !c.dead).length > 0) {
         const collidesNoHero = (x, y) => {
           let terrainType = this.map.getTerrainTypeAt(x, y)
-          let collidesTerrain = terrainType === TerrainType.wall || terrainType === TerrainType.hole
+          let collidesTerrain = terrainType !== TerrainType.floor
           let collidingObjects = this.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire || o instanceof Cauldron || o instanceof Spikes || (o instanceof Character && o !== hero && !o.dead))
 
           return collidesTerrain || collidingObjects.length > 0
@@ -510,7 +510,7 @@ export default class World {
 
         const collides = (x, y) => {
           let terrainType = this.map.getTerrainTypeAt(x, y)
-          let collidesTerrain = terrainType === TerrainType.wall || terrainType === TerrainType.hole
+          let collidesTerrain = terrainType !== TerrainType.floor
           let collidingObjects = this.getWorldObjectsAt(x, y).filter(o => o instanceof Bonfire || o instanceof Cauldron || o instanceof Spikes)
 
           return collidesTerrain || collidingObjects.length > 0
@@ -575,6 +575,12 @@ export default class World {
     for (let character of this.characters.filter(c => !c.dead)) {
       if (this.map.isHole(character.x, character.y)) {
         character.setDead(true, CharacterDeathReason.fall)
+      }
+    }
+
+    for (let hero of this.heroes.filter(h => !h.dead)) {
+      if (this.map.isInfected(hero.x, hero.y)) {
+        hero.setDead(true, CharacterDeathReason.infected)
       }
     }
 
