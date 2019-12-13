@@ -3,6 +3,7 @@ dist/
 electron-dist/
 tests-build/
 deploy.env
+deploy.dev.env
 .vscode/
 .cache/
 *.log

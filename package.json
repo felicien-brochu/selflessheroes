@@ -25,10 +25,10 @@
   "scripts": {
     "init-env": "node ./scripts/init.js",
     "start": "yarn serve:dev",
-    "build-dev": "cross-env NODE_ENV=development TARGET_PLATFORM=web env-cmd -f ./deploy.env webpack --progress",
+    "build-dev": "cross-env NODE_ENV=development TARGET_PLATFORM=web env-cmd -f ./deploy.dev.env webpack --progress",
     "build": "cross-env NODE_ENV=production TARGET_PLATFORM=web env-cmd -f ./deploy.env webpack --progress",
-    "serve:level-dev": "cross-env NODE_ENV=development TARGET_PLATFORM=web LEVEL_DEV=true env-cmd -f ./deploy.env webpack-dev-server --progress --colors --host 0.0.0.0",
-    "serve:dev": "cross-env NODE_ENV=development TARGET_PLATFORM=web env-cmd -f ./deploy.env webpack-dev-server --progress --colors --host 0.0.0.0",
+    "serve:level-dev": "cross-env NODE_ENV=development TARGET_PLATFORM=web LEVEL_DEV=true env-cmd -f ./deploy.dev.env webpack-dev-server --progress --colors --host 0.0.0.0",
+    "serve:dev": "cross-env NODE_ENV=development TARGET_PLATFORM=web env-cmd -f ./deploy.dev.env webpack-dev-server --progress --colors --host 0.0.0.0",
     "serve:prod": "cross-env NODE_ENV=production TARGET_PLATFORM=web env-cmd -f ./deploy.env webpack-dev-server --progress --colors --host 0.0.0.0",
     "build-tests": "cross-env NODE_ENV=development webpack --config ./tests/webpack.config.js --progress",
     "test": "yarn build-tests && node ./tests/test_levels.js",
