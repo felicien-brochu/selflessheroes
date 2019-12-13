@@ -176,9 +176,7 @@ export default class extends Phaser.Scene {
     }
 
     for (let npc of this.world.npcs) {
-      let sprite = new NpcS(this, npc, this.map.tileWidth, this.map.tileHeight)
-      this.npcs.push(sprite)
-      this.add.existing(sprite)
+      this.createNPCSprite(npc)
     }
 
     for (let mySwitch of this.world.switches) {
@@ -219,6 +217,12 @@ export default class extends Phaser.Scene {
 
     this.observations.set(sprite, [])
     this.directions.set(sprite, null)
+  }
+
+  createNPCSprite(npc) {
+    let sprite = new NpcS(this, npc, this.map.tileWidth, this.map.tileHeight)
+    this.npcs.push(sprite)
+    this.add.existing(sprite)
   }
 
   restartWorld(rngSeed) {
@@ -298,11 +302,15 @@ export default class extends Phaser.Scene {
       this.showCloningAnimation(event.clonePosition)
     }
 
-    let clonedHeroEvents = characterCloningEvents.filter(event => event.cloneID !== null && event.cloneType === ObjectType.hero)
+    let clonedHeroEvents = characterCloningEvents.filter(event => event.cloneID !== null)
     for (let event of clonedHeroEvents) {
-      let heroClone = world.findWorldObjectByID(event.cloneID)
-      if (heroClone) {
-        this.createHeroSprite(heroClone)
+      let clone = world.findWorldObjectByID(event.cloneID)
+      if (clone) {
+        if (event.cloneType === ObjectType.hero) {
+          this.createHeroSprite(clone)
+        } else if (event.cloneType === ObjectType.npc) {
+          this.createNPCSprite(clone)
+        }
       }
     }
   }

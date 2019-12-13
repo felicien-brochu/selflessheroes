@@ -339,11 +339,12 @@ export default class World {
         action
       } of characterActions) {
       if (action && action.type === 'CloneAction') {
-        let clonedCharacter = character.clone(action.direction, action.anchorStatement)
+        let clonedCharacter = character.clone(action.direction, action.config)
 
         let x = clonedCharacter.x
         let y = clonedCharacter.y
         let cloneOnFloor = this.map.isFloor(x, y)
+        let notInfected = !this.map.isInfected(x, y)
         let cloneCollidesActiveHero = !!this.getCharactersAt(x, y).find(c => !c.dead && c instanceof Hero && c.ai.hasStepAvailable())
         let cloneCollidesNPC = !!this.getCharactersAt(x, y).find(c => !c.dead && c instanceof Npc)
         let cloneCollidesObject = !!this.bonfires.find(b => b.x === x && b.y === y) ||
@@ -351,7 +352,12 @@ export default class World {
           !!this.cauldrons.find(b => b.x === x && b.y === y)
 
         // Successful cloning
-        if (cloneOnFloor && !cloneCollidesActiveHero && !cloneCollidesNPC && !cloneCollidesObject) {
+        if (cloneOnFloor && !cloneCollidesObject && !cloneCollidesNPC &&
+          (
+            character instanceof Npc ||
+            (character instanceof Hero && !cloneCollidesActiveHero)
+          )
+        ) {
           this.characters.push(clonedCharacter)
           if (clonedCharacter.getObjectType() === ObjectType.hero) {
             this.heroes.push(clonedCharacter)
@@ -397,9 +403,9 @@ export default class World {
         let cauldrons = this.cauldrons.filter(c => c.x === x && c.y === y)
         cauldrons.forEach(cauldron => cauldron.enable())
 
-        // Kill heroes
-        let targetHeroes = this.heroes.filter(h => h.x === x && h.y === y)
-        targetHeroes.forEach(character => character.setDead(true, CharacterDeathReason.burnt))
+        // Kill characters
+        let targetCharacters = this.characters.filter(c => c.x === x && c.y === y && !c.dead)
+        targetCharacters.forEach(character => character.setDead(true, CharacterDeathReason.burnt))
       }
     }
   }
@@ -424,6 +430,7 @@ export default class World {
         let collidingHeroes = this.getCharactersAt(x, y).filter(c => c instanceof Hero && !c.dead && (c.ai.hasStepAvailable() || c.ai.lastActionCursor !== c.ai.cursor))
         let collidesHero = collidingHeroes.length > 0
         let collidingNPCs = this.getCharactersAt(x, y).filter(c => !c.dead && c instanceof Npc)
+        let collidesNpc = collidingNPCs.length > 0
         let collidesComingNPC = collidingNPCs.some(npc => {
           let npcStepAction = stepActions.find(a => a.character === npc)
           return npcStepAction &&
@@ -431,10 +438,10 @@ export default class World {
             npcStepAction.action.direction.dy === -action.direction.dy
         })
 
-        if (collidesWall || collidesBonfire || collidesCauldron || collidesComingNPC) {
+        if (collidesWall || collidesBonfire || collidesCauldron || (character instanceof Hero && collidesComingNPC)) {
           stepActions.splice(i, 1)
           i--
-        } else if (!collidesHero || character instanceof Npc) {
+        } else if ((character instanceof Hero && !collidesHero) || (character instanceof Npc && !collidesNpc)) {
           character.move(action.direction)
           stepActions.splice(i, 1)
           i--

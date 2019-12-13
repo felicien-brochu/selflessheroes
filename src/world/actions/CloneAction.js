@@ -1,10 +1,10 @@
 import CharacterAction from './CharacterAction'
 
 export default class CloneAction extends CharacterAction {
-  constructor(direction, anchorStatement, deadly) {
+  constructor(direction, config, deadly) {
     super('CloneAction')
     this.direction = direction
-    this.anchorStatement = anchorStatement
+    this.config = config
     this.deadly = deadly
   }
 }

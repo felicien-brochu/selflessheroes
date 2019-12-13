@@ -29,11 +29,11 @@ import knight_hollywood_green from './images/knight_hollywood_green.png'
 // import orc_shaman from './images/orc_shaman.png'
 // import necromancer from './images/necromancer.png'
 // import wogol from './images/wogol.png'
-// import chort from './images/chort.png'
 import ogre from './images/ogre.png'
 import pied_piper from './images/pied_piper.png'
 import kronos from './images/kronos.png'
 import gatekeeper from './images/gatekeeper.png'
+import chort from './images/chort.png'
 
 import switch_blue from './images/switch_blue.png'
 import switch_red from './images/switch_red.png'
@@ -82,6 +82,7 @@ import message_coffee from './images/message_coffee.png'
 import wall_icon from '../components/images/wall-icon.png'
 import floor_icon from '../components/images/floor-icon.png'
 import hole_icon from '../components/images/hole-icon.png'
+import infected_icon from '../components/images/infected-icon.png'
 import switch_icon from '../components/images/switch-icon.png'
 import nothing_icon from '../components/images/nothing-icon.png'
 import hero_icon from '../components/images/hero-icon.png'
@@ -248,10 +249,6 @@ export default class extends Phaser.Scene {
     //   frameWidth: 32,
     //   frameHeight: 40
     // })
-    // this.load.spritesheet('chort', chort, {
-    //   frameWidth: 32,
-    //   frameHeight: 48
-    // })
     this.load.spritesheet('ogre', ogre, {
       frameWidth: 64,
       frameHeight: 64
@@ -267,6 +264,10 @@ export default class extends Phaser.Scene {
     this.load.spritesheet('gatekeeper', gatekeeper, {
       frameWidth: 64,
       frameHeight: 68
+    })
+    this.load.spritesheet('chort', chort, {
+      frameWidth: 32,
+      frameHeight: 48
     })
 
     this.load.spritesheet('switch_blue', switch_blue, {
@@ -360,6 +361,7 @@ export default class extends Phaser.Scene {
     this.load.image('wall_icon', wall_icon)
     this.load.image('floor_icon', floor_icon)
     this.load.image('hole_icon', hole_icon)
+    this.load.image('infected_icon', infected_icon)
     this.load.image('switch_icon', switch_icon)
     this.load.image('nothing_icon', nothing_icon)
     this.load.image('hero_icon', hero_icon)

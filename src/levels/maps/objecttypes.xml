@@ -7,13 +7,11 @@
  <objecttype name="bonfire" color="#ffff01">
   <property name="enabled" type="bool" default="false"/>
  </objecttype>
- <objecttype name="strategy" color="#ff2fff">
-  <property name="strategy" type="string" default="default"/>
- </objecttype>
  <objecttype name="cauldron" color="#3ca41c">
   <property name="enabled" type="bool" default="true"/>
  </objecttype>
  <objecttype name="egg" color="#44cc64">
+  <property name="lottery" type="string"/>
   <property name="showLottery" type="bool" default="false"/>
   <property name="value" type="string" default="rng(0,10)"/>
  </objecttype>
@@ -27,6 +25,7 @@
   <property name="aiConfig" type="int" default="0"/>
   <property name="initialDirection" type="string" default="e"/>
   <property name="race" type="string" default="ogre"/>
+  <property name="yOffset" type="int" default="0"/>
  </objecttype>
  <objecttype name="path" color="#62a468">
   <property name="stepRythm" type="int" default="1"/>
@@ -36,6 +35,9 @@
   <property name="enabled" type="bool" default="false"/>
   <property name="triggers" type="string"/>
   <property name="triggersNot" type="string"/>
+ </objecttype>
+ <objecttype name="strategy" color="#ff2fff">
+  <property name="strategy" type="string" default="default"/>
  </objecttype>
  <objecttype name="switch" color="#1064a4">
   <property name="autoDisable" type="bool" default="true"/>

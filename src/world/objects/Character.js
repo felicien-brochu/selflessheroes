@@ -60,18 +60,8 @@ export default class Character extends WorldObject {
     }
   }
 
-  clone(direction, anchorStatement) {
-    let cloneConfig = {
-      ...this.config,
-      id: this.world.getAvailableObjectID()
-    }
-    cloneConfig.item = null
-    let clonedCharacter = new this.constructor(cloneConfig, this.world)
-    clonedCharacter.ai = this.ai.cloneToAnchor(anchorStatement, clonedCharacter)
-    clonedCharacter.x = this.x + direction.dx
-    clonedCharacter.y = this.y + direction.dy
-
-    return clonedCharacter
+  clone(direction, config) {
+    throw new Error("Needs subclass implementation")
   }
 
   tell(message, channel) {

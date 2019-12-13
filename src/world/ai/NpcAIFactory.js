@@ -2,6 +2,7 @@ import IdleAI from './IdleAI'
 import FollowPathAI from './FollowPathAI'
 import KronosAI from './KronosAI'
 import GatekeeperAI from './GatekeeperAI'
+import ChortAI from './ChortAI'
 
 export default class NpcAIFactory {
   static buildAI(world, npc) {
@@ -20,6 +21,9 @@ export default class NpcAIFactory {
         break
       case 'gatekeeper':
         ai = new GatekeeperAI(world, npc, aiConfig)
+        break
+      case 'chort':
+        ai = new ChortAI(world, npc, aiConfig)
         break
       default:
         ai = new IdleAI(world, npc)
