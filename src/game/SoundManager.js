@@ -14,6 +14,11 @@ const soundDefs = [{
     volume: 0.5
   }
 }, {
+  key: 'chort_scream_sfx',
+  config: {
+    volume: 0.3
+  }
+}, {
   key: 'step_sfx',
   config: {
     volume: 0.4

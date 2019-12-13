@@ -355,7 +355,7 @@ export default class World {
         if (cloneOnFloor && !cloneCollidesObject && !cloneCollidesNPC &&
           (
             character instanceof Npc ||
-            (character instanceof Hero && !cloneCollidesActiveHero)
+            (character instanceof Hero && !cloneCollidesActiveHero && notInfected)
           )
         ) {
           this.characters.push(clonedCharacter)

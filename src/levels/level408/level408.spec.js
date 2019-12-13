@@ -6,156 +6,197 @@ export default {
   specs: [{
     type: ["length"],
     code: `
-if n == spikes :
-	clone e b
-	listen("wait")
-	m:
-	if $a < 3 :
-		$a = calc($a + 1)
-		jump m
-	endif
-	step(n)
-	step(n)
-	step(ne)
-	n:
-	step(n)
-	clone s p
-	if n != wall :
-		jump n
-	endif
-	p:
-	if w == 1 :
-		step(e)
-	endif
-	if n == wall :
-		tell("ok" everyone)
-	endif
-	q:
-	jump q
-endif
-listen("ok")
-o:
-step(s)
-jump o
-b:
-d:
+clone w a
+step(n)
+f:
 e:
-a:
-step(e)
-if e == floor :
-	jump a
+clone ne b
+step(nw)
+if w == spikes :
+	listen("ok")
 endif
 c:
-if e == hole :
-	step(n)
-	if here == switch :
-		jump k
-	endif
+if nw != floor :
+	step(w)
 	jump c
 endif
-clone w i
+step(nw)
+if here == switch ||
+  ne == hole :
+	jump i
+endif
 jump e
-i:
-f:
+b:
+d:
+if ne != floor :
+	step(e)
+	jump d
+endif
+step(ne)
+if ne == floor &&
+  ne != infected :
+	jump f
+endif
 h:
-if w == floor :
-	step(w)
+if here != switch :
+	i:
+	step(n)
 	jump h
 endif
 g:
-if w == hole :
-	step(n)
-	if here == switch :
-		tell("wait" everyone)
-		jump j
-	endif
-	jump g
-endif
-clone e d
-jump f
-j:
+fireball(nw)
+jump g
+a:
 k:
+step(w)
+if n != spikes :
+	jump k
+endif
+step(n)
+step(n)
+step(n)
 l:
-fireball(ne)
-fireball(ne)
-jump l
+clone n l
+if here == 1 :
+	step(e)
+endif
+if n == wall :
+	tell("ok" everyone)
+endif
+step(e)
 		`,
   }, {
-    type: ["speedSearch"],
+    type: ["speed"],
     code: `
-if n == spikes :
-	clone e b
-	listen("wait")
-	m:
-	if $a < 3 :
-		$a = calc($a + 1)
-		jump m
+clone n a
+if w == spikes :
+	$a = set(0)
+	j:
+	$a = calc($a + 1)
+	if $a < 10 :
+		jump j
 	endif
-	step(n)
-	step(n)
-	step(ne)
-	n:
-	step(n)
-	clone s p
-	if n != wall :
-		jump n
-	endif
-	p:
-	if w == 1 :
-		step(e)
-	endif
-	if n == wall :
-		tell("ok" everyone)
-	endif
-	q:
-	jump q
+	step(w)
+	step(w)
 endif
-listen("ok")
-o:
-step(s)
-jump o
-b:
-d:
-e:
+k:
+if nw != spikes :
+	step(w)
+	step(w)
+	jump k
+endif
+step(nw)
+step(n)
+step(ne)
+l:
+clone n l
+if w == 1 :
+	step(e)
+endif
+m:
+jump m
 a:
-step(e)
-if e == floor :
-	jump a
-endif
+f:
+e:
+clone nw b
+step(ne)
 c:
-if e == hole :
-	step(n)
-	if here == switch :
-		jump k
-	endif
+if ne != floor :
+	step(e)
 	jump c
 endif
-clone w i
+step(ne)
+if here == switch ||
+  nw != floor :
+	jump i
+endif
 jump e
-i:
-f:
-h:
-if w == floor :
+b:
+d:
+if nw != floor :
 	step(w)
+	jump d
+endif
+step(nw)
+if nw == floor :
+	jump f
+endif
+h:
+step(n)
+i:
+if here != switch :
 	jump h
 endif
 g:
-if w == hole :
-	step(n)
-	if here == switch :
-		tell("wait" everyone)
+fireball(nw)
+jump g
+		`,
+  }, {
+    type: ["speed"],
+    code: `
+clone n a
+if w == spikes :
+	j:
+	if $a < 6 :
+		$a = calc($a + 1)
 		jump j
 	endif
-	jump g
 endif
-clone e d
-jump f
-j:
-k:
+step(w)
+step(w)
+step(w)
+step(w)
+step(w)
+step(w)
+step(w)
+step(w)
+step(w)
+step(w)
+step(nw)
+step(n)
+step(ne)
 l:
-fireball(ne)
-fireball(ne)
-jump l
+clone n l
+if w == 1 :
+	step(e)
+endif
+m:
+jump m
+a:
+clone nw b
+step(ne)
+step(e)
+step(e)
+step(ne)
+clone nw c
+step(ne)
+step(ne)
+jump d
+b:
+step(w)
+step(w)
+step(nw)
+clone ne f
+step(nw)
+step(nw)
+step(n)
+step(n)
+step(n)
+jump g
+c:
+step(nw)
+step(n)
+jump h
+f:
+step(ne)
+step(n)
+step(n)
+d:
+g:
+h:
+e:
+fireball(nw)
+jump e
 		`,
   }, {
     type: ["lossReason"],
@@ -168,6 +209,14 @@ a:
 clone n a
 clone w b
 clone e c
+		`,
+  }, {
+    type: ["lossReason"],
+    lossReason: 'loss_reason_one_hero_dead',
+    frequency: 1,
+    code: `
+a:
+jump a
 		`,
   }, ]
 }

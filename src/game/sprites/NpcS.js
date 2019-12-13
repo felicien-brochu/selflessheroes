@@ -9,6 +9,9 @@ export default class NpcS extends CharacterS {
   }
 
   getScreamAsset() {
+    if (this.character.race === 'chort') {
+      return 'chort_scream_sfx'
+    }
     return 'npc_scream_sfx'
   }
 

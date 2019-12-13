@@ -20,16 +20,16 @@ const tooMuchHeroesCondition = {
 }
 
 function generateSpikes(world) {
-  const width = 20
-  const height = 5
+  const width = world.map.width
+  const height = world.map.height
 
   for (let i = 0; i < height; i++) {
     for (let j = 0; j < width; j++) {
-      if (Math.floor(j / 4) > i - 1) {
+      if (world.map.isInfected(j, i) && !world.symbols.find(symbol => symbol.x === j && symbol.y === i)) {
         let spikesConfig = {
           id: world.getAvailableObjectID(),
-          x: j + 2,
-          y: i + 2,
+          x: j,
+          y: i,
           triggers: "209",
           enabled: false,
         }
@@ -85,8 +85,8 @@ const level = {
     fr: "Infestation",
   },
   objective: {
-    en: "Put the %%icon icon-egg$%% egg of maximum value into the %%icon icon-cauldron$%% cauldron.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximum number of heroes: 10",
-    fr: "Mets l' %%icon icon-egg$%% œuf de valeur maximum dans le %%icon icon-cauldron$%% chaudron.\n\n%%icon mdi mdi-alert-octagon-outline$%%Nombre maximum de héros\u00A0: 10",
+    en: "These little monsters are reproducing at a frightening pace! Stop the infestation before it is too late.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximum number of heroes: 10",
+    fr: "Ces petits monstres se reproduisent à une vitesse affolante\u00A0! Mets fin à l'infestation avant qu'il ne soit trop tard.\n\n%%icon mdi mdi-alert-octagon-outline$%%Nombre maximum de héros\u00A0: 10",
   },
 
   messages: {
@@ -94,11 +94,18 @@ const level = {
       en: "The maximum number of heroes has been exceeded.\nMaximum number of heroes: 10",
       fr: "Le nombre maximum de héros a été dépassé.\nNombre de héros maximum\u00A0: 10"
     },
+    boss_tell: {
+      en: "...gnark...gnark...\n...gnark...gnark...gnark...\n...gnark...gnark...",
+      fr: "...gnark...gnark...\n...gnark...gnark...gnark...\n...gnark...gnark...",
+    },
   },
 
   maxStep: 600,
-  speedTarget: 117,
-  lengthTarget: 45,
+  speedTarget: 34,
+  lengthTarget: 36,
+
+  bossTellsSomething: true,
+  bossName: "chorts",
 
   compilerConfig: {
     excludePrimary: [],
@@ -107,7 +114,7 @@ const level = {
     objectTypes: ['hero', 'npc', 'egg', 'spikes', 'switch', 'nothing'],
     actionFunctions: ['step_once', 'fireball', 'tell', 'listen'],
     valueFunctions: ['set', 'calc'],
-    variables: 4,
+    variables: 1,
     messages: 8,
     leftComparisonExpressions: ['direction', 'variable'],
     rightComparisonExpressions: ['object_type', 'terrain_type', 'integer']

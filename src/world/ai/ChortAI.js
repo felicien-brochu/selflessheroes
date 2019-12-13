@@ -9,12 +9,75 @@ import WorldObjectFinder from './WorldObjectFinder'
 
 
 const states = {
-  'placing': 0,
-  'clone_cloner': 1,
-  'cloning': 2,
-  'walking': 3,
-  'chasing': 4,
+  'clone_cloner': 0,
+  'cloning': 1,
+  'walking': 2,
+  'chasing': 3,
 }
+
+
+// Time distance to heroes
+// 24
+// 18
+// 12
+// 6
+
+const startCloneCloner = [
+  1,
+  5,
+  9,
+  13,
+  17,
+]
+
+const startCloning = [
+  2,
+  10,
+  14,
+  14,
+  22,
+]
+
+////// MIN VALUES
+// const startCloneCloner = [
+//   1,
+//   2,
+//   3,
+//   4,
+//   5,
+// ]
+//
+// const startCloning = [
+//   2,
+//   3,
+//   10,
+//   11,
+//   17,
+// ]
+
+
+/////// MAX VALUES
+// const startCloneCloner = [
+//   1,
+//   7,
+//   13,
+//   19,
+//   25,
+// ]
+//
+// const startCloning = [
+//   31,
+//   31,
+//   31,
+//   31,
+//   39,
+// ]
+// Heroes ready to fire
+// 54   27
+// 48   28
+// 40   23
+// 42   22
+
 export default class ChortAI extends AI {
   constructor(world, character, config) {
     super(world, character)
@@ -26,13 +89,11 @@ export default class ChortAI extends AI {
     this.updateLastAction()
 
     this.chasedHero = null
-    this.hasCloned = false
+    this.stateStarted = false
   }
 
   step(rng) {
     switch (this.state) {
-      case states.placing:
-        return this.placeYourself(rng)
       case states.clone_cloner:
         return this.cloneCloner(rng)
       case states.cloning:
@@ -55,87 +116,50 @@ export default class ChortAI extends AI {
 
   isEveryClonerInPlace() {
     let clonerPositions = [
-      [2, 2],
-      [6, 3],
-      [10, 4],
-      [14, 5],
-      [18, 6],
+      [17, 2],
+      [18, 3],
+      [19, 4],
+      [20, 5],
+      [21, 6],
     ]
     return clonerPositions.every(pos => this.world.getCharactersAt(pos[0], pos[1]).length > 0)
   }
 
-  placeYourself(rng) {
-    const actionRythm = 4
-
-    if (this.world.steps - this.lastAction.step >= actionRythm) {
-      this.updateLastAction()
-      let direction = Direction.e
-      if (this.world.map.isInfected(this.character.x, this.character.y + 1)) {
-        this.state = states.clone_cloner
-        direction = Direction.s
-      }
-      return new StepAction(direction)
-    }
-
-    return new WaitAction()
-  }
-
   cloneCloner(rng) {
-    let actionRythm = 4
-    if (this.character.y === 2) {
-      actionRythm = 5
-    }
-
     if (this.isEveryClonerInPlace()) {
       this.updateLastAction()
       this.state = states.cloning
-      return this.cloneYourself(rng)
-    }
-
-    if (this.world.steps - this.lastAction.step >= actionRythm) {
-      this.updateLastAction()
-      this.state = states.cloning
-      return new CloneAction(Direction.e, {
-        aiConfig: {
-          type: 'chort',
-          startState: 'placing',
-        }
-      }, false)
+    } else {
+      if (this.world.steps >= startCloneCloner[this.character.y - 2]) {
+        this.updateLastAction()
+        this.state = states.cloning
+        return new CloneAction(Direction.se, {
+          aiConfig: {
+            type: 'chort',
+            startState: 'clone_cloner',
+          }
+        }, false)
+      }
     }
 
     return new WaitAction()
   }
 
   cloneYourself(rng) {
-    let actionRythm = 3
-    let startDelay = -2 * (this.character.y - 3) + 6
+    let actionRythm = 4
     if (this.character.y === 2) {
-      startDelay = 17
-      actionRythm = 1
+      actionRythm = 8
     }
 
-    if (this.isEveryClonerInPlace()) {
-      if (this.lastAction.state !== states.cloning) {
-        this.updateLastAction()
-        if (this.world.steps - this.lastAction.step >= startDelay) {
-          this.hasCloned = true
-          return new CloneAction(Direction.e, {
-            aiConfig: {
-              type: 'chort',
-              startState: 'walking',
-            }
-          }, false)
+    if (this.lastAction.state !== states.cloning && this.world.steps >= startCloning[this.character.y - 2] ||
+      this.lastAction.state === states.cloning && this.world.steps - this.lastAction.step >= actionRythm) {
+      this.updateLastAction()
+      return new CloneAction(Direction.w, {
+        aiConfig: {
+          type: 'chort',
+          startState: 'walking',
         }
-      } else if ((!this.hasCloned && this.world.steps - this.lastAction.step >= startDelay) || (this.hasCloned && this.world.steps - this.lastAction.step >= actionRythm)) {
-        this.hasCloned = true
-        this.updateLastAction()
-        return new CloneAction(Direction.e, {
-          aiConfig: {
-            type: 'chort',
-            startState: 'walking',
-          }
-        }, false)
-      }
+      }, false)
     }
 
 
@@ -143,11 +167,18 @@ export default class ChortAI extends AI {
   }
 
   walkForward(rng) {
-    if (this.character.x >= 22) {
-      this.state = states.chasing
-      return this.chaseHero(rng)
+    let actionRythm = 2
+    if (this.character.y === 2) {
+      actionRythm = 4
     }
-    return new StepAction(Direction.e)
+    if (this.world.steps - this.lastAction.step >= actionRythm) {
+      this.updateLastAction()
+      if (this.character.x <= 4 || !this.world.map.isFloor(this.character.x - 1, this.character.y)) {
+        this.state = states.chasing
+        return this.chaseHero(rng)
+      }
+      return new StepAction(Direction.w)
+    }
   }
 
   chaseHero(rng) {
