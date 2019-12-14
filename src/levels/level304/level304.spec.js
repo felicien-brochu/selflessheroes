@@ -6,37 +6,33 @@ export default {
   specs: [{
     type: ["length"],
     code: `
-if w == wall :
-	listen("ok")
-	a:
-	step(e)
-	jump a
-endif
 b:
-if here != switch :
-	step(n)
+step(n)
+if here != switch &&
+  w == hole :
 	jump b
 endif
 tell("ok" everyone)
+listen("ok")
+a:
+step(e)
+jump a
 		`,
   }, {
     type: ["speed"],
     code: `
-if w == wall :
-	listen("ok")
-	a:
-	step(e)
-	step(e)
-	jump a
-endif
 b:
-if n != switch :
-	step(n)
-	step(n)
+step(n)
+if n != switch &&
+  w == hole :
 	jump b
 endif
 tell("ok" everyone)
 step(n)
+listen("ok")
+a:
+step(e)
+jump a
 		`,
   }, {
     type: ["lossReason"],
