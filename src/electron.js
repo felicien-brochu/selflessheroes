@@ -31,6 +31,7 @@ function createWindow() {
     show: false,
     webPreferences: {
       nodeIntegrationInWorker: true,
+      nodeIntegration: true,
     },
   })
 
@@ -42,6 +43,7 @@ function createWindow() {
   })
 
   mainWindow.loadURL(indexPath)
+  mainWindow.removeMenu()
 
   // Don't show until we are ready and loaded
   mainWindow.once('ready-to-show', () => {
