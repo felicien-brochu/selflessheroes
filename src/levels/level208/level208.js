@@ -19,13 +19,13 @@ const level = {
     fr: "Pixel art 3",
   },
   objective: {
-    en: "Move the %%icon icon-egg$%% eggs right of as many squares as their number to discover the hidden image\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: this level is really very difficult\n(I had trouble finishing it myself 😅)",
-    fr: "Déplace les %%icon icon-egg$%% œufs vers la droite d'autant de cases que leur numéro pour découvrir l'image cachée\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: ce niveau est vraiment très difficile\n(moi-même j'ai eu du mal à le finir 😅)",
+    en: "Move the %%icon icon-egg$%% eggs right of as many squares as their number to discover the hidden image.",
+    fr: "Déplace les %%icon icon-egg$%% œufs vers la droite d'autant de cases que leur numéro pour découvrir l'image cachée.",
   },
 
   maxStep: 10000,
-  speedTarget: 1596,
-  lengthTarget: 50,
+  speedTarget: 1001,
+  lengthTarget: 17,
 
   compilerConfig: {
     excludePrimary: ['clone'],
