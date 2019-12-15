@@ -1,1 +1,0 @@
-scp -r ./dist/* $SERVER_USER@$SERVER_HOST:$SERVER_FOLDER

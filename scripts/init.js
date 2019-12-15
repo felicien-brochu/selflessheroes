@@ -14,18 +14,6 @@ let variables = [{
   default: '000000000000000',
   value: '',
 }, {
-  name: 'SERVER_HOST',
-  default: 'example.com',
-  value: '',
-}, {
-  name: 'SERVER_USER',
-  default: 'sshloginexample',
-  value: '',
-}, {
-  name: 'SERVER_FOLDER',
-  default: '/var/www/destination/on/server',
-  value: '',
-}, {
   name: 'ACTIVATION_KEY_URL',
   default: 'https://urltoactivationkey',
   value: '',

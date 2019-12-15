@@ -32,7 +32,6 @@
     "serve:prod": "cross-env NODE_ENV=production TARGET_PLATFORM=web env-cmd -f ./deploy.env webpack-dev-server --progress --colors --host 0.0.0.0",
     "build-tests": "cross-env NODE_ENV=development webpack --config ./tests/webpack.config.js --progress",
     "test": "yarn build-tests && node ./tests/test_levels.js",
-    "deploy": "yarn build && env-cmd -f ./deploy.env sh ./scripts/deploy.sh",
     "build-electron": "cross-env NODE_ENV=production TARGET_PLATFORM=electron env-cmd -f ./deploy.env webpack --progress",
     "pack-electron": "node ./scripts/build-electron.js",
     "electron": "yarn build-electron && yarn pack-electron"
