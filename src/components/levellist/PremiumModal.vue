@@ -9,13 +9,40 @@
   @confirm="$emit('confirm', $event)"
   @cancel="$emit('cancel', $event)">
   <h3>{{$text('premium_modal_title')}}</h3>
-  <ul class="premium-content-list">
-    <li>{{$text('premium_modal_new_levels')}}</li>
-    <li>{{$text('premium_modal_new_actions')}}</li>
-  </ul>
+
+  <p class="premium-content-description"
+    v-bbcode>{{$text('premium_modal_content_description')}}</p>
 
   <div class="premium-action">
-    <div class="colored-side-bar" />
+    <div class="colored-side-bar category-color-yellow" />
+    <div class="premium-action-description">
+      <simple-graph-code :code="'$a = calc(3 * 5)\nwrite(6)\n'"
+        :compilerConfig="defaultCompilerConfig" />
+      <p>{{$text('premium_modal_action_variables')}}</p>
+    </div>
+    <div class="premium-action-image">
+      <img src="../images/premium-variables-animation.png"
+        class="premium-action-animation"
+        :alt="$text('premium_modal_action_variables')" />
+    </div>
+  </div>
+
+  <div class="premium-action">
+    <div class="colored-side-bar category-color-red" />
+    <div class="premium-action-description">
+      <simple-graph-code :code="'tell(\'hey\' w)\nlisten(\'ho\')'"
+        :compilerConfig="defaultCompilerConfig" />
+      <p>{{$text('premium_modal_action_speach')}}</p>
+    </div>
+    <div class="premium-action-image">
+      <img src="../images/premium-speach-animation.png"
+        class="premium-action-animation"
+        :alt="$text('premium_modal_action_speach')" />
+    </div>
+  </div>
+
+  <div class="premium-action">
+    <div class="colored-side-bar category-color-purple" />
     <div class="premium-action-description">
       <simple-graph-code :code="'clone e a'"
         :compilerConfig="defaultCompilerConfig" />
@@ -25,20 +52,6 @@
       <img src="../images/premium-clone-animation.png"
         class="premium-action-animation"
         :alt="$text('premium_modal_action_clone')" />
-    </div>
-  </div>
-
-  <div class="premium-action">
-    <div class="colored-side-bar" />
-    <div class="premium-action-description">
-      <simple-graph-code :code="'step(e)\nwrite(3)'"
-        :compilerConfig="defaultCompilerConfig" />
-      <p>{{$text('premium_modal_action_speach')}}</p>
-    </div>
-    <div class="premium-action-image">
-      <img src="../images/premium-clone-animation.png"
-        class="premium-action-animation"
-        :alt="$text('premium_modal_action_speach')" />
     </div>
   </div>
 
@@ -109,17 +122,25 @@ export default {
     box-shadow: inset 0 0 30px 10px rgba(0,0,0,0.2), 0 0 30px 10px rgba(0,0,0,0.26);
 
     .modal-content {
+        margin: 0 23px;
+
         h3 {
             margin: 0;
             font-size: 30px;
             font-weight: 500;
         }
 
-        ul.premium-content-list {
-            list-style: disc;
-            padding-left: 28px;
-            text-align: left;
-            font-size: 20px;
+        .premium-content-description {
+            width: 510px;
+            margin: auto;
+            padding-left: 18px;
+            box-sizing: border-box;
+
+            .content-number {
+                font-size: 28px;
+                color: #86b36d;
+                font-weight: bold;
+            }
         }
 
         .premium-action-animation {
@@ -137,12 +158,12 @@ export default {
             margin: auto;
             background-color: #333740;
             border-radius: 15px;
+            min-width: 510px;
 
             .colored-side-bar {
-                width: 24px;
+                min-width: 24px;
                 align-self: stretch;
                 border-radius: 15px 0 0 15px;
-                background-color: #557cca;
             }
 
             & > :nth-child(2) {
@@ -150,8 +171,9 @@ export default {
             }
 
             .premium-action-description {
-                padding: 16px;
                 min-width: 260px;
+                padding: 16px 28px;
+                margin: auto;
             }
 
             .premium-action-image {
@@ -166,6 +188,11 @@ export default {
             .simple-graph-code {
                 display: inline-block;
                 width: min-content;
+
+                .node {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
             }
         }
 

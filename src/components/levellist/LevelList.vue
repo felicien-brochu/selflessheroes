@@ -321,35 +321,6 @@ export default {
         .side-bar {
             min-width: 30px;
             border-radius: 15px 0 0 15px;
-            background-color: #757b88;
-
-            &.category-color-gray {
-                background-color: #757b88;
-            }
-
-            &.category-color-blue {
-                background-color: #557cca;
-            }
-
-            &.category-color-green {
-                background-color: #6d9757;
-            }
-
-            &.category-color-yellow {
-                background-color: #D5AF55;
-            }
-
-            &.category-color-red {
-                background-color: #B2463C;
-            }
-
-            &.category-color-purple {
-                background-color: #654683;
-            }
-
-            &.category-color-orange {
-                background-color: #D0753B;
-            }
         }
 
         .list {

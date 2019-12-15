@@ -54,10 +54,10 @@ const messages = {
     level_list_premium_levels_button: "Unlock more levels",
 
     premium_modal_title: "Premium content",
-    premium_modal_new_levels: "3 new level categories for a total of 30 additional levels",
-    premium_modal_new_actions: "New actions that completely change the way you play",
-    premium_modal_action_clone: "Creates a clone of the hero",
-    premium_modal_action_speach: "Heroes can speak to each other",
+    premium_modal_content_description: "%%content-number$3%% new level categories for a total of\n%%content-number$34%% additional levels",
+    premium_modal_action_variables: "Heroes can calculate\nand write on eggs",
+    premium_modal_action_speach: "Heroes can speak\nto each other",
+    premium_modal_action_clone: "Heroes can clone themselves",
     premium_modal_back_button: "back",
     premium_modal_unlock_button: "unlock\npremium content",
 
@@ -423,10 +423,10 @@ const messages = {
     level_list_premium_levels_button: "Débloquer plus de niveaux",
 
     premium_modal_title: "Contenu premium",
-    premium_modal_new_levels: "3 nouvelles catégories de niveaux pour un total de 30 niveaux supplémentaires",
-    premium_modal_new_actions: "Des nouvelles actions qui changent complètement la façon de jouer",
-    premium_modal_action_clone: "Crée un clone du héro",
+    premium_modal_content_description: "%%content-number$3%% nouvelles catégories de niveaux\npour un total de\n%%content-number$34%% niveaux supplémentaires",
+    premium_modal_action_variables: "Les héros peuvent calculer\net écrire sur les œufs",
     premium_modal_action_speach: "Les héros peuvent se parler",
+    premium_modal_action_clone: "Les héros peuvent se cloner",
     premium_modal_back_button: "retour",
     premium_modal_unlock_button: "débloquer\nle contenu premium",
 
