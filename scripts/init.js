@@ -21,6 +21,10 @@ let variables = [{
   name: 'CREDITS_URL',
   default: 'https://urltocredits',
   value: '',
+}, {
+  name: 'DOWNLOAD_URL',
+  default: 'https://urltodownload',
+  value: '',
 }, ]
 
 let deployEnvContent = "# Deploy env variables\n\n"

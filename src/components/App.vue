@@ -60,6 +60,7 @@ import ModalLayer from './modal/ModalLayer'
 import Modal from './modal/Modal'
 import MenuModal from './menu/MenuModal'
 import ProposeFullscreenModal from './menu/ProposeFullscreenModal'
+import WarnLocalStorageModal from './menu/WarnLocalStorageModal'
 import lang from '../lang'
 const $text = lang.text.bind(lang)
 
@@ -150,7 +151,10 @@ export default {
 
   mounted() {
     if (this.$route.name !== 'screen-size-warning') {
-      this.proposeFullscreen()
+      let res = this.warnLocalStorage()
+      if (!res) {
+        this.proposeFullscreen()
+      }
     }
   },
 
@@ -243,6 +247,26 @@ export default {
       })
     },
 
+    warnLocalStorage() {
+      if (!IS_ELECTRON && mainStorage.preferences.warnLocalStorage) {
+        this.$refs.modalLayer.addModal({
+          component: WarnLocalStorageModal,
+          key: 'app_warn_local_storage_modal',
+          props: {
+            preferences: mainStorage.preferences
+          },
+          handlers: {
+            close: () => {
+              mainStorage.save()
+              this.proposeFullscreen()
+            },
+          }
+        })
+        return true
+      }
+      return false
+    },
+
     proposeFullscreen() {
       if (!document.fullscreenElement && document.body.requestFullscreen && !IS_ELECTRON && mainStorage.preferences.proposeFullscreen) {
         this.$refs.modalLayer.addModal({
@@ -266,7 +290,9 @@ export default {
             }
           }
         })
+        return true
       }
+      return false
     }
   }
 }

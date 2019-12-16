@@ -1,7 +1,7 @@
 import EventEmitter from 'events'
 
 export default class Preferences {
-  constructor(soundVolume, musicVolume, proposeFullscreen = true) {
+  constructor(soundVolume, musicVolume, proposeFullscreen = true, warnLocalStorage = true) {
     this.events = new EventEmitter()
 
     if (!soundVolume) {
@@ -13,6 +13,7 @@ export default class Preferences {
     this.soundVolume = soundVolume
     this.musicVolume = musicVolume
     this.proposeFullscreen = proposeFullscreen
+    this.warnLocalStorage = warnLocalStorage
   }
 
   get soundVolume() {
@@ -48,11 +49,21 @@ export default class Preferences {
     this.events.emit('change', 'proposeFullscreen')
   }
 
+  get warnLocalStorage() {
+    return this._warnLocalStorage
+  }
+
+  set warnLocalStorage(warnLocalStorage) {
+    this._warnLocalStorage = warnLocalStorage
+    this.events.emit('change', 'warnLocalStorage')
+  }
+
   toJSON() {
     return {
       soundVolume: this.soundVolume,
       musicVolume: this.musicVolume,
-      proposeFullscreen: this.proposeFullscreen
+      proposeFullscreen: this.proposeFullscreen,
+      warnLocalStorage: this.warnLocalStorage,
     }
   }
 
@@ -60,7 +71,8 @@ export default class Preferences {
     return new Preferences(
       VolumePreference.buildFromJSON(jsonObject.soundVolume),
       VolumePreference.buildFromJSON(jsonObject.musicVolume),
-      jsonObject.proposeFullscreen)
+      jsonObject.proposeFullscreen,
+      jsonObject.warnLocalStorage)
   }
 }
 
