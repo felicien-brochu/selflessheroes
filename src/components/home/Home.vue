@@ -217,22 +217,16 @@ export default {
 
       if (e.dataTransfer.types.includes("Files") && e.dataTransfer.items && e.dataTransfer.items.length > 0) {
         let file = e.dataTransfer.items[0].getAsFile()
-        if (file.name.endsWith(".shsv")) {
-          this.loadSavedCareer(file)
-          return
-        }
-      }
-      this.showWrongFormatFileModal()
-    },
-
-    handleSavedGameFileChange(e) {
-      let file = e.target.files[0]
-      if (file.name.endsWith(".shsv")) {
         this.loadSavedCareer(file)
       }
       else {
         this.showWrongFormatFileModal()
       }
+    },
+
+    handleSavedGameFileChange(e) {
+      let file = e.target.files[0]
+      this.loadSavedCareer(file)
     },
 
     saveCareerFile(careerID, e) {
