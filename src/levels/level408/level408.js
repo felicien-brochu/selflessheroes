@@ -1,14 +1,5 @@
 import map from './map408.json'
 
-const winCondition = {
-  beforeStart() {},
-
-  check() {
-    let spikes = this.world.findWorldObjectByID(202)
-    return false
-  }
-}
-
 const tooMuchHeroesCondition = {
   check() {
     return this.world.heroes.length > 10
