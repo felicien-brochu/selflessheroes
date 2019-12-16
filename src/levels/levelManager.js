@@ -69,6 +69,7 @@ import level405 from './level405/level405'
 import level406 from './level406/level406'
 import level407 from './level407/level407'
 import level408 from './level408/level408'
+import level409 from './level409/level409'
 
 const levels = [
   new Level(1, level001),
@@ -137,6 +138,7 @@ const levels = [
   new Level(406, level406),
   new Level(407, level407),
   new Level(408, level408),
+  new Level(409, level409),
 ]
 
 const categories = [{
@@ -378,6 +380,10 @@ const categories = [{
       id: 408,
       unlock: [407],
       boss: true,
+    }, {
+      id: 409,
+      unlock: [408],
+      unlockShown: [408],
     }, ],
   },
 ]
