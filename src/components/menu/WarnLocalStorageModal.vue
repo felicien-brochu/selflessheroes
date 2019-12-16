@@ -8,9 +8,11 @@
   @close="$emit('close')"
   @confirm="$emit('confirm', $event)"
   @cancel="$emit('cancel', $event)">
-  <p><span v-bbcode>{{$text('app_warn_local_storage_modal_1')}}</span>
-    <external-link :href="getDownloadURL()">{{$text('app_warn_local_storage_modal_2')}}</external-link>
-    <span v-bbcode>{{$text('app_warn_local_storage_modal_3')}}</span>
+  <p>{{$text('app_warn_local_storage_modal_1')}}</p>
+  <p>
+    <span>{{$text('app_warn_local_storage_modal_2')}}</span>
+    <external-link :href="getDownloadURL()">{{$text('app_warn_local_storage_modal_3')}}</external-link>
+    <span v-bbcode>{{$text('app_warn_local_storage_modal_4')}}</span>
   </p>
   <p><input type="checkbox"
       v-model="dontWarnLocalStorage"
@@ -86,13 +88,19 @@ export default {
         p {
             margin: 0;
 
+            &:first-child {
+                max-width: 450px;
+                text-align: justify;
+                white-space: pre-line;
+            }
+
             &:last-child {
                 margin-top: 30px;
             }
         }
 
         .external-link {
-            margin: 10px;
+            margin: 0 10px 10px;
         }
 
         .mdi-content-save-move {
