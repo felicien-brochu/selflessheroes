@@ -4,7 +4,6 @@
   :hideButtons="true"
   :frameWidth="frameWidth"
   :frameHeight="frameHeight"
-  :hideTransition="true"
   type="info"
   ref="modal"
   @close="$emit('close')"

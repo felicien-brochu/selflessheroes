@@ -214,6 +214,7 @@ export default {
     }
 
     &.pop-enter-active {
+        position: fixed;
         transition: all 0.20s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
@@ -232,11 +233,12 @@ export default {
     }
 
     &.fade-slide-enter-active {
+        position: fixed;
         transition: all 0.25s ease-out;
     }
 
     &.fade-slide-leave-active {
-        transition: all 0.2s ease-out;
+        transition: all 0.20s ease-out;
     }
 
     &.fade-slide-enter,
