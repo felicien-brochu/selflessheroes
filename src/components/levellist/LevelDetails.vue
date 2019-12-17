@@ -282,9 +282,7 @@ $level-details-color: #3C404A;
         position: absolute;
         width: calc(100vw - 80px);
         max-height: calc(100vh - 60px);
-        @supports (-webkit-overflow-scrolling: touch) {
-            max-height: calc((var(--vh, 1vh) * 100) - 60px);
-        }
+        max-height: calc((var(--vh, 1vh) * 100) - 60px);
         top: 30px;
         left: 50%;
         transform: translateX(-50%);

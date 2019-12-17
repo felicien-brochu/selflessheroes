@@ -306,9 +306,7 @@ export default {
     margin: 0 auto;
     box-sizing: border-box;
     min-height: 100vh;
-    @supports (-webkit-overflow-scrolling: touch) {
-        min-height: calc(var(--vh, 1vh) * 100);
-    }
+    min-height: calc(var(--vh, 1vh) * 100);
     padding: 20px 40px;
     color: #ABB2BF;
     background-color: #282C34;
@@ -318,6 +316,7 @@ export default {
         background-image: url("../images/banner.jpg");
         width: 100%;
         max-height: calc(100vh - 420px);
+        max-height: calc(var(--vh, 1vh) * 100 - 420px);
         height: calc(calc(100vw - 80px) * 0.39);
         background-size: contain;
         background-repeat: no-repeat;

@@ -122,16 +122,14 @@ function storageAvailable(type) {
   }
 }
 
-// 100vh fix for iOS
-if (CSS.supports('-webkit-overflow-scrolling', 'touch')) {
-  function updateVHCssProperty() {
-    let vh = window.innerHeight * 0.01
-    document.documentElement.style.setProperty('--vh', `${vh}px`)
-  }
-
-  window.addEventListener('resize', updateVHCssProperty)
-  window.addEventListener('orientationchange', () => {
-    setTimeout(updateVHCssProperty, 200)
-  })
-  updateVHCssProperty()
+// 100vh fix for mobile devices
+function updateVHCssProperty() {
+  let vh = window.innerHeight * 0.01
+  document.documentElement.style.setProperty('--vh', `${vh}px`)
 }
+
+window.addEventListener('resize', updateVHCssProperty)
+window.addEventListener('orientationchange', () => {
+  setTimeout(updateVHCssProperty, 200)
+})
+updateVHCssProperty()

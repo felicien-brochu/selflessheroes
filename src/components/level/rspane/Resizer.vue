@@ -102,9 +102,7 @@ export default {
 
 .Resizer.columnsres {
     height: 100vh;
-    @supports (-webkit-overflow-scrolling: touch) {
-        height: calc(var(--vh, 1vh) * 100);
-    }
+    height: calc(var(--vh, 1vh) * 100);
     cursor: col-resize;
 }
 

@@ -303,9 +303,7 @@ export default {
     .child-view {
         position: fixed;
         height: 100vh;
-        @supports (-webkit-overflow-scrolling: touch) {
-            height: calc(var(--vh, 1vh) * 100);
-        }
+        height: calc(var(--vh, 1vh) * 100);
         width: 100vw;
     }
 

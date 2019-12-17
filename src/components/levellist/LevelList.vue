@@ -285,9 +285,7 @@ export default {
     margin: 0 auto;
     box-sizing: border-box;
     min-height: 100vh;
-    @supports (-webkit-overflow-scrolling: touch) {
-        min-height: calc(var(--vh, 1vh) * 100);
-    }
+    min-height: calc(var(--vh, 1vh) * 100);
     padding: 0 40px;
     color: #ABB2BF;
     background-color: #282C34;

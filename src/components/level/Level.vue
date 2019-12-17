@@ -660,9 +660,7 @@ export default {
     @include no-select;
     margin: 0 auto;
     height: 100vh;
-    @supports (-webkit-overflow-scrolling: touch) {
-        height: calc(var(--vh, 1vh) * 100);
-    }
+    height: calc(var(--vh, 1vh) * 100);
 
     #rs-pane {
         z-index: 5;
