@@ -8,7 +8,7 @@
   @close="$emit('close')"
   @confirm="$emit('confirm', $event)"
   @cancel="$emit('cancel', $event)">
-  <p>{{$text('app_warn_local_storage_modal_1')}}</p>
+  <p><img src="../images/warn-local-storage.png" />{{$text('app_warn_local_storage_modal_1')}}</p>
   <p>
     <span>{{$text('app_warn_local_storage_modal_2')}}</span>
     <external-link :href="getDownloadURL()">{{$text('app_warn_local_storage_modal_3')}}</external-link>
@@ -92,6 +92,12 @@ export default {
                 max-width: 450px;
                 text-align: justify;
                 white-space: pre-line;
+
+                img {
+                    float: left;
+                    height: 172px;
+                    margin: 0 30px 0 0;
+                }
             }
 
             &:last-child {
