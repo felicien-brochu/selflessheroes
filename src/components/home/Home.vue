@@ -35,7 +35,7 @@
           @click.prevent="saveCareerFile(career.id, $event)"
           @touchstart.prevent="saveCareerFile(career.id, $event)" />
 
-        <button class="remove-button mdi mdi-close-box-outline"
+        <button class="remove-button mdi mdi-close"
           type="button"
           :title="$text('home_remove_career_button')"
           @click.prevent="deleteCareer(career.id, $event)"
