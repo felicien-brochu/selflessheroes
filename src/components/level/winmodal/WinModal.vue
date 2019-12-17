@@ -11,8 +11,7 @@
   @close="$emit('close')"
   @confirm="handleConfirm"
   @cancel="handleCancel"
-  @mousedown.native="handleModalClick"
-  @touchstart.native="handleModalClick">
+  @click.native="handleModalClick">
 
   <div class="test-graph-container">
     <test-graph ref="graph"

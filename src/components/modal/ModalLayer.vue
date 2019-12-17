@@ -7,8 +7,7 @@
     v-show="!!modal">
     <div class="modal-scroll-container"
       ref="scrollContainer"
-      @mousedown.stop="handleOutsideClick"
-      @touchstart.stop="handleOutsideClick">
+      @click.stop="handleOutsideClick">
 
       <component v-if="!!modal"
         ref="modal"
