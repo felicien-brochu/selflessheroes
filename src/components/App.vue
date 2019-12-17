@@ -248,7 +248,7 @@ export default {
     },
 
     warnLocalStorage() {
-      if (!IS_ELECTRON && mainStorage.preferences.warnLocalStorage) {
+      if (!IS_ELECTRON && this.$route.name === 'home' && mainStorage.preferences.warnLocalStorage) {
         this.$refs.modalLayer.addModal({
           component: WarnLocalStorageModal,
           key: 'app_warn_local_storage_modal',
