@@ -70,7 +70,7 @@ export default {
 
         img {
             max-height: 40vh;
-            max-width: 100vw;
+            max-width: 100%;
         }
 
         .warning-text {
