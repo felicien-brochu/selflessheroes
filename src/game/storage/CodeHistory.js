@@ -1,4 +1,4 @@
-const maxDepth = 200
+const maxDepth = 20
 
 export default class CodeHistory {
   constructor(firstRevision = '') {
