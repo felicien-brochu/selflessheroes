@@ -405,7 +405,7 @@ export default {
       this.winModalDisplayed = false
 
       if (e.hasWon) {
-        if (action === 'confirm') {
+        if (action === 'cancel') {
           this.goBack()
         }
         else {

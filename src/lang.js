@@ -213,7 +213,7 @@ const messages = {
     win_modal_testing_explanation: "your solution is tested to make sure it works every time",
     win_modal_prior_code_speed: "your fastest was %%score-number${minStep}%% steps",
     win_modal_prior_code_length: "your smallest was %%score-number${minLength}%% lines",
-    win_modal_ok_button: "ok",
+    win_modal_back_button: "back",
     win_modal_continue_edit_button: "improve",
 
     run_bar_play_button: "Run",
@@ -570,7 +570,7 @@ const messages = {
     win_modal_testing_explanation: "la solution est testée pour s'assurer qu'elle marche à chaque fois",
     win_modal_prior_code_speed: "ton meilleur temps était %%score-number${minStep}%% étapes",
     win_modal_prior_code_length: "ta solution la plus courte faisait %%score-number${minLength}%% lignes",
-    win_modal_ok_button: "ok",
+    win_modal_back_button: "retour",
     win_modal_continue_edit_button: "améliorer",
 
     run_bar_play_button: "Lancer",
