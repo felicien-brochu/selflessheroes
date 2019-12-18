@@ -20,6 +20,7 @@ const level = {
   maxStep: 300,
   speedTarget: 57,
   lengthTarget: 9,
+  deterministic: true,
 
   bossTellsSomething: true,
   bossName: "ogre",

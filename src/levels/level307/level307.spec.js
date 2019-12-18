@@ -2,7 +2,6 @@ import level from './level307'
 
 export default {
   level: level,
-  deterministic: false,
   specs: [{
     type: ["length", "speed"],
     code: `

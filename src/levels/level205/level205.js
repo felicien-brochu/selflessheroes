@@ -65,6 +65,7 @@ const level = {
   maxStep: 20,
   speedTarget: 2,
   lengthTarget: 2,
+  deterministic: true,
 
   compilerConfig: {
     excludePrimary: ['if', 'else', 'endif', 'jump', 'anchor', 'clone'],

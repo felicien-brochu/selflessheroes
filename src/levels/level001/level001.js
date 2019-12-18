@@ -15,6 +15,7 @@ const level = {
   maxStep: 100,
   speedTarget: 3,
   lengthTarget: 3,
+  deterministic: true,
   tutorialConfig: 'basic_tutorial',
 
   compilerConfig: {

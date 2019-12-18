@@ -19,6 +19,7 @@ export default class Level extends WorldLevel {
     maxStep,
     speedTarget,
     lengthTarget,
+    deterministic,
     tutorialConfig,
     compilerConfig,
     ruleset,
@@ -34,6 +35,7 @@ export default class Level extends WorldLevel {
     this.startingEditorType = startingEditorType || 'graph'
     this.speedTarget = speedTarget || 20
     this.lengthTarget = lengthTarget || 10
+    this.deterministic = !!deterministic
     this.tutorialConfig = tutorialConfig || null
     this.compilerConfig = compilerConfig || 'default'
     this.ruleset = ruleset || {

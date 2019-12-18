@@ -7,8 +7,14 @@ self.addEventListener('message', e => {
   const level = levelManager.getLevelByID(e.data.levelID)
   const code = e.data.code
 
-  let tester = new Tester(level, code, sampleSize)
+  let actualSampleSize = level.deterministic ? 1 : sampleSize
+  let tester = new Tester(level, code, actualSampleSize)
   let tests = tester.test()
+
+  if (level.deterministic) {
+    tests.length = sampleSize
+    tests.fill(tests[0])
+  }
 
   if (LEVEL_DEV) {
     tester.printStats()

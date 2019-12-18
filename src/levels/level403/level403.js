@@ -29,6 +29,7 @@ const level = {
   maxStep: 200,
   speedTarget: 17,
   lengthTarget: 4,
+  deterministic: true,
 
   compilerConfig: {
     excludePrimary: [],

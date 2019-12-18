@@ -26,6 +26,7 @@ const level = {
   maxStep: 3000,
   speedTarget: 293,
   lengthTarget: 13,
+  deterministic: true,
 
   compilerConfig: {
     excludePrimary: ['clone'],

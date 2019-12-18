@@ -32,7 +32,7 @@ export default class LevelSpecTester {
     console.log()
     console.log(chalk.bgBlack.whiteBright(`===> ${this.spec.file} (${this.level.name.en}) `))
 
-    const deterministic = !!this.spec.deterministic
+    const deterministic = !!this.spec.level.deterministic
 
     for (let spec of this.spec.specs) {
       let types = typeof spec.type === 'string' ? [spec.type] : spec.type
