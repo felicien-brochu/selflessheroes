@@ -2,9 +2,7 @@ node_modules/
 dist/
 electron-dist/
 tests-build/
-deploy.env
-deploy.dev.env
-deploy.sh
+deploy.*
 .vscode/
 .cache/
 *.log
