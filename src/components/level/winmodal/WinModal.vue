@@ -5,8 +5,9 @@
   :cancelable="hasWon"
   :hideButtons="!testAnimationEnded"
   :hideCloseButton="true"
-  :cancelLabel="$text('win_modal_back_button')"
-  :confirmLabel="$text('win_modal_continue_edit_button')"
+  :cancelLabel="$text('win_modal_continue_edit_button')"
+  :confirmLabel="$text('win_modal_back_button')"
+  invertButtons
   v-bind="$props"
   @close="$emit('close')"
   @confirm="handleConfirm"

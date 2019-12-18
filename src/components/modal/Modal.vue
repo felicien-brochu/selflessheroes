@@ -20,7 +20,10 @@
       <slot>{{text}}</slot>
     </div>
 
-    <div class="button-container"
+    <div :class="{
+				'button-container': true,
+				'buttons-inverted': invertButtons
+			}"
       v-if="!hideButtons">
 
       <button v-if="cancelable"
@@ -68,6 +71,10 @@ export default {
       default: window.innerHeight
     },
     'hideTransition': {
+      type: Boolean,
+      default: false
+    },
+    'invertButtons': {
       type: Boolean,
       default: false
     },
@@ -200,8 +207,13 @@ export default {
     .button-container {
         min-width: 300px;
         display: flex;
+        flex-direction: row;
         justify-content: space-evenly;
         margin-top: 42px;
+
+        &.buttons-inverted {
+            flex-direction: row-reverse;
+        }
 
         button {
             font-weight: 500;
