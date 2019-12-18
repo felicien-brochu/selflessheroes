@@ -147,6 +147,7 @@
 				$text('level_details_back_button')
 		}}</button>
       <button type="button"
+        class="play-button"
         :title="$text('level_details_edit_button_tooltip')"
         @mousedown="editLevelSolution"
         @touchstart="editLevelSolution">{{
@@ -507,6 +508,7 @@ $level-details-color: #3C404A;
                 font-weight: 500;
                 min-width: 100px;
                 font-size: 21px;
+                min-height: 45px;
                 padding: 9px 20px;
                 background-color: lighten($level-details-color, 10%);
                 color: white;
@@ -519,7 +521,9 @@ $level-details-color: #3C404A;
                 }
 
                 i {
-                    vertical-align: middle;
+                    &::before {
+                        vertical-align: middle;
+                    }
                 }
 
                 &:first-child {
@@ -527,6 +531,14 @@ $level-details-color: #3C404A;
                 }
                 &:last-child {
                     padding: 9px 12px 9px 20px;
+                }
+
+                &.play-button {
+                    background: #568AF2;
+
+                    &:hover:not(:active) {
+                        background-color: lighten(#568AF2, 1.5%);
+                    }
                 }
             }
         }
