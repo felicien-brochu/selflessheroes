@@ -551,6 +551,10 @@ export default {
                         color: #e5e5e5;
                         background-color: hsl(220, 18%, 32%);
                     }
+
+                    .mdi::before {
+                        vertical-align: top;
+                    }
                 }
             }
         }
