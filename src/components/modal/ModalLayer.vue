@@ -78,6 +78,9 @@ export default {
     //   }
     // }
     addModal(modalOptions) {
+      if (this.modal) {
+        this.$refs.modal.cancel()
+      }
       this.modal = modalOptions
     },
 
