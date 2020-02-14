@@ -57,7 +57,15 @@ export default class EggS extends Phaser.GameObjects.Container {
     }
 
     if (this.egg.removed && !this.egg.owner) {
-      this.setVisible(false)
+      // Check for drop in cauldron in event log
+      let cauldronDropLogs = world.eventLog.search({
+        type: 'put-item-cauldron',
+        itemID: this.egg.id
+      })
+
+      if (cauldronDropLogs.length === 0) {
+        this.setVisible(false)
+      }
     }
 
     this.handleWriteActions(world)
