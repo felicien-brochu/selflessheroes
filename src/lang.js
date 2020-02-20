@@ -5,6 +5,7 @@ import {
 
 const messages = {
   default: 'en',
+  supportedLanguages: ['en', 'fr'],
 
   'en': {
     no_text: "[no-text]",
@@ -33,10 +34,13 @@ const messages = {
     menu_fullscreen_label: "Fullscreen",
     menu_enable_fullscreen: "Fullscreen",
     menu_disable_fullscreen: "Exit fullscreen",
-    menu_sound_label: "Sound",
     menu_music_label: "Music",
+    menu_sound_label: "Sound",
     mute_button_mute: "Mute",
     mute_button_unmute: "Unmute",
+    menu_language_label: "Language",
+    menu_language_option_en: "English",
+    menu_language_option_fr: "Français",
     menu_credits_label: "credits",
     menu_credits_link: "view online",
 
@@ -411,6 +415,7 @@ const messages = {
     menu_music_label: "Musique",
     mute_button_mute: "Désactiver le son",
     mute_button_unmute: "Activer le son",
+    menu_language_label: "Langue",
     menu_credits_label: "crédits",
     menu_credits_link: "consulter en ligne",
 
@@ -723,6 +728,12 @@ class Idiom {
     let supportedLanguage = this.languages.find(lang => !!this.messages[lang])
     if (supportedLanguage) {
       this.currentLanguage = supportedLanguage
+    }
+  }
+
+  applyLanguagePreference(preferredLanguage) {
+    if (!!preferredLanguage && this.messages.supportedLanguages.some(language => language === preferredLanguage)) {
+      this.currentLanguage = preferredLanguage
     }
   }
 

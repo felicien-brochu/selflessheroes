@@ -23,6 +23,9 @@ Vue.directive('bbcode', BBCodeDirective)
 Vue.use(VueHotkey)
 Vue.use(VueMeta)
 Vue.use(VueRouter)
+
+lang.applyLanguagePreference(storage.preferences.language)
+Vue.prototype.$lang = lang
 Vue.prototype.$text = lang.text.bind(lang)
 
 soundManager.init()

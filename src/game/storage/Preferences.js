@@ -1,7 +1,7 @@
 import EventEmitter from 'events'
 
 export default class Preferences {
-  constructor(soundVolume, musicVolume, proposeFullscreen = true, warnLocalStorage = true) {
+  constructor(soundVolume, musicVolume, language, proposeFullscreen = true, warnLocalStorage = true) {
     this.events = new EventEmitter()
 
     if (!soundVolume) {
@@ -12,6 +12,7 @@ export default class Preferences {
     }
     this.soundVolume = soundVolume
     this.musicVolume = musicVolume
+    this.language = language
     this.proposeFullscreen = proposeFullscreen
     this.warnLocalStorage = warnLocalStorage
   }
@@ -40,6 +41,17 @@ export default class Preferences {
     }
   }
 
+  get language() {
+    return this._language
+  }
+
+  set language(language) {
+    if (language !== this._language) {
+      this._language = language
+      this.events.emit('change', 'language')
+    }
+  }
+
   get proposeFullscreen() {
     return this._proposeFullscreen
   }
@@ -62,6 +74,7 @@ export default class Preferences {
     return {
       soundVolume: this.soundVolume,
       musicVolume: this.musicVolume,
+      language: this.language,
       proposeFullscreen: this.proposeFullscreen,
       warnLocalStorage: this.warnLocalStorage,
     }
@@ -71,6 +84,7 @@ export default class Preferences {
     return new Preferences(
       VolumePreference.buildFromJSON(jsonObject.soundVolume),
       VolumePreference.buildFromJSON(jsonObject.musicVolume),
+      jsonObject.language,
       jsonObject.proposeFullscreen,
       jsonObject.warnLocalStorage)
   }

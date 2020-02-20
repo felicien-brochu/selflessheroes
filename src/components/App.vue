@@ -1,8 +1,9 @@
 <template>
 <div :class="{
-	'app': true,
-	'transitioning': transitioning
-}">
+		'app': true,
+		'transitioning': transitioning
+	}"
+  :key="componentKey">
   <modal-layer ref="modalLayer" />
 
   <div class="app-buttons">
@@ -108,6 +109,7 @@ export default {
 
   data() {
     return {
+      componentKey: 0,
       transitionName: 'slide-left',
       transitioning: false,
       requestFullscreenHasFailed: false,
@@ -240,8 +242,14 @@ export default {
           close: () => {
             mainStorage.save()
           },
-          'preference-change': () => {
+          'preference-change': (changedPref) => {
             mainStorage.save()
+
+            if (changedPref === 'language') {
+              this.$lang.applyLanguagePreference(mainStorage.preferences.language)
+              // Force rerender the entire app
+              this.componentKey++
+            }
           }
         }
       })

@@ -40,6 +40,13 @@
           :volume="preferences.soundVolume" />
       </td>
     </tr>
+    <tr class="language-preference">
+      <td>{{$text('menu_language_label')}}</td>
+      <td>
+        <dropdown :config="languageDropdownConfig"
+          @setSelectedOption="handleLanguageSelect" />
+      </td>
+    </tr>
     <tr class="about-preference">
       <td>v <span class="game-version">{{ gameVersion }}</span></td>
       <td>
@@ -57,6 +64,7 @@
 import Modal from '../modal/Modal'
 import Volume from './Volume'
 import ToggleButton from '../inputs/ToggleButton'
+import Dropdown from '../common/Dropdown'
 import ExternalLink from '../common/ExternalLink'
 
 export default {
@@ -64,6 +72,7 @@ export default {
     Modal,
     ToggleButton,
     Volume,
+    Dropdown,
     ExternalLink,
   },
 
@@ -86,18 +95,18 @@ export default {
 
   data: function() {
     return {
-      fullscreenEnabled: this.isFullscreenEnabled()
+      fullscreenEnabled: this.isFullscreenEnabled(),
+      currentLanguage: this.$lang.currentLanguage,
     }
   },
 
   created() {
     this.onPreferenceChange = this.onPreferenceChange.bind(this)
-    this.preferences.soundVolume.events.on('change', this.onPreferenceChange)
-    this.preferences.musicVolume.events.on('change', this.onPreferenceChange)
+    this.preferences.events.on('change', this.onPreferenceChange)
   },
 
   beforeDestroy() {
-    this.preferences.soundVolume.events.off('change', this.onPreferenceChange)
+    this.preferences.events.off('change', this.onPreferenceChange)
   },
 
   computed: {
@@ -106,6 +115,15 @@ export default {
     },
     fullscreenToggleTitle: function() {
       return this.fullscreenEnabled ? this.$text('menu_disable_fullscreen') : this.$text('menu_enable_fullscreen')
+    },
+    languageDropdownConfig: function() {
+      return {
+        options: this.$lang.messages.supportedLanguages.map(language => ({
+          language: language,
+          value: this.$text(`menu_language_option_${language}`),
+        })),
+        placeholder: this.$text(`menu_language_option_${this.currentLanguage}`)
+      }
     },
     creditsURL: function() {
       return CREDITS_URL + '?fromGame=true&gameVersion=' + GAME_VERSION
@@ -124,8 +142,11 @@ export default {
       this.$refs.modal.cancel()
     },
 
-    onPreferenceChange() {
-      this.$emit('preference-change')
+    onPreferenceChange(changedPref) {
+      if (changedPref === 'language') {
+
+      }
+      this.$emit('preference-change', changedPref)
     },
 
     isFullscreenEnabled() {
@@ -146,6 +167,13 @@ export default {
         }).catch(err => {
           console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`)
         })
+      }
+    },
+
+    handleLanguageSelect(e) {
+      let language = e.language
+      if (this.$lang.messages.supportedLanguages.some(l => language === l)) {
+        this.preferences.language = language
       }
     }
   }
