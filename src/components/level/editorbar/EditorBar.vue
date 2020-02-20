@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import ToggleButton from '../../inputs/ToggleButton'
+import ToggleButton from '../../common/ToggleButton'
 
 export default {
   components: {

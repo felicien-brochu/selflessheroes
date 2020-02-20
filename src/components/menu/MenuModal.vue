@@ -63,7 +63,7 @@
 <script>
 import Modal from '../modal/Modal'
 import Volume from './Volume'
-import ToggleButton from '../inputs/ToggleButton'
+import ToggleButton from '../common/ToggleButton'
 import Dropdown from '../common/Dropdown'
 import ExternalLink from '../common/ExternalLink'
 

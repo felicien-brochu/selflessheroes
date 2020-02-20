@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import TouchRange from '../inputs/TouchRange'
+import TouchRange from '../common/TouchRange'
 import MuteButton from './MuteButton'
 
 export default {
