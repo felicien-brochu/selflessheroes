@@ -158,7 +158,7 @@ export default {
   },
 
   mounted() {
-    this.$music.stopAll(0.2)
+    this.$music.stopPlaylist()
   },
 
   computed: {

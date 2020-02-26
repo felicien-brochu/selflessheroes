@@ -1,6 +1,7 @@
-import levellist_music from './music/levellist_music.mp3'
-import level_music1 from './music/level_music1.mp3'
-// import level_music2 from './music/level_music2.mp3'
+import levellist_music from './music/douce_ambiance.mp3'
+import level_music1 from './music/a_coffee_to_go.mp3'
+import level_music2 from './music/an_evening_out.mp3'
+import level_music3 from './music/better_days.mp3'
 
 import level_lose from './sound/level_lose.mp3'
 import level_tests from './sound/level_tests.mp3'
@@ -8,6 +9,7 @@ import levellist_star from './sound/levellist_star.mp3'
 import levellist_unlock from './sound/levellist_unlock.mp3'
 
 const context = new AudioContext()
+
 const sounds = {
   level_lose: {
     src: level_lose,
@@ -36,20 +38,24 @@ const musics = {
     loopEnd: 48.24,
     loopStart: 3.46,
     start: 1.32,
-    // start: 0.736,
   },
   level1: {
     src: level_music1,
-    volume: 0.4,
-    loop: true,
-    loopEnd: 124.735,
-    loopStart: 0,
+    volume: 0.2,
   },
-  // level2: {
-  //   src: level_music2,
-  //   volume: 0.4,
-  //   loop: true,
-  // },
+  level2: {
+    src: level_music2,
+    volume: 0.15,
+  },
+  level3: {
+    src: level_music3,
+    volume: 0.3,
+  },
+}
+
+const playlists = {
+  levellist: ['levellist'],
+  level: ['level1', 'level2', 'level3']
 }
 
 class AudioManager {
@@ -279,5 +285,58 @@ class MusicPlayer extends AudioManager {
   }
 }
 
+class PlaylistPlayer extends MusicPlayer {
+  constructor(musicConfigs, playlists) {
+    super(musicConfigs)
+
+    this.playlists = playlists
+    this.playingPlaylist = null
+    this.trackIndex = -1
+  }
+
+  playPlaylist(playlistID) {
+    let playlist = this.playlists[playlistID]
+
+    if (playlist) {
+      this.stopPlaylist()
+
+      this.playingPlaylist = playlist
+
+      this.playNextTrack()
+    }
+  }
+
+  stopPlaylist() {
+    this.trackIndex = -1
+    this.playingPlaylist = null
+    this.stopAll()
+  }
+
+  getNextTrackIndex() {
+    let nextTrackIndex = this.trackIndex + 1
+    if (nextTrackIndex >= this.playingPlaylist.length) {
+      nextTrackIndex = 0
+    }
+
+    return nextTrackIndex
+  }
+
+  playNextTrack() {
+    this.trackIndex = this.getNextTrackIndex()
+
+    if (this.playingPlaylist) {
+      this.play(this.playingPlaylist[this.trackIndex])
+    }
+  }
+
+  onSoundEnded(e, key) {
+    super.onSoundEnded(e, key)
+
+    if (this.playingPlaylist && this.playingPlaylist[this.trackIndex] === key) {
+      this.playNextTrack()
+    }
+  }
+}
+
 export const soundManager = new AudioManager(sounds)
-export const musicManager = new MusicPlayer(musics)
+export const musicManager = new PlaylistPlayer(musics, playlists)

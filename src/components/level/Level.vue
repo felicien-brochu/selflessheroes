@@ -201,7 +201,7 @@ export default {
   },
 
   mounted() {
-    this.$music.play('level1')
+    this.$music.playPlaylist('level')
     this.solution.hasOpen = true
     this.solution.save()
     Vue.prototype.$levelModalLayer = this.$refs.modalLayer
@@ -374,7 +374,6 @@ export default {
 
     showWinModal() {
       if (!this.winModalDisplayed) {
-        // this.$music.stopAll(0.1)
         this.winModalDisplayed = true
 
         this.$refs.modalLayer.addModal({
@@ -409,7 +408,6 @@ export default {
           this.goBack()
         }
         else {
-          this.$music.play('level1', {}, 0.1)
           this.stop()
         }
       }
@@ -428,9 +426,7 @@ export default {
         props: {
           text: this.$text('level_test_failed_modal')
         },
-        handlers: {
-          close: () => this.$music.play('level1')
-        }
+        handlers: {}
       })
     },
 

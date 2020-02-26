@@ -118,7 +118,7 @@ export default {
   },
 
   mounted() {
-    this.$music.play('levellist')
+    this.$music.playPlaylist('levellist')
     if (this.scoreAnimationsPlaying <= 0) {
       this.revealNewlyUnlockedLevels()
     }
