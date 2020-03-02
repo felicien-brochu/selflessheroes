@@ -30,7 +30,10 @@
 		}"
     :key="path.key"
     :d="path.path"
-    :marker-end="getArrowMarkerID(path.focused)" />
+    v-svgid.url="{
+			id: `#arrow${path.focused ? '-focused' : ''}`,
+			attr: 'marker-end'
+		}" />
 </svg>
 </template>
 
@@ -39,7 +42,6 @@ import Vue from 'vue'
 import _throttle from 'lodash.throttle'
 import ResizeObserver from 'resize-observer-polyfill'
 import NodeBuilder from './nodes/NodeBuilder'
-import svgIdPolyfill from '../../util/svgIdPolyfill'
 import AnchorStatement from '../../../world/ai/compile/statements/AnchorStatement'
 import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'
 import CloneStatement from '../../../world/ai/compile/statements/CloneStatement'
@@ -178,15 +180,6 @@ export default {
       while (container.firstChild) {
         container.removeChild(container.firstChild)
       }
-    },
-
-    getArrowMarkerID(focused = false) {
-      let id = '#arrow'
-      if (focused) {
-        id += '-focused'
-      }
-
-      return svgIdPolyfill(id, this.$router.currentRoute.fullPath)
     }
   }
 }

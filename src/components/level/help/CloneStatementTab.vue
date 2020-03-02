@@ -12,17 +12,11 @@
       <svg viewBox="0 0 100 126"
         style="height: 126px;"
         class="jump-link-layer">
-        <marker id="arrow"
-          viewBox="0 0 10 10"
-          refX="0"
-          refY="5"
-          markerWidth="3.5"
-          markerHeight="3.5"
-          orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" />
-        </marker>
         <path d="M 37 20 C 106 20, 73 112, 5 112"
-          marker-end="url(#arrow)"
+          v-svgid.url="{
+						id: '#arrow',
+						attr: 'marker-end'
+					}"
           class="link-line"></path>
       </svg>
     </div>

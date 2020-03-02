@@ -44,10 +44,14 @@
       <svg viewbox="0 0 60 60">
         <use x="10"
           y="13"
-          href="#code-cursor"
-          filter="url(#code-cursor-dropshadow)"
-          @mousedown="$event.stopPropagation(); $emit('select-follow-hero', cursor.heroIndex)"
-          @touchstart="$event.stopPropagation(); $emit('select-follow-hero', cursor.heroIndex)" />
+          xlink:href="#code-cursor"
+          v-svgid.url="{
+						id: '#code-cursor-dropshadow',
+						attr: 'filter'
+					}"
+          @mousedown.stop
+          @touchstart.stop
+          @click.stop="$emit('select-follow-hero', cursor.heroIndex)" />
       </svg>
     </li>
 
@@ -175,7 +179,7 @@ export default {
           this.$emit('follow-hero-cursor-line-change', line)
         }
       }
-    },
+    }
   }
 }
 </script>

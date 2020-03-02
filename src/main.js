@@ -16,10 +16,12 @@ import VueMeta from 'vue-meta'
 
 import TextFitDirective from './components/util/TextFitDirective'
 import BBCodeDirective from './components/util/BBCodeDirective'
+import SVGIdDirective from './components/util/SVGIdDirective'
 import ScreenDimension from './components/util/ScreenDimension'
 
 Vue.directive('text-fit', TextFitDirective)
 Vue.directive('bbcode', BBCodeDirective)
+Vue.directive('svgid', SVGIdDirective)
 Vue.use(VueHotkey)
 Vue.use(VueMeta)
 Vue.use(VueRouter)

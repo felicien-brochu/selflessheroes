@@ -52,10 +52,14 @@
       <svg viewbox="0 0 60 60">
         <use x="10"
           y="13"
-          href="#graph-cursor"
-          filter="url(#graph-cursor-dropshadow)"
-          @mousedown="$event.stopPropagation(); $emit('select-follow-hero', cursor.heroIndex)"
-          @touchstart="$event.stopPropagation(); $emit('select-follow-hero', cursor.heroIndex)" />
+          xlink:href="#graph-cursor"
+          v-svgid.url="{
+						id: '#graph-cursor-dropshadow',
+						attr: 'filter'
+					}"
+          @mousedown.stop
+          @touchstart.stop
+          @click.stop="$emit('select-follow-hero', cursor.heroIndex)" />
       </svg>
     </li>
 
@@ -247,7 +251,7 @@ export default {
         }
       }
       return line
-    },
+    }
   }
 }
 </script>

@@ -12,17 +12,11 @@
       <svg viewBox="0 0 100 126"
         style="height: 126px;"
         class="jump-link-layer">
-        <marker id="arrow"
-          viewBox="0 0 10 10"
-          refX="0"
-          refY="5"
-          markerWidth="3.5"
-          markerHeight="3.5"
-          orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" />
-        </marker>
         <path d="M 0 112 C 68 112, 73 20, 5 20"
-          marker-end="url(#arrow)"
+          v-svgid.url="{
+						id: '#arrow',
+						attr: 'marker-end'
+					}"
           class="link-line" />
       </svg>
     </div>
@@ -51,17 +45,11 @@
       <svg viewBox="0 0 100 172"
         class="jump-link-layer"
         style="height: 172px;">
-        <marker id="arrow"
-          viewBox="0 0 10 10"
-          refX="0"
-          refY="5"
-          markerWidth="3.5"
-          markerHeight="3.5"
-          orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" />
-        </marker>
         <path d="M 19 158 C 97 158, 83 20, 5 20"
-          marker-end="url(#arrow)"
+          v-svgid.url="{
+						id: '#arrow',
+						attr: 'marker-end'
+					}"
           class="link-line" />
       </svg>
       <simple-graph-code :code="'a:\nstep(e)\nif e != wall :\n  jump a\nendif\n'"
