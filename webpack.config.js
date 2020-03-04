@@ -144,6 +144,7 @@ const config = {
       CREDITS_URL: JSON.stringify(process.env.CREDITS_URL),
       DOWNLOAD_URL: JSON.stringify(process.env.DOWNLOAD_URL),
       FB_APP_ID: JSON.stringify(process.env.FB_APP_ID),
+      DISCORD_URL: JSON.stringify(process.env.DISCORD_URL),
     }),
     new CopyWebpackPlugin(copiedFiles),
     new MiniCssExtractPlugin(),

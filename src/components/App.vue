@@ -39,6 +39,20 @@
 
   </div>
 
+  <div class="community-buttons">
+
+    <transition name="delay-appear"
+      appear>
+      <a class="discord-button mdi mdi-discord"
+        :href="discordURL"
+        v-if="showCommunityButtons"
+        :title="$text('navigation_discord_button')"
+        @click="goToDiscord"
+        target="_blank"></a>
+    </transition>
+
+  </div>
+
   <transition :name="transitionName"
     mode="out-in"
     @before-enter="handleTransition('onTransitionBeforeEnter', $event)"
@@ -52,6 +66,7 @@
 
     <router-view class="child-view"></router-view>
   </transition>
+
 </div>
 </template>
 
@@ -148,6 +163,14 @@ export default {
 
     showMenuButton: function() {
       return this.$route.name !== 'screen-size-warning'
+    },
+
+    showCommunityButtons: function() {
+      return this.$route.name === 'home' || this.$route.name === 'level-list'
+    },
+
+    discordURL: function() {
+      return DISCORD_URL
     }
   },
 
@@ -255,6 +278,14 @@ export default {
       })
     },
 
+    goToDiscord(e) {
+      if (IS_ELECTRON) {
+        e.preventDefault()
+        const electronWindow = require('electron').remote.getCurrentWindow()
+        electronWindow.openLink(this.discordURL)
+      }
+    },
+
     warnLocalStorage() {
       if (!IS_ELECTRON && this.$route.name === 'home' && mainStorage.preferences.warnLocalStorage) {
         this.$refs.modalLayer.addModal({
@@ -315,7 +346,8 @@ export default {
         width: 100vw;
     }
 
-    &.transitioning .app-buttons {
+    &.transitioning .app-buttons,
+    &.transitioning .community-buttons {
         opacity: 0;
     }
 
@@ -358,6 +390,28 @@ export default {
         }
     }
 
+    .community-buttons {
+        position: absolute;
+        z-index: 5;
+        right: 20px;
+        top: 17px;
+        height: 44px;
+        display: flex;
+
+        transition: opacity 0.5s ease;
+
+        a {
+            pointer-events: all;
+            font-size: 44px;
+            line-height: 40px;
+            color: transparentize(white, 0.2);
+
+            &:hover {
+                color: white;
+            }
+        }
+    }
+
 }
 
 .slide-left-enter-active,
@@ -383,6 +437,15 @@ export default {
 
 .delay-enter-active,
 .delay-leave-active {
+    transition-timing-function: ease;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-delay: 0.2s;
+}
+
+.delay-appear-enter-active,
+.delay-appear-leave-active {
+    opacity: 0;
     transition-timing-function: ease;
     transition-property: all;
     transition-duration: 0.2s;

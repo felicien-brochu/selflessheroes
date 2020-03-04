@@ -25,6 +25,10 @@ let variables = [{
   name: 'DOWNLOAD_URL',
   default: 'https://urltodownload',
   value: '',
+}, {
+  name: 'DISCORD_URL',
+  default: 'https://urltodiscordchannel',
+  value: '',
 }, ]
 
 let deployEnvContent = "# Deploy env variables\n\n"
