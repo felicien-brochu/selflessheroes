@@ -42,13 +42,13 @@ const config = {
     category: "public.app-category.puzzle-games",
   },
   linux: {
-    target: ["deb"],
+    target: ["snap", "deb"],
     synopsis: "Selfless Heroes is a puzzle game that will teach you how to program without you noticing",
-    category: "Game",
-    executableName: "Selfless Heroes",
+    category: "LogicGame;Game",
+    packageCategory: "LogicGame;Game",
   },
-  deb: {
-    packageCategory: "games",
+  snap: {
+    summary: "Selfless Heroes is a puzzle game that will teach you how to program without you noticing",
   },
 }
 
