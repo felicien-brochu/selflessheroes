@@ -22,7 +22,7 @@ export default function(el, binding, node) {
 }
 
 function isBrowserUsingBaseURLForSVGIds() {
-  return /AppleWebKit/.test(navigator.userAgent) || isSafari()
+  return !IS_ELECTRON && (/AppleWebKit/.test(navigator.userAgent) || isSafari())
 }
 
 function svgIdPolyfill(id, baseURL) {
