@@ -1,12 +1,13 @@
-[![selflessheroes](https://snapcraft.io//selflessheroes/badge.svg)](https://snapcraft.io/selflessheroes)
-
 [![Selfless Heroes](https://github.com/felicien-brochu/selflessheroes/raw/master/images/banner-dark.png)](https://selflessheroes.fr)
+[![selflessheroes](https://snapcraft.io//selflessheroes/badge.svg)](https://snapcraft.io/selflessheroes)
 
 
 Selfless Heroes is a puzzle game that will teach you how to program without you noticing.
 Solve puzzles and help your heroes emerge victorious from the dungeon!
 
-Visit [selflessheroes.fr](https://selflessheroes.fr) to play the game.
+**Visit [selflessheroes.fr](https://selflessheroes.fr) to play the game.**
+
+Available for **Windows**, **Linux** and **Mac OS**.
 
 | ![screenshot 1](https://github.com/felicien-brochu/selflessheroes/raw/master/images/screenshot0_en.png) | ![screenshot 2](https://github.com/felicien-brochu/selflessheroes/raw/master/images/screenshot1_en.png) |
 |:-------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------:|
