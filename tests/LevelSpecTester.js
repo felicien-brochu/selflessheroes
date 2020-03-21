@@ -30,7 +30,7 @@ export default class LevelSpecTester {
     this.passCount = 0
 
     console.log()
-    console.log(chalk.bgBlack.whiteBright(`===> ${this.spec.file} (${this.level.name.en}) `))
+    console.log(chalk.bgBlack.whiteBright(`===> ${this.spec.file} (${this.level.messages.en.name}) `))
 
     const deterministic = !!this.spec.level.deterministic
 
