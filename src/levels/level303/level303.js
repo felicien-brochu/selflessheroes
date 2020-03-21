@@ -1,4 +1,6 @@
 import map from './map303.json'
+import enMessages from './level303-messages-en.json'
+import frMessages from './level303-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -20,13 +22,9 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Checkers",
-    fr: "Échiquier",
-  },
-  objective: {
-    en: "Occupy all the dark squares with your %%icon icon-hero$%% heroes.",
-    fr: "Occupe toutes les cases sombres avec tes %%icon icon-hero$%% héros.",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 100,

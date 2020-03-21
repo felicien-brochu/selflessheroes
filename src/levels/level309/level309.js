@@ -1,4 +1,6 @@
 import map from './map309.json'
+import enMessages from './level309-messages-en.json'
+import frMessages from './level309-messages-fr.json'
 
 const winCondition = {
   check() {
@@ -9,19 +11,9 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "The mad gatekeeper",
-    fr: "Le gardien fou",
-  },
-  objective: {
-    en: "Move the heros from the left, all the way to the right.",
-    fr: "Déplace les héros de gauche jusqu'au bord droit.",
-  },
   messages: {
-    boss_tell: {
-      en: "...it's open!\n...ha ha ha ha... it's closed!\nit's open! it's closed!\n...ha ha ha ha...",
-      fr: "...c'est ouvert\u00A0!\n...ha ha ha ha... c'est fermé\u00A0!\nc'est ouvert\u00A0! c'est fermé\u00A0!\n...ha ha ha ha...",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 600,

@@ -1,4 +1,6 @@
 import map from './map115.json'
+import enMessages from './level115-messages-en.json'
+import frMessages from './level115-messages-fr.json'
 
 const winCondition = {
   check() {
@@ -29,19 +31,9 @@ const eggInHoleLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Sorting 2",
-    fr: "Tri 2",
-  },
-  objective: {
-    en: "Sort the %%icon icon-egg$%% eggs from the smallest on the left to the largest on the right.\n\n%%icon mdi mdi-information-outline$%% This time, your %%icon icon-hero$%% heroes will have to cooperate.",
-    fr: "Trie les %%icon icon-egg$%% œufs du plus petit à gauche au plus grand à droite.\n\n%%icon mdi mdi-information-outline$%% Cette fois, les %%icon icon-hero$%% héros devront coopérer.",
-  },
   messages: {
-    loss_reason_egg_in_hole: {
-      en: "You throw the %%icon icon-egg$%% eggs in the holes?\nFunny way to sort them…",
-      fr: "Tu jettes les %%icon icon-egg$%% œufs dans les trous ?\nDrôle de façon de les trier…",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 8000,

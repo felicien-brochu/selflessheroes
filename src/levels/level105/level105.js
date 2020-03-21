@@ -1,4 +1,6 @@
 import map from './map105.json'
+import enMessages from './level105-messages-en.json'
+import frMessages from './level105-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -51,19 +53,9 @@ const wrongNumberEggLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Harvest",
-    fr: "Récolte",
-  },
-  objective: {
-    en: "Put all the %%icon icon-egg$%% eggs which are less than 4\ninto the %%icon icon-cauldron$%% cauldrons",
-    fr: "Mets tous les %%icon icon-egg$%% œufs inférieurs à 4\ndans les %%icon icon-cauldron$%% chaudrons",
-  },
   messages: {
-    loss_reason_one_egg_ge_4: {
-      en: "You put an %%icon icon-egg$%% egg greater or equal to 4\nin a %%icon icon-cauldron$%% cauldron",
-      fr: "Tu as mis un %%icon icon-egg$%% œuf supérieur ou égal à 4\ndans un %%icon icon-cauldron$%% chaudron",
-    }
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 1000,

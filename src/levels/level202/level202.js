@@ -1,4 +1,6 @@
 import map from './map202.json'
+import enMessages from './level202-messages-en.json'
+import frMessages from './level202-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -62,23 +64,9 @@ const displacedTargetEggLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Duplicates",
-    fr: "Duplicata",
-  },
-  objective: {
-    en: "Copy the %%icon icon-egg$%% left eggs to the %%icon icon-egg$%% right eggs.\n\n%%icon mdi mdi-information-outline$%% Your heroes are now able to memorize things. Use %%statement assign-statement$set%% to memorize the value of an egg and thus be able to write it later.\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: you must not touch the %%icon icon-egg$%% eggs that are on the left. At the end, all %%icon icon-egg$%% eggs must be on the floor and in the same place as at the beginning.",
-    fr: "Recopie les %%icon icon-egg$%% œufs de gauche sur les %%icon icon-egg$%% œufs de droite.\n\n%%icon mdi mdi-information-outline$%% Les héros sont maintenant capables de garder des choses en mémoire. Utilise %%statement assign-statement$init%% pour mémoriser la valeur d'un œuf et ainsi pouvoir l'écrire plus tard.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: tu ne dois pas toucher les %%icon icon-egg$%% œufs qui sont à gauche. À la fin, tous les %%icon icon-egg$%% œufs doivent être au sol et à la même place qu'au début.",
-  },
   messages: {
-    loss_reason_wrong_value_on_egg: {
-      en: "You wrote a wrong number on this %%icon icon-egg$%% egg.\nCopy numbers of the left eggs.",
-      fr: "Tu as écrit un mauvais nombre sur cet %%icon icon-egg$%% œuf.\nCopie les nombres des œufs de gauche.",
-    },
-    loss_reason_target_egg_displaced: {
-      en: "You must not touch the %%icon icon-egg$%% eggs on the left",
-      fr: "Tu ne dois pas toucher aux %%icon icon-egg$%% œufs qui sont à gauche",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   startingCode: "$a = set(w)\n",

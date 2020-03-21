@@ -1,4 +1,6 @@
 import map from './map311.json'
+import enMessages from './level311-messages-en.json'
+import frMessages from './level311-messages-fr.json'
 
 function computeNumber(world) {
   let startValues = world.eggs
@@ -54,23 +56,9 @@ const notSameTimeLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Multipliers",
-    fr: "Multiplicateurs",
-  },
-  objective: {
-    en: "Multiply by 2 the 6-digit number formed by the %%icon icon-egg$%% eggs and write the result on the %%icon icon-egg$%% eggs in the same way (1 digit by egg). Then drop all %%icon icon-egg$%% eggs at the same time between the two %%icon icon-bonfire$%% bonfires.",
-    fr: "Multiplie par 2 le nombre à 6 chiffres formé par les %%icon icon-egg$%% œufs et écris le résultat sur les %%icon icon-egg$%% œufs de la même manière (1 chiffre par œuf). Ensuite dépose tous les %%icon icon-egg$%% œufs en même temps entre les deux %%icon icon-bonfire$%% feux.",
-  },
   messages: {
-    loss_reason_wrong_number: {
-      en: "There is an error in the calculation",
-      fr: "Il y a une erreur dans le calcul",
-    },
-    loss_reason_not_same_time: {
-      en: "Heroes must drop all %%icon icon-egg$%% eggs at the same time between the two %%icon icon-bonfire$%% bonfires.",
-      fr: "Les héros doivent déposer tous les %%icon icon-egg$%% œufs en même temps entre les deux %%icon icon-bonfire$%% feux.",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 140,

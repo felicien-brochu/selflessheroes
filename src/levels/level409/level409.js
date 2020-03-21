@@ -1,4 +1,6 @@
 import map from './map409.json'
+import enMessages from './level409-messages-en.json'
+import frMessages from './level409-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -35,13 +37,9 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Memory shift",
-    fr: "Décalage mémoriel",
-  },
-  objective: {
-    en: "Copy the %%icon icon-egg$%% eggs from the 1st column to the 2nd, those from the 2nd to the 3rd etc. Write 0 on all %%icon icon-egg$%% eggs in the 1st column.\n\n%%icon mdi mdi mdi-information-outline$%% At the end the %%icon icon-egg$%% eggs must be in the same place as at the beginning.",
-    fr: "Recopie les %%icon icon-egg$%% œufs de la 1ère colonne sur la 2ème, ceux de la 2ème sur la 3ème etc. Écris 0 sur tous les %%icon icon-egg$%% œufs de la 1ère colonne.\n\n%%icon mdi mdi-information-outline$%% À la fin les %%icon icon-egg$%% œufs doivent etre à la même place qu'au début.",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 600,

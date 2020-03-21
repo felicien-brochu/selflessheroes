@@ -1,4 +1,6 @@
 import map from './map108.json'
+import enMessages from './level108-messages-en.json'
+import frMessages from './level108-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -43,13 +45,9 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Tidying up",
-    fr: "Un peu de rangement",
-  },
-  objective: {
-    en: "These %%icon icon-egg$%% eggs were scattered throughout the room. Pack them all at the bottom of the room to tidy up.\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: the %%icon icon-egg$%% eggs must remain on their column and in the order in which you found them",
-    fr: "Ces %%icon icon-egg$%% œufs ont été éparpillés dans la pièce. Range-les tous en bas.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: les %%icon icon-egg$%% œufs doivent rester sur la même colonne et dans l'ordre où tu les as trouvés",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 1000,

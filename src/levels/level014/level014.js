@@ -1,14 +1,12 @@
 import map from './map014.json'
+import enMessages from './level014-messages-en.json'
+import frMessages from './level014-messages-fr.json'
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Beat around the bush",
-    fr: "Tourne autour du pot",
-  },
-  objective: {
-    en: "Trigger all the %%icon icon-switch-red$%% switches\n\n%%icon mdi mdi-information-outline$%% Once you triggered a red %%icon icon-switch-red$%% switch, it stays triggered. Even if you don't stay on it.",
-    fr: "Active tous les %%icon icon-switch-red$%% boutons\n\n%%icon mdi mdi-information-outline$%% Dès qu'un %%icon icon-switch-red$%% bouton rouge est activé, il le reste. Même si le héro ne reste pas dessus.",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 2000,

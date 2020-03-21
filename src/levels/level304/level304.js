@@ -1,14 +1,12 @@
 import map from './map304.json'
+import enMessages from './level304-messages-en.json'
+import frMessages from './level304-messages-fr.json'
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Starting blocks",
-    fr: "Starting blocks",
-  },
-  objective: {
-    en: "Trigger all the %%icon icon-switch$%% switches.\n\n%%icon mdi mdi-information-outline$%% Now heroes can talk to all heroes at once with %%statement speach-statement$tell%%.",
-    fr: "Active tous les %%icon icon-switch$%% boutons.\n\n%%icon mdi mdi-information-outline$%% Maintenant les héros peuvent parler à tous les héros d'un coup avec %%statement speach-statement$dire%%.",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 100,

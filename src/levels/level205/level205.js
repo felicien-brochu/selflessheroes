@@ -1,4 +1,6 @@
 import map from './map205.json'
+import enMessages from './level205-messages-en.json'
+import frMessages from './level205-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -47,19 +49,9 @@ const displacedNumberedEggLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Something more",
-    fr: "Quelque chose en plus",
-  },
-  objective: {
-    en: "Add 1 to all %%icon icon-egg$%% eggs.\n\n%%icon mdi mdi-information-outline$%% Your heroes are now able to do calculations. Use %%statement assign-statement$calc%% to calculate.",
-    fr: "Ajoute 1 à tous les %%icon icon-egg$%% œufs.\n\n%%icon mdi mdi-information-outline$%% Les héros sont maintenant capables de faire des calculs. Utilise %%statement assign-statement$calc%% pour calculer quelque chose.",
-  },
   messages: {
-    loss_reason_wrong_value_on_egg: {
-      en: "You didn't write the right number",
-      fr: "Tu n'as pas écrit le bon nombre",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 20,

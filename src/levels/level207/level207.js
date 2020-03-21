@@ -1,4 +1,6 @@
 import map from './map207.json'
+import enMessages from './level207-messages-en.json'
+import frMessages from './level207-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -14,13 +16,9 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Pixel art 2",
-    fr: "Pixel art 2",
-  },
-  objective: {
-    en: "Move the %%icon icon-egg$%% eggs right of as many squares as their number to discover the hidden image\n\n%%icon mdi mdi-information-outline$%% You can %%statement action-statement$write%% anything you want on %%icon icon-egg$%% eggs",
-    fr: "Déplace les %%icon icon-egg$%% œufs vers la droite d'autant de cases que leur numéro pour découvrir l'image cachée\n\n%%icon mdi mdi-information-outline$%% Tu peux %%statement action-statement$écrire%% ce que tu veux sur les %%icon icon-egg$%% œufs",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 3000,

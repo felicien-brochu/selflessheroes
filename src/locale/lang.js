@@ -44,29 +44,9 @@ class Idiom {
     return message
   }
 
-  pushMessage(key, message) {
-    if (typeof message === 'string') {
-      this.messages[this.messages.default][key] = message
-    } else {
-      let defaultMessage = ''
-      let foundDefaultLanguage = false
-
-      for (let language in message) {
-        if (message.hasOwnProperty(language)) {
-          defaultMessage = message[language]
-
-          if (this.messages.hasOwnProperty(language)) {
-            this.messages[language][key] = message[language]
-
-            if (language === this.messages.default) {
-              foundDefaultLanguage = true
-            }
-          }
-        }
-      }
-      if (!foundDefaultLanguage) {
-        this.messages[this.messages.default][key] = defaultMessage
-      }
+  pushMessage(key, message, language = this.messages.default) {
+    if (typeof message === 'string' && this.messages.supportedLanguages.some(l => l === language)) {
+      this.messages[language][key] = message
     }
   }
 

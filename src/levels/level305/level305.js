@@ -1,4 +1,6 @@
 import map from './map305.json'
+import enMessages from './level305-messages-en.json'
+import frMessages from './level305-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -36,23 +38,9 @@ const wrongEggInCauldronLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Oui chef!",
-    fr: "Oui chef\u00A0!",
-  },
-  objective: {
-    en: "Put %%icon icon-egg$%% eggs that have the same parity as the top egg in the %%icon icon-cauldron$%% cauldrons.\n\nFor example, if the top egg is even, put all the even eggs into the cauldrons.\n\n%%icon mdi mdi-information-outline$%% If %%type-operator$n%% is an even number, then %%type-operator$n\u00A0%\u00A02\u00A0=\u00A00%%.",
-    fr: "Mets les %%icon icon-egg$%% œufs qui ont la même parité que l'œuf du haut dans les %%icon icon-cauldron$%% chaudrons.\n\nPar exemple, si l'œuf du haut est pair, mets tous les œufs pairs dans les chaudrons.\n\n%%icon mdi mdi-information-outline$%% Si %%type-operator$n%% est un nombre pair, alors %%type-operator$n\u00A0%\u00A02\u00A0=\u00A00%%.",
-  },
   messages: {
-    loss_reason_wrong_egg_in_cauldron_even: {
-      en: "A hero put an odd %%icon icon-egg$%% egg in a %%icon icon-cauldron$%% cauldron while the top egg is even.",
-      fr: "Un héro a mis un %%icon icon-egg$%% œuf impair dans un %%icon icon-cauldron$%% chaudron alors que l'œuf du haut est pair.",
-    },
-    loss_reason_wrong_egg_in_cauldron_odd: {
-      en: "A hero put an even %%icon icon-egg$%% egg in a %%icon icon-cauldron$%% cauldron while the top egg is odd.",
-      fr: "Un héro a mis un %%icon icon-egg$%% œuf pair dans un %%icon icon-cauldron$%% chaudron alors que l'œuf du haut est impair.",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 40,

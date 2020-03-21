@@ -1,4 +1,6 @@
 import map from './map112.json'
+import enMessages from './level112-messages-en.json'
+import frMessages from './level112-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -56,23 +58,9 @@ const tookLabelEggLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Lonely delivery boy",
-    fr: "Livreur solitaire",
-  },
-  objective: {
-    en: "The %%icon icon-cauldron$%% cauldrons are labelled from 0 to 6 by the eggs in front of them. Put the top %%icon icon-egg$%% eggs into the corresponding %%icon icon-cauldron$%% cauldrons.",
-    fr: "Les %%icon icon-cauldron$%% chaudrons sont numérotés de 0 à 6 par les œufs devant eux. Mets les %%icon icon-egg$%% œufs du haut dans les %%icon icon-cauldron$%% chaudrons correspondants.",
-  },
   messages: {
-    loss_reason_took_label_egg: {
-      en: "Don't move the %%icon icon-egg$%% eggs used to label the %%icon icon-cauldron$%% cauldrons, otherwise you will not know into which %%icon icon-cauldron$%% cauldron to put the %%icon icon-egg$%% eggs.",
-      fr: "Ne déplace pas les %%icon icon-egg$%% œufs qui servent à numéroter les %%icon icon-cauldron$%% chaudrons, sinon tu ne sauras plus dans quel %%icon icon-cauldron$%% chaudron il faut mettre les %%icon icon-egg$%% œufs.",
-    },
-    loss_reason_wrong_egg_in_cauldron: {
-      en: "You put an %%icon icon-egg$%% egg in the wrong %%icon icon-cauldron$%% cauldron.\n\nThe %%icon icon-cauldron$%% cauldrons are labelled from 0 to 6 by the eggs in front of them. Put the top %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons of same value.",
-      fr: "Tu as mis un %%icon icon-egg$%% œuf dans le mauvais %%icon icon-cauldron$%% chaudron.\n\nLes %%icon icon-cauldron$%% chaudrons sont numérotés de 0 à 6 par les œufs devant eux. Mets les %%icon icon-egg$%% œufs du haut dans les %%icon icon-cauldron$%% chaudrons qui sont de la même valeur.",
-    }
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 8000,

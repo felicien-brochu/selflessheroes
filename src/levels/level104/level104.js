@@ -1,4 +1,6 @@
 import map from './map104.json'
+import enMessages from './level104-messages-en.json'
+import frMessages from './level104-messages-fr.json'
 
 const winCondition = {
   check() {
@@ -32,19 +34,9 @@ const wrongEggLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Picking",
-    fr: "Cueillette",
-  },
-  objective: {
-    en: "Put one %%icon icon-egg$%% egg which is less than 4\ninto each %%icon icon-cauldron$%% cauldron",
-    fr: "Mets un %%icon icon-egg$%% œuf inférieur à 4\ndans chaque %%icon icon-cauldron$%% chaudron",
-  },
   messages: {
-    loss_reason_one_egg_ge_4: {
-      en: "You put an %%icon icon-egg$%% egg greater or equal to 4\nin a %%icon icon-cauldron$%% cauldron",
-      fr: "Tu as mis un %%icon icon-egg$%% œuf supérieur ou égal à 4\ndans un %%icon icon-cauldron$%% chaudron",
-    }
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 400,

@@ -1,4 +1,6 @@
 import map from './map102.json'
+import enMessages from './level102-messages-en.json'
+import frMessages from './level102-messages-fr.json'
 
 const winCondition = {
   check() {
@@ -32,19 +34,9 @@ const multipleEggsInCauldronLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Dinner's ready!",
-    fr: "À table !",
-  },
-  objective: {
-    en: "These %%icon icon-egg$%% eggs were randomly scattered throughout the room. Put one %%icon icon-egg$%% egg in each %%icon icon-cauldron$%% cauldron to prepare the dinner.",
-    fr: "Ces %%icon icon-egg$%% œufs ont été éparpillés au hasard dans la pièce. Mets-en un dans chaque %%icon icon-cauldron$%% chaudron pour préparer le dîner.",
-  },
   messages: {
-    loss_reason_multiple_eggs_in_cauldron: {
-      en: "You put multiple %%icon icon-egg$%% eggs in one %%icon icon-cauldron$%% cauldron",
-      fr: "Tu as mis plusieurs %%icon icon-egg$%% œufs dans un %%icon icon-cauldron$%% chaudron",
-    }
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 400,

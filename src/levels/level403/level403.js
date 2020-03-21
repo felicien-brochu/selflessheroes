@@ -1,4 +1,6 @@
 import map from './map403.json'
+import enMessages from './level403-messages-en.json'
+import frMessages from './level403-messages-fr.json'
 
 const winCondition = {
   check() {
@@ -17,13 +19,9 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Pyramid",
-    fr: "Pyramide",
-  },
-  objective: {
-    en: "Fill the pyramid with your %%icon icon-hero$%% heroes.\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: in this level, if a cloning action fails, the hero trying to clone himself will die.",
-    fr: "Remplis la pyramide avec tes %%icon icon-hero$%% héros.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: dans ce niveau, si un clonage échoue, le héro qui essayait de se cloner mourra.",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 200,

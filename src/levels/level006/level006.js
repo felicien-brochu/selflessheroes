@@ -1,14 +1,12 @@
 import map from './map006.json'
+import enMessages from './level006-messages-en.json'
+import frMessages from './level006-messages-fr.json'
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Fireball",
-    fr: "Allumer le feu",
-  },
-  objective: {
-    en: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-information-outline$%% Use %%statement action-statement$fireball%% to lit the bonfires",
-    fr: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement action-statement$boule de feu%% pour allumer les feux",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 100,

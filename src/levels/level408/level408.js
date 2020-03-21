@@ -1,4 +1,6 @@
 import map from './map408.json'
+import enMessages from './level408-messages-en.json'
+import frMessages from './level408-messages-fr.json'
 
 const tooMuchHeroesCondition = {
   check() {
@@ -71,23 +73,9 @@ const worldGenerator = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Infestation",
-    fr: "Infestation",
-  },
-  objective: {
-    en: "These little monsters are reproducing at a frightening pace! Stop the infestation before it is too late.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximum number of heroes: 10",
-    fr: "Ces petits monstres se reproduisent à une vitesse affolante\u00A0! Mets fin à l'infestation avant qu'il ne soit trop tard.\n\n%%icon mdi mdi-alert-octagon-outline$%%Nombre maximum de héros\u00A0: 10",
-  },
   messages: {
-    loss_reason_too_mush_heroes: {
-      en: "The maximum number of heroes has been exceeded.\nMaximum number of heroes: 10",
-      fr: "Le nombre maximum de héros a été dépassé.\nNombre de héros maximum\u00A0: 10"
-    },
-    boss_tell: {
-      en: "...gnark...gnark...\n...gnark...gnark...gnark...\n...gnark...gnark...",
-      fr: "...gnark...gnark...\n...gnark...gnark...gnark...\n...gnark...gnark...",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 600,

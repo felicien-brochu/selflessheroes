@@ -1,4 +1,6 @@
 import map from './map107.json'
+import enMessages from './level107-messages-en.json'
+import frMessages from './level107-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -59,19 +61,9 @@ const wrongEggLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Picking 2",
-    fr: "Cueillette 2",
-  },
-  objective: {
-    en: "Put the maximum %%icon icon-egg$%% egg from each column into the corresponding %%icon icon-cauldron$%% cauldron\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: don't put the other %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons",
-    fr: "Mets l'%%icon icon-egg$%% œuf maximum de chaque colonne dans le %%icon icon-cauldron$%% chaudron correspondant\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: ne mets pas d'autres %%icon icon-egg$%% œufs que les maximums dans les %%icon icon-cauldron$%% chaudrons",
-  },
   messages: {
-    loss_reason_one_egg_not_max: {
-      en: "You put an %%icon icon-egg$%% egg which is not the maximum of its column into a %%icon icon-cauldron$%% cauldron",
-      fr: "Tu as mis un %%icon icon-egg$%% œuf qui n'est pas le maximum de sa colonne dans un %%icon icon-cauldron$%% chaudron",
-    }
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 400,

@@ -1,4 +1,6 @@
 import map from './map213.json'
+import enMessages from './level213-messages-en.json'
+import frMessages from './level213-messages-fr.json'
 
 const winCondition = {
   beforeStart() {},
@@ -10,13 +12,9 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Bullseye",
-    fr: "En plein dans le mille",
-  },
-  objective: {
-    en: "Put all the %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldron",
-    fr: "Mets tous les %%icon icon-egg$%% œufs dans le %%icon icon-cauldron$%% chaudron",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 200,

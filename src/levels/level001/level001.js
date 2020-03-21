@@ -1,14 +1,12 @@
 import map from './map001.json'
+import enMessages from './level001-messages-en.json'
+import frMessages from './level001-messages-fr.json'
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "First steps",
-    fr: "Premiers pas",
-  },
-  objective: {
-    en: "Help the %%icon icon-hero$%% heroes to walk on the %%icon icon-switch$%% switches",
-    fr: "Aide les %%icon icon-hero$%% héros à aller sur les %%icon icon-switch$%% boutons",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   startingCode: "step(s)\nstep(s)\n",

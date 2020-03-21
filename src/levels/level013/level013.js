@@ -1,4 +1,6 @@
 import map from './map013.json'
+import enMessages from './level013-messages-en.json'
+import frMessages from './level013-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -55,19 +57,9 @@ const movedOfTheCrossLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Ups and downs",
-    fr: "Des hauts et des bas",
-  },
-  objective: {
-    en: "%%icon icon-hero$%% Heroes must go to the crosses",
-    fr: "Les %%icon icon-hero$%% héros doivent aller sur les croix",
-  },
   messages: {
-    loss_reason_moved_of_the_cross: {
-      en: "Once a %%icon icon-hero$%% hero has arrived on a cross, he must not move from it",
-      fr: "Une fois qu'un %%icon icon-hero$%% héro est arrivé sur une croix, il ne doit plus en bouger",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 100,

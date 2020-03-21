@@ -1,14 +1,12 @@
 import map from './map002.json'
+import enMessages from './level002-messages-en.json'
+import frMessages from './level002-messages-fr.json'
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Step aside",
-    fr: "Pas de côté",
-  },
-  objective: {
-    en: "Trigger all the %%icon icon-switch$%% switches",
-    fr: "Active tous les %%icon icon-switch$%% boutons",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 100,

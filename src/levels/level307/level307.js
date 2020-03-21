@@ -1,4 +1,6 @@
 import map from './map307.json'
+import enMessages from './level307-messages-en.json'
+import frMessages from './level307-messages-fr.json'
 
 const winCondition = {
   check() {
@@ -54,13 +56,9 @@ const worldGenerator = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Password",
-    fr: "Mot de passe",
-  },
-  objective: {
-    en: "Move the hero from the left, all the way to the right.\n\n%%icon mdi mdi-information-outline$%% In order to lower the %%icon icon-spikes$%% spikes, you must enable the right %%icon icon-switch$%% switches.\nThe combination is written on the %%icon icon-egg$%% eggs:\n1 = enable the switch\n0 = disable the switch",
-    fr: "Déplace le héro de gauche jusqu'au bord droit.\n\n%%icon mdi mdi-information-outline$%% Pour baisser les %%icon icon-spikes$%% piques, il faut activer les bons %%icon icon-switch$%% boutons.\nLa combinaison est inscrite sur les %%icon icon-egg$%% œufs\u00A0:\n1 = activer le bouton\n0 = désactiver le bouton",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 120,

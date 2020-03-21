@@ -1,14 +1,12 @@
 import map from './map101.json'
+import enMessages from './level101-messages-en.json'
+import frMessages from './level101-messages-fr.json'
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Delivery",
-    fr: "Livraison",
-  },
-  objective: {
-    en: "Put the %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons",
-    fr: "Mets les %%icon icon-egg$%% œufs dans les %%icon icon-cauldron$%% chaudrons",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 50,

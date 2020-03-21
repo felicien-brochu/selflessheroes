@@ -1,4 +1,6 @@
 import map from './map012.json'
+import enMessages from './level012-messages-en.json'
+import frMessages from './level012-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -86,23 +88,9 @@ const wrongOrderLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "One at a time",
-    fr: "Chacun son tour",
-  },
-  objective: {
-    en: "%%icon icon-hero$%% Heroes must go to the crosses one at a time. First the hero on the left, then the hero on his right, etc.",
-    fr: "Les %%icon icon-hero$%% héros doivent aller sur les croix l'un après l'autre. D'abord le héros tout à gauche, puis le héro à sa droite etc.",
-  },
   messages: {
-    loss_reason_moved_of_the_cross: {
-      en: "Once a %%icon icon-hero$%% hero has arrived on a cross, he must not move from it",
-      fr: "Une fois qu'un %%icon icon-hero$%% héro est arrivé sur une croix, il ne doit plus en bouger",
-    },
-    loss_reason_wrong_order: {
-      en: "%%icon icon-hero$%% Heroes must take turns going to the crosses. The hero on the far left must be the first to go, then the hero on his right, and so on until the hero on the far right.",
-      fr: "Les %%icon icon-hero$%% héros doivent aller sur les croix chacuns leur tour. Le héro tout à gauche doit être le premier à y aller, puis le héro à sa droite, ainsi de suite jusqu'au héro tout à droite.",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 100,

@@ -1,4 +1,6 @@
 import map from './map402.json'
+import enMessages from './level402-messages-en.json'
+import frMessages from './level402-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -30,20 +32,9 @@ const tooMuchHeroesCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Nuclear button",
-    fr: "Bouton nucléaire",
-  },
-  objective: {
-    en: "Trigger all the %%icon icon-switch$%% switches.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximum number of heroes: 10",
-    fr: "Active tous les %%icon icon-switch$%% boutons.\n\n%%icon mdi mdi-alert-octagon-outline$%%Nombre maximum de héros\u00A0: 10",
-  },
-
   messages: {
-    loss_reason_too_mush_heroes: {
-      en: "The maximum number of heroes has been exceeded.\nMaximum number of heroes: 10",
-      fr: "Le nombre maximum de héros a été dépassé.\nNombre de héros maximum\u00A0: 10"
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 200,

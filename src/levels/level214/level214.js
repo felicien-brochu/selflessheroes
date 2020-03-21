@@ -1,4 +1,6 @@
 import map from './map214.json'
+import enMessages from './level214-messages-en.json'
+import frMessages from './level214-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -46,19 +48,9 @@ const wrongEggOrderCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Ticking bomb",
-    fr: "Bombe à retardement",
-  },
-  objective: {
-    en: "Put the %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldron in ascending order. First egg 0 then 1 etc.",
-    fr: "Mets les %%icon icon-egg$%% œufs dans le %%icon icon-cauldron$%% chaudron dans l'ordre croissant. D'abord l'œuf 0 puis le 1 etc.",
-  },
   messages: {
-    loss_reason_wrong_egg_order: {
-      en: "You put some %%icon icon-egg$%% egg into the %%icon icon-cauldron$%% cauldron in the wrong order or at the same time as another. You must put them one by one in ascending order into the cauldron.",
-      fr: "Tu as mis un %%icon icon-egg$%% œuf dans le %%icon icon-cauldron$%% chaudron dans le mauvais ordre ou en même temps qu'un autre. Tu dois les mettre un par un en ordre croissant dans le chaudron.",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 200,

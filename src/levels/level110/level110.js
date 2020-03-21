@@ -1,4 +1,6 @@
 import map from './map110.json'
+import enMessages from './level110-messages-en.json'
+import frMessages from './level110-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -28,19 +30,9 @@ const wrongEggLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Human chain 3",
-    fr: "Chaîne humaine 3",
-  },
-  objective: {
-    en: "Put the maximum %%icon icon-egg$%% egg into the %%icon icon-cauldron$%% cauldron",
-    fr: "Mets l'%%icon icon-egg$%% œuf maximum dans le %%icon icon-cauldron$%% chaudron",
-  },
   messages: {
-    loss_reason_one_egg_not_max: {
-      en: "You put an %%icon icon-egg$%% egg which is not the maximum into the %%icon icon-cauldron$%% cauldron",
-      fr: "Tu as mis un %%icon icon-egg$%% œuf qui n'est pas le maximum dans le %%icon icon-cauldron$%% chaudron",
-    }
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 200,

@@ -1,4 +1,6 @@
 import map from './map211.json'
+import enMessages from './level211-messages-en.json'
+import frMessages from './level211-messages-fr.json'
 
 const worldGenerator = {
   generate(world) {
@@ -23,19 +25,9 @@ const worldGenerator = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Kronos",
-    fr: "Kronos",
-  },
-  objective: {
-    en: "Looks like he's starving. You better give him what he wants before he gets angry...",
-    fr: "On dirait qu'il est affamé. Tu ferais bien de lui donner ce qu'il veut avant qu'il ne s'énerve...",
-  },
   messages: {
-    boss_tell: {
-      en: "...give me...\n...give me food...\nalways more\u00A0! ALWAYS MORE\u00A0!",
-      fr: "...donne moi...\n...donne moi à manger...\ntoujours plus\u00A0! TOUJOURS PLUS\u00A0!",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 600,

@@ -1,14 +1,12 @@
 import map from './map004.json'
+import enMessages from './level004-messages-en.json'
+import frMessages from './level004-messages-fr.json'
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Seperate ways",
-    fr: "Chacun son chemin",
-  },
-  objective: {
-    en: "Trigger all the %%icon icon-switch$%% switches",
-    fr: "Active tous les %%icon icon-switch$%% boutons",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   startingCode: "if e == hero:\n\tstep(w)\nendif\n",

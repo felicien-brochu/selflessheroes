@@ -1,20 +1,13 @@
 import map from './map007.json'
+import enMessages from './level007-messages-en.json'
+import frMessages from './level007-messages-fr.json'
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Sharp turn",
-    fr: "Virage serré",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
-  objective: {
-    en: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the heroes must survive",
-    fr: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: aucun héro ne doit mourir",
-  },
-  startingCode: "if w != wall :\n\tstep(w)\nelse\n\tstep(e)\nendif\n",
-  maxStep: 100,
-  speedTarget: 4,
-  lengthTarget: 5,
-  deterministic: true,
 
   compilerConfig: {
     excludePrimary: ['assign', 'jump', 'anchor', 'clone'],

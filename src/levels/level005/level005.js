@@ -1,14 +1,12 @@
 import map from './map005.json'
+import enMessages from './level005-messages-en.json'
+import frMessages from './level005-messages-fr.json'
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Vertigo",
-    fr: "Vertige",
-  },
-  objective: {
-    en: "Trigger all the %%icon icon-switch$%% switches\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: don't let your %%icon icon-hero$%% heroes fall into the hole.",
-    fr: "Active tous les %%icon icon-switch$%% boutons\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: ne fais pas tomber les %%icon icon-hero$%% héros dans le trou.",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 100,

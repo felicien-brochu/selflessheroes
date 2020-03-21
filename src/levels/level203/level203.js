@@ -1,4 +1,6 @@
 import map from './map203.json'
+import enMessages from './level203-messages-en.json'
+import frMessages from './level203-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -65,23 +67,9 @@ const displacedTargetEggLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Mass production",
-    fr: "Production en série",
-  },
-  objective: {
-    en: "Copy the left column on all the other columns\n\n%%icon mdi mdi-information-outline$%% If you can't find the solution, take inspiration from the level %%level-title$\"One at a time\"%%",
-    fr: "Recopie la colonne de gauche sur toutes les autres colonnes\n\n%%icon mdi mdi-information-outline$%% Si tu ne trouves pas la solution, essaie de t'inspirer du niveau %%level-title$\"Chacun son tour\"%%",
-  },
   messages: {
-    loss_reason_wrong_value_on_egg: {
-      en: "You wrote a wrong number on this %%icon icon-egg$%% egg.\nCopy numbers of the left column.",
-      fr: "Tu as écrit un mauvais nombre sur cet %%icon icon-egg$%% œuf.\nCopie les nombres des œufs de la colonne de gauche.",
-    },
-    loss_reason_target_egg_displaced: {
-      en: "You must not touch the %%icon icon-egg$%% eggs on the left",
-      fr: "Tu ne dois pas toucher aux %%icon icon-egg$%% œufs qui sont à gauche",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 400,

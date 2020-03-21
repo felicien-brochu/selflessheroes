@@ -1,4 +1,6 @@
 import map from './map212.json'
+import enMessages from './level212-messages-en.json'
+import frMessages from './level212-messages-fr.json'
 
 const winCondition = {
   beforeStart() {},
@@ -10,13 +12,9 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Maze",
-    fr: "Labyrinthe",
-  },
-  objective: {
-    en: "Put all the %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldron.\n\n%%icon mdi mdi-information-outline$%% It's always a little tricky to find your way through a maze... Fortunately now you can use %%statement assign-statement$nearest%% to find your way.",
-    fr: "Mets tous les %%icon icon-egg$%% œufs dans le %%icon icon-cauldron$%% chaudron.\n\n%%icon mdi mdi-information-outline$%% C'est toujours un peu délicat de s'orienter dans un labyrinthe... Heureusement maintenant tu peux utiliser %%statement assign-statement$plus proche%% pour trouver ton chemin.",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 100,

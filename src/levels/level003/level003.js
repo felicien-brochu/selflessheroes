@@ -1,14 +1,12 @@
 import map from './map003.json'
+import enMessages from './level003-messages-en.json'
+import frMessages from './level003-messages-fr.json'
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Watch the step",
-    fr: "Attention à la marche",
-  },
-  objective: {
-    en: "Trigger all the %%icon icon-switch$%% switches.\n\n%%icon mdi mdi-information-outline$%% Check the help about %%statement branching-statement$if%% to better understand how it works.",
-    fr: "Active tous les %%icon icon-switch$%% boutons.\n\n%%icon mdi mdi-information-outline$%% Consulte l'aide à propos de %%statement branching-statement$si%% pour mieux comprendre comment ça marche.",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   startingCode: "if e == switch:\n\tstep(e)\nendif\n",

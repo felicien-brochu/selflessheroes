@@ -1,4 +1,6 @@
 import map from './map113.json'
+import enMessages from './level113-messages-en.json'
+import frMessages from './level113-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -73,23 +75,9 @@ const worldGenerator = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Pied Piper",
-    fr: "Pied Piper",
-  },
-  objective: {
-    en: "Throw all the %%icon icon-hero$%% heroes into the hole except the one with the %%icon icon-egg$%% egg of maximum value.\n\n%%icon mdi mdi-information-outline$%% If several heroes have an %%icon icon-egg$%% egg of maximum value, only one must survive.",
-    fr: "Fais tomber tous les %%icon icon-hero$%% héros dans le trou excepté celui qui a l'%%icon icon-egg$%%œuf de valeur maximale.\n\n%%icon mdi mdi-information-outline$%% Si plusieurs héros ont un %%icon icon-egg$%% œuf de valeur maximale, un seul doit survivre.",
-  },
   messages: {
-    boss_tell: {
-      en: "♫ ♩ ...come to me... ♪ ♫\n♪ ♫ ...the void, do not fear... ♪ ♩\n♪ ♩ ...only the chosen one... ♫ ♩\n♫ ♩ ...from the darkness will appear... ♪ ♫",
-      fr: "♫ ♩ ...venez à moi... ♪ ♫\n♪ ♫ ...le vide, ne craignez pas... ♪ ♩\n♪ ♩ ...seul l'élu... ♫ ♩\n♫ ♩ ...de l'obscurité sortira... ♪ ♫",
-    },
-    loss_reason_all_max_eggs_in_hole: {
-      en: "All the %%icon icon-hero$%% heroes who had the %%icon icon-egg$%% egg of maximum value threw themselves into the hole",
-      fr: "Tous les %%icon icon-hero$%% héros qui avaient l'%%icon icon-egg$%%œuf de valeur maximale se sont jetés dans le trou",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 500,

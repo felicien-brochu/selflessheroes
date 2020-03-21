@@ -1,4 +1,6 @@
 import map from './map109.json'
+import enMessages from './level109-messages-en.json'
+import frMessages from './level109-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -13,13 +15,9 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Everyone in place",
-    fr: "Chacun sa place",
-  },
-  objective: {
-    en: "Sort the %%icon icon-hero$%% heroes from smallest on the left to largest on the right\n\n%%icon mdi mdi-information-outline$%% Heroes can switch places when they go in opposite directions at the same time",
-    fr: "Trie les %%icon icon-hero$%% héros du plus petit à gauche au plus grand à droite\n\n%%icon mdi mdi-information-outline$%% Les héros peuvent échanger de place quand ils vont dans des directions opposées au même moment",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 400,

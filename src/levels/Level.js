@@ -9,8 +9,6 @@ export default class Level extends WorldLevel {
 
   constructor(id, {
     mapConfig,
-    name,
-    objective,
     messages,
     bossTellsSomething,
     bossName,
@@ -26,8 +24,6 @@ export default class Level extends WorldLevel {
     worldGenerator,
   }) {
     super(id, mapConfig, maxStep)
-    this.name = name
-    this.objective = objective
     this.messages = messages || null
     this.bossTellsSomething = !!bossTellsSomething
     this.bossName = bossName || null
@@ -47,21 +43,19 @@ export default class Level extends WorldLevel {
 
   installMessages(lang) {
     let name = `level${this.id}`
-    if (this.name) {
-      name = this.name
-    }
     lang.pushMessage(this.getNameMessageKey(), name)
 
     let objective = `objective of level${this.id}`
-    if (this.objective) {
-      objective = this.objective
-    }
     lang.pushMessage(this.getObjectiveMessageKey(), objective)
 
     if (this.messages) {
-      for (let message in this.messages) {
-        if (this.messages.hasOwnProperty(message)) {
-          lang.pushMessage(this.prefixMessageKey(message), this.messages[message])
+      for (let languageKey in this.messages) {
+        if (this.messages.hasOwnProperty(languageKey)) {
+          for (let messageKey in this.messages[languageKey]) {
+            if (this.messages[languageKey].hasOwnProperty(messageKey)) {
+              lang.pushMessage(this.prefixMessageKey(messageKey), this.messages[languageKey][messageKey], languageKey)
+            }
+          }
         }
       }
     }

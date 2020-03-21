@@ -1,4 +1,6 @@
 import map from './map106.json'
+import enMessages from './level106-messages-en.json'
+import frMessages from './level106-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -30,19 +32,9 @@ const notMaximumEggLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Human chain 2",
-    fr: "Chaîne humaine 2",
-  },
-  objective: {
-    en: "Put the %%icon icon-egg$%% egg of maximum value\ninto the %%icon icon-cauldron$%% cauldron\n\n%%icon mdi mdi-information-outline$%% In case of a tie, choose one of the two",
-    fr: "Mets l'%%icon icon-egg$%% œuf de valeur maximum\ndans le %%icon icon-cauldron$%% chaudron\n\n%%icon mdi mdi-information-outline$%% En cas d'égalité, choisis l'un des deux",
-  },
   messages: {
-    loss_reason_not_maximum_egg_in_cauldron: {
-      en: "You put an %%icon icon-egg$%% egg which is not the maximum into the %%icon icon-cauldron$%% cauldron",
-      fr: "Tu as mis un %%icon icon-egg$%% œuf qui n'est pas le maximum dans le %%icon icon-cauldron$%% chaudron",
-    }
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 150,

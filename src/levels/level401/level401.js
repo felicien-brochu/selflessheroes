@@ -1,4 +1,6 @@
 import map from './map401.json'
+import enMessages from './level401-messages-en.json'
+import frMessages from './level401-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -42,20 +44,9 @@ const wrongFloorCellCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Space invaders",
-    fr: "Space invaders",
-  },
-  objective: {
-    en: "Occupy all the dark squares with your %%icon icon-hero$%% heroes.\n\n%%icon mdi mdi-information-outline$%% Now your heroes are able to %%statement branching-statement$clone%% themselves. Check the help about %%statement branching-statement$clone%% to better understand how it works.",
-    fr: "Occupe toutes les cases sombres avec tes %%icon icon-hero$%% héros.\n\n%%icon mdi mdi-information-outline$%% Maintenant les héros savent se cloner. Consulte l'aide à propos de %%statement branching-statement$clone%% pour mieux comprendre comment ça marche.",
-  },
-
   messages: {
-    loss_reason_wrong_floor_cell: {
-      en: "One of your heroes is on a light square.",
-      fr: "Un des heros est sur une case claire."
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 100,

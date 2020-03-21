@@ -1,4 +1,6 @@
 import map from './map209.json'
+import enMessages from './level209-messages-en.json'
+import frMessages from './level209-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -49,19 +51,9 @@ const wrongValueOnEggLossCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Equality for all",
-    fr: "Pas de jaloux",
-  },
-  objective: {
-    en: "For each column, calculate its average value and write it on all its %%icon icon-egg$%% eggs",
-    fr: "Pour chaque colonne, calcule sa moyenne et écris-la sur tous ses %%icon icon-egg$%% œufs",
-  },
   messages: {
-    loss_reason_wrong_value_on_egg: {
-      en: "You wrote something else than the average value of its column on an %%icon icon-egg$%% egg",
-      fr: "Tu as écrit quelque chose d'autre que la moyenne de sa colonne sur un %%icon icon-egg$%% œuf",
-    },
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 500,

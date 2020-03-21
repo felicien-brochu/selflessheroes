@@ -1,14 +1,12 @@
 import map from './map008.json'
+import enMessages from './level008-messages-en.json'
+import frMessages from './level008-messages-fr.json'
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Candlelight vigil",
-    fr: "Veillée aux flambeaux",
-  },
-  objective: {
-    en: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-information-outline$%% Use %%statement branching-statement$jump%% to repeat actions",
-    fr: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement branching-statement$saut%% pour répéter des actions en boucle",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   startingCode: "a:\nstep(e)\njump a\n",

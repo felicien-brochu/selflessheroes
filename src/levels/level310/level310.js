@@ -1,4 +1,6 @@
 import map from './map310.json'
+import enMessages from './level310-messages-en.json'
+import frMessages from './level310-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -18,13 +20,9 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Telegram",
-    fr: "Télégramme",
-  },
-  objective: {
-    en: "Copy the bottom %%icon icon-egg$%% eggs on the top %%icon icon-egg$%% eggs.",
-    fr: "Recopie les %%icon icon-egg$%% œufs du bas sur les %%icon icon-egg$%% œufs du haut.",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 600,

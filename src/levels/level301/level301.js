@@ -1,14 +1,12 @@
 import map from './map301.json'
+import enMessages from './level301-messages-en.json'
+import frMessages from './level301-messages-fr.json'
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Relay race",
-    fr: "Course de relais",
-  },
-  objective: {
-    en: "Trigger all the %%icon icon-switch$%% switches.\n\n%%icon mdi mdi-information-outline$%% Now heroes can talk to each other. Check the help about %%statement speach-statement$tell%% and %%statement speach-statement$listen%% to better understand how it works.",
-    fr: "Active tous les %%icon icon-switch$%% boutons.\n\n%%icon mdi mdi-information-outline$%% Maintenant les héros peuvent se parler. Consulte l'aide à propos de %%statement speach-statement$dire%% et %%statement speach-statement$écouter%% pour mieux comprendre comment ça marche.",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 200,

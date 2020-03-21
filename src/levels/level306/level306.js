@@ -1,4 +1,6 @@
 import map from './map306.json'
+import enMessages from './level306-messages-en.json'
+import frMessages from './level306-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -16,13 +18,9 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Inventory",
-    fr: "Inventaire",
-  },
-  objective: {
-    en: "Count the different types of %%icon icon-egg$%% eggs.\n\nWrite the number of %%icon icon-egg$%% eggs that are worth 0 on the left egg and the number of %%icon icon-egg$%% eggs that are worth 1 on the right egg.",
-    fr: "Compte les différents types d'%%icon icon-egg$%% œufs.\n\nÉcris le nombre d'%%icon icon-egg$%% œufs qui valent 0 sur l'œuf de gauche et le nombre d'%%icon icon-egg$%% œufs qui valent 1 sur l'œuf de droite.",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 600,

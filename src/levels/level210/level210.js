@@ -1,4 +1,6 @@
 import map from './map210.json'
+import enMessages from './level210-messages-en.json'
+import frMessages from './level210-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -24,13 +26,9 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Equality for all 2",
-    fr: "Pas de jaloux 2",
-  },
-  objective: {
-    en: "Write the average value of all %%icon icon-egg$%% eggs on each %%icon icon-egg$%% egg",
-    fr: "Écris la moyenne de tous les %%icon icon-egg$%% œufs sur chaque %%icon icon-egg$%% œuf",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 800,

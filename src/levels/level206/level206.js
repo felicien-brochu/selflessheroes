@@ -1,4 +1,6 @@
 import map from './map206.json'
+import enMessages from './level206-messages-en.json'
+import frMessages from './level206-messages-fr.json'
 
 const winCondition = {
   beforeStart() {
@@ -15,13 +17,9 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Pixel art",
-    fr: "Pixel art",
-  },
-  objective: {
-    en: "Move the %%icon icon-egg$%% eggs down of as many squares as their number to discover the hidden image.\nThen bring %%icon icon-hero$%% heroes all the way down.\n\n%%icon mdi mdi-information-outline$%% Use %%statement assign-statement$calc%% and %%icon icon-variable$%% %%statement assign-statement$ a%% variable to count your steps.",
-    fr: "Déplace les %%icon icon-egg$%% œufs vers le bas d'autant de cases que leur numéro pour découvrir l'image cachée.\nEnsuite fais descendre les %%icon icon-hero$%% héros tout en bas.\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement assign-statement$calc%% et la variable %%icon icon-variable$%% %%statement assign-statement$ a%% pour compter tes pas.",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 300,

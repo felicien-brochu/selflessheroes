@@ -1,14 +1,12 @@
 import map from './map010.json'
+import enMessages from './level010-messages-en.json'
+import frMessages from './level010-messages-fr.json'
 
 const level = {
   mapConfig: map,
-  name: {
-    en: "Winding path 2",
-    fr: "Chemin sinueux 2",
-  },
-  objective: {
-    en: "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the heroes must survive\n\n\n%%icon mdi mdi-information-outline$%% copy/paste the code from the previous level to go faster",
-    fr: "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: aucun héro ne doit mourir\n\n\n%%icon mdi mdi-information-outline$%% Pour aller plus vite, copie/colle le code du niveau précédent",
+  messages: {
+    en: enMessages,
+    fr: frMessages
   },
 
   maxStep: 200,
