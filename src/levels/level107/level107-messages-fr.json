@@ -1,0 +1,5 @@
+{
+  "name": "Cueillette 2",
+  "objective": "Mets l'%%icon icon-egg$%% œuf maximum de chaque colonne dans le %%icon icon-cauldron$%% chaudron correspondant\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: ne mets pas d'autres %%icon icon-egg$%% œufs que les maximums dans les %%icon icon-cauldron$%% chaudrons",
+  "loss_reason_one_egg_not_max": "Tu as mis un %%icon icon-egg$%% œuf qui n'est pas le maximum de sa colonne dans un %%icon icon-cauldron$%% chaudron"
+}

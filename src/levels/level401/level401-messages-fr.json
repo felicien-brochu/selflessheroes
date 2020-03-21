@@ -1,0 +1,5 @@
+{
+  "name": "Space invaders",
+  "objective": "Occupe toutes les cases sombres avec tes %%icon icon-hero$%% héros.\n\n%%icon mdi mdi-information-outline$%% Maintenant les héros savent se cloner. Consulte l'aide à propos de %%statement branching-statement$clone%% pour mieux comprendre comment ça marche.",
+  "loss_reason_wrong_floor_cell": "Un des heros est sur une case claire."
+}

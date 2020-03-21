@@ -1,0 +1,6 @@
+{
+  "name": "Loterie\u00A02",
+  "objective": "Le nombre sur l'%%icon icon-egg$%% œuf à droite du %%icon icon-cauldron$%% chaudron indique le numéro de la colonne de l'œuf à mettre dans le %%icon icon-cauldron$%% chaudron.\nLe nombre sur l'%%icon icon-egg$%% œuf en-dessous du %%icon icon-cauldron$%% chaudron indique le numéro de la ligne.\n\n%%icon mdi mdi-alert-octagon-outline$%%Il ne faut pas prendre les autres %%icon icon-egg$%% œufs.\n\n%%icon mdi mdi-alert-octagon-outline$%%Nombre maximum de héros\u00A0: 50",
+  "loss_reason_took_wrong_egg": "Un des héros a pris le mauvais œuf",
+  "loss_reason_too_mush_heroes": "Le nombre maximum de héros a été dépassé.\nNombre de héros maximum\u00A0: 50"
+}

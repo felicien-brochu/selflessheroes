@@ -1,0 +1,4 @@
+{
+  "name": "Chacun sa place",
+  "objective": "Trie les %%icon icon-hero$%% héros du plus petit à gauche au plus grand à droite\n\n%%icon mdi mdi-information-outline$%% Les héros peuvent échanger de place quand ils vont dans des directions opposées au même moment"
+}

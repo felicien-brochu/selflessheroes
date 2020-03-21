@@ -1,0 +1,5 @@
+{
+  "name": "Tri 2",
+  "objective": "Trie les %%icon icon-egg$%% œufs du plus petit à gauche au plus grand à droite.\n\n%%icon mdi mdi-information-outline$%% Cette fois, les %%icon icon-hero$%% héros devront coopérer.",
+  "loss_reason_egg_in_hole": "Tu jettes les %%icon icon-egg$%% œufs dans les trous ?\nDrôle de façon de les trier…"
+}

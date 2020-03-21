@@ -1,0 +1,4 @@
+{
+  "name": "Décalage mémoriel",
+  "objective": "Recopie les %%icon icon-egg$%% œufs de la 1ère colonne sur la 2ème, ceux de la 2ème sur la 3ème etc. Écris 0 sur tous les %%icon icon-egg$%% œufs de la 1ère colonne.\n\n%%icon mdi mdi-information-outline$%% À la fin les %%icon icon-egg$%% œufs doivent etre à la même place qu'au début."
+}

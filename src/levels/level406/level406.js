@@ -48,7 +48,6 @@ const level = {
     en: "Write the sum of all %%icon icon-egg$%% eggs on the top egg. At the end, the top %%icon icon-egg$%% egg must be in the same place as at the beginning.\n\n%%icon mdi mdi mdi-alert-octagon-outline$%% Do not write anything other than the sum of the eggs on the top %%icon icon-egg$%% egg. You can write whatever you want on the other %%icon icon-egg$%% eggs.",
     fr: "Écris la somme de tous les %%icon icon-egg$%% œufs sur l'œuf du haut. À la fin, l'%%icon icon-egg$%% œuf du haut doit être à la même place qu'au début.\n\n%%icon mdi mdi-alert-octagon-outline$%% Tu ne dois pas écrire autre chose que la somme des œufs sur l'%%icon icon-egg$%% œuf du haut. Tu peux écrire ce que tu veux sur les autres %%icon icon-egg$%% œufs.",
   },
-
   messages: {
     loss_reason_wrong_sum_on_egg: {
       en: "A hero wrote something else than the sum of the eggs on the top egg",

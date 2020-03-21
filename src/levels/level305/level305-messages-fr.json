@@ -1,0 +1,6 @@
+{
+  "name": "Oui chef\u00A0!",
+  "objective": "Mets les %%icon icon-egg$%% œufs qui ont la même parité que l'œuf du haut dans les %%icon icon-cauldron$%% chaudrons.\n\nPar exemple, si l'œuf du haut est pair, mets tous les œufs pairs dans les chaudrons.\n\n%%icon mdi mdi-information-outline$%% Si %%type-operator$n%% est un nombre pair, alors %%type-operator$n\u00A0%\u00A02\u00A0=\u00A00%%.",
+  "loss_reason_wrong_egg_in_cauldron_even": "Un héro a mis un %%icon icon-egg$%% œuf impair dans un %%icon icon-cauldron$%% chaudron alors que l'œuf du haut est pair.",
+  "loss_reason_wrong_egg_in_cauldron_odd": "Un héro a mis un %%icon icon-egg$%% œuf pair dans un %%icon icon-cauldron$%% chaudron alors que l'œuf du haut est impair."
+}

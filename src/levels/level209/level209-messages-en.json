@@ -1,0 +1,5 @@
+{
+  "name": "Equality for all",
+  "objective": "For each column, calculate its average value and write it on all its %%icon icon-egg$%% eggs",
+  "loss_reason_wrong_value_on_egg": "You wrote something else than the average value of its column on an %%icon icon-egg$%% egg"
+}

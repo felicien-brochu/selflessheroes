@@ -1,0 +1,4 @@
+{
+  "name": "Veillée aux flambeaux",
+  "objective": "Allume tous les %%icon icon-bonfire$%% feux\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement branching-statement$saut%% pour répéter des actions en boucle"
+}

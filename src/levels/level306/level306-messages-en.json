@@ -1,0 +1,4 @@
+{
+  "name": "Inventory",
+  "objective": "Count the different types of %%icon icon-egg$%% eggs.\n\nWrite the number of %%icon icon-egg$%% eggs that are worth 0 on the left egg and the number of %%icon icon-egg$%% eggs that are worth 1 on the right egg."
+}

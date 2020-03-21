@@ -1,0 +1,4 @@
+{
+  "name": "Inventaire",
+  "objective": "Compte les différents types d'%%icon icon-egg$%% œufs.\n\nÉcris le nombre d'%%icon icon-egg$%% œufs qui valent 0 sur l'œuf de gauche et le nombre d'%%icon icon-egg$%% œufs qui valent 1 sur l'œuf de droite."
+}

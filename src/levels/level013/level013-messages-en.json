@@ -1,0 +1,5 @@
+{
+  "name": "Ups and downs",
+  "objective": "%%icon icon-hero$%% Heroes must go to the crosses",
+  "loss_reason_moved_of_the_cross": "Once a %%icon icon-hero$%% hero has arrived on a cross, he must not move from it"
+}

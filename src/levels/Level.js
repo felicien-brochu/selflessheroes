@@ -79,8 +79,8 @@ export default class Level extends WorldLevel {
     return this.prefixMessageKey('boss_tell')
   }
 
-  prefixMessageKey(name) {
-    return `level${this.id}_${name}`
+  prefixMessageKey(key) {
+    return `level${this.id}_${key}`
   }
 
   get tutorial() {

@@ -1,0 +1,4 @@
+{
+  "name": "Pixel art",
+  "objective": "Déplace les %%icon icon-egg$%% œufs vers le bas d'autant de cases que leur numéro pour découvrir l'image cachée.\nEnsuite fais descendre les %%icon icon-hero$%% héros tout en bas.\n\n%%icon mdi mdi-information-outline$%% Utilise %%statement assign-statement$calc%% et la variable %%icon icon-variable$%% %%statement assign-statement$ a%% pour compter tes pas."
+}

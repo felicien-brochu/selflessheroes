@@ -1,0 +1,5 @@
+{
+  "name": "Loterie",
+  "objective": "Le nombre sur l'%%icon icon-egg$%% œuf au-dessus du %%icon icon-cauldron$%% chaudron indique quel œuf il faut mettre dans le chaudron.\n\nPar exemple, si l'œuf indique 4, alors il faut mettre le 4ème %%icon icon-egg$%% œuf dans le %%icon icon-cauldron$%% chaudron.\n\n%%icon mdi mdi-information-outline$%% Quand un clone est créé, il hérite des variables de son créateur.\n\n%%icon mdi mdi-alert-octagon-outline$%%Il ne faut pas prendre les autres %%icon icon-egg$%% œufs.",
+  "loss_reason_took_wrong_egg": "Un des héros a pris le mauvais œuf"
+}

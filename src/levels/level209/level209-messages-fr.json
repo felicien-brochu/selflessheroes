@@ -1,0 +1,5 @@
+{
+  "name": "Pas de jaloux",
+  "objective": "Pour chaque colonne, calcule sa moyenne et écris-la sur tous ses %%icon icon-egg$%% œufs",
+  "loss_reason_wrong_value_on_egg": "Tu as écrit quelque chose d'autre que la moyenne de sa colonne sur un %%icon icon-egg$%% œuf"
+}

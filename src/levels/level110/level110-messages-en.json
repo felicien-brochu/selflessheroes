@@ -1,0 +1,5 @@
+{
+  "name": "Human chain 3",
+  "objective": "Put the maximum %%icon icon-egg$%% egg into the %%icon icon-cauldron$%% cauldron",
+  "loss_reason_one_egg_not_max": "You put an %%icon icon-egg$%% egg which is not the maximum into the %%icon icon-cauldron$%% cauldron"
+}

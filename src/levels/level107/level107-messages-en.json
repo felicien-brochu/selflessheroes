@@ -1,0 +1,5 @@
+{
+  "name": "Picking 2",
+  "objective": "Put the maximum %%icon icon-egg$%% egg from each column into the corresponding %%icon icon-cauldron$%% cauldron\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: don't put the other %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons",
+  "loss_reason_one_egg_not_max": "You put an %%icon icon-egg$%% egg which is not the maximum of its column into a %%icon icon-cauldron$%% cauldron"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Dinner's ready!",
+  "objective": "These %%icon icon-egg$%% eggs were randomly scattered throughout the room. Put one %%icon icon-egg$%% egg in each %%icon icon-cauldron$%% cauldron to prepare the dinner.",
+  "loss_reason_multiple_eggs_in_cauldron": "You put multiple %%icon icon-egg$%% eggs in one %%icon icon-cauldron$%% cauldron"
+}

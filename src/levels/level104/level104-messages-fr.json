@@ -1,0 +1,5 @@
+{
+  "name": "Cueillette",
+  "objective": "Mets un %%icon icon-egg$%% œuf inférieur à 4\ndans chaque %%icon icon-cauldron$%% chaudron",
+  "loss_reason_one_egg_ge_4": "Tu as mis un %%icon icon-egg$%% œuf supérieur ou égal à 4\ndans un %%icon icon-cauldron$%% chaudron"
+}

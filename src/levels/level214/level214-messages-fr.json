@@ -1,0 +1,5 @@
+{
+  "name": "Bombe à retardement",
+  "objective": "Mets les %%icon icon-egg$%% œufs dans le %%icon icon-cauldron$%% chaudron dans l'ordre croissant. D'abord l'œuf 0 puis le 1 etc.",
+  "loss_reason_wrong_egg_order": "Tu as mis un %%icon icon-egg$%% œuf dans le %%icon icon-cauldron$%% chaudron dans le mauvais ordre ou en même temps qu'un autre. Tu dois les mettre un par un en ordre croissant dans le chaudron."
+}

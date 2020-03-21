@@ -1,0 +1,5 @@
+{
+  "name": "Chaîne humaine 2",
+  "objective": "Mets l'%%icon icon-egg$%% œuf de valeur maximum\ndans le %%icon icon-cauldron$%% chaudron\n\n%%icon mdi mdi-information-outline$%% En cas d'égalité, choisis l'un des deux",
+  "loss_reason_not_maximum_egg_in_cauldron": "Tu as mis un %%icon icon-egg$%% œuf qui n'est pas le maximum dans le %%icon icon-cauldron$%% chaudron"
+}

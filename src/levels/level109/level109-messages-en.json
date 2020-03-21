@@ -1,0 +1,4 @@
+{
+  "name": "Everyone in place",
+  "objective": "Sort the %%icon icon-hero$%% heroes from smallest on the left to largest on the right\n\n%%icon mdi mdi-information-outline$%% Heroes can switch places when they go in opposite directions at the same time"
+}

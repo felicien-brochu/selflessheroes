@@ -1,0 +1,5 @@
+{
+  "name": "Be brave, run away!",
+  "objective": "These two ogres are after you. Get rid of them before they catch up with you.\n\n%%icon mdi mdi-information-outline$%% Use the %%icon icon-switch$%% switches to disable/enable the %%icon icon-spikes$%% spikes.",
+  "boss_tell": "Run! Run! Run, little thing!\nLet's see who's the fastest!"
+}

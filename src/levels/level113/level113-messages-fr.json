@@ -1,0 +1,6 @@
+{
+  "name": "Pied Piper",
+  "objective": "Fais tomber tous les %%icon icon-hero$%% héros dans le trou excepté celui qui a l'%%icon icon-egg$%%œuf de valeur maximale.\n\n%%icon mdi mdi-information-outline$%% Si plusieurs héros ont un %%icon icon-egg$%% œuf de valeur maximale, un seul doit survivre.",
+  "boss_tell": "♫ ♩ ...venez à moi... ♪ ♫\n♪ ♫ ...le vide, ne craignez pas... ♪ ♩\n♪ ♩ ...seul l'élu... ♫ ♩\n♫ ♩ ...de l'obscurité sortira... ♪ ♫",
+  "loss_reason_all_max_eggs_in_hole": "Tous les %%icon icon-hero$%% héros qui avaient l'%%icon icon-egg$%%œuf de valeur maximale se sont jetés dans le trou"
+}

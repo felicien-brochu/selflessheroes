@@ -1,0 +1,5 @@
+{
+  "name": "Lottery",
+  "objective": "The number on the %%icon icon-egg$%% egg above the %%icon icon-cauldron$%% cauldron indicates which egg to put in the cauldron.\n\nFor example, if the egg says 4, then you have to put the 4th %%icon icon-egg$%% egg in the %%icon icon-cauldron$%% cauldron.\n\n%%icon mdi mdi-information-outline$%% When a clone is created, it inherits the variables from its creator.\n\n%%icon mdi mdi-alert-octagon-outline$%%Do not take the other %%icon icon-egg$%% eggs.",
+  "loss_reason_took_wrong_egg": "One of the heroes took the wrong egg"
+}

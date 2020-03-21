@@ -1,0 +1,5 @@
+{
+  "name": "Des hauts et des bas",
+  "objective": "Les %%icon icon-hero$%% héros doivent aller sur les croix",
+  "loss_reason_moved_of_the_cross": "Une fois qu'un %%icon icon-hero$%% héro est arrivé sur une croix, il ne doit plus en bouger"
+}

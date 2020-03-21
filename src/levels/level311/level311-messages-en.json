@@ -1,0 +1,6 @@
+{
+  "name": "Multipliers",
+  "objective": "Multiply by 2 the 6-digit number formed by the %%icon icon-egg$%% eggs and write the result on the %%icon icon-egg$%% eggs in the same way (1 digit by egg). Then drop all %%icon icon-egg$%% eggs at the same time between the two %%icon icon-bonfire$%% bonfires.",
+  "loss_reason_wrong_number": "There is an error in the calculation",
+  "loss_reason_not_same_time": "Heroes must drop all %%icon icon-egg$%% eggs at the same time between the two %%icon icon-bonfire$%% bonfires."
+}

@@ -1,0 +1,4 @@
+{
+  "name": "Tourne autour du pot",
+  "objective": "Active tous les %%icon icon-switch-red$%% boutons\n\n%%icon mdi mdi-information-outline$%% Dès qu'un %%icon icon-switch-red$%% bouton rouge est activé, il le reste. Même si le héro ne reste pas dessus."
+}

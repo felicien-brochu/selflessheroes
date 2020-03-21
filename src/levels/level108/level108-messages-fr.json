@@ -1,0 +1,4 @@
+{
+  "name": "Un peu de rangement",
+  "objective": "Ces %%icon icon-egg$%% œufs ont été éparpillés dans la pièce. Range-les tous en bas.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: les %%icon icon-egg$%% œufs doivent rester sur la même colonne et dans l'ordre où tu les as trouvés"
+}

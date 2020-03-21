@@ -1,0 +1,4 @@
+{
+  "name": "Pyramide",
+  "objective": "Remplis la pyramide avec tes %%icon icon-hero$%% héros.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: dans ce niveau, si un clonage échoue, le héro qui essayait de se cloner mourra."
+}

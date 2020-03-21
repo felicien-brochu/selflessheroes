@@ -1,0 +1,6 @@
+{
+  "name": "Mass production",
+  "objective": "Copy the left column on all the other columns\n\n%%icon mdi mdi-information-outline$%% If you can't find the solution, take inspiration from the level %%level-title$\"One at a time\"%%",
+  "loss_reason_wrong_value_on_egg": "You wrote a wrong number on this %%icon icon-egg$%% egg.\nCopy numbers of the left column.",
+  "loss_reason_target_egg_displaced": "You must not touch the %%icon icon-egg$%% eggs on the left"
+}

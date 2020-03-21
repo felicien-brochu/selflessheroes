@@ -1,0 +1,4 @@
+{
+  "name": "Pixel art 2",
+  "objective": "Déplace les %%icon icon-egg$%% œufs vers la droite d'autant de cases que leur numéro pour découvrir l'image cachée\n\n%%icon mdi mdi-information-outline$%% Tu peux %%statement action-statement$écrire%% ce que tu veux sur les %%icon icon-egg$%% œufs"
+}

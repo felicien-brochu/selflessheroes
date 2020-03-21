@@ -1,0 +1,6 @@
+{
+  "name": "Chacun son tour",
+  "objective": "Les %%icon icon-hero$%% héros doivent aller sur les croix l'un après l'autre. D'abord le héros tout à gauche, puis le héro à sa droite etc.",
+  "loss_reason_moved_of_the_cross": "Une fois qu'un %%icon icon-hero$%% héro est arrivé sur une croix, il ne doit plus en bouger",
+  "loss_reason_wrong_order": "Les %%icon icon-hero$%% héros doivent aller sur les croix chacuns leur tour. Le héro tout à gauche doit être le premier à y aller, puis le héro à sa droite, ainsi de suite jusqu'au héro tout à droite."
+}

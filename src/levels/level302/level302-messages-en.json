@@ -1,0 +1,6 @@
+{
+  "name": "The grapevine",
+  "objective": "%%icon icon-hero$%% Heroes must go to the crosses one at a time. First the hero on the left, then the hero on his right, etc.",
+  "loss_reason_moved_of_the_cross": "Once a %%icon icon-hero$%% hero has arrived on a cross, he must not move from it",
+  "loss_reason_wrong_order": "%%icon icon-hero$%% Heroes must take turns going to the crosses. The hero on the far left must be the first to go, then the hero on his right, and so on until the hero on the far right."
+}

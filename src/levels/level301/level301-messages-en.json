@@ -1,0 +1,4 @@
+{
+  "name": "Relay race",
+  "objective": "Trigger all the %%icon icon-switch$%% switches.\n\n%%icon mdi mdi-information-outline$%% Now heroes can talk to each other. Check the help about %%statement speach-statement$tell%% and %%statement speach-statement$listen%% to better understand how it works."
+}

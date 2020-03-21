@@ -1,0 +1,6 @@
+{
+  "name": "Pied Piper",
+  "objective": "Throw all the %%icon icon-hero$%% heroes into the hole except the one with the %%icon icon-egg$%% egg of maximum value.\n\n%%icon mdi mdi-information-outline$%% If several heroes have an %%icon icon-egg$%% egg of maximum value, only one must survive.",
+  "boss_tell": "♫ ♩ ...come to me... ♪ ♫\n♪ ♫ ...the void, do not fear... ♪ ♩\n♪ ♩ ...only the chosen one... ♫ ♩\n♫ ♩ ...from the darkness will appear... ♪ ♫",
+  "loss_reason_all_max_eggs_in_hole": "All the %%icon icon-hero$%% heroes who had the %%icon icon-egg$%% egg of maximum value threw themselves into the hole"
+}

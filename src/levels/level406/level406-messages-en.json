@@ -1,0 +1,5 @@
+{
+  "name": "Feedback",
+  "objective": "Write the sum of all %%icon icon-egg$%% eggs on the top egg. At the end, the top %%icon icon-egg$%% egg must be in the same place as at the beginning.\n\n%%icon mdi mdi mdi-alert-octagon-outline$%% Do not write anything other than the sum of the eggs on the top %%icon icon-egg$%% egg. You can write whatever you want on the other %%icon icon-egg$%% eggs.",
+  "loss_reason_wrong_sum_on_egg": "A hero wrote something else than the sum of the eggs on the top egg"
+}

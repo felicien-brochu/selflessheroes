@@ -1,0 +1,5 @@
+{
+  "name": "Quelque chose en plus",
+  "objective": "Ajoute 1 à tous les %%icon icon-egg$%% œufs.\n\n%%icon mdi mdi-information-outline$%% Les héros sont maintenant capables de faire des calculs. Utilise %%statement assign-statement$calc%% pour calculer quelque chose.",
+  "loss_reason_wrong_value_on_egg": "Tu n'as pas écrit le bon nombre"
+}

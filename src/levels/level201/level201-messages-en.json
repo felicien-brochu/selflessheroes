@@ -1,0 +1,7 @@
+{
+  "name": "Rating",
+  "objective": "Use %%statement action-statement$write%% to write on %%icon icon-egg$%% eggs. For each %%icon icon-egg$%% egg, if it is less than 5, write 0 on it, otherwise write 9.",
+  "loss_reason_wrong_value_on_egg_not_0": "You wrote something else than 0 on an %%icon icon-egg$%% egg that was less than 5",
+  "loss_reason_wrong_value_on_egg_not_9": "You wrote something else than 9 on an %%icon icon-egg$%% egg that was greater than or equal to 5",
+  "loss_reason_egg_displaced": "The %%icon icon-egg$%% eggs must stay where you found them"
+}

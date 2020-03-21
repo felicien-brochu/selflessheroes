@@ -1,0 +1,4 @@
+{
+  "name": "Maze",
+  "objective": "Put all the %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldron.\n\n%%icon mdi mdi-information-outline$%% It's always a little tricky to find your way through a maze... Fortunately now you can use %%statement assign-statement$nearest%% to find your way."
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Inspection",
+  "objective": "Écris le maximum de chaque colonne sur les %%icon icon-egg$%% œufs du bas\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: tu ne dois pas toucher aux %%icon icon-egg$%% œufs du haut",
+  "loss_reason_wrong_value_on_egg": "Tu as écrit quelque chose d'autre que le maximum de la colonne sur un %%icon icon-egg$%% œuf",
+  "loss_reason_numbered_egg_displaced": "Tu ne dois pas toucher aux %%icon icon-egg$%% œufs du haut"
+}

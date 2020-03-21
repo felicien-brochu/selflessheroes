@@ -1,0 +1,6 @@
+{
+  "name": "Production en série",
+  "objective": "Recopie la colonne de gauche sur toutes les autres colonnes\n\n%%icon mdi mdi-information-outline$%% Si tu ne trouves pas la solution, essaie de t'inspirer du niveau %%level-title$\"Chacun son tour\"%%",
+  "loss_reason_wrong_value_on_egg": "Tu as écrit un mauvais nombre sur cet %%icon icon-egg$%% œuf.\nCopie les nombres des œufs de la colonne de gauche.",
+  "loss_reason_target_egg_displaced": "Tu ne dois pas toucher aux %%icon icon-egg$%% œufs qui sont à gauche"
+}

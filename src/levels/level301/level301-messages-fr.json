@@ -1,0 +1,4 @@
+{
+  "name": "Course de relais",
+  "objective": "Active tous les %%icon icon-switch$%% boutons.\n\n%%icon mdi mdi-information-outline$%% Maintenant les héros peuvent se parler. Consulte l'aide à propos de %%statement speach-statement$dire%% et %%statement speach-statement$écouter%% pour mieux comprendre comment ça marche."
+}

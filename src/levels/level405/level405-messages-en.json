@@ -1,0 +1,6 @@
+{
+  "name": "Lottery\u00A02",
+  "objective": "The number on the %%icon icon-egg$%% egg to the right of the %%icon icon-cauldron$%% cauldron indicates the number of the column of the egg to put into the %%icon icon-cauldron$%% cauldron.\nThe number on the %%icon icon-egg$%% egg below the %%icon icon-cauldron$%% cauldron indicates the number of the row.\n\n%%icon mdi mdi-alert-octagon-outline$%%Do not take the other %%icon icon-egg$%% eggs.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximum number of heroes: 50",
+  "loss_reason_took_wrong_egg": "One of the heroes took the wrong egg",
+  "loss_reason_too_mush_heroes": "The maximum number of heroes has been exceeded.\nMaximum number of heroes: 50"
+}

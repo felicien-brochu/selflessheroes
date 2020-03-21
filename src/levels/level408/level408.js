@@ -79,7 +79,6 @@ const level = {
     en: "These little monsters are reproducing at a frightening pace! Stop the infestation before it is too late.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximum number of heroes: 10",
     fr: "Ces petits monstres se reproduisent à une vitesse affolante\u00A0! Mets fin à l'infestation avant qu'il ne soit trop tard.\n\n%%icon mdi mdi-alert-octagon-outline$%%Nombre maximum de héros\u00A0: 10",
   },
-
   messages: {
     loss_reason_too_mush_heroes: {
       en: "The maximum number of heroes has been exceeded.\nMaximum number of heroes: 10",

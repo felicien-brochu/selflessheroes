@@ -51,7 +51,6 @@ const level = {
     en: "The number on the %%icon icon-egg$%% egg to the right of the %%icon icon-cauldron$%% cauldron indicates the number of the column of the egg to put into the %%icon icon-cauldron$%% cauldron.\nThe number on the %%icon icon-egg$%% egg below the %%icon icon-cauldron$%% cauldron indicates the number of the row.\n\n%%icon mdi mdi-alert-octagon-outline$%%Do not take the other %%icon icon-egg$%% eggs.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximum number of heroes: 50",
     fr: "Le nombre sur l'%%icon icon-egg$%% œuf à droite du %%icon icon-cauldron$%% chaudron indique le numéro de la colonne de l'œuf à mettre dans le %%icon icon-cauldron$%% chaudron.\nLe nombre sur l'%%icon icon-egg$%% œuf en-dessous du %%icon icon-cauldron$%% chaudron indique le numéro de la ligne.\n\n%%icon mdi mdi-alert-octagon-outline$%%Il ne faut pas prendre les autres %%icon icon-egg$%% œufs.\n\n%%icon mdi mdi-alert-octagon-outline$%%Nombre maximum de héros\u00A0: 50",
   },
-
   messages: {
     loss_reason_took_wrong_egg: {
       en: "One of the heroes took the wrong egg",

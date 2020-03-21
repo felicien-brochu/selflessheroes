@@ -1,0 +1,5 @@
+{
+  "name": "Space invaders",
+  "objective": "Occupy all the dark squares with your %%icon icon-hero$%% heroes.\n\n%%icon mdi mdi-information-outline$%% Now your heroes are able to %%statement branching-statement$clone%% themselves. Check the help about %%statement branching-statement$clone%% to better understand how it works.",
+  "loss_reason_wrong_floor_cell": "One of your heroes is on a light square."
+}

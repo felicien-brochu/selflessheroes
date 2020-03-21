@@ -1,0 +1,4 @@
+{
+  "name": "Starting blocks",
+  "objective": "Trigger all the %%icon icon-switch$%% switches.\n\n%%icon mdi mdi-information-outline$%% Now heroes can talk to all heroes at once with %%statement speach-statement$tell%%."
+}

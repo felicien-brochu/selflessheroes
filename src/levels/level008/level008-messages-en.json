@@ -1,0 +1,4 @@
+{
+  "name": "Candlelight vigil",
+  "objective": "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-information-outline$%% Use %%statement branching-statement$jump%% to repeat actions"
+}

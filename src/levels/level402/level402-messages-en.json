@@ -1,0 +1,5 @@
+{
+  "name": "Nuclear button",
+  "objective": "Trigger all the %%icon icon-switch$%% switches.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximum number of heroes: 10",
+  "loss_reason_too_mush_heroes": "The maximum number of heroes has been exceeded.\nMaximum number of heroes: 10"
+}

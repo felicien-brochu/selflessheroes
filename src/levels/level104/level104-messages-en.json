@@ -1,0 +1,5 @@
+{
+  "name": "Picking",
+  "objective": "Put one %%icon icon-egg$%% egg which is less than 4\ninto each %%icon icon-cauldron$%% cauldron",
+  "loss_reason_one_egg_ge_4": "You put an %%icon icon-egg$%% egg greater or equal to 4\nin a %%icon icon-cauldron$%% cauldron"
+}

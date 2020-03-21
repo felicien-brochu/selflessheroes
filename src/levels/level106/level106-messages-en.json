@@ -1,0 +1,5 @@
+{
+  "name": "Human chain 2",
+  "objective": "Put the %%icon icon-egg$%% egg of maximum value\ninto the %%icon icon-cauldron$%% cauldron\n\n%%icon mdi mdi-information-outline$%% In case of a tie, choose one of the two",
+  "loss_reason_not_maximum_egg_in_cauldron": "You put an %%icon icon-egg$%% egg which is not the maximum into the %%icon icon-cauldron$%% cauldron"
+}

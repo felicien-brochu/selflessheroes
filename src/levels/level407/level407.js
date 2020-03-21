@@ -50,7 +50,6 @@ const level = {
     en: "Put the %%icon icon-egg$%% egg of maximum value into the %%icon icon-cauldron$%% cauldron.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximum number of heroes: 31",
     fr: "Mets l' %%icon icon-egg$%% œuf de valeur maximum dans le %%icon icon-cauldron$%% chaudron.\n\n%%icon mdi mdi-alert-octagon-outline$%%Nombre maximum de héros\u00A0: 31",
   },
-
   messages: {
     loss_reason_wrong_egg_in_cauldron: {
       en: "A hero put an %%icon icon-egg$%% egg which is not of maximum value in the cauldron",

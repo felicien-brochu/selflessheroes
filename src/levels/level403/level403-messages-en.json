@@ -1,0 +1,4 @@
+{
+  "name": "Pyramid",
+  "objective": "Fill the pyramid with your %%icon icon-hero$%% heroes.\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: in this level, if a cloning action fails, the hero trying to clone himself will die."
+}

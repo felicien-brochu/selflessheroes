@@ -1,0 +1,4 @@
+{
+  "name": "Memory shift",
+  "objective": "Copy the %%icon icon-egg$%% eggs from the 1st column to the 2nd, those from the 2nd to the 3rd etc. Write 0 on all %%icon icon-egg$%% eggs in the 1st column.\n\n%%icon mdi mdi mdi-information-outline$%% At the end the %%icon icon-egg$%% eggs must be in the same place as at the beginning."
+}

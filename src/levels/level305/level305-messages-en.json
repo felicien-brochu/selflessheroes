@@ -1,0 +1,6 @@
+{
+  "name": "Oui chef!",
+  "objective": "Put %%icon icon-egg$%% eggs that have the same parity as the top egg in the %%icon icon-cauldron$%% cauldrons.\n\nFor example, if the top egg is even, put all the even eggs into the cauldrons.\n\n%%icon mdi mdi-information-outline$%% If %%type-operator$n%% is an even number, then %%type-operator$n\u00A0%\u00A02\u00A0=\u00A00%%.",
+  "loss_reason_wrong_egg_in_cauldron_even": "A hero put an odd %%icon icon-egg$%% egg in a %%icon icon-cauldron$%% cauldron while the top egg is even.",
+  "loss_reason_wrong_egg_in_cauldron_odd": "A hero put an even %%icon icon-egg$%% egg in a %%icon icon-cauldron$%% cauldron while the top egg is odd."
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Ticking bomb",
+  "objective": "Put the %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldron in ascending order. First egg 0 then 1 etc.",
+  "loss_reason_wrong_egg_order": "You put some %%icon icon-egg$%% egg into the %%icon icon-cauldron$%% cauldron in the wrong order or at the same time as another. You must put them one by one in ascending order into the cauldron."
+}

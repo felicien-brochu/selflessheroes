@@ -1,0 +1,5 @@
+{
+  "name": "Harvest",
+  "objective": "Put all the %%icon icon-egg$%% eggs which are less than 4\ninto the %%icon icon-cauldron$%% cauldrons",
+  "loss_reason_one_egg_ge_4": "You put an %%icon icon-egg$%% egg greater or equal to 4\nin a %%icon icon-cauldron$%% cauldron"
+}

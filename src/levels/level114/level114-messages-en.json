@@ -1,0 +1,5 @@
+{
+  "name": "Sorting",
+  "objective": "Sort the %%icon icon-egg$%% eggs from the smallest on the left to the largest on the right.\n\n%%icon mdi mdi-information-outline$%% At the end, the %%icon icon-egg$%% eggs must be on the floor in the same line as at the beginning.",
+  "loss_reason_egg_in_hole": "You throw the %%icon icon-egg$%% eggs in the holes?\nFunny way to sort them…"
+}

@@ -1,0 +1,4 @@
+{
+  "name": "Cryptex",
+  "objective": "Move the hero from the left, all the way to the right.\n\n%%icon mdi mdi-information-outline$%% In order to lower the %%icon icon-spikes$%% spikes, you must enable the right %%icon icon-switch$%% switches.\nThe combination is written on the %%icon icon-egg$%% eggs:\n1 = enable the switch\n0 = disable the switch"
+}

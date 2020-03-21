@@ -1,0 +1,6 @@
+{
+  "name": "Pommier",
+  "objective": "Mets l' %%icon icon-egg$%% œuf de valeur maximum dans le %%icon icon-cauldron$%% chaudron.\n\n%%icon mdi mdi-alert-octagon-outline$%%Nombre maximum de héros\u00A0: 31",
+  "loss_reason_wrong_egg_in_cauldron": "Un héro a mis un %%icon icon-egg$%% œuf qui n'est pas le maximum dans le chaudron",
+  "loss_reason_too_mush_heroes": "Le nombre maximum de héros a été dépassé.\nNombre de héros maximum\u00A0: 31"
+}

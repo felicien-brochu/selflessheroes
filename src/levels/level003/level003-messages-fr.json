@@ -1,0 +1,4 @@
+{
+  "name": "Attention à la marche",
+  "objective": "Active tous les %%icon icon-switch$%% boutons.\n\n%%icon mdi mdi-information-outline$%% Consulte l'aide à propos de %%statement branching-statement$si%% pour mieux comprendre comment ça marche."
+}

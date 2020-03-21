@@ -1,0 +1,4 @@
+{
+  "name": "Starting blocks",
+  "objective": "Active tous les %%icon icon-switch$%% boutons.\n\n%%icon mdi mdi-information-outline$%% Maintenant les héros peuvent parler à tous les héros d'un coup avec %%statement speach-statement$dire%%."
+}

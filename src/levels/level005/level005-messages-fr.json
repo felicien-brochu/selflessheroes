@@ -1,0 +1,4 @@
+{
+  "name": "Vertige",
+  "objective": "Active tous les %%icon icon-switch$%% boutons\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: ne fais pas tomber les %%icon icon-hero$%% héros dans le trou."
+}

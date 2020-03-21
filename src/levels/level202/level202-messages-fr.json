@@ -1,0 +1,6 @@
+{
+  "name": "Duplicata",
+  "objective": "Recopie les %%icon icon-egg$%% œufs de gauche sur les %%icon icon-egg$%% œufs de droite.\n\n%%icon mdi mdi-information-outline$%% Les héros sont maintenant capables de garder des choses en mémoire. Utilise %%statement assign-statement$init%% pour mémoriser la valeur d'un œuf et ainsi pouvoir l'écrire plus tard.\n\n%%icon mdi mdi-alert-octagon-outline$%%Attention: tu ne dois pas toucher les %%icon icon-egg$%% œufs qui sont à gauche. À la fin, tous les %%icon icon-egg$%% œufs doivent être au sol et à la même place qu'au début.",
+  "loss_reason_wrong_value_on_egg": "Tu as écrit un mauvais nombre sur cet %%icon icon-egg$%% œuf.\nCopie les nombres des œufs de gauche.",
+  "loss_reason_target_egg_displaced": "Tu ne dois pas toucher aux %%icon icon-egg$%% œufs qui sont à gauche"
+}

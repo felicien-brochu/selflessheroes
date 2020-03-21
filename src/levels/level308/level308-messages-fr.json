@@ -1,0 +1,4 @@
+{
+  "name": "Cryptex",
+  "objective": "Déplace le héro de gauche jusqu'au bord droit.\n\n%%icon mdi mdi-information-outline$%% Pour baisser les %%icon icon-spikes$%% piques, il faut activer les bons %%icon icon-switch$%% boutons.\nLa combinaison est inscrite sur les %%icon icon-egg$%% œufs\u00A0:\n1 = activer le bouton\n0 = désactiver le bouton"
+}

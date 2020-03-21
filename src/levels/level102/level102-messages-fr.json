@@ -1,0 +1,5 @@
+{
+  "name": "À table !",
+  "objective": "Ces %%icon icon-egg$%% œufs ont été éparpillés au hasard dans la pièce. Mets-en un dans chaque %%icon icon-cauldron$%% chaudron pour préparer le dîner.",
+  "loss_reason_multiple_eggs_in_cauldron": "Tu as mis plusieurs %%icon icon-egg$%% œufs dans un %%icon icon-cauldron$%% chaudron"
+}
