@@ -3,7 +3,6 @@ import ParseJSONTiled from 'phaser/src/tilemaps/parsers/tiled/ParseJSONTiled'
 import Tilemap from 'phaser/src/tilemaps/Tilemap'
 import EventEmitter from 'events'
 
-import lang from '../lang'
 import AnimationBuilder from './AnimationBuilder'
 import WorldRunner from './WorldRunner'
 import CameraControlFactory from './camera/CameraControlFactory'

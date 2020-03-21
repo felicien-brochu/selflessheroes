@@ -9,7 +9,7 @@ import {
   soundManager,
   musicManager
 } from './components/audio/AudioManager'
-import lang from './lang'
+import lang from './locale/lang'
 import VueRouter from 'vue-router'
 import VueHotkey from 'v-hotkey'
 import VueMeta from 'vue-meta'

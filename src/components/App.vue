@@ -77,7 +77,7 @@ import Modal from './modal/Modal'
 import MenuModal from './menu/MenuModal'
 import ProposeFullscreenModal from './menu/ProposeFullscreenModal'
 import WarnLocalStorageModal from './menu/WarnLocalStorageModal'
-import lang from '../lang'
+import lang from '../locale/lang'
 const $text = lang.text.bind(lang)
 
 export default {

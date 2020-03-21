@@ -1,4 +1,4 @@
-import lang from '../lang'
+import lang from '../locale/lang'
 import Level from './Level'
 
 import levelTest from './level000/level000'
