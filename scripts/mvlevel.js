@@ -24,14 +24,29 @@ Usage: node mvlevel.js [--options] <levelID> <targetID>
   process.exit(0)
 }
 
+// insure the id is composed of 3 digits (add leading zeros if shorter)
+function formatLevelId(id) {
+  if (!id.match(/^[0-9]{1,3}$/)) {
+    console.error("This id is invalid (must be composed of 1 to 3 decimal digits):", id)
+    process.exit(1)
+  }
+  while (id.length < 3) {
+    id = '0' + id
+  }
+  return id
+}
+
 const srcPath = path.resolve(__dirname, '../src/')
-const levelID = argv._[0]
-const targetID = argv._[1]
+let levelID = argv._[0].toString()
+let targetID = argv._[1].toString()
 
 if (!levelID || !targetID) {
   console.error("levelID or targetID missing.")
   process.exit(1)
 }
+
+levelID = formatLevelId(levelID)
+targetID = formatLevelId(targetID)
 
 
 console.log(`Try to rename level${levelID} to level${targetID} ...`)
@@ -48,6 +63,14 @@ let files = {
   level: {
     src: path.resolve(levelFolder, `level${levelID}.js`),
     target: path.resolve(targetFolder, `level${targetID}.js`),
+  },
+  messagesEn: {
+    src: path.resolve(levelFolder, `level${levelID}-messages-en.json`),
+    target: path.resolve(targetFolder, `level${targetID}-messages-en.json`),
+  },
+  messagesFr: {
+    src: path.resolve(levelFolder, `level${levelID}-messages-fr.json`),
+    target: path.resolve(targetFolder, `level${targetID}-messages-fr.json`),
   },
   spec: {
     src: path.resolve(levelFolder, `level${levelID}.spec.js`),
@@ -69,6 +92,12 @@ try {
 } catch (e) {}
 console.log("--> RENAME ", files.level)
 fs.renameSync(files.level.src, files.level.target)
+
+console.log("--> RENAME ", files.messagesEn)
+fs.renameSync(files.messagesEn.src, files.messagesEn.target)
+
+console.log("--> RENAME ", files.messagesFr)
+fs.renameSync(files.messagesFr.src, files.messagesFr.target)
 
 console.log("--> RENAME ", files.spec)
 fs.renameSync(files.spec.src, files.spec.target)
@@ -101,6 +130,8 @@ function findInFile(file, regexp) {
 }
 
 replaceInFile(files.level.target, `import map from '\\./map${levelID}\\.json'`, `import map from './map${targetID}.json'`)
+replaceInFile(files.level.target, `import enMessages from '\\./level${levelID}-messages-en\\.json'`, `import enMessages from './level${targetID}-messages-en.json'`)
+replaceInFile(files.level.target, `import frMessages from '\\./level${levelID}-messages-fr\\.json'`, `import frMessages from './level${targetID}-messages-fr.json'`)
 
 replaceInFile(files.spec.target, `import level from '\\./level${levelID}'`, `import level from './level${targetID}'`)
 
@@ -114,6 +145,6 @@ replaceInFile(levelManager, `import level${levelID} from '\\./level${levelID}/le
 replaceInFile(levelManager, `new Level\\(${oldID}, level${levelID}\\),`, `new Level(${newID}, level${targetID}),`)
 
 if (!argv["same-id"]) {
-  replaceInFile(levelManager, ` ${oldID}`, ` ${newID}`)
-  replaceInFile(levelManager, `\\[${oldID}`, `[${newID}`)
+  replaceInFile(levelManager, ` ${oldID}\\b`, ` ${newID}`)
+  replaceInFile(levelManager, `\\[${oldID}\\b`, `[${newID}`)
 }
