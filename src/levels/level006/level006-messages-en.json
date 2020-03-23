@@ -1,4 +1,4 @@
 {
   "name": "Fireball",
-  "objective": "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-information-outline$%% Use %%statement action-statement$fireball%% to lit the bonfires"
+  "objective": "Light all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-information-outline$%% Use %%statement action-statement$fireball%% to light the bonfires"
 }

@@ -159,7 +159,7 @@
   "level_help_tab_step_once_function_2": "You could read the above example as \"Go one step to the right\".",
   "level_help_tab_step_once_function_3": "%%type-function$step%%(%%type-literal$e%%)",
 
-  "level_help_tab_fireball_function_1": "%%statement action-statement$fireball%% throws a fireball on a square around the hero.\nIf the fireball hits another hero it will kill him. You can use a fireball to lit a %%icon icon-bonfire$%% bonfire.",
+  "level_help_tab_fireball_function_1": "%%statement action-statement$fireball%% throws a fireball on a square around the hero.\nIf the fireball hits another hero it will kill him. You can use a fireball to light a %%icon icon-bonfire$%% bonfire.",
   "level_help_tab_fireball_function_2": "You could read the above example as \"Throw a fireball to the right\".",
   "level_help_tab_fireball_function_3": "%%type-function$fireball%%(%%type-literal$e%%)",
 

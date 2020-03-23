@@ -1,4 +1,4 @@
 {
   "name": "Winding path",
-  "objective": "Lit all %%icon icon-bonfire$%% bonfires"
+  "objective": "Light all %%icon icon-bonfire$%% bonfires"
 }

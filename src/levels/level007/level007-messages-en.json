@@ -1,4 +1,4 @@
 {
   "name": "Sharp turn",
-  "objective": "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the heroes must survive"
+  "objective": "Light all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the heroes must survive"
 }

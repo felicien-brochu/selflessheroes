@@ -1,4 +1,4 @@
 {
   "name": "Winding path 2",
-  "objective": "Lit all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the heroes must survive\n\n\n%%icon mdi mdi-information-outline$%% copy/paste the code from the previous level to go faster"
+  "objective": "Light all %%icon icon-bonfire$%% bonfires\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: all the heroes must survive\n\n\n%%icon mdi mdi-information-outline$%% copy/paste the code from the previous level to go faster"
 }
