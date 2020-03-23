@@ -5,4 +5,5 @@ tests-build/
 deploy.*
 .vscode/
 .cache/
+steam-output/
 *.log
