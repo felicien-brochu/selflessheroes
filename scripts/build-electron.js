@@ -49,6 +49,7 @@ const config = {
   },
   snap: {
     summary: "Selfless Heroes is a puzzle game that will teach you how to program without you noticing",
+    plugs: ["default", "audio-playback"],
   },
 }
 
