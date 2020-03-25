@@ -14,7 +14,8 @@ let specsEntries = glob.sync(path.resolve(__dirname, '../src/levels') + '/level*
 }, {})
 
 let entries = Object.assign(specsEntries, {
-  'LevelSpecTester.js': path.resolve(__dirname, '../tests/LevelSpecTester.js')
+  'LevelSpecTester.js': path.resolve(__dirname, '../tests/LevelSpecTester.js'),
+  'CareerGenerator.js': path.resolve(__dirname, '../tests/CareerGenerator.js')
 })
 
 const config = {
@@ -38,6 +39,7 @@ const config = {
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       ENV: JSON.stringify(env),
+      LEVEL_DEV: JSON.stringify(false),
     })
   ],
   resolve: {
