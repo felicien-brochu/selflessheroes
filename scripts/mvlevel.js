@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const glob = require('glob')
 const argv = require('minimist')(process.argv.slice(2), {
   boolean: [
     "help",
@@ -13,8 +14,7 @@ const argv = require('minimist')(process.argv.slice(2), {
 })
 
 if (argv["help"]) {
-  console.log(
-    `
+  console.log(`
 mvlevel rename a level
 Usage: node mvlevel.js [--options] <levelID> <targetID>
 
@@ -64,14 +64,6 @@ let files = {
     src: path.resolve(levelFolder, `level${levelID}.js`),
     target: path.resolve(targetFolder, `level${targetID}.js`),
   },
-  messagesEn: {
-    src: path.resolve(levelFolder, `level${levelID}-messages-en.json`),
-    target: path.resolve(targetFolder, `level${targetID}-messages-en.json`),
-  },
-  messagesFr: {
-    src: path.resolve(levelFolder, `level${levelID}-messages-fr.json`),
-    target: path.resolve(targetFolder, `level${targetID}-messages-fr.json`),
-  },
   spec: {
     src: path.resolve(levelFolder, `level${levelID}.spec.js`),
     target: path.resolve(targetFolder, `level${targetID}.spec.js`),
@@ -93,12 +85,6 @@ try {
 console.log("--> RENAME ", files.level)
 fs.renameSync(files.level.src, files.level.target)
 
-console.log("--> RENAME ", files.messagesEn)
-fs.renameSync(files.messagesEn.src, files.messagesEn.target)
-
-console.log("--> RENAME ", files.messagesFr)
-fs.renameSync(files.messagesFr.src, files.messagesFr.target)
-
 console.log("--> RENAME ", files.spec)
 fs.renameSync(files.spec.src, files.spec.target)
 
@@ -107,6 +93,17 @@ fs.renameSync(files.jsonMap.src, files.jsonMap.target)
 
 console.log("--> RENAME ", files.map)
 fs.renameSync(files.map.src, files.map.target)
+
+let levelMessages = glob.sync(path.resolve(files.dir.src) + `/level${levelID}-messages-*.json`)
+for (let levelMessageFile of levelMessages) {
+  let newMessageFile = levelMessageFile.split(`level${levelID}`).join(`level${targetID}`)
+  console.log("===>", newMessageFile, typeof levelMessageFile)
+
+  console.log("--> RENAME ", levelMessageFile)
+  console.log("    TO     ", newMessageFile)
+
+  fs.renameSync(levelMessageFile, newMessageFile)
+}
 
 
 try {
@@ -130,8 +127,7 @@ function findInFile(file, regexp) {
 }
 
 replaceInFile(files.level.target, `import map from '\\./map${levelID}\\.json'`, `import map from './map${targetID}.json'`)
-replaceInFile(files.level.target, `import enMessages from '\\./level${levelID}-messages-en\\.json'`, `import enMessages from './level${targetID}-messages-en.json'`)
-replaceInFile(files.level.target, `import frMessages from '\\./level${levelID}-messages-fr\\.json'`, `import frMessages from './level${targetID}-messages-fr.json'`)
+replaceInFile(files.level.target, `\\./level${levelID}-messages-\\\$\\{language\\}\\.json`, `./level${targetID}-messages-\${language}.json`)
 
 replaceInFile(files.spec.target, `import level from '\\./level${levelID}'`, `import level from './level${targetID}'`)
 
