@@ -1,6 +1,8 @@
 import map from './map202.json'
-import enMessages from './level202-messages-en.json'
-import frMessages from './level202-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level202-messages-${language}.json`)
+}
 
 const winCondition = {
   beforeStart() {
@@ -64,10 +66,7 @@ const displacedTargetEggLossCondition = {
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   startingCode: "$a = set(w)\n",
   maxStep: 100,

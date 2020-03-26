@@ -1,6 +1,8 @@
 import map from './map013.json'
-import enMessages from './level013-messages-en.json'
-import frMessages from './level013-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level013-messages-${language}.json`)
+}
 
 const winCondition = {
   beforeStart() {
@@ -57,10 +59,7 @@ const movedOfTheCrossLossCondition = {
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   maxStep: 100,
   speedTarget: 19,

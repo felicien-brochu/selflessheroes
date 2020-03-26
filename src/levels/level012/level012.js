@@ -1,6 +1,8 @@
 import map from './map012.json'
-import enMessages from './level012-messages-en.json'
-import frMessages from './level012-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level012-messages-${language}.json`)
+}
 
 const winCondition = {
   beforeStart() {
@@ -88,10 +90,7 @@ const wrongOrderLossCondition = {
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   maxStep: 100,
   speedTarget: 21,

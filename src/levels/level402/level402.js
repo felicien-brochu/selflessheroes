@@ -1,6 +1,8 @@
 import map from './map402.json'
-import enMessages from './level402-messages-en.json'
-import frMessages from './level402-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level402-messages-${language}.json`)
+}
 
 const winCondition = {
   beforeStart() {
@@ -32,10 +34,7 @@ const tooMuchHeroesCondition = {
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   maxStep: 200,
   speedTarget: 27,

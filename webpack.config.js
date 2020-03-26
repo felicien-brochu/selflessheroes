@@ -138,6 +138,7 @@ const config = {
       ENV: JSON.stringify(env),
       IS_ELECTRON: JSON.stringify(platform === 'electron'),
       LEVEL_DEV: JSON.stringify(env === 'development' && !!levelDev),
+      SUPPORTED_LANGUAGES: JSON.stringify(['en', 'fr']),
       SERVER_DOMAIN: JSON.stringify(process.env.SERVER_DOMAIN),
       SERVER_PROTOCOL: JSON.stringify(process.env.SERVER_PROTOCOL),
       ACTIVATION_KEY_URL: JSON.stringify(process.env.ACTIVATION_KEY_URL),

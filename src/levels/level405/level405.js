@@ -1,6 +1,8 @@
 import map from './map405.json'
-import enMessages from './level405-messages-en.json'
-import frMessages from './level405-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level405-messages-${language}.json`)
+}
 
 function findTargetEgg(world) {
   let xEgg = world.eggs.find(egg => egg.y === 2)
@@ -45,10 +47,7 @@ const tooMuchHeroesCondition = {
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   maxStep: 200,
   speedTarget: 47,

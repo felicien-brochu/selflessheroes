@@ -1,13 +1,12 @@
 import map from './map011.json'
-import enMessages from './level011-messages-en.json'
-import frMessages from './level011-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level011-messages-${language}.json`)
+}
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   maxStep: 300,
   speedTarget: 57,

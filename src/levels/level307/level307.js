@@ -1,6 +1,8 @@
 import map from './map307.json'
-import enMessages from './level307-messages-en.json'
-import frMessages from './level307-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level307-messages-${language}.json`)
+}
 
 const winCondition = {
   check() {
@@ -56,10 +58,7 @@ const worldGenerator = {
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   maxStep: 120,
   speedTarget: 31,

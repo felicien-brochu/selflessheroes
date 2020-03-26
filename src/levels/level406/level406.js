@@ -1,6 +1,8 @@
 import map from './map406.json'
-import enMessages from './level406-messages-en.json'
-import frMessages from './level406-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level406-messages-${language}.json`)
+}
 
 function findTargetEgg(world) {
   return world.eggs.find(egg => egg.id === 164)
@@ -42,10 +44,7 @@ const wrongSumOnEggCondition = {
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   maxStep: 200,
   speedTarget: 26,

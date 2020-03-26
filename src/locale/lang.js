@@ -3,15 +3,13 @@ import {
   getUserLocales
 } from 'get-user-locale'
 
-import enMessages from './messages-en.json'
-import frMessages from './messages-fr.json'
-
 const messages = {
   default: 'en',
-  supportedLanguages: ['en', 'fr'],
+  supportedLanguages: SUPPORTED_LANGUAGES,
+}
 
-  'en': enMessages,
-  'fr': frMessages
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./messages-${language}.json`)
 }
 
 class Idiom {

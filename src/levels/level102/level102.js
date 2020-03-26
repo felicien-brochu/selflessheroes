@@ -1,6 +1,8 @@
 import map from './map102.json'
-import enMessages from './level102-messages-en.json'
-import frMessages from './level102-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level102-messages-${language}.json`)
+}
 
 const winCondition = {
   check() {
@@ -34,10 +36,7 @@ const multipleEggsInCauldronLossCondition = {
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   maxStep: 400,
   speedTarget: 29,

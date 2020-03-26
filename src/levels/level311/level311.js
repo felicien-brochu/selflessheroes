@@ -1,6 +1,8 @@
 import map from './map311.json'
-import enMessages from './level311-messages-en.json'
-import frMessages from './level311-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level311-messages-${language}.json`)
+}
 
 function computeNumber(world) {
   let startValues = world.eggs
@@ -56,10 +58,7 @@ const notSameTimeLossCondition = {
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   maxStep: 140,
   speedTarget: 9,

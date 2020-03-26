@@ -1,6 +1,8 @@
 import map from './map111.json'
-import enMessages from './level111-messages-en.json'
-import frMessages from './level111-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level111-messages-${language}.json`)
+}
 
 const winCondition = {
   beforeStart() {
@@ -58,10 +60,7 @@ const tookLabelEggLossCondition = {
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   maxStep: 200,
   speedTarget: 37,

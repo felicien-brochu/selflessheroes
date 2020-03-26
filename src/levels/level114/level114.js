@@ -1,6 +1,8 @@
 import map from './map114.json'
-import enMessages from './level114-messages-en.json'
-import frMessages from './level114-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level114-messages-${language}.json`)
+}
 
 const winCondition = {
   check() {
@@ -31,10 +33,7 @@ const eggInHoleLossCondition = {
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   maxStep: 8000,
   speedTarget: 600,

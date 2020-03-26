@@ -40,6 +40,7 @@ const config = {
     new webpack.DefinePlugin({
       ENV: JSON.stringify(env),
       LEVEL_DEV: JSON.stringify(false),
+      SUPPORTED_LANGUAGES: JSON.stringify(['en', 'fr']),
     })
   ],
   resolve: {

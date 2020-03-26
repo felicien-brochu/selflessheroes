@@ -1,6 +1,8 @@
 import map from './map303.json'
-import enMessages from './level303-messages-en.json'
-import frMessages from './level303-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level303-messages-${language}.json`)
+}
 
 const winCondition = {
   beforeStart() {
@@ -22,10 +24,7 @@ const winCondition = {
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   maxStep: 100,
   speedTarget: 8,

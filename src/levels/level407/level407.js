@@ -1,6 +1,8 @@
 import map from './map407.json'
-import enMessages from './level407-messages-en.json'
-import frMessages from './level407-messages-fr.json'
+const messages = {}
+for (let language of SUPPORTED_LANGUAGES) {
+  messages[language] = require(`./level407-messages-${language}.json`)
+}
 
 function maxValue(world) {
   return world.eggs.reduce((max, egg) => Math.max(max, egg.value), 0)
@@ -44,10 +46,7 @@ const tooMuchHeroesCondition = {
 
 const level = {
   mapConfig: map,
-  messages: {
-    en: enMessages,
-    fr: frMessages
-  },
+  messages: messages,
 
   maxStep: 600,
   speedTarget: 140,
