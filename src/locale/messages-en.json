@@ -126,6 +126,7 @@
   "level_help_tab_general_objectives_star3_objective": "code length secondary objective",
   "level_help_tab_general_objectives_star3_advice": "To achieve this objective, your program should be as few lines as possible (line numbers are displayed to the left of the heroes instructions).",
 
+
   "level_help_tab_statement_code_example": "code example:",
   "level_help_tab_statement_graph_code_example": "example:",
 
@@ -238,6 +239,7 @@
   "exception_mismatch_keyword_template": "you wrote something erroneous after this %%keyword${statementType}%%.",
   "exception_forbidden_primary_statement_template": "%%keyword${statementType}%% is not available in this level.",
   "exception_forbidden_message_literal_type_template": "messages are not available in this level.",
+  "exception_forbidden_arithmetic_operator_literal_type_template": "Arithmetic operators are not available in this level.",
   "exception_mismatch_function_template": "you wrote something erroneous after the function %%function${keyword}()%%.",
   "exception_invalid_clone_params_template": "%%keyword${statementType}%% expects a direction (%%literal${allowedDirections}%%) and an anchor.",
   "exception_invalid_variable_identifier_template": "%%variable${variable}%% variable name is not allowed. Use one of the following instead: %%variable${allowedIdentifiers}%%.",
@@ -247,6 +249,12 @@
   "exception_invalid_action_function_template": "%%function${code}%% is not a valid action. Use one of the following instead: %%function${allowedFunctions}%%.",
   "exception_forbidden_action_function_template": "%%function${keyword}()%% is not available in this level. Use one of the following instead: %%function${allowedFunctions}%%",
   "exception_forbidden_value_function_template": "%%function${keyword}()%% is not available in this level. Use one of the following instead: %%function${allowedFunctions}%%",
+  "exception_forbidden_direction_literal_type_template": "Directions are not available in this level.",
+  "exception_forbidden_everyone_literal_type_template": "%%literal$everyone%% is not available in this level.",
+  "exception_forbidden_integer_literal_type_template": "Numbers are not available in this level.",
+  "exception_forbidden_myitem_literal_type_template": "%%literal$myitem%% is not available in this level.",
+  "exception_forbidden_object_type_literal_type_template": "Object types are not available in this level.",
+  "exception_forbidden_terrain_type_literal_type_template": "Terrain types are not available in this level.",
   "exception_invalid_params_one_dir_integer_variable_myitem_template": "%%function${keyword}()%% requires exactly one parameter which can be a number, a variable, a direction or %%literal$myitem%%",
   "exception_invalid_dir_integer_variable_myitem_param_template": "%%variable${param}%% is not a valid number, variable, direction or %%literal$myitem%%",
   "exception_invalid_dir_variable_param_template": "%%variable${param}%% is not a valid variable or direction. You can use these instead: %%variable${allowedVariables}%% %%literal${allowedDirections}%%",
@@ -262,7 +270,6 @@
   "exception_invalid_object_type_param_template": "%%variable${param}%% is not a valid object type. Use one of these instead: %%literal${allowedValues}%%",
   "exception_invalid_direction_param_not_here_template": "%%function${keyword}()%% does not accept direction %%literal${param}%%. Use one of these instead: %%literal${allowedValues}%%",
   "exception_primary_statement_invalid_direction_param_not_here_template": "%%keyword${keyword}%% does not accept direction %%literal${param}%%. Use one of these instead: %%literal${allowedValues}%%",
-  "exception_invalid_object_type_param_not_nothing_template": "%%function${keyword}()%% does not accept object type %%literal${param}%%. Use one of these instead: %%literal${allowedValues}%%",
   "exception_invalid_object_type_param_not_nothing_template": "%%function${keyword}()%% does not accept object type %%literal${param}%%. Use one of these instead: %%literal${allowedValues}%%",
   "exception_invalid_params_calc_function_template": "%%function${keyword}()%% takes 3 parameters. Params 1 and 3 must be either numbers, directions, %%literal$myitem%% or variables and param 2 must be an operator (%%operator${operators}%%)",
   "exception_invalid_params_tell_function_template": "%%function${keyword}()%% takes 2 parameters. Param 1 must be a message (%%string${allowedMessages}%%) and param 2 must be either a direction (%%literal${allowedDirections}%%) or %%literal$everyone%%",
