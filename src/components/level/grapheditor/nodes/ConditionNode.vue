@@ -1,6 +1,13 @@
 <template>
 <li class="node branching-node condition-node">
 
+  <div :class="{
+		'if-label': true,
+		'hidden': !isFirst
+	}">{{
+		$text('graph_node_if')
+	}}</div>
+
   <value-select ref="leftExpression"
     class="bright"
     parentType="branching"
@@ -62,11 +69,6 @@
       @select="handleSelectOrDeleteBooleanOperator"
       @start-edit="$emit('start-edit')" />
   </div>
-
-  <div v-if="isFirst"
-    class="if-label">{{
-			$text('graph_node_if')
-		}}</div>
 
 </li>
 </template>
@@ -202,9 +204,12 @@ export default {
     padding: 0;
 
     .if-label {
-        position: absolute;
-        left: 9px;
+        margin: 0 3px 0 9px;
         pointer-events: none;
+
+        &.hidden {
+            visibility: hidden;
+        }
     }
 
     & > .value-select {
