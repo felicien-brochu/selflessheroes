@@ -1,6 +1,8 @@
 import map from './map405.json'
+import supportedLanguages from '../../locale/supportedLanguages'
+
 const messages = {}
-for (let language of SUPPORTED_LANGUAGES) {
+for (let language of supportedLanguages) {
   messages[language] = require(`./level405-messages-${language}.json`)
 }
 

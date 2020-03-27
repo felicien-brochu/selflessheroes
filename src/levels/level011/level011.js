@@ -1,6 +1,8 @@
 import map from './map011.json'
+import supportedLanguages from '../../locale/supportedLanguages'
+
 const messages = {}
-for (let language of SUPPORTED_LANGUAGES) {
+for (let language of supportedLanguages) {
   messages[language] = require(`./level011-messages-${language}.json`)
 }
 

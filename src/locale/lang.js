@@ -2,13 +2,14 @@ import format from 'string-template'
 import {
   getUserLocales
 } from 'get-user-locale'
+import supportedLanguages from './supportedLanguages'
 
 const messages = {
   default: 'en',
-  supportedLanguages: SUPPORTED_LANGUAGES,
+  supportedLanguages: supportedLanguages,
 }
 
-for (let language of SUPPORTED_LANGUAGES) {
+for (let language of supportedLanguages) {
   messages[language] = require(`./messages-${language}.json`)
 }
 
