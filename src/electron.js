@@ -31,7 +31,7 @@ if (!gotTheLock) {
       }
       mainWindow.focus()
 
-      let fileToOpen = getFileToOpen(argv)
+      let fileToOpen = getFileToOpen(argv, workingDir)
 
       if (!openFile && fileToOpen) {
         if (!app.isReady()) {
@@ -121,10 +121,16 @@ app.on('will-finish-launching', () => {
   })
 })
 
-function getFileToOpen(argv) {
+function getFileToOpen(argv, workingDir) {
   let file = null
-  if (argv.length >= 2) {
-    file = argv[argv.length - 1]
+  let noOptionArgs = argv.filter(arg => !arg.startsWith('-'))
+  if (noOptionArgs.length >= 2) {
+    file = noOptionArgs[noOptionArgs.length - 1]
+    file = path.resolve(workingDir, file)
+
+    if (!fs.existsSync(file)) {
+      file = null
+    }
   }
 
   return file
@@ -134,7 +140,7 @@ function getFileToOpen(argv) {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
-  let fileToOpen = getFileToOpen(process.argv)
+  let fileToOpen = getFileToOpen(process.argv, process.cwd())
 
   if (!openFile && fileToOpen) {
     openFile = fileToOpen
