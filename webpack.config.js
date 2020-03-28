@@ -28,10 +28,11 @@ const copiedFiles = [{
 
 if (platform === 'electron') {
   copiedFiles.push({
-    from: 'src/icons/android-icon-512x512.png',
-    to: 'icon.png'
+    context: 'src/icons/electron',
+    from: '**',
+    to: 'icons'
   }, {
-    context: 'src/icons/appx',
+    context: 'src/icons/electron/appx',
     from: '**',
     to: 'appx'
   })

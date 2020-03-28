@@ -217,57 +217,20 @@ export default {
 
       if (e.dataTransfer.types.includes("Files") && e.dataTransfer.items && e.dataTransfer.items.length > 0) {
         let file = e.dataTransfer.items[0].getAsFile()
-        this.loadSavedCareer(file)
+        this.$parent.loadSavedCareerFile(file)
       }
       else {
-        this.showWrongFormatFileModal()
+        this.$parent.showWrongFormatFileModal()
       }
     },
 
     handleSavedGameFileChange(e) {
       let file = e.target.files[0]
-      this.loadSavedCareer(file)
+      this.$parent.loadSavedCareerFile(file)
     },
 
     saveCareerFile(careerID, e) {
       storage.saveCareerFile(careerID)
-    },
-
-    loadSavedCareer(file) {
-      let reader = new FileReader()
-
-      reader.onload = e => {
-        let json = e.target.result
-
-        try {
-          let career = storage.loadSavedCareer(json)
-
-          if (career) {
-            this.$router.push({
-              name: 'level-list',
-              params: {
-                careerID: career.id
-              }
-            })
-          }
-        }
-        catch (ex) {
-          console.error("Error while loading saved game from .shsv file", ex)
-          this.showWrongFormatFileModal()
-        }
-      }
-      reader.readAsText(file, "UTF-8")
-    },
-
-    showWrongFormatFileModal() {
-      this.$refs.modalLayer.addModal({
-        component: Modal,
-        key: 'load-saved-career-error',
-        props: {
-          text: this.$text('home_wrong_file_format_error'),
-          cancelable: false
-        }
-      })
     },
 
     deleteCareer(careerID, e) {

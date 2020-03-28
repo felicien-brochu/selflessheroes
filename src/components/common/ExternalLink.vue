@@ -18,8 +18,7 @@ export default {
     onClick(e) {
       if (IS_ELECTRON) {
         e.preventDefault()
-        const electronWindow = require('electron').remote.getCurrentWindow()
-        electronWindow.openLink(this.href)
+        require('electron').ipcRenderer.send('open-link', this.href)
       }
     }
   }

@@ -4,17 +4,50 @@
 const {
   app,
   protocol,
+  ipcMain,
   BrowserWindow
 } = require('electron')
 const openLink = require('open')
 const path = require('path')
 const url = require('url')
+const fs = require('fs')
 
 const isDev = false
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+const gotTheLock = app.requestSingleInstanceLock()
+let openFile = null
+
+if (!gotTheLock) {
+  app.quit()
+} else {
+  app.on('second-instance', (event, argv, workingDir) => {
+    // Someone tried to run a second instance, we should focus our window.
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) {
+        mainWindow.restore()
+      }
+      mainWindow.focus()
+
+      let fileToOpen = getFileToOpen(argv)
+
+      if (!openFile && fileToOpen) {
+        if (!app.isReady()) {
+          openFile = fileToOpen
+        } else {
+          loadCareerFromFile(fileToOpen)
+        }
+      }
+    }
+  })
+}
+
+function loadCareerFromFile(file) {
+  let fileContent = fs.readFileSync(file, 'utf8')
+  mainWindow.webContents.send('load-career-file', fileContent)
+}
 
 // Temporary fix broken high-dpi scale factor on Windows (125% scaling)
 // info: https://github.com/electron/electron/issues/9691
@@ -43,6 +76,12 @@ function createWindow() {
   })
 
   mainWindow.loadURL(indexPath)
+  mainWindow.webContents.once('did-finish-load', () => {
+    if (openFile) {
+      loadCareerFromFile(openFile)
+      openFile = null
+    }
+  })
   mainWindow.removeMenu()
 
   // Don't show until we are ready and loaded
@@ -50,7 +89,11 @@ function createWindow() {
     // mainWindow.maximize()
     mainWindow.show()
     mainWindow.setFullScreen(true)
-    mainWindow.openLink = openLink
+    ipcMain.on('open-link', (event, url) => {
+      console.log("Open URL:", url)
+      openLink(url)
+    })
+
 
     // Open the DevTools automatically if developing
     if (isDev) {
@@ -67,10 +110,36 @@ function createWindow() {
   })
 }
 
+app.on('will-finish-launching', () => {
+  app.on('open-file', (evt, path) => {
+    evt.preventDefault()
+    if (app.isReady()) {
+      loadCareerFromFile(openFile)
+    } else {
+      openFile = path
+    }
+  })
+})
+
+function getFileToOpen(argv) {
+  let file = null
+  if (argv.length >= 2) {
+    file = argv[argv.length - 1]
+  }
+
+  return file
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
+  let fileToOpen = getFileToOpen(process.argv)
+
+  if (!openFile && fileToOpen) {
+    openFile = fileToOpen
+  }
+
   createWindow()
 })
 

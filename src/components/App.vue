@@ -64,7 +64,8 @@
     @after-leave="handleTransition('onTransitionAfterLeave', $event)"
     @leave-cancelled="handleTransition('onTransitionLeaveCancelled', $event)">
 
-    <router-view class="child-view"></router-view>
+    <router-view class="child-view"
+      ref="routerView"></router-view>
   </transition>
 
 </div>
@@ -278,11 +279,68 @@ export default {
       })
     },
 
+    loadSavedCareerFile(file) {
+      let reader = new FileReader()
+
+      reader.onload = e => {
+        let json = e.target.result
+        this.loadSavedCareer(json)
+      }
+      reader.readAsText(file, "UTF-8")
+    },
+
+    loadSavedCareerExtFile(careerJson) {
+      this.loadSavedCareer(careerJson)
+    },
+
+    loadSavedCareer(json) {
+      try {
+        let career = mainStorage.loadSavedCareer(json)
+
+        if (career) {
+          if (this.$route.name !== 'home') {
+            this.$router.replace({
+              name: 'home'
+            }, () => {
+              this.$router.push({
+                name: 'level-list',
+                params: {
+                  careerID: career.id
+                }
+              })
+            })
+          }
+          else {
+            this.$router.push({
+              name: 'level-list',
+              params: {
+                careerID: career.id
+              }
+            })
+          }
+        }
+      }
+      catch (ex) {
+        console.error("Error while loading saved game from .shsv file", ex)
+        this.showWrongFormatFileModal()
+      }
+    },
+
+    showWrongFormatFileModal() {
+      this.$refs.modalLayer.addModal({
+        component: Modal,
+        key: 'load-saved-career-error',
+        props: {
+          text: this.$text('home_wrong_file_format_error'),
+          cancelable: false
+        }
+      })
+    },
+
     goToDiscord(e) {
       if (IS_ELECTRON) {
         e.preventDefault()
-        const electronWindow = require('electron').remote.getCurrentWindow()
-        electronWindow.openLink(this.discordURL)
+        require('electron').ipcRenderer.send('open-link', this.discordURL)
       }
     },
 

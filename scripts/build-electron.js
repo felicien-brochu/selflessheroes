@@ -21,9 +21,17 @@ const config = {
     "dist/assets/**/*",
     "dist/workers/**/*",
   ],
+  fileAssociations: [{
+    ext: "shsv",
+    name: "SHSV",
+    description: "Selfless Heroes saved game",
+    mimeType: "application/x-shsv",
+    role: "Viewer",
+  }],
   compression: "maximum",
   win: {
     target: ["portable", "nsis"],
+    icon: "dist/icons/icon.ico"
   },
   nsis: {
     oneClick: false,
@@ -39,6 +47,7 @@ const config = {
   },
   mac: {
     target: ["dmg"],
+    icon: "dist/icons/icon.icns",
     category: "public.app-category.puzzle-games",
   },
   linux: {

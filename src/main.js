@@ -36,7 +36,6 @@ Vue.prototype.$sound = soundManager
 Vue.prototype.$music = musicManager
 
 
-
 const router = new VueRouter({
   mode: IS_ELECTRON ? 'hash' : 'history',
   routes: [{
@@ -98,6 +97,13 @@ const app = new Vue({
 }).$mount('#app-container')
 
 
+
+
+if (IS_ELECTRON) {
+  require('electron').ipcRenderer.on('load-career-file', (evt, careerJson) => {
+    app.$children[0].loadSavedCareerExtFile(careerJson)
+  })
+}
 
 
 if (!storageAvailable('localStorage')) {
