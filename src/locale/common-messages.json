@@ -1,0 +1,85 @@
+{
+  "no_text": "[no-text]",
+
+
+  "head_title": "Selfless Heroes",
+  "head_title_template": "Selfless Heroes - {title}",
+
+
+  "head_meta_og_title": "Selfless Heroes",
+
+
+  "noscript_message": "Selfless Heroes requires Javascript to be enabled in order to work normally",
+
+
+  "menu_language_option_en": "English",
+  "menu_language_option_fr": "Français",
+
+
+  "unlock_premium_modal_activation_key_placeholder": "XXX-XXX-XXX-XX",
+
+
+  "level_help_tab_if_statement_8": "%%type-keyword$if%% %%type-literal$e%% %%type-operator$==%% %%type-literal$wall%% %%type-operator$||%%\n  %%type-literal$e%% %%type-operator$==%% %%type-literal$hole%% :\n  %%type-function$step%%(%%type-literal$w%%)\n%%type-keyword$endif%%\n",
+
+  "level_help_tab_jump_statement_3": "%%type-bracket$a:%%\n%%type-function$step%%(%%type-literal$e%%)\n%%type-keyword$jump%% %%type-bracket$a%%",
+  "level_help_tab_jump_statement_7": "%%type-bracket$a:%%\n%%type-function$step%%(%%type-literal$e%%)\n%%type-keyword$if%% %%type-literal$e%% %%type-operator$!=%% %%type-literal$wall%% :\n  %%type-keyword$jump%% %%type-bracket$a%%\n%%type-keyword$endif%%",
+
+  "level_help_tab_clone_statement_3": "%%type-keyword$clone%% %%type-literal$w%% %%type-bracket$a%%\n%%type-function$step%%(%%type-literal$e%%)\n%%type-bracket$a:%%\n",
+
+  "level_help_tab_step_function_3": "%%type-function$step%%(%%type-literal$w%% %%type-literal$e%%)",
+
+  "level_help_tab_step_once_function_3": "%%type-function$step%%(%%type-literal$e%%)",
+
+  "level_help_tab_fireball_function_3": "%%type-function$fireball%%(%%type-literal$e%%)",
+
+  "level_help_tab_take_function_3": "%%type-keyword$if%% %%type-literal$e%% %%type-operator$==%% %%type-literal$egg%% :\n  %%type-function$take%%(%%type-literal$e%%)\n%%type-keyword$endif%%\n",
+
+  "level_help_tab_drop_function_3": "%%type-function$drop%%(%%type-literal$e%%)\n",
+
+  "level_help_tab_write_function_3": "%%type-function$write%%(%%type-literal$3%%)\n",
+
+  "level_help_tab_set_function_3": "%%type-variable$$a%% %%type-operator$=%% %%type-function$set%%(%%type-literal$3%%)\n",
+
+  "level_help_tab_calc_function_3": "%%type-variable$$b%% %%type-operator$=%% %%type-function$calc%%(%%type-variable$$a%% %%type-operator$+%% %%type-literal$2%%)\n",
+
+  "level_help_tab_nearest_function_3": "%%type-variable$$a%% %%type-operator$=%% %%type-function$nearest%%(%%type-literal$egg%%)\n%%type-function$take%%(%%type-variable$$a%%)",
+
+  "level_help_tab_tell_function_3": "%%type-function$tell%%(%%type-string$\"ok\"%% %%type-literal$e%%)",
+  "level_help_tab_tell_function_6": "%%type-function$tell%%(%%type-string$\"hey\"%% %%type-literal$everyone%%)",
+
+  "level_help_tab_listen_function_3": "%%type-function$listen%%(%%type-string$\"hey\"%%)\n%%type-function$step%%(%%type-literal$e%%)",
+
+
+  "type_else": "else",
+  "type_empty": "void",
+  "type_endif": "endif",
+  "type_if": "if",
+  "type_jump": "jump",
+  "type_clone": "clone",
+
+
+  "function_step": "step",
+  "function_fireball": "fireball",
+  "function_take": "take",
+  "function_drop": "drop",
+  "function_write": "write",
+  "function_tell": "tell",
+  "function_listen": "listen",
+
+  "function_set": "set",
+  "function_calc": "calc",
+  "function_nearest": "nearest",
+
+  "operator_comparison_eq": "=",
+  "operator_comparison_ne": "≠",
+  "operator_comparison_le": "≤",
+  "operator_comparison_lt": "<",
+  "operator_comparison_ge": "≥",
+  "operator_comparison_gt": ">",
+
+  "operator_arithmetic_plus": "+",
+  "operator_arithmetic_minus": "−",
+  "operator_arithmetic_multiply": "×",
+  "operator_arithmetic_divide": "÷",
+  "operator_arithmetic_modulo": "%"
+}

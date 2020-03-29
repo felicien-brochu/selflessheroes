@@ -3,6 +3,7 @@ import {
   getUserLocales
 } from 'get-user-locale'
 import supportedLanguages from './supportedLanguages'
+import commonMessages from './common-messages.json'
 
 const messages = {
   default: 'en',
@@ -11,6 +12,11 @@ const messages = {
 
 for (let language of supportedLanguages) {
   messages[language] = require(`./messages-${language}.json`)
+}
+
+messages[messages.default] = {
+  ...messages[messages.default],
+  ...commonMessages
 }
 
 class Idiom {

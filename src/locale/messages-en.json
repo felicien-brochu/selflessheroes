@@ -1,16 +1,9 @@
 {
-  "no_text": "[no-text]",
-
-  "head_title": "Selfless Heroes",
-  "head_title_template": "Selfless Heroes - {title}",
   "title_levellist": "Levels",
 
-  "head_meta_og_title": "Selfless Heroes",
   "head_meta_og_description": "Selfless Heroes is a game that will teach you how to program without you noticing. Solve puzzles and help your heroes emerge victorious from the dungeon!",
   "head_meta_description": "Selfless Heroes is a game that will teach you how to program without you noticing. Solve puzzles and help your heroes emerge victorious from the dungeon!",
   "head_meta_keywords": "puzzle game, video game, serious game, programming, development, puzzle, education, fun, logic, algorithm",
-
-  "noscript_message": "Selfless Heroes requires Javascript to be enabled in order to work normally",
 
   "app_exit_warning_modal": "Are you sure you want to\nleave Selfless Heroes?",
   "app_fullscreen_modal": "In order to have the best game experience,\nit is recommended to go fullscreen",
@@ -31,8 +24,6 @@
   "mute_button_mute": "Mute",
   "mute_button_unmute": "Unmute",
   "menu_language_label": "Language",
-  "menu_language_option_en": "English",
-  "menu_language_option_fr": "Français",
   "menu_credits_label": "credits",
   "menu_credits_link": "view online",
 
@@ -65,7 +56,6 @@
   "unlock_premium_modal_title": "Unlock premium content",
   "unlock_premium_modal_get_key_button": "get activation key",
   "unlock_premium_modal_activation_key_label": "activation key:",
-  "unlock_premium_modal_activation_key_placeholder": "XXX-XXX-XXX-XX",
   "unlock_premium_modal_wrong_activation_key": "This is not a valid activation key.",
 
   "premium_activated_modal": "Congratulations!\n\nYou've successfully unlocked Selfless Heroes premium content.",
@@ -134,71 +124,54 @@
   "level_help_tab_if_statement_2": "You could read the above example as \"If the square to the right of me is a wall, then go to the left. Otherwise go to the right\".",
   "level_help_tab_if_statement_3": "%%statement branching-statement$if%% checks if the condition is true in which case it will run the instructions inside it (instructions to the right of the vertical gray line). Otherwise it will run the instructions inside the %%statement branching-statement$else%% if there is one.",
   "level_help_tab_if_statement_4": "%%statement branching-statement$else%% is not initialy part of the %%statement branching-statement$if%%. To make it appear, drag any instruction over the %%statement branching-statement$if%%.\nIf you remove all the instructions inside %%statement branching-statement$else%%, it will disappear.",
-  "level_help_tab_if_statement_5": "%%type-keyword$if%% %%type-literal$e%% %%type-operator$==%% %%type-literal$wall%% :\n  %%type-function$step%%(%%type-literal$w%%)\n%%type-keyword$else%%\n  %%type-function$step%%(%%type-literal$e%%)\n%%type-keyword$endif%%\n",
   "level_help_tab_if_statement_6": "Click on the plus sign to add other conditions.",
   "level_help_tab_if_statement_7": "You could read the above example as \"If the square to the right of me is a wall or if the square to the right of me is a hole, then go to the left\".",
-  "level_help_tab_if_statement_8": "%%type-keyword$if%% %%type-literal$e%% %%type-operator$==%% %%type-literal$wall%% %%type-operator$||%%\n  %%type-literal$e%% %%type-operator$==%% %%type-literal$hole%% :\n  %%type-function$step%%(%%type-literal$w%%)\n%%type-keyword$endif%%\n",
 
   "level_help_tab_jump_statement_1": "%%statement branching-statement$jump%% allows to jump backward or forward in the program.",
   "level_help_tab_jump_statement_2": "You could read the above example as \"Step to the right infinitely many times\".",
-  "level_help_tab_jump_statement_3": "%%type-bracket$a:%%\n%%type-function$step%%(%%type-literal$e%%)\n%%type-keyword$jump%% %%type-bracket$a%%",
   "level_help_tab_jump_statement_4": "The first line creates an \"anchor\" named \"a\". The third line says to jump back to this anchor.\nYou can choose any name you want for your anchors. Each jump must match a unique anchor.",
   "level_help_tab_jump_statement_5": "%%statement branching-statement$jump%% is usually used with %%statement branching-statement$if%% to create loops which stops at a condition.",
   "level_help_tab_jump_statement_6": "You could read the above example as \"Step to the right as long as the square to the right is not a wall\".",
-  "level_help_tab_jump_statement_7": "%%type-bracket$a:%%\n%%type-function$step%%(%%type-literal$e%%)\n%%type-keyword$if%% %%type-literal$e%% %%type-operator$!=%% %%type-literal$wall%% :\n  %%type-keyword$jump%% %%type-bracket$a%%\n%%type-keyword$endif%%",
 
   "level_help_tab_clone_statement_1": "%%statement branching-statement$clone%% creates a clone of the hero next to him.",
   "level_help_tab_clone_statement_2": "You could read the above example as \"Create a clone on your left. Then step to the right\".\n\nFor the created hero, %%statement branching-statement$clone%% acts like %%statement branching-statement$jump%%. In this example, the created clone won't step to the right because he will begin to follow instructions after the arrow of %%statement branching-statement$clone%%.",
-  "level_help_tab_clone_statement_3": "%%type-keyword$clone%% %%type-literal$w%% %%type-bracket$a%%\n%%type-function$step%%(%%type-literal$e%%)\n%%type-bracket$a:%%\n",
   "level_help_tab_clone_statement_4": "The created clone starts his life with the same variables values as his creator's.\n\n%%icon mdi mdi-alert-octagon-outline$%%Warning: if you try to create a clone on a square already occupied (by a %%icon icon-hero$%% hero, a %%icon icon-cauldron$%% cauldron etc.) or on a forbidden square (like a %%icon icon-wall$%% wall), the cloning process will fail. In certain levels, this failure causes the death of the hero trying to clone himself.",
 
   "level_help_tab_step_function_1": "%%statement action-statement$step%% says to your hero to go in a direction. If you specify multiple directions, the hero will decide randomly between these directions.",
   "level_help_tab_step_function_2": "You could read the above example as \"Go one step to the left or to the right\".",
-  "level_help_tab_step_function_3": "%%type-function$step%%(%%type-literal$w%% %%type-literal$e%%)",
 
   "level_help_tab_step_once_function_1": "%%statement action-statement$step%% says to your hero to go in a direction.",
   "level_help_tab_step_once_function_2": "You could read the above example as \"Go one step to the right\".",
-  "level_help_tab_step_once_function_3": "%%type-function$step%%(%%type-literal$e%%)",
 
   "level_help_tab_fireball_function_1": "%%statement action-statement$fireball%% throws a fireball on a square around the hero.\nIf the fireball hits another hero it will kill him. You can use a fireball to light a %%icon icon-bonfire$%% bonfire.",
   "level_help_tab_fireball_function_2": "You could read the above example as \"Throw a fireball to the right\".",
-  "level_help_tab_fireball_function_3": "%%type-function$fireball%%(%%type-literal$e%%)",
 
   "level_help_tab_take_function_1": "%%statement action-statement$take%% says to your hero to take an item.",
   "level_help_tab_take_function_2": "You could read the above example as \"If there is an egg on the square on your right, take this egg\".",
-  "level_help_tab_take_function_3": "%%type-keyword$if%% %%type-literal$e%% %%type-operator$==%% %%type-literal$egg%% :\n  %%type-function$take%%(%%type-literal$e%%)\n%%type-keyword$endif%%\n",
 
   "level_help_tab_drop_function_1": "%%statement action-statement$drop%% says to your hero to drop his item.",
   "level_help_tab_drop_function_2": "You could read the above example as \"Drop your item on the square on your right\".",
-  "level_help_tab_drop_function_3": "%%type-function$drop%%(%%type-literal$e%%)\n",
 
   "level_help_tab_write_function_1": "%%statement action-statement$write%% says to your hero to write something on his item.",
   "level_help_tab_write_function_2": "You could read the above example as \"Write 3 on your item\".",
-  "level_help_tab_write_function_3": "%%type-function$write%%(%%type-literal$3%%)\n",
 
   "level_help_tab_set_function_1": "%%statement assign-statement$set%% initializes a variable.",
   "level_help_tab_set_function_2": "You could read the above example as \"Set the variable a to 3\".",
-  "level_help_tab_set_function_3": "%%type-variable$$a%% %%type-operator$=%% %%type-function$set%%(%%type-literal$3%%)\n",
 
   "level_help_tab_calc_function_1": "%%statement assign-statement$calc%% makes a calculation and puts the result in a variable.",
   "level_help_tab_calc_function_2": "You could read the above example as \"Set the variable b to a + 2\".",
-  "level_help_tab_calc_function_3": "%%type-variable$$b%% %%type-operator$=%% %%type-function$calc%%(%%type-variable$$a%% %%type-operator$+%% %%type-literal$2%%)\n",
   "level_help_tab_calc_function_4": "In Selfless Heroes, there is only integer numbers.\n\nThe operator %%type-operator$\"/\"%% is the integer division.\nFor example, %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04%%.\n\nThe operator %%type-operator$\"%\"%% is called \"modulo\". It calculates the remainder of the integer division.\nFor example, %%type-operator$9\u00A0%\u00A02\u00A0=\u00A01%% because %%type-operator$9\u00A0/\u00A02\u00A0=\u00A04\u00A0remains\u00A01%%.",
 
   "level_help_tab_nearest_function_1": "%%statement assign-statement$nearest%% searches for the nearest object of a given type (%%icon icon-cauldron$%% cauldron, %%icon icon-egg$%%egg etc.) and puts the result in a variable.",
   "level_help_tab_nearest_function_2": "You could read the above example as \"Memorize the nearest egg in the variable a and then go get that egg\".",
-  "level_help_tab_nearest_function_3": "%%type-variable$$a%% %%type-operator$=%% %%type-function$nearest%%(%%type-literal$egg%%)\n%%type-function$take%%(%%type-variable$$a%%)",
 
   "level_help_tab_tell_function_1": "%%statement speach-statement$tell%% allows you to say a message to other heroes.",
   "level_help_tab_tell_function_2": "You could read the above example as \"Tell \"ok\" to the hero on the right of you\".",
-  "level_help_tab_tell_function_3": "%%type-function$tell%%(%%type-string$\"ok\"%% %%type-literal$e%%)",
   "level_help_tab_tell_function_4": "You can also %%statement speach-statement$tell%% a message to every %%icon icon-hero$%% hero of the level.",
   "level_help_tab_tell_function_5": "You could read the above example as \"Tell \"hey\" to everyone\".",
-  "level_help_tab_tell_function_6": "%%type-function$tell%%(%%type-string$\"hey\"%% %%type-literal$everyone%%)",
 
   "level_help_tab_listen_function_1": "%%statement speach-statement$listen%% tells the hero to wait until he hears a specific message.",
   "level_help_tab_listen_function_2": "You could read the above example as \"Wait for a hero to tell you \"hey\" then go right\".",
-  "level_help_tab_listen_function_3": "%%type-function$listen%%(%%type-string$\"hey\"%%)\n%%type-function$step%%(%%type-literal$e%%)",
 
   "level_modal_speed_target_unit": "steps",
   "level_modal_length_target_unit": "lines",
@@ -292,25 +265,8 @@
 
   "type_anchor": "anchor",
   "type_assign": "assignment",
-  "type_else": "else",
-  "type_empty": "void",
-  "type_endif": "endif",
-  "type_if": "if",
-  "type_jump": "jump",
-  "type_clone": "clone",
   "type_direction": "direction",
 
-  "function_step": "step",
-  "function_fireball": "fireball",
-  "function_take": "take",
-  "function_drop": "drop",
-  "function_write": "write",
-  "function_tell": "tell",
-  "function_listen": "listen",
-
-  "function_set": "set",
-  "function_calc": "calc",
-  "function_nearest": "nearest",
 
   "graph_node_if": "if",
   "graph_node_else": "else",
@@ -330,24 +286,9 @@
   "graph_node_function_calc": "calc",
   "graph_node_function_nearest": "nearest",
 
-  "operator_comparison_eq": "=",
-  "operator_comparison_ne": "≠",
-  "operator_comparison_le": "≤",
-  "operator_comparison_lt": "<",
-  "operator_comparison_ge": "≥",
-  "operator_comparison_gt": ">",
-
   "operator_boolean_and": "and",
   "operator_boolean_or": "or",
   "operator_boolean_delete": "delete",
-
-  "operator_arithmetic_plus": "+",
-  "operator_arithmetic_minus": "−",
-  "operator_arithmetic_multiply": "×",
-  "operator_arithmetic_divide": "÷",
-  "operator_arithmetic_modulo": "%",
-
-
 
   "drop_down_list_direction": "direction",
   "drop_down_list_number": "number",
@@ -378,6 +319,7 @@
   "drop_down_list_terrain_type_hole": "hole",
   "drop_down_list_terrain_type_infected": "infected",
   "drop_down_list_terrain_type_void": "nothing",
+
 
 
   "level_test_failed_modal": "Some of the tests failed.\nWe reproduced the same situation as in these failed attempts.",

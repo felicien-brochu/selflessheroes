@@ -1,6 +1,4 @@
 {
-  "head_title": "Selfless Heroes",
-  "head_title_template": "Selfless Heroes - {title}",
   "title_levellist": "Niveaux",
 
   "head_meta_og_description": "Selfless Heroes est un jeu qui vous apprendra à programmer sans que vous ne le remarquiez. Résolvez des énigmes et aidez vos héros à sortir victorieux du donjon !",
@@ -206,6 +204,7 @@
   "code_state_ok_modal": "Le code est prêt à être exécuté",
   "code_state_not_runnable_modal": "Le code contient des mot-clés %%undefined$undefined%%.\nRemplace-les par des valeurs correctes avant d'exécuter le code.",
   "switch_editor_warning": "Le code contient une erreur.\nEn passant à l'éditeur graphique,\ndes parties du code risquent d'être effacées.",
+
   "code_error_position_template": "ligne {line}",
   "errors_modal_title": "Erreurs",
 
@@ -267,6 +266,7 @@
   "type_anchor": "ancre",
   "type_assign": "assignation",
   "type_direction": "direction",
+
 
   "graph_node_if": "si",
   "graph_node_else": "sinon",
