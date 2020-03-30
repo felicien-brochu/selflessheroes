@@ -39,13 +39,22 @@
 
   </div>
 
-  <div class="community-buttons">
+  <div class="community-buttons"
+    v-if="showCommunityButtons">
+
+    <transition name="delay-appear"
+      appear>
+      <button v-if="showPremiumButton"
+        type="button"
+        class="premium-button"
+        :title="$text('navigation_premium_button')"
+        @click.prevent.stop="showPremiumModal">{{$text('navigation_premium_button')}}</button>
+    </transition>
 
     <transition name="delay-appear"
       appear>
       <a class="discord-button mdi mdi-discord"
         :href="discordURL"
-        v-if="showCommunityButtons"
         :title="$text('navigation_discord_button')"
         @click="goToDiscord"
         target="_blank"></a>
@@ -73,10 +82,12 @@
 
 <script>
 import Vue from 'vue'
-import mainStorage from '../game/storage/Storage'
+import storage from '../game/storage/Storage'
 import ModalLayer from './modal/ModalLayer'
 import Modal from './modal/Modal'
 import MenuModal from './menu/MenuModal'
+import PremiumModal from './premium/PremiumModal'
+import UnlockPremiumModal from './premium/UnlockPremiumModal'
 import ProposeFullscreenModal from './menu/ProposeFullscreenModal'
 import WarnLocalStorageModal from './menu/WarnLocalStorageModal'
 import lang from '../locale/lang'
@@ -134,8 +145,8 @@ export default {
   },
 
   created() {
-    this.$sound.setVolumePreference(mainStorage.preferences.soundVolume)
-    this.$music.setVolumePreference(mainStorage.preferences.musicVolume)
+    this.$sound.setVolumePreference(storage.preferences.soundVolume)
+    this.$music.setVolumePreference(storage.preferences.musicVolume)
   },
 
   beforeRouteUpdate(to, from, next) {
@@ -165,6 +176,10 @@ export default {
 
     showMenuButton: function() {
       return this.$route.name !== 'screen-size-warning'
+    },
+
+    showPremiumButton: function() {
+      return !storage.isPremium
     },
 
     showCommunityButtons: function() {
@@ -263,21 +278,59 @@ export default {
         component: MenuModal,
         key: 'app_menu_modal',
         props: {
-          preferences: mainStorage.preferences
+          preferences: storage.preferences
         },
         handlers: {
           close: () => {
-            mainStorage.save()
+            storage.save()
           },
           'preference-change': (changedPref) => {
-            mainStorage.save()
+            storage.save()
 
             if (changedPref === 'language') {
-              this.$lang.applyLanguagePreference(mainStorage.preferences.language)
+              this.$lang.applyLanguagePreference(storage.preferences.language)
               // Force rerender the entire app
               this.componentKey++
             }
           }
+        }
+      })
+    },
+
+    showPremiumModal() {
+      this.$refs.modalLayer.addModal({
+        component: PremiumModal,
+        key: 'premium_modal',
+        props: {},
+        handlers: {
+          confirm: this.showUnlockPremiumModal
+        }
+      })
+    },
+
+    showUnlockPremiumModal() {
+      this.$refs.modalLayer.addModal({
+        component: UnlockPremiumModal,
+        key: 'unlock_premium_modal',
+        props: {},
+        handlers: {
+          confirm: this.showPremiumActivatedModal
+        }
+      })
+    },
+
+    showPremiumActivatedModal() {
+      this.$refs.modalLayer.addModal({
+        component: Modal,
+        key: 'premium_activated_modal',
+        props: {
+          type: 'info',
+          cancelable: false,
+          text: this.$text('premium_activated_modal'),
+        },
+        handlers: {
+          // Reload page to show unlocked levels
+          close: () => window.location.reload()
         }
       })
     },
@@ -298,7 +351,7 @@ export default {
 
     loadSavedCareer(json) {
       try {
-        let career = mainStorage.loadSavedCareer(json)
+        let career = storage.loadSavedCareer(json)
 
         if (career) {
           if (this.$route.name !== 'home') {
@@ -348,16 +401,16 @@ export default {
     },
 
     warnLocalStorage() {
-      if (!IS_ELECTRON && this.$route.name === 'home' && mainStorage.preferences.warnLocalStorage) {
+      if (!IS_ELECTRON && this.$route.name === 'home' && storage.preferences.warnLocalStorage) {
         this.$refs.modalLayer.addModal({
           component: WarnLocalStorageModal,
           key: 'app_warn_local_storage_modal',
           props: {
-            preferences: mainStorage.preferences
+            preferences: storage.preferences
           },
           handlers: {
             close: () => {
-              mainStorage.save()
+              storage.save()
               this.proposeFullscreen()
             },
           }
@@ -368,16 +421,16 @@ export default {
     },
 
     proposeFullscreen() {
-      if (!document.fullscreenElement && document.body.requestFullscreen && !IS_ELECTRON && mainStorage.preferences.proposeFullscreen) {
+      if (!document.fullscreenElement && document.body.requestFullscreen && !IS_ELECTRON && storage.preferences.proposeFullscreen) {
         this.$refs.modalLayer.addModal({
           component: ProposeFullscreenModal,
           key: 'app_fullscreen_modal',
           props: {
-            preferences: mainStorage.preferences
+            preferences: storage.preferences
           },
           handlers: {
             close: () => {
-              mainStorage.save()
+              storage.save()
             },
             confirm: () => {
               document.body.requestFullscreen().catch(err => {
@@ -461,10 +514,31 @@ export default {
 
         transition: opacity 0.5s ease;
 
-        a {
+        .premium-button {
+            background: #568AF2;
+            padding: 0 10px;
+            font-family: 'Roboto', Arial, sans-serif;
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
+            border-radius: 3px;
+            box-shadow: inset 0 0 10px 3px rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0, 0, 0, 0.2);
+            height: 38px;
+            margin: 0 16px;
+            opacity: 0.8;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            transition: opacity 0.1s ease;
+        }
+
+        a.discord-button {
             pointer-events: all;
             font-size: 44px;
             line-height: 40px;
+            margin-top: 1px;
             color: transparentize(white, 0.2);
 
             &:hover {

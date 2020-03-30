@@ -39,7 +39,7 @@
     <button type="button"
       class="premium-levels-button"
       :title="$text('level_list_premium_levels_button')"
-      @click.prevent.stop="showPremiumModal">{{$text('level_list_premium_levels_button')}}</button>
+      @click.prevent.stop="$appRef.showPremiumModal">{{$text('level_list_premium_levels_button')}}</button>
   </div>
 
   <transition name="fade-slide"
@@ -57,8 +57,6 @@ import levelManager from '../../levels/levelManager'
 import LevelItem from './LevelItem'
 import LevelDetails from './LevelDetails'
 import CardList from '../common/CardList'
-import PremiumModal from './PremiumModal'
-import UnlockPremiumModal from './UnlockPremiumModal'
 import ModalLayer from '../modal/ModalLayer'
 import Modal from '../modal/Modal'
 import storage from '../../game/storage/Storage'
@@ -236,44 +234,6 @@ export default {
         level.revealed = true
         this.$sound.play('level_list_unlock')
         setTimeout(() => this.revealNewlyUnlockedLevels(), 250)
-      })
-    },
-
-    showPremiumModal() {
-      this.$refs.modalLayer.addModal({
-        component: PremiumModal,
-        key: 'premium_modal',
-        props: {},
-        handlers: {
-          confirm: this.showUnlockPremiumModal
-        }
-      })
-    },
-
-    showUnlockPremiumModal() {
-      this.$refs.modalLayer.addModal({
-        component: UnlockPremiumModal,
-        key: 'unlock_premium_modal',
-        props: {},
-        handlers: {
-          confirm: this.showPremiumActivatedModal
-        }
-      })
-    },
-
-    showPremiumActivatedModal() {
-      this.$refs.modalLayer.addModal({
-        component: Modal,
-        key: 'premium_activated_modal',
-        props: {
-          type: 'info',
-          cancelable: false,
-          text: this.$text('premium_activated_modal'),
-        },
-        handlers: {
-          // Reload page to show unlocked levels
-          close: () => window.location.reload()
-        }
       })
     },
   }
