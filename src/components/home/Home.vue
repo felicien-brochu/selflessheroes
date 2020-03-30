@@ -217,16 +217,16 @@ export default {
 
       if (e.dataTransfer.types.includes("Files") && e.dataTransfer.items && e.dataTransfer.items.length > 0) {
         let file = e.dataTransfer.items[0].getAsFile()
-        this.$parent.loadSavedCareerFile(file)
+        this.$appRef.loadSavedCareerFile(file)
       }
       else {
-        this.$parent.showWrongFormatFileModal()
+        this.$appRef.showWrongFormatFileModal()
       }
     },
 
     handleSavedGameFileChange(e) {
       let file = e.target.files[0]
-      this.$parent.loadSavedCareerFile(file)
+      this.$appRef.loadSavedCareerFile(file)
     },
 
     saveCareerFile(careerID, e) {

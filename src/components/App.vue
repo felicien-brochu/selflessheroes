@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import mainStorage from '../game/storage/Storage'
 import ModalLayer from './modal/ModalLayer'
 import Modal from './modal/Modal'
@@ -182,6 +183,8 @@ export default {
         this.proposeFullscreen()
       }
     }
+
+    Vue.prototype.$appRef = this
   },
 
   methods: {
