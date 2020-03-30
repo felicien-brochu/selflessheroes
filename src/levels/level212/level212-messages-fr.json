@@ -1,4 +1,4 @@
 {
-  "name": "Labyrinthe",
-  "objective": "Mets tous les %%icon icon-egg$%% œufs dans le %%icon icon-cauldron$%% chaudron.\n\n%%icon mdi mdi-information-outline$%% C'est toujours un peu délicat de s'orienter dans un labyrinthe... Heureusement maintenant tu peux utiliser %%statement assign-statement$plus proche%% pour trouver ton chemin."
+    "name": "Labyrinthe",
+    "objective": "Mets tous les %%icon icon-egg$%% œufs dans le %%icon icon-cauldron$%% chaudron.\n\n%%icon mdi mdi-information-outline$%% C'est toujours un peu délicat de s'orienter dans un labyrinthe… Heureusement maintenant tu peux utiliser %%statement assign-statement$plus proche%% pour trouver ton chemin."
 }
