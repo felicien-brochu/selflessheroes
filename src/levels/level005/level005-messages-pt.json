@@ -1,1 +1,4 @@
-{}
+{
+  "name": "Medo de altura",
+  "objective": "Acione todos os %%icon icon-switch$%% botões\n\n%%icon mdi mdi-alert-octagon-outline$%%Atenção: não deixe seus %%icon icon-hero$%% heróis caírem no buraco."
+}

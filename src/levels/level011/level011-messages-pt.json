@@ -1,1 +1,5 @@
-{}
+{
+  "name": "Seja valente, CORRA!",
+  "objective": "Esses dois ogros estão atrás de vocês. Livrem-se deles antes que te peguem.\n\n%%icon mdi mdi-information-outline$%% Use os %%icon icon-switch$%% botões para ativar/desativar os %%icon icon-spikes$%% espinhos.",
+  "boss_tell": "Corra! Corra! Corra, baixinho!\nVamos ver quem é mais rápido!"
+}

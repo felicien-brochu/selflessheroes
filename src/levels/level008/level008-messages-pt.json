@@ -1,1 +1,4 @@
-{}
+{
+  "name": "Vigília à luz de velas",
+  "objective": "Acenda todas as %%icon icon-bonfire$%% fogueiras\n\n%%icon mdi mdi-information-outline$%% Use %%statement branching-statement$pular%% para repetir ações"
+}

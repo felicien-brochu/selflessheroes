@@ -1,1 +1,4 @@
-{}
+{
+  "name": "Curva acentuada",
+  "objective": "Acenda todas as %%icon icon-bonfire$%% fogueiras\n\n%%icon mdi mdi-alert-octagon-outline$%%Atenção: todos heróis devem sobreviver"
+}

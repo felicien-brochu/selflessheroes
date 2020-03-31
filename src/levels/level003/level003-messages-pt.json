@@ -1,1 +1,4 @@
-{}
+{
+  "name": "Cuidado por onde anda",
+  "objective": "Acione todos os %%icon icon-switch$%% botões.\n\n%%icon mdi mdi-information-outline$%% Abra o menu ajuda e leia a aba %%statement branching-statement$se%% para saber como a função funciona."
+}
