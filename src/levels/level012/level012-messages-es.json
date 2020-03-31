@@ -1,1 +1,6 @@
-{}
+{
+  "name": "Uno a la vez",
+  "objective": "Los %%icon icon-hero$%% héroes tienen que ir en las cruces cada uno a su vez. Primero el héroe de la izquierda, luego el de la derecha, y así sucesivamente.",
+  "loss_reason_moved_of_the_cross": "Una vez que un %%icon icon-hero$%% héroe llega en una cruz, no debe moverse",
+  "loss_reason_wrong_order": "Los %%icon icon-hero$%% héroes tienen que ir en las cruces cada uno a su vez. Primero el héroe de la izquierda, luego el de la derecha, y así sucesivamente."
+}

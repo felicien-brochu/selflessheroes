@@ -1,1 +1,4 @@
-{}
+{
+  "name": "Camino sinuoso",
+  "objective": "Encende todos los %%icon icon-bonfire$%% fuegos"
+}

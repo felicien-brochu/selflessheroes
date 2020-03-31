@@ -1,1 +1,5 @@
-{}
+{
+  "name": "La cade humane 2",
+  "objective": "Pon el%%icon icon-egg$%% huevo del número máximo\nen el %%icon icon-cauldron$%% caldero\n\n%%icon mdi mdi-information-outline$%% En caso de igualdad, elija uno de los dos",
+  "loss_reason_not_maximum_egg_in_cauldron": "Pusiste un %%icon icon-egg$%% huevo que no es el máximo en el %%icon icon-cauldron$%% caldero"
+}

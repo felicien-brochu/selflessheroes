@@ -1,1 +1,5 @@
-{}
+{
+  "name": "Cosecha 2",
+  "objective": "Pon el%%icon icon-egg$%% huevo del número máximo de cada columna en el %%icon icon-cauldron$%% caldero que corresponde\n\n%%icon mdi mdi-alert-octagon-outline$%%Cuidado: no pongas otros %%icon icon-egg$%% huevos que los con números máximos en los %%icon icon-cauldron$%% calderos",
+  "loss_reason_one_egg_not_max": "Pusiste un %%icon icon-egg$%% huevo que no es el máximo de su columna en un %%icon icon-cauldron$%% caldero"
+}

@@ -1,1 +1,4 @@
-{}
+{
+  "name": "Encender el fuego",
+  "objective": "Encende todos los %%icon icon-bonfire$%% fuegos\n\n%%icon mdi mdi-information-outline$%% Utiliza %%statement action-statement$bola de fuego%% para encender los fuegos"
+}

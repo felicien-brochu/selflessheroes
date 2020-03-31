@@ -1,1 +1,4 @@
-{}
+{
+  "name": "Camino sinuoso 2",
+  "objective": "Encende todos los %%icon icon-bonfire$%% fuegos\n\n%%icon mdi mdi-alert-octagon-outline$%%Cuidado: ningún héroe tiene que morir\n\n\n%%icon mdi mdi-information-outline$%% Para hacerlo más rápidamente, copia/pega el código del nivel anterior"
+}

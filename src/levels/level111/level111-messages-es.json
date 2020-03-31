@@ -1,1 +1,6 @@
-{}
+{
+  "name": "Entrega cruzada",
+  "objective": "Los %%icon icon-cauldron$%% calderos están numerados del 0 al 9 por los huevos delante de ellos. Pon los %%icon icon-egg$%% huevos delante de los héroes en los %%icon icon-cauldron$%% calderos correspondientes.",
+  "loss_reason_took_label_egg": "No muevas los %%icon icon-egg$%% huevos utilizados para numerar a los %%icon icon-cauldron$%% calderos, así no olvidarás en que %%icon icon-cauldron$%% caldero tienes que poner los %%icon icon-egg$%% huevos.",
+  "loss_reason_wrong_egg_in_cauldron": "Pusiste un %%icon icon-egg$%% huevo en el %%icon icon-cauldron$%% caldero incorrecto.\n\nLos %%icon icon-cauldron$%% calderos están numerados del 0 al 9 por los huevos delante de ellos. Pon los %%icon icon-egg$%% huevos en los %%icon icon-cauldron$%% calderos que tienen el mismo numéro."
+}

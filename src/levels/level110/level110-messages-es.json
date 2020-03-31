@@ -1,1 +1,5 @@
-{}
+{
+  "name": "La cade humane 3",
+  "objective": "Pon el%%icon icon-egg$%% huevo del número máximo en el %%icon icon-cauldron$%% caldero",
+  "loss_reason_one_egg_not_max": "Pusiste un %%icon icon-egg$%% huevo que no es el máximo en el %%icon icon-cauldron$%% caldero"
+}

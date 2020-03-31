@@ -1,1 +1,5 @@
-{}
+{
+  "name": "Ordena 2",
+  "objective": "Ordena los %%icon icon-egg$%% huevos con el numéro menor de la izquierda al numéreo mayor de la derecha.\n\n%%icon mdi mdi-information-outline$%% Esta vez, los %%icon icon-hero$%% héroes tienen que colaborar.",
+  "loss_reason_egg_in_hole": "¿Estás tirando los %%icon icon-egg$%% huevos en el hueco ?\nExtraña manera de ordenar…"
+}

@@ -1,1 +1,71 @@
-{}
+{
+  "navigation_exit_button": "Salír",
+  "navigation_menu_button": "Menú",
+  "navigation_discord_button": "Únete a la comunidad en Discord",
+  "menu_fullscreen_label": "Pantalla completa",
+  "menu_enable_fullscreen": "Pantalla completa",
+  "menu_disable_fullscreen": "Salír de la pantalla completa",
+  "menu_sound_label": "Sonido",
+  "menu_music_label": "Música",
+  "mute_button_mute": "Silencio",
+  "mute_button_unmute": "Activar el sonido",
+  "menu_language_label": "Idioma",
+  "menu_credits_label": "créditos",
+  "menu_credits_link": "ver en línea",
+
+  "type_anchor": "ancla",
+  "type_assign": "asignación",
+  "type_direction": "dirección",
+
+  "graph_node_if": "si",
+  "graph_node_else": "si no",
+  "graph_node_jump": "salto",
+  "graph_node_clone": "clon",
+
+  "graph_node_function_step": "ir",
+  "graph_node_function_fireball": "bola de fuego",
+  "graph_node_function_take": "tomar",
+  "graph_node_function_drop": "poner",
+  "graph_node_function_write": "escrivir",
+  "graph_node_function_tell": "decir",
+  "graph_node_function_tell_after_1": "a",
+  "graph_node_function_listen": "escuchar",
+
+  "graph_node_function_set": "init",
+  "graph_node_function_calc": "calc",
+  "graph_node_function_nearest": "más cerca",
+
+  "operator_boolean_and": "y",
+  "operator_boolean_or": "o",
+  "operator_boolean_delete": "suprimir",
+
+  "drop_down_list_direction": "dirección",
+  "drop_down_list_number": "número",
+
+  "drop_down_list_my_item_literal": "mi ítem",
+  "drop_down_list_everyone_literal": "todo el mundo",
+
+  "drop_down_list_message_literal_hey": "\"hey\"",
+  "drop_down_list_message_literal_lol": "\"lol\"",
+  "drop_down_list_message_literal_ho": "\"ho\"",
+  "drop_down_list_message_literal_kiss": "\"beso\"",
+  "drop_down_list_message_literal_stop": "\"stop\"",
+  "drop_down_list_message_literal_wait": "\"espera\"",
+  "drop_down_list_message_literal_ok": "\"ok\"",
+  "drop_down_list_message_literal_coffee": "\"café\"",
+
+  "drop_down_list_object_type_nothing": "nada",
+  "drop_down_list_object_type_hero": "héroe",
+  "drop_down_list_object_type_npc": "monstro",
+  "drop_down_list_object_type_switch": "botón",
+  "drop_down_list_object_type_bonfire": "fuego",
+  "drop_down_list_object_type_cauldron": "caldero",
+  "drop_down_list_object_type_spikes": "picas",
+  "drop_down_list_object_type_egg": "huevo",
+
+  "drop_down_list_terrain_type_wall": "muro",
+  "drop_down_list_terrain_type_floor": "suelo",
+  "drop_down_list_terrain_type_hole": "hueco",
+  "drop_down_list_terrain_type_infected": "infectado",
+  "drop_down_list_terrain_type_void": "vacío",
+}

@@ -1,1 +1,4 @@
-{}
+{
+  "name": "Entrega",
+  "objective": "Pon los %%icon icon-egg$%% huevos en los %%icon icon-cauldron$%% calderos"
+}
