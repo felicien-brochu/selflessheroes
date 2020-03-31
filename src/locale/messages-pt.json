@@ -189,5 +189,12 @@
     "loss_reason_too_many_steps": "Seu programa demora muito para terminar",
     "loss_reason_all_hero_ended": "Seus heróis adormeceram antes de terminar o objetivo",
     "loss_reason_all_hero_dead": "Todos seus heróis morreram",
-    "loss_reason_one_hero_dead": "Ao menos um de seus heróis morreu"
+    "loss_reason_one_hero_dead": "Ao menos um de seus heróis morreu",
+    "level_help_tab_jump_statement_4": "A primeira linha cria uma \"âncora\" chamada \"a\". A terceira linha manda voltar para essa âncora.\nVocê pode escolher qualquer nome para sua âncora. Cada \"pular\" pode ter somente uma âncora.",
+    "level_help_tab_jump_statement_2": "Você poderia ler o exemplo acima como \"Ande para a direita indefinitivamente\".",
+    "level_help_tab_jump_statement_1": "%%statement branching-statement$pular%% permite pular para frente ou para trás no programa.",
+    "head_meta_keywords": "puzzle game, video game, serious game, programming, development, puzzle, education, fun, logic, algorithm",
+    "head_meta_description": "Selfless Heroes é um jogo que vai te ensinar a programar sem você perceber. Solucione quebra-cabeças e ajude seus heróis a imergirem vitoriosos dos calabouços!",
+    "head_meta_og_description": "Selfless Heroes é um jogo que vai te ensinar a programar sem você perceber. Solucione quebra-cabeças e ajude seus heróis a imergirem vitoriosos dos calabouços!",
+    "title_levellist": "Níveis"
 }
