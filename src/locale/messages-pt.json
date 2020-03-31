@@ -144,7 +144,7 @@
     "type_direction": "direção",
     "graph_node_if": "se",
     "graph_node_else": "senão",
-    "graph_node_jump": "pulo",
+    "graph_node_jump": "pular",
     "graph_node_clone": "clone",
     "graph_node_function_step": "andar",
     "graph_node_function_fireball": "bola de fogo",
@@ -195,6 +195,10 @@
     "level_help_tab_jump_statement_1": "%%statement branching-statement$pular%% permite pular para frente ou para trás no programa.",
     "head_meta_keywords": "puzzle game, video game, serious game, programming, development, puzzle, education, fun, logic, algorithm",
     "head_meta_description": "Selfless Heroes é um jogo que vai te ensinar a programar sem você perceber. Solucione quebra-cabeças e ajude seus heróis a imergirem vitoriosos dos calabouços!",
-    "head_meta_og_description": "Selfless Heroes é um jogo que vai te ensinar a programar sem você perceber. Solucione quebra-cabeças e ajude seus heróis a imergirem vitoriosos dos calabouços!",
-    "title_levellist": "Níveis"
+    "head_meta_og_description": "Selfless Heroes é um jogo que vai te ensinar a programar sem você perceber. Solucione quebra-cabeças e ajude seus heróis a emergirem vitoriosos dos calabouços!",
+    "title_levellist": "Níveis",
+    "level_help_tab_clone_statement_2": "Você pode ler o exemplo acima como \"Crie um clone a sua esquerda. Então ande para a direita\".\n\nPara o herói criado, %%statement branching-statement$clonar%% funciona como %%statement branching-statement$pular%%. Nesse exemplo, o clone criado não irá andar para a direita porque ele irá começar a seguir as instruções após a seta do %%statement branching-statement$clonar%%.",
+    "level_help_tab_clone_statement_1": "%%statement branching-statement$clonar%% cria um clone do herói ao lado dele.",
+    "level_help_tab_jump_statement_5": "%%statement branching-statement$pular%% é usado normalmente com %%statement branching-statement$se%% para criar loops que param em uma condição.",
+    "level_help_tab_jump_statement_6": " "
 }
