@@ -1,3 +1,4 @@
 {
-    "name": "Passo sicuro"
+    "name": "Passo sicuro",
+    "objective": "Attiva tutti gli %%icon icon-switch$%% interruttori.\n\n%%icon mdi mdi-information-outline$%% Controlla l'aiuto su %%statement branching-statement$if%% per capire meglio come funziona."
 }
