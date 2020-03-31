@@ -1,5 +1,5 @@
 [![Selfless Heroes](https://github.com/felicien-brochu/selflessheroes/raw/master/images/banner-dark.png)](https://selflessheroes.fr)
-[![selflessheroes](https://snapcraft.io//selflessheroes/badge.svg)](https://snapcraft.io/selflessheroes)
+[![selflessheroes](https://snapcraft.io//selflessheroes/badge.svg)](https://snapcraft.io/selflessheroes)![translation status](http://translate.selflessheroes.fr/widgets/selflessheroes/-/svg-badge.svg)
 
 
 Selfless Heroes is a puzzle game that will teach you how to program without you noticing.
