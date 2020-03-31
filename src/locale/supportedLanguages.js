@@ -3,6 +3,7 @@ export default [
   'fr',
   // Uncomment one of the following lines to enable the corresponding language
   // 'es',
+  // 'it',
   // 'pl',
   // 'pt',
 ]
