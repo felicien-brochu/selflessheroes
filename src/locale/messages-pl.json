@@ -1,1 +1,24 @@
-{}
+{
+    "home_remove_career_warning": "Czy jesteś pewien, że chcesz usunąć tą grę?\nCały postęp zostanie stracony.",
+    "home_save_career_button": "Zapisz jako…",
+    "home_load_career_button": "%%mdi mdi-content-save-move$%% Wczytaj grę",
+    "home_new_game": "nowa gra:",
+    "screen_size_warning_1": "Ekran twojego urządzenia jest zbyt mały żeby grać w Selfless Heroes",
+    "menu_language_label": "Język",
+    "mute_button_mute": "Wycisz",
+    "menu_sound_label": "Dźwięk",
+    "menu_music_label": "Muzyka",
+    "menu_disable_fullscreen": "Wyjdź z pełnego ekranu",
+    "menu_enable_fullscreen": "Pełny ekran",
+    "menu_fullscreen_label": "Pełny ekran",
+    "navigation_discord_button": "Dołącz do społeczności na Discord",
+    "navigation_menu_button": "Menu",
+    "navigation_exit_button": "Wyjdź",
+    "app_warn_local_storage_modal_stop_warning": "Nie pokazuj więcej tej wiadomości",
+    "app_warn_local_storage_modal_4": "\nalbo\nzapisz swoją grę (%%mdi mdi-content-save-move$%%)",
+    "app_warn_local_storage_modal_3": "instaluj Selfless Heroes",
+    "app_warn_local_storage_modal_2": "\nŻeby mieć pewność, że nie stracisz swojej gry:\n\n",
+    "app_fullscreen_modal_stop_propose": "Nie pokazuj więcej tej wiadomości",
+    "app_fullscreen_modal": "Dla najlepszego doświadczenia gry,\nrekomendowany jest tryb pełnoekranowy.",
+    "title_levellist": "Poziomy"
+}
