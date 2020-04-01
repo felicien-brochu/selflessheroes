@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_one_egg_not_max": "Você pôs um %%icon icon-egg$%% ovo que não é o maior de sua coluna dentro do %%icon icon-cauldron$%% caldeirão",
+    "objective": "Ponha o %%icon icon-egg$%% ovo de maior valor dentro de cada coluna no %%icon icon-cauldron$%% caldeirão correspondente\n\n%%icon mdi mdi-alert-octagon-outline$%%Atenção: não ponha outros %%icon icon-egg$%% ovos dentro dos %%icon icon-cauldron$%% caldeirões",
+    "name": "Escolhendo de novo"
+}
