@@ -240,7 +240,7 @@
     "level_help_tab_tell_function_1": "%%statement speach-statement$falar%% permite você dizer uma mensagem para outros heróis.",
     "level_help_tab_nearest_function_2": "você poderia ler o exemplo como \"Memorize o ovo mais próximo na variável \"a\" e então pegue o ovo\".",
     "level_help_tab_nearest_function_1": "%%statement assign-statement$mais próximo%% procura pelo objeto escolhido (%%icon icon-cauldron$%% cauldron, %%icon icon-egg$%%egg, etc...) que estiver mais perto e põe o resultado em uma variável.",
-    "level_help_tab_calc_function_4": "Em Selfless Heroes, há somente números inteiros.\n\nO operador %%type-operator$\"/\"%% é o operador matemático de divisão.\nPor exemplo, %%type-operator$9 / 2 = 4%%.\n\nPor exemplo, %%type-operator$\"%\"%% é chamado de \"modulo\". Ele calcula o resto de uma divisão.\nPor exemplo, %%type-operator$9 % 2 = 1%% porque %%type-operator$9 / 2 = 4 remains 1%%.",
+    "level_help_tab_calc_function_4": "Em Selfless Heroes, há somente números inteiros.\n\nO operador %%type-operator$\"/\"%% é o operador aritmético de divisão.\nPor exemplo, %%type-operator$9 / 2 = 4%%.\n\nO operador %%type-operator$\"%\"%% é chamado de \"modulo\". Ele calcula o resto de uma divisão.\nPor exemplo, %%type-operator$9 % 2 = 1%% porque %%type-operator$9 / 2 = 4 resto 1%%.",
     "level_help_tab_calc_function_2": "Você poderia ler o exemplo como \"Atribuía o valor a + 2 na variável b\".",
     "level_help_tab_calc_function_1": "%%statement assign-statement$calc%% faz um cálculo e põe o valor em uma variável."
 }
