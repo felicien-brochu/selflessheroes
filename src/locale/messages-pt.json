@@ -200,5 +200,20 @@
     "level_help_tab_clone_statement_2": "Você pode ler o exemplo acima como \"Crie um clone a sua esquerda. Então ande para a direita\".\n\nPara o herói criado, %%statement branching-statement$clonar%% funciona como %%statement branching-statement$pular%%. Nesse exemplo, o clone criado não irá andar para a direita porque ele irá começar a seguir as instruções após a seta do %%statement branching-statement$clonar%%.",
     "level_help_tab_clone_statement_1": "%%statement branching-statement$clonar%% cria um clone do herói ao lado dele.",
     "level_help_tab_jump_statement_5": "%%statement branching-statement$pular%% é usado normalmente com %%statement branching-statement$se%% para criar loops que param em uma condição.",
-    "level_help_tab_jump_statement_6": " "
+    "level_help_tab_jump_statement_6": " ",
+    "level_help_tab_set_function_2": "Você poderia ler o exemplo acima como \"Atribua o valor 3 na variável a\".",
+    "level_help_tab_set_function_1": "%%statement assign-statement$atribuir%% atribui um valor a uma variável.",
+    "level_help_tab_write_function_2": "Você poderia ler o exemplo acima como \"Escreve 3 no seu objeto\".",
+    "level_help_tab_write_function_1": "%%statement action-statement$escrever%% diz ao seu herói para escrever alguma coisa no seu objeto.",
+    "level_help_tab_drop_function_2": "Você poderia ler o exemplo acima como \"Solte o item no quadrado a sua direita\".",
+    "level_help_tab_drop_function_1": "%%statement action-statement$soltar%% diz ao seu herói para soltar o seu objeto.",
+    "level_help_tab_take_function_2": "Você pode ler o exemplo como \"Se há um ovo no quadrado na sua direita, pegue o ovo\".",
+    "level_help_tab_take_function_1": "%%statement action-statement$pegar%% diz ao seu herói para pegar um objeto.",
+    "level_help_tab_fireball_function_2": "Você pode ler o exemplo acima como \"Jogue uma bola de fogo na sua direita\".",
+    "level_help_tab_fireball_function_1": "%%statement action-statement$bola de fogo%% joga uma bola de fogo em um quadrado em volta do herói.\nSe a bola de fogo atingir outro herói, ela irá matá-lo. Você pode usar a bola de fogo para acender uma %%icon icon-bonfire$%% bola de fogo.",
+    "level_help_tab_step_once_function_2": "Você pode ler o exemplo acima como \"Ande uma vez para a direita\".",
+    "level_help_tab_step_once_function_1": "%%statement action-statement$andar%% diz para seu herói andar em uma direção.",
+    "level_help_tab_step_function_2": "Você pode ler o exemplo acima como \"Vá para a esquerda ou vá para a direita\".",
+    "level_help_tab_step_function_1": "%%statement action-statement$andar%% diz para seu herói andar em uma direção. Se você especificar várias direções, o herói decidirá aleatoriamente entre elas.",
+    "level_help_tab_clone_statement_4": "O clone criado começa sua vida com as mesmas variáveis do seu criador.\n\n%%icon mdi mdi-alert-octagon-outline$%%Atenção: se você tentar criar um clone em um quadrado que já estiver ocupado ( por um %%icon icon-hero$%% herói, um %%icon icon-cauldron$%% calderão, etc...) ou um quadrado proibido ( como uma %%icon icon-wall$%% parede), o processo de clonagem irá falhar. Em certos níveis, essa falha causa a morte do herói que tenta se clonar."
 }
