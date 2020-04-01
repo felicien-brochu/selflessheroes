@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_multiple_eggs_in_cauldron": "Você colocou vários %%icon icon-egg$%% ovos em um %%icon icon-cauldron$%% caldeirão",
+    "objective": "Esses %%icon icon-egg$%% ovos estão aleatoriamente espalhados pelo quarto. Ponha um %%icon icon-egg$%% ovo em cada %%icon icon-cauldron$%% caldeirão para preparar o jantar.",
+    "name": "O jantar esta pronto!"
+}
