@@ -25,6 +25,7 @@
   "unlock_premium_modal_activation_key_placeholder": "XXX-XXX-XXX-XX",
 
 
+  "level_help_tab_if_statement_5": "%%type-keyword$if%% %%type-literal$e%% %%type-operator$==%% %%type-literal$wall%% :\n  %%type-function$step%%(%%type-literal$w%%)\n%%type-keyword$else%%\n  %%type-function$step%%(%%type-literal$e%%)\n%%type-keyword$endif%%\n",
   "level_help_tab_if_statement_8": "%%type-keyword$if%% %%type-literal$e%% %%type-operator$==%% %%type-literal$wall%% %%type-operator$||%%\n  %%type-literal$e%% %%type-operator$==%% %%type-literal$hole%% :\n  %%type-function$step%%(%%type-literal$w%%)\n%%type-keyword$endif%%\n",
 
   "level_help_tab_jump_statement_3": "%%type-bracket$a:%%\n%%type-function$step%%(%%type-literal$e%%)\n%%type-keyword$jump%% %%type-bracket$a%%",
