@@ -169,5 +169,16 @@
     "home_drop_career_file": "Wczytaj zapisaną grę\n%%mdi mdi-content-save-move$%% plik .shsv",
     "home_remove_career_button": "Usuń",
     "home_new_career_or_separator": "lub",
-    "screen_size_warning_2": "Selfless Heroes jest zaprojektowany żeby działać na komputerze, laptopie i tablecie. Żeby grać w ten tytuł, musisz mieć ekran o wielkości przynajmniej {minMaxDimension} x {minMinDimension} pikseli: twój ekran jest tylko {maxDimension} x {minDimension} pikseli."
+    "screen_size_warning_2": "Selfless Heroes jest zaprojektowany żeby działać na komputerze, laptopie i tablecie. Żeby grać w ten tytuł, musisz mieć ekran o wielkości przynajmniej {minMaxDimension} x {minMinDimension} pikseli: twój ekran jest tylko {maxDimension} x {minDimension} pikseli.",
+    "exception_invalid_value_function_template": "%%function${code}%% nie jest poprawną funkcją. W zamian użyj jednej z tych: %%function${allowedFunctions}%%.",
+    "exception_forbidden_message_literal_template": "Wiadomość %%string$\"{message}\"%% nie jest dozwolona. W zamian użyj jednej z tych: %%string${allowedMessages}%%.",
+    "exception_forbidden_integer_template": "Liczba %%number${value}%% jest zbyt mała lub zbyt duża: liczby muszą być pomiędzy %%number${min}%% i %%number${max}%%.",
+    "exception_invalid_variable_identifier_template": "Nazwa zmiennej %%variable${variable}%% nie jest dozwolona. W zamian użyj jednej z tych: %%variable${allowedIdentifiers}%%.",
+    "exception_invalid_clone_params_template": "%%keyword${statementType}%% oczekuje kierunku (%%literal${allowedDirections}%%) i kotwicy.",
+    "exception_mismatch_function_template": "napisałeś coś błędnego po funkcji %%function${keyword}()%%.",
+    "exception_forbidden_arithmetic_operator_literal_type_template": "Operatory arytmetyczne nie są dostępne na tym poziomie.",
+    "exception_forbidden_message_literal_type_template": "wiadomości nie są dostępne na tym poziomie.",
+    "exception_forbidden_primary_statement_template": "%%keyword${statementType}%% nie jest dostępne na tym poziomie.",
+    "exception_mismatch_keyword_template": "napisałeś coś błędnego po tym wyrażeniu %%keyword${statementType}%%.",
+    "exception_mismatch_statement_template": "napisałeś coś błędnego po tym wyrażeniu {statementType}."
 }
