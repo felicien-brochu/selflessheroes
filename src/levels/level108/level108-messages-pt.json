@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Esses %%icon icon-egg$%% ovos estão espalhados pelo todo quarto. Junte eles todos no fundo do quarto para deixar arrumado.\n\n%%icon mdi mdi-alert-octagon-outline$%%Atenção: os %%icon icon-egg$%% ovos precisam se manter em suas colunas e na ordem em que foram pegos do chão",
+    "name": "Limpando a casa"
+}
