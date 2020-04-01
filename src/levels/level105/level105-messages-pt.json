@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_one_egg_ge_4": "Você pôs um %%icon icon-egg$%% ovo maior ou igual a 4\nem um %%icon icon-cauldron$%% caldeirão",
+    "objective": "Ponha todos os %%icon icon-egg$%% ovos que são menores que 4\nnos %%icon icon-cauldron$%% caldeirões",
+    "name": "Colheita"
+}
