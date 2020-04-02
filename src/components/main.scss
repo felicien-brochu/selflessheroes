@@ -10,7 +10,7 @@ html {
 	min-height: 100vh;
 	min-height: calc(var(--vh, 1vh) * 100);
 	background-color: black;
-	font-family: 'Roboto', Arial, sans-serif;
+	font-family: 'Roboto', "Noto", Arial, sans-serif;
 
 	* {
 		scrollbar-color: #fff6 #0000;

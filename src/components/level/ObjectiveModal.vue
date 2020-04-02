@@ -151,7 +151,7 @@ export default {
             }
 
             .level-label {
-                font-family: 'Born2bSportyV2', 'Roboto', Arial, sans-serif;
+                font-family: 'Born2bSportyV2', 'Roboto', "Noto", Arial, sans-serif;
                 font-size: 40px;
                 margin-left: 10px;
             }

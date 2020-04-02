@@ -462,7 +462,7 @@ export default {
                 cursor: default;
 
                 h3 {
-                    font-family: 'Roboto', Arial, sans-serif;
+                    font-family: 'Roboto', "Noto", Arial, sans-serif;
                     font-weight: 500;
                     margin: 0 auto 10px;
                     width: 200px;

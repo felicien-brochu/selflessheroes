@@ -38,3 +38,15 @@
 	font-weight: 900;
 	font-style: normal;
 }
+@font-face {
+	font-family: 'Noto';
+	src: url("./NotoKufiArabic/NotoKufiArabic-Regular/NotoKufiArabic-Regular.woff2") format('woff2'), url("./NotoKufiArabic/NotoKufiArabic-Regular/NotoKufiArabic-Regular.woff") format('woff'), url("./NotoKufiArabic/NotoKufiArabic-Regular/NotoKufiArabic-Regular.ttf") format('truetype'), url("./NotoKufiArabic/NotoKufiArabic-Regular/NotoKufiArabic-Regular.svg") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Noto';
+	src: url("./NotoKufiArabic/NotoKufiArabic-Bold/NotoKufiArabic-Bold.woff2") format('woff2'), url("./NotoKufiArabic/NotoKufiArabic-Bold/NotoKufiArabic-Bold.woff") format('woff'), url("./NotoKufiArabic/NotoKufiArabic-Bold/NotoKufiArabic-Bold.ttf") format('truetype'), url("./NotoKufiArabic/NotoKufiArabic-Bold/NotoKufiArabic-Bold.svg") format('svg');
+	font-weight: bold;
+	font-style: normal;
+}

@@ -205,7 +205,7 @@ $option-padding: 4px 10px;
             height: var(--option-height);
             padding: $option-padding;
             .text {
-                font-family: "Source Sans Pro", sans-serif;
+                font-family: "Roboto", "Noto", Arial, sans-serif;
                 font-size: 24px;
             }
             .angle-down {
@@ -238,7 +238,7 @@ $option-padding: 4px 10px;
             align-items: center;
             padding: $option-padding;
             height: 35px;
-            font-family: "Source Sans Pro", sans-serif;
+            font-family: "Roboto", "Noto", Arial, sans-serif;
             font-size: 18px;
         }
         .option:hover {

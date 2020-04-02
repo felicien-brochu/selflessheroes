@@ -517,7 +517,7 @@ export default {
         .premium-button {
             background: #568AF2;
             padding: 0 10px;
-            font-family: 'Roboto', Arial, sans-serif;
+            font-family: 'Roboto', "Noto", Arial, sans-serif;
             color: white;
             font-size: 20px;
             font-weight: 500;

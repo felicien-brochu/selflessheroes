@@ -300,7 +300,7 @@ export default {
             background: #568AF2;
             padding: 20px 24px;
             margin: 0 auto 80px;
-            font-family: 'Roboto', Arial, sans-serif;
+            font-family: 'Roboto', "Noto", Arial, sans-serif;
             color: white;
             font-size: 25px;
             line-height: 25px;

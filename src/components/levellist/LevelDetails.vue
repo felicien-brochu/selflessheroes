@@ -288,7 +288,7 @@ $level-details-color: #3C404A;
         left: 50%;
         transform: translateX(-50%);
 
-        font-family: 'Roboto', Arial, sans-serif;
+        font-family: 'Roboto', "Noto", Arial, sans-serif;
         font-size: 20px;
         color: white;
         padding: 37px 50px 30px;
@@ -335,7 +335,7 @@ $level-details-color: #3C404A;
                 }
 
                 .level-label {
-                    font-family: 'Born2bSportyV2', 'Roboto', Arial, sans-serif;
+                    font-family: 'Born2bSportyV2', 'Roboto', "Noto", Arial, sans-serif;
                     font-size: 40px;
                     margin-left: 10px;
                     margin-right: 30px;
@@ -458,7 +458,7 @@ $level-details-color: #3C404A;
                             input[type="text"] {
                                 padding: 3px 6px;
                                 border-radius: 5px;
-                                font-family: 'Roboto', Arial, sans-serif;
+                                font-family: 'Roboto', "Noto", Arial, sans-serif;
                                 font-size: 17px;
                                 border: none;
                                 background-color: white;
@@ -504,7 +504,7 @@ $level-details-color: #3C404A;
             margin-top: 24px;
 
             button {
-                font-family: 'Roboto', Arial, sans-serif;
+                font-family: 'Roboto', "Noto", Arial, sans-serif;
                 font-weight: 500;
                 min-width: 100px;
                 font-size: 21px;
