@@ -16,114 +16,116 @@
       v-bbcode>{{$text('home_drop_career_file')}}</div>
   </div>
 
-  <card-list class="career-list"
-    :itemWidth="280"
-    :horizontalMargin="15"
-    :parentPadding="80"
-    :centerOneLiner="true">
+  <div class="bottom-container">
+    <card-list class="career-list"
+      :itemWidth="280"
+      :horizontalMargin="15"
+      :parentPadding="80"
+      :centerOneLiner="true">
 
-    <router-link v-for="career in careers"
-      class="career-item"
-      :key="`career${career.id}`"
-      tag="li"
-      :to="career.url">
+      <router-link v-for="career in careers"
+        class="career-item"
+        :key="`career${career.id}`"
+        tag="li"
+        :to="career.url">
 
-      <div class="buttons-container">
-        <button class="save-button mdi mdi-content-save-move"
-          type="button"
-          :title="$text('home_save_career_button')"
-          @click.prevent="saveCareerFile(career.id, $event)"
-          @touchstart.prevent="saveCareerFile(career.id, $event)" />
+        <div class="buttons-container">
+          <button class="save-button mdi mdi-content-save-move"
+            type="button"
+            :title="$text('home_save_career_button')"
+            @click.prevent="saveCareerFile(career.id, $event)"
+            @touchstart.prevent="saveCareerFile(career.id, $event)" />
 
-        <button class="remove-button mdi mdi-close"
-          type="button"
-          :title="$text('home_remove_career_button')"
-          @click.prevent="deleteCareer(career.id, $event)"
-          @touchstart.prevent="deleteCareer(career.id, $event)" />
-      </div>
+          <button class="remove-button mdi mdi-close"
+            type="button"
+            :title="$text('home_remove_career_button')"
+            @click.prevent="deleteCareer(career.id, $event)"
+            @touchstart.prevent="deleteCareer(career.id, $event)" />
+        </div>
 
-      <h3 class="career-name"
-        v-text-fit="{
+        <h3 class="career-name"
+          v-text-fit="{
 		      alignHoriz: true,
 		      alignVert: true
 		    }">{{
 				career.name
 			}}</h3>
 
-      <div class="stars-count">
-        <i class="star-icon"><span :class="{
+        <div class="stars-count">
+          <i class="star-icon"><span :class="{
 					'number': true,
 					'small': career.stars.toString().length >= 3
 				}">{{
 					career.stars
 				}}</span></i>
-      </div>
+        </div>
 
-    </router-link>
+      </router-link>
 
-    <transition name="fade"
-      mode="out-in">
-      <li v-if="!newCareer && careers.length > 0"
-        class="add-button-wrapper"
-        @mousedown="newCareer = true"
-        @touchstart="newCareer = true">
+      <transition name="fade"
+        mode="out-in">
+        <li v-if="!newCareer && careers.length > 0"
+          class="add-button-wrapper"
+          @mousedown="newCareer = true"
+          @touchstart="newCareer = true">
 
-        <button class="mdi mdi-plus-circle"
-          type="button" />
+          <button class="mdi mdi-plus-circle"
+            type="button" />
 
-      </li>
+        </li>
 
-      <li v-else
-        class="career-item new-career-form">
-        <form @submit.prevent="createCareer"
-          action="/"
-          method="post"
-          key="new-career-form">
+        <li v-else
+          class="career-item new-career-form">
+          <form @submit.prevent="createCareer"
+            action="/"
+            method="post"
+            key="new-career-form">
 
-          <h3 v-text-fit="{
+            <h3 v-text-fit="{
 			      alignHoriz: true,
 			      alignVert: true
 			    }">{{$text('home_new_game')}}</h3>
 
-          <div class="name-input-wrapper">
+            <div class="name-input-wrapper">
 
-            <input id="new-career-name"
-              v-model="newCareerName"
-              type="text"
-              name="newCareerName"
-              autocomplete="off"
-              v-focus
-              :placeholder="$text('home_new_career_name_placeholder')" />
+              <input id="new-career-name"
+                v-model="newCareerName"
+                type="text"
+                name="newCareerName"
+                autocomplete="off"
+                v-focus
+                :placeholder="$text('home_new_career_name_placeholder')" />
 
-            <button class="mdi mdi-arrow-right"
-              type="submit"
-              :disabled="!newCareerName || newCareerName.length <= 0" />
+              <button class="mdi mdi-arrow-right"
+                type="submit"
+                :disabled="!newCareerName || newCareerName.length <= 0" />
 
-          </div>
-        </form>
+            </div>
+          </form>
 
-        <div class="or-separator">{{$text('home_new_career_or_separator')}}</div>
+          <div class="or-separator">{{$text('home_new_career_or_separator')}}</div>
 
-        <form @submit.prevent=""
-          class="load-career-form"
-          action="/"
-          method="post"
-          key="load-career-form">
+          <form @submit.prevent=""
+            class="load-career-form"
+            action="/"
+            method="post"
+            key="load-career-form">
 
-          <input id="saved-game-file"
-            type="file"
-            name="savedGameFile"
-            accept=".shsv"
-            @change="handleSavedGameFileChange" />
-          <label for="saved-game-file"
-            v-bbcode>{{$text('home_load_career_button')}}</label>
+            <input id="saved-game-file"
+              type="file"
+              name="savedGameFile"
+              accept=".shsv"
+              @change="handleSavedGameFileChange" />
+            <label for="saved-game-file"
+              v-bbcode>{{$text('home_load_career_button')}}</label>
 
-        </form>
-      </li>
+          </form>
+        </li>
 
-    </transition>
+      </transition>
 
-  </card-list>
+    </card-list>
+  </div>
 
 </div>
 </template>
@@ -262,6 +264,14 @@ export default {
 @import '../mixins';
 .home {
     @include no-select;
+    $list-background: #100B0F;
+
+    background-image: url("../images/banner.jpg");
+    background-position: center top;
+    background-size: 120vw auto;
+    background-repeat: no-repeat;
+    background-attachment: local;
+    background-color: $list-background;
 
     display: flex;
     flex-direction: column;
@@ -270,21 +280,28 @@ export default {
     box-sizing: border-box;
     min-height: 100vh;
     min-height: calc(var(--vh, 1vh) * 100);
-    padding: 20px 40px;
     color: #ABB2BF;
-    background-color: #282C34;
     overflow: auto;
 
+    @media screen and (max-width: 1280px) and (min-width: 860px) {
+        background-size: 1280px auto;
+    }
+    @media screen and (max-width: 860px) {
+        background-size: 149% auto;
+        background-position: center top 40px;
+    }
+
     header {
-        background-image: url("../images/banner.jpg");
-        width: 100%;
-        max-height: calc(100vh - 420px);
-        max-height: calc(var(--vh, 1vh) * 100 - 420px);
-        height: calc(calc(100vw - 80px) * 0.39);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
         display: inline-table;
+        width: 100%;
+        height: 31vw;
+
+        @media screen and (max-width: 1280px) and (min-width: 860px) {
+            height: 330px;
+        }
+        @media screen and (max-width: 860px) {
+            height: calc(40px + 38vw);
+        }
     }
 
     .career-file-drop-overlay {
@@ -326,197 +343,202 @@ export default {
         }
     }
 
-    .career-list {
-        padding: 0 0 40px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        align-content: flex-start;
-        margin: 0;
-        height: max-content;
+    .bottom-container {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 20px 40px 60px;
 
-        .career-item {
-            @include home-card($default-card-color);
-            padding: 49px 30px 30px;
+        .career-list {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            align-content: flex-start;
+            margin: auto;
+            height: max-content;
 
-            .buttons-container {
-                position: absolute;
-                top: 0;
-                right: 0;
+            .career-item {
+                @include home-card($default-card-color);
+                padding: 49px 30px 30px;
                 display: flex;
-                margin: 14px 12px;
+                flex-direction: column;
 
-                & > button {
-                    width: 24px;
-                    height: 24px;
-                    color: white;
-                    font-size: 24px;
-                    line-height: 24px;
-                    box-sizing: content-box;
-                    padding: 0 4px;
+                .buttons-container {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    display: flex;
+                    margin: 14px 12px;
 
-                    transition: all 100ms ease;
-                    opacity: 0.2;
+                    & > button {
+                        width: 24px;
+                        height: 24px;
+                        color: white;
+                        font-size: 24px;
+                        line-height: 24px;
+                        box-sizing: content-box;
+                        padding: 0 4px;
 
-                    &:hover {
-                        opacity: 0.5;
+                        transition: all 100ms ease;
+                        opacity: 0.2;
+
+                        &:hover {
+                            opacity: 0.5;
+                        }
                     }
                 }
-            }
 
-            .career-name {
-                width: 220px;
-                height: 60px;
-                text-align: center;
-                font-weight: 500;
-            }
-
-            .stars-count {
-                display: flex;
-                margin-top: 55px;
-                font-weight: 500;
-                align-items: end;
-                justify-content: center;
-
-                .star-icon {
-                    width: 100px;
-                    height: 100px;
-                    background-image: url("../images/star.png");
-                    background-size: cover;
-                    line-height: 100px;
+                .career-name {
+                    width: 220px;
+                    height: 60px;
                     text-align: center;
+                    font-weight: 500;
+                }
 
-                    .number {
-                        color: #394249;
-                        font-style: normal;
+                .stars-count {
+                    display: flex;
+                    margin-top: 55px;
+                    font-weight: 500;
+                    align-items: end;
+                    justify-content: center;
+
+                    .star-icon {
+                        width: 100px;
+                        height: 100px;
+                        background-image: url("../images/star.png");
+                        background-size: cover;
+                        line-height: 100px;
                         text-align: center;
-                        width: 60px;
-                        font-size: 19px;
-                        font-family: Digits, sans-serif;
-                        vertical-align: middle;
-                        margin-left: 4px;
 
-                        &.small {
-                            font-size: 16px;
+                        .number {
+                            color: #394249;
+                            font-style: normal;
+                            text-align: center;
+                            width: 60px;
+                            font-size: 19px;
+                            font-family: Digits, sans-serif;
+                            vertical-align: middle;
+                            margin-left: 4px;
+
+                            &.small {
+                                font-size: 16px;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        .add-button-wrapper {
-            @include card-box;
-            border: dashed rgba(254,254,254,0.1) 8px;
-            display: flex;
-            align-self: flex-start;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.6s, border-color 0.2s ease;
-            cursor: pointer;
-
-            button {
-                transition: opacity 0.5s ease;
-                opacity: 0.09;
-                color: #ffffff;
-                font-size: 90px;
-            }
-
-            &:hover {
-                background-color: lighten(#282C34, 10%);
-                border-color: rgba(254, 254, 254, 0);
-                button {
-                    opacity: 0.7;
-                }
-            }
-        }
-
-        .new-career-form {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 30px;
-            cursor: default;
-
-            h3 {
-                font-family: 'Roboto', Arial, sans-serif;
-                font-weight: 500;
-                margin: 0 auto 10px;
-                width: 200px;
-                height: 36px;
-                text-transform: capitalize;
-            }
-
-            .name-input-wrapper {
+            .add-button-wrapper {
+                @include card-box;
+                border: dashed rgba(254,254,254,0.1) 8px;
                 display: flex;
-                border-radius: 3px;
-                background-color: #353c4a;
-                flex-direction: row;
-                justify-content: start;
-
-                input[type=text] {
-                    min-width: 0;
-                    box-sizing: border-box;
-                    font-size: 24px;
-                    color: white;
-                    font-weight: 500;
-                    padding: 11px 0 11px 17px;
-                    background: none;
-                    font-family: inherit;
-                    border: none;
-                }
+                align-self: flex-start;
+                align-items: center;
+                justify-content: center;
+                transition: background-color 0.4s, border-color 0.2s ease;
+                cursor: pointer;
 
                 button {
-                    color: white;
-                    font-size: 30px;
-                    line-height: 40px;
-                    padding: 0 9px 0 6px;
-                    flex-shrink: 0;
-                    flex-grow: 0;
+                    transition: opacity 0.3s ease;
+                    opacity: 0.09;
+                    color: rgba(255, 255, 255, 0.7);
+                    font-size: 90px;
+                }
+
+                &:hover {
+                    background-color: rgba(254, 254, 254, 0.1);
+                    border-color: rgba(254, 254, 254, 0);
+                    button {
+                        opacity: 0.7;
+                    }
                 }
             }
 
-            .or-separator {
-                font-size: 30px;
-                font-weight: 500;
-                text-align: center;
-                margin: 20px 0;
-            }
+            .new-career-form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 30px;
+                cursor: default;
 
-            .load-career-form {
-                margin: 0 auto;
-                max-width: 100%;
-
-                input {
-                    display: none;
-                }
-
-                input + label {
-                    text-align: center;
-                    display: block;
-                    width: 220px;
-                    box-sizing: border-box;
-                    cursor: pointer;
+                h3 {
+                    font-family: 'Roboto', Arial, sans-serif;
                     font-weight: 500;
-                    font-size: 19px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    padding: 13px 18px;
-                    border-radius: 3px;
-                    box-shadow: inset 0 0 10px 3px rgba(0,0,0,0.2), 0 0 10px 0 rgba(0,0,0,0.2);
-                    background-color: hsl(220, 18%, 29%);
-                    color: #d4d4d4;
+                    margin: 0 auto 10px;
+                    width: 200px;
+                    height: 36px;
+                    text-transform: capitalize;
+                }
 
-                    &:hover {
-                        color: #e5e5e5;
-                        background-color: hsl(220, 18%, 32%);
+                .name-input-wrapper {
+                    display: flex;
+                    border-radius: 3px;
+                    background-color: #353c4a;
+                    flex-direction: row;
+                    justify-content: start;
+
+                    input[type=text] {
+                        min-width: 0;
+                        box-sizing: border-box;
+                        font-size: 24px;
+                        color: white;
+                        font-weight: 500;
+                        padding: 11px 0 11px 17px;
+                        background: none;
+                        font-family: inherit;
+                        border: none;
                     }
 
-                    .mdi::before {
-                        vertical-align: top;
+                    button {
+                        color: white;
+                        font-size: 30px;
+                        line-height: 40px;
+                        padding: 0 9px 0 6px;
+                        flex-shrink: 0;
+                        flex-grow: 0;
+                    }
+                }
+
+                .or-separator {
+                    font-size: 30px;
+                    font-weight: 500;
+                    text-align: center;
+                    margin: 20px 0;
+                }
+
+                .load-career-form {
+                    margin: 0 auto;
+                    max-width: 100%;
+
+                    input {
+                        display: none;
+                    }
+
+                    input + label {
+                        text-align: center;
+                        display: block;
+                        width: 220px;
+                        box-sizing: border-box;
+                        cursor: pointer;
+                        font-weight: 500;
+                        font-size: 19px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        padding: 13px 18px;
+                        border-radius: 3px;
+                        box-shadow: inset 0 0 10px 3px rgba(0,0,0,0.2), 0 0 10px 0 rgba(0,0,0,0.2);
+                        background-color: hsl(220, 18%, 29%);
+                        color: #d4d4d4;
+
+                        &:hover {
+                            color: #e5e5e5;
+                            background-color: hsl(220, 18%, 32%);
+                        }
+
+                        .mdi::before {
+                            vertical-align: top;
+                        }
                     }
                 }
             }
