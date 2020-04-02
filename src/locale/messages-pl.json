@@ -203,5 +203,18 @@
     "exception_forbidden_myitem_literal_type_template": "%%literal$myitem%% nie jest dostępny na tym poziomie.",
     "exception_forbidden_integer_literal_type_template": "Liczby nie są dostępne na tym poziomie.",
     "exception_forbidden_everyone_literal_type_template": "%%literal$everyone%% nie jest dostępny na tym poziomie.",
-    "exception_forbidden_direction_literal_type_template": "Kierunki nie są dostępne na tym poziomie."
+    "exception_forbidden_direction_literal_type_template": "Kierunki nie są dostępne na tym poziomie.",
+    "level_help_tab_clone_statement_1": "%%statement branching-statement$clone%% tworzy klona bohatera obok niego.",
+    "level_help_tab_jump_statement_6": "Możesz przeczytać powyższy przykład jako \"Zrób krok w prawo o ile kwadrat po prawej nie jest ścianą\".",
+    "level_help_tab_jump_statement_5": "%%statement branching-statement$jump%% jest zwykle użyty z %%statement branching-statement$if%% by stworzyć pętlę która zatrzymuje się na warunku.",
+    "level_help_modal_tab_general_title": "ogólne",
+    "menu_credits_link": "zobacz w internecie",
+    "level_help_tab_tell_function_2": "Możesz przeczytać powyższy przykład jako \"Powiedz \"ok\" do bohatera po prawej\".",
+    "level_help_tab_tell_function_4": "Możesz także %%statement speach-statement$tell%% wiadomość do każdego %%icon icon-hero$%% bohatera w tym poziomie.",
+    "win_modal_prior_code_length": "twój najmniejszy był %%score-number${minLength}%% linii",
+    "win_modal_prior_code_speed": "twój najszybszy był %%score-number${minStep}%% kroków",
+    "win_modal_continue_edit_button": "ulepsz",
+    "exception_invalid_action_function_template": "",
+    "exception_duplicate_anchor_template": "%%bracket${anchorName}:%% znaleziona dwa razy. Kotwice muszą mieć unikatowe nazwy",
+    "exception_jump_to_unknown_anchor_template": "%%keyword${jumpKeyword}%% do nieznanej kotwicy %%bracket${anchorName}:%%"
 }
