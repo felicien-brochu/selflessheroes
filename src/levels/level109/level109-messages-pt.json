@@ -1,4 +1,4 @@
 {
-    "objective": "Ordene os %%icon icon-hero$%% heróis do menor na esquerda para o maior na direita\n\n%%icon mdi mdi-information-outline$%% Heróis podem trocar de lugar quando vão em direções opostas ao mesmo tempo",
-    "name": "Todo mundo no seu lugar"
+    "objective": "Ordene os %%icon icon-hero$%% heróis do menor a esquerda para o maior a direita\n\n%%icon mdi mdi-information-outline$%% Heróis podem trocar de lugar quando vão em direções opostas ao mesmo tempo",
+    "name": "Cada um no seu quadrado"
 }
