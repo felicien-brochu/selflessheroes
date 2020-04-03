@@ -3,7 +3,7 @@
     "premium_modal_action_clone": "الابطال يمكنهم استنساخ انفسهم",
     "premium_modal_action_speach": "الابطال يمكنهم الكلام\nمع بعضهم البعض",
     "premium_modal_action_variables": "الابطال يمكنهم الحساب\nو الكتابة علي البيض",
-    "premium_modal_content_description": "%%content-number$3%% فئات جديدة من المراحل بمجموع\n%%content-number$34%% مراحل إضافية",
+    "premium_modal_content_description": "فئات جديدة من المراحل بمجموع%%content-number$3%%\nمراحل إضافية%%content-number$34%%",
     "premium_modal_title": "المحتوي المدفوع",
     "level_list_premium_levels_button": "افتح المزيد من المراحل",
     "level_list_boss_label": "زعيم",
@@ -44,5 +44,9 @@
     "head_meta_keywords": "لعبة الغاز, لعبة فيديو, لعبة جادة, برمجة, تطوير, لغز, تعليم, متعة, منطق, خوارزمية",
     "head_meta_description": "\"Selfless Heroes\" هي لعية ستعلمك كيف تبرمج دون ان تلاحظ. حل الالغاز و ساعد ابطالك ليخرجوا من البرج بنجاح!",
     "head_meta_og_description": "\"Selfless Heroes\" هي لعية ستعلمك كيف تبرمج دون ان تلاحظ. حل الالغاز و ساعد ابطالك ليخرجوا من البرج بنجاح!",
-    "title_levellist": "مراحل اللعبة"
+    "title_levellist": "مراحل اللعبة",
+    "unlock_premium_modal_wrong_activation_key": "مفتاح تفعيل غير صالح",
+    "unlock_premium_modal_activation_key_label": "مفتاح التفعيل:",
+    "unlock_premium_modal_get_key_button": "احصل علي مفتاح التفعيل",
+    "unlock_premium_modal_title": "افتح المحتوي المدفوع"
 }
