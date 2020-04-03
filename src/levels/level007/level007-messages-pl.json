@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Rozpal wszystkie %%icon icon-bonfire$%% ogniska\n\n%%icon mdi mdi-alert-octagon-outline$%%Uwaga: wszyscy bohaterzy muszą przeżyć",
+    "name": "Ostry zakręt"
+}
