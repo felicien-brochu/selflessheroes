@@ -1,5 +1,5 @@
 {
-    "loss_reason_wrong_order": "%%icon icon-hero$%% Os heróis devem se revezar na chegada às cruzes. O herói na extrema esquerda deve ser o primeiro a ir, dai o da direita dele, até chegar ao último herói na extrema direita.",
+    "loss_reason_wrong_order": "%%icon icon-hero$%% Os heróis devem chegar nas cruzes um por vez. O herói na extrema esquerda deve ser o primeiro a chegar, dai o da direita dele, até chegar ao último herói na extrema direita.",
     "loss_reason_moved_of_the_cross": "Uma vez que o %%icon icon-hero$%% herói chegar nas cruz, ele não pode sair de cima dela",
     "objective": "%%icon icon-hero$%% Os heróis devem pisar nas cruzes um por vez. Primeiro o herói da esquerda, então o da sua direita, etc..."
 }
