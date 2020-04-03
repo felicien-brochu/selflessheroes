@@ -77,18 +77,19 @@ function createWindow() {
 
   mainWindow.loadURL(indexPath)
   mainWindow.webContents.once('did-finish-load', () => {
+    mainWindow.show()
+
     if (openFile) {
       loadCareerFromFile(openFile)
       openFile = null
     }
   })
   mainWindow.removeMenu()
+  mainWindow.setFullScreen(true)
 
   // Don't show until we are ready and loaded
   mainWindow.once('ready-to-show', () => {
     // mainWindow.maximize()
-    mainWindow.show()
-    mainWindow.setFullScreen(true)
     ipcMain.on('open-link', (event, url) => {
       console.log("Open URL:", url)
       openLink(url)
