@@ -1,5 +1,5 @@
 {
-    "loss_reason_not_maximum_egg_in_cauldron": "Você pôs um %%icon icon-egg$%% ovo que não é o maior entre eles dentro do %%icon icon-cauldron$%% caldeirão",
+    "loss_reason_not_maximum_egg_in_cauldron": "Você pôs um %%icon icon-egg$%% ovo que não é o maior no %%icon icon-cauldron$%% caldeirão",
     "objective": "Ponha o %%icon icon-egg$%% ovo de maior valor\nno %%icon icon-cauldron%% caldeirão\n\n%%icon mdi mdi-information-outline$%% no caso de empate, escolha um dos dois",
-    "name": "Corrente humana 2"
+    "name": "Outra corrente humana"
 }
