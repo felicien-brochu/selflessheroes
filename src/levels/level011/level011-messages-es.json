@@ -1,5 +1,5 @@
 {
-  "name": "¡Escapemos\u00A0!",
-  "objective": "Estos dos ogros te quieren matar. Deshazte de ellos antes de que te alcancen.\n\n%%icon mdi mdi-information-outline$%% Utiliza los %%icon icon-switch$%% botónes para activar/desactivar las %%icon icon-spikes$%% picas.",
-  "boss_tell": "¡Corre!¡Corre, ###pequeña cosa!\n¡A ver quién es el más rápido de los dos!"
+    "name": "¡Escapemos !",
+    "objective": "Estos dos ogros te quieren matar. Deshazte de ellos antes de que te alcancen.\n\n%%icon mdi mdi-information-outline$%% Utiliza los %%icon icon-switch$%% botónes para activar/desactivar las %%icon icon-spikes$%% picas.",
+    "boss_tell": "¡Corre!¡Corre, ###pequeña cosa!\n¡A ver quién es el más rápido de los dos!"
 }
