@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Rozpal wszystkie %%icon icon-bonfire$%% ogniska\n\n%%icon mdi mdi-information-outline$%% Użyj %%statement branching-statement$jump%% by powtórzyć akcje",
+    "name": "Czuwanie przy świecach"
+}
