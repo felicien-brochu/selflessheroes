@@ -1,4 +1,4 @@
 {
-  "name": "Andar con rodeos",
-  "objective": "Activa todos los %%icon icon-switch-red$%% botónes\n\n%%icon mdi mdi-information-outline$%% Cuando un %%icon icon-switch-red$%% botón rojo es activado, ###se mantiene de esa manera aunque el héroe no esté sobre él."
+    "name": "Andar con rodeos",
+    "objective": "Activa todos los %%icon icon-switch-red$%% botónes\n\n%%icon mdi mdi-information-outline$%% Cuando un %%icon icon-switch-red$%% botón rojo es activado, ###se mantiene de esa manera aunque el héroe no esté sobre él."
 }
