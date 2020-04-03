@@ -1,1 +1,5 @@
-{}
+{
+    "boss_tell": "Biegnij! Biegnij, malutki!\nZobaczmy kto jest szybszy!",
+    "objective": "Goni cię dwóch ogrów. Pozbądź się ich zanim cię dogonią.\n\n%%icon mdi mdi-information-outline$%% Użyj %%icon icon-switch$%% przycisków żeby wyłączyć/włączyć %%icon icon-spikes$%% kolce.",
+    "name": "Bądź odważny, i uciekaj!"
+}
