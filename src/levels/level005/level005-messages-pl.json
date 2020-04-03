@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Naciśnij wszystkie %%icon icon-switch$%% przyciski\n\n%%icon mdi mdi-alert-octagon-outline$%% Uwaga: nie pozwól twoim %%icon icon-hero$%% bohaterom wpaść do dziury.",
+    "name": "Lęk wysokości"
+}
