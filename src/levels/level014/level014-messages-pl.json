@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Naciśnij wszystkie %%icon icon-switch-red$%% przyciski\n\n%%icon mdi mdi-information-outline$%% Jeśli już raz nacisnąłeś czerwony %%icon icon-switch-red$%% przycisk, zostaje on włączony. Nawet jak już na nim nie stoisz.",
+    "name": "Owijać w bawełnę"
+}
