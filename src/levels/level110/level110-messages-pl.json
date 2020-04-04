@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_one_egg_not_max": "Wrzuciłeś %%icon icon-egg$%% jajko które nie ma najwyższej wartości do %%icon icon-cauldron$%% kotła",
+    "objective": "Wrzuć %%icon icon-egg$%% jajko z najwyższą wartością do %%icon icon-cauldron$%% kotła",
+    "name": "Ludzki łańcuch 3"
+}
