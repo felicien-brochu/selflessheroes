@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Te %%icon icon-egg$%% jajka zostały porozrzucane po całym pomieszczeniu. Uporządkuj je wszystkie na dole pokoju by posprzątać.\n\n%%icon mdi mdi-alert-octagon-outline$%%Uwaga: %%icon icon-egg$%% jajka muszą pozostać w swoich kolumnach i kolejności w której je znalazłeś",
+    "name": "Sprzątanie"
+}
