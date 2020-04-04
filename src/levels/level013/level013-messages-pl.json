@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_moved_of_the_cross": "Jeśli %%icon icon-hero$%% bohater stanął już na krzyżyku, nie może z niego zejść",
+    "objective": "%%icon icon-hero$%% Bohaterzy muszą stanąć na krzyżykach",
+    "name": "Wzloty i upadki"
+}
