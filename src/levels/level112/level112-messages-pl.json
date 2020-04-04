@@ -1,1 +1,4 @@
-{}
+{
+    "name": "Samotny dostawca",
+    "loss_reason_took_label_egg": "Nie ruszaj %%icon icon-egg$%% jajek które numerują %%icon icon-cauldron$%% kotły, w przeciwnym razie nie będziesz wiedział do którego %%icon icon-cauldron$%% z nich wrzucić %%icon icon-egg$%% jajka."
+}
