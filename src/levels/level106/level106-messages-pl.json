@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_not_maximum_egg_in_cauldron": "Wrzuciłeś %%icon icon-egg$%% jajko które nie jest najwyższą wartością do %%icon icon-cauldron$%% kotła",
+    "objective": "Wrzuć %%icon icon-egg$%% jajko najwyższej wartości\ndo %%icon icon-cauldron$%% kotła\n\n%%icon mdi mdi-information-outline$%% W przypadku jajek o identycznej wartości, wybierz którekolwiek z nich",
+    "name": "Ludzki łańcuch 2"
+}
