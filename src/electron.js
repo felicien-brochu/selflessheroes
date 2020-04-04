@@ -12,7 +12,8 @@ const path = require('path')
 const url = require('url')
 const fs = require('fs')
 
-const isDev = false
+const isDev = process.argv.includes("--dev")
+const isLive = process.argv.includes("--live")
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -74,6 +75,13 @@ function createWindow() {
     pathname: path.join(__dirname, '../dist/index.html'),
     slashes: true
   })
+  if (isLive) {
+    indexPath = url.format({
+      protocol: 'http:',
+      pathname: "localhost:3000",
+      slashes: true
+    })
+  }
 
   mainWindow.loadURL(indexPath)
   mainWindow.webContents.once('did-finish-load', () => {
@@ -83,23 +91,26 @@ function createWindow() {
       loadCareerFromFile(openFile)
       openFile = null
     }
-  })
-  mainWindow.removeMenu()
-  mainWindow.setFullScreen(true)
-
-  // Don't show until we are ready and loaded
-  mainWindow.once('ready-to-show', () => {
-    // mainWindow.maximize()
-    ipcMain.on('open-link', (event, url) => {
-      console.log("Open URL:", url)
-      openLink(url)
-    })
-
 
     // Open the DevTools automatically if developing
     if (isDev) {
       mainWindow.webContents.openDevTools()
     }
+  })
+
+  mainWindow.removeMenu()
+  if (!isDev) {
+    mainWindow.setFullScreen(true)
+  } else {
+    mainWindow.maximize()
+  }
+
+  // Don't show until we are ready and loaded
+  mainWindow.once('ready-to-show', () => {
+    ipcMain.on('open-link', (event, url) => {
+      console.log("Open URL:", url)
+      openLink(url)
+    })
   })
 
   // Emitted when the window is closed.
@@ -124,7 +135,7 @@ app.on('will-finish-launching', () => {
 
 function getFileToOpen(argv, workingDir) {
   let file = null
-  let noOptionArgs = argv.filter(arg => !arg.startsWith('-'))
+  let noOptionArgs = argv.filter(arg => !arg.startsWith('-') && !arg.match(/^.*electron(\.exe|\.js)?$/))
   if (noOptionArgs.length >= 2) {
     file = noOptionArgs[noOptionArgs.length - 1]
     file = path.resolve(workingDir, file)
