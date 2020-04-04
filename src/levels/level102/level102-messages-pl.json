@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_multiple_eggs_in_cauldron": "Wrzuciłeś parę %%icon icon-egg$%% jajek do jednego %%icon icon-cauldron$%% kotła",
+    "objective": "Te %%icon icon-egg$%% jajka były losowo porozrzucane po całym pomieszczeniu. Wrzuć jedno %%icon icon-egg$%% jajko do każdego %%icon icon-cauldron$%% kotła aby przygotować obiad.",
+    "name": "Obiad gotowy!"
+}
