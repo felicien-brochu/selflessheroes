@@ -1,5 +1,5 @@
 {
-  "name": "Cueillette",
-  "objective": "Mets un %%icon icon-egg$%% œuf inférieur à 4\ndans chaque %%icon icon-cauldron$%% chaudron",
-  "loss_reason_one_egg_ge_4": "Tu as mis un %%icon icon-egg$%% œuf supérieur ou égal à 4\ndans un %%icon icon-cauldron$%% chaudron"
+    "name": "Cueillette",
+    "objective": "Mets un %%icon icon-egg$%% œuf inférieur à 4\ndans chaque %%icon icon-cauldron$%% chaudron\n\n%%icon mdi mdi-information-outline$%% Si tu veux tester la valeur d'un %%icon icon-egg$%% œuf qui est sur le sol, tu peux utiliser une %%icon icon-direction$%% direction. Tes héros sont assez intelligents pour comprendre que tu parles de l'%%icon icon-egg$%% œuf.",
+    "loss_reason_one_egg_ge_4": "Tu as mis un %%icon icon-egg$%% œuf supérieur ou égal à 4\ndans un %%icon icon-cauldron$%% chaudron"
 }
