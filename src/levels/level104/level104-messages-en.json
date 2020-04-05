@@ -1,5 +1,5 @@
 {
-  "name": "Picking",
-  "objective": "Put one %%icon icon-egg$%% egg which is less than 4\ninto each %%icon icon-cauldron$%% cauldron",
-  "loss_reason_one_egg_ge_4": "You put an %%icon icon-egg$%% egg greater or equal to 4\nin a %%icon icon-cauldron$%% cauldron"
+    "name": "Picking",
+    "objective": "Put one %%icon icon-egg$%% egg which is less than 4\ninto each %%icon icon-cauldron$%% cauldron\n\n%%icon mdi mdi-information-outline$%% If you want to test the value of an %%icon icon-egg$%% egg which is on the floor, you can use a %%icon icon-direction$%% direction. Your heroes are smart enough to understand that you're talking about the %%icon icon-egg$%% egg.",
+    "loss_reason_one_egg_ge_4": "You put an %%icon icon-egg$%% egg greater or equal to 4\nin a %%icon icon-cauldron$%% cauldron"
 }
