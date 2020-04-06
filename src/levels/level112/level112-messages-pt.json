@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_wrong_egg_in_cauldron": "Você pôs um %%icon icon-egg$%% ovo no %%icon icon-cauldron$%% caldeirão errado.\n\nOs %%icon icon-cauldron$%% caldeirões estão rotulados de 0 a 6 pelos ovos na frente deles. Ponha os %%icon icon-egg$%% ovos dentro dos %%icon icon-cauldron$%% caldeirões de mesmo valor.",
+    "objective": "Os %%icon icon-cauldron$%% caldeirões estão rotulados de 0 a 6 pelos ovos na frente deles. Ponha os %%icon icon-egg$%% ovos acima do herói dentro do %%icon icon-cauldron$%% caldeirão correspondente.",
+    "name": "Entregador solitário",
+    "loss_reason_took_label_egg": "Não mova os %%icon icon-egg$%% ovos usados para rotular os %%icon icon-cauldron$%% caldeirões, senão, você não saberá em qual %%icon icon-cauldron$%% caldeirão deverá botar os %%icon icon-egg$%% ovos."
+}
