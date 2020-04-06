@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Encha a pirâmide com seus %%icon icon-hero$%% heróis.\n\n%%icon mdi mdi-alert-octagon-outline$%%Atenção: neste nível, se a clonagem falhar, o herói tentando a clonagem irá morrer.",
+    "name": "Pirâmide"
+}
