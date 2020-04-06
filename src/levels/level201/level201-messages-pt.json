@@ -1,1 +1,7 @@
-{}
+{
+    "loss_reason_egg_displaced": "Os %%icon icon-egg$%% ovos devem permanecer onde estavam",
+    "loss_reason_wrong_value_on_egg_not_9": "Você escreveu algo além de 9 em um %%icon icon-egg$%% ovo que era maior ou igual a 5",
+    "loss_reason_wrong_value_on_egg_not_0": "Você escreveu algo além de 0 em um %%icon icon-egg$%% ovo menor que 5",
+    "objective": "Use %%statement action-statement$escrever%% para escrever nos %%icon icon-egg$%% ovos. Para cada %%icon icon-egg$%% ovo, sendo ele menor que 5, escreva 0, caso contrário, escreva 9.",
+    "name": "Avaliando"
+}
