@@ -1,1 +1,5 @@
-{}
+{
+    "name": "Space invaders",
+    "loss_reason_wrong_floor_cell": "Um dos seus heróis está em um quadrado claro.",
+    "objective": "Ocupe todos os quadrados escuros com seus %%icon icon-hero$%% heróis.\n\n%%icon mdi mdi-information-outline$%% Agora seus heróis são capazes de se %%statement branching-statement$clonar%%. Abra o menu ajuda e leia a aba %%statement branching-statement$clonar%% para entender como a função funciona."
+}
