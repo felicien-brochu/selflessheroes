@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_all_max_eggs_in_hole": "Todos os %%icon icon-hero$%% heróis que tinham o maior %%icon icon-egg$%% ovo se jogaram no buraco",
+    "objective": "Jogue todos os %%icon icon-hero$%% heróis no buraco, exceto aquele segurando o maior %%icon icon-egg$%% ovo.\n\n%%icon mdi mdi-information-outline$%% Se outros heróis segurarem o maior %%icon icon-egg$%% ovo, somente um deverá sobreviver.",
+    "name": "O Flautista de Hamelin"
+}
