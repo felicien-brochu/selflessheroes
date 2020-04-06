@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_took_wrong_egg": "Um de seus heróis pegou o ovo errado",
+    "loss_reason_too_mush_heroes": "O número máximo de heróis foi excedido.\nNúmero máximo de heróis: 50",
+    "objective": "O número no %%icon icon-egg$%% ovo a direita do %%icon icon-cauldron$%% caldeirão indica o número da coluna do ovo a ser soltado no %%icon icon-cauldron$%% caldeirão.\nO número do %%icon icon-egg$%% ovo abaixo do %%icon icon-cauldron$%% caldeirão indica o número da linha.\n\n%%icon mdi mdi-alert-octagon-outline$%%Não pegue outros %%icon icon-egg$%% ovos.\n\n%%icon mdi mdi-alert-octagon-outline$%%Número máximo de heróis: 50",
+    "name": "Outra loteria"
+}
