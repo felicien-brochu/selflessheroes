@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_egg_in_hole": "Você jogou os %%icon icon-egg$%% ovos nos buracos?\nCurioso o jeito que você os ordenou…",
+    "objective": "Ordene os %%icon icon-egg$%% ovos do menor, a esquerda, para o maior, a direita.\n\n%%icon mdi mdi-information-outline$%% Dessa vez, seus %%icon icon-hero$%% heróis deverão se ajudar.",
+    "name": "Ordenando de novo"
+}
