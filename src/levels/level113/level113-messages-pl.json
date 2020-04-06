@@ -1,1 +1,6 @@
-{}
+{
+    "name": "Pied Piper",
+    "loss_reason_all_max_eggs_in_hole": "Wszyscy %%icon icon-hero$%% bohaterzy którzy mieli %%icon icon-egg$%% jajko o największej wartości wrzucili się do dziury",
+    "boss_tell": "♫ ♩ ...chodź do mnie... ♪ ♫\n♪ ♫ ...przepaści, nie bój się... ♪ ♩\n♪ ♩ ...tylko jeden wybraniec... ♫ ♩\n♫ ♩ ...z ciemności się wynurzy... ♪ ♫",
+    "objective": "Wrzuć wszystkich %%icon icon-hero$%% bohaterów do dziury poza jednym z %%icon icon-egg$%% jajkiem o największej wartości.\n\n%%icon mdi mdi-information-outline$%% Jeśli więcej niż jeden bohater ma %%icon icon-egg$%% jajko o największej wartości, tylko jeden może przetrwać."
+}
