@@ -105,12 +105,9 @@ function createWindow() {
     mainWindow.maximize()
   }
 
-  // Don't show until we are ready and loaded
-  mainWindow.once('ready-to-show', () => {
-    ipcMain.on('open-link', (event, url) => {
-      console.log("Open URL:", url)
-      openLink(url)
-    })
+  ipcMain.on('open-link', (event, url) => {
+    console.log("Open URL:", url)
+    openLink(url)
   })
 
   // Emitted when the window is closed.
