@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_too_mush_heroes": "O número máximo de heróis foi excedido.\nNúmero máximo de heróis: 10",
+    "boss_tell": "...gnark...gnark...\n...gnark...gnark...gnark...\n...gnark...gnark...",
+    "objective": "Esses pequenos monstros estão se reproduzindo descontroladamente! Impeça a infestação antes que seja tarde demais.\n\n%%icon mdi mdi-alert-octagon-outline$%%Número máximo de heróis: 10",
+    "name": "Infestação"
+}
