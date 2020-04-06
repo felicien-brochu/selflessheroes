@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_egg_in_hole": "Wrzucasz %%icon icon-egg$%% jajka do dziur?\nDziwny sposób sortowania…",
+    "objective": "Posortuj %%icon icon-egg$%% jajka od najmniejszego po lewej do największego po prawej.\n\n%%icon mdi mdi-information-outline$%% Tym razem, twoii %%icon icon-hero$%% bohaterzy muszą współpracować.",
+    "name": "Sortowanie 2"
+}
