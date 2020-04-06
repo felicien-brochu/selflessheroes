@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_sum_on_egg": "Um herói escreveu algo além da soma dos ovos no ovo de cima",
+    "objective": "Escreva a soma de todos os %%icon icon-egg$%% ovos no ovo de acima. No fim, o %%icon icon-egg$%% ovo de acima deve permanecer no mesmo lugar do que no começo.\n\n%%icon mdi mdi-alert-octagon-outline$%% Não escreva nada além do que a soma dos ovos no %%icon icon-egg$%% ovo de cima. Você pode escrever qualquer coisa que queira nos outros %%icon icon-egg$%% ovos.",
+    "name": "Feedback"
+}
