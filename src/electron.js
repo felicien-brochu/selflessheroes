@@ -74,6 +74,7 @@ function createWindow() {
     width: 1024,
     height: 768,
     show: false,
+    fullscreen: !isDev,
     webPreferences: {
       nodeIntegrationInWorker: true,
       nodeIntegration: true,
@@ -94,7 +95,12 @@ function createWindow() {
     })
   }
 
-  mainWindow.loadURL(indexPath)
+  // If the root page fails to load, exit app
+  mainWindow.webContents.once('did-fail-load', (event, errCode, errDesc) => {
+    console.log("did-fail-load: ", indexPath, errCode, errDesc)
+    process.exit(1)
+  })
+
   mainWindow.webContents.once('did-finish-load', () => {
     mainWindow.show()
 
@@ -109,10 +115,9 @@ function createWindow() {
     }
   })
 
+  mainWindow.loadURL(indexPath)
+
   mainWindow.removeMenu()
-  if (!isDev) {
-    mainWindow.setFullScreen(true)
-  }
 
   ipcMain.on('open-link', (event, url) => {
     console.log("Open URL:", url)
