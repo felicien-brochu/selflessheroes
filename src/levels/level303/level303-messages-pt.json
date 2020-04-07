@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Ocupe todos os quadrados escuros com seus %%icon icon-hero$%% heróis.",
+    "name": "Damas"
+}
