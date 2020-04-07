@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Fale o número dos diferentes %%icon icon-egg$%% ovos.\n\nEscreva o número de %%icon icon-egg$%% ovos que tem valor 0 no ovo da esquerda e o número de %%icon icon-egg$%% ovos de valor 1 no ovo da direita.",
+    "name": "Inventário"
+}
