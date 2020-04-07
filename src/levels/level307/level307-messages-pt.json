@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Mova o herói da esquerda até a direita.\n\n%%icon mdi mdi-information-outline$%% Para abaixar os %%icon icon-spikes$%% espinhos, você precisa ativar os %%icon icon-switch$%% botões certos.\nA combinação está escrita nos %%icon icon-egg$%% ovos:\n1 = acione o botão\n0 = desacione o botão",
+    "name": "Palavra-chave"
+}
