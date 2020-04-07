@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_wrong_egg_in_cauldron_odd": "Um herói pôs um %%icon icon-egg$%% ovo par dentro do %%icon icon-cauldron$%% caldeirão enquanto o ovo de cima é ímpar.",
+    "loss_reason_wrong_egg_in_cauldron_even": "Um herói pôs um %%icon icon-egg$%% ovo ímpar dentro do %%icon icon-cauldron$%% caldeirão enquanto que o ovo de cima é par.",
+    "objective": "Ponha %%icon icon-egg$%% ovos que tenham o mesmo valor do que o ovo de cima dentro dos %%icon icon-cauldron$%% caldeirões.\n\nPor exemplo, se o ovo de cima for par, ponha todos ovos pares dentro dos caldeirões.\n\n%%icon mdi mdi-information-outline$%% Se %%type-operator$n%% é um número par, então %%type-operator$n % 2 = 0%%.",
+    "name": "Oui chef!"
+}
