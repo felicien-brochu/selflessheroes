@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_target_egg_displaced": "Você não deve mexer nos %%icon icon-egg$%% ovos da esquerda",
+    "loss_reason_wrong_value_on_egg": "Você escreveu um número errado neste %%icon icon-egg$%% ovo.\nCopie dos números da coluna da esquerda.",
+    "objective": "Copie a coluna na esquerda nas outras colunas\n\n%%icon mdi mdi-information-outline$%% Se você não consegue achar a solução, inspire-se no nível %%level-title$\"Um de cada vez\"%%",
+    "name": "Produção em massa"
+}
