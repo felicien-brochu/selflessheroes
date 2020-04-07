@@ -1,6 +1,17 @@
 'use strict'
 
-// Import parts of electron to use
+// Quit after any uncaught exception
+process.on("uncaughtException", err => {
+  console.log("Uncaught exception:\n", err)
+  console.log("Exiting app...")
+  process.exit(1)
+})
+process.on('unhandledRejection', err => {
+  console.log("Unhandled rejection:\n", err)
+  console.log("Exiting app...")
+  process.exit(1)
+})
+
 const {
   app,
   protocol,
