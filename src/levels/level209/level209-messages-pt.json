@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_value_on_egg": "Você escreveu algo além do que o valor médio da coluna em um %%icon icon-egg$%% ovo",
+    "objective": "Para cada coluna, calcule o valor médio e escreva-o em todos os %%icon icon-egg$%% ovos daquela coluna",
+    "name": "Igualdade para todos"
+}
