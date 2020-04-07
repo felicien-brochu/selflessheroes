@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_target_egg_displaced": "Você não deve mexer nos %%icon icon-egg$%% ovos da esquerda",
+    "loss_reason_wrong_value_on_egg": "Você escreveu um número errado neste %%icon icon-egg$%% ovo.\nCopie os números dos ovos da esquerda.",
+    "objective": "Copie os %%icon icon-egg$%% ovos da esquerda para os %%icon icon-egg$%% ovos da direita.\n\n%%icon mdi mdi-information-outline$%% Seus heróis podem agora memorizar coisas. Use %%statement assign-statement$atribuir%% para memorizar o valor de um ovo e então será possível depois escrevê-lo.\n\n%%icon mdi mdi-alert-octagon-outline$%%Atenção: você não deverá mexer nos %%icon icon-egg$%% ovos que estão na esquerda. No fim, todos os %%icon icon-egg$%% ovos devem estar no chão e no mesmo lugar do que no começo.",
+    "name": "Duplicadores"
+}
