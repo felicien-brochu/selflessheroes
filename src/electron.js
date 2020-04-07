@@ -101,14 +101,19 @@ function createWindow() {
   mainWindow.removeMenu()
   if (!isDev) {
     mainWindow.setFullScreen(true)
-  } else {
-    mainWindow.maximize()
   }
 
   ipcMain.on('open-link', (event, url) => {
     console.log("Open URL:", url)
     openLink(url)
   })
+
+  ipcMain.on('request-fullscreen', () => mainWindow.setFullScreen(true))
+  ipcMain.on('exit-fullscreen', () => {
+    mainWindow.setFullScreen(false)
+    mainWindow.maximize()
+  })
+  ipcMain.on('is-fullscreen-enabled', (event) => event.returnValue = mainWindow.isFullScreen())
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {

@@ -66,6 +66,7 @@ import Volume from './Volume'
 import ToggleButton from '../common/ToggleButton'
 import Dropdown from '../common/Dropdown'
 import ExternalLink from '../common/ExternalLink'
+import fullscreenManager from '../util/fullscreenManager'
 
 export default {
   components: {
@@ -111,7 +112,7 @@ export default {
 
   computed: {
     showFullscreenPreference: function() {
-      return !IS_ELECTRON && typeof document.body.requestFullscreen === 'function'
+      return IS_ELECTRON || typeof document.body.requestFullscreen === 'function'
     },
     fullscreenToggleTitle: function() {
       return this.fullscreenEnabled ? this.$text('menu_disable_fullscreen') : this.$text('menu_enable_fullscreen')
@@ -150,24 +151,15 @@ export default {
     },
 
     isFullscreenEnabled() {
-      return !!document.fullscreenElement
+      return fullscreenManager.isFullscreenEnabled()
     },
 
     toggleFullscreen() {
-      if (this.isFullscreenEnabled()) {
-        document.exitFullscreen().then(() => {
-          this.fullscreenEnabled = false
-        }).catch(err => {
-          console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`)
-        })
-      }
-      else {
-        document.body.requestFullscreen().then(() => {
-          this.fullscreenEnabled = true
-        }).catch(err => {
-          console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`)
-        })
-      }
+      fullscreenManager.toggleFullscreen().then(() => {
+        this.fullscreenEnabled = fullscreenManager.isFullscreenEnabled()
+      }).catch(err => {
+        console.error(`Error attempting to toggle fullscreen: ${err.message} (${err.name})`)
+      })
     },
 
     handleLanguageSelect(e) {
