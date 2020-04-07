@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Mova os %%icon icon-egg$%% ovos para a direita o tanto quanto indicado pelos seus números para descobrir uma mensagem escondida\n\n%%icon mdi mdi-information-outline$%% Você pode %%statement action-statement$escrever%% qualquer coisa que queira nos %%icon icon-egg$%% ovos",
+    "name": "Outra arte de pixel"
+}
