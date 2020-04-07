@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_egg_order": "Você pôs alguns %%icon icon-egg$%% ovos no %%icon icon-cauldron$%% caldeirão na ordem errada ou na mesma hora do que outro ovo. Precisa botar um ovo por vez e em ordem crescente no caldeirão.",
+    "objective": "Ponha os %%icon icon-egg$%% ovos dentro do %%icon icon-cauldron$%% caldeirão em ordem crescente. Primeiro o ovo 0, então o 1, etc...",
+    "name": "Bomba-relógio"
+}
