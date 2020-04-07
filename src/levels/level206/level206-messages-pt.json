@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Mova os %%icon icon-egg$%% ovos para baixo o tanto quanto indicado pelos seus números para descobrir uma imagem escondida.\nEntão leve os %%icon icon-hero$%% heróis para baixo até o fim.\n\n%%icon mdi mdi-information-outline$%% Use %%statement assign-statement$calc%% e a variável %%icon icon-variable$%% %%statement assign-statement$ a%% para contar os passos.",
+    "name": "Arte de pixel"
+}
