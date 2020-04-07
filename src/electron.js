@@ -116,8 +116,10 @@ function createWindow() {
   })
 
   mainWindow.loadURL(indexPath)
-
   mainWindow.removeMenu()
+
+
+  ipcMain.on('uncaught-error', (event, error) => console.log("Renderer error: ", error))
 
   ipcMain.on('open-link', (event, url) => {
     console.log("Open URL:", url)
