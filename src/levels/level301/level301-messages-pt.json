@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Acione todos os %%icon icon-switch$%% botões.\n\n%%icon mdi mdi-information-outline$%% Agora os heróis podem conversar entre si. Abra o menu ajuda nas abas %%statement speach-statement$falar%% e %%statement speach-statement$escutar%% para entender melhor como funciona essas funções.",
+    "name": "Corrida de revezamento"
+}
