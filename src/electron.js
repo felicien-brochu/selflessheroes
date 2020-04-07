@@ -3,14 +3,21 @@
 // Quit after any uncaught exception
 process.on("uncaughtException", err => {
   console.log("Uncaught exception:\n", err)
-  console.log("Exiting app...")
-  process.exit(1)
+  exitApp()
 })
 process.on('unhandledRejection', err => {
   console.log("Unhandled rejection:\n", err)
-  console.log("Exiting app...")
-  process.exit(1)
+  exitApp()
 })
+
+function exitApp() {
+  console.log("Exiting app...")
+  if (mainWindow) {
+    mainWindow.destroy()
+  } else {
+    process.exit(1)
+  }
+}
 
 const {
   app,
@@ -98,7 +105,7 @@ function createWindow() {
   // If the root page fails to load, exit app
   mainWindow.webContents.once('did-fail-load', (event, errCode, errDesc) => {
     console.log("did-fail-load: ", indexPath, errCode, errDesc)
-    process.exit(1)
+    exitApp()
   })
 
   mainWindow.webContents.once('did-finish-load', () => {
