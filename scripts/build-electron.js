@@ -12,6 +12,7 @@ const config = {
   },
   files: [
     "src/electron.js",
+    "src/save/**/*",
     "dist/index.html",
     "dist/app.js",
     "dist/vendors~app.js",

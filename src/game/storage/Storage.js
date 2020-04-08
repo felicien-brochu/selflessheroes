@@ -35,18 +35,71 @@ export class Storage extends StorageWrapper {
     return this.careers.find(c => c.get().id === id)
   }
 
-  saveCareerFile(careerID) {
-    let career = this.getCareer(careerID)
+  getCareerJson(career) {
+    career.get()
     let savedObject = {
       version: storageVersion,
       career: career,
     }
 
     career.discardToJSON()
-    let savedString = JSON.stringify(savedObject)
+    let json = JSON.stringify(savedObject)
     career.restoreToJSON()
 
-    var blob = new Blob([savedString], {
+    return json
+  }
+
+  commitBackup(save = false) {
+    if (IS_ELECTRON) {
+      let t0 = Date.now()
+      const ipcRenderer = require('electron').ipcRenderer
+      let careersJson = this.careers.map(career => this.getCareerJson(career))
+      if (save) {
+        ipcRenderer.once('commit-careers-success', () => this.saveBackup())
+      }
+      ipcRenderer.send('commit-careers', careersJson)
+      console.log("#####COMMIT careers:", Date.now() - t0)
+    }
+  }
+
+  saveBackup() {
+    if (IS_ELECTRON) {
+      const ipcRenderer = require('electron').ipcRenderer
+      require('electron').ipcRenderer.send('save-careers')
+      ipcRenderer.once('save-careers-success', () => console.log("#####careers saved"))
+    }
+  }
+
+  loadBackup() {
+    if (IS_ELECTRON) {
+      const ipcRenderer = require('electron').ipcRenderer
+      let t0 = Date.now()
+      let res = require('electron').ipcRenderer.sendSync('load-careers-sync')
+
+      if (res.rev >= 0) {
+        console.log("####careers to delete", )
+        let idsToDelete = this.careers.map(c => c.id)
+        for (let careerID of idsToDelete) {
+          this.deleteCareer(careerID)
+          console.log("####deleted career", careerID)
+        }
+        res.careers.forEach(careerJson => {
+          let career = this.loadSavedCareer(careerJson)
+
+          console.log("####loaded saved career", career.id)
+        })
+      } else {
+        this.commitBackup(true)
+      }
+      console.log("#####Load careers sync response", res, Date.now() - t0)
+    }
+  }
+
+  saveCareerFile(careerID) {
+    let career = this.getCareer(careerID)
+    let savedString = this.getCareerJson(career)
+
+    let blob = new Blob([savedString], {
       type: "application/selflessheroes;charset=utf-8"
     })
     saveAs(blob, `Selfless Heroes - ${career.name}.shsv`)
