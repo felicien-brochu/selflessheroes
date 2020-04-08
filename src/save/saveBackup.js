@@ -44,13 +44,27 @@ module.exports = function(savePath) {
 
       ipcMain.on('commit-careers', (event, careers) => {
         this.commit(careers, () => {
-          event.reply('commit-careers-success', this.currentRev)
+          try {
+            event.reply('commit-careers-success', this.currentRev)
+          } catch (e) {}
         })
       })
 
       ipcMain.on('save-careers', (event) => {
         this.save(() => {
-          event.reply('save-careers-success', this.currentRev)
+          try {
+            event.reply('save-careers-success', this.currentRev)
+          } catch (e) {}
+        })
+      })
+
+      ipcMain.on('commit-and-save-careers', (event, careers) => {
+        this.commit(careers, () => {
+          this.save(() => {
+            try {
+              event.reply('commit-and-save-careers-success', this.currentRev)
+            } catch (e) {}
+          })
         })
       })
     },
@@ -79,15 +93,12 @@ module.exports = function(savePath) {
 
     load() {
       this.getSavedRevId()
-      console.log("saved rev%d", this.savedRev)
 
       if (this.savedRev >= 0) {
-        console.log(`load rev${this.savedRev}`)
-
+        // console.log(`load rev${this.savedRev}`)
         let saveFiles = fs.readdirSync(this.savePath).filter(file => file.match(/^[0-9]{3}\.shsv$/))
         saveFiles.sort()
 
-        console.log("###savefiles", saveFiles)
         saveFiles.forEach((saveFile, i) => {
           this.savedCareers[i] = fs.readFileSync(path.resolve(this.savePath, saveFile), 'utf8')
         })
@@ -106,18 +117,16 @@ module.exports = function(savePath) {
     },
 
     async save(callback) {
-      let hrstart = process.hrtime()
+      if (this.currentRev >= 0) {
+        let careersToSave = this.careers
 
-      let careersToSave = this.careers
+        await this.createBackupFiles()
+        await this.writeFiles(careersToSave)
 
-      await this.createBackupFiles()
-      await this.writeFiles(careersToSave)
-
-      this.saveRevId()
-      this.savedCareers = careersToSave
-
-      let hrend = process.hrtime(hrstart)
-      console.log("Save success rev%d (%ds %dms)", this.savedRev, hrend[0], hrend[1] / 1000000)
+        this.saveRevId()
+        this.savedCareers = careersToSave
+        // console.log("Save success rev%d (%ds %dms)", this.savedRev)
+      }
 
       if (typeof callback === 'function') {
         callback()
@@ -134,7 +143,7 @@ module.exports = function(savePath) {
       let renamePromises = savedFiles.map(file => {
         let oldName = path.resolve(this.savePath, file)
         let newName = oldName + ".backup"
-        console.log(`rename ${oldName} => ${newName}`)
+        // console.log(`rename ${oldName} => ${newName}`)
         return fs.promises.rename(oldName, newName)
       })
 

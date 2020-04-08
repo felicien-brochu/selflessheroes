@@ -27,7 +27,7 @@ Vue.use(VueHotkey)
 Vue.use(VueMeta)
 Vue.use(VueRouter)
 
-storage.loadBackup()
+storage.initBackup()
 
 lang.applyLanguagePreference(storage.preferences.language)
 Vue.prototype.$lang = lang
@@ -91,6 +91,11 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  // Save backup before each navigation change
+  if (router.visitedRoutes.length > 0) {
+    storage.commitBackup(true)
+  }
+
   if (to.name !== 'screen-size-warning' && ScreenDimension.isTooSmall()) {
     next({
       name: 'screen-size-warning',

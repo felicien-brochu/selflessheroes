@@ -49,16 +49,47 @@ export class Storage extends StorageWrapper {
     return json
   }
 
+  initBackup() {
+    if (IS_ELECTRON) {
+      const {
+        remote
+      } = require('electron')
+      remote.getCurrentWindow().on('close', e => {
+        this.commitBackup(true)
+      })
+
+      this.loadBackup()
+    }
+  }
+
+  loadBackup() {
+    if (IS_ELECTRON) {
+      const ipcRenderer = require('electron').ipcRenderer
+      let res = require('electron').ipcRenderer.sendSync('load-careers-sync')
+
+      if (res.rev >= 0) {
+        let idsToDelete = this.careers.map(c => c.id)
+        for (let careerID of idsToDelete) {
+          this.deleteCareer(careerID)
+        }
+        res.careers.forEach(careerJson => {
+          let career = this.loadSavedCareer(careerJson)
+        })
+      } else {
+        this.commitBackup(true)
+      }
+    }
+  }
+
   commitBackup(save = false) {
     if (IS_ELECTRON) {
-      let t0 = Date.now()
       const ipcRenderer = require('electron').ipcRenderer
       let careersJson = this.careers.map(career => this.getCareerJson(career))
       if (save) {
-        ipcRenderer.once('commit-careers-success', () => this.saveBackup())
+        ipcRenderer.send('commit-and-save-careers', careersJson)
+      } else {
+        ipcRenderer.send('commit-careers', careersJson)
       }
-      ipcRenderer.send('commit-careers', careersJson)
-      console.log("#####COMMIT careers:", Date.now() - t0)
     }
   }
 
@@ -66,32 +97,6 @@ export class Storage extends StorageWrapper {
     if (IS_ELECTRON) {
       const ipcRenderer = require('electron').ipcRenderer
       require('electron').ipcRenderer.send('save-careers')
-      ipcRenderer.once('save-careers-success', () => console.log("#####careers saved"))
-    }
-  }
-
-  loadBackup() {
-    if (IS_ELECTRON) {
-      const ipcRenderer = require('electron').ipcRenderer
-      let t0 = Date.now()
-      let res = require('electron').ipcRenderer.sendSync('load-careers-sync')
-
-      if (res.rev >= 0) {
-        console.log("####careers to delete", )
-        let idsToDelete = this.careers.map(c => c.id)
-        for (let careerID of idsToDelete) {
-          this.deleteCareer(careerID)
-          console.log("####deleted career", careerID)
-        }
-        res.careers.forEach(careerJson => {
-          let career = this.loadSavedCareer(careerJson)
-
-          console.log("####loaded saved career", career.id)
-        })
-      } else {
-        this.commitBackup(true)
-      }
-      console.log("#####Load careers sync response", res, Date.now() - t0)
     }
   }
 
