@@ -125,7 +125,7 @@ module.exports = function(savePath) {
 
         this.saveRevId()
         this.savedCareers = careersToSave
-        // console.log("Save success rev%d (%ds %dms)", this.savedRev)
+        console.log("Save success rev%d (%ds %dms)", this.savedRev)
       }
 
       if (typeof callback === 'function') {

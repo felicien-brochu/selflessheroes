@@ -40,7 +40,7 @@ export default class StorageWrapper {
     return storages
   }
 
-  save(deep = false, notifyBackup = false) {
+  save(deep = false, notifyChange = true) {
     window.localStorage.setItem(this.storageKey, JSON.stringify(this))
     // console.debug("STORAGE SAVE: ", this.id, this.constructor.name, JSON.stringify(this, null, '\t'))
     if (deep) {
@@ -49,8 +49,8 @@ export default class StorageWrapper {
       }
     }
 
-    if (notifyBackup && IS_ELECTRON) {
-      window.dispatchEvent(new CustomEvent('career-change'))
+    if (IS_ELECTRON) {
+      window.dispatchEvent(new CustomEvent('storage-change'))
     }
   }
 
