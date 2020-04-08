@@ -62,6 +62,12 @@ const config = {
   },
 }
 
+if (process.argv.includes('--no-target')) {
+  config.win.target = "dir"
+  config.mac.target = "dir"
+  config.linux.target = "dir"
+}
+
 builder
   .build({
     config: config,
