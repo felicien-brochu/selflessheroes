@@ -42,8 +42,8 @@ module.exports = function(savePath) {
         }
       })
 
-      ipcMain.on('commit-careers', (event, careers) => {
-        this.commit(careers, () => {
+      ipcMain.on('commit-careers', (event, careers, rev) => {
+        this.commit(careers, rev, () => {
           try {
             event.reply('commit-careers-success', this.currentRev)
           } catch (e) {}
@@ -58,8 +58,8 @@ module.exports = function(savePath) {
         })
       })
 
-      ipcMain.on('commit-and-save-careers', (event, careers) => {
-        this.commit(careers, () => {
+      ipcMain.on('commit-and-save-careers', (event, careers, rev) => {
+        this.commit(careers, rev, () => {
           this.save(() => {
             try {
               event.reply('commit-and-save-careers-success', this.currentRev)
@@ -95,7 +95,6 @@ module.exports = function(savePath) {
       this.getSavedRevId()
 
       if (this.savedRev >= 0) {
-        // console.log(`load rev${this.savedRev}`)
         let saveFiles = fs.readdirSync(this.savePath).filter(file => file.match(/^[0-9]{3}\.shsv$/))
         saveFiles.sort()
 
@@ -107,9 +106,9 @@ module.exports = function(savePath) {
       }
     },
 
-    commit(careers, callback) {
+    commit(careers, rev, callback) {
       this.careers = careers
-      this.currentRev++
+      this.currentRev = rev
 
       if (typeof callback === 'function') {
         callback()
@@ -125,7 +124,7 @@ module.exports = function(savePath) {
 
         this.saveRevId()
         this.savedCareers = careersToSave
-        console.log("Save success rev%d (%ds %dms)", this.savedRev)
+        // console.log("Save success rev%d", this.savedRev)
       }
 
       if (typeof callback === 'function') {

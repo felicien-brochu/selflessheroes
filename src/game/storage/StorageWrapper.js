@@ -40,17 +40,13 @@ export default class StorageWrapper {
     return storages
   }
 
-  save(deep = false, notifyChange = true) {
+  save(deep = false) {
     window.localStorage.setItem(this.storageKey, JSON.stringify(this))
     // console.debug("STORAGE SAVE: ", this.id, this.constructor.name, JSON.stringify(this, null, '\t'))
     if (deep) {
       for (let saveableObject of this.getSaveables()) {
         saveableObject.save(deep)
       }
-    }
-
-    if (IS_ELECTRON) {
-      window.dispatchEvent(new CustomEvent('storage-change'))
     }
   }
 

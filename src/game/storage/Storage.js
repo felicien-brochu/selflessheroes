@@ -13,7 +13,6 @@ export class Storage extends StorageWrapper {
 
     this.version = storageVersion
     this.rev = 0
-    this.savedRev = -1
     this.isPremium = false
     this.preferences = new Preferences()
     this.careers = []
@@ -53,7 +52,6 @@ export class Storage extends StorageWrapper {
 
   initBackup() {
     this.get()
-    console.log("####INIT backup, storage:", this.rev, this.savedRev, this.isPremium)
     if (IS_ELECTRON) {
       const {
         remote
@@ -63,7 +61,6 @@ export class Storage extends StorageWrapper {
       })
 
       this.loadBackup()
-      window.addEventListener('storage-change', mainStorage.handleStorageChange.bind(mainStorage))
     }
   }
 
@@ -72,7 +69,6 @@ export class Storage extends StorageWrapper {
       const ipcRenderer = require('electron').ipcRenderer
       let res = require('electron').ipcRenderer.sendSync('load-careers-sync')
 
-      console.log("####LOAD BACKUP()", res.rev, this.rev)
       if (res.rev >= 0 && this.rev <= res.rev) {
         let idsToDelete = this.careers.map(c => c.id)
         for (let careerID of idsToDelete) {
@@ -83,28 +79,26 @@ export class Storage extends StorageWrapper {
         })
 
         this.setSavedRev(res.rev)
-        console.log("####LOAD BACKUP LOADLOAD", res.rev, this.rev)
       } else {
         this.commitBackup(true)
-        console.log("####LOAD BACKUP SAVE", res.rev, this.rev)
       }
     }
   }
 
   commitBackup(save = false) {
-    if (IS_ELECTRON && this.rev > this.savedRev) {
+    if (IS_ELECTRON) {
       const ipcRenderer = require('electron').ipcRenderer
       let careersJson = this.careers.map(career => this.getCareerJson(career))
       if (save) {
         ipcRenderer.once('commit-and-save-careers-success', (event, rev) => {
           this.setSavedRev(rev)
         })
-        ipcRenderer.send('commit-and-save-careers', careersJson)
+        ipcRenderer.send('commit-and-save-careers', careersJson, this.rev)
       } else {
         ipcRenderer.once('commit-careers-success', (event, rev) => {
           this.setSavedRev(rev)
         })
-        ipcRenderer.send('commit-careers', careersJson)
+        ipcRenderer.send('commit-careers', careersJson, this.rev)
       }
     }
   }
@@ -119,20 +113,9 @@ export class Storage extends StorageWrapper {
     }
   }
 
-  handleStorageChange() {
-    console.log("###STORAGE CHANGE BEFOR", this.rev, this.savedRev, this)
-    if (this.rev <= this.savedRev) {
-      this.rev = this.savedRev + 1
-      this.save(false, false)
-    }
-    console.log("###STORAGE CHANGE AFTER", this.rev, this.savedRev)
-  }
-
   setSavedRev(rev) {
-    console.log("###STORAGE SET SAVEDREV", rev, this)
-    this.savedRev = rev
-    this.rev = rev
-    this.save(false, false)
+    this.rev = rev + 1
+    this.save(false)
   }
 
   saveCareerFile(careerID) {
@@ -222,9 +205,6 @@ export class Storage extends StorageWrapper {
     if (data.rev && typeof data.rev === 'number') {
       this.rev = data.rev
     }
-    if (data.savedRev && typeof data.savedRev === 'number') {
-      this.savedRev = data.savedRev
-    }
     if (data.preferences) {
       this.preferences = Preferences.buildFromJSON(data.preferences)
     } else {
@@ -249,7 +229,6 @@ export class Storage extends StorageWrapper {
     Object.assign(o, {
       version: this.version,
       rev: this.rev,
-      savedRev: this.savedRev,
       isPremium: !!this.isPremium,
       preferences: this.preferences,
       careers: super.toIDArray(this.careers)
