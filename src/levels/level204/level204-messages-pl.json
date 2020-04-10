@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_numbered_egg_displaced": "Nie możesz dotykać %%icon icon-egg$%% jajek na górze",
+    "loss_reason_wrong_value_on_egg": "Napisałeś coś innego niż największą wartość kolumny na %%icon icon-egg$%% jajku",
+    "objective": "Zapisz największą wartość z każdej kolumny do %%icon icon-egg$%% jajek na dole\n\n%%icon mdi mdi-alert-octagon-outline$%%Uwaga: nie możesz dotykać %%icon icon-egg$%% jajek na górze",
+    "name": "Inspekcja"
+}
