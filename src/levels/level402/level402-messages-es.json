@@ -1,1 +1,3 @@
-{}
+{
+    "loss_reason_too_mush_heroes": "Se ha excedido el número máximo de héroes.\nNúmero máximo de héroes: 10"
+}
