@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Wrzuć wszystkie %%icon icon-egg$%% jajka do %%icon icon-cauldron$%% kotła.\n\n%%icon mdi mdi-information-outline$%% Wyjście z labiryntu jest zawsze trudne… Na szczęście teraz możesz użyć %%statement assign-statement$najbliższy%% żeby odnaleźć swoją drogę.",
+    "name": "Labirynt"
+}
