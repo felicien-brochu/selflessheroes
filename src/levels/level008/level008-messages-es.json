@@ -1,4 +1,4 @@
 {
     "name": "Procesión con antorchas",
-    "objective": "Encende todos los %%icon icon-bonfire$%% fuegos\n\n%%icon mdi mdi-information-outline$%% Utiliza %%statement branching-statement$salto%% para repetir las acciones en un ###bucle"
+    "objective": "Enciende todos los %%icon icon-bonfire$%% fuegos\n\n%%icon mdi mdi-information-outline$%% Utiliza %%statement branching-statement$salto%% para repetir las acciones"
 }
