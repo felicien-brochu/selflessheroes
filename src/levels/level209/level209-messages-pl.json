@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_value_on_egg": "Napisałeś coś innego niż średnia wartość kolumny na %%icon icon-egg$%% jajku",
+    "objective": "Oblicz średnią wartość każdej kolumny i zapisz ją na jej wszystkich %%icon icon-egg$%% jajkach",
+    "name": "Równość dla wszystkich"
+}
