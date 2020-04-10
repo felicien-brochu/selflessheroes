@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_target_egg_displaced": "Nie możesz dotykać %%icon icon-egg$%% jajek po lewej",
+    "loss_reason_wrong_value_on_egg": "Zapisałeś złą liczbę na tym %%icon icon-egg$%% jajku.\nSkopiuj liczby z lewej kolumny.",
+    "objective": "Skopiuj lewą kolumnę do wszystkich innych kolumn\n\n%%icon mdi mdi-information-outline$%% Jeśli nie możesz znaleźć rozwiązania, możesz zaczerpnąć inspirację z poziomu %%level-title$\"Pojedynczo\"%%",
+    "name": "Masowa produkcja"
+}
