@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Przenieś %%icon icon-egg$%% jajka w prawo tyle kwadratów, jaka wynosi ich liczba, by odsłonić ukryty obraz\n\n%%icon mdi mdi-information-outline$%% Możesz %%statement action-statement$write%% cokolwiek chcesz na %%icon icon-egg$%% jajkach",
+    "name": "Sztuka pikselowa 2"
+}
