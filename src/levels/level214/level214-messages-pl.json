@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_egg_order": "Wrzuciłeś %%icon icon-egg$%% jajko do %%icon icon-cauldron$%% kotła w złej kolejności lub kilka w tym samym czasie. Musisz je wrzucać do kotła jeden za drugim w kolejności rosnącej.",
+    "objective": "Wrzuć %%icon icon-egg$%% jajka do %%icon icon-cauldron$%% kotła w rosnącej kolejności. Najpierw jajka 0 potem 1 itd.",
+    "name": "Tykająca bomba"
+}
