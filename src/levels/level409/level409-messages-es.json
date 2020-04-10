@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Copia los %%icon icon-egg$%% huevos desde la primera columna hacia la segunda, los de la segunda hacia la tercera etc. Escribe 0 en todos %%icon icon-egg$%% los huevos de la primera columna.\n\n%%icon mdi mdi mdi-information-outline$%% Al final los %%icon icon-egg$%% huevos tienen que estar al sitio donde estaban al principio.",
+    "name": "Cambio de memoria"
+}
