@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Naciśnij wszystkie %%icon icon-switch$%% przyciski.\n\n%%icon mdi mdi-information-outline$%% Teraz bohaterzy mogą mówić do wszystkich bohaterów naraz z %%statement speach-statement$powiedz%%.",
+    "name": "Bloki startowe"
+}
