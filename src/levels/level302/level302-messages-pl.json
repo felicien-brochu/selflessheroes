@@ -1,5 +1,6 @@
 {
     "loss_reason_moved_of_the_cross": "Jeśli %%icon icon-hero$%% bohater stanął już na krzyżyku, nie może z niego zejść",
     "loss_reason_wrong_order": "%%icon icon-hero$%% Bohaterzy muszą stawać na krzyżykach pojedynczo. Pierwszy bohater od lewej musi iść pierwszy, potem ten na prawo od niego, i tak dalej aż do ostatniego.",
-    "objective": "%%icon icon-hero$%% Bohaterzy muszą stanąć na krzyżykach jeden za drugim. Najpierw bohater po lewej, potem ten na prawo od niego, itd."
+    "objective": "%%icon icon-hero$%% Bohaterzy muszą stanąć na krzyżykach jeden za drugim. Najpierw bohater po lewej, potem ten na prawo od niego, itd.",
+    "name": "Winorośl"
 }
