@@ -9,7 +9,9 @@ import MouseWheelToUpDownPlugin from './plugins/mousewheeltoupdown/mousewheeltou
 export default () => ({
   width: document.documentElement.clientWidth,
   height: document.documentElement.clientHeight,
-  mode: Phaser.Scale.NO_SCALE,
+  scale: {
+    mode: Phaser.Scale.NONE
+  },
   zoom: 1,
   resolution: 1,
   type: Phaser.AUTO,

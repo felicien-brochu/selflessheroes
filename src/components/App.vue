@@ -204,28 +204,28 @@ export default {
 
   methods: {
     handleTransition(handler, el) {
-      // If there is a corresponding handler on a child, we call it
-      if (el.__vue__ && el.__vue__[handler] && {}.toString.call(el.__vue__[handler]) === '[object Function]') {
-        el.__vue__[handler]()
-      }
-
-      if (
-        handler === 'onTransitionEnter' ||
-        handler === 'onTransitionBeforeEnter' ||
-        handler === 'onTransitionAfterEnter'
-      ) {
-        this.transitioning = false
-      }
-      else if (
-        handler === 'onTransitionLeave' ||
-        handler === 'onTransitionEnterCancelled' ||
-        handler === 'onTransitionBeforeLeave' ||
-        handler === 'onTransitionLeave' ||
-        handler === 'onTransitionAfterLeave' ||
-        handler === 'onTransitionLeaveCancelled'
-      ) {
-        this.transitioning = true
-      }
+      // // If there is a corresponding handler on a child, we call it
+      // if (el.__vue__ && el.__vue__[handler] && {}.toString.call(el.__vue__[handler]) === '[object Function]') {
+      //   el.__vue__[handler]()
+      // }
+      //
+      // if (
+      //   handler === 'onTransitionEnter' ||
+      //   handler === 'onTransitionBeforeEnter' ||
+      //   handler === 'onTransitionAfterEnter'
+      // ) {
+      //   this.transitioning = false
+      // }
+      // else if (
+      //   handler === 'onTransitionLeave' ||
+      //   handler === 'onTransitionEnterCancelled' ||
+      //   handler === 'onTransitionBeforeLeave' ||
+      //   handler === 'onTransitionLeave' ||
+      //   handler === 'onTransitionAfterLeave' ||
+      //   handler === 'onTransitionLeaveCancelled'
+      // ) {
+      //   this.transitioning = true
+      // }
     },
 
     goBack() {
