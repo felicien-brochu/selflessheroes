@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Policz różne rodzaje %%icon icon-egg$%% jajek.\n\nNapisz liczbę %%icon icon-egg$%% jajek które są warte 0 na lewym jajku i liczbę %%icon icon-egg$%% jajek które są warte 1 na prawym jajku.",
+    "name": "Remanent"
+}
