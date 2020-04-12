@@ -1,4 +1,4 @@
 {
-    "objective": "Copie os %%icon icon-egg$%% ovos da 1ª coluna para a da 2ª, os da 2ª para a 3ª, etc... Escreva 0 em todos %%icon icon-egg$%% ovos da 1ª coluna.\n\n%%icon mdi mdi mdi-information-outline$%% No fim, os %%icon icon-egg$%% ovos devem permanecer no mesmo lugar do que no começo.",
+    "objective": "Copie os %%icon icon-egg$%% ovos da 1ª coluna para a 2ª, os da 2ª para a 3ª, etc... Escreva 0 em todos %%icon icon-egg$%% ovos da 1ª coluna.\n\n%%icon mdi mdi mdi-information-outline$%% No fim, os %%icon icon-egg$%% ovos devem permanecer no mesmo lugar do que no começo.",
     "name": "Mudanças na memória"
 }
