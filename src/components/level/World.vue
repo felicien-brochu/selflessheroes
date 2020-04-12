@@ -38,10 +38,16 @@ export default {
 
   beforeDestroy() {
     window.removeEventListener("resize", this.resizeGame)
-    this.gameScene.customEvents.removeListener('ai-state-change', this.handleAiStateChange)
-    this.gameScene.customEvents.removeListener('follow-hero-change', this.handleFollowHeroChange)
-    this.gameScene.runner.events.removeListener('world-state-change', this.handleWorldStateChange)
-    this.game.destroy(true)
+    if (this.gameScene) {
+      this.gameScene.customEvents.removeListener('ai-state-change', this.handleAiStateChange)
+      this.gameScene.customEvents.removeListener('follow-hero-change', this.handleFollowHeroChange)
+      this.gameScene.runner.events.removeListener('world-state-change', this.handleWorldStateChange)
+    }
+    if (this.game) {
+      this.game.destroy(true)
+      // Call this to prevent memory leak
+      this.game.scale.stopListeners()
+    }
     Vue.prototype.$gameScene = undefined
   },
 
