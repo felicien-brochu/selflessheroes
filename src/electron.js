@@ -1,5 +1,8 @@
 'use strict'
 
+const log = require('electron-log')
+Object.assign(console, log.functions)
+
 // Quit after any uncaught exception
 process.on("uncaughtException", err => {
   console.log("Uncaught exception:\n", err)

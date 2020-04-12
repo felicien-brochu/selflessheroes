@@ -1,3 +1,8 @@
+if (IS_ELECTRON) {
+  const log = require('electron-log')
+  Object.assign(console, log.functions)
+}
+
 import Vue from 'vue'
 import _debounce from 'lodash.debounce'
 import Home from './components/home/Home'
@@ -35,20 +40,6 @@ soundManager.init()
 musicManager.init()
 Vue.prototype.$sound = soundManager
 Vue.prototype.$music = musicManager
-
-if (IS_ELECTRON) {
-  const ipcRenderer = require('electron').ipcRenderer
-  const errorHandler = _debounce(error => {
-    ipcRenderer.send('uncaught-error', error.message)
-  }, 200)
-
-  window.addEventListener('error', event => {
-    errorHandler(event.error || event)
-  })
-  window.addEventListener('unhandledrejection', event => {
-    errorHandler(event.reason)
-  })
-}
 
 const router = new VueRouter({
   mode: IS_ELECTRON ? 'hash' : 'history',
