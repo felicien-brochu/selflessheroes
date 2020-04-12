@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_wrong_egg_in_cauldron_odd": "Bohater wrzucił parzyste %%icon icon-egg$%% jajko do %%icon icon-cauldron$%% kotła kiedy jajko na górze jest nieparzyste.",
+    "loss_reason_wrong_egg_in_cauldron_even": "Bohater wrzucił nieparzyste %%icon icon-egg$%% jajko do %%icon icon-cauldron$%% kotła kiedy jajko na górze jest parzyste.",
+    "objective": "Wrzuć %%icon icon-egg$%% jajka które mają taką samą parzystość jak jajko na górze do %%icon icon-cauldron$%% kotła.\n\nNa przykład, jeśli jajko na górze jest parzyste, wrzuć wszystkie parzyste jajka do kotła.\n\n%%icon mdi mdi-information-outline$%% Jeśli %%type-operator$n%% jest liczbą parzystą, wtedy %%type-operator$n % 2 = 0%%.",
+    "name": "Tak szefie!"
+}
