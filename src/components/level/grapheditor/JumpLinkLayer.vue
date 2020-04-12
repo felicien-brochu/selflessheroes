@@ -87,6 +87,7 @@ export default {
     this.graphCode.$off('scroll', this.updateLinkPaths)
 
     this.resizeObserver.unobserve(this.editorPane)
+    this.editorPane = null
 
     window.removeEventListener('resize', this.updateLinkPaths)
 

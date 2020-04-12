@@ -193,7 +193,9 @@ export default {
     }
   },
 
-  beforeDestroy() {},
+  beforeDestroy() {
+    this.popupLayer = null
+  },
 
   methods: {
 

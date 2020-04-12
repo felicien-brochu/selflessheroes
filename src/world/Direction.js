@@ -45,15 +45,15 @@ export default class Direction {
   }
 }
 
-Direction.here = new Direction(0, 0)
-Direction.n = new Direction(0, -1)
-Direction.ne = new Direction(1, -1)
-Direction.e = new Direction(1, 0)
-Direction.se = new Direction(1, 1)
-Direction.s = new Direction(0, 1)
-Direction.sw = new Direction(-1, 1)
-Direction.w = new Direction(-1, 0)
-Direction.nw = new Direction(-1, -1)
+Direction.here = Object.freeze(new Direction(0, 0))
+Direction.n = Object.freeze(new Direction(0, -1))
+Direction.ne = Object.freeze(new Direction(1, -1))
+Direction.e = Object.freeze(new Direction(1, 0))
+Direction.se = Object.freeze(new Direction(1, 1))
+Direction.s = Object.freeze(new Direction(0, 1))
+Direction.sw = Object.freeze(new Direction(-1, 1))
+Direction.w = Object.freeze(new Direction(-1, 0))
+Direction.nw = Object.freeze(new Direction(-1, -1))
 
 Direction.names = [
   'here',
@@ -66,3 +66,5 @@ Direction.names = [
   'w',
   'nw',
 ]
+
+Object.freeze(Direction)

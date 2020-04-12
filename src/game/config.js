@@ -19,11 +19,7 @@ export default () => ({
   localStorageName: 'selflessheroes',
   backgroundColor: 'rgba(0, 0, 0, 0)',
   plugins: {
-    global: [{
-      key: 'rexMouseWheelToUpDown',
-      plugin: MouseWheelToUpDownPlugin,
-      start: true
-    }]
+    global: []
   },
   scene: [SplashScene, GameScene, CelebrationScene]
 })
