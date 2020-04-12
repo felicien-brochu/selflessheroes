@@ -1,5 +1,5 @@
 {
     "loss_reason_took_wrong_egg": "Um de seus heróis pegou o ovo errado",
-    "objective": "O número no %%icon icon-egg$%% ovo acima do %%icon icon-cauldron$%% caldeirão indica a posição do ovo que deverá ser soltado no caldeirão.\n\nPor exemplo, se o ovo diz 4, então o 4º %%icon icon-egg$%% ovo deverá soltado no %%icon icon-cauldron$%% caldeirão.\n\n%%icon mdi mdi-information-outline$%% Quando um clone é criado, ele herda as variáveis do seu criador.\n\n%%icon mdi mdi-information-outline$%% Não pegue os outros %%icon icon-egg$%% ovos.",
+    "objective": "O número do %%icon icon-egg$%% ovo acima do %%icon icon-cauldron$%% caldeirão indica a posição do ovo que deverá ser soltado no caldeirão.\n\nPor exemplo, se o ovo diz 4, então o 4º %%icon icon-egg$%% ovo deverá soltado no %%icon icon-cauldron$%% caldeirão.\n\n%%icon mdi mdi-information-outline$%% Quando um clone é criado, ele herda as variáveis do seu criador.\n\n%%icon mdi mdi-information-outline$%% Não pegue os outros %%icon icon-egg$%% ovos.",
     "name": "Loteria"
 }
