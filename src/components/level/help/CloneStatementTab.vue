@@ -7,8 +7,6 @@
   <h5>{{$text('level_help_tab_statement_graph_code_example')}}</h5>
   <p>
     <div class="graph-code-container">
-      <simple-graph-code :code="'clone w a\nstep(e)\na:'"
-        :compilerConfig="defaultCompilerConfig" />
       <svg viewBox="0 0 100 126"
         style="height: 126px;"
         class="jump-link-layer">
@@ -19,6 +17,8 @@
 					}"
           class="link-line"></path>
       </svg>
+      <simple-graph-code :code="'clone w a\nstep(e)\na:'"
+        :compilerConfig="defaultCompilerConfig" />
     </div>
 
     <span v-bbcode>{{$text('level_help_tab_clone_statement_2')}}</span>

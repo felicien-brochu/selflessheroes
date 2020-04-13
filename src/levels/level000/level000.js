@@ -11,7 +11,7 @@ const level = {
     excludePrimary: [],
     terrainTypes: ['wall', 'floor'],
     objectTypes: ['nothing', 'hero', 'egg', 'cauldron', 'bonfire', 'npc', 'switch', 'spikes'],
-    actionFunctions: ['step', 'fireball', 'take', 'drop', 'write', 'tell', 'listen'],
+    actionFunctions: ['step_once', 'fireball', 'take', 'drop', 'write', 'tell', 'listen'],
     valueFunctions: ['set', 'calc', 'nearest'],
     variables: 5,
     messages: 8,

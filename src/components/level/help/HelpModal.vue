@@ -372,6 +372,7 @@ $selected-color: #535866;
 
                     .simple-graph-code {
                         margin: 15px;
+                        position: relative;
                     }
 
                     p {
