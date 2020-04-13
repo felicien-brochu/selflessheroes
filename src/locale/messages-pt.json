@@ -89,7 +89,7 @@
     "level_help_advanced_tutorial_button": "Tutorial avançado",
     "level_help_tab_general_objectives_stars": "Há 3 estrelas para ganhar por nível:",
     "level_help_tab_general_objectives_star1": "estrela 1:",
-    "level_help_tab_general_objectives_star1_objective": "alcançe o objetivo do nível",
+    "level_help_tab_general_objectives_star1_objective": "alcance o objetivo do nível",
     "level_help_tab_general_objectives_star2": "estrela 2:",
     "level_help_tab_general_objectives_star2_objective": "objetivo secundário de velocidade do programa",
     "level_help_tab_general_objectives_star2_advice": "Para alcançar o objetivo, seu programa deve fazer o mínimo possível de passos para alcançar o objetivo final. Em outras palavras, deve rodar o mais rápido possível.",
@@ -209,7 +209,7 @@
     "level_help_tab_drop_function_1": "%%statement action-statement$soltar%% diz para o herói soltar seu objeto.",
     "level_help_tab_take_function_2": "Você poderia ler o exemplo como \"Se há um ovo no quadrado a sua direita, pegue o ovo\".",
     "level_help_tab_take_function_1": "%%statement action-statement$pegar%% diz para seu herói pegar um objeto.",
-    "level_help_tab_fireball_function_2": "Você poderia ler o exemplo acima como \"Jogue uma bola de fogo na sua direita\".",
+    "level_help_tab_fireball_function_2": "Você poderia ler o exemplo acima como \"Jogue uma bola de fogo a sua direita\".",
     "level_help_tab_fireball_function_1": "%%statement action-statement$bola de fogo%% joga uma bola de fogo em um quadrado em volta do herói.\nSe a bola de fogo atingir outro herói, ela irá matá-lo. Você pode usar a bola de fogo para acender uma %%icon icon-bonfire$%% fogueira.",
     "level_help_tab_step_once_function_2": "Você poderia ler o exemplo acima como \"Ande uma vez para a direita\".",
     "level_help_tab_step_once_function_1": "%%statement action-statement$andar%% diz para seu herói andar em uma direção.",
@@ -240,7 +240,7 @@
     "level_help_tab_tell_function_1": "%%statement speach-statement$falar%% permite você dizer uma mensagem para outros heróis.",
     "level_help_tab_nearest_function_2": "você poderia ler o exemplo como \"Memorize o ovo mais próximo na variável \"a\" e então pegue-o\".",
     "level_help_tab_nearest_function_1": "%%statement assign-statement$mais próximo%% procura pelo objeto escolhido (%%icon icon-cauldron$%% caldeirão, %%icon icon-egg$%% ovo, etc...) que estiver mais perto e atribui o resultado a uma variável.",
-    "level_help_tab_calc_function_4": "Em Selfless Heroes, há somente números inteiros.\n\nO operador %%type-operator$\"/\"%% é o operador aritmético de divisão.\nPor exemplo, %%type-operator$9 / 2 = 4%%.\n\nO operador %%type-operator$\"%\"%% é chamado de \"modulo\". Ele calcula o resto de uma divisão.\nPor exemplo, %%type-operator$9 % 2 = 1%% porque %%type-operator$9 / 2 = 4 resto 1%%.",
+    "level_help_tab_calc_function_4": "Em Selfless Heroes, há somente números inteiros.\n\nO operador %%type-operator$\"/\"%% é o operador aritmético de divisão.\nPor exemplo, %%type-operator$9 / 2 = 4%%.\n\nO operador %%type-operator$\"%\"%% é chamado de \"módulo\". Ele calcula o resto de uma divisão.\nPor exemplo, %%type-operator$9 % 2 = 1%% porque %%type-operator$9 / 2 = 4 resto 1%%.",
     "level_help_tab_calc_function_2": "Você poderia ler o exemplo como \"Atribuía o valor a + 2 à variável b\".",
     "level_help_tab_calc_function_1": "%%statement assign-statement$calc%% faz um cálculo e atribui o resultado a uma variável."
 }
