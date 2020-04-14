@@ -1,6 +1,11 @@
 if (IS_ELECTRON) {
   const log = require('electron-log')
   Object.assign(console, log.functions)
+
+  const MAX_SCREEN_WIDTH = 1920
+  if (screen.width > MAX_SCREEN_WIDTH) {
+    require('electron').webFrame.setZoomFactor(screen.width / MAX_SCREEN_WIDTH)
+  }
 }
 
 import Vue from 'vue'
