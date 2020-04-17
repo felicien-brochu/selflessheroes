@@ -326,6 +326,14 @@ export default {
       if (this.openingSequence) {
         this.openingSequence = false
         this.checkTutorialTreated()
+
+        // Quick fix for a bug. Because of the transition between the level list page
+        // and the level page, the interactive hit area of the sprite is shifted.
+        // Therefore to click on a hero, the player has to click beside the hero sprite.
+        // The scale manager doesn't seam to handle well the transition.
+        if (this.$refs.world.gameScene) {
+          this.$refs.world.gameScene.scale.refresh()
+        }
       }
       this.$nextTick(() => this.handleEditorResize())
     },

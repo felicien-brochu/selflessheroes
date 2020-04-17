@@ -587,5 +587,11 @@ export default class extends Phaser.Scene {
     if (currentlyOver.length === 0) {
       this.stopFollowHero()
     }
+
+    // Quick fix for a bug. Because of the transition between the level list page
+    // and the level page, the interactive hit area of the sprite is shifted.
+    // Therefore to click on a hero, the player has to click beside the hero sprite.
+    // The scale manager doesn't seam to handle well the transition.
+    this.scale.refresh()
   }
 }
