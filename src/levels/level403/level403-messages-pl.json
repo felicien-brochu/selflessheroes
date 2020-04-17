@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Wypełnij piramidę twoimi %%icon icon-hero$%% bohaterami.\n\n%%icon mdi mdi-alert-octagon-outline$%%Uwaga: na tym poziomie, jeśli klonowanie nie uda się, bohater który próbował się sklonować, umrze.",
+    "name": "Piramida"
+}
