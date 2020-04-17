@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_took_wrong_egg": "Jeden z bohaterów wziął złe jajko",
+    "objective": "Liczba na %%icon icon-egg$%% jajku powyżej %%icon icon-cauldron$%% kotła wskazuje które jajko należy wrzucić do kotła.\n\nNa przykład, jeśli na jajku jest 4, wtedy musisz wrzucić czwarte %%icon icon-egg$%% jajko do %%icon icon-cauldron$%% kotła.\n\n%%icon mdi mdi-information-outline$%% Kiedy klon jest stworzony, dziedziczy on zmienne jego twórcy.\n\n%%icon mdi mdi-alert-octagon-outline$%%Nie bierz innych %%icon icon-egg$%% jajek.",
+    "name": "Loteria"
+}
