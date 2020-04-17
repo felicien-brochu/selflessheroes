@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_not_same_time": "Bohaterzy muszą położyć wszystkie %%icon icon-egg$%% jajka naraz, w tym samym czasie, pomiędzy dwoma %%icon icon-bonfire$%% ogniskami.",
+    "loss_reason_wrong_number": "Wystąpił błąd w kalkulacji",
+    "objective": "Pomnóż 6-cyfrowe liczby reprezentowane %%icon icon-egg$%% jajkami przez 2 i napisz wynik na %%icon icon-egg$%% jajkach w ten sam sposób (1 cyfra na każdym jajku). Potem połóż wszystkie %%icon icon-egg$%% jajka naraz, w tym samym czasie, pomiędzy dwoma %%icon icon-bonfire$%% ogniskami.",
+    "name": "Mnożniki"
+}
