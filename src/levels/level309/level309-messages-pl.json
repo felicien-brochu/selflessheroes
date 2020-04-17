@@ -1,1 +1,5 @@
-{}
+{
+    "name": "Szalony strażnik",
+    "boss_tell": "...otwarte!\n...ha ha ha ha... zamknięte!\nJest otwarte! Jest zamknięte!\n...ha ha ha ha...",
+    "objective": "Poprowadź bohaterów z lewego, na prawy koniec pokoju."
+}
