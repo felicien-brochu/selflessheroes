@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Poprowadź bohatera z lewego, na prawy koniec pokoju.\n\n%%icon mdi mdi-information-outline$%% Żeby obniżyć %%icon icon-spikes$%% kolce, musisz nacisnąć odpowiednie %%icon icon-switch$%% przyciski.\nKombinacja napisana jest na %%icon icon-egg$%% jajkach:\n1 = naciśnij przycisk\n0 = nie naciskaj przycisku",
+    "name": "Krypteks"
+}
