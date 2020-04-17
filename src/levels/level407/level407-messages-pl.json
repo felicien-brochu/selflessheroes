@@ -1,1 +1,6 @@
-{}
+{
+    "name": "Jajko z drzewa",
+    "loss_reason_wrong_egg_in_cauldron": "Bohater wrzucił %%icon icon-egg$%% jajko które nie ma najwyższej wartości do kotła",
+    "loss_reason_too_mush_heroes": "Maksymalna liczba bohaterów została przekroczona.\nMaksymalna liczba bohaterów: 31",
+    "objective": "Wrzuć %%icon icon-egg$%% jajko o najwyższej wartości do %%icon icon-cauldron$%% kotła.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maksymalna liczba bohaterów: 31"
+}
