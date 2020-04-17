@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_too_mush_heroes": "Maksymalna liczba bohaterów została przekroczona.\nMaksymalna liczba bohaterów: 50",
+    "loss_reason_took_wrong_egg": "Jeden z bohaterów wziął złe jajko",
+    "objective": "Liczba na %%icon icon-egg$%% jajku po prawej %%icon icon-cauldron$%% kotła wskazuje numer kolumny jajka które należy wrzucić do %%icon icon-cauldron$%% kotła.\nLiczba na %%icon icon-egg$%% jajku poniżej %%icon icon-cauldron$%% kotła wskazuje numer rzędu.\n\n%%icon mdi mdi-alert-octagon-outline$%%Nie bierz innych %%icon icon-egg$%% jajek.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maksymalna liczba bohaterów: 50",
+    "name": "Loteria 2"
+}
