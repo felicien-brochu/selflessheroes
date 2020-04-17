@@ -1,4 +1,4 @@
 {
-    "objective": "Wciśnij wszystkie %%icon icon-switch$%% przełączniki.\n\n%%icon mdi mdi-information-outline$%% Teraz bohaterzy mogą ze sobą rozmawiać. Sprawdź pomoc o %%statement speach-statement$powiedz%% i %%statement speach-statement$słuchaj%% by lepiej zrozumieć jak działają.",
+    "objective": "Wciśnij wszystkie %%icon icon-switch$%% przyciski.\n\n%%icon mdi mdi-information-outline$%% Teraz bohaterzy mogą rozmawiać między sobą. Sprawdź pomoc o %%statement speach-statement$powiedz%% i %%statement speach-statement$słuchaj%% by lepiej zrozumieć jak działają.",
     "name": "Sztafeta"
 }
