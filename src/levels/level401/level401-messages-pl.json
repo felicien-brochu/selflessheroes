@@ -1,1 +1,5 @@
-{}
+{
+    "objective": "Zajmij wszystkie ciemne pola twoimi %%icon icon-hero$%% bohaterami.\n\n%%icon mdi mdi-information-outline$%% Teraz twoi bohaterzy mogą się %%statement branching-statement$klonować%%. Sprawdź pomoc o %%statement branching-statement$klonowaniu%% by lepiej zrozumieć jak to działa.",
+    "loss_reason_wrong_floor_cell": "Jeden z twoich bohaterów stoi na jasnym polu.",
+    "name": "Space invaders"
+}
