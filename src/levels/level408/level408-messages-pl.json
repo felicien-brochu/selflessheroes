@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_too_mush_heroes": "Maksymalna liczba bohaterów została przekroczona.\nMaksymalna liczba bohaterów: 10",
+    "boss_tell": "...gnark...gnark...\n...gnark...gnark...gnark...\n...gnark...gnark...",
+    "objective": "Te małe potwory rozmnażają się w przerażającym tempie! Zatrzymaj infestację zanim będzie za późno.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maksymalna liczba bohaterów: 10",
+    "name": "Infestacja"
+}
