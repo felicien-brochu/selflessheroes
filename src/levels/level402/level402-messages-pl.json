@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_too_mush_heroes": "Maksymalna liczba bohaterów została przekroczona.\nMaksymalna liczba bohaterów: 10",
+    "objective": "Wciśnij wszystkie %%icon icon-switch$%% przyciski.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maksymalna liczba bohaterów: 10",
+    "name": "Przycisk nuklearny"
+}
