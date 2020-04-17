@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Skopiuj %%icon icon-egg$%% jajka z pierwszej kolumny do drugiej, te z drugiej do trzeciej itd. Napisz 0 na wszystkich %%icon icon-egg$%% jajkach w pierwszej kolumnie.\n\n%%icon mdi mdi mdi-information-outline$%% Po skończeniu wszystkie %%icon icon-egg$%% jajka muszą być w tym samym miejscu jak na początku.",
+    "name": "Przesunięcie pamięci"
+}
