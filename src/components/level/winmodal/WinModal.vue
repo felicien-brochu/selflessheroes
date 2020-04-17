@@ -91,6 +91,7 @@ export default {
     'code': String,
     'level': Object,
     'levelSolutions': Object,
+    'masterSeed': String,
     'confirmValue': {
       default: true
     },
@@ -148,7 +149,8 @@ export default {
     }
     this.worker.postMessage({
       levelID: this.level.id,
-      code: this.code
+      code: this.code,
+      masterSeed: this.masterSeed
     })
   },
 

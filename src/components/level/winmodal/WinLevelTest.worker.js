@@ -6,9 +6,10 @@ const sampleSize = 20
 self.addEventListener('message', e => {
   const level = levelManager.getLevelByID(e.data.levelID)
   const code = e.data.code
+  const masterSeed = e.data.masterSeed
 
   let actualSampleSize = level.deterministic ? 1 : sampleSize
-  let tester = new Tester(level, code, actualSampleSize)
+  let tester = new Tester(level, code, actualSampleSize, sampleSize, masterSeed)
   let tests = tester.test()
 
   if (level.deterministic) {

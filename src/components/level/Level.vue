@@ -390,7 +390,8 @@ export default {
           props: {
             level: this.level,
             levelSolutions: this.levelSolutions,
-            code: this.code
+            code: this.code,
+            masterSeed: this.$refs.world.gameScene.runner.rngSeed
           },
           handlers: {
             confirm: (e) => this.handleWinModalClose('confirm', e),

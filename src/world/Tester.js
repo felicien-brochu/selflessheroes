@@ -5,11 +5,13 @@ import Compiler from './ai/compile/Compiler'
 
 export default class Tester {
 
-  constructor(level, code, sampleSize, targetSampleSize = 20) {
+  constructor(level, code, sampleSize, targetSampleSize = 20, masterRngSeed = null) {
     this.level = level
     this.code = code
     this.sampleSize = sampleSize
     this.targetSampleSize = targetSampleSize
+    this.masterRngSeed = masterRngSeed
+    this.masterRng = seedrandom(this.masterRngSeed)
 
     this.tests = []
 
@@ -33,7 +35,7 @@ export default class Tester {
       let {
         rng,
         seed
-      } = Tester.buildRNG()
+      } = this.buildTestRNG()
       let world = new World(this.level, this.aiFactory, rng)
       while (!world.gameOver) {
         world.step()
@@ -50,8 +52,8 @@ export default class Tester {
     return this.tests
   }
 
-  static buildRNG() {
-    return seedrandom(null, {
+  buildTestRNG() {
+    return seedrandom(this.masterRng().toString(), {
       pass: (rng, seed) => {
         return {
           rng: rng,
