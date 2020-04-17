@@ -144,7 +144,7 @@
    </properties>
    <point/>
   </object>
-  <object id="396" name="spikes" type="spikes" x="172.667" y="84">
+  <object id="396" name="spikes" type="spikes" x="144.667" y="82">
    <properties>
     <property name="enabled" type="bool" value="true"/>
     <property name="triggers" value="336"/>
@@ -179,24 +179,24 @@
    </properties>
    <point/>
   </object>
-  <object id="401" name="spikes" type="spikes" x="176" y="115.333">
+  <object id="401" name="spikes" type="spikes" x="206" y="112.333">
    <properties>
     <property name="enabled" type="bool" value="true"/>
     <property name="triggers" value="337"/>
    </properties>
    <point/>
   </object>
-  <object id="402" name="spikes" type="spikes" x="236" y="119.333">
+  <object id="402" name="spikes" type="spikes" x="272" y="113.333">
    <properties>
     <property name="enabled" type="bool" value="true"/>
     <property name="triggers" value="337"/>
    </properties>
    <point/>
   </object>
-  <object id="404" name="spikes" type="spikes" x="304" y="119.333">
+  <object id="404" name="spikes" type="spikes" x="275" y="146.333">
    <properties>
     <property name="enabled" type="bool" value="true"/>
-    <property name="triggers" value="337"/>
+    <property name="triggers" value="336"/>
    </properties>
    <point/>
   </object>
@@ -214,14 +214,14 @@
    </properties>
    <point/>
   </object>
-  <object id="407" name="spikes" type="spikes" x="208" y="151.333">
+  <object id="407" name="spikes" type="spikes" x="179" y="149.333">
    <properties>
     <property name="enabled" type="bool" value="true"/>
     <property name="triggers" value="336"/>
    </properties>
    <point/>
   </object>
-  <object id="408" name="spikes" type="spikes" x="270.667" y="152.667">
+  <object id="408" name="spikes" type="spikes" x="240.667" y="145.667">
    <properties>
     <property name="enabled" type="bool" value="true"/>
     <property name="triggers" value="336"/>
@@ -312,7 +312,7 @@
    </properties>
    <point/>
   </object>
-  <object id="421" name="spikes" type="spikes" x="335.333" y="244.667">
+  <object id="421" name="spikes" type="spikes" x="306.333" y="242.667">
    <properties>
     <property name="enabled" type="bool" value="true"/>
     <property name="triggers" value="337"/>

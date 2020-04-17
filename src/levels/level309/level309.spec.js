@@ -97,9 +97,9 @@ if e != spikes ||
 	step(e)
 	jump c
 endif
-if ne == nothing &&
-  ne == floor :
-	step(ne)
+if se == nothing &&
+  se == floor :
+	step(se)
 	$a = calc($a + 1)
 	$a = calc($a % 2)
 endif

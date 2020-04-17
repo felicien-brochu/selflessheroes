@@ -18,7 +18,7 @@ const level = {
   messages: messages,
 
   maxStep: 600,
-  speedTarget: 107,
+  speedTarget: 102,
   lengthTarget: 27,
 
   bossTellsSomething: true,
