@@ -1,5 +1,5 @@
 {
     "loss_reason_one_egg_not_max": "Wrzuciłeś %%icon icon-egg$%% jajko które nie było największą wartością z jego kolumny do %%icon icon-cauldron$%% kotła",
-    "objective": "Wybierz i wrzuć %%icon icon-egg$%% jajko z najwyższą wartością z każdej kolumny do korespondującego do niej %%icon icon-cauldron$%% kotła\n\n%%icon mdi mdi-alert-octagon-outline$%%Uwaga: nie wrzucaj innych %%icon icon-egg$%% jajek do %%icon icon-cauldron$%% kotłów",
+    "objective": "Wybierz i wrzuć %%icon icon-egg$%% jajko o najwyższej wartości z każdej kolumny do korespondującego do niej %%icon icon-cauldron$%% kotła\n\n%%icon mdi mdi-alert-octagon-outline$%%Uwaga: nie wrzucaj innych %%icon icon-egg$%% jajek do %%icon icon-cauldron$%% kotłów",
     "name": "Wybieranie 2"
 }
