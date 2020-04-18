@@ -1,5 +1,5 @@
 {
     "loss_reason_one_egg_ge_4": "Wrzuciłeś %%icon icon-egg$%% jajko większe lub równe 4\ndo %%icon icon-cauldron$%% kotła",
-    "objective": "Wrzuć %%icon icon-egg$%% jajko które jest mniejsze niż 4\ndo każdego %%icon icon-cauldron$%% kotła",
+    "objective": "Wrzuć %%icon icon-egg$%% jajko które jest mniejsze niż 4\ndo każdego %%icon icon-cauldron$%% kotła\n\n%%icon mdi mdi-information-outline$%% Jeśli chcesz sprawdzić wartość %%icon icon-egg$%% jajka które leży na podłodze, możesz użyć a %%icon icon-direction$%% kierunku. Twoi bohaterzy są na tyle inteligentni żeby zrozumieć że masz na myśli te %%icon icon-egg$%% jajko.",
     "name": "Wybieranie"
 }
