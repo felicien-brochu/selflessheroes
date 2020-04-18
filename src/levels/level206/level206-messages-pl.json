@@ -1,4 +1,4 @@
 {
-    "objective": "Przenieś %%icon icon-egg$%% jajka na dół tyle kwadratów, jaka wynosi ich liczba, by odsłonić ukryty obraz.\nPotem sprowadź swoich %%icon icon-hero$%% bohaterów na sam dół.\n\n%%icon mdi mdi-information-outline$%% Użyj %%statement assign-statement$calc%% i %%icon icon-variable$%% zmienną %%statement assign-statement$ a%% by policzyć swoje kroki.",
+    "objective": "Przenieś %%icon icon-egg$%% jajka na dół tyle pól, jaka wynosi ich liczba, by odsłonić ukryty obraz.\nPotem sprowadź swoich %%icon icon-hero$%% bohaterów na sam dół.\n\n%%icon mdi mdi-information-outline$%% Użyj %%statement assign-statement$calc%% i %%icon icon-variable$%% zmienną %%statement assign-statement$ a%% by policzyć swoje kroki.",
     "name": "Sztuka pikselowa"
 }
