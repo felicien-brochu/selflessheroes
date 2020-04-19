@@ -17,6 +17,27 @@ const winCondition = {
   },
 }
 
+const allHeroEndedLossCondition = {
+  beforeStart() {
+    this.max = this.world.eggs.reduce((acc, egg) => Math.max(egg.value, acc), 0)
+  },
+
+  check() {
+    let remainingEggs = this.world.eggs.filter(egg => !egg.removed)
+    let hasWon = remainingEggs.length === 1 && remainingEggs[0].value === this.max
+
+    let ended = true
+    for (let hero of this.world.heroes.filter(h => !h.dead)) {
+      ended &= hero.getDebugContext().ended
+    }
+    return ended && !hasWon
+  },
+
+  getReason() {
+    return 'loss_reason_all_hero_ended'
+  }
+}
+
 const allMaxEggsInHoleLossCondition = {
   beforeStart() {
     const max = this.world.eggs.reduce((acc, egg) => Math.max(egg.value, acc), 0)
@@ -99,7 +120,7 @@ const level = {
 
   ruleset: {
     win: [winCondition],
-    lose: [allMaxEggsInHoleLossCondition, 'or', 'default_loss']
+    lose: [allMaxEggsInHoleLossCondition, 'or', allHeroEndedLossCondition, 'or', 'too_many_steps', 'or', 'all_hero_dead']
   },
 
   worldGenerator: worldGenerator,
