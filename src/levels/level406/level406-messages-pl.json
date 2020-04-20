@@ -1,5 +1,5 @@
 {
     "name": "Informacja zwrotna",
-    "objective": "Napisz sumę wszystkich %%icon icon-egg$%% jajek na jajku na górze. Po skończeniu, %%icon icon-egg$%% jajko na górze musi być w tym samym miejscu jak na początku.\n\n%%icon mdi mdi mdi-alert-octagon-outline$%% Nie pisz niczego innego niż suma jajek na %%icon icon-egg$%% jajku na górze. Możesz napisać cokolwiek chcesz na innych %%icon icon-egg$%% jajkach.",
-    "loss_reason_wrong_sum_on_egg": "Bohater napisał coś innego niż suma jajek na jajku na górze"
+    "objective": "Napisz sumę wszystkich %%icon icon-egg$%% jajek na jajku na samej górze. Po skończeniu, %%icon icon-egg$%% jajko na samej górze musi być w tym samym miejscu jak na początku.\n\n%%icon mdi mdi mdi-alert-octagon-outline$%% Nie pisz niczego innego niż suma jajek na %%icon icon-egg$%% jajku na samej górze. Możesz napisać cokolwiek chcesz na innych %%icon icon-egg$%% jajkach.",
+    "loss_reason_wrong_sum_on_egg": "Bohater napisał coś innego niż suma jajek na jajku na samej górze"
 }
