@@ -253,7 +253,7 @@ export default {
                 margin: 0 25px 5px;
 
                 i {
-                    vertical-align: middle;
+                    vertical-align: text-top;
                     font-size: 26px;
                     margin-right: 4px;
                 }

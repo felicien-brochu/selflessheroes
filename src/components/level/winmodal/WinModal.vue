@@ -297,7 +297,7 @@ export default {
                 color: transparentize(white, 0.1);
 
                 i {
-                    vertical-align: middle;
+                    vertical-align: text-top;
                     font-size: 26px;
                     margin-right: 4px;
                 }

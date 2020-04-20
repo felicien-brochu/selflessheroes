@@ -115,7 +115,7 @@ const config = {
         }
       },
       {
-        test: /\.(eot|svg|ttf|woff2?)$/,
+        test: /\.(eot|otf|svg|ttf|woff2?)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
