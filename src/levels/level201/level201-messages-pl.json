@@ -2,6 +2,6 @@
     "loss_reason_egg_displaced": "%%icon icon-egg$%% jajka muszą zostać tam gdzie je znalazłeś",
     "loss_reason_wrong_value_on_egg_not_9": "Napisałeś coś innego niż 9 na %%icon icon-egg$%% jajku które jest większe lub równe 5",
     "loss_reason_wrong_value_on_egg_not_0": "Napisałeś coś innego niż 0 na %%icon icon-egg$%% jajku które jest mniejsze niż 5",
-    "objective": "Użyj %%statement action-statement$write%% by pisać na %%icon icon-egg$%% jajkach. Dla każdego %%icon icon-egg$%% jajka, jeśli jest mniejsze niż 5, napisz na nim 0, w przeciwnym razie napisz 9.",
+    "objective": "Użyj %%statement action-statement$napisz%% by pisać na %%icon icon-egg$%% jajkach. Dla każdego %%icon icon-egg$%% jajka, jeśli jest mniejsze niż 5, napisz na nim 0, w przeciwnym razie napisz 9.",
     "name": "Ocenianie"
 }
