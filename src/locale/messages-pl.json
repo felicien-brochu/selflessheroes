@@ -96,7 +96,7 @@
     "level_objective_modal_objective_title": "cel",
     "level_modal_secondary_objectives_difficulty_warning": "cele drugorzędne mogą być bardzo trudne i często niemożliwe jest osiągnięcie obydwu jednym rozwiązaniem",
     "level_modal_length_target_unit": "liń",
-    "level_modal_speed_target_unit": "kroki",
+    "level_modal_speed_target_unit": "kroków",
     "level_help_tab_listen_function_2": "Możesz przeczytać powyższy przykład jako \"Czekaj aż bohater powie tobie \"hej\", wtedy idź w prawo\".",
     "level_help_tab_listen_function_1": "%%statement speach-statement$słuchaj%% informuje bohatera żeby czekał, dopóki usłyszy sprecyzowaną wiadomość.",
     "level_help_tab_tell_function_5": "Możesz przeczytać powyższy przykład jako \"Powiedz \"hej\" do wszystkich\".",
