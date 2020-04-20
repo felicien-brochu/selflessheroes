@@ -1,6 +1,6 @@
 {
     "loss_reason_target_egg_displaced": "Nie możesz dotykać %%icon icon-egg$%% jajek po lewej",
     "loss_reason_wrong_value_on_egg": "Zapisałeś złą liczbę na tym %%icon icon-egg$%% jajku.\nSkopiuj liczby z jajek po lewej.",
-    "objective": "Skopiuj %%icon icon-egg$%% lewe jajka do %%icon icon-egg$%% prawych jajek.\n\n%%icon mdi mdi-information-outline$%% Twoi bohaterzy są teraz zdolni do zapamiętywania informacji. Użyj %%statement assign-statement$set%%, żeby zapamiętać wartość jajka by móc je później zapisać.\n\n%%icon mdi mdi-alert-octagon-outline$%%Uwaga: nie możesz dotykać %%icon icon-egg$%% jajek po lewej. Po skończeniu, wszystkie %%icon icon-egg$%% jajka muszą być na podłodze w tym samym miejscu jak na początku.",
+    "objective": "Skopiuj %%icon icon-egg$%% lewe jajka do %%icon icon-egg$%% prawych jajek.\n\n%%icon mdi mdi-information-outline$%% Twoi bohaterzy są teraz zdolni do zapamiętywania informacji. Użyj %%statement assign-statement$ustaw%%, żeby zapamiętać wartość jajka by móc je później zapisać.\n\n%%icon mdi mdi-alert-octagon-outline$%%Uwaga: nie możesz dotykać %%icon icon-egg$%% jajek po lewej. Po skończeniu, wszystkie %%icon icon-egg$%% jajka muszą być na podłodze w tym samym miejscu jak na początku.",
     "name": "Duplikaty"
 }
