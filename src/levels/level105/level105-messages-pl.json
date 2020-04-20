@@ -1,5 +1,5 @@
 {
     "loss_reason_one_egg_ge_4": "Wrzuciłeś %%icon icon-egg$%% jajko większe lub równe 4\ndo %%icon icon-cauldron$%% kotła",
-    "objective": "Wrzuć wszystkie %%icon icon-egg$%% jajka które są mniejsze niż cztery\ndo %%icon icon-cauldron$%% kotłów",
+    "objective": "Wrzuć wszystkie %%icon icon-egg$%% jajka które są mniejsze niż 4\ndo %%icon icon-cauldron$%% kotłów",
     "name": "Żniwo"
 }
