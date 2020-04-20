@@ -320,7 +320,7 @@ $level-details-color: #3C404A;
         .level-score {
             display: flex;
             justify-content: flex-end;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             line-height: 37px;
             padding-right: 26px + 10px;
             margin-bottom: 16px;
