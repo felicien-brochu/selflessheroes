@@ -1,5 +1,5 @@
 {
-    "name": "###De arriba hacia abajo",
+    "name": "De arriba hacia abajo",
     "objective": "Los %%icon icon-hero$%% héroes tienen que ir en las cruces",
     "loss_reason_moved_of_the_cross": "Una vez que un %%icon icon-hero$%% héroe llega en una cruz, no debe moverse"
 }
