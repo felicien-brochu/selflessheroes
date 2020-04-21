@@ -85,7 +85,7 @@ function createWindow() {
     width: 1024,
     height: 768,
     show: false,
-    fullscreen: !isDev,
+    fullscreen: true,
     webPreferences: {
       nodeIntegrationInWorker: true,
       nodeIntegration: true,
@@ -137,7 +137,9 @@ function createWindow() {
     openLink(url)
   })
 
-  ipcMain.on('request-fullscreen', () => mainWindow.setFullScreen(true))
+  ipcMain.on('request-fullscreen', () => {
+    mainWindow.setFullScreen(true)
+  })
   ipcMain.on('exit-fullscreen', () => {
     mainWindow.setFullScreen(false)
     mainWindow.maximize()

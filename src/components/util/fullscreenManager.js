@@ -1,3 +1,5 @@
+import storage from '../../game/storage/Storage'
+
 function requestFullscreenDom() {
   return document.body.requestFullscreen()
 }
@@ -31,13 +33,49 @@ function isFullscreenEnabledElectron() {
 
 const fullscreenManager = {
 
+  matchPreferences() {
+    let fullscreenEnabled = this.isFullscreenEnabled()
+    if (IS_ELECTRON && fullscreenEnabled === !!storage.preferences.windowedPreferred) {
+      if (fullscreenEnabled) {
+        return this.exitFullscreen()
+      } else {
+        return this.requestFullscreen()
+      }
+    }
+    return Promise.resolve()
+  },
+
   toggleFullscreen() {
     return this.isFullscreenEnabled() ? this.exitFullscreen() : this.requestFullscreen()
   },
 
-  requestFullscreen: IS_ELECTRON ? requestFullscreenElectron : requestFullscreenDom,
-  isFullscreenEnabled: IS_ELECTRON ? isFullscreenEnabledElectron : isFullscreenEnabledDom,
-  exitFullscreen: IS_ELECTRON ? exitFullscreenElectron : exitFullscreenDom,
+  requestFullscreen() {
+    storage.preferences.windowedPreferred = false
+
+    if (IS_ELECTRON) {
+      return requestFullscreenElectron()
+    } else {
+      return requestFullscreenDom()
+    }
+  },
+
+  exitFullscreen() {
+    storage.preferences.windowedPreferred = true
+
+    if (IS_ELECTRON) {
+      return exitFullscreenElectron()
+    } else {
+      return exitFullscreenDom()
+    }
+  },
+
+  isFullscreenEnabled() {
+    if (IS_ELECTRON) {
+      return isFullscreenEnabledElectron()
+    } else {
+      return isFullscreenEnabledDom()
+    }
+  },
 }
 
 export default fullscreenManager

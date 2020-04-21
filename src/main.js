@@ -29,6 +29,9 @@ import TextFitDirective from './components/util/TextFitDirective'
 import BBCodeDirective from './components/util/BBCodeDirective'
 import SVGIdDirective from './components/util/SVGIdDirective'
 import ScreenDimension from './components/util/ScreenDimension'
+import fullscreenManager from './components/util/fullscreenManager'
+
+fullscreenManager.matchPreferences()
 
 Vue.directive('text-fit', TextFitDirective)
 Vue.directive('bbcode', BBCodeDirective)
