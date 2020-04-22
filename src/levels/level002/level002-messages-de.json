@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Aktiviere alle %%icon icon-switch$%% Schalter",
+    "name": "Schritt zum Seite"
+}
