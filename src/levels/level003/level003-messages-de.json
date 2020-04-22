@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Aktiviere alle %%icon icon-switch$%% Schalter.\n\n%%icon mdi mdi-information-outline$%% Siehe die Hilfe dazu %%statement branching-statement$wenn%%, um besser zu verstehen, wie es funktioniert.",
+    "name": "Vorsicht Stufe"
+}
