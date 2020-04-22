@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Zünde alle %%icon icon-bonfire$%% Feuer an\n\n%%icon mdi mdi-alert-octagon-outline$%%Vorsicht: alle Helden müssen überleben",
+    "name": "Enge Kurve"
+}
