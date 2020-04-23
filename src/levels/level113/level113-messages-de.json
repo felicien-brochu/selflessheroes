@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_all_max_eggs_in_hole": "Alle %%icon icon-hero$%% Helden, die das %%icon icon-egg$%% Ei von maximalem Wert hatten, haben sich in das Loch geworfen",
+    "boss_tell": "♫ ♩ …komm zu mir… ♪ ♫\n♪ ♫ …von der Leere, keine Angst haben… ♪ ♩\n♪ ♩ …nur der Auserwählte…♫ ♩\n♫ ♩ …wird von der Dunkelheit auftauchen…♪ ♫",
+    "objective": "Lass alle %%icon icon-hero$%% Helden in das Loch fallen, außer dem Helden mit den hochwertigsten %%icon icon-egg$%% Eiern.\n\n%%icon mdi mdi-information-outline$%% Wenn mehr als ein Held ein %%icon icon-egg$%% Ei mit dem maximalen Wert hat, muss nur einer überleben.",
+    "name": "Pied Piper"
+}
