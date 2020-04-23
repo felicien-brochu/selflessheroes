@@ -1,1 +1,4 @@
-{}
+{
+    "name": "Jeder an seiner Stelle",
+    "objective": "Sortiere die %%icon icon-hero$%% Helden vom kleinsten auf der linken Seite bis zum größten auf der rechten Seite\n\n%%icon mdi mdi-information-outline$%% Helden können die Plätze tauschen, wenn sie gleichzeitig in entgegengesetzte Richtungen gehen"
+}
