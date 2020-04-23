@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_not_maximum_egg_in_cauldron": "Du hast ein %%icon icon-egg$%% Ei, das nicht den maximalen Wert hat, in den %%icon icon-cauldron$%% Kessel gelegt",
+    "objective": "Lege das %%icon icon-egg$%% Ei mit dem maximalen Wert\nin den %%icon icon-cauldron$%% Kessel\n\n%%icon mdi mdi-information-outline$%% Bei Gleichstand wähle eine der beiden",
+    "name": "Menschenkette 2"
+}
