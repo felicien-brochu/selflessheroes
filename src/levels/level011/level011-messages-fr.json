@@ -1,5 +1,5 @@
 {
-  "name": "Courage, fuyons\u00A0!",
-  "objective": "Ces deux ogres en ont après toi. Débarrasses-en-toi avant qu'ils ne te rattrapent.\n\n%%icon mdi mdi-information-outline$%% Utilise les %%icon icon-switch$%% boutons pour activer/désactiver les %%icon icon-spikes$%% piques.",
-  "boss_tell": "Cours ! Cours, petite chose !\nOn verra bien qui sera le plus rapide de nous deux !"
+    "name": "Courage, fuyons !",
+    "objective": "Ces deux ogres en ont après toi. Débarrasse-en-toi avant qu'ils ne te rattrapent.\n\n%%icon mdi mdi-information-outline$%% Utilise les %%icon icon-switch$%% boutons pour activer/désactiver les %%icon icon-spikes$%% piques.",
+    "boss_tell": "Cours ! Cours, petite chose !\nOn verra bien qui sera le plus rapide de nous deux !"
 }
