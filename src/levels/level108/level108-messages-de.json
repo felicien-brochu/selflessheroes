@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Diese %%icon icon-egg$%% Eier waren im ganzen Raum verstreut. Lege sie alle unten im Raum, um aufzuräumen.\n\n%%icon mdi mdi-alert-octagon-outline$%%Vorsicht: die Eier müssen auf ihrer Spalte bleiben und in der gefundenen Reihenfolge",
+    "name": "Ordnung machen"
+}
