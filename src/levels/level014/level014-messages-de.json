@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Aktiviere alle %%icon icon-switch-red$%% Schalter \n\n%%icon mdi mdi-information-outline$%% Sobald du einen roten Schalter aktiviert hast, bleibt es aktiviert. Auch wenn du nicht darauf bleibst.",
+    "name": "Auf den Busch klopfen"
+}
