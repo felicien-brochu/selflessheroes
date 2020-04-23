@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Zünde alle %%icon icon-bonfire$%% Feuer an\n\n%%icon mdi mdi-information-outline$%% Benutze %%statement branching-statement$Sprung%%, um Aktionen zu wiederholen",
+    "name": "Fackelwache"
+}
