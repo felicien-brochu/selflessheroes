@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_multiple_eggs_in_cauldron": "Du hast mehrere Eier in einen Kessel gelegt",
+    "objective": "Diese %%icon icon-egg$%% Eier wurden zufällig im ganzen Raum verstreut. Lege ein Ei in jeden Kessel, um das Abendessen vorzubereiten.",
+    "name": "Zu Tisch!"
+}
