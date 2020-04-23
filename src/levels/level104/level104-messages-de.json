@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_one_egg_ge_4": "Du hast ein Ei %%icon icon-egg$%% mit einem Wert größer oder gleich 4 \nin einen %%icon icon-cauldron$%% Kessel gelegt",
+    "objective": "Lege ein %%icon icon-egg$%% Ei mit einem Wert von weniger als 4\nin jeden %%icon icon-cauldron$%% Kessel \n\n%%icon mdi mdi-information-outline$%% Wenn du den Wert eines %%icon icon-egg$%% Eies testen willst, das auf dem Boden liegt, kannst du eine %%icon icon-direction$%% Richtung benutzen. Deine Helden sind klug genug, um zu verstehen, dass du über das %%icon icon-egg$%% Ei sprichst.",
+    "name": "Ernte"
+}
