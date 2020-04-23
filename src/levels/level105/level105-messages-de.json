@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_one_egg_ge_4": "Du hast ein Ei %%icon icon-egg$%% mit einem Wert größer oder gleich 4 \nin einen %%icon icon-cauldron$%% Kessel gelegt",
+    "objective": "Lege alle %%icon icon-egg$%% Eier mit einem Wert von weniger als 4\nin den %%icon icon-cauldron$%% Kessel",
+    "name": "Sammlung"
+}
