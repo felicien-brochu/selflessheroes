@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_one_egg_not_max": "Du hast ein %%icon icon-egg$%% Ei, das nicht den maximalen Wert hat, in einen %%icon icon-cauldron$%% Kessel gelegt",
+    "objective": "Lege das %%icon icon-egg$%% Ei mit dem Maximalwert von jeder Spalte in den entsprechenden %%icon icon-cauldron$%% Kessel\n\n%%icon mdi mdi-alert-octagon-outline$%%Vorsicht: Lege die anderen %%icon icon-egg$%% Eier nicht in die %%icon icon-cauldron$%% Kessel",
+    "name": "Ernte 2"
+}
