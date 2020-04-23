@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Zünde alle %%icon icon-bonfire$%% Feuer an\n\n%%icon mdi mdi-alert-octagon-outline$%%Vorsicht: alle Helden müssen überleben\n\n\n%%icon mdi mdi-information-outline$%% Um schneller zu sein, kopiere/füge den Code des letzen Levels ein",
+    "name": "Gewundener Weg 2"
+}
