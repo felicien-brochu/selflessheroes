@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Bewege die %%icon icon-egg$%% Eier von so vielen Feldern nach rechts wie ihre Anzahl, um das versteckte Bild zu entdecken.",
+    "name": "Pixel-Art 3"
+}
