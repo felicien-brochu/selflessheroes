@@ -1,1 +1,4 @@
-{}
+{
+    "name": "Starting blocks",
+    "objective": "Aktiviere alle %%icon icon-switch$%% Schalter.\n\n%%icon mdi mdi-information-outline$%% Jetzt sind die Helden fähig, allen Helden auf einmal sprechen %%statement speach-statement$sagen%%."
+}
