@@ -35,7 +35,7 @@
     "build-tests": "cross-env NODE_ENV=development webpack --config ./tests/webpack.config.js --progress",
     "test": "yarn build-tests && node ./tests/test_levels.js",
     "electron:dist": "yarn electron:build && yarn electron:pack",
-    "electron:publish": "env-cmd -f ./publish.env yarn electron:pack --publish onTagOrDraft",
+    "electron:publish": "env-cmd -f ./publish.env yarn electron:pack --publish always",
     "electron:build": "cross-env NODE_ENV=production TARGET_PLATFORM=electron env-cmd -f ./deploy.env webpack --progress",
     "electron:build-dev": "cross-env NODE_ENV=development TARGET_PLATFORM=electron env-cmd -f ./deploy.dev.env webpack --progress",
     "electron:pack": "cross-env ELECTRON_BUILDER_CACHE=./.cache/electron-builder/ electron-builder",
@@ -74,16 +74,16 @@
         "portable",
         "nsis"
       ],
-      "icon": "dist/icons/icon.ico",
-      "publish": [
-        "github"
-      ]
+      "icon": "dist/icons/icon.ico"
     },
     "nsis": {
       "oneClick": false,
       "perMachine": true,
       "allowToChangeInstallationDirectory": true,
-      "installerSidebar": "icons/electron/nsis/installer_sidebar.bmp"
+      "installerSidebar": "icons/electron/nsis/installer_sidebar.bmp",
+      "publish": {
+        "provider": "github"
+      }
     },
     "appx": {
       "applicationId": "selflessheroes",
@@ -97,26 +97,39 @@
     },
     "mac": {
       "target": [
-        "dmg"
+        "dmg",
+        "zip"
       ],
       "icon": "dist/icons/icon.icns",
-      "category": "public.app-category.puzzle-games"
+      "category": "public.app-category.puzzle-games",
+      "publish": {
+        "provider": "github"
+      }
     },
     "linux": {
       "target": [
-        "snap",
-        "deb"
+        "AppImage",
+        "snap"
       ],
       "synopsis": "Selfless Heroes is a puzzle game that will teach you how to program without you noticing",
       "category": "LogicGame;Game",
       "packageCategory": "LogicGame;Game"
+    },
+    "appImage": {
+      "publish": {
+        "provider": "github"
+      }
     },
     "snap": {
       "summary": "Selfless Heroes is a puzzle game that will teach you how to program without you noticing",
       "plugs": [
         "default",
         "audio-playback"
-      ]
+      ],
+      "publish": {
+        "provider": "snapStore",
+        "channels": ["edge"]
+      }
     }
   },
   "devDependencies": {
