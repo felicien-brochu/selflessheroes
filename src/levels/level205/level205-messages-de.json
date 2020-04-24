@@ -1,1 +1,5 @@
-{}
+{
+    "objective": "1 zu allen %%icon icon-egg$%% Eiern addieren.\n\n%%icon mdi mdi-information-outline$%% Deine Helden sind jetzt fähig, Berechnungen zu machen.  Benutze %%statement assign-statement$kalk%%, um zu berechnen.",
+    "loss_reason_wrong_value_on_egg": "Du hast nicht die richtige Nummer geschrieben",
+    "name": "Etwas mehr"
+}
