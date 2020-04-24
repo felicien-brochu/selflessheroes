@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Aktiviere alle %%icon icon-switch$%% schalter.\n\n%%icon mdi mdi-information-outline$%% Jetzt können Helden miteinander sprechen. Siehe die Hilfe zu %%statement speach-statement$sagen%% und %%statement speach-statement$hören%%, um besser zu verstehen, wie es funktioniert.",
+    "name": "Staffellauf"
+}
