@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_wrong_egg_in_cauldron_odd": "Ein Held hat ein gerades %%icon icon-egg$%% Ei in einen Kessel gelegt, während das oberste %%icon icon-cauldron$%% Ei ungerade ist.",
+    "loss_reason_wrong_egg_in_cauldron_even": "Ein Held hat ein ungerades %%icon icon-egg$%% Ei in einen Kessel gelegt, während das oberste %%icon icon-cauldron$%% Ei gerade ist.",
+    "objective": "Lege %%icon icon-egg$%% Eier, die die gleiche Parität wie das oberste Ei haben, in die %%icon icon-cauldron$%% Kessel.\n\nWenn das oberste Ei beispielsweise gerade ist, lege alle geraden Eier in die Kessel.\n\n %%icon mdi mdi-information-outline$%% Wenn %%type-operator$n%% eine gerade Zahl ist, dann %%type-operator$n % 2 = 0%%.",
+    "name": "Ja Chef!"
+}
