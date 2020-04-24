@@ -2,9 +2,13 @@
 
 const log = require('electron-log')
 Object.assign(console, log.functions)
-const autoUpdater = require('electron-updater').autoUpdater
-autoUpdater.logger = log
-autoUpdater.checkForUpdatesAndNotify()
+
+// Auto update for linux and windows
+if (process.platform === 'win32' || process.platform === 'linux') {
+  const autoUpdater = require('electron-updater').autoUpdater
+  autoUpdater.logger = log
+  autoUpdater.checkForUpdatesAndNotify()
+}
 
 // Quit after any uncaught exception
 process.on("uncaughtException", err => {
