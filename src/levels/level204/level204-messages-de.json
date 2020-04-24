@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_numbered_egg_displaced": "Du darfst die oberen %%icon icon-egg$%% Eier nicht anfassen",
+    "loss_reason_wrong_value_on_egg": "Du hast etwas anderes als den Maximalwert der Spalte auf ein %%icon icon-egg$%% Ei geschrieben",
+    "objective": "Schreibe das Maximum jeder Spalte auf die unteren %%icon icon-egg$%% Eier\n\n%%icon mdi mdi-alert-octagon-outline$%%Vorsicht: du darfst die oberen %%icon icon-egg$%% Eier nicht anfassen",
+    "name": "Inspektion"
+}
