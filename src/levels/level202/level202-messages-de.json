@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_target_egg_displaced": "Du darfst die %%icon icon-egg$%% Eier auf der linken Seite nicht anfassen",
+    "loss_reason_wrong_value_on_egg": "Du hast eine falsche Nummer auf dieses %%icon icon-egg$%% Ei geschrieben.\nKopiere die Nummern der linken Eier.",
+    "objective": "Kopiere die linken %%icon icon-egg$%% Eier auf die rechten %%icon icon-egg$%% Eier.\n\n%%icon mdi mdi-information-outline$%% Deine Helden sind jetzt fähig, Sachen zu memorieren. Benutze %%statement assign-statement$set%%, um den Wert eines Eies zu memorieren und es später aufschreiben zu können.\n\n%%icon mdi mdi-alert-octagon-outline$%%Vorsicht: du darfst die linken %%icon icon-egg$%% Eier nicht anfassen. Am Ende müssen alle %%icon icon-egg$%% Eier auf dem Boden liegen und sich an der gleichen Stelle befinden wie am Anfang.",
+    "name": "Duplikat"
+}
