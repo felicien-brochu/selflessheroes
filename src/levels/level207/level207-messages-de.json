@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Bewege die %%icon icon-egg$%% Eier von so vielen Feldern nach rechts wie ihre Anzahl, um das versteckte Bild zu entdecken\n\n%%icon mdi mdi-information-outline$%% Du kannst alles auf %%icon icon-egg$%% Eier %%statement action-statement$schreiben%%, was du willst",
+    "name": "Pixel-Art 2"
+}
