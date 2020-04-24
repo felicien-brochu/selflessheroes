@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_value_on_egg": "Du hast etwas anderes als den Durchschnittswert seiner Spalte auf ein %%icon icon-egg$%% Ei geschrieben",
+    "objective": "Rechne für jede Spalte ihren Durchschnittswert und schreibe ihn auf alle %%icon icon-egg$%% Eier",
+    "name": "Gleichheit für alle"
+}
