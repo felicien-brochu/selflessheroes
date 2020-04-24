@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Lege alle %%icon icon-egg$%% Eier in den %%icon icon-cauldron$%% Kessel.\n\n%%icon mdi mdi-information-outline$%% Es ist immer ein wenig knifflig, sich in einem Labyrinth zurechtzufinden… Glücklicherweise kannst du jetzt %%statement assign-statement$nächster·s·e%% benutzen, um deinen Weg zu finden.",
+    "name": "Labyrinth"
+}
