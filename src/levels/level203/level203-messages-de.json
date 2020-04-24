@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_wrong_value_on_egg": "Du hast eine falsche Nummer auf dieses %%icon icon-egg$%% Ei geschrieben.\nKopiere die Nummern der linken Spalte.",
+    "objective": "Kopiere die linke Spalte auf alle anderen Spalten\n\n%%icon mdi mdi-information-outline$%% Wenn du die Lösung nicht finden kannst, lass du dich von der Level inspirieren %%level-title$\"Einer nach dem anderen\"%%",
+    "name": "Massenproduktion",
+    "loss_reason_target_egg_displaced": "Du darfst die %%icon icon-egg$%% Eier auf der linken Seite nicht anfassen"
+}
