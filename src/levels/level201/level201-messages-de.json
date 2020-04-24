@@ -1,1 +1,7 @@
-{}
+{
+    "name": "Rating",
+    "loss_reason_egg_displaced": "Die %%icon icon-egg$%% Eier müssen bleiben, wo du sie gefunden hast",
+    "loss_reason_wrong_value_on_egg_not_9": "Du hast etwas anderes als 9 auf ein %%icon icon-egg$%% Ei geschrieben, das größer oder gleich 5 war",
+    "loss_reason_wrong_value_on_egg_not_0": "Du hast etwas anderes als 0 auf ein %%icon icon-egg$%% Ei geschrieben, das weniger als 5 war",
+    "objective": "Benutze %%statement action-statement$schreiben%% , um auf Eier zu schreiben. Für jedes %%icon icon-egg$%% Ei , wenn es weniger als 5 ist, schreibe 0 darauf, sonst schreibe 9."
+}
