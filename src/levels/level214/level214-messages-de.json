@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_egg_order": "Du hast ein %%icon icon-egg$%% Ei in der falschen Reihenfolge oder zur gleichen Zeit wie ein anderes in den %%icon icon-cauldron$%% Kessel gelegt. Du musst sie eines nach dem anderen in aufsteigender Reihenfolge in den Kessel legen.",
+    "objective": "Lege die %%icon icon-egg$%% Eier in aufsteigender Reihenfolge in den %%icon icon-cauldron$%% Kessel. Erst Ei 0 dann 1 etc.",
+    "name": "Zeitbombe"
+}
