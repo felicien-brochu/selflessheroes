@@ -85,6 +85,9 @@
         "provider": "github"
       }
     },
+    "portable": {
+      "publish": []
+    },
     "appx": {
       "applicationId": "selflessheroes",
       "displayName": "Selfless Heroes",
@@ -101,7 +104,9 @@
         "zip"
       ],
       "icon": "dist/icons/icon.icns",
-      "category": "public.app-category.puzzle-games",
+      "category": "public.app-category.puzzle-games"
+    },
+    "dmg": {
       "publish": {
         "provider": "github"
       }
