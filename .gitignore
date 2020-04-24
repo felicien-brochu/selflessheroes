@@ -3,6 +3,7 @@ dist/
 electron-dist/
 tests-build/
 deploy.*
+publish.env
 .vscode/
 .cache/
 steam-output/

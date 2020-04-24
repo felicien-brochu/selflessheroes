@@ -31,14 +31,93 @@
     "serve:dev": "cross-env NODE_ENV=development TARGET_PLATFORM=web env-cmd -f ./deploy.dev.env webpack-dev-server --progress --colors --host 0.0.0.0",
     "serve:prod": "cross-env NODE_ENV=production TARGET_PLATFORM=web env-cmd -f ./deploy.env webpack-dev-server --progress --colors --host 0.0.0.0",
     "serve:electron-dev": "cross-env NODE_ENV=development TARGET_PLATFORM=electron env-cmd -f ./deploy.dev.env webpack-dev-server --progress --colors --host 0.0.0.0",
-    "serve:electron-prod": "cross-env NODE_ENV=production TARGET_PLATFORM=electron env-cmd -f ./deploy.env webpack-dev-server --progress --colors --host 0.0.0.0",
+    "serve:electron": "cross-env NODE_ENV=production TARGET_PLATFORM=electron env-cmd -f ./deploy.env webpack-dev-server --progress --colors --host 0.0.0.0",
     "build-tests": "cross-env NODE_ENV=development webpack --config ./tests/webpack.config.js --progress",
     "test": "yarn build-tests && node ./tests/test_levels.js",
-    "build-electron": "cross-env NODE_ENV=production TARGET_PLATFORM=electron env-cmd -f ./deploy.env webpack --progress",
-    "build-electron-dev": "cross-env NODE_ENV=development TARGET_PLATFORM=electron env-cmd -f ./deploy.dev.env webpack --progress",
-    "pack-electron": "node ./scripts/build-electron.js",
-    "electron": "yarn build-electron && yarn pack-electron",
-    "electron-dev": "yarn build-electron-dev && yarn pack-electron --no-target"
+    "electron:dist": "yarn electron:build && yarn electron:pack",
+    "electron:publish": "env-cmd -f ./publish.env yarn electron:pack --publish onTagOrDraft",
+    "electron:build": "cross-env NODE_ENV=production TARGET_PLATFORM=electron env-cmd -f ./deploy.env webpack --progress",
+    "electron:build-dev": "cross-env NODE_ENV=development TARGET_PLATFORM=electron env-cmd -f ./deploy.dev.env webpack --progress",
+    "electron:pack": "cross-env ELECTRON_BUILDER_CACHE=./.cache/electron-builder/ electron-builder",
+    "electron:pack-dir": "yarn electron:pack --dir",
+    "electron": "electron ./src/electron.js"
+  },
+  "build": {
+    "appId": "fr.felicienbrochu.selflessheroes",
+    "productName": "Selfless Heroes",
+    "copyright": "Copyright © 2019 Félicien Brochu",
+    "directories": {
+      "output": "electron-dist",
+      "buildResources": "dist"
+    },
+    "files": [
+      "src/electron.js",
+      "dist/index.html",
+      "dist/app.js",
+      "dist/vendors~app.js",
+      "dist/phaser.js",
+      "dist/vendors~app~phaser.js",
+      "dist/app.css",
+      "dist/assets/**/*",
+      "dist/workers/**/*"
+    ],
+    "fileAssociations": [{
+      "ext": "shsv",
+      "name": "SHSV",
+      "description": "Selfless Heroes saved game",
+      "mimeType": "application/x-shsv",
+      "role": "Viewer"
+    }],
+    "compression": "maximum",
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ],
+      "icon": "dist/icons/icon.ico",
+      "publish": [
+        "github"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerSidebar": "icons/electron/nsis/installer_sidebar.bmp"
+    },
+    "appx": {
+      "applicationId": "selflessheroes",
+      "displayName": "Selfless Heroes",
+      "identityName": "selflessheroes",
+      "languages": [
+        "FR-FR",
+        "EN-US"
+      ],
+      "backgroundColor": "#282C34"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "dist/icons/icon.icns",
+      "category": "public.app-category.puzzle-games"
+    },
+    "linux": {
+      "target": [
+        "snap",
+        "deb"
+      ],
+      "synopsis": "Selfless Heroes is a puzzle game that will teach you how to program without you noticing",
+      "category": "LogicGame;Game",
+      "packageCategory": "LogicGame;Game"
+    },
+    "snap": {
+      "summary": "Selfless Heroes is a puzzle game that will teach you how to program without you noticing",
+      "plugs": [
+        "default",
+        "audio-playback"
+      ]
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
