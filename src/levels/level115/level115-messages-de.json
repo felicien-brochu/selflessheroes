@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_egg_in_hole": "Hast du die %%icon icon-egg$%% Eier in die Löcher geworfen?\nLustige Art, sie zu sortieren…",
+    "objective": "Sortiere die%%icon icon-egg$%% Eier vom kleinsten auf der linken Seite zum größten auf der rechten Seite.\n\n%%icon mdi mdi-information-outline$%% Dieses Mal werden deine %%icon icon-hero$%% Helden kooperieren müssen.",
+    "name": "Sortierung 2"
+}
