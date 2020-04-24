@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Bewege die %%icon icon-egg$%% Eier von so vielen Feldern nach unten wie ihre Anzahl, um das versteckte Bild zu entdecken.\nDann bring die %%icon icon-hero$%% Helden ganz nach unten.\n\n%%icon mdi mdi-information-outline$%% Benutze %%statement assign-statement$kalk%% und %%icon icon-variable$%% %%statement assign-statement$ a%% Variablen, um deine Schritte zu zählen.",
+    "name": "Pixel-Art"
+}
