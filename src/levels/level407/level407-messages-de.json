@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_too_mush_heroes": "Die maximale Anzahl von Helden wurde überschritten.\nMaximale Anzahl von Helden: 31",
+    "loss_reason_wrong_egg_in_cauldron": "Ein Held hat ein %%icon icon-egg$%% Ei, das nicht den maximalen Wert hat, in den Kessel gelegt",
+    "objective": "Lege das %%icon icon-egg$%% Ei mit dem Maximalwert in den %%icon icon-cauldron$%% Kessel \n\n%%icon mdi mdi-alert-octagon-outline$%%Maximale Anzahl von Helden: 31",
+    "name": "Eierbaum"
+}
