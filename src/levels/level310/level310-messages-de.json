@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Kopiere die unteren %%icon icon-egg$%% Eier auf die oberen %%icon icon-egg$%% Eier.",
+    "name": "Telegramm"
+}
