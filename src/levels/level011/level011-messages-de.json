@@ -1,5 +1,5 @@
 {
-    "objective": "Diese zwei Oger verfolgen dich. Du musst sie loswerden, bevor sie dich einholen.\n\n%%icon mdi mdi-information-outline$%% Verwende die %%icon icon-switch$%% Schalter um die %%icon icon-spikes$%% Stacheln zu desaktivieren/aktivieren.",
+    "objective": "Diese zwei Oger verfolgen dich. Du musst sie loswerden, bevor sie dich einholen.\n\n%%icon mdi mdi-information-outline$%% Benutze die %%icon icon-switch$%% Schalter um die %%icon icon-spikes$%% Stacheln zu desaktivieren/aktivieren.",
     "name": "Sei brav, haue ab!",
     "boss_tell": "Lauf! Lauf! Lauf, kleines Ding!\nSehen wir Mal, wer der schnellste ist!"
 }
