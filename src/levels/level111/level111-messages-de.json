@@ -1,6 +1,6 @@
 {
     "loss_reason_wrong_egg_in_cauldron": "Du hast ein %%icon icon-egg$%% Ei in den falschen %%icon icon-cauldron$%% Kessel gelegt.\n\nDie Kessel %%icon icon-cauldron$%% sind von 0 bis 9 durch die vor ihnen liegenden Eier nummeriert. Lege die %%icon icon-egg$%% Eier in die gleichwertigen %%icon icon-cauldron$%% Kessel.",
-    "loss_reason_took_label_egg": "Bewege nicht die %%icon icon-egg$%% Eier, die zur Kennzeichnung der %%icon icon-cauldron$%% Kessel verwendet wurden, sonst weißt du nicht mehr, in welchen Kessel %%icon icon-cauldron$%% du die Eier %%icon icon-egg$%% legen musst.",
+    "loss_reason_took_label_egg": "Bewege nicht die %%icon icon-egg$%% Eier, die zur Kennzeichnung der %%icon icon-cauldron$%% Kessel benutzt wurden, sonst weißt du nicht mehr, in welchen Kessel %%icon icon-cauldron$%% du die Eier %%icon icon-egg$%% legen musst.",
     "objective": "Die Kessel %%icon icon-cauldron$%% sind von 0 bis 9 durch die vor ihnen liegenden Eier nummeriert. Lege die %%icon icon-egg$%% Eier, die vor den Helden liegen, in die entsprechenden %%icon icon-cauldron$%% Kessel.",
     "name": "Gekreuzte Lieferung"
 }
