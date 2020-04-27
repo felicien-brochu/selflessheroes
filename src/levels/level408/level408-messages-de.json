@@ -1,1 +1,6 @@
-{}
+{
+    "boss_tell": "...gnark...gnark...\n...gnark...gnark...gnark...\n...gnark...gnark...",
+    "objective": "Diese kleinen Monster vermehren sich in einem erschreckenden Tempo! Stoppe den Befall, bevor es zu spät ist.\n\n%%icon mdi mdi-alert-octagon-outline$%% Maximale Anzahl von Helden: 10",
+    "name": "Befall",
+    "loss_reason_too_mush_heroes": "Die maximale Anzahl von Helden wurde überschritten\nMaximale Anzahl von Helden: 10"
+}
