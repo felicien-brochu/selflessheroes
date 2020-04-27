@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_took_wrong_egg": "Einer der Helden hat das falsche Ei genommen",
+    "objective": "Die Nummer auf dem %%icon icon-egg$%% Ei über dem %%icon icon-cauldron$%% Kessel gibt an, welches Ei in den Kessel gelegt werden muss.\n\nWenn auf dem Ei z.B. 4 steht, dann musst du das 4. %%icon icon-egg$%% Ei in den %%icon icon-cauldron$%% Kessel legen.\n\n%%icon mdi mdi-information-outline$%% Wenn ein Klon erstellt wird, erbt er die Variablen von seinem Ersteller.\n\n%%icon mdi mdi-alert-octagon-outline$%%Nimm die anderen %%icon icon-egg$%% Eier nicht.",
+    "name": "Lotterie"
+}
