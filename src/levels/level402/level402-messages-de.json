@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_too_mush_heroes": "Die maximale Anzahl von Helden wurde überschritten\nMaximale Anzahl von Helden: 10",
+    "objective": "Aktiviere alle %%icon icon-switch$%% Schalter.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximale Anzahl von Helden: 10",
+    "name": "Nuklearer Knopf"
+}
