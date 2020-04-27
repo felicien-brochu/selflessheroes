@@ -1,6 +1,6 @@
 {
-  "name": "Pied Piper",
-  "objective": "Deje caer todos los %%icon icon-hero$%% héroes en el hueco a parte del héroe que tiene el%%icon icon-egg$%%huevo con el número máximo.\n\n%%icon mdi mdi-information-outline$%% Si varios héroes tienen un %%icon icon-egg$%% huevo con el número máximo, sólo uno tiene que sobrevivir.",
-  "boss_tell": "♫ ♩ ...ven a mí... ♪ ♫\n♪ ♫ ...el hueco, no teman... ♪ ♩\n♪ ♩ ...sólo el elegido... ♫ ♩\n♫ ♩ ...de la oscuridad saldrá... ♪ ♫",
-  "loss_reason_all_max_eggs_in_hole": "Todos los %%icon icon-hero$%% héroes que tenian el%%icon icon-egg$%%huevo con el número máximo se han caído en el hueco"
+    "name": "Pied Piper",
+    "objective": "Deje caer todos los %%icon icon-hero$%% héroes en el hueco a parte del héroe que tiene el%%icon icon-egg$%%huevo con el número máximo.\n\n%%icon mdi mdi-information-outline$%% Si varios héroes tienen un %%icon icon-egg$%% huevo con el número máximo, sólo uno tiene que sobrevivir.",
+    "boss_tell": "♫ ♩ ...ven a mí... ♪ ♫\n♪ ♫ ...el hueco, no teman... ♪ ♩\n♪ ♩ ...sólo el elegido... ♫ ♩\n♫ ♩ ...de la oscuridad saldrá... ♪ ♫",
+    "loss_reason_all_max_eggs_in_hole": "Todos los %%icon icon-hero$%% héroes que tenian el%%icon icon-egg$%%huevo con el número máximo se han caído en el hueco"
 }
