@@ -1,1 +1,5 @@
-{}
+{
+    "name": "Feedback",
+    "loss_reason_wrong_sum_on_egg": "Ein Held hat etwas anderes als die Summe der Eier auf das oberste Ei geschrieben",
+    "objective": "Schreibe die Summe aller %%icon icon-egg$%% Eier auf das oberste Ei. Am Ende muss sich das oberste %%icon icon-egg$%% Ei an der gleichen Stelle befinden wie am Anfang.\n\n%%icon mdi mdi mdi-alert-octagon-outline$%% Schreibe nichts anderes als die Summe der Eier auf das oberste %%icon icon-egg$%% Ei. Auf die anderen Eier kannst du schreiben, was du willst."
+}
