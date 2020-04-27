@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Kopiere die %%icon icon-egg$%% Eier von der 1. Spalte in die 2., die von der 2. in die 3. etc. Schreibe 0 auf alle Eier in der 1. Spalte.\n\n%%icon mdi mdi mdi-information-outline$%% Am Ende müssen die %%icon icon-egg$%% Eier an der gleichen Stelle sein wie am Anfang.",
+    "name": "Gedächtnisverschiebung"
+}
