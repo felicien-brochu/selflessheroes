@@ -1,1 +1,5 @@
-{}
+{
+    "objective": "Bewege den Helden von links bis ganz nach rechts.",
+    "boss_tell": "...es ist offen!\n...ha ha ha ha... es ist geschlossen!\nes ist offen! es ist geschlossen!\n...ha ha ha ha...",
+    "name": "Der verrückte Türhüter"
+}
