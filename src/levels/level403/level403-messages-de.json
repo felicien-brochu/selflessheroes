@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Fülle die Pyramide mit deinen %%icon icon-hero$%% Helden.\n\n%%icon mdi mdi-alert-octagon-outline$%%Vorsicht: wenn in diesem Level eine Klon-Aktion scheitert, wird der Held, der versucht, sich selbst zu klonen, sterben.",
+    "name": "Pyramide"
+}
