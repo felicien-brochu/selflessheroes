@@ -1,1 +1,5 @@
-{}
+{
+    "name": "Space invaders",
+    "loss_reason_wrong_floor_cell": "Einer deiner Helden befindet sich auf einem hellen Feld.",
+    "objective": "Besetze alle dunklen Felder mit deinen %%icon icon-hero$%% Helden.\n\n%%icon mdi mdi-information-outline$%% Jetzt können sich deine Helden selbst %%statement branching-statement$Klon%%. Siehe die Hilfe dazu %%statement branching-statement$Klon%%, um besser zu verstehen, wie es funktioniert."
+}
