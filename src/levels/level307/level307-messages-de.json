@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Bewege den Helden von links bis ganz nach rechts.\n\n%%icon mdi mdi-information-outline$%% Um die %%icon icon-spikes$%% Stacheln zu senken, musst du die rechten %%icon icon-switch$%% Schalter aktivieren.\nDie Kombination steht auf den %%icon icon-egg$%% Eiern geschrieben:\n1 = den Schalter aktivieren\n0 = den Schalter deaktivieren",
+    "name": "Passwort"
+}
