@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_not_same_time": "Helden müssen zwischen den beiden %%icon icon-bonfire$%% Feuern alle %%icon icon-egg$%% Eier gleichzeitig fallen lassen.",
+    "loss_reason_wrong_number": "Es gibt einen Fehler in der Berechnung",
+    "objective": "Multipliziere die von den 6 %%icon icon-egg$%% Eiern gebildete Nummer mit 2 und schreibe das Ergebnis in gleicher Weise auf die Eier (1 Zahl pro Ei). Lass dann alle %%icon icon-egg$%% Eier gleichzeitig zwischen den beiden %%icon icon-bonfire$%% Feuern fallen.",
+    "name": "Multiplikator"
+}
