@@ -1,4 +1,4 @@
 {
-    "objective": "Aktiviere alle %%icon icon-switch$%% Schalter\n\n%%icon mdi mdi-alert-octagon-outline$%% Vorsicht: lass deine %%icon icon-hero$%% Helden nicht ins Loch fallen.",
+    "objective": "Aktiviere alle %%icon icon-switch$%% Schalter\n\n%%icon mdi mdi-alert-octagon-outline$%%Vorsicht: lass deine %%icon icon-hero$%% Helden nicht ins Loch fallen.",
     "name": "Schwindel"
 }
