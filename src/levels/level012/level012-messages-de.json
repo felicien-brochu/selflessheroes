@@ -1,6 +1,6 @@
 {
     "loss_reason_wrong_order": "%%icon icon-hero$%% Helden müssen abwechselnd zu den Kreuzen gehen. Der Held ganz links muss als erster gehen, dann der Held zu seiner Rechten und so weiter, bis der Held ganz rechts geht.",
     "loss_reason_moved_of_the_cross": "Wenn ein %%icon icon-hero$%% Held einmal an einer Kreuzung angekommen ist, darf er sich nicht mehr von dieser bewegen",
-    "objective": "%%icon icon-hero$%% Die Helden müssen einer nach dem anderen zu den Kreuzen gehen. Zuerst der Held auf der linken Seite, dann der Held auf der rechten Seite, etc.",
+    "objective": "Die %%icon icon-hero$%% Helden müssen einer nach dem anderen zu den Kreuzen gehen. Zuerst der Held auf der linken Seite, dann der Held auf der rechten Seite, etc.",
     "name": "Einer nach dem anderen"
 }
