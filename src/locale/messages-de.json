@@ -166,7 +166,7 @@
     "level_help_tab_step_once_function_2": "Man könnte das obige Beispiel so lesen \"Gehe einen Schritt nach rechts\".",
     "level_help_tab_fireball_function_2": "Man könnte das obige Beispiel so lesen \"Wirf einen Feuerball nach rechts\".",
     "level_help_tab_take_function_1": "%%statement action-statement$nehmen%% sagt deinem Helden, ein Item zu nehmen.",
-    "level_help_tab_fireball_function_1": "%%statement action-statement$Feuerball%% wirft einen Feuerball auf ein Feld in der Umgebung des Helden.\nWenn der Feuerball einen anderen Helden trifft, wird er ihn töten.Sie können einen Feuerball zum Anzünden eines %%icon icon-bonfire$%%Feuers benutzen.",
+    "level_help_tab_fireball_function_1": "%%statement action-statement$Feuerball%% wirft einen Feuerball auf ein Feld in der Umgebung des Helden.\nWenn der Feuerball einen anderen Helden trifft, wird er ihn töten.Sie können einen Feuerball zum Anzünden eines %%icon icon-bonfire$%% Feuers benutzen.",
     "level_help_tab_drop_function_1": "%%statement action-statement$hinstellen%% sagt deinem Helden, sein Item hinzustellen.",
     "editor_bar_delete_button": "Löschen",
     "editor_bar_redo_button": "Wiederherstellen",
