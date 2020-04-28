@@ -1,4 +1,4 @@
 {
-    "objective": "Zähle die verschiedenen Typen von %%icon icon-egg$%% Eiern.\n\nSchreibe die Anzahl der Eier %%icon icon-egg$%%, die den Wert 0 haben, auf das linke Ei und die Anzahl der %%icon icon-egg$%% Eier, die den Wert 1 haben, auf das rechte Ei.",
+    "objective": "Zähle die verschiedenen Typen von %%icon icon-egg$%% Eiern.\n\nSchreibe die Anzahl der %%icon icon-egg$%% Eier, die den Wert 0 haben, auf das linke Ei und die Anzahl der %%icon icon-egg$%% Eier, die den Wert 1 haben, auf das rechte Ei.",
     "name": "Inventar"
 }
