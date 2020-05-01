@@ -61,5 +61,16 @@ else
 endif
 drop(s)
 		`,
+  }, {
+    type: ["lossReason"],
+    lossReason: 'loss_reason_wrong_number',
+    frequency: 1,
+    code: `
+step(s)
+take(here)
+$a = calc(myitem * 2)
+write($a)
+drop(s)
+		`,
   }, ]
 }

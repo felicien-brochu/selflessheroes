@@ -11,7 +11,7 @@ function computeNumber(world) {
     .sort((a, b) => b.x - a.x)
     .map(egg => egg.value)
 
-  return startValues.reduce((acc, value, index) => acc + value * (10 ** index), 0)
+  return startValues.reduce((acc, value, index) => acc + (value % 10) * (10 ** index), 0)
 }
 
 const winCondition = {
