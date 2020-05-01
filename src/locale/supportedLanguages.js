@@ -8,4 +8,5 @@ export default [
   // 'ar',
   // 'es',
   // 'it',
+  // 'ru',
 ]
