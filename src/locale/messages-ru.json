@@ -1,4 +1,27 @@
 {
     "graph_node_else": "иначе",
-    "graph_node_if": "если"
+    "graph_node_if": "если",
+    "app_exit_warning_modal": "Вы уверены, что хотите\nпокинуть Selfless Heroes?",
+    "level_list_boss_label": "БОСС",
+    "home_wrong_file_format_error": "Этот файл не является исправным .shsv файлом",
+    "home_drop_career_file": "Загрузить сохранённую игру\n%%mdi mdi-content-save-move$%% .shsv файл",
+    "head_meta_og_description": "Selfless Heroes - это игра, которая незаметно научит вас программировать. Решайте задачи, тем самым помогая героям выйти из подземелий в лучах славы!",
+    "head_meta_description": "Selfless Heroes - это игра, которая незаметно научит вас программировать. Решайте задачи, тем самым помогая героям выйти из подземелий в лучах славы!",
+    "app_warn_local_storage_modal_1": "Онлайн-версия Selfless Heroes сохраняет результаты вашей игры в браузере.\n\nЕсли вы очистите историю или воспользуетесь утилитой очистки, такой как CCleaner, то вы можете удалить результаты вашей игры.",
+    "app_fullscreen_modal_stop_propose": "Больше не показывать это сообщение",
+    "app_fullscreen_modal": "Для полного погружения,\nрекомендуется перейти в полноэкранный режим.",
+    "head_meta_keywords": "игра-головоломка, видеоигра, серьезная игра, программирование, разработка, головоломка, образование, веселье, логика, алгоритм",
+    "title_levellist": "Уровни",
+    "type_anchor": "метка",
+    "type_assign": "присваивание",
+    "type_direction": "направление",
+    "graph_node_function_tell_after_1": " ",
+    "graph_node_function_tell": "сообщить",
+    "graph_node_function_write": "написать",
+    "graph_node_function_drop": "бросить",
+    "graph_node_function_take": "поднять",
+    "graph_node_function_fireball": "огненный шар",
+    "graph_node_function_step": "шагнуть",
+    "graph_node_clone": "клон",
+    "graph_node_jump": "переход"
 }
