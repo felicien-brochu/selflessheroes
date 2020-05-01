@@ -23,6 +23,23 @@ else
 endif
 		`,
   }, {
+    type: ["speed"],
+    code: `
+if w != hero &&
+  e == hero :
+    step(ne)
+endif
+a:
+if n == hero :
+    step(sw)
+else
+    if nw == hero :
+        step(ne)
+    endif
+endif
+jump a
+		`,
+  }, {
     type: ["lossReason"],
     lossReason: 'loss_reason_moved_of_the_cross',
     frequency: 1,

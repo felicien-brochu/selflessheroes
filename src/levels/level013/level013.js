@@ -6,23 +6,13 @@ for (let language of supportedLanguages) {
   messages[language] = require(`./level013-messages-${language}.json`)
 }
 
-const winCondition = {
-  beforeStart() {
-    this.heroes = this.world.heroes.slice().sort((a, b) => a.x - b.x).map(hero => hero.shallowCopy())
-  },
+function isOnCross(world, hero) {
+  return world.symbols.some(s => s.symbol === 'cross' && s.overlaps(hero))
+}
 
+const winCondition = {
   check() {
-    const startY = this.heroes[0].y
-    let dy = 1
-    for (let i = 0; i < this.heroes.length; i++) {
-      let startHero = this.heroes[i]
-      let hero = this.world.findWorldObjectByID(startHero.id)
-      if (hero.x !== startHero.x || hero.y !== startHero.y + dy) {
-        return false
-      }
-      dy = -dy
-    }
-    return true
+    return this.world.heroes.every(h => isOnCross(this.world, h))
   },
 }
 
@@ -35,23 +25,12 @@ const movedOfTheCrossLossCondition = {
   },
 
   step() {
-    let dy = 1
     this.isOnCrossMap = this.newIsOnCrossMap.slice()
-    for (let i = 0; i < this.heroes.length; i++) {
-      let startHero = this.heroes[i]
-      let hero = this.world.findWorldObjectByID(this.heroes[i].id)
-      this.newIsOnCrossMap[i] = hero.x === startHero.x && hero.y === startHero.y + dy
-      dy = -dy
-    }
+    this.newIsOnCrossMap = this.heroes.map(h => isOnCross(this.world, this.world.findWorldObjectByID(h.id)))
   },
 
   check() {
-    for (let i = 0; i < this.isOnCrossMap.length; i++) {
-      if (!this.newIsOnCrossMap[i] && this.isOnCrossMap[i]) {
-        return true
-      }
-    }
-    return false
+    return this.newIsOnCrossMap.some((onCross, i) => !onCross && this.isOnCrossMap[i])
   },
 
   getReason() {
