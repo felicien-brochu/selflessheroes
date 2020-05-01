@@ -19,7 +19,8 @@
     :disabled="!worldStarted"
     :title="$text('run_bar_stop_button')" />
 
-  <speed-range @change="$emit('speed-change', $event)" />
+  <speed-range ref="speedRange"
+    @change="$emit('speed-change', $event)" />
 
 </div>
 </template>

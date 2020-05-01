@@ -28,7 +28,6 @@ export default {
     TouchRange
   },
   data: function() {
-
     return {
       speed: Speeds.default,
       maxSpeed: Speeds.values.length - 1
@@ -49,6 +48,18 @@ export default {
   methods: {
     setSpeed(index) {
       this.$emit('change', Speeds.values[index])
+    },
+    increaseSpeed() {
+      if (this.speed < this.maxSpeed) {
+        this.speed++
+      }
+      this.setSpeed(this.speed)
+    },
+    decreaseSpeed() {
+      if (this.speed > 0) {
+        this.speed--
+      }
+      this.setSpeed(this.speed)
     }
   }
 }

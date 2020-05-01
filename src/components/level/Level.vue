@@ -1,6 +1,6 @@
 <template>
 <div class="level"
-  v-hotkey="keymap">
+  v-hotkey.prevent="keymap">
 
   <modal-layer ref="modalLayer" />
   <tutorial ref="tutorial"
@@ -47,7 +47,8 @@
         </li>
       </ul>
 
-      <run-bar :worldReady="worldReady"
+      <run-bar ref="runBar"
+        :worldReady="worldReady"
         :aiReady="aiReady"
         :worldState="worldState"
         @play-pause="handlePlayPause"
@@ -227,8 +228,22 @@ export default {
         'ctrl+y': this.redo,
         'ctrl+shift+z': this.redo,
         'ctrl+space': this.togglePlayPause,
-        'pause': this.pause,
         'ctrl+enter': this.stepOnce,
+        'pause': this.pause,
+        'ctrl+backspace': this.stop,
+        'home': this.stop,
+        'alt+right': e => {
+          e.preventDefault()
+          this.increaseSpeed()
+        },
+        'alt+left': e => {
+          e.preventDefault()
+          this.decreaseSpeed()
+        },
+        'ctrl+e': e => {
+          e.preventDefault()
+          this.switchEditor()
+        },
         'ctrl+s': function noop(e) {
           e.preventDefault()
         }
@@ -633,6 +648,18 @@ export default {
       if (this.gameScene) {
         this.gameScene.stop()
       }
+    },
+
+    increaseSpeed() {
+      this.$refs.runBar.$refs.speedRange.increaseSpeed()
+    },
+
+    decreaseSpeed() {
+      this.$refs.runBar.$refs.speedRange.decreaseSpeed()
+    },
+
+    switchEditor() {
+      this.handleEditorTypeChange(this.editorType === 'graph' ? 'code' : 'graph')
     },
 
     compileCode() {
