@@ -12,13 +12,13 @@ const winCondition = {
       .filter(egg => egg.y === 6)
       .sort((a, b) => a.x - b.x)
       .map(egg => egg.shallowCopy())
+    this.eggsToWrite = this.world.eggs
+      .filter(egg => egg.y < 4)
+      .sort((a, b) => a.x - b.x)
   },
 
   check() {
-    return this.world.eggs
-      .filter(egg => egg.y < 4)
-      .sort((a, b) => a.x - b.x)
-      .every((egg, index) => this.targetValues[index].value === egg.value)
+    return this.eggsToWrite.every((egg, index) => this.targetValues[index].value === egg.value)
   },
 }
 

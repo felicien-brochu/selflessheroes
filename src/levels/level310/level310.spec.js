@@ -33,5 +33,13 @@ endif
 step(e)
 jump c
 		`,
+  }, {
+    type: ["lossReason"],
+    lossReason: 'loss_reason_all_hero_ended',
+    frequency: 1,
+    code: `
+step(s)
+step(s)
+		`,
   }, ]
 }
