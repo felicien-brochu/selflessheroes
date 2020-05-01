@@ -1,6 +1,6 @@
 {
-  "name": "Livreur solitaire",
-  "objective": "Les %%icon icon-cauldron$%% chaudrons sont numérotés de 0 à 6 par les œufs devant eux. Mets les %%icon icon-egg$%% œufs du haut dans les %%icon icon-cauldron$%% chaudrons correspondants.",
-  "loss_reason_took_label_egg": "Ne déplace pas les %%icon icon-egg$%% œufs qui servent à numéroter les %%icon icon-cauldron$%% chaudrons, sinon tu ne sauras plus dans quel %%icon icon-cauldron$%% chaudron il faut mettre les %%icon icon-egg$%% œufs.",
-  "loss_reason_wrong_egg_in_cauldron": "Tu as mis un %%icon icon-egg$%% œuf dans le mauvais %%icon icon-cauldron$%% chaudron.\n\nLes %%icon icon-cauldron$%% chaudrons sont numérotés de 0 à 6 par les œufs devant eux. Mets les %%icon icon-egg$%% œufs du haut dans les %%icon icon-cauldron$%% chaudrons qui sont de la même valeur."
+    "name": "Livreur solitaire",
+    "objective": "Les %%icon icon-cauldron$%% chaudrons sont numérotés de 0 à 6 par les œufs devant eux. Mets tous les autres %%icon icon-egg$%% œufs dans les %%icon icon-cauldron$%% chaudrons correspondants.",
+    "loss_reason_took_label_egg": "Ne déplace pas les %%icon icon-egg$%% œufs qui servent à numéroter les %%icon icon-cauldron$%% chaudrons, sinon tu ne sauras plus dans quel %%icon icon-cauldron$%% chaudron il faut mettre les %%icon icon-egg$%% œufs.",
+    "loss_reason_wrong_egg_in_cauldron": "Tu as mis un %%icon icon-egg$%% œuf dans le mauvais %%icon icon-cauldron$%% chaudron.\n\nLes %%icon icon-cauldron$%% chaudrons sont numérotés de 0 à 6 par les œufs devant eux. Mets les %%icon icon-egg$%% œufs du haut dans les %%icon icon-cauldron$%% chaudrons qui sont de la même valeur."
 }
