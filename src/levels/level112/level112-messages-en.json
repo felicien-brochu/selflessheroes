@@ -1,6 +1,6 @@
 {
-  "name": "Lonely delivery boy",
-  "objective": "The %%icon icon-cauldron$%% cauldrons are labelled from 0 to 6 by the eggs in front of them. Put the top %%icon icon-egg$%% eggs into the corresponding %%icon icon-cauldron$%% cauldrons.",
-  "loss_reason_took_label_egg": "Don't move the %%icon icon-egg$%% eggs used to label the %%icon icon-cauldron$%% cauldrons, otherwise you will not know into which %%icon icon-cauldron$%% cauldron to put the %%icon icon-egg$%% eggs.",
-  "loss_reason_wrong_egg_in_cauldron": "You put an %%icon icon-egg$%% egg in the wrong %%icon icon-cauldron$%% cauldron.\n\nThe %%icon icon-cauldron$%% cauldrons are labelled from 0 to 6 by the eggs in front of them. Put the top %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons of same value."
+    "name": "Lonely delivery boy",
+    "objective": "The %%icon icon-cauldron$%% cauldrons are labelled from 0 to 6 by the eggs in front of them. Put all the other %%icon icon-egg$%% eggs into the corresponding %%icon icon-cauldron$%% cauldrons.",
+    "loss_reason_took_label_egg": "Don't move the %%icon icon-egg$%% eggs used to label the %%icon icon-cauldron$%% cauldrons, otherwise you will not know into which %%icon icon-cauldron$%% cauldron to put the %%icon icon-egg$%% eggs.",
+    "loss_reason_wrong_egg_in_cauldron": "You put an %%icon icon-egg$%% egg in the wrong %%icon icon-cauldron$%% cauldron.\n\nThe %%icon icon-cauldron$%% cauldrons are labelled from 0 to 6 by the eggs in front of them. Put the top %%icon icon-egg$%% eggs into the %%icon icon-cauldron$%% cauldrons of same value."
 }
