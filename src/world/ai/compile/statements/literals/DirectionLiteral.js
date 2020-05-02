@@ -60,7 +60,21 @@ export default class DirectionLiteral extends Expression {
 
     let worldObjects = context.world.getWorldObjectsAt(x, y)
       .map(obj => ExpressionValue.object(obj.shallowCopy()))
-      .sort((a, b) => a.value.type === ObjectType.hero ? 1 : 0)
+      .sort((a, b) => {
+        if (a.value.type === ObjectType.hero) {
+          if (b.value.type === ObjectType.hero) {
+            return 0
+          } else {
+            return -1
+          }
+        } else {
+          if (b.value.type === ObjectType.hero) {
+            return 1
+          } else {
+            return 0
+          }
+        }
+      })
 
     // Remove hero self from results (they are selfless after all!)
     if (direction.equals(Direction.here)) {
