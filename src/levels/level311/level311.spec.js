@@ -64,7 +64,7 @@ drop(s)
   }, {
     type: ["lossReason"],
     lossReason: 'loss_reason_wrong_number',
-    frequency: 1,
+    frequency: 0.9,
     code: `
 step(s)
 take(here)
