@@ -2,5 +2,5 @@
     "name": "Samotny dostawca",
     "loss_reason_took_label_egg": "Nie ruszaj %%icon icon-egg$%% jajek które numerują %%icon icon-cauldron$%% kotły, w przeciwnym razie nie będziesz wiedział do którego %%icon icon-cauldron$%% z nich wrzucić %%icon icon-egg$%% jajka.",
     "loss_reason_wrong_egg_in_cauldron": "Wrzuciłeś %%icon icon-egg$%% jajko do złego %%icon icon-cauldron$%% kotła.\n\n%%icon icon-cauldron$%% kotły są ponumerowane od 0 do 6 przez jajka leżące przed nimi. Wrzuć %%icon icon-egg$%% jajka z góry do %%icon icon-cauldron$%% kotłów z tą samą liczbą.",
-    "objective": "%%icon icon-cauldron$%% Kotły są ponumerowane od 0 do 6 przez jajka leżące przed nimi. Wrzuć %%icon icon-egg$%% jajka z góry do korespondujących do nich %%icon icon-cauldron$%% kotłów."
+    "objective": "%%icon icon-cauldron$%% Kotły są ponumerowane od 0 do 6 przez jajka leżące przed nimi. Wrzuć wszystkie inne %%icon icon-egg$%% jajka do korespondujących do nich %%icon icon-cauldron$%% kotłów."
 }
