@@ -1,3 +1,7 @@
 {
-    "name": "Notación"
+    "name": "Notación",
+    "loss_reason_egg_displaced": "Los %%icon icon-egg$%% huevos deben permanecer donde los encontraste",
+    "loss_reason_wrong_value_on_egg_not_9": "Escribiste algo diferente de 9 sobre un %%icon icon-egg$%% huevo igual o mayor de 5",
+    "loss_reason_wrong_value_on_egg_not_0": "Escribiste algo diferente de 0 sobre un %%icon icon-egg$%% huevo menor de 5",
+    "objective": "Utiliza %%statement action-statement$escribir%% para escribir en los %%icon icon-egg$%% huevos. Para cada %%icon icon-egg$%% huevo, siendo menor de 5, escribe 0 sobre el, de lo contrario escribe 9."
 }
