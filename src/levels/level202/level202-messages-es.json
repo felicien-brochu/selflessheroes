@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_target_egg_displaced": "No debes tocar los %%icon icon-egg$%% huevos de izquierda",
+    "loss_reason_wrong_value_on_egg": "Te equivocaste de número en este %%icon icon-egg$%% huevo.\nCopia los números de los huevos de izquierda.",
+    "objective": "Copia los %%icon icon-egg$%% huevos de izquierda sobre los œufs %%icon icon-egg$%% huevos de derecha.\n\n%%icon mdi mdi-information-outline$%% Ya los héroes son capables de memorizar coosas. Utiliza %%statement assign-statement$init%% para memorisar el valor de un huevo y así sera posible escribirlo luego.\n\n%%icon mdi mdi-alert-octagon-outline$%%Atención: no debes tocar los %%icon icon-egg$%% huevos que estan en la izquierda. Al final, todos los %%icon icon-egg$%% huevos deben estar en el suelo y en el mismo lugar que al principio.",
+    "name": "Duplicados"
+}
