@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_value_on_egg": "No escribiste el número correcto",
+    "objective": "Suma 1 a todos los %%icon icon-egg$%% huevos.\n\n%%icon mdi mdi-information-outline$%% Tus héroes son ahora capaces de hacer cálculos. Utiliza %%statement assign-statement$calc%% para calcular.",
+    "name": "Algo más"
+}
