@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Activa todos los %%icon icon-switch$%% botones.\n\n%%icon mdi mdi-information-outline$%% Ahora los heroes pueden hablar con todos los héroes a la vez con %%statement speach-statement$tell%%.",
+    "name": "Líneas de salida"
+}
