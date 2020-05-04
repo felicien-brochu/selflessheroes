@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_not_same_time": "Los héroes deben soltar todos los %%icon icon-egg$%% huevos al mismo tiempo entre los dos %%icon icon-bonfire$%% fuegos.",
+    "loss_reason_wrong_number": "Hay un error en el cálculo",
+    "objective": "Multiplica por 2 el número de 6 dígitos que forman los %%icon icon-egg$%% huevos y escribe el resultado en los %%icon icon-egg$%% huevos de la misma manera (1 dígito por huevo). Luego, suelta todos los %%icon icon-egg$%% huevos al mismo tiempo entre los dos %%icon icon-bonfire$%% fuegos.",
+    "name": "Multiplicadores"
+}
