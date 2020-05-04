@@ -1,1 +1,5 @@
-{}
+{
+    "name": "El portero loco",
+    "boss_tell": "...¡está abierto!\n...ja ja ja ja... ¡está cerrado!\n¡está abierto! ¡está cerrado!\n...ja ja ja ja...",
+    "objective": "Mueve los héroes de la izquierda al borde de la derecha."
+}
