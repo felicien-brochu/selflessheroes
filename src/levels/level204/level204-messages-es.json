@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_numbered_egg_displaced": "No debes tocar los %%icon icon-egg$%% huevos de arriba",
+    "loss_reason_wrong_value_on_egg": "Escribiste algo diferente al valor máximo de la columna en un %%icon icon-egg$%% huevo",
+    "objective": "Escribe el máximo de cada columna sobre los %%icon icon-egg$%% huevos de abajo\n\n%%icon mdi mdi-alert-octagon-outline$%%Atención: no debes tocar los %%icon icon-egg$%% huevos de arriba",
+    "name": "Inspección"
+}
