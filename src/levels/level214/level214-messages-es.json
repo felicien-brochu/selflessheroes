@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_egg_order": "Pusiste un %%icon icon-egg$%% huevo en el %%icon icon-cauldron$%% caldero en el orden equivocado o al mismo tiempo que otro. Tienes que ponerlos en el caldero uno por uno en el orden ascendente.",
+    "objective": "Pon todos los %%icon icon-egg$%% huevos en el %%icon icon-cauldron$%% caldero en orden ascendente. Primero el huevo 0, después el 1, etc.",
+    "name": "Bomba de tiempo"
+}
