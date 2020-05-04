@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Mueve el héroe de la izquierda al borde de la derecha.\n\n%%icon mdi mdi-information-outline$%% Para bajar las %%icon icon-spikes$%% picas, tienes que activar los %%icon icon-switch$%% botones correctos.\nLa combinación esta escrita en los %%icon icon-egg$%% huevos:\n1 = activar el botón\n0 = desactivar el botón",
+    "name": "Cryptex"
+}
