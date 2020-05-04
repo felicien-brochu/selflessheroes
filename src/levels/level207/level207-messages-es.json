@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Mueve los %%icon icon-egg$%% huevos a la derecha de tantos cuadrados como su número para descubrir la imagen escondida.\n\n%%icon mdi mdi-information-outline$%% Puedes %%statement action-statement$escribir%% lo que quieras en los %%icon icon-egg$%% huevos",
+    "name": "Arte de píxel 2"
+}
