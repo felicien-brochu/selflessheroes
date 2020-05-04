@@ -1,6 +1,6 @@
 {
-  "name": "Uno a la vez",
-  "objective": "Los %%icon icon-hero$%% héroes tienen que ir en las cruces cada uno a su vez. Primero el héroe de la izquierda, luego el de la derecha, y así sucesivamente.",
-  "loss_reason_moved_of_the_cross": "Una vez que un %%icon icon-hero$%% héroe llega en una cruz, no debe moverse",
-  "loss_reason_wrong_order": "Los %%icon icon-hero$%% héroes tienen que ir en las cruces cada uno a su vez. Primero el héroe de la izquierda, luego el de la derecha, y así sucesivamente."
+    "name": "Uno a la vez",
+    "objective": "Los %%icon icon-hero$%% Héroes deben ir en las cruces de uno en uno . Primero en héroe de la izquierda, luego el héroe a su derecha, etc.",
+    "loss_reason_moved_of_the_cross": "Una vez que un %%icon icon-hero$%% héroe llega en una cruz, no puede salir de encima de ella",
+    "loss_reason_wrong_order": "Los %%icon icon-hero$%% héroes deben ir a las cruces de uno en uno. El héroe del extremo izquierdo debe ser el primero en irse, luego el héroe de su derecha, y así sucesivamente hasta el héroe del extremo derecho."
 }
