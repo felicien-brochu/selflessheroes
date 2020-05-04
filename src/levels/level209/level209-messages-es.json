@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_value_on_egg": "Escribiste algo diferente del valor medio de su columna en un %%icon icon-egg$%% huevo",
+    "objective": "Para cada columna, calcula su valor medio y escribelo en todos sus %%icon icon-egg$%% huevos",
+    "name": "Igualdad para todos"
+}
