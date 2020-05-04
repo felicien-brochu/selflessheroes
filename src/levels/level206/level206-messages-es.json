@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Mueve los %%icon icon-egg$%% huevos hacia arriba de tantos cuadrados como su número para descrubrir la imagen escondida.\nLuego lleva los %%icon icon-hero$%% héroes hacia abajo.\n\n%%icon mdi mdi-information-outline$%% Utiliza %%statement assign-statement$calc%% y la variable %%icon icon-variable$%% %%statement assign-statement$ a%% para calcular tus pasos.",
+    "name": "Arte del píxel"
+}
