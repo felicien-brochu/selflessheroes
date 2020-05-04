@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Cuenta los diferentes tipos de %%icon icon-egg$%% huevos.\n\nEscribe el número de %%icon icon-egg$%% huevos que tienen el valor 0 en el huevo izquierdo y el número de %%icon icon-egg$%% huevos que tienen el valor 1 en el huevo derecho.",
+    "name": "Inventario"
+}
