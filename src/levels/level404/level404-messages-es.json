@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_took_wrong_egg": "Uno de los héroes se equivoco de huevo",
+    "objective": "El número del %%icon icon-egg$%% huevo sobre el %%icon icon-cauldron$%% caldero indica qué huevo poner en el caldero.\n\nPor ejemplo, si el huevo indica 4, entonces deberias soltar el 4° %%icon icon-egg$%% huevo en el %%icon icon-cauldron$%% caldero.\n\n%%icon mdi mdi-information-outline$%% Cuando se crea un clon, hereda las variables de su creador.\n\n%%icon mdi mdi-alert-octagon-outline$%% No tomes los otros %%icon icon-egg$%% huevos.",
+    "name": "Lotería"
+}
