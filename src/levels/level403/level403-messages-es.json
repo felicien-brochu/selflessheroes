@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Llena la pirámide con tus %%icon icon-hero$%% héroes.\n\n%%icon mdi mdi-alert-octagon-outline$%%Atención: en este nivel, si una acción de clonación fracasa, el héroe que intenta clonarse morirá.",
+    "name": "Pirámide"
+}
