@@ -62,5 +62,7 @@
     "app_exit_warning_modal": "Seguro quieres \nquitar Selfless Heroes ?",
     "head_meta_keywords": "juegos puzzle, video juegos, juegos serios, programming, puzzle, educacion, fun, logica, algorithmo",
     "head_meta_og_description": "Selfless Heroes es un juego que te enseña como programar sin que te des cuenta. Resolve los puzzles y ayuda tu heroe a salir victorioso del calabozo!",
-    "title_levellist": "Liveles"
+    "title_levellist": "Liveles",
+    "app_fullscreen_modal_stop_propose": "No volver a mostrar este mensaje",
+    "head_meta_description": "¡Selfless Heroes es un juego que te enseñará a programar sin que te des cuenta. Resuelve puzles y ayuda a tus héroes a salir victoriosos del torreón!"
 }
