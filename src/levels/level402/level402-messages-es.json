@@ -1,3 +1,5 @@
 {
-    "loss_reason_too_mush_heroes": "Se ha excedido el número máximo de héroes.\nNúmero máximo de héroes: 10"
+    "loss_reason_too_mush_heroes": "Se ha excedido el número máximo de héroes.\nNúmero máximo de héroes: 10",
+    "objective": "Activa todos los %%icon icon-switch$%% botones.\n\n%%icon mdi mdi-alert-octagon-outline$%%Número máximo de héroes: 10",
+    "name": "Botón nuclear"
 }
