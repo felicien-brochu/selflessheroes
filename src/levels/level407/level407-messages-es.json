@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_too_mush_heroes": "Se ha superado el número máximo de héroes.\nNúmero máximo de héroes: 31",
+    "loss_reason_wrong_egg_in_cauldron": "Un heroe puso un %%icon icon-egg$%% huevo que no tiene el valor máximo en el caldero",
+    "objective": "Pon el %%icon icon-egg$%% huevo del valor máximo en el %%icon icon-cauldron$%% caldero.\n\n%%icon mdi mdi-alert-octagon-outline$%%Número máximo de héroes: 31",
+    "name": "Árbol de huevos"
+}
