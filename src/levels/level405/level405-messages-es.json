@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_too_mush_heroes": "Se a superado el número máximo de héroes.\nNúmero máximo de héroes: 50",
+    "objective": "El número del %%icon icon-egg$%% huevo a la derecha del %%icon icon-cauldron$%% caldero indica el número de la columna del huevo a poner en el %%icon icon-cauldron$%% caldero.\nEl número del %%icon icon-egg$%% huevo abajo del %%icon icon-cauldron$%% caldereo indica el número de la línea.\n\n%%icon mdi mdi-alert-octagon-outline$%%No tomes los otros %%icon icon-egg$%% huevos.\n\n%%icon mdi mdi-alert-octagon-outline$%%Número máximo de héroes: 50",
+    "name": "Lotería 2",
+    "loss_reason_took_wrong_egg": "Uno de los héroes se equivoco de huevo"
+}
