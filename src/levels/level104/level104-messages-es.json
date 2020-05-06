@@ -1,5 +1,5 @@
 {
-  "name": "Cosecha",
-  "objective": "Pon un %%icon icon-egg$%% huevo menor de 4\nen cada %%icon icon-cauldron$%% caldero",
-  "loss_reason_one_egg_ge_4": "Pusiste un %%icon icon-egg$%% huevo igual o mayor a 4\nen un %%icon icon-cauldron$%% caldero"
+    "name": "Cosecha",
+    "objective": "Pon un %%icon icon-egg$%% huevo menor de 4\nen cada %%icon icon-cauldron$%% caldero\n\n%%icon mdi mdi-information-outline$%% Si quieres probar el valor de un %%icon icon-egg$%% huevo que está en el suelo, puedes usar una %%icon icon-direction$%% dirección. Tus héroes son lo suficientemente inteligentes para entender que te refieres al %%icon icon-egg$%% huevo.",
+    "loss_reason_one_egg_ge_4": "Pusiste un %%icon icon-egg$%% huevo igual o mayor a 4\nen un %%icon icon-cauldron$%% caldero"
 }
