@@ -1,4 +1,4 @@
-var action = tiled.registerAction("SelflessHeroesExporter", function(action) {
+var actionExport = tiled.registerAction("SelflessHeroesExporter", function(action) {
   try {
     exportLevel()
   } catch (e) {
@@ -7,13 +7,21 @@ var action = tiled.registerAction("SelflessHeroesExporter", function(action) {
   }
 })
 
-action.text = "Export Selfless Heroes level"
-action.icon = "selflessheroes-exporter.svg"
-action.shortcut = "Ctrl+K"
+actionExport.text = "Export Selfless Heroes level"
+actionExport.icon = "selflessheroes.svg"
+actionExport.shortcut = "Ctrl+K"
+
+var actionOpenAuto = tiled.registerAction("SelflessHeroesOpenAuto", function(action) {})
+
+actionOpenAuto.text = "Open level automatically on export"
+actionOpenAuto.checkable = true
+actionOpenAuto.checked = true
 
 tiled.extendMenu("Edit", [{
     action: "SelflessHeroesExporter",
     before: "SelectAll"
+  }, {
+    action: "SelflessHeroesOpenAuto"
   },
   {
     separator: true
@@ -21,10 +29,9 @@ tiled.extendMenu("Edit", [{
 ]);
 
 function exportLevel() {
-  tiled.trigger("Export");
   const fileName = tiled.activeAsset.fileName
-  const fileNameNoExt = fileName.substring(0, fileName.length - 4);
-  const workingDir = fileName.replace(/[\/\\][^\/\\]+\.tmx$/, '')
+  const fileNameNoExt = fileName.substring(0, fileName.length - 5);
+  const workingDir = fileName.replace(/[\/\\][^\/\\]+\.json$/, '')
 
   let mapConfig = compressMap(fileNameNoExt + ".json");
   let levelCode = importLevelCode(workingDir, mapConfig)
@@ -37,6 +44,14 @@ function exportLevel() {
   }
 
   saveLevelFile(workingDir, level)
+
+  if (actionOpenAuto.checked) {
+    try {
+      tiled.executeCommand("shlevel", true)
+    } catch (e) {
+      throw new Error("In order to open the level automatically, you must define \"shlevel\" command.")
+    }
+  }
 }
 
 function saveLevelFile(workingDir, level) {
@@ -74,6 +89,27 @@ function compressMap(mapFile) {
 
   let map = JSON.parse(mapData)
   let nospaceSize = JSON.stringify(map).length
+
+  for (let property in map) {
+    if (map.hasOwnProperty(property)) {
+      if (
+        property !== 'height' &&
+        property !== 'width' &&
+        property !== 'infinite' &&
+        property !== 'layers' &&
+        property !== 'orientation' &&
+        property !== 'renderorder' &&
+        property !== 'tiledversion' &&
+        property !== 'tileheight' &&
+        property !== 'tilewidth' &&
+        property !== 'tilesets' &&
+        property !== 'type' &&
+        property !== 'version'
+      ) {
+        delete map[property]
+      }
+    }
+  }
 
   for (let i = 0; i < map.layers.length; i++) {
     let layer = map.layers[i]
