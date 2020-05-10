@@ -8,3 +8,4 @@ publish.env
 .cache/
 steam-output/
 *.log
+*.shlv

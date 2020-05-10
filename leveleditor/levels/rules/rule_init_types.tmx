@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="5" height="1" tilewidth="32" tileheight="32" infinite="0" nextlayerid="49" nextobjectid="1">
+ <tileset firstgid="1" source="../tileset.tsx"/>
+ <layer id="45" name="regions" width="5" height="1">
+  <data encoding="csv">
+79,0,80,0,78
+</data>
+ </layer>
+ <layer id="46" name="input_path" width="5" height="1">
+  <properties>
+   <property name="StrictEmpty" type="bool" value="true"/>
+  </properties>
+  <data encoding="csv">
+0,0,80,0,78
+</data>
+ </layer>
+ <layer id="47" name="input_path" width="5" height="1">
+  <properties>
+   <property name="StrictEmpty" type="bool" value="true"/>
+  </properties>
+  <data encoding="csv">
+79,0,80,0,78
+</data>
+ </layer>
+ <layer id="48" name="output_types" width="5" height="1">
+  <data encoding="csv">
+79,0,80,0,80
+</data>
+ </layer>
+</map>

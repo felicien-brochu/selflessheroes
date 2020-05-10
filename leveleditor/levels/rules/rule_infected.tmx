@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.03.13" orientation="orthogonal" renderorder="right-down" width="3" height="1" tilewidth="32" tileheight="32" infinite="0" nextlayerid="75" nextobjectid="1">
+ <tileset firstgid="1" source="../tileset.tsx"/>
+ <layer id="54" name="regions" width="3" height="1">
+  <data encoding="csv">
+71,0,72
+</data>
+ </layer>
+ <layer id="55" name="input_path" width="3" height="1" visible="0">
+  <data encoding="csv">
+78,0,78
+</data>
+ </layer>
+ <layer id="72" name="input_checkers" width="3" height="1" visible="0">
+  <data encoding="csv">
+0,0,69
+</data>
+ </layer>
+ <layer id="73" name="inputnot_checkers" width="3" height="1" visible="0">
+  <data encoding="csv">
+69,0,0
+</data>
+ </layer>
+ <layer id="56" name="output_ground" width="3" height="1" visible="0">
+  <data encoding="csv">
+71,0,72
+</data>
+ </layer>
+ <layer id="74" name="output_types" width="3" height="1" visible="0">
+  <data encoding="csv">
+78,0,78
+</data>
+ </layer>
+</map>
