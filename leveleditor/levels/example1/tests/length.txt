@@ -1,0 +1,12 @@
+a:
+if ne != bonfire :
+	if se == floor :
+		step(se)
+	endif
+	if ne == floor :
+		step(ne)
+	endif
+	step(e)
+	jump a
+endif
+fireball(ne)

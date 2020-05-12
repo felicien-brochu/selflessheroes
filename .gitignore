@@ -2,6 +2,7 @@ node_modules/
 dist/
 electron-dist/
 tests-build/
+leveleditor-dist/
 deploy.*
 publish.env
 .vscode/

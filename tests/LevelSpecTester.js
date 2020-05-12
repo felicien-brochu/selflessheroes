@@ -14,6 +14,7 @@ export default class LevelSpecTester {
       speedConfidence: 0.999,
       speedTestLostTolerance: 0.002,
       lengthTestLostTolerance: 0.002,
+      showStats: false,
     }, config)
 
     this.level = new Level(0, this.spec.level)
@@ -113,6 +114,10 @@ export default class LevelSpecTester {
       this.fail(label, `lost ratio too big: ${lostRatio} > ${this.config.speedTestLostTolerance}`)
     } else {
       this.pass(label)
+    }
+
+    if (this.config.showStats) {
+      tester.printStats()
     }
   }
 

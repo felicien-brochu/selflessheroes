@@ -1,0 +1,7 @@
+[{
+  "type": ["length"],
+  "code": "tests/length.txt"
+}, {
+  "type": ["speed"],
+  "code": "tests/speed.txt"
+}]

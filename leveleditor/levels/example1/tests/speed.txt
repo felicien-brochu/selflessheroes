@@ -1,0 +1,13 @@
+a:
+step(e)
+if ne != bonfire :
+	if e == hole :
+		if ne == floor :
+			step(ne)
+		else
+			step(se)
+		endif
+	endif
+	jump a
+endif
+fireball(ne)

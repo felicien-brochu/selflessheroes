@@ -1,0 +1,6 @@
+c:
+b:
+a:
+clone n a
+clone w b
+clone e c

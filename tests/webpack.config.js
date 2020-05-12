@@ -4,7 +4,7 @@ const glob = require('glob')
 
 const PreloadWebpackPlugin = require('preload-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const nodeExternals = require('webpack-node-externals');
+// const nodeExternals = require('webpack-node-externals')
 
 const env = process.env.NODE_ENV
 
@@ -15,7 +15,8 @@ let specsEntries = glob.sync(path.resolve(__dirname, '../src/levels') + '/level*
 
 let entries = Object.assign(specsEntries, {
   'LevelSpecTester.js': path.resolve(__dirname, '../tests/LevelSpecTester.js'),
-  'CareerGenerator.js': path.resolve(__dirname, '../tests/CareerGenerator.js')
+  'CareerGenerator.js': path.resolve(__dirname, '../tests/CareerGenerator.js'),
+  'vm2.js': path.resolve(__dirname, '../tests/vm2/main.js')
 })
 
 const config = {
@@ -27,13 +28,18 @@ const config = {
     filename: '[name]',
     libraryTarget: "commonjs2",
   },
-  externals: [nodeExternals()],
+  // externals: [nodeExternals()],
   module: {
     rules: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      include: [path.join(__dirname, 'src')],
-    }, ],
+        test: /\.js$/,
+        loader: 'babel-loader',
+        include: [path.join(__dirname, 'src')],
+      },
+      {
+        test: /\.txt$/,
+        use: 'raw-loader'
+      }
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),

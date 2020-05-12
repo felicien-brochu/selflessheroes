@@ -1,4 +1,4 @@
-const level = {
+module.exports = {
   mapConfig: MAP_CONFIG,
   messages: {
     "en": {
@@ -30,5 +30,3 @@ const level = {
     lose: ['one_hero_dead', 'or', 'default_loss']
   }
 }
-
-export default level
