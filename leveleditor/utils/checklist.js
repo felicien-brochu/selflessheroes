@@ -8,7 +8,26 @@ const packLevel = require('./pack-level.js')
 const testLevel = require('./test-level.js')
 
 module.exports = function checklist(argv) {
-  argv = minimist(argv, {})
+  argv = minimist(argv, {
+    boolean: [
+      "help",
+    ],
+    alias: {
+      "help": ["h"],
+    }
+  })
+
+  if (argv["help"]) {
+    console.log(
+      `
+ checklist runs a series of tests on a Selfless Heroes level (.shlv)
+
+ Usage: shutils checklist <level-directory> [--options]
+
+  --help, -h              Show this help message
+	`)
+    return
+  }
 
   let levelDir = '.'
   if (argv._.length > 0) {

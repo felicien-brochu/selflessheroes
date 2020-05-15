@@ -53,8 +53,8 @@ module.exports = function testLevel(argv) {
   if (argv["help"]) {
     console.log(
       `
-test-level tests Selfless Heroes level solutions
-Usage: shutils test-level <level-directory> [--options]
+ test-level tests Selfless Heroes level solutions
+ Usage: shutils test-level <level-directory> [--options]
 
   --help, -h                           Show this help message
 
@@ -73,8 +73,8 @@ Usage: shutils test-level <level-directory> [--options]
   --speed-lost-tolerance               Speed tests losses tolerance ratio (default: ${speedTestLostTolerance})
 
   --length-lost-tolerance              Length tests losses tolerance ratio (default: ${lengthTestLostTolerance})
-	`)
-    process.exit(0)
+`)
+    return
   }
 
   if (argv.slow) {
