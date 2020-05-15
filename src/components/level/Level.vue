@@ -692,7 +692,6 @@ export default {
     },
 
     goBack() {
-
       if (this.$router.visitedRoutes.includes('level-list') || this.$route.name === 'local-level') {
         this.$router.back()
       }

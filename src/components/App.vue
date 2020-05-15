@@ -74,7 +74,8 @@
     @leave-cancelled="handleTransition('onTransitionLeaveCancelled', $event)">
 
     <router-view class="child-view"
-      ref="routerView"></router-view>
+      ref="routerView"
+      @request-rerender="forceRerender()"></router-view>
   </transition>
 
 </div>
@@ -228,6 +229,10 @@ export default {
       // }
     },
 
+    forceRerender() {
+      this.componentKey++
+    },
+
     goBack() {
       if (this.$route.name === 'level-list' || this.$route.name === 'local-level') {
         if (this.$router.visitedRoutes.includes('home')) {
@@ -290,7 +295,7 @@ export default {
             if (changedPref === 'language') {
               this.$lang.applyLanguagePreference(storage.preferences.language)
               // Force rerender the entire app
-              this.componentKey++
+              this.forceRerender()
             }
           }
         }
@@ -413,6 +418,8 @@ export default {
             })
           }
         }
+        // Force rerender to handle properly local level reloading
+        this.forceRerender()
       }
       catch (ex) {
         console.error("Error while loading local level from .shlv file", ex)
