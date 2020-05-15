@@ -73,24 +73,6 @@ if (!gotTheLock) {
   })
 }
 
-function loadFile(file) {
-  if (file.endsWith('.shsv')) {
-    loadCareerFromFile(file)
-  } else if (file.endsWith('.shlv')) {
-    loadLevelFromFile(file)
-  }
-}
-
-function loadCareerFromFile(file) {
-  let fileContent = fs.readFileSync(file, 'utf8')
-  mainWindow.webContents.send('load-career-file', fileContent)
-}
-
-function loadLevelFromFile(file) {
-  let fileContent = fs.readFileSync(file, 'utf8')
-  mainWindow.webContents.send('load-level-file', fileContent)
-}
-
 // Temporary fix broken high-dpi scale factor on Windows (125% scaling)
 // info: https://github.com/electron/electron/issues/9691
 if (process.platform === 'win32') {
@@ -198,6 +180,41 @@ function getFileToOpen(argv, workingDir) {
     }
   }
   return file
+}
+
+function loadFile(file) {
+  if (file.endsWith('.shsv')) {
+    loadCareerFromFile(file)
+  } else if (file.endsWith('.shlv')) {
+    openLocalLevel(file)
+  }
+}
+
+function loadCareerFromFile(file) {
+  let fileContent = fs.readFileSync(file, 'utf8')
+  mainWindow.webContents.send('load-career-file', fileContent)
+}
+
+let localLevelWatcher = null
+
+function openLocalLevel(file) {
+  loadLevelFromFile(file)
+
+  if (localLevelWatcher) {
+    localLevelWatcher.close()
+  }
+
+  localLevelWatcher = fs.watch(file, {}, (eventType) => {
+    if (eventType === 'change') {
+      console.log(`local level ${file} has changed ==> reloading`)
+      loadLevelFromFile(file)
+    }
+  })
+}
+
+function loadLevelFromFile(file) {
+  let fileContent = fs.readFileSync(file, 'utf8')
+  mainWindow.webContents.send('load-level-file', fileContent)
 }
 
 // This method will be called when Electron has finished
