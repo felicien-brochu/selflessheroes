@@ -1,6 +1,8 @@
 import StorageWrapper from './StorageWrapper'
 import Preferences from './Preferences'
 import Career from './Career'
+import Solution from './Solution'
+import levelManager from '../../levels/levelManager'
 import {
   saveAs
 } from 'file-saver'
@@ -15,6 +17,9 @@ export class Storage extends StorageWrapper {
     this.isPremium = false
     this.preferences = new Preferences()
     this.careers = []
+
+    this.localLevel = null
+    this.localLevelSolution = null
   }
 
   // Do not call directly this method. Call set() instead with the same arguments as this one
@@ -98,6 +103,18 @@ export class Storage extends StorageWrapper {
     this.save(false)
 
     return career
+  }
+
+  loadLocalLevel(levelJson) {
+    let levelConfig = JSON.parse(levelJson)
+    levelManager.installLocalLevel(levelConfig)
+
+    if (!this.localLevelSolution) {
+      this.localLevelSolution = new Solution('localSolution')
+      this.localLevelSolution.set(0, 'localSolution', levelManager.localLevel.level.startingCode, levelManager.localLevel.level.startingEditorType)
+    }
+
+    return levelManager.localLevel
   }
 
   deleteCareer(careerID) {

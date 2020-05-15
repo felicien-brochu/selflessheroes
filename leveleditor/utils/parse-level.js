@@ -2,7 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const {
   NodeVM
-} = require('../../tests-build/vm2.js')
+} = require('../../src/libs/vm2/main.js')
 
 module.exports = function parseLevel(levelDir) {
   const levelWrapper = readLevelFile(levelDir)

@@ -1,5 +1,6 @@
 import lang from '../locale/lang'
 import Level from './Level'
+import LocalLevel from './LocalLevel'
 
 import levelTest from './level000/level000'
 
@@ -409,6 +410,8 @@ class LevelManager {
     this.categories = categories
 
     this.installMessages()
+
+    this.localLevel = null
   }
 
   installMessages() {
@@ -510,6 +513,11 @@ class LevelManager {
 
   getLevelByID(id) {
     return this.levels.find(level => level.id === id)
+  }
+
+  installLocalLevel(levelConfig) {
+    this.localLevel = new LocalLevel(levelConfig)
+    this.localLevel.level.installMessages(lang)
   }
 }
 

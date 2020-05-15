@@ -66,16 +66,29 @@ if (!gotTheLock) {
         if (!app.isReady()) {
           openFile = fileToOpen
         } else {
-          loadCareerFromFile(fileToOpen)
+          loadFile(fileToOpen)
         }
       }
     }
   })
 }
 
+function loadFile(file) {
+  if (file.endsWith('.shsv')) {
+    loadCareerFromFile(file)
+  } else if (file.endsWith('.shlv')) {
+    loadLevelFromFile(file)
+  }
+}
+
 function loadCareerFromFile(file) {
   let fileContent = fs.readFileSync(file, 'utf8')
   mainWindow.webContents.send('load-career-file', fileContent)
+}
+
+function loadLevelFromFile(file) {
+  let fileContent = fs.readFileSync(file, 'utf8')
+  mainWindow.webContents.send('load-level-file', fileContent)
 }
 
 // Temporary fix broken high-dpi scale factor on Windows (125% scaling)
@@ -123,7 +136,7 @@ function createWindow() {
     mainWindow.show()
 
     if (openFile) {
-      loadCareerFromFile(openFile)
+      loadFile(openFile)
       openFile = null
     }
 
@@ -166,7 +179,7 @@ app.on('will-finish-launching', () => {
   app.on('open-file', (evt, path) => {
     evt.preventDefault()
     if (app.isReady()) {
-      loadCareerFromFile(openFile)
+      loadFile(openFile)
     } else {
       openFile = path
     }
@@ -176,7 +189,7 @@ app.on('will-finish-launching', () => {
 function getFileToOpen(argv, workingDir) {
   let file = null
   let noOptionArgs = argv.filter(arg => !arg.startsWith('-') && !arg.match(/^.*electron(\.exe|\.js)?$/))
-  if (noOptionArgs.length >= 2) {
+  if (noOptionArgs.length >= 1) {
     file = noOptionArgs[noOptionArgs.length - 1]
     file = path.resolve(workingDir, file)
 
@@ -184,7 +197,6 @@ function getFileToOpen(argv, workingDir) {
       file = null
     }
   }
-
   return file
 }
 

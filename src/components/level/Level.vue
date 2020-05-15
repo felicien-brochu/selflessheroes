@@ -130,10 +130,20 @@ export default {
   },
 
   data: function() {
-    let career = storage.getCareer(this.careerID)
-    let levelSolutions = career.getLevel(this.levelID)
-    let solution = levelSolutions.getCurrentSolution()
-    let level = levelManager.getLevelByID(this.levelID)
+    let career, levelSolutions, solution, level
+
+    if (this.$route.name === 'level') {
+      career = storage.getCareer(this.careerID)
+      levelSolutions = career.getLevel(this.levelID)
+      solution = levelSolutions.getCurrentSolution()
+      level = levelManager.getLevelByID(this.levelID)
+    }
+    else if (this.$route.name === 'local-level') {
+      career = null
+      levelSolutions = null
+      solution = storage.localLevelSolution
+      level = levelManager.localLevel.level
+    }
 
     return {
       code: solution.codeHistory.getCode(),
@@ -165,16 +175,25 @@ export default {
   },
 
   beforeRouteEnter(to, from, next) {
-    let career = storage.getCareer(Number(to.params.careerID))
-    if (!career) {
-      next({
-        name: 'home',
-        replace: true,
-      })
-      return
+    if (to.name === 'level') {
+      let career = storage.getCareer(Number(to.params.careerID))
+      if (!career) {
+        next({
+          name: 'home',
+          replace: true,
+        })
+        return
+      }
+      let levelSolutions = career.getLevel(Number(to.params.levelID))
+      if (!levelSolutions) {
+        next({
+          name: 'home',
+          replace: true,
+        })
+        return
+      }
     }
-    let levelSolutions = career.getLevel(Number(to.params.levelID))
-    if (!levelSolutions) {
+    else if (to.name === 'local-level' && !levelManager.localLevel) {
       next({
         name: 'home',
         replace: true,
@@ -420,7 +439,11 @@ export default {
     handleTestsDone(e) {
       if (e.hasWon) {
         this.solution.addScore(e.averageStep, e.codeLength)
-        this.levelSolutions.addScore(e.averageStep, e.codeLength)
+
+        // No levelSolutions if the level is local
+        if (this.levelSolutions) {
+          this.levelSolutions.addScore(e.averageStep, e.codeLength)
+        }
       }
     },
 
@@ -669,7 +692,8 @@ export default {
     },
 
     goBack() {
-      if (this.$router.visitedRoutes.includes('level-list')) {
+
+      if (this.$router.visitedRoutes.includes('level-list') || this.$route.name === 'local-level') {
         this.$router.back()
       }
       else {

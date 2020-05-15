@@ -15,8 +15,7 @@ let specsEntries = glob.sync(path.resolve(__dirname, '../src/levels') + '/level*
 
 let entries = Object.assign(specsEntries, {
   'LevelSpecTester.js': path.resolve(__dirname, '../tests/LevelSpecTester.js'),
-  'CareerGenerator.js': path.resolve(__dirname, '../tests/CareerGenerator.js'),
-  'vm2.js': path.resolve(__dirname, '../tests/vm2/main.js')
+  'CareerGenerator.js': path.resolve(__dirname, '../tests/CareerGenerator.js')
 })
 
 const config = {
@@ -31,15 +30,10 @@ const config = {
   // externals: [nodeExternals()],
   module: {
     rules: [{
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: [path.join(__dirname, 'src')],
-      },
-      {
-        test: /\.txt$/,
-        use: 'raw-loader'
-      }
-    ],
+      test: /\.js$/,
+      loader: 'babel-loader',
+      include: [path.join(__dirname, 'src')],
+    }],
   },
   plugins: [
     new CleanWebpackPlugin(),

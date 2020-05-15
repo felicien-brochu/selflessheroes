@@ -79,6 +79,7 @@ import TestGraph from './TestGraph'
 import ScoreStarsAnimation from './ScoreStarsAnimation'
 import WinLevelTestWorker from './WinLevelTest.worker.js'
 import Compiler from '../../../world/ai/compile/Compiler'
+import levelManager from '../../../levels/levelManager'
 
 export default {
   components: {
@@ -108,17 +109,23 @@ export default {
   data: function() {
     let compiler = new Compiler(this.code, this.level.buildCompilerConfig())
     compiler.compile()
+
+    let hasPriorSpeed = this.levelSolutions ? this.levelSolutions.score.minStep >= 0 : false
+    let minStep = this.levelSolutions ? this.levelSolutions.score.minStep : -1
+    let hasPriorLength = this.levelSolutions ? this.levelSolutions.score.minLength >= 0 : false
+    let minLength = this.levelSolutions ? this.levelSolutions.score.minLength : -1
+
     return {
       tests: [],
       codeLength: compiler.computeCodeLength(),
       testAnimationEnded: false,
-      hasPriorSpeed: this.levelSolutions.score.minStep >= 0,
+      hasPriorSpeed: hasPriorSpeed,
       priorSpeedText: this.$text('win_modal_prior_code_speed', {
-        minStep: this.levelSolutions.score.minStep
+        minStep: minStep
       }),
-      hasPriorLength: this.levelSolutions.score.minLength >= 0,
+      hasPriorLength: hasPriorLength,
       priorLengthText: this.$text('win_modal_prior_code_length', {
-        minLength: this.levelSolutions.score.minLength
+        minLength: minLength
       })
     }
   },
@@ -148,6 +155,8 @@ export default {
       this.$emit('close')
     }
     this.worker.postMessage({
+      levelSource: this.level.source,
+      localLevelConfig: this.level.source === 'local' ? levelManager.localLevel.config : null,
       levelID: this.level.id,
       code: this.code,
       masterSeed: this.masterSeed

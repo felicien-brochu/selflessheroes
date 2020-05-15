@@ -49,42 +49,52 @@ musicManager.init()
 Vue.prototype.$sound = soundManager
 Vue.prototype.$music = musicManager
 
+const routes = [{
+  path: '/',
+  component: App,
+  children: [{
+    path: '',
+    component: Home,
+    name: 'home'
+  }, {
+    path: 'c/:careerID',
+    component: LevelList,
+    name: 'level-list',
+    props: route => ({
+      careerID: Number(route.params.careerID)
+    })
+  }, {
+    path: 'c/:careerID/level/:levelID',
+    component: Level,
+    name: 'level',
+    props: route => ({
+      careerID: Number(route.params.careerID),
+      levelID: Number(route.params.levelID)
+    })
+  }, {
+    path: 'sizewarning',
+    component: ScreenSizeWarning,
+    name: 'screen-size-warning'
+  }, {
+    path: '*',
+    redirect: {
+      name: 'home',
+      replace: true,
+    }
+  }]
+}]
+
+if (IS_ELECTRON) {
+  routes[0].children.push({
+    path: 'locallevel',
+    component: Level,
+    name: 'local-level'
+  })
+}
+
 const router = new VueRouter({
   mode: IS_ELECTRON ? 'hash' : 'history',
-  routes: [{
-    path: '/',
-    component: App,
-    children: [{
-      path: '',
-      component: Home,
-      name: 'home'
-    }, {
-      path: 'c/:careerID',
-      component: LevelList,
-      name: 'level-list',
-      props: route => ({
-        careerID: Number(route.params.careerID)
-      })
-    }, {
-      path: 'c/:careerID/level/:levelID',
-      component: Level,
-      name: 'level',
-      props: route => ({
-        careerID: Number(route.params.careerID),
-        levelID: Number(route.params.levelID)
-      })
-    }, {
-      path: 'sizewarning',
-      component: ScreenSizeWarning,
-      name: 'screen-size-warning'
-    }, {
-      path: '*',
-      redirect: {
-        name: 'home',
-        replace: true,
-      }
-    }]
-  }],
+  routes: routes
 })
 
 router.beforeEach((to, from, next) => {
@@ -113,8 +123,12 @@ const app = new Vue({
 
 
 if (IS_ELECTRON) {
-  require('electron').ipcRenderer.on('load-career-file', (evt, careerJson) => {
+  const ipcRenderer = require('electron').ipcRenderer
+  ipcRenderer.on('load-career-file', (evt, careerJson) => {
     app.$children[0].loadSavedCareerExtFile(careerJson)
+  })
+  ipcRenderer.on('load-level-file', (evt, levelJson) => {
+    app.$children[0].loadLevelFile(levelJson)
   })
 }
 

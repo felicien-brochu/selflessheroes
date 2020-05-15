@@ -22,7 +22,7 @@ export default class Level extends WorldLevel {
     compilerConfig,
     ruleset,
     worldGenerator,
-  }) {
+  }, source = 'campaign') {
     super(id, mapConfig, maxStep)
     this.messages = messages || null
     this.bossTellsSomething = !!bossTellsSomething
@@ -39,6 +39,7 @@ export default class Level extends WorldLevel {
       lose: 'default_loss'
     }
     this.worldGenerator = worldGenerator
+    this.source = source
   }
 
   installMessages(lang) {

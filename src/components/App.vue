@@ -165,7 +165,7 @@ export default {
       if (this.$route.name === 'level-list') {
         return this.$text('level_list_back_button')
       }
-      else if (this.$route.name === 'level') {
+      else if (this.$route.name === 'level' || this.$route.name === 'local-level') {
         return this.$text('level_back_button')
       }
     },
@@ -229,7 +229,7 @@ export default {
     },
 
     goBack() {
-      if (this.$route.name === 'level-list') {
+      if (this.$route.name === 'level-list' || this.$route.name === 'local-level') {
         if (this.$router.visitedRoutes.includes('home')) {
           this.$router.back()
         }
@@ -378,16 +378,54 @@ export default {
       }
       catch (ex) {
         console.error("Error while loading saved game from .shsv file", ex)
-        this.showWrongFormatFileModal()
+        this.showWrongCareerFileFormatModal()
       }
     },
 
-    showWrongFormatFileModal() {
+    showWrongCareerFileFormatModal() {
       this.$refs.modalLayer.addModal({
         component: Modal,
         key: 'load-saved-career-error',
         props: {
           text: this.$text('home_wrong_file_format_error'),
+          cancelable: false
+        }
+      })
+    },
+
+    loadLevelFile(levelJson) {
+      try {
+        let level = storage.loadLocalLevel(levelJson)
+
+        if (level) {
+          if (this.$route.name !== 'home') {
+            this.$router.replace({
+              name: 'home'
+            }, () => {
+              this.$router.push({
+                name: 'local-level'
+              })
+            })
+          }
+          else {
+            this.$router.push({
+              name: 'local-level'
+            })
+          }
+        }
+      }
+      catch (ex) {
+        console.error("Error while loading local level from .shlv file", ex)
+        this.showLocalLevelLoadingErrorModal(ex)
+      }
+    },
+
+    showLocalLevelLoadingErrorModal(ex) {
+      this.$refs.modalLayer.addModal({
+        component: Modal,
+        key: 'load-local-level-error',
+        props: {
+          text: this.$text('home_local_level_loading_error'),
           cancelable: false
         }
       })
