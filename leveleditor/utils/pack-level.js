@@ -2,9 +2,34 @@ const path = require('path')
 const fs = require('fs')
 const chalk = require('chalk')
 const minimist = require('minimist')
+const _debounce = require('lodash.debounce')
 
 module.exports = function packLevel(argv) {
-  argv = minimist(argv, {})
+  argv = minimist(argv, {
+    boolean: [
+      "help",
+      "watch",
+    ],
+    alias: {
+      "help": ["h"],
+      "watch": ["w"],
+    }
+  })
+
+  if (argv["help"]) {
+    console.log(
+      `
+ pack-level packages a Selfless Heroes level (.shlv)
+
+ Usage: shutils pack-level <level-directory> [--options]
+
+  --help, -h              Show this help message
+
+  --watch, -w             Watch changes of level.js, map.json and metadata.json and
+                          repackages the level as soon as one of these files changes
+	`)
+    return
+  }
 
   let levelDir = '.'
   if (argv._.length > 0) {
@@ -12,23 +37,72 @@ module.exports = function packLevel(argv) {
   }
   levelDir = path.resolve(levelDir)
 
-  let mapPath = path.resolve(levelDir, "map.json")
-  if (!fs.existsSync(mapPath)) {
-    console.log(`Cannot find file "${mapPath}"`)
-    process.exit(1)
+  if (!fs.existsSync(levelDir)) {
+    console.log(`error: directory ${levelDir} does not exist`)
+    return
   }
 
-  let mapConfig = compressMap(mapPath)
-  let levelCode = importLevelCode(levelDir, mapConfig)
-  let metadata = importMetadata(levelDir)
+  const mapFile = path.resolve(levelDir, "map.json")
+  const levelCodeFile = path.resolve(levelDir, "level.js")
+  const metadataFile = path.resolve(levelDir, "metadata.json")
 
-  let level = {
-    hash: "local",
-    level: levelCode,
-    metadata: metadata
+  const debouncedPack = _debounce(pack, 100)
+  debouncedPack({
+    levelDir,
+    mapFile,
+    levelCodeFile,
+    metadataFile
+  })
+
+  if (argv.watch) {
+    const watchedFiles = [mapFile, levelCodeFile, metadataFile]
+
+    watchedFiles.forEach(file => {
+      fs.watch(file, (eventType) => {
+        if (eventType === 'change') {
+          console.log(`${file} has changed ==> pack level`)
+          debouncedPack({
+            levelDir,
+            mapFile,
+            levelCodeFile,
+            metadataFile
+          })
+          console.log()
+        }
+      })
+    })
+
+    console.log("watching files:", watchedFiles)
   }
+}
 
-  saveLevelFile(levelDir, level)
+function pack({
+  levelDir,
+  mapFile,
+  levelCodeFile,
+  metadataFile
+}) {
+  try {
+    [mapFile, levelCodeFile, metadataFile].forEach(file => {
+      if (!fs.existsSync(file)) {
+        throw new Error(`Cannot find file "${file}"`)
+      }
+    })
+
+    let mapConfig = compressMap(mapFile)
+    let levelCode = importLevelCode(levelCodeFile, mapConfig)
+    let metadata = importMetadata(metadataFile)
+
+    let level = {
+      hash: "local",
+      level: levelCode,
+      metadata: metadata
+    }
+
+    saveLevelFile(levelDir, level)
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 function saveLevelFile(levelDir, level) {
@@ -38,73 +112,87 @@ function saveLevelFile(levelDir, level) {
   console.log(`saved level file: ${levelFile}`)
 }
 
-function importMetadata(levelDir) {
-  const metadataFile = path.resolve(levelDir, "metadata.json")
-  let metadata = fs.readFileSync(metadataFile, 'utf8')
-
-  return JSON.parse(metadata)
+function importMetadata(metadataFile) {
+  try {
+    let metadataContent = fs.readFileSync(metadataFile, 'utf8')
+    return JSON.parse(metadataContent)
+  } catch (e) {
+    throw new Error('metadata.json: ' + e.message, e)
+  }
 }
 
-function importLevelCode(levelDir, mapConfig) {
-  const levelFile = path.resolve(levelDir, "level.js")
-  let levelCode = fs.readFileSync(levelFile, 'utf8')
-
-  levelCode = levelCode.replace('MAP_CONFIG', mapConfig)
-  return levelCode
+function importLevelCode(levelCodeFile, mapConfig) {
+  try {
+    let levelCode = fs.readFileSync(levelCodeFile, 'utf8')
+    let mapConfigTemplates = levelCode.match(/\bMAP_CONFIG\b/g)
+    if (!mapConfigTemplates) {
+      throw new Error('level object must contain a MAP_CONFIG keyword in order to insert the map during the level packaging')
+    }
+    if (mapConfigTemplates.length > 1) {
+      throw new Error('MAP_CONFIG found more than once')
+    }
+    return levelCode.replace('MAP_CONFIG', mapConfig)
+  } catch (e) {
+    throw new Error('level.js: ' + e.message, e)
+  }
 }
 
 function compressMap(mapFile) {
-  let mapData = fs.readFileSync(mapFile, 'utf8')
+  try {
+    let mapData = fs.readFileSync(mapFile, 'utf8')
 
-  let map = JSON.parse(mapData)
-  let nospaceSize = JSON.stringify(map).length
+    let map = JSON.parse(mapData)
+    let nospaceSize = JSON.stringify(map).length
 
-  for (let property in map) {
-    if (map.hasOwnProperty(property)) {
-      if (
-        property !== 'height' &&
-        property !== 'width' &&
-        property !== 'infinite' &&
-        property !== 'layers' &&
-        property !== 'orientation' &&
-        property !== 'renderorder' &&
-        property !== 'tiledversion' &&
-        property !== 'tileheight' &&
-        property !== 'tilewidth' &&
-        property !== 'tilesets' &&
-        property !== 'type' &&
-        property !== 'version'
-      ) {
-        delete map[property]
+    for (let property in map) {
+      if (map.hasOwnProperty(property)) {
+        if (
+          property !== 'height' &&
+          property !== 'width' &&
+          property !== 'infinite' &&
+          property !== 'layers' &&
+          property !== 'orientation' &&
+          property !== 'renderorder' &&
+          property !== 'tiledversion' &&
+          property !== 'tileheight' &&
+          property !== 'tilewidth' &&
+          property !== 'tilesets' &&
+          property !== 'type' &&
+          property !== 'version'
+        ) {
+          delete map[property]
+        }
       }
     }
-  }
 
-  for (let i = 0; i < map.layers.length; i++) {
-    let layer = map.layers[i]
+    for (let i = 0; i < map.layers.length; i++) {
+      let layer = map.layers[i]
 
-    if (layer.name !== 'camera' &&
-      layer.name !== 'objects' &&
-      layer.name !== 'types' &&
-      layer.name !== 'ground' &&
-      layer.name !== 'floor_shadow') {
-      map.layers.splice(i, 1)
-      i--
-      continue
+      if (layer.name !== 'camera' &&
+        layer.name !== 'objects' &&
+        layer.name !== 'types' &&
+        layer.name !== 'ground' &&
+        layer.name !== 'floor_shadow') {
+        map.layers.splice(i, 1)
+        i--
+        continue
+      }
+
+      cleanLayer(layer)
     }
 
-    cleanLayer(layer)
+    let compressedData = JSON.stringify(map)
+    let compressedSize = compressedData.length
+    let compressRate = (nospaceSize - compressedSize) / nospaceSize
+    compressRate = compressRate * 100
+    compressRate = compressRate.toString().substring(0, 5)
+
+    console.log(`compress ${mapFile.replace(/^.*[\/\\]/, '')}: ${compressRate}% (${nospaceSize} => ${compressedSize})`)
+
+    return compressedData
+  } catch (e) {
+    throw new Error('map.json: ' + e.message, e)
   }
-
-  let compressedData = JSON.stringify(map)
-  let compressedSize = compressedData.length
-  let compressRate = (nospaceSize - compressedSize) / nospaceSize
-  compressRate = compressRate * 100
-  compressRate = compressRate.toString().substring(0, 5)
-
-  console.log(`compress ${mapFile.replace(/^.*[\/\\]/, '')}: ${compressRate}% (${nospaceSize} => ${compressedSize})`)
-
-  return compressedData
 }
 
 function cleanLayer(layer) {

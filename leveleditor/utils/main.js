@@ -47,4 +47,3 @@ function printUnknownCommand(command) {
   console.log()
   printUsage()
 }
-process.exit(0)
