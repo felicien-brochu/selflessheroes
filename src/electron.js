@@ -39,6 +39,7 @@ const openLink = require('open')
 const path = require('path')
 const url = require('url')
 const fs = require('fs')
+const _debounce = require('lodash.debounce')
 
 const isDev = process.argv.includes("--dev")
 const isLive = process.argv.includes("--live")
@@ -204,10 +205,14 @@ function openLocalLevel(file) {
     localLevelWatcher.close()
   }
 
-  localLevelWatcher = fs.watch(file, {}, (eventType) => {
+  const reloadLevelFromFile = _debounce(file => {
+    console.log(`local level ${file} has changed ==> reloading`)
+    loadLevelFromFile(file)
+  }, 100)
+
+  localLevelWatcher = fs.watch(file, (eventType) => {
     if (eventType === 'change') {
-      console.log(`local level ${file} has changed ==> reloading`)
-      loadLevelFromFile(file)
+      reloadLevelFromFile(file)
     }
   })
 }
