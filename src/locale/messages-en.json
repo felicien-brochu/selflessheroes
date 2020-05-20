@@ -111,7 +111,7 @@
     "level_help_tab_jump_statement_1": "%%statement branching-statement$jump%% allows to jump backward or forward in the program.",
     "level_help_tab_jump_statement_2": "You could read the above example as \"Step to the right infinitely many times\".",
     "level_help_tab_jump_statement_4": "The first line creates an \"anchor\" named \"a\". The third line says to jump back to this anchor.\nYou can choose any name you want for your anchors. Each jump must match a unique anchor.",
-    "level_help_tab_jump_statement_5": "%%statement branching-statement$jump%% is usually used with %%statement branching-statement$if%% to create loops which stops at a condition.",
+    "level_help_tab_jump_statement_5": "%%statement branching-statement$jump%% is usually used with %%statement branching-statement$if%% to create loops which stop at a condition.",
     "level_help_tab_jump_statement_6": "You could read the above example as \"Step to the right as long as the square to the right is not a wall\".",
     "level_help_tab_clone_statement_1": "%%statement branching-statement$clone%% creates a clone of the hero next to him.",
     "level_help_tab_clone_statement_2": "You could read the above example as \"Create a clone on your left. Then step to the right\".\n\nFor the created hero, %%statement branching-statement$clone%% acts like %%statement branching-statement$jump%%. In this example, the created clone won't step to the right because he will begin to follow instructions after the arrow of %%statement branching-statement$clone%%.",
