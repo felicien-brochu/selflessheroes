@@ -10,3 +10,4 @@ publish.env
 steam-output/
 *.log
 *.shlv
+api-config.json

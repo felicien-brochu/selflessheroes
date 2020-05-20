@@ -64,13 +64,15 @@
       "dist/assets/**/*",
       "dist/workers/**/*"
     ],
-    "fileAssociations": [{
-      "ext": "shsv",
-      "name": "SHSV",
-      "description": "Selfless Heroes saved game",
-      "mimeType": "application/x-shsv",
-      "role": "Viewer"
-    }],
+    "fileAssociations": [
+      {
+        "ext": "shsv",
+        "name": "SHSV",
+        "description": "Selfless Heroes saved game",
+        "mimeType": "application/x-shsv",
+        "role": "Viewer"
+      }
+    ],
     "compression": "maximum",
     "win": {
       "target": [
@@ -190,6 +192,7 @@
   },
   "dependencies": {
     "@mdi/font": "^3.6.95",
+    "axios": "^0.19.2",
     "codemirror": "^5.47.0",
     "electron-log": "^4.1.1",
     "electron-updater": "^4.2.5",
@@ -203,6 +206,7 @@
     "open": "^7.0.0",
     "pathfinding": "^0.4.18",
     "phaser": "3.19.0",
+    "prompts": "^2.3.2",
     "resize-observer-polyfill": "^1.5.1",
     "seedrandom": "^3.0.1",
     "string-template": "^1.0.0",

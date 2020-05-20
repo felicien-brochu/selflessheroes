@@ -5,6 +5,7 @@ const chalk = require('chalk')
 const packLevel = require('./pack-level.js')
 const testLevel = require('./test-level.js')
 const checklist = require('./checklist.js')
+const register = require('./register.js')
 
 if (process.argv.length < 3) {
   printUsage()
@@ -17,13 +18,16 @@ let commandArgv = process.argv.slice(3)
 switch (command) {
   case 'pack-level':
     packLevel(commandArgv)
-    break;
+    break
   case 'test-level':
     testLevel(commandArgv)
-    break;
+    break
   case 'checklist':
     checklist(commandArgv)
-    break;
+    break
+  case 'register':
+    register(commandArgv)
+    break
   default:
     printUnknownCommand(command)
     process.exit(1)
