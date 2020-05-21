@@ -7,6 +7,8 @@ const parseLevel = require('./parse-level.js')
 const packLevel = require('./pack-level.js')
 const testLevel = require('./test-level.js')
 
+const levelIdRegExp = /^[a-zA-Z0-9_]{1,32}$/
+
 module.exports = function checklist(argv) {
   argv = minimist(argv, {
     boolean: [
@@ -90,11 +92,11 @@ function checkMetadata(levelDir) {
   let errors = 0
 
   console.log(chalk.gray.bgBlack(" Check metadata.json "))
-  if (typeof metadata.id === 'string' && /^[a-z]{2,4}\.[a-z0-9-_]+\.[a-z0-9-_]+$/.test(metadata.id)) {
+  if (typeof metadata.id === 'string' && levelIdRegExp.test(metadata.id)) {
     console.log(`${chalk.greenBright.bold(logSymbols.success)} id: "${metadata.id}" ${chalk.greenBright.bold('[valid]')}`)
   } else {
     console.log(`${chalk.red.bold(logSymbols.error)} id: "${metadata.id}" ${chalk.red.bold('[invalid]')}`)
-    console.log("level id must be of the form 'com.author.levelname'")
+    console.log("Invalid level id. Must be constituted of alphanumeric characters or underscore (1 to 32 characters long).")
     errors++
   }
 
