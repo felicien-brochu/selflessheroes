@@ -66,7 +66,7 @@ module.exports = async function pushLevel(argv) {
   }
 
   console.log(chalk.greenBright.bold(`Level uploaded successfully.\n`))
-  console.log(chalk.bgBlack(` It will be reviewed as soon as possible.\n Thank you for your contribution! :)`))
+  console.log(chalk.bgBlack(` Your level will be reviewed as soon as possible. \n Thank you for your contribution! :) `))
   console.log()
 }
 

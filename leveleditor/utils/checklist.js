@@ -100,19 +100,6 @@ function checkMetadata(levelDir) {
     errors++
   }
 
-  let authorRegExp = /[^\w\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s-]/
-  if (typeof metadata.author === 'string' && !authorRegExp.test(metadata.author)) {
-    console.log(`${chalk.greenBright.bold(logSymbols.success)} author: "${metadata.author}" ${chalk.greenBright.bold('[valid]')}`)
-  } else {
-    console.log(`${chalk.red.bold(logSymbols.error)} author: "${metadata.author}" ${chalk.red.bold('[invalid]')}`)
-    if (!metadata.author) {
-      console.log("author field is mandatory")
-    } else {
-      console.log("invalid character in author field", authorRegExp.exec(metadata.author))
-    }
-    errors++
-  }
-
   if (typeof metadata.difficulty === 'number' && metadata.difficulty >= 0 && metadata.difficulty <= 4) {
     console.log(`${chalk.greenBright.bold(logSymbols.success)} difficulty: ${metadata.difficulty} ${chalk.greenBright.bold('[valid]')}`)
   } else {
