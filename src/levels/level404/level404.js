@@ -7,28 +7,28 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    let nEgg = this.world.eggs.find(egg => egg.y === 2)
-    this.targetEgg = this.world.eggs.find(egg => egg.y === 3 && egg.x === nEgg.value + 2).shallowCopy()
+  beforeStart(world) {
+    let nEgg = world.eggs.find(egg => egg.y === 2)
+    this.targetEgg = world.eggs.find(egg => egg.y === 3 && egg.x === nEgg.value + 2).shallowCopy()
   },
 
-  check() {
-    let cauldronContent = this.world.cauldrons[0].items
+  check(world) {
+    let cauldronContent = world.cauldrons[0].items
     return cauldronContent.length === 1 && cauldronContent[0].id === this.targetEgg.id
   }
 }
 
 const tookWrongEggCondition = {
-  beforeStart() {
-    let nEgg = this.world.eggs.find(egg => egg.y === 2)
-    this.targetEgg = this.world.eggs.find(egg => egg.y === 3 && egg.x === nEgg.value + 2).shallowCopy()
+  beforeStart(world) {
+    let nEgg = world.eggs.find(egg => egg.y === 2)
+    this.targetEgg = world.eggs.find(egg => egg.y === 3 && egg.x === nEgg.value + 2).shallowCopy()
   },
 
-  check() {
-    return this.world.heroes.some(hero => hero.item && hero.item.id !== this.targetEgg.id)
+  check(world) {
+    return world.heroes.some(hero => hero.item && hero.item.id !== this.targetEgg.id)
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_took_wrong_egg'
   }
 }

@@ -15,12 +15,12 @@ function calculateSum(world) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.sum = calculateSum(this.world)
-    this.targetEgg = findTargetEgg(this.world)
+  beforeStart(world) {
+    this.sum = calculateSum(world)
+    this.targetEgg = findTargetEgg(world)
   },
 
-  check() {
+  check(world) {
     return (
       this.targetEgg.value === this.sum &&
       !this.targetEgg.owner &&
@@ -30,16 +30,16 @@ const winCondition = {
 }
 
 const wrongSumOnEggCondition = {
-  beforeStart() {
-    this.sum = calculateSum(this.world)
-    this.targetEgg = findTargetEgg(this.world)
+  beforeStart(world) {
+    this.sum = calculateSum(world)
+    this.targetEgg = findTargetEgg(world)
   },
 
-  check() {
+  check(world) {
     return this.targetEgg.value !== 0 && this.targetEgg.value !== this.sum
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_wrong_sum_on_egg'
   }
 }

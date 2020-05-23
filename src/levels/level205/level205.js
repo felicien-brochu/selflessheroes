@@ -7,46 +7,46 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.startEggs = this.world.eggs.map(egg => egg.shallowCopy())
+  beforeStart(world) {
+    this.startEggs = world.eggs.map(egg => egg.shallowCopy())
   },
 
-  check() {
+  check(world) {
     return this.startEggs.every(startEgg => {
-      let actualEgg = this.world.eggs.find(egg => egg.id === startEgg.id)
+      let actualEgg = world.eggs.find(egg => egg.id === startEgg.id)
       return actualEgg.value === startEgg.value + 1
     })
   }
 }
 
 const wrongValueOnEggLossCondition = {
-  beforeStart() {
-    this.startEggs = this.world.eggs.map(egg => egg.shallowCopy())
+  beforeStart(world) {
+    this.startEggs = world.eggs.map(egg => egg.shallowCopy())
   },
 
-  check() {
+  check(world) {
     return this.startEggs.some(startEgg => {
-      let actualEgg = this.world.eggs.find(egg => egg.id === startEgg.id)
+      let actualEgg = world.eggs.find(egg => egg.id === startEgg.id)
       return actualEgg.value !== startEgg.value && actualEgg.value !== startEgg.value + 1
     })
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_wrong_value_on_egg'
   }
 }
 
 const displacedNumberedEggLossCondition = {
-  beforeStart() {
-    let numberedEggsOriginMarker = this.world.findConfigObjectByID(120)
-    this.numberedEggs = this.world.eggs.filter(egg => egg.y >= numberedEggsOriginMarker.y && egg.y < numberedEggsOriginMarker.y + 6)
+  beforeStart(world) {
+    let numberedEggsOriginMarker = world.findConfigObjectByID(120)
+    this.numberedEggs = world.eggs.filter(egg => egg.y >= numberedEggsOriginMarker.y && egg.y < numberedEggsOriginMarker.y + 6)
   },
 
-  check() {
+  check(world) {
     return this.numberedEggs.some(egg => !!egg.owner)
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_numbered_egg_displaced'
   }
 }

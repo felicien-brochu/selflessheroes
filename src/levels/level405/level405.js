@@ -13,36 +13,36 @@ function findTargetEgg(world) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.targetEgg = findTargetEgg(this.world)
+  beforeStart(world) {
+    this.targetEgg = findTargetEgg(world)
   },
 
-  check() {
-    let cauldronContent = this.world.cauldrons[0].items
+  check(world) {
+    let cauldronContent = world.cauldrons[0].items
     return cauldronContent.length === 1 && cauldronContent[0].id === this.targetEgg.id
   }
 }
 
 const tookWrongEggCondition = {
-  beforeStart() {
-    this.targetEgg = findTargetEgg(this.world)
+  beforeStart(world) {
+    this.targetEgg = findTargetEgg(world)
   },
 
-  check() {
-    return this.world.heroes.some(hero => hero.item && hero.item.id !== this.targetEgg.id)
+  check(world) {
+    return world.heroes.some(hero => hero.item && hero.item.id !== this.targetEgg.id)
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_took_wrong_egg'
   }
 }
 
 const tooMuchHeroesCondition = {
-  check() {
-    return this.world.heroes.length > 50
+  check(world) {
+    return world.heroes.length > 50
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_too_mush_heroes'
   }
 }

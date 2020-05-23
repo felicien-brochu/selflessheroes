@@ -7,15 +7,15 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.targetEggs = this.world.eggs.filter(egg => egg.x === 3).map(egg => egg.shallowCopy())
-    this.duplicateEggs = this.world.eggs.filter(egg => egg.x === 9).map(egg => egg.shallowCopy())
+  beforeStart(world) {
+    this.targetEggs = world.eggs.filter(egg => egg.x === 3).map(egg => egg.shallowCopy())
+    this.duplicateEggs = world.eggs.filter(egg => egg.x === 9).map(egg => egg.shallowCopy())
   },
 
-  check() {
+  check(world) {
     for (let targetEgg of this.targetEggs) {
       let duplicateEgg = this.duplicateEggs.find(egg => egg.y === targetEgg.y)
-      let actualEgg = this.world.findWorldObjectByID(duplicateEgg.id)
+      let actualEgg = world.findWorldObjectByID(duplicateEgg.id)
 
       if (actualEgg.value !== targetEgg.value ||
         !!actualEgg.owner ||
@@ -30,15 +30,15 @@ const winCondition = {
 }
 
 const wrongValueOnEggLossCondition = {
-  beforeStart() {
-    this.targetEggs = this.world.eggs.filter(egg => egg.x === 3).map(egg => egg.shallowCopy())
-    this.duplicateEggs = this.world.eggs.filter(egg => egg.x === 9).map(egg => egg.shallowCopy())
+  beforeStart(world) {
+    this.targetEggs = world.eggs.filter(egg => egg.x === 3).map(egg => egg.shallowCopy())
+    this.duplicateEggs = world.eggs.filter(egg => egg.x === 9).map(egg => egg.shallowCopy())
   },
 
-  check() {
+  check(world) {
     for (let targetEgg of this.targetEggs) {
       let duplicateEgg = this.duplicateEggs.find(egg => egg.y === targetEgg.y)
-      let actualEgg = this.world.findWorldObjectByID(duplicateEgg.id)
+      let actualEgg = world.findWorldObjectByID(duplicateEgg.id)
       if (actualEgg.value !== 0 &&
         actualEgg.value !== targetEgg.value) {
         return true
@@ -47,21 +47,21 @@ const wrongValueOnEggLossCondition = {
     return false
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_wrong_value_on_egg'
   }
 }
 
 const displacedTargetEggLossCondition = {
-  beforeStart() {
-    this.targetEggs = this.world.eggs.filter(egg => egg.x === 3)
+  beforeStart(world) {
+    this.targetEggs = world.eggs.filter(egg => egg.x === 3)
   },
 
-  check() {
+  check(world) {
     return this.targetEggs.some(egg => !!egg.owner)
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_target_egg_displaced'
   }
 }

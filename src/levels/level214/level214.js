@@ -7,12 +7,12 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
+  beforeStart(world) {
     this.droppedEggs = []
   },
 
-  check() {
-    let cauldronEggs = this.world.cauldrons[0].items
+  check(world) {
+    let cauldronEggs = world.cauldrons[0].items
     if (cauldronEggs.length - this.droppedEggs > 1) {
       return false
     } else if (cauldronEggs.length - this.droppedEggs.length === 1) {
@@ -22,17 +22,17 @@ const winCondition = {
       }
     }
     this.droppedEggs = cauldronEggs.slice()
-    return cauldronEggs.length >= this.world.eggs.length
+    return cauldronEggs.length >= world.eggs.length
   }
 }
 
 const wrongEggOrderCondition = {
-  beforeStart() {
+  beforeStart(world) {
     this.droppedEggs = []
   },
 
-  check() {
-    let cauldronEggs = this.world.cauldrons[0].items
+  check(world) {
+    let cauldronEggs = world.cauldrons[0].items
     if (cauldronEggs.length - this.droppedEggs.length > 1) {
       return true
     } else if (cauldronEggs.length - this.droppedEggs.length === 1) {
@@ -45,7 +45,7 @@ const wrongEggOrderCondition = {
     return false
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_wrong_egg_order'
   }
 }

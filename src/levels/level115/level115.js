@@ -7,9 +7,9 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  check() {
-    let eggsOriginMarker = this.world.findConfigObjectByID(99)
-    let eggs = this.world.eggs.slice().sort((a, b) => a.x - b.x)
+  check(world) {
+    let eggsOriginMarker = world.findConfigObjectByID(99)
+    let eggs = world.eggs.slice().sort((a, b) => a.x - b.x)
 
     let currentMax = -1
     for (let egg of eggs) {
@@ -24,11 +24,11 @@ const winCondition = {
 }
 
 const eggInHoleLossCondition = {
-  check() {
-    return this.world.eggs.some(egg => egg.removed)
+  check(world) {
+    return world.eggs.some(egg => egg.removed)
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_egg_in_hole'
   }
 }

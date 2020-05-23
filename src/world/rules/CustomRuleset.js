@@ -2,10 +2,11 @@ import Ruleset from './Ruleset'
 import ConditionGroup from './conditions/ConditionGroup'
 
 export default class CustomRuleset extends Ruleset {
-  constructor(world, config) {
+  constructor(world, config, trustedSource = false) {
     super(world)
 
     this.config = config
+    this.trustedSource = trustedSource
 
     this.winCondition = null
     this.lossCondition = null
@@ -22,7 +23,7 @@ export default class CustomRuleset extends Ruleset {
     if (!Array.isArray(config)) {
       config = [config]
     }
-    this.lossCondition = new ConditionGroup(this.world, config)
+    this.lossCondition = new ConditionGroup(config, this.trustedSource)
   }
 
   initWinCondition() {
@@ -32,31 +33,31 @@ export default class CustomRuleset extends Ruleset {
       if (!Array.isArray(config)) {
         config = [config]
       }
-      this.winCondition = new ConditionGroup(this.world, config)
+      this.winCondition = new ConditionGroup(config, this.trustedSource)
     }
   }
 
   beforeStart() {
-    this.winCondition.beforeStart()
-    this.lossCondition.beforeStart()
+    this.winCondition.beforeStart(this.world)
+    this.lossCondition.beforeStart(this.world)
   }
 
   step() {
-    this.winCondition.step()
-    this.lossCondition.step()
+    this.winCondition.step(this.world)
+    this.lossCondition.step(this.world)
   }
 
   hasWon() {
-    return this.winCondition && this.winCondition.check()
+    return this.winCondition && this.winCondition.check(this.world)
   }
 
   hasLost() {
-    return this.lossCondition && this.lossCondition.check()
+    return this.lossCondition && this.lossCondition.check(this.world)
   }
 
   getLossReason() {
     if (this.hasLost()) {
-      return this.lossCondition.getReason()
+      return this.lossCondition.getReason(this.world)
     }
     return null
   }

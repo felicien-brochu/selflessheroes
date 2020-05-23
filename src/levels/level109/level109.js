@@ -7,12 +7,12 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.eggsByValue = this.world.eggs.slice().sort((a, b) => a.value - b.value)
+  beforeStart(world) {
+    this.eggsByValue = world.eggs.slice().sort((a, b) => a.value - b.value)
   },
 
-  check() {
-    let eggsByX = this.world.eggs.slice().sort((a, b) => a.owner.x - b.owner.x)
+  check(world) {
+    let eggsByX = world.eggs.slice().sort((a, b) => a.owner.x - b.owner.x)
     return eggsByX.every((egg, i) => egg.value === this.eggsByValue[i].value)
   },
 }

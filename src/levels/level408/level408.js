@@ -7,11 +7,11 @@ for (let language of supportedLanguages) {
 }
 
 const tooMuchHeroesCondition = {
-  check() {
-    return this.world.heroes.length > 10
+  check(world) {
+    return world.heroes.length > 10
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_too_mush_heroes'
   }
 }

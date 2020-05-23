@@ -2,11 +2,11 @@ import DefaultLossReason from './DefaultLossReason'
 import Condition from './Condition'
 
 export default class AllHeroDeadCondition extends Condition {
-  check() {
-    return this.world.steps > this.world.level.maxStep
+  check(world) {
+    return world.steps > world.level.maxStep
   }
 
-  getReason() {
+  getReason(world) {
     return DefaultLossReason.reasons.tooManySteps
   }
 }

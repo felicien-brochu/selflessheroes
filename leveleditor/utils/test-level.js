@@ -151,7 +151,7 @@ module.exports = function testLevel(argv) {
   }
   let startTime = Date.now()
 
-  const tester = new LevelSpecTester(testsConfig, testerConf)
+  const tester = new LevelSpecTester(testsConfig, testerConf, 'local')
   let report = tester.test()
 
   globalReport.fail += report.fail

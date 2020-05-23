@@ -7,18 +7,18 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    let eggsOriginMarker = this.world.findConfigObjectByID(99)
-    this.targetEggs = this.world.eggs.filter(egg => egg.y < eggsOriginMarker.y + 4)
+  beforeStart(world) {
+    let eggsOriginMarker = world.findConfigObjectByID(99)
+    this.targetEggs = world.eggs.filter(egg => egg.y < eggsOriginMarker.y + 4)
   },
 
-  check() {
+  check(world) {
     if (!this.targetEggs.every(egg => egg.removed)) {
       return false
     }
 
     let i = 0
-    for (let cauldron of this.world.cauldrons) {
+    for (let cauldron of world.cauldrons) {
       if (!cauldron.items.every(item => item.value === i)) {
         return false
       }
@@ -29,9 +29,9 @@ const winCondition = {
 }
 
 const wrongEggInCauldronLossCondition = {
-  check() {
+  check(world) {
     let i = 0
-    for (let cauldron of this.world.cauldrons) {
+    for (let cauldron of world.cauldrons) {
       if (!cauldron.items.every(item => item.value === i)) {
         return true
       }
@@ -40,22 +40,22 @@ const wrongEggInCauldronLossCondition = {
     return false
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_wrong_egg_in_cauldron'
   }
 }
 
 const tookLabelEggLossCondition = {
-  beforeStart() {
-    let labelEggOrigin = this.world.findWorldObjectByID(120)
-    this.labelEggs = this.world.eggs.filter(egg => egg.y === labelEggOrigin.y)
+  beforeStart(world) {
+    let labelEggOrigin = world.findWorldObjectByID(120)
+    this.labelEggs = world.eggs.filter(egg => egg.y === labelEggOrigin.y)
   },
 
-  check() {
+  check(world) {
     return !this.labelEggs.every(egg => !egg.owner)
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_took_label_egg'
   }
 }

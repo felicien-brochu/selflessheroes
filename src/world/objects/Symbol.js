@@ -13,4 +13,11 @@ export default class Symbol extends WorldObject {
   getObjectType() {
     return ObjectType.symbol
   }
+
+  shallowCopy() {
+    let copy = super.shallowCopy()
+    return Object.assign(copy, {
+      symbol: this.symbol
+    })
+  }
 }

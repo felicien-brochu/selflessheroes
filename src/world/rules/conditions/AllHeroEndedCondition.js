@@ -2,15 +2,15 @@ import DefaultLossReason from './DefaultLossReason'
 import Condition from './Condition'
 
 export default class AllHeroEndedCondition extends Condition {
-  check() {
+  check(world) {
     let ended = true
-    for (let hero of this.world.heroes.filter(h => !h.dead)) {
+    for (let hero of world.heroes.filter(h => !h.dead)) {
       ended &= hero.getDebugContext().ended
     }
     return ended
   }
 
-  getReason() {
+  getReason(world) {
     return DefaultLossReason.reasons.allHeroEnded
   }
 }

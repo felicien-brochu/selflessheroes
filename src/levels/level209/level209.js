@@ -7,12 +7,12 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    let eggsOriginMarker = this.world.findConfigObjectByID(120)
+  beforeStart(world) {
+    let eggsOriginMarker = world.findConfigObjectByID(120)
     this.targets = []
 
     for (let i = 0; i < 10; i++) {
-      let eggLine = this.world.eggs.filter(egg => egg.x === eggsOriginMarker.x + i)
+      let eggLine = world.eggs.filter(egg => egg.x === eggsOriginMarker.x + i)
       let avg = Math.floor(eggLine.reduce((acc, egg) => acc + egg.value, 0) / eggLine.length)
 
       this.targets = this.targets.concat(eggLine.map(egg => ({
@@ -22,18 +22,18 @@ const winCondition = {
     }
   },
 
-  check() {
-    return this.world.eggs.every(egg => this.targets.some(target => target.eggID === egg.id && egg.value === target.avg))
+  check(world) {
+    return world.eggs.every(egg => this.targets.some(target => target.eggID === egg.id && egg.value === target.avg))
   }
 }
 
 const wrongValueOnEggLossCondition = {
-  beforeStart() {
-    let eggsOriginMarker = this.world.findConfigObjectByID(120)
+  beforeStart(world) {
+    let eggsOriginMarker = world.findConfigObjectByID(120)
     this.targets = []
 
     for (let i = 0; i < 10; i++) {
-      let eggLine = this.world.eggs.filter(egg => egg.x === eggsOriginMarker.x + i)
+      let eggLine = world.eggs.filter(egg => egg.x === eggsOriginMarker.x + i)
       let avg = Math.floor(eggLine.reduce((acc, egg) => acc + egg.value, 0) / eggLine.length)
 
       this.targets = this.targets.concat(eggLine.map(egg => ({
@@ -44,11 +44,11 @@ const wrongValueOnEggLossCondition = {
     }
   },
 
-  check() {
-    return this.world.eggs.some(egg => this.targets.some(target => target.eggID === egg.id && egg.value !== target.startValue && egg.value !== target.avg))
+  check(world) {
+    return world.eggs.some(egg => this.targets.some(target => target.eggID === egg.id && egg.value !== target.startValue && egg.value !== target.avg))
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_wrong_value_on_egg'
   }
 }

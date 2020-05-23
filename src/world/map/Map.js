@@ -66,4 +66,21 @@ export default class Map {
   getTerrainTypeAt(x, y) {
     return this.tiles[y * this.width + x]
   }
+
+  getProxy() {
+    return new MapProxy(this)
+  }
+}
+
+class MapProxy {
+  constructor(map) {
+    this.getWidth = () => map.width
+    this.getHeight = () => map.height
+    this.isHole = map.isHole.bind(map)
+    this.isFloor = map.isFloor.bind(map)
+    this.isWall = map.isWall.bind(map)
+    this.isInfected = map.isInfected.bind(map)
+
+    Object.freeze(this)
+  }
 }

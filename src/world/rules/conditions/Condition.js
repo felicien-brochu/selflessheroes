@@ -1,18 +1,17 @@
 export default class Condition {
-  constructor(world, config = {}) {
-    this.world = world
+  constructor(config = {}) {
     this.config = config
   }
 
-  beforeStart() {}
+  beforeStart(world) {}
 
-  step() {}
+  step(world) {}
 
-  check() {
+  check(world) {
     return false
   }
 
-  getReason() {
+  getReason(world) {
     return null
   }
 }

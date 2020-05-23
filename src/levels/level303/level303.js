@@ -7,8 +7,8 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    const map = this.world.map
+  beforeStart(world) {
+    const map = world.map
     this.floor = []
     for (let y = 0; y < map.height; y++) {
       for (let x = 0; x < map.width; x++) {
@@ -19,8 +19,8 @@ const winCondition = {
     }
   },
 
-  check() {
-    return this.floor.every(cell => cell[0] % 2 !== cell[1] % 2 || this.world.getCharactersAt(cell[0], cell[1]).length > 0)
+  check(world) {
+    return this.floor.every(cell => cell[0] % 2 !== cell[1] % 2 || world.getCharactersAt(cell[0], cell[1]).length > 0)
   }
 }
 

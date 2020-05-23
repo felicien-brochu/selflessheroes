@@ -51,6 +51,8 @@ export default class World {
 
     this.configObjects = []
 
+    this.proxy = null
+
     this.parseObjects()
     this.ruleset = this.level.buildRuleset(this)
     this.level.generateWorld(this)
@@ -151,6 +153,10 @@ export default class World {
   }
 
   createObject(type, config) {
+    if (!config.id) {
+      config.id = this.getAvailableObjectID()
+    }
+
     switch (type) {
       case 'hero':
         let hero = new Hero(config, this)
@@ -190,6 +196,8 @@ export default class World {
         this.configObjects.push(new Marker(config))
         break
     }
+
+    return config.id
   }
 
   getAvailableObjectID() {
@@ -670,7 +678,69 @@ export default class World {
     }
     return context
   }
+
+  getProxy() {
+    if (!this.proxy || this.proxy.steps !== this.steps) {
+      this.proxy = new WorldProxy(this)
+    }
+    return this.proxy
+  }
 }
+
+
+class WorldProxy {
+  constructor(world) {
+    // World snapshot
+
+    this.map = world.map.getProxy()
+    this.steps = world.steps
+
+    this.heroes = world.heroes.map(o => o.shallowCopy())
+    // this.npcs = world.npcs.map(o => o.shallowCopy())
+    this.switches = world.switches.map(o => o.shallowCopy())
+    this.bonfires = world.bonfires.map(o => o.shallowCopy())
+    this.cauldrons = world.cauldrons.map(o => o.shallowCopy())
+    this.spikes = world.spikes.map(o => o.shallowCopy())
+    this.eggs = world.eggs.map(o => o.shallowCopy())
+    this.symbols = world.symbols.map(o => o.shallowCopy())
+    this.configObjects = world.configObjects.map(o => o.shallowCopy())
+
+    this.worldObjects = [
+      ...this.heroes,
+      // ...this.npcs,
+      ...this.switches,
+      ...this.bonfires,
+      ...this.cauldrons,
+      ...this.spikes,
+      ...this.eggs,
+      ...this.symbols
+    ]
+
+    this.objects = [
+      ...this.worldObjects,
+      ...this.configObjects
+    ]
+
+    // Functions
+
+    this.rng = world.rng
+
+    if (this.steps === undefined) {
+      this.createObject = world.createObject.bind(world)
+    }
+
+    Object.freeze(this)
+  }
+
+  findObjectByID(id) {
+    return this.objects.find(o => o.id === id)
+  }
+
+  findObjectsAt(x, y) {
+    return this.worldObjects.filter(o => o.x === x && o.y === y && !(o.type === 'egg' && o.owner))
+  }
+}
+
 
 const freeDirSearchTree = []
 const freeDirSearchRadius = 2
@@ -690,7 +760,7 @@ for (let y = -freeDirSearchRadius; y <= freeDirSearchRadius; y++) {
     if (moduleDiff !== 0) {
       return moduleDiff
     } else {
-      return 1000 * (a.y - b.y) + (a.x - b.x)
+      return 100000 * (a.y - b.y) + (a.x - b.x)
     }
   })
 }

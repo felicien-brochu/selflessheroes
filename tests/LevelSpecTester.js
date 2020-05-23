@@ -3,7 +3,7 @@ import Level from '../src/levels/Level'
 import chalk from 'chalk'
 
 export default class LevelSpecTester {
-  constructor(spec, config = {}) {
+  constructor(spec, config = {}, source = 'campaign') {
     this.spec = spec
 
     this.config = Object.assign({
@@ -17,7 +17,7 @@ export default class LevelSpecTester {
       showStats: false,
     }, config)
 
-    this.level = new Level(0, this.spec.level)
+    this.level = new Level(0, this.spec.level, source)
     this.testMap = {
       speed: this.testSpeed.bind(this),
       speedSearch: this.testSpeedSearch.bind(this),

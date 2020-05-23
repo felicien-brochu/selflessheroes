@@ -7,13 +7,13 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
+  beforeStart(world) {
     this.startEggs = new Map()
-    this.world.eggs.forEach(egg => this.startEggs.set(egg.id, egg.shallowCopy()))
+    world.eggs.forEach(egg => this.startEggs.set(egg.id, egg.shallowCopy()))
   },
 
-  check() {
-    for (let egg of this.world.eggs) {
+  check(world) {
+    for (let egg of world.eggs) {
       if (egg.owner) {
         return false
       }
@@ -31,17 +31,17 @@ const winCondition = {
 }
 
 const wrongValueOnEggLossCondition = {
-  beforeStart() {
+  beforeStart(world) {
     this.startEggs = new Map()
-    this.world.eggs.forEach(egg => this.startEggs.set(egg.id, egg.shallowCopy()))
+    world.eggs.forEach(egg => this.startEggs.set(egg.id, egg.shallowCopy()))
   },
 
-  check() {
-    return !!this.getReason()
+  check(world) {
+    return !!this.getReason(world)
   },
 
-  getReason() {
-    for (let egg of this.world.eggs) {
+  getReason(world) {
+    for (let egg of world.eggs) {
       let startEgg = this.startEggs.get(egg.id)
       if (!egg.owner && egg.value !== startEgg.value) {
         if (startEgg.value < 5 && egg.value !== 0) {
@@ -56,13 +56,13 @@ const wrongValueOnEggLossCondition = {
 }
 
 const displacedEggLossCondition = {
-  beforeStart() {
+  beforeStart(world) {
     this.startEggs = new Map()
-    this.world.eggs.forEach(egg => this.startEggs.set(egg.id, egg.shallowCopy()))
+    world.eggs.forEach(egg => this.startEggs.set(egg.id, egg.shallowCopy()))
   },
 
-  check() {
-    for (let egg of this.world.eggs) {
+  check(world) {
+    for (let egg of world.eggs) {
       let startEgg = this.startEggs.get(egg.id)
       if (!egg.owner && (egg.x !== startEgg.x || egg.y !== startEgg.y)) {
         return true
@@ -71,7 +71,7 @@ const displacedEggLossCondition = {
     return false
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_egg_displaced'
   }
 }

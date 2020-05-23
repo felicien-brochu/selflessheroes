@@ -7,10 +7,10 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
+  beforeStart(world) {
     this.cauldronTargetValues = []
-    for (let cauldron of this.world.cauldrons) {
-      let eggs = this.world.eggs.filter(egg => egg.x === cauldron.x)
+    for (let cauldron of world.cauldrons) {
+      let eggs = world.eggs.filter(egg => egg.x === cauldron.x)
       let max = eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
       this.cauldronTargetValues.push({
         cauldronID: cauldron.id,
@@ -19,8 +19,8 @@ const winCondition = {
     }
   },
 
-  check() {
-    for (let cauldron of this.world.cauldrons) {
+  check(world) {
+    for (let cauldron of world.cauldrons) {
       if (cauldron.items.length !== 1) {
         return false
       }
@@ -35,10 +35,10 @@ const winCondition = {
 }
 
 const wrongEggLossCondition = {
-  beforeStart() {
+  beforeStart(world) {
     this.cauldronTargetValues = []
-    for (let cauldron of this.world.cauldrons) {
-      let eggs = this.world.eggs.filter(egg => egg.x === cauldron.x)
+    for (let cauldron of world.cauldrons) {
+      let eggs = world.eggs.filter(egg => egg.x === cauldron.x)
       let max = eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
 
       this.cauldronTargetValues.push({
@@ -48,8 +48,8 @@ const wrongEggLossCondition = {
     }
   },
 
-  check() {
-    for (let cauldron of this.world.cauldrons) {
+  check(world) {
+    for (let cauldron of world.cauldrons) {
       let targetValue = this.cauldronTargetValues.find(target => target.cauldronID === cauldron.id).target
       if (cauldron.items.length > 1 || (cauldron.items.length === 1 && cauldron.items[0].value !== targetValue)) {
         return true
@@ -58,7 +58,7 @@ const wrongEggLossCondition = {
     return false
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_one_egg_not_max'
   }
 }

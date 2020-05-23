@@ -7,24 +7,24 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.realAvg = Math.floor(this.world.eggs.reduce((acc, egg) => acc + egg.value, 0) / this.world.eggs.length)
+  beforeStart(world) {
+    this.realAvg = Math.floor(world.eggs.reduce((acc, egg) => acc + egg.value, 0) / world.eggs.length)
 
-    let eggsOriginMarker = this.world.findConfigObjectByID(120)
+    let eggsOriginMarker = world.findConfigObjectByID(120)
     let avgs = []
 
     for (let i = 0; i < 10; i++) {
-      let eggLine = this.world.eggs.filter(egg => egg.x === eggsOriginMarker.x + i)
+      let eggLine = world.eggs.filter(egg => egg.x === eggsOriginMarker.x + i)
       avgs.push(Math.floor(eggLine.reduce((acc, egg) => acc + egg.value, 0) / eggLine.length))
     }
     this.linesAvg = Math.floor(avgs.reduce((acc, avg) => acc + avg, 0) / 10)
   },
 
-  check() {
+  check(world) {
     // It accepts the real average and the average of average of lines
     // These two values can differ a bit due to integer division
-    return this.world.eggs.every(egg => egg.value === this.realAvg) ||
-      this.world.eggs.every(egg => egg.value === this.linesAvg)
+    return world.eggs.every(egg => egg.value === this.realAvg) ||
+      world.eggs.every(egg => egg.value === this.linesAvg)
   }
 }
 

@@ -7,11 +7,11 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  check() {
-    for (let y = 0; y < this.world.map.height; y++) {
-      for (let x = 0; x < this.world.map.width; x++) {
-        if (this.world.map.isFloor(x, y)) {
-          if (this.world.getCharactersAt(x, y).length === 0) {
+  check(world) {
+    for (let y = 0; y < world.map.height; y++) {
+      for (let x = 0; x < world.map.width; x++) {
+        if (world.map.isFloor(x, y)) {
+          if (world.getCharactersAt(x, y).length === 0) {
             return false
           }
         }

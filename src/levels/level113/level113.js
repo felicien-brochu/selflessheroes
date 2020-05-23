@@ -7,48 +7,48 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.max = this.world.eggs.reduce((acc, egg) => Math.max(egg.value, acc), 0)
+  beforeStart(world) {
+    this.max = world.eggs.reduce((acc, egg) => Math.max(egg.value, acc), 0)
   },
 
-  check() {
-    let remainingEggs = this.world.eggs.filter(egg => !egg.removed)
+  check(world) {
+    let remainingEggs = world.eggs.filter(egg => !egg.removed)
     return remainingEggs.length === 1 && remainingEggs[0].value === this.max
   },
 }
 
 const allHeroEndedLossCondition = {
-  beforeStart() {
-    this.max = this.world.eggs.reduce((acc, egg) => Math.max(egg.value, acc), 0)
+  beforeStart(world) {
+    this.max = world.eggs.reduce((acc, egg) => Math.max(egg.value, acc), 0)
   },
 
-  check() {
-    let remainingEggs = this.world.eggs.filter(egg => !egg.removed)
+  check(world) {
+    let remainingEggs = world.eggs.filter(egg => !egg.removed)
     let hasWon = remainingEggs.length === 1 && remainingEggs[0].value === this.max
 
     let ended = true
-    for (let hero of this.world.heroes.filter(h => !h.dead)) {
+    for (let hero of world.heroes.filter(h => !h.dead)) {
       ended &= hero.getDebugContext().ended
     }
     return ended && !hasWon
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_all_hero_ended'
   }
 }
 
 const allMaxEggsInHoleLossCondition = {
-  beforeStart() {
-    const max = this.world.eggs.reduce((acc, egg) => Math.max(egg.value, acc), 0)
-    this.maxEggs = this.world.eggs.filter(egg => egg.value === max)
+  beforeStart(world) {
+    const max = world.eggs.reduce((acc, egg) => Math.max(egg.value, acc), 0)
+    this.maxEggs = world.eggs.filter(egg => egg.value === max)
   },
 
-  check() {
+  check(world) {
     return this.maxEggs.every(egg => egg.removed)
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_all_max_eggs_in_hole'
   }
 }

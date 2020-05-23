@@ -4,4 +4,8 @@ export default class ConfigObject {
     this.type = type
     Object.assign(this, config)
   }
+
+  shallowCopy() {
+    return JSON.parse(JSON.stringify(this))
+  }
 }

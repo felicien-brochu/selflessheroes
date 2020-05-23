@@ -101,7 +101,8 @@ export default class Character extends WorldObject {
     return Object.assign(copy, {
       dead: this.dead,
       deathReason: this.deathReason,
-      item: item
+      item: item,
+      ended: !this.ai.hasStepAvailable()
     })
   }
 }

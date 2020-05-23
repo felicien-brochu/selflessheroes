@@ -27,41 +27,63 @@ const conditionMap = {
 }
 
 export default class ConditionFactory {
-  static build(config, world) {
+  static build(config, trustedSource = false) {
     if (typeof config === 'string') {
-      return ConditionFactory.buildTemplate(config, world)
+      return ConditionFactory.buildTemplate(config)
     } else if (typeof config === 'object') {
       if (typeof config.check === 'function') {
-        return ConditionFactory.buildCustom(config, world)
+        return ConditionFactory.buildCustom(config, trustedSource)
       } else if (config.type !== undefined) {
         let conditionConfig = config.config || {}
-        return ConditionFactory.buildTemplate(config.type, world, conditionConfig)
+        return ConditionFactory.buildTemplate(config.type, conditionConfig)
       }
     }
   }
 
-  static buildCustom(config, world) {
-    return new CustomCondition(config, world)
+  static buildCustom(config, trustedSource = false) {
+    return new CustomCondition(config, trustedSource)
   }
 
-  static buildTemplate(type, world, config = {}) {
+  static buildTemplate(type, config = {}) {
     let conditionClass = conditionMap[type]
     let condition = null
     if (conditionClass) {
-      condition = new conditionClass(world, config)
+      condition = new conditionClass(config)
     }
     return condition
   }
 }
 
 class CustomCondition extends Condition {
-  constructor(config, world) {
-    super(world)
-
-    Object.assign(this, config)
+  constructor(config, trustedSource = false) {
+    super()
+    this.config = config
+    this.trustedSource = trustedSource
   }
 
-  getReason() {
+  beforeStart(world) {
+    if (typeof this.config.beforeStart === 'function') {
+      this.config.beforeStart(this.trustedSource ? world : world.getProxy())
+    }
+  }
+
+  step(world) {
+    if (typeof this.config.step === 'function') {
+      this.config.step(this.trustedSource ? world : world.getProxy())
+    }
+  }
+
+  check(world) {
+    if (typeof this.config.check === 'function') {
+      return this.config.check(this.trustedSource ? world : world.getProxy())
+    }
+    return false
+  }
+
+  getReason(world) {
+    if (typeof this.config.getReason === 'function') {
+      return this.config.getReason(this.trustedSource ? world : world.getProxy())
+    }
     return 'reason_custom'
   }
 }

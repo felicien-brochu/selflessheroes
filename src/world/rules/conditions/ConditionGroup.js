@@ -2,10 +2,11 @@ import Condition from './Condition'
 import ConditionFactory from './ConditionFactory'
 
 export default class ConditionGroup extends Condition {
-  constructor(world, config) {
-    super(world)
+  constructor(config, trustedSource = false) {
+    super()
 
     this.config = config
+    this.trustedSource = trustedSource
     this.conditions = []
     this.operators = []
 
@@ -20,23 +21,23 @@ export default class ConditionGroup extends Condition {
   }
 
   addCondition(conditionConfig) {
-    let condition = ConditionFactory.build(conditionConfig, this.world)
+    let condition = ConditionFactory.build(conditionConfig, this.trustedSource)
     this.conditions.push(condition)
   }
 
-  beforeStart() {
-    this.conditions.forEach(condition => condition.beforeStart())
+  beforeStart(world) {
+    this.conditions.forEach(condition => condition.beforeStart(world))
   }
 
-  step() {
-    this.conditions.forEach(condition => condition.step())
+  step(world) {
+    this.conditions.forEach(condition => condition.step(world))
   }
 
-  check() {
-    return this.getConditionsCheck().value
+  check(world) {
+    return this.getConditionsCheck(world).value
   }
 
-  getConditionsCheck() {
+  getConditionsCheck(world) {
     if (this.conditions.length === 0) {
       return {
         value: false,
@@ -50,7 +51,7 @@ export default class ConditionGroup extends Condition {
         accumulator.push(this.operators[index - 1])
       }
       accumulator.push({
-        value: condition.check(),
+        value: condition.check(world),
         condition: condition
       })
     })
@@ -82,8 +83,8 @@ export default class ConditionGroup extends Condition {
     return accumulator[0]
   }
 
-  getReason() {
-    let condition = this.getConditionsCheck()
-    return condition.value ? condition.condition.getReason() : null
+  getReason(world) {
+    let condition = this.getConditionsCheck(world)
+    return condition.value ? condition.condition.getReason(world) : null
   }
 }

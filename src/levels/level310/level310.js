@@ -7,17 +7,17 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.targetValues = this.world.eggs
+  beforeStart(world) {
+    this.targetValues = world.eggs
       .filter(egg => egg.y === 6)
       .sort((a, b) => a.x - b.x)
       .map(egg => egg.shallowCopy())
-    this.eggsToWrite = this.world.eggs
+    this.eggsToWrite = world.eggs
       .filter(egg => egg.y < 4)
       .sort((a, b) => a.x - b.x)
   },
 
-  check() {
+  check(world) {
     return this.eggsToWrite.every((egg, index) => this.targetValues[index].value === egg.value)
   },
 }

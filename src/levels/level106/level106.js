@@ -7,29 +7,29 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.maxEggValue = this.world.eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
+  beforeStart(world) {
+    this.maxEggValue = world.eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
   },
 
-  check() {
+  check(world) {
     const cauldronID = 30
-    let cauldron = this.world.findWorldObjectByID(cauldronID)
+    let cauldron = world.findWorldObjectByID(cauldronID)
     return cauldron.items.length === 1 && cauldron.items[0].value === this.maxEggValue
   }
 }
 
 const notMaximumEggLossCondition = {
-  beforeStart() {
-    this.maxEggValue = this.world.eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
+  beforeStart(world) {
+    this.maxEggValue = world.eggs.reduce((accumulator, egg) => Math.max(egg.value, accumulator), 0)
   },
 
-  check() {
+  check(world) {
     const cauldronID = 30
-    let cauldron = this.world.findWorldObjectByID(cauldronID)
+    let cauldron = world.findWorldObjectByID(cauldronID)
     return cauldron.items.length > 0 && cauldron.items[0].value < this.maxEggValue
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_not_maximum_egg_in_cauldron'
   }
 }

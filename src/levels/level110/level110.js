@@ -7,27 +7,27 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.maxEggValue = this.world.eggs.reduce((max, egg) => Math.max(egg.value, max), 0)
+  beforeStart(world) {
+    this.maxEggValue = world.eggs.reduce((max, egg) => Math.max(egg.value, max), 0)
   },
 
-  check() {
-    let cauldron = this.world.cauldrons[0]
+  check(world) {
+    let cauldron = world.cauldrons[0]
     return cauldron.items.length === 1 && cauldron.items[0].value === this.maxEggValue
   },
 }
 
 const wrongEggLossCondition = {
-  beforeStart() {
-    this.maxEggValue = this.world.eggs.reduce((max, egg) => Math.max(egg.value, max), 0)
+  beforeStart(world) {
+    this.maxEggValue = world.eggs.reduce((max, egg) => Math.max(egg.value, max), 0)
   },
 
-  check() {
-    let cauldron = this.world.cauldrons[0]
+  check(world) {
+    let cauldron = world.cauldrons[0]
     return cauldron.items.length === 1 && cauldron.items[0].value !== this.maxEggValue || cauldron.items.length > 1
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_one_egg_not_max'
   }
 }

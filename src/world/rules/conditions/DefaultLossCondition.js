@@ -5,33 +5,33 @@ import TooManyStepsCondition from './TooManyStepsCondition'
 import Condition from './Condition'
 
 export default class DefaultLossCondition extends Condition {
-  constructor(world) {
-    super(world)
+  constructor() {
+    super()
 
     this.conditions = [
-      new AllHeroDeadCondition(world),
-      new AllHeroEndedCondition(world),
-      new TooManyStepsCondition(world)
+      new AllHeroDeadCondition(),
+      new AllHeroEndedCondition(),
+      new TooManyStepsCondition()
     ]
   }
 
-  step() {
-    this.conditions.forEach(condition => condition.step())
+  step(world) {
+    this.conditions.forEach(condition => condition.step(world))
   }
 
-  check() {
+  check(world) {
     for (let condition of this.conditions) {
-      if (condition.check()) {
+      if (condition.check(world)) {
         return true
       }
     }
     return false
   }
 
-  getReason() {
+  getReason(world) {
     for (let condition of this.conditions) {
-      if (condition.check()) {
-        return condition.getReason()
+      if (condition.check(world)) {
+        return condition.getReason(world)
       }
     }
     return null

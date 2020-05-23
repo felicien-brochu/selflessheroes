@@ -64,15 +64,13 @@
       "dist/assets/**/*",
       "dist/workers/**/*"
     ],
-    "fileAssociations": [
-      {
-        "ext": "shsv",
-        "name": "SHSV",
-        "description": "Selfless Heroes saved game",
-        "mimeType": "application/x-shsv",
-        "role": "Viewer"
-      }
-    ],
+    "fileAssociations": [{
+      "ext": "shsv",
+      "name": "SHSV",
+      "description": "Selfless Heroes saved game",
+      "mimeType": "application/x-shsv",
+      "role": "Viewer"
+    }],
     "compression": "maximum",
     "win": {
       "target": [

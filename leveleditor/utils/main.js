@@ -46,7 +46,7 @@ available commands:
   test-level          Execute tests on the current level
   checklist           Check level files requirements
   push-level          Upload a level on Selfless Heroes API for review
-	register            Create a user account on Selfless Heroes API
+  register            Create a user account on Selfless Heroes API
 
 when no level-directory parameter, the working directory is used as level directory.`
   )

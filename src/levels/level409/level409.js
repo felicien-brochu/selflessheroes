@@ -7,16 +7,16 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
+  beforeStart(world) {
     let originMarkersIDs = [248, 249, 250, 251]
-    let markers = this.world.configObjects.filter(o => o.type === 'marker').sort((a, b) => a.x - b.x)
+    let markers = world.configObjects.filter(o => o.type === 'marker').sort((a, b) => a.x - b.x)
 
     this.codes = []
     for (let marker of markers) {
       let code = {
         x: marker.x,
         expectedValues: new Array(6),
-        eggs: this.world.eggs.filter(egg => egg.x === marker.x).sort((a, b) => a.y - b.y)
+        eggs: world.eggs.filter(egg => egg.x === marker.x).sort((a, b) => a.y - b.y)
       }
       this.codes.push(code)
     }
@@ -34,7 +34,7 @@ const winCondition = {
     }
   },
 
-  check() {
+  check(world) {
     return this.codes.every(code => code.eggs.every((egg, index) => egg.value === code.expectedValues[index] && egg.x === code.x && !egg.owner))
   }
 }

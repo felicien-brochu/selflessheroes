@@ -7,17 +7,17 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.selectedEggs = this.world.eggs.filter(egg => egg.value < 4).map(egg => egg.shallowCopy())
+  beforeStart(world) {
+    this.selectedEggs = world.eggs.filter(egg => egg.value < 4).map(egg => egg.shallowCopy())
   },
 
-  check() {
+  check(world) {
     const cauldronIDs = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
     let targetEggs = this.selectedEggs.map(egg => egg.id).sort()
     let cauldronEggs = []
 
     for (let id of cauldronIDs) {
-      let cauldron = this.world.findWorldObjectByID(id)
+      let cauldron = world.findWorldObjectByID(id)
       cauldronEggs = cauldronEggs.concat(cauldron.items.map(item => item.id))
     }
 
@@ -36,10 +36,10 @@ const winCondition = {
 }
 
 const wrongNumberEggLossCondition = {
-  check() {
+  check(world) {
     const cauldronIDs = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
     for (let id of cauldronIDs) {
-      let cauldron = this.world.findWorldObjectByID(id)
+      let cauldron = world.findWorldObjectByID(id)
 
       for (let item of cauldron.items) {
         if (cauldron && item.value >= 4) {
@@ -50,7 +50,7 @@ const wrongNumberEggLossCondition = {
     return false
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_one_egg_ge_4'
   }
 }

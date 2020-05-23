@@ -11,29 +11,29 @@ function isOnCross(world, hero) {
 }
 
 const winCondition = {
-  check() {
-    return this.world.heroes.every(h => isOnCross(this.world, h))
+  check(world) {
+    return world.heroes.every(h => isOnCross(world, h))
   },
 }
 
 
 const movedOfTheCrossLossCondition = {
-  beforeStart() {
-    this.heroes = this.world.heroes.slice().sort((a, b) => a.x - b.x).map(hero => hero.shallowCopy())
+  beforeStart(world) {
+    this.heroes = world.heroes.slice().sort((a, b) => a.x - b.x).map(hero => hero.shallowCopy())
     this.isOnCrossMap = this.heroes.map(h => false)
     this.newIsOnCrossMap = this.isOnCrossMap.slice()
   },
 
-  step() {
+  step(world) {
     this.isOnCrossMap = this.newIsOnCrossMap.slice()
-    this.newIsOnCrossMap = this.heroes.map(h => isOnCross(this.world, this.world.findWorldObjectByID(h.id)))
+    this.newIsOnCrossMap = this.heroes.map(h => isOnCross(world, world.findWorldObjectByID(h.id)))
   },
 
-  check() {
+  check(world) {
     return this.newIsOnCrossMap.some((onCross, i) => !onCross && this.isOnCrossMap[i])
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_moved_of_the_cross'
   }
 }

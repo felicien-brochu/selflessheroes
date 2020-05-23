@@ -3,38 +3,48 @@ function maxValue(world) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.maxValue = maxValue(this.world)
+  beforeStart(world) {
+    this.maxValue = maxValue(world)
   },
 
-  check() {
-    let cauldronContent = this.world.cauldrons[0].items
+  check(world) {
+    let cauldronContent = world.cauldrons[0].items.map(itemId => world.findObjectByID(itemId))
     return cauldronContent.length >= 1 && cauldronContent.every(egg => egg.value === this.maxValue)
   }
 }
 
 const wrongEggInCauldronCondition = {
-  beforeStart() {
-    this.maxValue = maxValue(this.world)
+  beforeStart(world) {
+    this.maxValue = maxValue(world)
   },
 
-  check() {
-    let cauldronContent = this.world.cauldrons[0].items
+  check(world) {
+    let cauldronContent = world.cauldrons[0].items.map(itemId => world.findObjectByID(itemId))
     return cauldronContent.some(egg => egg.value !== this.maxValue)
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_wrong_egg_in_cauldron'
   }
 }
 
 const tooMuchHeroesCondition = {
-  check() {
-    return this.world.heroes.length > 31
+  check(world) {
+    return world.heroes.length > 31
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_too_mush_heroes'
+  }
+}
+
+const worldGenerator = {
+  generate(world) {
+    let newEggId = world.createObject('egg', {
+      x: 15,
+      y: 14,
+      value: -1
+    })
   }
 }
 
@@ -75,6 +85,8 @@ const level = {
     win: [winCondition],
     lose: [tooMuchHeroesCondition, 'or', wrongEggInCauldronCondition, 'or', 'default_loss']
   },
+
+  worldGenerator: worldGenerator,
 }
 
 module.exports = level

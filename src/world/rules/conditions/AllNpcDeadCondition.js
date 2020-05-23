@@ -1,9 +1,9 @@
 import Condition from './Condition'
 
 export default class AllNpcDeadCondition extends Condition {
-  check() {
+  check(world) {
     let allDead = true
-    for (let npc of this.world.npcs) {
+    for (let npc of world.npcs) {
       if (!npc.dead) {
         allDead = false
         break

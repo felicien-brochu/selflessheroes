@@ -7,21 +7,21 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
+  beforeStart(world) {
     const eggOriginMarkerID = 99
-    const originMarker = this.world.findConfigObjectByID(eggOriginMarkerID)
+    const originMarker = world.findConfigObjectByID(eggOriginMarkerID)
     this.eggs = []
     for (let x = originMarker.x; x < originMarker.x + 10; x++) {
-      let columnEggs = this.world.eggs.filter(egg => egg.x === x).sort((a, b) => a.y - b.y).map(egg => egg.id)
+      let columnEggs = world.eggs.filter(egg => egg.x === x).sort((a, b) => a.y - b.y).map(egg => egg.id)
       this.eggs.push(columnEggs)
     }
   },
 
-  check() {
+  check(world) {
     const eggOriginMarkerID = 99
-    const originMarker = this.world.findConfigObjectByID(eggOriginMarkerID)
+    const originMarker = world.findConfigObjectByID(eggOriginMarkerID)
     for (let i = 0; i < 10; i++) {
-      let columnEggs = this.world.eggs.filter(egg => egg.x === i + originMarker.x && !egg.owner).sort((a, b) => a.y - b.y)
+      let columnEggs = world.eggs.filter(egg => egg.x === i + originMarker.x && !egg.owner).sort((a, b) => a.y - b.y)
 
       if (columnEggs.length !== this.eggs[i].length) {
         return false

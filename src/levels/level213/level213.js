@@ -7,10 +7,10 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {},
+  beforeStart(world) {},
 
-  check() {
-    return this.world.cauldrons[0].items.length === this.world.eggs.length
+  check(world) {
+    return world.cauldrons[0].items.length === world.eggs.length
   }
 }
 

@@ -23,7 +23,7 @@ export default class Level extends WorldLevel {
     ruleset,
     worldGenerator,
   }, source = 'campaign') {
-    super(id, mapConfig, maxStep)
+    super(id, mapConfig, maxStep, source === 'campaign')
     this.messages = messages || null
     this.bossTellsSomething = !!bossTellsSomething
     this.bossName = bossName || null
@@ -39,6 +39,7 @@ export default class Level extends WorldLevel {
       lose: 'default_loss'
     }
     this.worldGenerator = worldGenerator
+
     this.source = source
   }
 
@@ -79,15 +80,21 @@ export default class Level extends WorldLevel {
   }
 
   get tutorial() {
+    if (!this.trustedSource) {
+      return null
+    }
+
     if (typeof this.tutorialConfig === 'string') {
       if (this.tutorialConfig === 'basic_tutorial') {
         return BasicTutorialConfig
       } else if (this.tutorialConfig === 'advanced_tutorial') {
         return AdvancedTutorialConfig
+      } else {
+        return null
       }
-    } else {
-      return this.tutorialConfig
     }
+
+    return this.tutorialConfig
   }
 
   buildCompilerConfig() {
@@ -99,34 +106,21 @@ export default class Level extends WorldLevel {
   }
 
   buildRuleset(world) {
-    if (typeof this.ruleset.step === 'function' &&
-      typeof this.ruleset.hasWon === 'function' &&
-      typeof this.ruleset.hasLost === 'function' &&
-      typeof this.ruleset.getLossReason === 'function') {
-      return this.ruleset
-    } else {
-      return super.buildRuleset(world, this.ruleset)
-    }
+    return super.buildRuleset(world, this.ruleset)
   }
 
   generateWorld(world) {
     if (this.worldGenerator) {
-      let generator
       if (typeof this.worldGenerator.generate === 'function') {
-        generator = this.worldGenerator
+        this.worldGenerator.generate(this.trustedSource ? world : world.getProxy())
       } else if (Array.isArray(this.worldGenerator)) {
-        generator = {
-          generate: (world) => {
-            for (let generatorConfig of this.worldGenerator) {
-              WorldGeneratorFactory.build(generatorConfig.type, generatorConfig.config).generate(world)
-            }
-          }
+        for (let generatorConfig of this.worldGenerator) {
+          WorldGeneratorFactory.build(generatorConfig.type, generatorConfig.config).generate(world)
         }
       } else {
-        generator = WorldGeneratorFactory.build(this.worldGenerator.type, this.worldGenerator.config)
+        let generator = WorldGeneratorFactory.build(this.worldGenerator.type, this.worldGenerator.config)
+        generator.generate(world)
       }
-
-      generator.generate(world)
     }
   }
 

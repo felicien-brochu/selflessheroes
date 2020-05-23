@@ -15,45 +15,45 @@ function computeNumber(world) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.targetNumber = computeNumber(this.world) * 2
+  beforeStart(world) {
+    this.targetNumber = computeNumber(world) * 2
   },
 
-  check() {
-    let eggs = this.world.eggs.sort((a, b) => b.x - a.x)
+  check(world) {
+    let eggs = world.eggs.sort((a, b) => b.x - a.x)
 
     return eggs.every(egg => !egg.owner && egg.y === 5) &&
       eggs[0].x === 9 && eggs[eggs.length - 1].x === 4 &&
-      computeNumber(this.world) === this.targetNumber
+      computeNumber(world) === this.targetNumber
   },
 }
 
 
 const wrongNumberLossCondition = {
-  beforeStart() {
-    this.targetNumber = computeNumber(this.world) * 2
+  beforeStart(world) {
+    this.targetNumber = computeNumber(world) * 2
   },
 
-  check() {
-    let eggs = this.world.eggs.sort((a, b) => b.x - a.x)
+  check(world) {
+    let eggs = world.eggs.sort((a, b) => b.x - a.x)
 
     return eggs.every(egg => !egg.owner && egg.y === 5) &&
       eggs[0].x === 9 && eggs[eggs.length - 1].x === 4 &&
-      (computeNumber(this.world) !== this.targetNumber || this.world.eggs.some(egg => egg.value > 9))
+      (computeNumber(this.world) !== this.targetNumber || world.eggs.some(egg => egg.value > 9))
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_wrong_number'
   }
 }
 
 const notSameTimeLossCondition = {
-  check() {
-    let eggsOnCross = this.world.eggs.filter(egg => !egg.owner && egg.y === 5 && egg.x >= 4 && egg.x <= 9)
+  check(world) {
+    let eggsOnCross = world.eggs.filter(egg => !egg.owner && egg.y === 5 && egg.x >= 4 && egg.x <= 9)
     return eggsOnCross.length > 0 && eggsOnCross.length < 6
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_not_same_time'
   }
 }

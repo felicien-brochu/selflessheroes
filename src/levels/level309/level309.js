@@ -7,8 +7,8 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  check() {
-    return this.world.heroes.every(hero => hero.x >= 11)
+  check(world) {
+    return world.heroes.every(hero => hero.x >= 11)
   },
 }
 

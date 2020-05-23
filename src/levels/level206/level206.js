@@ -7,15 +7,15 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.markers = this.world.configObjects.filter(o => o.type === 'marker')
+  beforeStart(world) {
+    this.markers = world.configObjects.filter(o => o.type === 'marker')
   },
 
-  check() {
-    return this.world.eggs.every(egg => {
+  check(world) {
+    return world.eggs.every(egg => {
         return !egg.owner && this.markers.find(marker => marker.x === egg.x && marker.y === egg.y)
       }) &&
-      this.world.heroes.every(hero => hero.y === 13)
+      world.heroes.every(hero => hero.y === 13)
   }
 }
 

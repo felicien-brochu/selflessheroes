@@ -7,8 +7,8 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  check() {
-    return this.world.heroes.some(hero => hero.x === 10)
+  check(world) {
+    return world.heroes.some(hero => hero.x === 10)
   },
 }
 

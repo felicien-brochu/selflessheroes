@@ -1,9 +1,9 @@
 import Condition from './Condition'
 
 export default class AllBonfiresEnabledCondition extends Condition {
-  check() {
+  check(world) {
     let disabled = false
-    for (let bonfire of this.world.bonfires) {
+    for (let bonfire of world.bonfires) {
       if (bonfire.isDisabled()) {
         disabled = true
         break

@@ -7,15 +7,15 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.leftEgg = this.world.findWorldObjectByID(328)
-    this.rightEgg = this.world.findWorldObjectByID(329)
-    let inventoryEggs = this.world.eggs.filter(egg => egg.y >= 3)
+  beforeStart(world) {
+    this.leftEgg = world.findWorldObjectByID(328)
+    this.rightEgg = world.findWorldObjectByID(329)
+    let inventoryEggs = world.eggs.filter(egg => egg.y >= 3)
     this.inventory0 = inventoryEggs.filter(egg => egg.value === 0).length
     this.inventory1 = inventoryEggs.filter(egg => egg.value === 1).length
   },
 
-  check() {
+  check(world) {
     return this.leftEgg.value === this.inventory0 && this.rightEgg.value === this.inventory1
   },
 }

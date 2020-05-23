@@ -7,13 +7,13 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.heroes = this.world.heroes.slice().map(hero => hero.shallowCopy())
+  beforeStart(world) {
+    this.heroes = world.heroes.slice().map(hero => hero.shallowCopy())
   },
 
-  check() {
+  check(world) {
     const startY = this.heroes[0].y
-    return this.world.heroes.every(hero => {
+    return world.heroes.every(hero => {
       let startHero = this.heroes.find(h => h.id === hero.id)
       return hero.y === startY + 2 && hero.x === startHero.x
     })
@@ -22,22 +22,22 @@ const winCondition = {
 
 
 const movedOfTheCrossLossCondition = {
-  beforeStart() {
-    this.heroes = this.world.heroes.slice().sort((a, b) => a.x - b.x).map(hero => hero.shallowCopy())
+  beforeStart(world) {
+    this.heroes = world.heroes.slice().sort((a, b) => a.x - b.x).map(hero => hero.shallowCopy())
     this.isOnCrossMap = this.heroes.map(h => false)
     this.newIsOnCrossMap = this.isOnCrossMap.slice()
   },
 
-  step() {
+  step(world) {
     this.isOnCrossMap = this.newIsOnCrossMap.slice()
     for (let i = 0; i < this.heroes.length; i++) {
       let startHero = this.heroes[i]
-      let hero = this.world.findWorldObjectByID(this.heroes[i].id)
+      let hero = world.findWorldObjectByID(this.heroes[i].id)
       this.newIsOnCrossMap[i] = hero.x === startHero.x && hero.y === startHero.y + 2
     }
   },
 
-  check() {
+  check(world) {
     for (let i = 0; i < this.isOnCrossMap.length; i++) {
       if (!this.newIsOnCrossMap[i] && this.isOnCrossMap[i]) {
         return true
@@ -46,29 +46,29 @@ const movedOfTheCrossLossCondition = {
     return false
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_moved_of_the_cross'
   }
 }
 
 
 const wrongOrderLossCondition = {
-  beforeStart() {
-    this.heroes = this.world.heroes.slice().sort((a, b) => a.x - b.x).map(hero => hero.shallowCopy())
+  beforeStart(world) {
+    this.heroes = world.heroes.slice().sort((a, b) => a.x - b.x).map(hero => hero.shallowCopy())
     this.isOnCrossMap = this.heroes.map(h => false)
     this.newIsOnCrossMap = this.isOnCrossMap.slice()
   },
 
-  step() {
+  step(world) {
     this.isOnCrossMap = this.newIsOnCrossMap.slice()
     for (let i = 0; i < this.heroes.length; i++) {
       let startHero = this.heroes[i]
-      let hero = this.world.findWorldObjectByID(this.heroes[i].id)
+      let hero = world.findWorldObjectByID(this.heroes[i].id)
       this.newIsOnCrossMap[i] = hero.x === startHero.x && hero.y === startHero.y + 2
     }
   },
 
-  check() {
+  check(world) {
     let lastHeroOnCross = -1
     let foundNewHeroOnCross = false
 
@@ -86,7 +86,7 @@ const wrongOrderLossCondition = {
     return false
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_wrong_order'
   }
 }

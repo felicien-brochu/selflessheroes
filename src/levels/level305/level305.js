@@ -7,31 +7,31 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  beforeStart() {
-    this.masterEgg = this.world.eggs.find(egg => egg.id === 316).shallowCopy()
-    this.selectedEggs = this.world.eggs
+  beforeStart(world) {
+    this.masterEgg = world.eggs.find(egg => egg.id === 316).shallowCopy()
+    this.selectedEggs = world.eggs
       .filter(egg => egg.value % 2 === this.masterEgg.value % 2 && egg.id !== this.masterEgg.id)
       .map(egg => egg.id)
   },
 
-  check() {
-    return this.selectedEggs.every(eggID => this.world.cauldrons.some(cauldron => cauldron.items.some(item => item.id === eggID)))
+  check(world) {
+    return this.selectedEggs.every(eggID => world.cauldrons.some(cauldron => cauldron.items.some(item => item.id === eggID)))
   },
 }
 
 const wrongEggInCauldronLossCondition = {
-  beforeStart() {
-    this.masterEgg = this.world.eggs.find(egg => egg.id === 316).shallowCopy()
-    this.selectedEggs = this.world.eggs
+  beforeStart(world) {
+    this.masterEgg = world.eggs.find(egg => egg.id === 316).shallowCopy()
+    this.selectedEggs = world.eggs
       .filter(egg => egg.value % 2 === this.masterEgg.value % 2 && egg.id !== this.masterEgg.id)
       .map(egg => egg.id)
   },
 
-  check() {
-    return this.world.cauldrons.some(cauldron => cauldron.items.some(item => this.selectedEggs.every(eggID => item.id !== eggID)))
+  check(world) {
+    return world.cauldrons.some(cauldron => cauldron.items.some(item => this.selectedEggs.every(eggID => item.id !== eggID)))
   },
 
-  getReason() {
+  getReason(world) {
     if (this.masterEgg.value % 2 === 0) {
       return 'loss_reason_wrong_egg_in_cauldron_even'
     } else {

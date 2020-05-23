@@ -4,13 +4,9 @@ export default class Ruleset {
     this.world = world
   }
 
-  beforeStart() {
+  beforeStart() {}
 
-  }
-
-  step() {
-
-  }
+  step() {}
 
   hasWon() {
     return false

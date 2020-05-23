@@ -7,10 +7,10 @@ for (let language of supportedLanguages) {
 }
 
 const winCondition = {
-  check() {
+  check(world) {
     const cauldronIDs = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
     for (let id of cauldronIDs) {
-      let cauldron = this.world.findWorldObjectByID(id)
+      let cauldron = world.findWorldObjectByID(id)
       if (!cauldron || cauldron.items.length !== 1 || cauldron.items[0].value >= 4) {
         return false
       }
@@ -20,10 +20,10 @@ const winCondition = {
 }
 
 const wrongEggLossCondition = {
-  check() {
+  check(world) {
     const cauldronIDs = [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
     for (let id of cauldronIDs) {
-      let cauldron = this.world.findWorldObjectByID(id)
+      let cauldron = world.findWorldObjectByID(id)
       if (cauldron && cauldron.items.length === 1 && cauldron.items[0].value >= 4) {
         return true
       }
@@ -31,7 +31,7 @@ const wrongEggLossCondition = {
     return false
   },
 
-  getReason() {
+  getReason(world) {
     return 'loss_reason_one_egg_ge_4'
   }
 }
