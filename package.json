@@ -44,7 +44,8 @@
     "editor:dist": "yarn build-tests && yarn editor:pack",
     "editor:pack": "yarn editor:pack-win64 && yarn editor:pack-linux64 && node ./leveleditor/scripts/pack-release.js",
     "editor:pack-win64": "pkg leveleditor/utils/main.js --targets node10-win-x64 --output leveleditor-dist/shutils/shutils",
-    "editor:pack-linux64": "pkg leveleditor/utils/main.js --targets node10-linux-x64 --output leveleditor-dist/shutils/shutils"
+    "editor:pack-linux64": "pkg leveleditor/utils/main.js --targets node10-linux-x64 --output leveleditor-dist/shutils/shutils",
+    "editor:publish": "yarn editor:dist && env-cmd -f ./publish.env node ./leveleditor/scripts/publish-release.js"
   },
   "build": {
     "appId": "fr.felicienbrochu.selflessheroes",
@@ -65,15 +66,13 @@
       "dist/assets/**/*",
       "dist/workers/**/*"
     ],
-    "fileAssociations": [
-      {
-        "ext": "shsv",
-        "name": "SHSV",
-        "description": "Selfless Heroes saved game",
-        "mimeType": "application/x-shsv",
-        "role": "Viewer"
-      }
-    ],
+    "fileAssociations": [{
+      "ext": "shsv",
+      "name": "SHSV",
+      "description": "Selfless Heroes saved game",
+      "mimeType": "application/x-shsv",
+      "role": "Viewer"
+    }],
     "compression": "maximum",
     "win": {
       "target": [
@@ -178,6 +177,7 @@
     "pkg": "^4.4.8",
     "preload-webpack-plugin": "^3.0.0-beta.3",
     "prompt-sync": "^4.1.7",
+    "publish-release": "^1.6.1",
     "raw-loader": "^4.0.1",
     "resolve-url-loader": "^3.0.0-beta.1",
     "sass-loader": "^7.1.0",
