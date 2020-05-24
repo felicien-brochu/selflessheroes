@@ -41,9 +41,10 @@
     "electron:pack": "cross-env ELECTRON_BUILDER_CACHE=./.cache/electron-builder/ electron-builder",
     "electron:pack-dir": "yarn electron:pack --dir",
     "electron": "electron ./src/electron.js",
-    "editor:pack": "yarn editor:pack-win64 && yarn editor:pack-linux64",
-    "editor:pack-win64": "pkg leveleditor/utils/main.js --targets node10-win-x64 --output leveleditor-dist/shutils",
-    "editor:pack-linux64": "pkg leveleditor/utils/main.js --targets node10-linux-x64 --output leveleditor-dist/shutils"
+    "editor:dist": "yarn build-tests && yarn editor:pack",
+    "editor:pack": "yarn editor:pack-win64 && yarn editor:pack-linux64 && node ./leveleditor/scripts/pack-release.js",
+    "editor:pack-win64": "pkg leveleditor/utils/main.js --targets node10-win-x64 --output leveleditor-dist/shutils/shutils",
+    "editor:pack-linux64": "pkg leveleditor/utils/main.js --targets node10-linux-x64 --output leveleditor-dist/shutils/shutils"
   },
   "build": {
     "appId": "fr.felicienbrochu.selflessheroes",
@@ -64,13 +65,15 @@
       "dist/assets/**/*",
       "dist/workers/**/*"
     ],
-    "fileAssociations": [{
-      "ext": "shsv",
-      "name": "SHSV",
-      "description": "Selfless Heroes saved game",
-      "mimeType": "application/x-shsv",
-      "role": "Viewer"
-    }],
+    "fileAssociations": [
+      {
+        "ext": "shsv",
+        "name": "SHSV",
+        "description": "Selfless Heroes saved game",
+        "mimeType": "application/x-shsv",
+        "role": "Viewer"
+      }
+    ],
     "compression": "maximum",
     "win": {
       "target": [
@@ -166,6 +169,7 @@
     "expose-loader": "^0.7.3",
     "file-loader": "^3.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "jszip": "^3.4.0",
     "log-symbols": "^4.0.0",
     "mini-css-extract-plugin": "^0.6.0",
     "minimist": "^1.2.3",
