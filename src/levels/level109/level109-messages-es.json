@@ -1,4 +1,4 @@
 {
-  "name": "Cada uno su sitio",
-  "objective": "Ordena los %%icon icon-hero$%% héroes con el numéro menor de la izquierda al numéreo mayor de la derecha\n\n%%icon mdi mdi-information-outline$%% Los héroes pueden cambiar de sitio cuando van en direcciones opuestas al mismo tiempo"
+    "name": "Cada uno en su sitio",
+    "objective": "Ordena los %%icon icon-hero$%% héroes del menor número hacia la izquierda al mayor número hacia la derecha.\n\n%%icon mdi mdi-information-outline$%% Los héroes pueden cambiar de sitio cuando van en direcciones opuestas al mismo tiempo"
 }
