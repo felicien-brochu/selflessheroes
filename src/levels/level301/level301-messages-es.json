@@ -1,4 +1,4 @@
 {
-    "objective": "Activa todos los %%icon icon-switch$%% botones.\n\n%%icon mdi mdi-information-outline$%% Ahora los héroes pueden communicar entre ellos. Consulta la ayuda a proposito de %statement speach-statement$decir%% y %%statement speach-statement$escuchar%% para comprender cómo funcciona.",
+    "objective": "Activa todos los %%icon icon-switch$%% botones.\n\n%%icon mdi mdi-information-outline$%% Ahora los héroes pueden communicarse entre ellos. Consulta la ayuda acerca de %statement speach-statement$decir%% y %%statement speach-statement$escuchar%% para entender mejor cómo funciona.",
     "name": "Carrera de relevos"
 }
