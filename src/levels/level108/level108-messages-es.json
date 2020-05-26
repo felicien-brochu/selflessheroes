@@ -1,4 +1,4 @@
 {
-  "name": "Un poco de orden",
-  "objective": "Estos %%icon icon-egg$%% huevos fueron dispersados el la aula. Ponlos todos abajo.\n\n%%icon mdi mdi-alert-octagon-outline$%%Cuidado: los %%icon icon-egg$%% huevos tienen que quedarse en la misma columna y en el orden del principio"
+    "name": "Un poco de orden",
+    "objective": "Estos %%icon icon-egg$%% huevos fueron dispersados por la habitación. Ponlos todos abajo para ordenar.\n\n%%icon mdi mdi-alert-octagon-outline$%%Cuidado: los %%icon icon-egg$%% huevos tienen que quedarse en la misma columna y en el orden del principio"
 }
