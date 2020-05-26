@@ -1,4 +1,4 @@
 {
-  "name": "La cadena humana",
-  "objective": "Pon el%%icon icon-egg$%% huevo en el %%icon icon-cauldron$%% caldero"
+    "name": "La cadena humana",
+    "objective": "Pon el %%icon icon-egg$%% huevo en el %%icon icon-cauldron$%% caldero"
 }
