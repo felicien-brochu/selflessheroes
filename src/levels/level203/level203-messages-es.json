@@ -1,6 +1,6 @@
 {
-    "loss_reason_target_egg_displaced": "No debes tocar los %%icon icon-egg$%% huevos de izquierda",
-    "objective": "Copia la columna de izquierda en todas las otras columnas\n\n%%icon mdi mdi-information-outline$%% Si no encuentres la solución, inspírete del nivel %%level-title$\"Uno a la vez\"%%",
+    "loss_reason_target_egg_displaced": "No debes tocar los %%icon icon-egg$%% huevos de la izquierda",
+    "objective": "Copia la columna izquierda en todas las otras columnas\n\n%%icon mdi mdi-information-outline$%% Si no encuentras la solución, inspírate del nivel %%level-title$\"Uno a la vez\"%%",
     "loss_reason_wrong_value_on_egg": "Escribiste un número equivocado en este %%icon icon-egg$%% huevo.\nCopia los números en la columna de izquierda.",
-    "name": "Producción en massa"
+    "name": "Producción en masa"
 }
