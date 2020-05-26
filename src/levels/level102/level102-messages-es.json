@@ -1,5 +1,5 @@
 {
-  "name": "¡A comer!",
-  "objective": "Estos %%icon icon-egg$%% huevos fueron dispersados el la aula. Pon un huevo en cada %%icon icon-cauldron$%% caldero para preparar la cena.",
-  "loss_reason_multiple_eggs_in_cauldron": "Pusiste varios %%icon icon-egg$%% huevos en un %%icon icon-cauldron$%% caldero"
+    "name": "¡A comer!",
+    "objective": "Estos %%icon icon-egg$%% huevos fueron dispersados aleatoriamente por la habitación. Pon un huevo en cada %%icon icon-cauldron$%% caldero para preparar la cena.",
+    "loss_reason_multiple_eggs_in_cauldron": "Pusiste varios %%icon icon-egg$%% huevos en un %%icon icon-cauldron$%% caldero"
 }
