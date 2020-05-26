@@ -1,5 +1,5 @@
 {
     "loss_reason_wrong_floor_cell": "Uno de tus héroes está en un cuadrado claro.",
-    "objective": "Occupa todos los cuadrados negros con tus %%icon icon-hero$%% héroes.\n\n%%icon mdi mdi-information-outline$%% Ahora los héroes son capaces de clonarse. Consulta la ayuda a proposito de %%statement branching-statement$clone%% para comprender cómo funcciona.",
+    "objective": "Ocupa todos los cuadrados negros con tus %%icon icon-hero$%% héroes.\n\n%%icon mdi mdi-information-outline$%% Ahora tus héroes son capaces de clonarse. Consulta la ayuda acerca de %%statement branching-statement$clone%% para entender mejor cómo funciona.",
     "name": "Space invaders"
 }
