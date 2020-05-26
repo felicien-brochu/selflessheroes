@@ -1,5 +1,5 @@
 {
-    "name": "Ordena",
-    "objective": "Ordena los %%icon icon-egg$%% huevos con el numéro menor de la izquierda al numéreo mayor de la derecha.\n\n%%icon mdi mdi-information-outline$%% Al final, los %%icon icon-egg$%% huevos tienen que estar en el suelo en la misma línea que al principio.",
+    "name": "Ordenando",
+    "objective": "Ordena los %%icon icon-egg$%% huevos del menor número hacia la izquierda al mayor número hacia la derecha.\n\n%%icon mdi mdi-information-outline$%% Al final, los %%icon icon-egg$%% huevos tienen que estar en el suelo en la misma línea que al principio.",
     "loss_reason_egg_in_hole": "¿Estás tirando los %%icon icon-egg$%% huevos en el hueco ?\nExtraña manera de ordenar…"
 }
