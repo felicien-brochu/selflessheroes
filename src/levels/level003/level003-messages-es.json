@@ -1,4 +1,4 @@
 {
-  "name": "Cuidado con el escalón",
-  "objective": "Activa todos los %%icon icon-switch$%% botónes.\n\n%%icon mdi mdi-information-outline$%% Consulta la ayuda sobre los %%statement branching-statement$si%% para comprender como funcciona."
+    "name": "Cuidado con el escalón",
+    "objective": "Activa todos los %%icon icon-switch$%% botones.\n\n%%icon mdi mdi-information-outline$%% Consulta la ayuda sobre los %%statement branching-statement$si%% para comprender como funciona."
 }
