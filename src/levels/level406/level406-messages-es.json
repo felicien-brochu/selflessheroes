@@ -1,5 +1,5 @@
 {
     "loss_reason_wrong_sum_on_egg": "Un héroe escribo algo diferente que la suma de los huevos en el huevo de arriba",
-    "objective": "Escribe la suma de todos los %%icon icon-egg$%% huevos en el huevo de arriba. Al final, el %%icon icon-egg$%% huevo de arriba debe estar en el mismo sitio que al principio.\n\n%%icon mdi mdi mdi-alert-octagon-outline$%% No escribes algo diferente que la suma de los huevos en el %%icon icon-egg$%% huevo de arriba. Puedes escribir lo que quieras en los otros %%icon icon-egg$%% huevos.",
+    "objective": "Escribe la suma de todos los %%icon icon-egg$%% huevos en el huevo de arriba. Al final, el %%icon icon-egg$%% huevo de arriba debe estar en el mismo sitio que al principio.\n\n%%icon mdi mdi mdi-alert-octagon-outline$%% No escribas algo diferente a la suma de los huevos en el %%icon icon-egg$%% huevo de arriba. Puedes escribir lo que quieras en los otros %%icon icon-egg$%% huevos.",
     "name": "Comentarios"
 }
