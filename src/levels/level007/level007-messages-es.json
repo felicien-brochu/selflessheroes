@@ -1,4 +1,4 @@
 {
-  "name": "Giro brusco",
-  "objective": "Encende todos los %%icon icon-bonfire$%% fuegos\n\n%%icon mdi mdi-alert-octagon-outline$%%Cuidado: ningún héroe tiene que morir"
+    "name": "Giro brusco",
+    "objective": "Enciende todos los %%icon icon-bonfire$%% fuegos\n\n%%icon mdi mdi-alert-octagon-outline$%%Cuidado: todos los héroes deben sobrevivir"
 }
