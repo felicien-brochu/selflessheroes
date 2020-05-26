@@ -1,6 +1,6 @@
 {
     "loss_reason_wrong_order": "Los %%icon icon-hero$%% héroes deben ir a las cruces de uno en uno. El héroe del extremo izquierdo debe ser el primero en irse, luego el héroe de su derecha, y así sucesivamente hasta el héroe del extremo derecho.",
-    "loss_reason_moved_of_the_cross": "Una vez que un %%icon icon-hero$%% héroe llega en una cruz, no puede salir de encima de ella",
-    "objective": "Los %%icon icon-hero$%% Héroes deben ir en las cruces de uno en uno . Primero en héroe de la izquierda, luego el héroe a su derecha, etc.",
-    "name": "Pajarito"
+    "loss_reason_moved_of_the_cross": "Una vez que un %%icon icon-hero$%% héroe llega a una cruz, no debe moverse de ella",
+    "objective": "Los %%icon icon-hero$%% Héroes deben ir a las cruces de uno en uno. Primero el héroe de la izquierda, luego el héroe a su derecha, etc.",
+    "name": "El teléfono estropeado"
 }
