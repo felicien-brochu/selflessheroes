@@ -1,4 +1,4 @@
 {
-  "name": "Vértigo",
-  "objective": "Activa todos los %%icon icon-switch$%% botónes\n\n%%icon mdi mdi-alert-octagon-outline$%%Cuidado: no dejes caer los %%icon icon-hero$%% héroes en el hueco."
+    "name": "Vértigo",
+    "objective": "Activa todos los %%icon icon-switch$%% botones\n\n%%icon mdi mdi-alert-octagon-outline$%%Cuidado: no dejes caer los %%icon icon-hero$%% héroes en el hueco."
 }
