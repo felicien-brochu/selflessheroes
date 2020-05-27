@@ -5,7 +5,7 @@ export default class Switch extends WorldObject {
   constructor(config) {
     config = Object.assign({
       enabled: false,
-      autoDisable: false,
+      autoDisable: true,
     }, config)
 
     super(config)
