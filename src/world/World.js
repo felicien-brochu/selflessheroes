@@ -695,17 +695,17 @@ class WorldProxy {
     this.map = world.map.getProxy()
     this.steps = world.steps
 
-    this.heroes = world.heroes.map(o => o.shallowCopy())
-    // this.npcs = world.npcs.map(o => o.shallowCopy())
-    this.switches = world.switches.map(o => o.shallowCopy())
-    this.bonfires = world.bonfires.map(o => o.shallowCopy())
-    this.cauldrons = world.cauldrons.map(o => o.shallowCopy())
-    this.spikes = world.spikes.map(o => o.shallowCopy())
-    this.eggs = world.eggs.map(o => o.shallowCopy())
-    this.symbols = world.symbols.map(o => o.shallowCopy())
-    this.configObjects = world.configObjects.map(o => o.shallowCopy())
+    this.heroes = world.heroes.map(o => Object.freeze(o.shallowCopy()))
+    // this.npcs = world.npcs.map(o => Object.freeze(o.shallowCopy()))
+    this.switches = world.switches.map(o => Object.freeze(o.shallowCopy()))
+    this.bonfires = world.bonfires.map(o => Object.freeze(o.shallowCopy()))
+    this.cauldrons = world.cauldrons.map(o => Object.freeze(o.shallowCopy()))
+    this.spikes = world.spikes.map(o => Object.freeze(o.shallowCopy()))
+    this.eggs = world.eggs.map(o => Object.freeze(o.shallowCopy()))
+    this.symbols = world.symbols.map(o => Object.freeze(o.shallowCopy()))
+    this.configObjects = world.configObjects.map(o => Object.freeze(o.shallowCopy()))
 
-    this.worldObjects = [
+    this.worldObjects = Object.freeze([
       ...this.heroes,
       // ...this.npcs,
       ...this.switches,
@@ -714,12 +714,12 @@ class WorldProxy {
       ...this.spikes,
       ...this.eggs,
       ...this.symbols
-    ]
+    ])
 
-    this.objects = [
+    this.objects = Object.freeze([
       ...this.worldObjects,
       ...this.configObjects
-    ]
+    ])
 
     // Functions
 
