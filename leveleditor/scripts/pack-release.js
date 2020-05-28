@@ -36,7 +36,7 @@ function addLevelsDir(zip) {
   let allPaths = getFilePathsRecursiveSync(dir)
 
   for (let filePath of allPaths) {
-    let addPath = path.relative(dir, filePath)
+    let addPath = path.relative('./leveleditor', filePath)
 
     let data = fs.readFileSync(filePath)
     zip.file(addPath, data, {
