@@ -39,7 +39,8 @@ export default class WorldObject {
       id: this.id,
       type: this.getObjectType(),
       x: this.x,
-      y: this.y
+      y: this.y,
+      removed: this.removed
     }
   }
 }
