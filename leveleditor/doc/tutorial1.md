@@ -19,6 +19,12 @@ could be helpful to take a look at
 Copy the folder `sh-leveleditor-dir/levels/tutorial1_start` to
 `sh-leveleditor-dir/levels/vertigo`.
 
+Note: `sh-leveleditor-dir/levels` is the working directory for level creation.
+If you try to work in another directory, Tiled won't work properly.
+
+At the end of this tutorial, `sh-leveleditor-dir/levels/vertigo` content should
+match `sh-leveleditor-dir/levels/tutorial1_complete` content.
+
 Content of `sh-leveleditor-dir/levels/vertigo`:
 
 -   `map.json` describes the map of the level. We will open
@@ -255,7 +261,7 @@ secondary objectives.
 
 The secondary objectives are defined by `speedTarget` and `lengthTarget`
 properties. This level is solvable in 4 steps and 7 lines so let's write this in
-the file as the secondary objectives
+the file as secondary objectives.
 
 ```javascript
 module.exports = {
