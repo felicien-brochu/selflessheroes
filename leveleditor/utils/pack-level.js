@@ -2,7 +2,6 @@ const path = require('path')
 const fs = require('fs')
 const chalk = require('chalk')
 const minimist = require('minimist')
-const _debounce = require('lodash.debounce')
 
 module.exports = function packLevel(argv) {
   argv = minimist(argv, {
@@ -46,22 +45,16 @@ module.exports = function packLevel(argv) {
   const levelCodeFile = path.resolve(levelDir, "level.js")
   const metadataFile = path.resolve(levelDir, "metadata.json")
 
-  const debouncedPack = _debounce(pack, 100)
-  debouncedPack({
-    levelDir,
-    mapFile,
-    levelCodeFile,
-    metadataFile
-  })
-
   if (argv.watch) {
     const watchedFiles = [mapFile, levelCodeFile, metadataFile]
 
     watchedFiles.forEach(file => {
-      fs.watch(file, (eventType) => {
-        if (eventType === 'change') {
+      fs.watchFile(file, {
+        interval: 1000
+      }, (curr, prev) => {
+        if (curr.mtime > prev.mtime) {
           console.log(`${file} has changed ==> pack level`)
-          debouncedPack({
+          pack({
             levelDir,
             mapFile,
             levelCodeFile,
