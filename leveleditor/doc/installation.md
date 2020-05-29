@@ -39,13 +39,13 @@ it out on <https://www.mapeditor.org> :wink:
 
 Open Tiled and click on `View` > `Object Types Editor`.
 
-![configure tiled screenshot 1](images/installation-configure-tiled-screenshot-1.png)
+![configure tiled screenshot 1](images/installation_1.png)
 
 In the newly open window, click on `File` > `Import Object Types...` and select
 `sh-leveleditor-dir/levels/objecttypes.xml`.
 You should get the following window:
 
-![configure tiled screenshot 1](images/installation-configure-tiled-screenshot-2.png)
+![configure tiled screenshot 1](images/installation_2.png)
 
 You have now all the necessary software installed in order to create levels for
 Selfless Heroes! :grin:
