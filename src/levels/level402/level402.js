@@ -47,7 +47,7 @@ const level = {
     excludePrimary: [],
     terrainTypes: ['floor', 'wall'],
     objectTypes: ['hero', 'switch', 'spikes', 'nothing'],
-    actionFunctions: ['step_once'],
+    actionFunctions: ['step'],
     valueFunctions: [],
     variables: 0,
     leftComparisonExpressions: ['direction'],

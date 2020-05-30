@@ -104,7 +104,7 @@ const level = {
     excludePrimary: ['clone', 'jump', 'anchor'],
     terrainTypes: ['floor', 'wall'],
     objectTypes: [],
-    actionFunctions: ['step_once', 'tell', 'listen'],
+    actionFunctions: ['step', 'tell', 'listen'],
     valueFunctions: [],
     variables: 0,
     messages: 8,

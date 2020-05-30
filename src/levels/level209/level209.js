@@ -65,7 +65,7 @@ const level = {
     excludePrimary: ['clone'],
     terrainTypes: ['wall', 'floor'],
     objectTypes: ['egg', 'hero', 'nothing'],
-    actionFunctions: ['step_once', 'take', 'drop', 'write'],
+    actionFunctions: ['step', 'take', 'drop', 'write'],
     valueFunctions: ['set', 'calc'],
     variables: 2,
     leftComparisonExpressions: ['direction', 'variable', 'myitem'],

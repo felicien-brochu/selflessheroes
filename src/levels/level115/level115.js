@@ -45,7 +45,7 @@ const level = {
     excludePrimary: ['assign', 'clone'],
     terrainTypes: ['wall', 'hole', 'floor'],
     objectTypes: ['egg', 'hero', 'nothing'],
-    actionFunctions: ['step_once', 'take', 'drop'],
+    actionFunctions: ['step', 'take', 'drop'],
     leftComparisonExpressions: ['direction', 'myitem'],
     rightComparisonExpressions: ['direction', 'object_type', 'terrain_type', 'myitem']
   },

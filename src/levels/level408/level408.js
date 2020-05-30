@@ -91,7 +91,7 @@ const level = {
     cloneIsDeadly: false,
     terrainTypes: ['floor', 'infected', 'wall', 'hole'],
     objectTypes: ['hero', 'npc', 'egg', 'spikes', 'switch', 'nothing'],
-    actionFunctions: ['step_once', 'fireball', 'tell', 'listen'],
+    actionFunctions: ['step', 'fireball', 'tell', 'listen'],
     valueFunctions: ['set', 'calc'],
     variables: 1,
     messages: 8,

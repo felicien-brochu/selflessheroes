@@ -58,7 +58,7 @@ import IfStatement from '../../../world/ai/compile/statements/IfStatement'
 import JumpStatement from '../../../world/ai/compile/statements/JumpStatement'
 import CloneStatement from '../../../world/ai/compile/statements/CloneStatement'
 
-import StepFunction from '../../../world/ai/compile/statements/functions/StepFunction'
+// import StepFunction from '../../../world/ai/compile/statements/functions/StepFunction'
 import StepOnceFunction from '../../../world/ai/compile/statements/functions/StepOnceFunction'
 import FireBallFunction from '../../../world/ai/compile/statements/functions/FireBallFunction'
 import TakeFunction from '../../../world/ai/compile/statements/functions/TakeFunction'
@@ -93,7 +93,7 @@ import IfStatementTab from './IfStatementTab'
 import JumpStatementTab from './JumpStatementTab'
 import CloneStatementTab from './CloneStatementTab'
 
-import StepFunctionTab from './StepFunctionTab'
+// import StepFunctionTab from './StepFunctionTab'
 import StepOnceFunctionTab from './StepOnceFunctionTab'
 import FireBallFunctionTab from './FireBallFunctionTab'
 import TakeFunctionTab from './TakeFunctionTab'
@@ -120,10 +120,10 @@ const statementTabs = new Map([
     component: CloneStatementTab,
     props: {}
   }],
-  [StepFunction, {
-    component: StepFunctionTab,
-    props: {}
-  }],
+  // [StepFunction, {
+  //   component: StepFunctionTab,
+  //   props: {}
+  // }],
   [StepOnceFunction, {
     component: StepOnceFunctionTab,
     props: {}

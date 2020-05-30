@@ -52,7 +52,7 @@ const level = {
     cloneIsDeadly: false,
     terrainTypes: ['floor', 'wall'],
     objectTypes: ['hero', 'egg', 'spikes', 'switch', 'nothing'],
-    actionFunctions: ['step_once', 'take', 'drop', 'write'],
+    actionFunctions: ['step', 'take', 'drop', 'write'],
     valueFunctions: ['set', 'calc'],
     variables: 2,
     minInteger: 0,

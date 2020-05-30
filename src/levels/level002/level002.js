@@ -18,7 +18,7 @@ const level = {
   compilerConfig: {
     excludePrimary: ['assign', 'if', 'else', 'endif', 'jump', 'anchor', 'clone'],
     objectTypes: ['switch'],
-    actionFunctions: ['step_once'],
+    actionFunctions: ['step'],
     leftComparisonExpressions: ['direction'],
     rightComparisonExpressions: ['object_type']
   },

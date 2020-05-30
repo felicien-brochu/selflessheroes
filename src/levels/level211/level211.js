@@ -42,7 +42,7 @@ const level = {
     excludePrimary: ['clone'],
     terrainTypes: ['floor', 'wall', 'hole'],
     objectTypes: ['egg', 'hero', 'npc', 'nothing'],
-    actionFunctions: ['step_once', 'take', 'drop', 'write'],
+    actionFunctions: ['step', 'take', 'drop', 'write'],
     valueFunctions: ['set', 'calc'],
     variables: 6,
     messages: 8,

@@ -13,7 +13,6 @@ import SetFunction from './statements/functions/SetFunction'
 import CalcFunction from './statements/functions/CalcFunction'
 import NearestFunction from './statements/functions/NearestFunction'
 import StepOnceFunction from './statements/functions/StepOnceFunction'
-import StepFunction from './statements/functions/StepFunction'
 import FireBallFunction from './statements/functions/FireBallFunction'
 import TakeFunction from './statements/functions/TakeFunction'
 import DropFunction from './statements/functions/DropFunction'
@@ -74,8 +73,7 @@ const valueFunctionMap = {
 }
 
 const actionFunctionMap = {
-  step_once: StepOnceFunction,
-  step: StepFunction,
+  step: StepOnceFunction,
   fireball: FireBallFunction,
   take: TakeFunction,
   drop: DropFunction,
@@ -173,7 +171,7 @@ export default class CompilerConfig {
         'nearest',
       ],
       actionFunctions: [
-        'step_once',
+        'step',
         'fireball',
         'take',
         'drop',

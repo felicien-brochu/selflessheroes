@@ -28,7 +28,7 @@ const level = {
     excludePrimary: ['clone'],
     terrainTypes: ['floor', 'wall'],
     objectTypes: ['hero', 'npc', 'switch', 'spikes', 'nothing'],
-    actionFunctions: ['step_once', 'tell', 'listen'],
+    actionFunctions: ['step', 'tell', 'listen'],
     valueFunctions: ['set', 'calc'],
     variables: 1,
     messages: 8,

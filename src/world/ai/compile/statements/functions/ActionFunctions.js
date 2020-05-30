@@ -1,5 +1,4 @@
 import StepOnceFunction from './StepOnceFunction'
-import StepFunction from './StepFunction'
 import FireBallFunction from './FireBallFunction'
 import TakeFunction from './TakeFunction'
 import DropFunction from './DropFunction'
@@ -8,8 +7,7 @@ import TellFunction from './TellFunction'
 import ListenFunction from './ListenFunction'
 
 export default {
-  step_once: StepOnceFunction,
-  step: StepFunction,
+  step: StepOnceFunction,
   fireball: FireBallFunction,
   take: TakeFunction,
   drop: DropFunction,

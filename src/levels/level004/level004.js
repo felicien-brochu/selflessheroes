@@ -19,7 +19,7 @@ const level = {
   compilerConfig: {
     excludePrimary: ['assign', 'jump', 'anchor', 'clone'],
     objectTypes: ['hero', 'switch', 'nothing'],
-    actionFunctions: ['step_once'],
+    actionFunctions: ['step'],
     leftComparisonExpressions: ['direction'],
     rightComparisonExpressions: ['object_type']
   },

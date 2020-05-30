@@ -17,7 +17,7 @@ const level = {
 
   compilerConfig: {
     excludePrimary: ['assign', 'if', 'else', 'endif', 'jump', 'anchor', 'clone'],
-    actionFunctions: ['step_once', 'take', 'drop'],
+    actionFunctions: ['step', 'take', 'drop'],
   },
 
   ruleset: {
