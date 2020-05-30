@@ -112,7 +112,7 @@ export default class Level extends WorldLevel {
   generateWorld(world) {
     if (this.worldGenerator) {
       if (typeof this.worldGenerator.generate === 'function') {
-        this.worldGenerator.generate(this.trustedSource ? world : world.getProxy())
+        this.worldGenerator.generate(this.trustedSource ? world : world.getProxy(true))
       } else if (Array.isArray(this.worldGenerator)) {
         for (let generatorConfig of this.worldGenerator) {
           WorldGeneratorFactory.build(generatorConfig.type, generatorConfig.config).generate(world)

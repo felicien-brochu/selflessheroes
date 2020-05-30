@@ -679,9 +679,9 @@ export default class World {
     return context
   }
 
-  getProxy() {
-    if (!this.proxy || this.proxy.steps !== this.steps) {
-      this.proxy = new WorldProxy(this)
+  getProxy(objectCreationEnabled = false) {
+    if (!this.proxy || this.proxy.steps !== this.steps || objectCreationEnabled !== this.proxy.objectCreationEnabled) {
+      this.proxy = new WorldProxy(this, objectCreationEnabled)
     }
     return this.proxy
   }
@@ -689,7 +689,9 @@ export default class World {
 
 
 class WorldProxy {
-  constructor(world) {
+  constructor(world, objectCreationEnabled = false) {
+    this.objectCreationEnabled = objectCreationEnabled
+
     // World snapshot
 
     this.map = world.map.getProxy()
@@ -705,7 +707,7 @@ class WorldProxy {
     this.symbols = world.symbols.map(o => Object.freeze(o.shallowCopy()))
     this.configObjects = world.configObjects.map(o => Object.freeze(o.shallowCopy()))
 
-    this.worldObjects = Object.freeze([
+    this.objects = Object.freeze([
       ...this.heroes,
       // ...this.npcs,
       ...this.switches,
@@ -713,19 +715,15 @@ class WorldProxy {
       ...this.cauldrons,
       ...this.spikes,
       ...this.eggs,
-      ...this.symbols
-    ])
-
-    this.objects = Object.freeze([
-      ...this.worldObjects,
+      ...this.symbols,
       ...this.configObjects
     ])
 
-    // Functions
+    // Methods
 
     this.rng = world.rng
 
-    if (this.steps === undefined) {
+    if (this.objectCreationEnabled) {
       this.createObject = world.createObject.bind(world)
     }
 
@@ -737,7 +735,7 @@ class WorldProxy {
   }
 
   findObjectsAt(x, y) {
-    return this.worldObjects.filter(o => o.x === x && o.y === y && !(o.type === 'egg' && o.owner))
+    return this.objects.filter(o => o.x === x && o.y === y && !(o.type === 'egg' && o.owner))
   }
 }
 
