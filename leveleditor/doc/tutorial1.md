@@ -140,6 +140,8 @@ empty object in the right panel, we need to give it a hero type. Double click on
 this object on the `Type` column and write "hero". You can also set a name to
 this object if you want to, but it is not required.
 
+Note: It doesn't matter where you click within a tile when creatig an object. You don't need to be precise, the important part is to choose a tile. :wink:
+
 ![set object type to hero](images/tutorial1_11.png)
 
 Notice that 2 custom properties have been added to the left panel:
@@ -282,7 +284,7 @@ module.exports = {
     excludePrimary: ['assign', 'jump', 'anchor', 'clone'],
     terrainTypes: ['hole', 'floor'],
     objectTypes: ['switch', 'nothing'],
-    actionFunctions: ['step_once'],
+    actionFunctions: ['step'],
     leftComparisonExpressions: ['direction'],
     rightComparisonExpressions: ['object_type', 'terrain_type']
   },

@@ -1,9 +1,9 @@
-# ObjectConfig Reference
+# ObjectConfig
 
 This reference guide lists the config objects used in Tiled maps and when
 calling `world.createObject()` in a WorldGenerator.
 
-:bulb: When working in Tiled, you don't have to set the properties `id`, `x` and
+:bulb: When working in Tiled, you don't have to set the properties `x` and
 `y` since Tiled is managing them for you.
 
 -   [![bonfire-icon](images/icons/bonfire-icon.png) BonfireConfig](#bonfireconfig)
@@ -26,22 +26,16 @@ calling `world.createObject()` in a WorldGenerator.
 
 **type:** `bonfire`
 
--   `id`      [integer] if no `id` is given, an available id will be created for
-    the created object.
-
 -   `x`       [integer] x coordinate from the left (0 based). **required**
 
 -   `y`       [integer] y coordinate from the top (0 based). **required**
 
--   `enabled` [boolean] if true it means the bonfire is lit. **default:**
+-   `enabled` [boolean] if `true` it means the bonfire is lit. **default:**
     `false`
 
 ## CauldronConfig
 
 **type:** `cauldron`
-
--   `id`      [integer] if no `id` is given, an available id will be created for
-    the created object.
 
 -   `x`       [integer] x coordinate from the left (0 based). **required**
 
@@ -50,9 +44,6 @@ calling `world.createObject()` in a WorldGenerator.
 ## EggConfig
 
 **type:** `egg`
-
--   `id`      [integer] if no `id` is given, an available id will be created for
-    the created object.
 
 -   `x`     [integer] x coordinate from the left (0 based). **required**
 
@@ -64,7 +55,7 @@ calling `world.createObject()` in a WorldGenerator.
     will be determined pseudo-randomly at the initialization of the level.
     **default:** `"rng(0,9)"`
 
--   `showLottery` [boolean] if true show the "egg lottery". The lottery is the
+-   `showLottery` [boolean] if `true` show the "egg lottery". The lottery is the
     animation showing the egg changing value randomly at the start of the level.
     If the `lottery` property is defined, uses this property to generate the
     numbers of the lottery. If no `lottery` property is defined, uses the
@@ -72,15 +63,12 @@ calling `world.createObject()` in a WorldGenerator.
     `false`
 
 -   `lottery` [string] the number generator to use instead of `value` when
-    `showLottery` is true. It must be of the form `"rng(min,max)"` with min and
-    max some integers (min &lt;= max).
+    `showLottery` is `true`. It must be of the form `"rng(min,max)"` with min
+    and max some integers (min &lt;= max).
 
 ## HeroConfig
 
 **type:** `hero`
-
--   `id`      [integer] if no `id` is given, an available id will be created for
-    the created object.
 
 -   `x`       [integer] x coordinate from the left (0 based). **required**
 
@@ -94,9 +82,6 @@ calling `world.createObject()` in a WorldGenerator.
 ## SpikesConfig
 
 **type:** `spikes`
-
--   `id`      [integer] if no `id` is given, an available id will be created for
-    the created object.
 
 -   `x`       [integer] x coordinate from the left (0 based). **required**
 
@@ -131,25 +116,21 @@ must be disabled.
 
 **type:** `switch`
 
--   `id`      [integer] if no `id` is given, an available id will be created for
-    the created object.
-
 -   `x`       [integer] x coordinate from the left (0 based). **required**
 
 -   `y`       [integer] y coordinate from the top (0 based). **required**
 
--   `autoDisable` [boolean] if true the switch will auto disable itself when no
-    hero is on it. **default:** `true`
+-   `autoDisable` [boolean] if `true` the switch will auto disable itself when
+    no hero is on it. **default:** `true`
 
--   `enabled` [boolean] if true, the switch is triggered. **default:**
+-   `enabled` [boolean] if `true`, the switch is triggered. **default:**
     `false`
 
 ## SymbolConfig
 
-**type:** `symbol`
+Describes a Symbol which will be displayed on top of the map.
 
--   `id`      [integer] if no `id` is given, an available id will be created for
-    the created object.
+**type:** `symbol`
 
 -   `x`       [integer] x coordinate from the left (0 based). **required**
 
@@ -161,6 +142,8 @@ must be disabled.
 
 #### Symbols
 
+Symbols which can be displayed on top of the map.
+
 -   `"cross"`: ![symbol-cross-icon](images/icons/symbol-cross-icon.png)
 -   `"arrow_n"`: ![symbol-arrow-n-icon](images/icons/symbol-arrow-n-icon.png)
 -   `"arrow_e"`: ![symbol-arrow-e-icon](images/icons/symbol-arrow-e-icon.png)
@@ -169,10 +152,12 @@ must be disabled.
 
 ## MarkerConfig
 
-**type:** `marker`
+A marker is an invisible object. It does not interact with any other object in
+the game. It's used mainly as a help to build other objects. Check out
+[this example](WorldGenerator.md#advanced-generator-dependent-objects) where
+it's used as a reference point to build other objects programmatically.
 
--   `id`      [integer] if no `id` is given, an available id will be created for
-    the created object.
+**type:** `marker`
 
 -   `x`       [integer] x coordinate from the left (0 based). **required**
 

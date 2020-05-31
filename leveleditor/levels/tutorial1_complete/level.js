@@ -16,7 +16,7 @@ module.exports = {
     excludePrimary: ['assign', 'jump', 'anchor', 'clone'],
     terrainTypes: ['hole', 'floor'],
     objectTypes: ['switch', 'nothing'],
-    actionFunctions: ['step_once'],
+    actionFunctions: ['step'],
     leftComparisonExpressions: ['direction'],
     rightComparisonExpressions: ['object_type', 'terrain_type']
   },

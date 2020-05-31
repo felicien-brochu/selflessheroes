@@ -74,7 +74,7 @@ const level = {
     cloneIsDeadly: false,
     terrainTypes: ['floor', 'wall', 'hole'],
     objectTypes: ['hero', 'egg', 'cauldron', 'nothing'],
-    actionFunctions: ['step_once', 'take', 'drop'],
+    actionFunctions: ['step', 'take', 'drop'],
     valueFunctions: [],
     variables: 0,
     leftComparisonExpressions: ['direction', 'myitem'],
