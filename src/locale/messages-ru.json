@@ -189,7 +189,7 @@
     "level_help_tab_write_function_1": "%%statement action-statement$write%% говорит вашему герою написать что-нибудь на его предмете.",
     "level_help_tab_drop_function_2": "Вы можете прочитать приведенный выше пример как «Бросить свой предмет на квадрат справа».",
     "level_help_tab_drop_function_1": "%%statement action-statement$drop%% говорит вашему герою, чтобы он бросил свой предмет.",
-    "level_help_tab_take_function_2": "Вы можете прочитать приведенный выше пример как «Если на квадрате справа яйцо, взять это яйцо».",
+    "level_help_tab_take_function_2": "Вы можете прочитать приведенный выше пример как «Если на квадрате справа от вас яйцо, возьмите это яйцо».",
     "level_help_tab_take_function_1": "%%statement action-statement$take%% говорит вашему герою взять предмет.",
     "level_help_tab_fireball_function_2": "Вы можете прочитать приведенный выше пример как «Бросить огненный шар вправо».",
     "level_help_tab_fireball_function_1": "%%statement action-statement$fireball%% бросает огненный шар на квадрат вокруг героя.\nЕсли огненный шар поразит другого героя, он убьет его. Вы можете использовать огненный шар, чтобы зажечь %%icon icon-bonfire$%% костер.",
