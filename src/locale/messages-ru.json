@@ -135,11 +135,11 @@
     "exception_invalid_action_function_template": "%%function${code}%% не является допустимым действием. Вместо этого используйте одно из следующих действий: %%function${allowedFunctions}%%.",
     "exception_invalid_value_function_template": "%%function${code}%% не является допустимой функцией. Вместо этого используйте одно из следующих действий: %%function${allowedFunctions}%%.",
     "exception_forbidden_message_literal_template": "%%string$\"{message}\"%% сообщение не разрешено. Вместо этого используйте одно из следующих: %%string${allowedMessages}%%.",
-    "exception_forbidden_integer_template": "%%number${value}%%  число либо слишком мало, либо слишком велико: числа должны быть между %%number${min}%% и %%number${max}%%.",
+    "exception_forbidden_integer_template": "%%number${value}%% число либо слишком мало, либо слишком велико: числа должны быть между %%number${min}%% и %%number${max}%%.",
     "exception_invalid_variable_identifier_template": "%%variable${variable}%% имя переменной не доступно. Вместо этого используйте один из следующих: %%variable${allowedIdentifiers}%%.",
     "exception_invalid_clone_params_template": "%%keyword${statementType}%% ожидает направление (%%literal${allowedDirections}%%) и якорь.",
     "exception_mismatch_function_template": "Вы написали что-то ошибочное после функции %%function${keyword}()%%.",
-    "exception_forbidden_arithmetic_operator_literal_type_template": "Арифметические операторы не доступны на этом уровне.",
+    "exception_forbidden_arithmetic_operator_literal_type_template": "Арифметические операторы недоступны на этом уровне.",
     "exception_forbidden_message_literal_type_template": "сообщения недоступны на этом уровне.",
     "exception_forbidden_primary_statement_template": "%%keyword${statementType}%% не доступно на даном уровне.",
     "exception_mismatch_keyword_template": "Вы написали что-то ошибочное после этого %%keyword${statementType}%%.",
@@ -196,5 +196,7 @@
     "level_help_tab_step_once_function_2": "Вы можете прочитать приведенный выше пример как «Идти на один шаг вправо».",
     "level_help_tab_step_once_function_1": "%%statement action-statement$step%% говорит вашему герою идти по направлению.",
     "level_help_tab_step_function_2": "Вы можете прочитать приведенный выше пример как «Идти на один шаг влево или вправо».",
-    "level_help_tab_step_function_1": "%%statement action-statement$step%% говорит вашему герою идти по направлению. Если вы укажете несколько направлений, герой будет случайным образом выбирать между этими направлениями."
+    "level_help_tab_step_function_1": "%%statement action-statement$step%% говорит вашему герою идти по направлению. Если вы укажете несколько направлений, герой будет случайным образом выбирать между этими направлениями.",
+    "exception_invalid_statement_template": "%%variable${code}%% не является допустимой инструкцией",
+    "exception_forbidden_integer_literal_type_template": "Числа недоступны на этом уровне."
 }
