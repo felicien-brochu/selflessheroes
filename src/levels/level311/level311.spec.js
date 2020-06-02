@@ -72,5 +72,18 @@ $a = calc(myitem * 2)
 write($a)
 drop(s)
 		`,
+  }, {
+    type: ["lossReason"],
+    lossReason: 'loss_reason_wrong_number',
+    frequency: 0.9,
+    code: `
+$a = calc(s * 2)
+$b = calc(se / 5)
+$a = calc($a + $b)
+step(s)
+take(here)
+write($a)
+drop(s)
+		`,
   }, ]
 }
