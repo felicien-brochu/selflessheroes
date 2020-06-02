@@ -39,7 +39,7 @@ const wrongNumberLossCondition = {
 
     return eggs.every(egg => !egg.owner && egg.y === 5) &&
       eggs[0].x === 9 && eggs[eggs.length - 1].x === 4 &&
-      (computeNumber(this.world) !== this.targetNumber || world.eggs.some(egg => egg.value > 9))
+      (computeNumber(world) !== this.targetNumber || world.eggs.some(egg => egg.value > 9))
   },
 
   getReason(world) {
