@@ -55,8 +55,8 @@ Required properties of a language object:
 -   `objective` \[[SelflessHeroesString](#selflessheroesstring)] objective of
     the level. **required**
 
--   1 property by
-    [CustomLossCondition](Ruleset.md#customlossconditiongetreasonworld-required).
+-   1 property by CustomLossCondition matching the value returned by
+    [CustomLossCondition.getReason()](Ruleset.md#customlossconditiongetreasonworld-required).
     \[[SelflessHeroesString](#selflessheroesstring)] **required**
 
 ## SelflessHeroesString
