@@ -50,7 +50,7 @@ const level = {
   mapConfig: map,
   messages: messages,
 
-  maxStep: 600,
+  maxStep: 800,
   speedTarget: 140,
   lengthTarget: 34,
 
