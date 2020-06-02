@@ -74,11 +74,8 @@ Selfless Heroes language.
 | keyword  | description                                                                            |
 | -------- | -------------------------------------------------------------------------------------- |
 | `if`     | if statement                                                                           |
-| `else`   | else statement                                                                         |
-| `endif`  | endif statement                                                                        |
 | `jump`   | jump statement                                                                         |
 | `clone`  | clone statement                                                                        |
-| `anchor` | anchors are labels used with clone and jump. example: `a:`                             |
 | `assign` | assignment statement: anything like `$a = function()`.                                 |
 | `action` | action functions: all functions that are not used in an assignment. example: `step()`. |
 

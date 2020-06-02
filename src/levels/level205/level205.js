@@ -61,7 +61,7 @@ const level = {
   deterministic: true,
 
   compilerConfig: {
-    excludePrimary: ['if', 'else', 'endif', 'jump', 'anchor', 'clone'],
+    excludePrimary: ['if', 'jump', 'clone'],
     actionFunctions: ['write'],
     valueFunctions: ['set', 'calc'],
     variables: 1,

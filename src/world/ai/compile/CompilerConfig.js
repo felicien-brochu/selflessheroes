@@ -35,9 +35,15 @@ import MessageLiteral, {
 import ObjectType from '../../objects/ObjectType'
 import TerrainType from '../../map/TerrainType'
 
+const allowedExcludePrimary = [
+  'if',
+  'jump',
+  'clone',
+  'action',
+  'assign'
+]
+
 const primaryStatementMap = {
-  empty: EmptyStatement,
-  assign: AssignStatement,
   if: IfStatement,
   else: ElseStatement,
   endif: EndIfStatement,
@@ -45,6 +51,8 @@ const primaryStatementMap = {
   clone: CloneStatement,
   anchor: AnchorStatement,
   action: ActionStatement,
+  assign: AssignStatement,
+  empty: EmptyStatement,
 }
 
 const terrainTypeMap = {
@@ -93,6 +101,15 @@ const expressionsMap = {
   message: MessageLiteral,
 }
 
+function mapKeywordsToTypes(keywords, typesMap) {
+  // Filter unallowed keywords
+  keywords = keywords.filter(keyword => typesMap.hasOwnProperty(keyword))
+  // Ensure keywords are unique
+  keywords = [...new Set(keywords)]
+
+  return keywords.map(keyword => typesMap[keyword])
+}
+
 export default class CompilerConfig {
   constructor({
     excludePrimary = [],
@@ -110,24 +127,20 @@ export default class CompilerConfig {
     forbiddenExpressions = [],
   }) {
     this.allowedPrimaryStatements = []
-    for (let key in primaryStatementMap) {
-      if (excludePrimary.indexOf(key) < 0) {
-        this.allowedPrimaryStatements.push(primaryStatementMap[key])
-      }
-    }
+    this.fillAllowedPrimaryStatements(excludePrimary)
 
     this.cloneIsDeadly = cloneIsDeadly
     this.variables = variables
     this.minInteger = minInteger
     this.maxInteger = maxInteger
     this.messages = messages
-    this.terrainTypes = terrainTypes.map(key => terrainTypeMap[key])
-    this.objectTypes = objectTypes.map(key => objectTypeMap[key])
-    this.valueFunctions = valueFunctions.map(key => valueFunctionMap[key])
-    this.actionFunctions = actionFunctions.map(key => actionFunctionMap[key])
-    this.leftComparisonExpressions = leftComparisonExpressions.map(key => expressionsMap[key])
-    this.rightComparisonExpressions = rightComparisonExpressions.map(key => expressionsMap[key])
-    this.forbiddenExpressions = forbiddenExpressions.map(key => expressionsMap[key])
+    this.terrainTypes = mapKeywordsToTypes(terrainTypes, terrainTypeMap)
+    this.objectTypes = mapKeywordsToTypes(objectTypes, objectTypeMap)
+    this.valueFunctions = mapKeywordsToTypes(valueFunctions, valueFunctionMap)
+    this.actionFunctions = mapKeywordsToTypes(actionFunctions, actionFunctionMap)
+    this.leftComparisonExpressions = mapKeywordsToTypes(leftComparisonExpressions, expressionsMap)
+    this.rightComparisonExpressions = mapKeywordsToTypes(rightComparisonExpressions, expressionsMap)
+    this.forbiddenExpressions = mapKeywordsToTypes(forbiddenExpressions, expressionsMap)
 
     if (this.forbiddenExpressions.includes(TerrainTypeLiteral)) {
       this.terrainTypes = []
@@ -140,6 +153,32 @@ export default class CompilerConfig {
     }
     if (this.forbiddenExpressions.includes(MessageLiteral)) {
       this.messages = 0
+    }
+
+    if (!this.allowedPrimaryStatements.includes(ActionStatement)) {
+      this.actionFunctions = []
+    }
+    if (!this.allowedPrimaryStatements.includes(AssignStatement)) {
+      this.valueFunctions = []
+    }
+  }
+
+  fillAllowedPrimaryStatements(excludePrimary) {
+    excludePrimary = excludePrimary.filter(key => allowedExcludePrimary.includes(key))
+
+    if (excludePrimary.includes('if')) {
+      excludePrimary.push('else')
+      excludePrimary.push('endif')
+    }
+
+    if (excludePrimary.includes('jump') && excludePrimary.includes('clone')) {
+      excludePrimary.push('anchor')
+    }
+
+    for (let key in primaryStatementMap) {
+      if (excludePrimary.indexOf(key) < 0) {
+        this.allowedPrimaryStatements.push(primaryStatementMap[key])
+      }
     }
   }
 

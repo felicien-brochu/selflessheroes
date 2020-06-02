@@ -16,7 +16,7 @@ const level = {
   deterministic: true,
 
   compilerConfig: {
-    excludePrimary: ['assign', 'jump', 'anchor', 'clone'],
+    excludePrimary: ['assign', 'jump', 'clone'],
     terrainTypes: ['wall', 'floor'],
     objectTypes: ['bonfire', 'nothing'],
     actionFunctions: ['step', 'fireball'],

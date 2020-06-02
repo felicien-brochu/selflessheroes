@@ -281,7 +281,7 @@ module.exports = {
   deterministic: true,
 
   compilerConfig: {
-    excludePrimary: ['assign', 'jump', 'anchor', 'clone'],
+    excludePrimary: ['assign', 'jump', 'clone'],
     terrainTypes: ['hole', 'floor'],
     objectTypes: ['switch', 'nothing'],
     actionFunctions: ['step'],

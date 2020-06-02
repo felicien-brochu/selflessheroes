@@ -16,7 +16,7 @@ const level = {
   deterministic: true,
 
   compilerConfig: {
-    excludePrimary: ['assign', 'if', 'else', 'endif', 'jump', 'anchor', 'clone'],
+    excludePrimary: ['assign', 'if', 'jump', 'clone'],
     objectTypes: ['switch'],
     actionFunctions: ['step'],
     leftComparisonExpressions: ['direction'],
