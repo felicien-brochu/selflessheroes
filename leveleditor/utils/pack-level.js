@@ -45,6 +45,13 @@ module.exports = function packLevel(argv) {
   const levelCodeFile = path.resolve(levelDir, "level.js")
   const metadataFile = path.resolve(levelDir, "metadata.json")
 
+  pack({
+    levelDir,
+    mapFile,
+    levelCodeFile,
+    metadataFile
+  })
+
   if (argv.watch) {
     const watchedFiles = [mapFile, levelCodeFile, metadataFile]
 
