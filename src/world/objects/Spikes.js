@@ -64,10 +64,25 @@ export default class Spikes extends WorldObject {
 
   shallowCopy() {
     let copy = super.shallowCopy()
+
+    let triggers = this.triggers
+    if (Array.isArray(triggers)) {
+      triggers = triggers.map(trigger => trigger.id)
+    } else if (typeof triggers === 'string') {
+      triggers = triggers.split(',').map(idStr => parseInt(idStr))
+    }
+
+    let triggersNot = this.triggersNot
+    if (Array.isArray(triggersNot)) {
+      triggersNot = triggersNot.map(trigger => trigger.id)
+    } else if (typeof triggersNot === 'string') {
+      triggersNot = triggersNot.split(',').map(idStr => parseInt(idStr))
+    }
+
     return Object.assign(copy, {
       enabled: this.enabled,
-      triggers: this.triggers.map(trigger => trigger.id),
-      triggersNot: this.triggersNot.map(trigger => trigger.id)
+      triggers: triggers,
+      triggersNot: triggersNot
     })
   }
 }
