@@ -34,6 +34,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    overflow-y: auto;
 
     .variable:not(:last-child) {
         margin-bottom: 10px;

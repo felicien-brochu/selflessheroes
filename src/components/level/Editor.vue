@@ -232,6 +232,8 @@ export default {
             top: 0;
             right: 100%;
             margin: 60px 0 0;
+            max-height: calc(var(--vh, 1vh) * 100 - 127px);
+            box-sizing: border-box;
         }
 
         .vue-codemirror-wrap {
