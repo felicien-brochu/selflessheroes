@@ -101,13 +101,42 @@ const expressionsMap = {
   message: MessageLiteral,
 }
 
-function mapKeywordsToTypes(keywords, typesMap) {
+function mapKeywordsToTypes(keywords, typesMap, paramName) {
+  if (!Array.isArray(keywords)) {
+    console.error(`CompilerConfig param ${paramName} is not a valid array. ${paramName} set to [].`)
+    keywords = []
+  }
+  for (let keyword of keywords) {
+    if (typeof keyword !== 'string' || !typesMap.hasOwnProperty(keyword)) {
+      console.error(`CompilerConfig param ${paramName} contains an unknown keyword: ${keyword}.`)
+    }
+  }
+
   // Filter unallowed keywords
   keywords = keywords.filter(keyword => typesMap.hasOwnProperty(keyword))
   // Ensure keywords are unique
   keywords = [...new Set(keywords)]
 
   return keywords.map(keyword => typesMap[keyword])
+}
+
+function controlIntegerParam(param, name, defaultValue, min, max) {
+  if (!Number.isInteger(param)) {
+    console.error(`CompilerConfig param ${name} is not a valid integer. ${name} set to default value ${defaultValue}.`)
+    return defaultValue
+  }
+
+  if (Number.isInteger(min) && param < min) {
+    console.error(`CompilerConfig param ${name} < ${min}. ${name} set to ${min}.`)
+    return min
+  }
+
+  if (Number.isInteger(max) && param > max) {
+    console.error(`CompilerConfig param ${name} > ${max}. ${name} set to ${max}.`)
+    return max
+  }
+
+  return param
 }
 
 export default class CompilerConfig {
@@ -129,18 +158,26 @@ export default class CompilerConfig {
     this.allowedPrimaryStatements = []
     this.fillAllowedPrimaryStatements(excludePrimary)
 
-    this.cloneIsDeadly = cloneIsDeadly
-    this.variables = variables
-    this.minInteger = minInteger
-    this.maxInteger = maxInteger
-    this.messages = messages
-    this.terrainTypes = mapKeywordsToTypes(terrainTypes, terrainTypeMap)
-    this.objectTypes = mapKeywordsToTypes(objectTypes, objectTypeMap)
-    this.valueFunctions = mapKeywordsToTypes(valueFunctions, valueFunctionMap)
-    this.actionFunctions = mapKeywordsToTypes(actionFunctions, actionFunctionMap)
-    this.leftComparisonExpressions = mapKeywordsToTypes(leftComparisonExpressions, expressionsMap)
-    this.rightComparisonExpressions = mapKeywordsToTypes(rightComparisonExpressions, expressionsMap)
-    this.forbiddenExpressions = mapKeywordsToTypes(forbiddenExpressions, expressionsMap)
+    this.cloneIsDeadly = !!cloneIsDeadly
+
+    this.variables = controlIntegerParam(variables, "variables", 0, 0, 26)
+    this.minInteger = controlIntegerParam(minInteger, "minInteger", 0)
+    this.maxInteger = controlIntegerParam(maxInteger, "maxInteger", 99)
+    this.messages = controlIntegerParam(messages, "messages", 0, 0, 8)
+
+    if (this.minInteger > this.maxInteger) {
+      console.error(`CompilerConfig params error: minInteger > maxInteger.\n\tminInteger set to default value 0.\n\tmaxInteger set to default value 99.`)
+      this.minInteger = 0
+      this.maxInteger = 99
+    }
+
+    this.terrainTypes = mapKeywordsToTypes(terrainTypes, terrainTypeMap, "terrainTypes")
+    this.objectTypes = mapKeywordsToTypes(objectTypes, objectTypeMap, "objectTypes")
+    this.valueFunctions = mapKeywordsToTypes(valueFunctions, valueFunctionMap, "valueFunctions")
+    this.actionFunctions = mapKeywordsToTypes(actionFunctions, actionFunctionMap, "actionFunctions")
+    this.leftComparisonExpressions = mapKeywordsToTypes(leftComparisonExpressions, expressionsMap, "leftComparisonExpressions")
+    this.rightComparisonExpressions = mapKeywordsToTypes(rightComparisonExpressions, expressionsMap, "rightComparisonExpressions")
+    this.forbiddenExpressions = mapKeywordsToTypes(forbiddenExpressions, expressionsMap, "forbiddenExpressions")
 
     if (this.forbiddenExpressions.includes(TerrainTypeLiteral)) {
       this.terrainTypes = []
@@ -164,6 +201,15 @@ export default class CompilerConfig {
   }
 
   fillAllowedPrimaryStatements(excludePrimary) {
+    if (!Array.isArray(excludePrimary)) {
+      console.error(`CompilerConfig param excludePrimary is not a valid array. excludePrimary set to [].`)
+      excludePrimary = []
+    }
+    for (let keyword of excludePrimary) {
+      if (typeof keyword !== 'string' || !allowedExcludePrimary.includes(keyword)) {
+        console.error(`CompilerConfig param excludePrimary contains an unknown keyword: ${keyword}.`)
+      }
+    }
     excludePrimary = excludePrimary.filter(key => allowedExcludePrimary.includes(key))
 
     if (excludePrimary.includes('if')) {
