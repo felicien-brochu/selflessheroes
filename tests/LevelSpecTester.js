@@ -1,6 +1,7 @@
+import chalk from 'chalk'
+import cliProgress from 'cli-progress'
 import Tester from '../src/world/Tester'
 import Level from '../src/levels/Level'
-import chalk from 'chalk'
 
 export default class LevelSpecTester {
   constructor(spec, config = {}, source = 'campaign') {
@@ -48,10 +49,14 @@ export default class LevelSpecTester {
         sampleSize = spec.sampleSize
       }
 
-      let tester = new Tester(this.level, spec.code, sampleSize)
+      this.createProgressBar(sampleSize)
+
+      let tester = new Tester(this.level, spec.code, sampleSize, 20, null, this.updateProgressBar.bind(this))
 
       let tests = tester.test()
       let stats = tester.getStats()
+
+      this.destroyProgressBar()
 
       for (let specType of types) {
         let testFunction = this.testMap[specType]
@@ -106,12 +111,12 @@ export default class LevelSpecTester {
   testSpeed(spec, stats, tests, tester) {
     let speedThreshold = stats.seriesAverage[Math.floor((stats.seriesAverage.length - 1) * this.config.speedConfidence)]
     let lostRatio = stats.lost / tester.sampleSize
-    const label = `SPEED TEST ${chalk.gray(`(speed: ${speedThreshold} <= ${this.level.speedTarget}, lostRatio: ${lostRatio} <= ${this.config.speedTestLostTolerance})`)}`
+    const label = `SPEED TEST ${chalk.gray(`(speed: ${Math.round(speedThreshold)} <= ${this.level.speedTarget}, lostRatio: ${lostRatio} <= ${this.config.speedTestLostTolerance})`)}`
 
     if (Math.round(speedThreshold) > this.level.speedTarget) {
-      this.fail(label, `speed threshold too big: ${speedThreshold} > ${this.level.speedTarget}`)
+      this.fail(label, `average speed greater than speedTarget: ${Math.round(speedThreshold)} > ${this.level.speedTarget}`)
     } else if (lostRatio > this.config.speedTestLostTolerance) {
-      this.fail(label, `lost ratio too big: ${lostRatio} > ${this.config.speedTestLostTolerance}`)
+      this.fail(label, `loss ratio too big: ${lostRatio} > ${this.config.speedTestLostTolerance}`)
     } else {
       this.pass(label)
     }
@@ -133,9 +138,9 @@ export default class LevelSpecTester {
     const label = `LENGTH TEST ${chalk.gray(`(lines: ${codeLength} <= ${this.level.lengthTarget}, lostRatio: ${lostRatio} <= ${this.config.lengthTestLostTolerance})`)}`
 
     if (codeLength > this.level.lengthTarget) {
-      this.fail(label, `too much lines: ${codeLength} > ${this.level.lengthTarget}`)
+      this.fail(label, `more lines than lengthTarget: ${codeLength} > ${this.level.lengthTarget}`)
     } else if (lostRatio > this.config.lengthTestLostTolerance) {
-      this.fail(label, `lost ratio too big: ${lostRatio} > ${this.config.lengthTestLostTolerance}`)
+      this.fail(label, `loss ratio too big: ${lostRatio} > ${this.config.lengthTestLostTolerance}`)
     } else {
       this.pass(label)
     }
@@ -175,6 +180,26 @@ export default class LevelSpecTester {
       this.fail(label, `expected loss reason ${expectedLossReason} not that frequent: ${expectedLossReasonFrequency} < ${frequency}`)
     } else {
       this.pass(label)
+    }
+  }
+
+  createProgressBar(sampleSize) {
+    this.progressBar = new cliProgress.SingleBar({
+      format: '{bar} {value}/{total} tests | ETA: {eta_formatted}',
+      clearOnComplete: true,
+      hideCursor: true
+    }, cliProgress.Presets.shades_classic)
+    this.progressBar.start(sampleSize, 0)
+  }
+
+  updateProgressBar(progress) {
+    this.progressBar.update(progress)
+  }
+
+  destroyProgressBar() {
+    if (this.progressBar) {
+      this.progressBar.stop()
+      this.progressBar = null
     }
   }
 }

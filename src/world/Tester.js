@@ -1,17 +1,21 @@
 import seedrandom from 'seedrandom'
+import _debounce from 'lodash.debounce'
 
 import World from './World'
 import Compiler from './ai/compile/Compiler'
 
+function noop() {}
+
 export default class Tester {
 
-  constructor(level, code, sampleSize, targetSampleSize = 20, masterRngSeed = null) {
+  constructor(level, code, sampleSize, targetSampleSize = 20, masterRngSeed = null, progressCallback = noop) {
     this.level = level
     this.code = code
     this.sampleSize = sampleSize
     this.targetSampleSize = targetSampleSize
     this.masterRngSeed = masterRngSeed
     this.masterRng = seedrandom(this.masterRngSeed)
+    this.progressCallback = progressCallback
 
     this.tests = []
 
@@ -47,6 +51,8 @@ export default class Tester {
         hasLost: world.hasLost,
         lossReason: world.lossReason,
       })
+
+      this.reportProgress()
     }
 
     return this.tests
@@ -143,5 +149,9 @@ export default class Tester {
     //   }
     //   console.log(graph + '  ' + point)
     // }
+  }
+
+  reportProgress() {
+    this.progressCallback(this.tests.length)
   }
 }
