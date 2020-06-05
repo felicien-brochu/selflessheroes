@@ -187,7 +187,7 @@ function compressMap(mapFile) {
     compressRate = compressRate * 100
     compressRate = compressRate.toString().substring(0, 5)
 
-    console.log(`compress ${mapFile.replace(/^.*[\/\\]/, '')}: ${compressRate}% (${nospaceSize} => ${compressedSize})`)
+    // console.log(`compress ${mapFile.replace(/^.*[\/\\]/, '')}: ${compressRate}% (${nospaceSize} => ${compressedSize})`)
 
     return compressedData
   } catch (e) {

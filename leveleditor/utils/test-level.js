@@ -4,6 +4,7 @@ const chalk = require('chalk')
 const minimist = require('minimist')
 const LevelSpecTester = require('../../tests-build/LevelSpecTester.js').default
 const parseLevel = require('./parse-level.js')
+const packLevel = require('./pack-level.js')
 
 module.exports = function testLevel(argv) {
   argv = minimist(argv, {
@@ -136,6 +137,7 @@ module.exports = function testLevel(argv) {
     process.exit(1)
   }
 
+  packLevel([levelDir])
   const testsSpecs = readTestsSpecs(levelDir)
   const level = parseLevel(levelDir)
 
