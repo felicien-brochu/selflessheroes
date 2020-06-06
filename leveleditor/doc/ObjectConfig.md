@@ -49,7 +49,7 @@ calling `world.createObject()` in a WorldGenerator.
 
 -   `y`     [integer] y coordinate from the top (0 based). **required**
 
--   `value` [integer] \| [string] value of the egg. If it's an integer, the egg
+-   `value` [integer \| string] value of the egg. If it's an integer, the egg
     will have a fixed value. If it's a string it must be of the form
     `"rng(min,max)"` with min and max some integers (min &lt;= max). The value
     will be determined pseudo-randomly at the initialization of the level.

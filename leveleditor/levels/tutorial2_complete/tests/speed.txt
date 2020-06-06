@@ -1,0 +1,42 @@
+if w == wall :
+	top_loop:
+	select_max_downward:
+	if myitem == nothing ||
+		e > myitem :
+		drop(here)
+		take(e)
+	endif
+	if s != wall :
+		step(s)
+		jump select_max_downward
+	endif
+	step(e)
+	step(e)
+	tell("ok" everyone)
+	step(e)
+	select_max_upward:
+	if myitem == nothing ||
+		e > myitem :
+		drop(here)
+		take(e)
+	endif
+	if n != wall :
+		step(n)
+		jump select_max_upward
+	endif
+	step(e)
+	step(e)
+	tell("ok" everyone)
+	step(e)
+	drop(e)
+	jump top_loop
+endif
+bottom_loop:
+go_to_switch:
+step(e)
+if here != switch &&
+	e == floor :
+	jump go_to_switch
+endif
+listen("ok")
+jump bottom_loop

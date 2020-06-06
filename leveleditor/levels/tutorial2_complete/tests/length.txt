@@ -1,0 +1,35 @@
+if w == wall :
+	top_loop:
+	select_max:
+	if myitem == nothing ||
+		e > myitem :
+		drop(here)
+		take(e)
+	endif
+	if s != wall :
+		step(s)
+		jump select_max
+	endif
+	go_east:
+	step(e)
+	if w != spikes :
+		jump go_east
+	endif
+	tell("ok" everyone)
+	go_north:
+	step(n)
+	if n != wall :
+		jump go_north
+	endif
+	drop(e)
+	jump top_loop
+endif
+bottom_loop:
+go_to_switch:
+step(e)
+if here != switch &&
+	e == floor :
+	jump go_to_switch
+endif
+listen("ok")
+jump bottom_loop

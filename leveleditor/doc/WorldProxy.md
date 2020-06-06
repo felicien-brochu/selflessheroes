@@ -65,11 +65,14 @@ WorldProxy is passed to a [WorldGenerator](WorldGenerator.md).
 #### `rng()`
 
 Random number generator function. When you want to use randomness in a Selfless
-Heroes level, You **must** use `WorldProxy.rng()` instead of the usual
+Heroes level, you **must** use `WorldProxy.rng()` instead of the usual
 `Math.random()`.
 
 This function is a seeded pseudo-random number generator, meaning that it
 produces pseudo-random numbers in a reproducible manner.
+
+It's very important for the game to work properly that random numbers are
+reproducible.
 
 **Returns:** a floating-point, pseudo-random number in the range 0 to less than
 1 (inclusive of 0, but not 1).

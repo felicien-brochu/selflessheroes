@@ -25,7 +25,7 @@ on the API.
     -   must only be alphanumeric characters and underscores.
     -   must be 32 characters long at most.
 
-    :bulb: An easy way to choose an `id` is to lowercase your title and replace
+    :bulb: A good way to choose an `id` is to lowercase your title and replace
     spaces by underscores.
 
 -   `difficulty` [integer] a difficulty rating of the level from 0 to 4:
