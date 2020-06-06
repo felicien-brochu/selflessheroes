@@ -26,9 +26,9 @@ module.exports = function registerCommand(argv) {
 
   --help, -h              Show this help message
 
-  --activate              Show this help message
+	--send-email            Send an activation code at your email address
 
-  --send-email            Show this help message
+	--activate              Activate an account with an activation code
 	`)
     return
   }
