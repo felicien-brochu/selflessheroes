@@ -27,9 +27,9 @@ module.exports = {
     valueFunctions: [],
     // Available action functions
     actionFunctions: ['step', 'take', 'drop', 'tell', 'listen'],
-    // expression types available for the right part of if comparisons
-    leftComparisonExpressions: ['direction', 'myitem'],
     // expression types available for the left part of if comparisons
+    leftComparisonExpressions: ['direction', 'myitem'],
+    // expression types available for the right part of if comparisons
     rightComparisonExpressions: ['direction', 'myitem', 'terrain_type', 'object_type'],
     // available terrain types
     terrainTypes: ['floor', 'wall', 'hole'],
@@ -96,7 +96,7 @@ module.exports = {
           return false
         }
 
-        // Find the egg with this specific id and check if its value the highest
+        // Find the egg with this specific id and check if its value is the highest
         const eggInCauldron = world.findObjectByID(cauldronItems[0])
         return eggInCauldron.value === this.maxValue
       }

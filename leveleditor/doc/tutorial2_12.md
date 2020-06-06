@@ -1,14 +1,17 @@
 # Tutorial 2 - Part 12: Publish a level on the API
 
-We are now ready to publish the level on the API for review. We use the
-`push-level` command:
+We are now ready to publish the level on the API for review. Use the
+[`push-level`](shutils.md#push-level-command) command to publish the level:
 
 ```shell
 shutils push-level levels/black_forest
 ```
 
+:bulb: See [`shutils` manual](shutils.md) for more details on the command line
+tools.
+
 Fill in your credentials to login into the API. Then the `checklist` tests are
-run onto the level. These tests can take several minutes to complete. If all
+run onto the level. These tests can take several minutes to complete. If all the
 tests pass, the level is uploaded onto the API.
 
     √ email ... tutorialemail@example.com

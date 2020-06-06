@@ -23,7 +23,7 @@ The `tests.json` file contains a JSON array of [Test](#Test) objects.
   {
     "type": ["lossReason"],
     "code": "tests/loss_reason_wrong_egg_in_cauldron.txt",
-		"lossReason": "loss_reason_wrong_egg_in_cauldron",
+    "lossReason": "loss_reason_wrong_egg_in_cauldron",
   }
 ]
 ```

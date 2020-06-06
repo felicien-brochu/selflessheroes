@@ -48,3 +48,4 @@ Reference manual:
     -   [MapProxy](MapProxy.md)
 -   [`tests.json` documentation](Tests.md)
 -   [`metadata.json` documentation](Metadata.md)
+-   [`shutils` manual](shutils.md)

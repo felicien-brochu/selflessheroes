@@ -21,7 +21,11 @@ Resize the `frame` of the `camera` to match the edges of the map.
 
 ## Populate the map with objects in Tiled
 
-Create 2 heroes, 1 cauldron, 4 switches and 16 spikes in `objects` layer.
+Create 2 heroes (type: `hero`), 1 cauldron (type: `cauldron`), 4 switches (type:
+`switch`) and 16 spikes (type: `spikes`) in `objects` layer.
+
+:bulb: See [ObjectConfig documentation](ObjectConfig.md) for more details on the
+different types of objects you can create in a level.
 
 ![static objects created](images/tutorial2_5.png)
 
@@ -53,6 +57,9 @@ Package the level:
 ```shell
 shutils pack-level levels/black_forest --watch
 ```
+
+:bulb: See [`shutils` manual](shutils.md) for more details on the command line
+tools.
 
 Open the level in the game:
 

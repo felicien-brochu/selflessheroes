@@ -42,7 +42,7 @@ module.exports = {
           return false
         }
 
-        // Find the egg with this specific id and check if its value the highest
+        // Find the egg with this specific id and check if its value is the highest
         const eggInCauldron = world.findObjectByID(cauldronItems[0])
         return eggInCauldron.value === this.maxValue
       }
@@ -53,8 +53,8 @@ module.exports = {
 }
 ```
 
-Check out the level [lifecycle](Level.md#life-cycle) to see when `beforeStart()`
-and `check()` are called.
+:bulb: Check out the level [lifecycle](Level.md#life-cycle) to see when
+`beforeStart()` and `check()` are called.
 
 Open the level in the game and check that the win condition works with this
 solution:

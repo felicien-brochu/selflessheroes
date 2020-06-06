@@ -1,6 +1,7 @@
 # Tutorial 2 - Part 10: Final test before publishing
 
-Let's use the `checklist` command to check that the level ready for publishing.
+Let's use the [`checklist`](shutils.md#checklist-command) command to check that
+the level is ready for publishing.
 
 :pushpin: This command runs extensive tests on the level so it can take several
 minutes to complete.
@@ -41,5 +42,8 @@ shutils checklist levels/black_forest
     Tests executed 3 in 4m 45.44s: pass: 3, fail: 0
 
     Errors: 0
+
+:bulb: See [`shutils` manual](shutils.md) for more details on the command line
+tools.
 
 Next: [:arrow_forward: Part 11: Create an account on Selfless Heroes API](tutorial2_11.md)

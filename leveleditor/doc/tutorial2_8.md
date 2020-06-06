@@ -77,6 +77,9 @@ Execute the following command to execute this test:
 shutils test-level levels/black_forest
 ```
 
+:bulb: See [`shutils` manual](shutils.md) for more details on the command line
+tools.
+
 The test should fail and display something like this:
 
     ===> level.shlv (Black forest)
@@ -85,7 +88,8 @@ The test should fail and display something like this:
 
      Tests executed 1 in 19.43s: pass: 0, fail: 1
 
-The right `speedTarget` value is `85`. Modify `level.js` accordingly.
+The test results indicates that `speedTarget` should be set to `85`. Modify
+`level.js` accordingly.
 
 ```javascript
 module.exports = {

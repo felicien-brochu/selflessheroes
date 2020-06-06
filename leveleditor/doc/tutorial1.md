@@ -243,6 +243,9 @@ Let's start the command line tool in watch mode:
 ./shutils pack-level ./levels/vertigo --watch
 ```
 
+:bulb: See [`shutils` manual](shutils.md) for more details on the command line
+tools.
+
 ### Change heroes orientation
 
 Open `sh-leveleditor-dir/levels/vertigo/map.json` with Tiled. Select the heroes

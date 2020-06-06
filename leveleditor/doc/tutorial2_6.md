@@ -19,9 +19,9 @@ module.exports = {
     valueFunctions: [],
     // Available action functions
     actionFunctions: ['step', 'take', 'drop', 'tell', 'listen'],
-    // expression types available for the right part of if comparisons
-    leftComparisonExpressions: ['direction', 'myitem'],
     // expression types available for the left part of if comparisons
+    leftComparisonExpressions: ['direction', 'myitem'],
+    // expression types available for the right part of if comparisons
     rightComparisonExpressions: ['direction', 'myitem', 'terrain_type', 'object_type'],
     // available terrain types
     terrainTypes: ['floor', 'wall', 'hole'],

@@ -41,4 +41,7 @@ shutils register --activate
     √ activation code received by email ... SICFGP
     User account activated successfully
 
+:bulb: See [`shutils` manual](shutils.md) for more details on the command line
+tools.
+
 Next: [:arrow_forward: Part 12: Publish a level on the API](tutorial2_12.md)
