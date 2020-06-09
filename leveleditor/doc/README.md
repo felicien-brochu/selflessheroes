@@ -68,3 +68,6 @@ Reference manual:
 -   [`tests.json` documentation](Tests.md)
 -   [`metadata.json` documentation](Metadata.md)
 -   [`shutils` manual](shutils.md)
+
+:bulb: You have difficulties to create your level? Ask the community for help on
+[Discord](https://discord.gg/UtKrrBM).
