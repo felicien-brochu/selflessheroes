@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const JSZip = require('jszip-sync')
+const slash = require('slash')
 
 function getZippedFolderSync(dir) {
   let allPaths = getFilePathsRecursiveSync(dir)
@@ -11,11 +12,12 @@ function getZippedFolderSync(dir) {
       let addPath = path.relative(dir, filePath)
 
       let data = fs.readFileSync(filePath)
-      zip.file(addPath, data)
+      zip.file(slash(addPath), data)
     }
     let data = null
     zip.generateAsync({
-      type: "nodebuffer"
+      type: "nodebuffer",
+      platform: "UNIX"
     }).then((content) => {
       data = content
     })

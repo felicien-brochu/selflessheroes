@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const JSZip = require('jszip')
+const slash = require('slash')
 
 main()
 
@@ -23,6 +24,7 @@ async function getZippedFolderSync() {
   let zipped = await zip.generateAsync({
     type: "nodebuffer",
     compression: "DEFLATE",
+    platform: "UNIX",
     compressionOptions: {
       level: 9
     }
@@ -39,7 +41,7 @@ function addLevelsDir(zip) {
     let addPath = path.relative('./leveleditor', filePath)
 
     let data = fs.readFileSync(filePath)
-    zip.file(addPath, data, {
+    zip.file(slash(addPath), data, {
       binary: true
     })
   }
@@ -53,7 +55,9 @@ function addSHUtils(zip) {
     let addPath = path.relative(dir, filePath)
 
     let data = fs.readFileSync(filePath)
-    zip.file(addPath, data)
+    zip.file(slash(addPath), data, {
+      unixPermissions: "755"
+    })
   }
 }
 
@@ -65,7 +69,7 @@ function addDoc(zip) {
     let addPath = path.relative('./leveleditor', filePath)
 
     let data = fs.readFileSync(filePath)
-    zip.file(addPath, data)
+    zip.file(slash(addPath), data)
   }
 }
 
