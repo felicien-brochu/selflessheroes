@@ -1,6 +1,25 @@
 # Create levels for Selfless Heroes
 
-This guide go through all the process of creating levels for Selfless Heroes.
+This guide go through all the process of creating levels for Selfless Heroes and
+publishing on the API.
+
+## What use will be made of the published levels?
+
+The community levels will be accessible in a dedicated section of the game in a
+future release. I'm waiting until there are enough levels created by the
+community before introducing this feature in the game.
+
+## Reviewing process
+
+Published levels will be reviewed before they are actually accessible in the
+game. A level can be rejected for one of the following reasons:
+
+-   The level is incomplete.
+-   The level contains inappropriate language or imagery.
+
+In case your level is rejected, a moderator will contact you by email to explain
+why it is the case. We will help you to ensure that your level complies with the
+publication requirements.
 
 ## Programming skills required
 
