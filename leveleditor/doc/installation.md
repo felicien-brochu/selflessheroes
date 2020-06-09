@@ -6,8 +6,10 @@ for Selfless Heroes.
 ## Selfless Heroes
 
 You must have a copy of the game installed on your machine. It doesn't matter
-from which source you got the game from. Also Mac OSX users cannot create levels
-for the time being.
+from which source you got the game from, you just have to own the full version
+of the game.
+
+:pushpin: Mac OSX users cannot create levels for the time being.
 
 ## Install Selfless Heroes utilities
 
@@ -52,4 +54,4 @@ Selfless Heroes! :grin:
 
 Let's make our first level, shall we?
 
-Next: [Tutorial 1: create our first level](tutorial1.md)
+Next: [:arrow_forward: Tutorial 1: create our first level](tutorial1.md)
