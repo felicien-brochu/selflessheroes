@@ -8,7 +8,7 @@ main()
 async function main() {
   try {
     let zippedData = await getZippedFolderSync()
-    let res = fs.writeFileSync('./leveleditor-dist/sh-leveleditor.zip', zippedData)
+    let res = fs.writeFileSync(`./leveleditor-dist/sh-leveleditor-${process.platform}.zip`, zippedData)
   } catch (e) {
     console.log("Error:", e)
   }

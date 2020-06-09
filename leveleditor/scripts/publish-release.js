@@ -14,7 +14,7 @@ publishRelease({
   skipIfPublished: true,
   editRelease: false,
   deleteEmptyTag: false,
-  assets: [path.resolve('./leveleditor-dist/sh-leveleditor.zip')]
+  assets: [path.resolve(`./leveleditor-dist/sh-leveleditor-${process.platform}.zip`)]
 }, (err, release) => {
   console.log("Release", release)
   if (err) {

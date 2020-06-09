@@ -42,9 +42,7 @@
     "electron:pack-dir": "yarn electron:pack --dir",
     "electron": "electron ./src/electron.js",
     "editor:dist": "yarn build-tests && yarn editor:pack",
-    "editor:pack": "yarn editor:pack-win64 && yarn editor:pack-linux64 && node ./leveleditor/scripts/pack-release.js",
-    "editor:pack-win64": "pkg leveleditor/utils/main.js --targets node10-win-x64 --output leveleditor-dist/shutils/shutils",
-    "editor:pack-linux64": "pkg leveleditor/utils/main.js --targets node10-linux-x64 --output leveleditor-dist/shutils/shutils",
+    "editor:pack": "pkg leveleditor/utils/main.js --output leveleditor-dist/shutils/shutils && node ./leveleditor/scripts/pack-release.js",
     "editor:publish": "yarn editor:dist && env-cmd -f ./publish.env node ./leveleditor/scripts/publish-release.js"
   },
   "build": {
