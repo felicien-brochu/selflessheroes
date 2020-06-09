@@ -5,7 +5,7 @@ We will create the eggs programmatically by editing `level.js`.
 In order to create world objects during the initialization of the level, we will
 add a [`WorldGenerator`](WorldGenerator.md) to `level.js`.
 
-But first, let's add a [marker](ObjectConfig.md#markerconfig) object to the map
+But first, add a [marker](ObjectConfig.md#markerconfig) object to the map
 in Tiled. A [marker](ObjectConfig.md#markerconfig) is an invisible object. It
 does not interact with any other object in the game. It's used as a reference
 point to build other objects programmatically.
@@ -33,6 +33,9 @@ module.exports = {
   }
 }
 ```
+
+In my case the `id` of the marker is `29`. Adapt this code with the `id` of the
+marker you created in Tiled.
 
 This code creates an egg at the coordinates of the marker with a random value
 from 0 to 99.

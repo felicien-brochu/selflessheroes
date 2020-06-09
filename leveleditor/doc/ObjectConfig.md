@@ -89,10 +89,10 @@ calling `world.createObject()` in a WorldGenerator.
 
 -   `enabled` [boolean] if true, the spikes are up. **default:** `false`
 
--   `triggers` [string] comma seperated list of switch ids. Read bellow for more
+-   `triggers` [string] comma separated list of switch ids. Read bellow for more
     details on spikes triggering system.
 
--   `triggersNot` [string] comma seperated list of switch ids. Read bellow for
+-   `triggersNot` [string] comma separated list of switch ids. Read bellow for
     more details on spikes triggering system.
 
 #### Triggering spikes

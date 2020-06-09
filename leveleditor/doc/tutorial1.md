@@ -203,7 +203,7 @@ cd sh-leveleditor-dir
 Package the level:
 
 ```shell
-./shutils pack-level ./levels/vertigo
+shutils pack-level ./levels/vertigo
 ```
 
 If everything go smoothly, this command creates the level file
@@ -240,7 +240,7 @@ into the game.
 Let's start the command line tool in watch mode:
 
 ```shell
-./shutils pack-level ./levels/vertigo --watch
+shutils pack-level ./levels/vertigo --watch
 ```
 
 :bulb: See [`shutils` manual](shutils.md) for more details on the command line
@@ -309,4 +309,4 @@ Congratulations! :sparkles: You just made your first Selfless Heroes level!
 In the next tutorial, we will create a more intricate level, create custom
 rules, create tests and publish it on Selfless Heroes API for review.
 
-Next: [Tutorial 2: publish a complete level](tutorial2.md)
+Next: [:arrow_forward: Tutorial 2: publish a complete level](tutorial2_1.md)

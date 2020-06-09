@@ -84,7 +84,7 @@ The test should fail and display something like this:
 
     ===> level.shlv (Black forest)
     [FAIL] SPEED TEST (speed: 85 <= 84, lostRatio: 0 <= 0.002)
-        => average speed greater than speedTarget: 85 > 84
+        => average speed slower than speedTarget: 85 > 84
 
      Tests executed 1 in 19.43s: pass: 0, fail: 1
 

@@ -114,7 +114,7 @@ export default class LevelSpecTester {
     const label = `SPEED TEST ${chalk.gray(`(speed: ${Math.round(speedThreshold)} <= ${this.level.speedTarget}, lostRatio: ${lostRatio} <= ${this.config.speedTestLostTolerance})`)}`
 
     if (Math.round(speedThreshold) > this.level.speedTarget) {
-      this.fail(label, `average speed greater than speedTarget: ${Math.round(speedThreshold)} > ${this.level.speedTarget}`)
+      this.fail(label, `average speed slower than speedTarget: ${Math.round(speedThreshold)} > ${this.level.speedTarget}`)
     } else if (lostRatio > this.config.speedTestLostTolerance) {
       this.fail(label, `loss ratio too big: ${lostRatio} > ${this.config.speedTestLostTolerance}`)
     } else {
