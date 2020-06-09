@@ -13,8 +13,8 @@ of the game.
 
 ## Install Selfless Heroes utilities
 
-Download `sh-leveleditor.zip` from GitHub:
-<https://github.com/felicien-brochu/selflessheroes/releases/latest>
+Download `sh-leveleditor-{platform}.zip` corresponding to your platform from
+GitHub: <https://github.com/felicien-brochu/selflessheroes/releases/latest>
 
 This archive contains:
 
