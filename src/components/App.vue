@@ -399,31 +399,33 @@ export default {
     },
 
     loadLevelFile(levelJson) {
-      try {
-        let level = storage.loadLocalLevel(levelJson)
+      if (storage.isPremium) {
+        try {
+          let level = storage.loadLocalLevel(levelJson)
 
-        if (level) {
-          if (this.$route.name !== 'home') {
-            this.$router.replace({
-              name: 'home'
-            }, () => {
+          if (level) {
+            if (this.$route.name !== 'home') {
+              this.$router.replace({
+                name: 'home'
+              }, () => {
+                this.$router.push({
+                  name: 'local-level'
+                })
+              })
+            }
+            else {
               this.$router.push({
                 name: 'local-level'
               })
-            })
+            }
           }
-          else {
-            this.$router.push({
-              name: 'local-level'
-            })
-          }
+          // Force rerender to handle properly local level reloading
+          this.forceRerender()
         }
-        // Force rerender to handle properly local level reloading
-        this.forceRerender()
-      }
-      catch (ex) {
-        console.error("Error while loading local level from .shlv file", ex)
-        this.showLocalLevelLoadingErrorModal(ex)
+        catch (ex) {
+          console.error("Error while loading local level from .shlv file", ex)
+          this.showLocalLevelLoadingErrorModal(ex)
+        }
       }
     },
 
