@@ -84,7 +84,7 @@
     "tutorial_advanced_step_game": "Selecciona un héroe presionando sobre él para seguir mejor su comportamiento.\nMientras que el programa está corriendo, un cursor azul aparecerá a la izquierda de las instrucciones para mostrar en qué paso del programa está el héroe seleccionado.",
     "level_help_tab_general_objectives_star2_advice": "Para lograr este objetivo, tu programa debe tomar la menor cantidad de pasos posibles para lograr el resultado final. En otras palabras, debería ir lo más rápido posible.",
     "level_help_tab_general_objectives_star3_advice": "Para lograr este objetivo, tu programa debe tener la menor cantidad posible de líneas (los números de línea se muestran a la izquierda de las instrucciones de los héroes).",
-    "level_details_duplicate_solution_suffix": " copiar",
+    "level_details_duplicate_solution_suffix": " copia",
     "level_help_tab_if_statement_2": "Podrías leer el ejemplo de arriba como \"Si el cuadrado a mi derecha es un muro, entonces ve a la izquierda. De lo contrario ve a la derecha\".",
     "level_details_delete_solution_button": "Eliminar",
     "level_help_tab_if_statement_3": "%%statement branching-statement$si%% chequea si la condición es verdadera en cuyo caso deberá ejecutar las instrucciones dentro (instrucciones a la derecha de la línea vertical gris). De lo contrario correrá las instrucciones dentro de %%statement branching-statement$si no%% de haberlas.",
