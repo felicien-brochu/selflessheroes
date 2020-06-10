@@ -7,7 +7,8 @@ for Selfless Heroes.
 
 You must have a copy of the game installed on your machine. It doesn't matter
 from which source you got the game from, you just have to own the full version
-of the game.
+of the game. The game version must be **v1.2.8** or newer. You can check the
+version of the game from the game menu.
 
 :pushpin: Mac OSX users cannot create levels for the time being.
 
