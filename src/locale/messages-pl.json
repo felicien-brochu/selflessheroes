@@ -272,5 +272,6 @@
     "exception_invalid_expression_template": "%%variable${code}%% nie jest prawidłowym słowem kluczowym",
     "level_help_tab_drop_function_1": "%%statement action-statement$odłóż%% mówi twojemu bohaterowi by odłożyć jego przedmiot.",
     "level_help_tab_write_function_1": "%%statement action-statement$napisz%% mówi twojemu bohaterowi by napisać coś na jego przedmiocie.",
-    "level_help_tab_calc_function_4": "W Selfless Heroes, występują jedynie liczby całkowite.\n\nOperator %%type-operator$\"/\"%% jest dzieleniem na liczby całkowite.\nNa przykład, %%type-operator$9 / 2 = 4%%.\n\nOperator %%type-operator$\"%\"%% nazywa się \"modulo\". Kalkuluje on resztę z dzielenia na liczby całkowite.\nNa przykład, %%type-operator$9 % 2 = 1%% ponieważ %%type-operator$9 / 2 = 4 z resztą 1%%."
+    "level_help_tab_calc_function_4": "W Selfless Heroes, występują jedynie liczby całkowite.\n\nOperator %%type-operator$\"/\"%% jest dzieleniem na liczby całkowite.\nNa przykład, %%type-operator$9 / 2 = 4%%.\n\nOperator %%type-operator$\"%\"%% nazywa się \"modulo\". Kalkuluje on resztę z dzielenia na liczby całkowite.\nNa przykład, %%type-operator$9 % 2 = 1%% ponieważ %%type-operator$9 / 2 = 4 z resztą 1%%.",
+    "home_local_level_loading_error": "Ten plik nie jest poprawnym plikiem .shlv:"
 }
