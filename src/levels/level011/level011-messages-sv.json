@@ -1,1 +1,5 @@
-{}
+{
+    "boss_tell": "Spring! Spring! Spring, du lilla kryp!\nVi får se vem som är snabbast!",
+    "objective": "Dessa två träsktroll är efter dig. Bli av med dem innan de kommer ikapp dig.\n\n%%icon mdi mdi-information-outline$%% Använd %%icon icon-switch$%% knappar för att inaktivera/aktivera %%icon icon-spikes$%% spikarna.",
+    "name": "Var modig, spring iväg!"
+}
