@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_sum_on_egg": "En hjälte skrev något annan än summan av alla ägg på översta ägget",
+    "objective": "Skriv summan av alla %%icon icon-egg$%% ägg på översta ägget. Till sist måste översta %%icon icon-egg$%% ägget vara på samma plats som vid början.\n\n%%icon mdi mdi mdi-alert-octagon-outline$%% Skriv inte något annat än summan av äggen på översta %%icon icon-egg$%% ägget. Du kan skriva vad du vill på de andra %%icon icon-egg$%% äggen.",
+    "name": "Återkoppling"
+}
