@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Tryck på alla %%icon icon-switch$%% knappar.\n\n%%icon mdi mdi-information-outline$%% Läs i hjälpen om %%statement branching-statement$om%% för att bättre förstå hur det fungerar.",
+    "name": "Se upp för steget"
+}
