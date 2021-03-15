@@ -1,1 +1,6 @@
-{}
+{
+    "boss_tell": "...gnark...gnark...\n...gnark...gnark...gnark...\n...gnark...gnark...",
+    "loss_reason_too_mush_heroes": "Det maximala antalet hjältar har överskridits.\nMaximalt antal hjältar: 10",
+    "objective": "Dessa små monster reproducerar sig i en skrämmande tempo! Stoppa hemsökelsen innan det är för sent.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximalt antal hjältar: 10",
+    "name": "Hemsökelse"
+}
