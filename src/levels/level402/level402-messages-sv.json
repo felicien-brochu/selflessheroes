@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_too_mush_heroes": "Det maximala antalet hjältar har överskridits.\nMaximalt antal hjältar: 10",
+    "objective": "Tryck ner alla %%icon icon-switch$%% knappar.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximalt antal hjältar: 10",
+    "name": "Kärnvapenknapp"
+}
