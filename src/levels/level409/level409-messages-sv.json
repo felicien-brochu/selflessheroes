@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Kopiera %%icon icon-egg$%% ägg från första kolumnen till den andra, de från andra till tredje, etc. Skriv 0 på alla %%icon icon-egg$%% ägg i första kolumnen.\n\n%%icon mdi mdi mdi-information-outline$%% I slutet måste %%icon icon-egg$%% äggen vara på samma plats som i början.",
+    "name": "Minnesförskjutning"
+}
