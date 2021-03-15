@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_took_wrong_egg": "En av hjältarna tog fel ägg",
+    "objective": "Talet på %%icon icon-egg$%% ägget ovanför %%icon icon-cauldron$%% kitteln visar vilket ägg som ska läggas i kitteln.\n\nTill exempel om ägget säger 4, då ska du lägga det 4:e %%icon icon-egg$%% ägget i %%icon icon-cauldron$%% kitteln.\n\n%%icon mdi mdi-information-outline$%% När en klon skapas ärver den variablerna från den som den skapats.\n\n%%icon mdi mdi-alert-octagon-outline$%%Ta in de andra %%icon icon-egg$%% äggen.",
+    "name": "Lotteri"
+}
