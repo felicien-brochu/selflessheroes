@@ -1,1 +1,4 @@
-{}
+{
+    "name": "Vertigo",
+    "objective": "Tryck på alla %%icon icon-switch$%% knappar\n\n%%icon mdi mdi-alert-octagon-outline$%%Varning: låt inte dina %%icon icon-hero$%% hjältar falla ner i hålet."
+}
