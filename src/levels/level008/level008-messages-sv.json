@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Tänd alla %%icon icon-bonfire$%% bål\n\n%%icon mdi mdi-information-outline$%% Använd %%statement branching-statement$hoppa%% för att upprepa handlingar",
+    "name": "Ljusvakten"
+}
