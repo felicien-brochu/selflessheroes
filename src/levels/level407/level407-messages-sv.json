@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_too_mush_heroes": "Det maximala antalet hjältar har överskridits.\nMaximalt antal hjältar: 31",
+    "loss_reason_wrong_egg_in_cauldron": "En hjälte har lagt ett %%icon icon-egg$%% ägg i kitteln som inte har det maximala värdet",
+    "objective": "Lägg %%icon icon-egg$%% ägget med maximalt värde i %%icon icon-cauldron$%% kitteln.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximalt antal hjältar: 31",
+    "name": "Äggträd"
+}
