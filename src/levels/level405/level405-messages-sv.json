@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_too_mush_heroes": "Det maximala antalet hjältar har överskridits.\nMaximalt antal hjältar: 10",
+    "loss_reason_took_wrong_egg": "En av hjältarna tog fel ägg",
+    "objective": "Talet på %%icon icon-egg$%% ägget till höger om %%icon icon-cauldron$%% kitteln visar numret på kolumnen vars ägg ska läggas i %%icon icon-cauldron$%% kitteln.\nTalet på %%icon icon-egg$%% ägget nedanför %%icon icon-cauldron$%% kitteln visar numret på raden.\n\n%%icon mdi mdi-alert-octagon-outline$%%Ta inte andra %%icon icon-egg$%% ägg.\n\n%%icon mdi mdi-alert-octagon-outline$%%Maximalt antal hjältar: 50",
+    "name": "Lotteri 2"
+}
