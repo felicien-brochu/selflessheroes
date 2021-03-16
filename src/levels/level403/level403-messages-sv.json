@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Fyll pyramiden med dina %%icon icon-hero$%% hjältar.\n\n%%icon mdi mdi-alert-octagon-outline$%%Varning: på denna nivån gäller att om en kloning misslyckas kommer den hjälte som försökte klona sig att dö.",
+    "name": "Pyramid"
+}
