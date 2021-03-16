@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Lägg %%icon icon-egg$%% äggen i %%icon icon-cauldron$%% kittlarna",
+    "name": "Leverans"
+}
