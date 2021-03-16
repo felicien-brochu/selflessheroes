@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_wrong_order": "%%icon icon-hero$%% Hjältarna ska ställa sig på kryssen i tur och ordning. Hjälten längst till vänster måste vara den som ställer sig först, sedan den som står till höger om och så vidare. Till sist ska den som står längst till höger gå och ställa sig på krysset.",
+    "loss_reason_moved_of_the_cross": "När en %%icon icon-hero$%% hjälte har ställt sig på ett kryss får den inte gå därifrån",
+    "objective": "%%icon icon-hero$%% Hjältarna ska en i taget ställa sig på kryssen. Först hjälten längst till vänster, sedan den till höger om, etc.",
+    "name": "En i taget"
+}
