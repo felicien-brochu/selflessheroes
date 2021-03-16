@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Flytta hjälten från vänster hela vägen till höger.\n\n%%icon mdi mdi-information-outline$%% För att sänka %%icon icon-spikes$%% spikarna måste du trycka ner rätt %%icon icon-switch$%% knappar till höger.\nKombinationen är skriven på %%icon icon-egg$%% äggen:\n1 = aktivera knappen\n0 = inaktivera knappen",
+    "name": "Cryptex"
+}
