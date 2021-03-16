@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_multiple_eggs_in_cauldron": "Du släppte flera %%icon icon-egg$%% ägg i samma %%icon icon-cauldron$%% kittel",
+    "objective": "Dessa %%icon icon-egg$%% ägg är slumpvis spridda över hela rummet. Släpp ett %%icon icon-egg$%% ägg i varje %%icon icon-cauldron$%% kittel för att förbereda för middagen.",
+    "name": "Maten är klar!"
+}
