@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Tryck ner alla %%icon icon-switch-red$%% knapparna\n\n%%icon mdi mdi-information-outline$%% När en röd %%icon icon-switch-red$%% knapp väl är intryckt förblir den intryckt även om ingen står kvar på den.",
+    "name": "Dansa runt granen"
+}
