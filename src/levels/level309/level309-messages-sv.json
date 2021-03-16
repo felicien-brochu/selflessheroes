@@ -1,1 +1,5 @@
-{}
+{
+    "boss_tell": "...den är öppen!\n...ha ha ha ha... den är stängd!\nden är öppen! den är stängd!\n...ha ha ha ha...",
+    "objective": "Flytta hjältarna från vänster hela vägen till höger.",
+    "name": "Den galna portvakten"
+}
