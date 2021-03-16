@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_floor_cell": "En av dina hjältar står på en ljus ruta.",
+    "objective": "Besätt alla mörka rutor med dina %%icon icon-hero$%% hjältar.\n\n%%icon mdi mdi-information-outline$%% Nu kan dina hjältar %%statement branching-statement$klona%% sig. Läs hjälpen om %%statement branching-statement$klona%% för att bättre förstå hur det fungerar.",
+    "name": "Space invaders"
+}
