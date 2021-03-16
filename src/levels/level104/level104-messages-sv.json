@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_one_egg_ge_4": "Du la ett %%icon icon-egg$%% ägg som var större än 4\ni en %%icon icon-cauldron$%% kittel",
+    "objective": "Lägg ett %%icon icon-egg$%% ägg som är mindre än 4\ni varje %%icon icon-cauldron$%% kittel\n\n%%icon mdi mdi-information-outline$%% Om du vill kolla ett värde på ett %%icon icon-egg$%% ägg som ligger på golvet kan du använda en %%icon icon-direction$%% riktning. Dina hjältar är smarta nog för att förstå att du pratar om %%icon icon-egg$%% ägget.",
+    "name": "Plockande"
+}
