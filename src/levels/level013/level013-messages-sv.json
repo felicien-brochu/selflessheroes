@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_moved_of_the_cross": "När en %%icon icon-hero$%% hjälte har ställt sig på ett kryss får den inte gå därifrån",
+    "objective": "%%icon icon-hero$%% Hjältarna ska ställa sig på kryssen",
+    "name": "Upp och nedgångar"
+}
