@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_one_egg_ge_4": "Du la ett %%icon icon-egg$%% ägg som var större än 4\ni en %%icon icon-cauldron$%% kittel",
+    "objective": "Lägg alla %%icon icon-egg$%% ägg som är mindre än 4\ni %%icon icon-cauldron$%% kittlarna",
+    "name": "Skörd"
+}
