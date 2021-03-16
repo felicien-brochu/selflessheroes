@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_not_same_time": "Hjältarna måste släppa alla %%icon icon-egg$%% äggen samtidigt mellan de två %%icon icon-bonfire$%% bålen.",
+    "loss_reason_wrong_number": "Det är ett fel i beräkningen",
+    "objective": "Multiplicera med 2 det 6-siffriga talet som formas av %%icon icon-egg$%% äggen och skriv resultatet (produkten) på %%icon icon-egg$%% äggen på samma väg (1 siffra på varje ägg). Släpp sedan alla %%icon icon-egg$%% äggen samtidigt mellan de två %%icon icon-bonfire$%% bålen.",
+    "name": "Multiplikatorer"
+}
