@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Sortera %%icon icon-hero$%% hjältarna från minsta längst åt vänster till högsta längst åt höger\n\n%%icon mdi mdi-information-outline$%% Hjältar kan byta plats om de går i motsatt riktning samtidigt",
+    "name": "Alle man på plats"
+}
