@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_wrong_egg_in_cauldron_odd": "En hjälte la ett jämnt %%icon icon-egg$%% ägg i en %%icon icon-cauldron$%% kittel där översta ägget är udda.",
+    "loss_reason_wrong_egg_in_cauldron_even": "En hjälte la ett udda %%icon icon-egg$%% ägg i en %%icon icon-cauldron$%% kittel där översta ägget är jämnt.",
+    "objective": "Lägg %%icon icon-egg$%% ägg som har samma paritet som det översta ägget i %%icon icon-cauldron$%% kittlarna.\n\nExempelvis, om värdet på översta ägget är jämnt, lägg alla jämna ägg i kittlarna.\n\n%%icon mdi mdi-information-outline$%% Talet %%type-operator$n%% är jämnt om %%type-operator$n % 2 = 0%%.",
+    "name": "Ja chefen!"
+}
