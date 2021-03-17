@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_one_egg_not_max": "Du la ett %%icon icon-egg$%% ägg som inte hade det högsta värdet i sin kolumn i en %%icon icon-cauldron$%% kittel",
+    "objective": "Lägg %%icon icon-egg$%% ägget med det högsta värdet i varje kolumn i tillhörande %%icon icon-cauldron$%% kittel\n\n%%icon mdi mdi-alert-octagon-outline$%%Varning: lägg inte andra %%icon icon-egg$%% ägg i %%icon icon-cauldron$%% kittlarna",
+    "name": "Plockande 2"
+}
