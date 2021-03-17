@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Räkna de olika typerna av %%icon icon-egg$%% ägg.\n\nSkriver antalet %%icon icon-egg$%% ägg som är värda 0 på det vänstra ägget och antalet %%icon icon-egg$%% ägg som har värdet 1 på ägget till höger.",
+    "name": "Inventering"
+}
