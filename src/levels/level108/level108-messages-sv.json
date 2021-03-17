@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Dessa %%icon icon-egg$%% ägg ligger utspridda överrummet. Städa upp genom att samla ihop dem alla längst ner i rummet.\n\n%%icon mdi mdi-alert-octagon-outline$%%Varning: %%icon icon-egg$%% äggen måste vara kvar i sina kolumner och i den ordning som du fann dem",
+    "name": "Städning"
+}
