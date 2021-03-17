@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_took_label_egg": "Flytta inte på %%icon icon-egg$%% äggen som märker upp %%icon icon-cauldron$%% kittlarna, annars kommer du inte veta i vilken %%icon icon-cauldron$%% kittel du ska lägga %%icon icon-egg$%% äggen.",
+    "loss_reason_wrong_egg_in_cauldron": "Du la ett %%icon icon-egg$%% ägg i fel %%icon icon-cauldron$%% kittel.\n\n%%icon icon-cauldron$%% Kittlarna är uppmärkta från 0 till 6 med ägg framför dem. Lägg de översta %%icon icon-egg$%% äggen i %%icon icon-cauldron$%% kitteln med samma värde.",
+    "objective": "%%icon icon-cauldron$%% Kittlarna är uppmärkta från 0 till 6 med ägg framför dem. Lägg alla andra %%icon icon-egg$%% ägg i motsvarande %%icon icon-cauldron$%% kittlarna.",
+    "name": "Ensam springpojke"
+}
