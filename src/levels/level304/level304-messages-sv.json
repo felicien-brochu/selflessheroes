@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Tryck ner alla %%icon icon-switch$%% knapparna.\n\n%%icon mdi mdi-information-outline$%% Nu kan hjältar tala med alla på en gång med %%statement speach-statement$säg%%.",
+    "name": "Startblock"
+}
