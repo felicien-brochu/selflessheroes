@@ -1,1 +1,5 @@
-{}
+{
+    "objective": "Sortera %%icon icon-egg$%% äggen från det minsta längst till vänster till det största längst till höger.\n\n%%icon mdi mdi-information-outline$%% Till slut måste %%icon icon-egg$%% äggen ligga på golvet på samma linje som från början.",
+    "loss_reason_egg_in_hole": "Du kastade %%icon icon-egg$%% äggen i hålen?\nMärkligt sätt att sortera dem…",
+    "name": "Sortering"
+}
