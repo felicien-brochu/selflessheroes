@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_one_egg_not_max": "Du la ett %%icon icon-egg$%% ägg som inte hade det högsta värdet i %%icon icon-cauldron$%% kitteln",
+    "objective": "Lägg %%icon icon-egg$%% ägget med högst värde i %%icon icon-cauldron$%% kitteln",
+    "name": "Mänsklig kedja 3"
+}
