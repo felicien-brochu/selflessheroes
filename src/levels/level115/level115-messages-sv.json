@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_egg_in_hole": "Du kastade %%icon icon-egg$%% äggen i hålen?\nMärkligt sätt att sortera dem…",
+    "objective": "Sortera %%icon icon-egg$%% äggen från det minsta längst till vänster till det största längst till höger.\n\n%%icon mdi mdi-information-outline$%% Denna gång måste dina %%icon icon-hero$%% hjältar samarbeta.",
+    "name": "Sortering 2"
+}
