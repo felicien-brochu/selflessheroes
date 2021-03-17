@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_not_maximum_egg_in_cauldron": "Du la ett %%icon icon-egg$%% ägg som inte hade det högsta värdet i%%icon icon-cauldron$%% kitteln",
+    "objective": "Lägg det %%icon icon-egg$%% ägg som har det högsta värdet\ni %%icon icon-cauldron$%% kitteln\n\n%%icon mdi mdi-information-outline$%% Om två har samma värde, välj det ena",
+    "name": "Mänsklig kedja 2"
+}
