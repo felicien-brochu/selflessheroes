@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_egg_order": "Du la något %%icon icon-egg$%% ägg i %%icon icon-cauldron$%% kitteln i fel ordning eller samtidigt som något annat. Du måste lägga i dem i kitteln ett och ett i stigande ordning.",
+    "objective": "Lägg alla %%icon icon-egg$%% äggen i %%icon icon-cauldron$%% kitteln i stigande ordning. Först ägg 0, sedan 1, etc.",
+    "name": "Tickande bomb"
+}
