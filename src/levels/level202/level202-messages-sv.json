@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_target_egg_displaced": "Du får inte röra %%icon icon-egg$%% äggen till vänster",
+    "loss_reason_wrong_value_on_egg": "Du skrev fel tal på ett %%icon icon-egg$%% ägg.\nKopiera talet från de vänstra äggen.",
+    "objective": "Kopiera de vänstra %%icon icon-egg$%% äggen till de högra %%icon icon-egg$%% äggen.\n\n%%icon mdi mdi-information-outline$%% Dina hjältar kan nu memorera saker. Använd %%statement assign-statement$sätt%% för att memorera värdet av ett ägg och på så sätt kunna skriva det senare.\n\n%%icon mdi mdi-alert-octagon-outline$%%Varning: du får inte röra %%icon icon-egg$%% äggen som är till vänster. Till slut ska alla %%icon icon-egg$%% äggen ligga på golvet på samma ställe som de låg på i början.",
+    "name": "Dubletter"
+}
