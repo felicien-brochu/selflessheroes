@@ -1,1 +1,7 @@
-{}
+{
+    "loss_reason_egg_displaced": "%%icon icon-egg$%% Äggen måste vara kvar där du hittade dem",
+    "loss_reason_wrong_value_on_egg_not_9": "Du skrev något annat än 9 på ett %%icon icon-egg$%% ägg som var större än eller lika med 5",
+    "loss_reason_wrong_value_on_egg_not_0": "Du skrev något annat än 0 på ett %%icon icon-egg$%% ägg som var mindre än 5",
+    "objective": "Använd %%statement action-statement$skriv%% för att skriva på %%icon icon-egg$%% äggen. För varje %%icon icon-egg$%% ägg, om det är mindre än 5 så skriv 0 på det, annars skriv 9.",
+    "name": "Klassificering"
+}
