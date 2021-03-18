@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_numbered_egg_displaced": "Du får inte röra de översta %%icon icon-egg$%% äggen",
+    "loss_reason_wrong_value_on_egg": "Du skrev något annat än det högsta värde i en kolumn på ett %%icon icon-egg$%% ägg",
+    "objective": "Skriv det högsta värde i varje kolumn på det nedersta %%icon icon-egg$%% ägget\n\n%%icon mdi mdi-alert-octagon-outline$%%Varning: du får inte röra det översta %%icon icon-egg$%% ägget",
+    "name": "Inspektion"
+}
