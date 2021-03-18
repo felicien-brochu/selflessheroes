@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Lägg alla %%icon icon-egg$%% äggen i %%icon icon-cauldron$%% kitteln.\n\n%%icon mdi mdi-information-outline$%% Det är alltid lite knepigt att hitta i labyrinten… Lyckligtvis kan du nu använda %%statement assign-statement$närmaste%% för att hitta vägen.",
+    "name": "Labyrint"
+}
