@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Flytta ner %%icon icon-egg$%% äggen så många rutor som deras nummer för att upptäcka den dolda bilden.\nFörflytta sedan %%icon icon-hero$%% hjältarna hela vägen ner.\n\n%%icon mdi mdi-information-outline$%% Använd %%statement assign-statement$beräkna%% och %%icon icon-variable$%% %%statement assign-statement$ a%% variabeln för att räkna dina steg.",
+    "name": "Pixelkonst"
+}
