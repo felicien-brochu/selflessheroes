@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_value_on_egg": "Du skrev något annat än medelvärdet på ett %%icon icon-egg$%% ägg",
+    "objective": "För varje kolumn, beräkna medelvärdet och skriv det på alla %%icon icon-egg$%% äggen",
+    "name": "Jämlikhet"
+}
