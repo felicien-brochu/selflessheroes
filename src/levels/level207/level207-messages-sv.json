@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Flytta %%icon icon-egg$%% äggen åt höger så många rutor som deras tal för att få fram den dolda bilden\n\n%%icon mdi mdi-information-outline$%% Du kan %%statement action-statement$skriva%% vad du vill på %%icon icon-egg$%% äggen",
+    "name": "Pixelkonst 2"
+}
