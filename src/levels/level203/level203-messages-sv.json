@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_target_egg_displaced": "Du får inte röra %%icon icon-egg$%% äggen till vänster",
+    "loss_reason_wrong_value_on_egg": "Du skrev fel tal på detta %%icon icon-egg$%% ägget.\nKopiera talen från den vänstra kolumnen.",
+    "objective": "Kopiera den vänstra kolumnen till alla de andra kolumnerna\n\n%%icon mdi mdi-information-outline$%% Om du inte hittar lösningen, ta inspiration från nivå %%level-title$\"En i taget\"%%",
+    "name": "Massproduktion"
+}
