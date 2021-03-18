@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Aktivera alla %%icon icon-switch$%% knapparna.\n\n%%icon mdi mdi-information-outline$%% Nu kan hjältar prata med varandra. Läs hjälpen om %%statement speach-statement$säg%% och %%statement speach-statement$lyssna%% för att bättre förstå hur det fungerar.",
+    "name": "Stafett"
+}
