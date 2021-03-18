@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_wrong_value_on_egg": "Du skrev inte rätt tal",
+    "objective": "Addera 1 till alla %%icon icon-egg$%% ägg.\n\n%%icon mdi mdi-information-outline$%% Dina hjältar kan nu göra beräkningar. Använd %%statement assign-statement$beräkna%% för att göra beräkningar.",
+    "name": "Någonting mer"
+}
