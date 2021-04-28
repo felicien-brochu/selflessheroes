@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Активируй все %%icon icon-switch$%% переключатели\n\n%%icon mdi mdi-alert-octagon-outline$%%Предупреждение: не позволяйте вашим %%icon icon-hero$%% героям упасть в пропасть.",
+    "name": "Головокружение"
+}
