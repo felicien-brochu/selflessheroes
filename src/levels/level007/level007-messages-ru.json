@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Зажги все %%icon icon-bonfire$%% костры\n\n%%icon mdi mdi-alert-octagon-outline$%%Предупреждение: все герои должны выжить",
+    "name": "Острый поворот"
+}
