@@ -1,1 +1,4 @@
-{}
+{
+  "objective": "Помоги %%icon icon-hero$%% героям пройти к %%icon icon-switch$%% переключателям",
+  "name": "Первые шаги"
+}
