@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_too_mush_heroes": "Превышено максимальное количество героев.\nМаксимальное количество героев: 31",
+    "loss_reason_wrong_egg_in_cauldron": "Герой поставил %%icon icon-egg$%% яйцо, которое не имеет наибольшего значения в котел",
+    "objective": "Поставь %%icon icon-egg$%% яйцо с наибольшим значением в %%icon icon-cauldron$%% котел.\n\n%%icon mdi mdi-alert-octagon-outline$%%Максимальное количество героев: 31",
+    "name": "Яичное дерево"
+}
