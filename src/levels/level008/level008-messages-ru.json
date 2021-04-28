@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Зажги все %%icon icon-bonfire$%% костры\n\n%%icon mdi mdi-information-outline$%% Используй %%statement branching-statement$jump%%, чтобы повторить действия",
+    "name": "Бдение при свечах"
+}
