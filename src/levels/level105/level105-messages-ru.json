@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_one_egg_ge_4": "Ты положил %%icon icon-egg$%% яйцо большее 4\nв %%icon icon-cauldron$%% котел",
+    "objective": "Положи %%icon icon-egg$%% яйца которые меньше 4\nв %%icon icon-cauldron$%% котлы",
+    "name": "Жатва"
+}
