@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_multiple_eggs_in_cauldron": "Ты положил много %%icon icon-egg$%% яиц в один %%icon icon-cauldron$%% котел",
+    "objective": "Эти %%icon icon-egg$%% яйца были беспорядочно разбросаны по комнате. Поставить одно %%icon icon-egg$%% яйцо в каждый %%icon icon-cauldron$%% казан для приготовления обеда.",
+    "name": "Ужин готов!"
+}
