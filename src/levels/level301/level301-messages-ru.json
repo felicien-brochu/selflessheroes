@@ -1,1 +1,4 @@
-{}
+{
+    "objective": "Активируй все %%icon icon-switch$%% переключатели\n\n%%icon mdi mdi-information-outline$%% Теперь герои могут разговаривать друг с другом. Проверь справку о %%statement speach-statement$tell%% и %%statement speach-statement$listen%% чтобы лучше понять, как это работает.",
+    "name": "Эстафетная гонка"
+}
