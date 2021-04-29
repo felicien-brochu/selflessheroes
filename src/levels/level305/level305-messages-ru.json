@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_wrong_egg_in_cauldron_odd": "Герой положил четное %%icon icon-egg$%% яйцо в %%icon icon-cauldron$%% котел когда верхнее яйцо есть нечетным.",
+    "loss_reason_wrong_egg_in_cauldron_even": "Герой положил нечетное %%icon icon-egg$%% яйцо в %%icon icon-cauldron$%% котел когда верхнее яйцо есть четным.",
+    "objective": "Положи %%icon icon-egg$%% яйца, которые имеют ту же четность, что и верхнее яйцо в %%icon icon-cauldron$%% котлы.\n\nНапример, если верхнее яйцо четное, положи все четные яйца в котлы.\n\n%%icon mdi mdi-information-outline$%% Если %%type-operator$n%% есть четным числом, тогда %%type-operator$n % 2 = 0%%.",
+    "name": "Да сэр!"
+}
