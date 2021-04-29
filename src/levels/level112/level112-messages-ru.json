@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_took_label_egg": "Не передвигай %%icon icon-egg$%% яйца, используемые для маркировки %%icon icon-cauldron$%% котлов, иначе ты не узнаешь, в какой %%icon icon-cauldron$%% котел положить %%icon icon-egg$%% яйца.",
+    "loss_reason_wrong_egg_in_cauldron": "Ты положил %%icon icon-egg$%% яйцо не в тот %%icon icon-cauldron$%% котел.\n\n%%icon icon-cauldron$%% котлы имеют маркировку от 0 до 6 по яйцам перед ними. Поставить верхние %%icon icon-egg$%% яйца в %%icon icon-cauldron$%% котлы с одинаковым значением.",
+    "objective": "%%icon icon-cauldron$%% котлы имеют маркировку от 0 до 6 по яйцам перед ними. Положи все остальные %%icon icon-egg$%% яйца в соответствующие %%icon icon-cauldron$%% котлы.",
+    "name": "Одинокий мальчик доставки"
+}
