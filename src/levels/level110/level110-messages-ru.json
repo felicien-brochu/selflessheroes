@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_one_egg_not_max": "Ты положил %%icon icon-egg$%% яйцо, которое не является максимальным в %%icon icon-cauldron$%% котел",
+    "objective": "Положи максимальное %%icon icon-egg$%% яйцо в %%icon icon-cauldron$%% котел",
+    "name": "Человеческая цепь 3"
+}
