@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_target_egg_displaced": "Ты не должен касаться %%icon icon-egg$%% яиц слева",
+    "loss_reason_wrong_value_on_egg": "Ты написал неверный номер на этом %%icon icon-egg$%% яйце.\nСкопируйте числа из левого столбца.",
+    "objective": "Скопируй левый столбец во все остальные столбцы\n\n%%icon mdi mdi-information-outline$%% Если не можешь найти решение, черпайте вдохновение из уровня %%level-title$\"One at a time\"%%",
+    "name": "Массовое производство"
+}
