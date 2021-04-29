@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_target_egg_displaced": "Ты не должен касаться %%icon icon-egg$%% яиц слева",
+    "loss_reason_wrong_value_on_egg": "Ты написал неправильный номер на этом %%icon icon-egg$%% яйце.\nСкопируй номера левых яиц.",
+    "objective": "Скопируй %%icon icon-egg$%% левые яйца на %%icon icon-egg$%% правые яйца.\n\n%%icon mdi mdi-information-outline$%% Теперь твои герои могут запоминать вещи. Используй %%statement assign-statement$set%% чтобы запомнить значение яйца и, таким образом, записать его позже.\n\n%%icon mdi mdi-alert-octagon-outline$%%Предупреждение: нельзя прикасаться к %%icon icon-egg$%% яйцам, которые слева. В конце концов, все %%icon icon-egg$%% яйца должны быть на полу и в том же месте, что и в начале.",
+    "name": "Дубликаты"
+}
