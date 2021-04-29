@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_moved_of_the_cross": "Когда %%icon icon-hero$%% герой прибыл на крест, он не должен отходить от него",
+    "objective": "%%icon icon-hero$%% Герои должны идти к крестам",
+    "name": "Взлеты и падения"
+}
