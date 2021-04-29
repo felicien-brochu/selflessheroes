@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_numbered_egg_displaced": "Ты не должен трогать верхние %%icon icon-egg$%% яйца",
+    "loss_reason_wrong_value_on_egg": "Ты написал что-то еще, кроме максимального значения столбца на %%icon icon-egg$%% яйце",
+    "objective": "Напишите максимум каждого столбца на нижних %%icon icon-egg$%% яйцах\n\n%%icon mdi mdi-alert-octagon-outline$%%Предупреждение: не трогай верхние %%icon icon-egg$%% яйца",
+    "name": "Осмотр"
+}
