@@ -1,1 +1,6 @@
-{}
+{
+    "loss_reason_wrong_egg_in_cauldron": "Ты положил %%icon icon-egg$%% яйцо не в тот %%icon icon-cauldron$%% котел.\n\n%%icon icon-cauldron$%% котлы имеют маркировку от 0 до 9 по яйцам перед ними. Положи %%icon icon-egg$%% яйца в %%icon icon-cauldron$%% котлы того же значения.",
+    "loss_reason_took_label_egg": "Не передвигай %%icon icon-egg$%% яйца, используемые для маркировки %%icon icon-cauldron$%% котлов, иначе ты не узнаешь, в какой %%icon icon-cauldron$%% котел положить %%icon icon-egg$%% яйца.",
+    "objective": "%%icon icon-cauldron$%% котлы имеют маркировку от 0 до 9 по яйцам перед ними. Положи %%icon icon-egg$%% яйца, которые находятся перед героями, в соответствующие %%icon icon-cauldron$%% котлы.",
+    "name": "Перекрестная доставка"
+}
