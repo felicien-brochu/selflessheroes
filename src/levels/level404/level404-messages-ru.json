@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_took_wrong_egg": "Один из героев взял не то яйцо",
+    "objective": "Номер на %%icon icon-egg$%% яйце вверху %%icon icon-cauldron$%% котла указывает, какое яйцо положить в котел.\n\nНапример, если на яйце написано 4, то вам нужно поставить 4-е %%icon icon-egg$%% яйцо в %%icon icon-cauldron$%% котел.\n\n%%icon mdi mdi-information-outline$%% Когда клон создается, он наследует переменные от своего создателя.\n\n%%icon mdi mdi-alert-octagon-outline$%%Не бери другие %%icon icon-egg$%% яйца.",
+    "name": "Лотерея"
+}
