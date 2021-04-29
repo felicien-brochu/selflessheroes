@@ -1,1 +1,7 @@
-{}
+{
+    "loss_reason_egg_displaced": "%%icon icon-egg$%% яйца должны оставаться там, где ты их нашёл",
+    "loss_reason_wrong_value_on_egg_not_9": "Ты написал что-то еще, кроме 9 на %%icon icon-egg$%% яйце, которое было больше или равно 5",
+    "loss_reason_wrong_value_on_egg_not_0": "Ты написал что-то еще, кроме 0 на %%icon icon-egg$%% яйце, которое было меньше 5",
+    "objective": "Используй %%statement action-statement$write%% чтобы писать на %%icon icon-egg$%% яйцах. Для каждого %%icon icon-egg$%% яйца, если оно меньше 5, напиши на нем 0, иначе напиши 9.",
+    "name": "Рейтинг"
+}
