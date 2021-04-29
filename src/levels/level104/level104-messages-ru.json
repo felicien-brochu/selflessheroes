@@ -1,1 +1,5 @@
-{}
+{
+    "loss_reason_one_egg_ge_4": "Ты положил %%icon icon-egg$%% яйцо большее 4\nв %%icon icon-cauldron$%% котел",
+    "objective": "Положи одно %%icon icon-egg$%% яйцо которое меньше 4\nв каждый %%icon icon-cauldron$%% котел\n\n%%icon mdi mdi-information-outline$%% Если хочешь проверить значение %%icon icon-egg$%% яйца, которое находится на полу, можешь использовать %%icon icon-direction$%% направления. Ваши герои достаточно умны, чтобы понять, что вы говорите о %%icon icon-egg$%% яйце.",
+    "name": "Сбор"
+}
