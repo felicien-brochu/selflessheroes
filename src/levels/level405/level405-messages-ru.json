@@ -1,1 +1,6 @@
-{}
+{
+    "objective": "Номер на %%icon icon-egg$%% яйце справа от %%icon icon-cauldron$%% котла указывает номер столбца яйца, которое нужно положить в %%icon icon-cauldron$%% котел.\nНомер на %%icon icon-egg$%% яйце ниже %%icon icon-cauldron$%% котла указывает номер строки.\n\n%%icon mdi mdi-alert-octagon-outline$%%Не бери другие %%icon icon-egg$%% яйца.\n\n%%icon mdi mdi-alert-octagon-outline$%%Максимальное количество героев: 50",
+    "loss_reason_too_mush_heroes": "Превышено максимальное количество героев.\nМаксимальное количество героев: 50",
+    "loss_reason_took_wrong_egg": "Один из героев взял не то яйцо",
+    "name": "Лотерея 2"
+}
