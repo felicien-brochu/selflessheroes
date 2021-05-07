@@ -1,5 +1,5 @@
 {
-    "loss_reason_wrong_floor_cell": "Один из ваших героев находится на светлом квадрате.",
-    "objective": "Займите все темные квадраты своими %%icon icon-hero$%% героями.\n\n%%icon mdi mdi-information-outline$%% Теперь ваши герои умеют %%statement branching-statement$clone%% себя. Проверьте справку о %%statement branching-statement$clone%% to чтобы лучше понять, как это работает.",
-    "name": "Захватчики простора"
+  "loss_reason_wrong_floor_cell": "Один из ваших героев находится на светлом квадрате.",
+  "objective": "Займите все темные квадраты своими %%icon icon-hero$%% героями.\n\n%%icon mdi mdi-information-outline$%% Теперь ваши герои умеют %%statement branching-statement$клон%% себя. Проверьте справку о %%statement branching-statement$клон%% to чтобы лучше понять, как это работает.",
+  "name": "Захватчики простора"
 }

@@ -1,4 +1,4 @@
 {
-    "objective": "Положи все %%icon icon-egg$%% яйца в %%icon icon-cauldron$%% котел.\n\n%%icon mdi mdi-information-outline$%% Пробираться через лабиринт всегда непросто… К счастью, теперь ты можешь использовать %%statement assign-statement$nearest%% чтобы найти твой путь.",
-    "name": "Лабиринт"
+  "objective": "Положи все %%icon icon-egg$%% яйца в %%icon icon-cauldron$%% котел.\n\n%%icon mdi mdi-information-outline$%% Пробираться через лабиринт всегда непросто… К счастью, теперь ты можешь использовать %%statement assign-statement$ближайший%% чтобы найти твой путь.",
+  "name": "Лабиринт"
 }

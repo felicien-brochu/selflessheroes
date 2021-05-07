@@ -1,4 +1,4 @@
 {
-    "objective": "Активируй все %%icon icon-switch$%% переключатели.\n\n%%icon mdi mdi-information-outline$%% Теперь герои могут разговаривать со всеми героями одновременно с %%statement speach-statement$tell%%.",
-    "name": "Стартовые блоки"
+  "objective": "Активируй все %%icon icon-switch$%% переключатели.\n\n%%icon mdi mdi-information-outline$%% Теперь герои могут разговаривать со всеми героями одновременно с %%statement speach-statement$сообщить%%.",
+  "name": "Стартовые блоки"
 }

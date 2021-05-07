@@ -1,4 +1,4 @@
 {
-    "objective": "Передвигай %%icon icon-egg$%% яйца вправо на число квадратов равное их значению, чтобы обнаружить скрытое изображение.\n\n%%icon mdi mdi-information-outline$%% Ты можешь %%statement action-statement$write%% все что хочешь на %%icon icon-egg$%% яйцах",
-    "name": "Пиксельное искусство 2"
+  "objective": "Передвигай %%icon icon-egg$%% яйца вправо на число квадратов равное их значению, чтобы обнаружить скрытое изображение.\n\n%%icon mdi mdi-information-outline$%% Ты можешь %%statement action-statement$написать%% все что хочешь на %%icon icon-egg$%% яйцах",
+  "name": "Пиксельное искусство 2"
 }

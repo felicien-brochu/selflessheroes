@@ -1,5 +1,5 @@
 {
-    "loss_reason_wrong_value_on_egg": "Ты написал неправильный номер",
-    "objective": "Добавь 1 ко всем %%icon icon-egg$%% яйцам.\n\n%%icon mdi mdi-information-outline$%% Теперь ваши герои могут делать расчеты. Используй %%statement assign-statement$calc%% чтобы вычислять.",
-    "name": "Нечто большее"
+  "loss_reason_wrong_value_on_egg": "Ты написал неправильный номер",
+  "objective": "Добавь 1 ко всем %%icon icon-egg$%% яйцам.\n\n%%icon mdi mdi-information-outline$%% Теперь ваши герои могут делать расчеты. Используй %%statement assign-statement$вычислить%% чтобы вычислять.",
+  "name": "Нечто большее"
 }

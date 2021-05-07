@@ -1,4 +1,4 @@
 {
-    "objective": "Передвигай %%icon icon-egg$%% яйца вниз на число квадратов равное их значению, чтобы обнаружить скрытое изображение.\nПотом веди %%icon icon-hero$%% героев к самому низу.\n\n%%icon mdi mdi-information-outline$%% Используй %%statement assign-statement$calc%% и %%icon icon-variable$%% %%statement assign-statement$ a%% переменные, чтобы считать шаги.",
-    "name": "Пиксельное искусство"
+  "objective": "Передвигай %%icon icon-egg$%% яйца вниз на число квадратов равное их значению, чтобы обнаружить скрытое изображение.\nПотом веди %%icon icon-hero$%% героев к самому низу.\n\n%%icon mdi mdi-information-outline$%% Используй %%statement assign-statement$вычислить%% и %%icon icon-variable$%% %%statement assign-statement$ a%% переменные, чтобы считать шаги.",
+  "name": "Пиксельное искусство"
 }

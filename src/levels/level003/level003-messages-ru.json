@@ -1,4 +1,4 @@
 {
-    "objective": "Активируй все %%icon icon-switch$%% переключатели.\n\n%%icon mdi mdi-information-outline$%% Проверь справку о %%statement branching-statement$if%% чтобы лучше понять, как это работает.",
-    "name": "Смотри за шагом"
+  "objective": "Активируй все %%icon icon-switch$%% переключатели.\n\n%%icon mdi mdi-information-outline$%% Проверь справку о %%statement branching-statement$если%% чтобы лучше понять, как это работает.",
+  "name": "Смотри за шагом"
 }

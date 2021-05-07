@@ -1,4 +1,4 @@
 {
-    "objective": "Зажги все %%icon icon-bonfire$%% костры\n\n%%icon mdi mdi-information-outline$%% Используй %%statement action-statement$fireball%%, чтобы зажечь костры",
-    "name": "Огненный шар"
+  "objective": "Зажги все %%icon icon-bonfire$%% костры\n\n%%icon mdi mdi-information-outline$%% Используй %%statement action-statement$огненный шар%%, чтобы зажечь костры",
+  "name": "Огненный шар"
 }
