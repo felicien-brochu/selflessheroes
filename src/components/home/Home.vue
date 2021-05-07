@@ -322,12 +322,15 @@ $list-background: #100B0F;
             display: inline-table;
             width: 100%;
             height: 31vw;
+            min-height: 31vw;
 
             @media screen and (max-width: 1280px) and (min-width: 860px) {
                 height: 330px;
+                min-height: 330px;
             }
             @media screen and (max-width: 860px) {
                 height: calc(40px + 38vw);
+                min-height: calc(40px + 38vw);
             }
         }
 
