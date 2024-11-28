@@ -193,7 +193,7 @@
   },
   "dependencies": {
     "@mdi/font": "^3.6.95",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "codemirror": "^5.47.0",
     "electron-log": "^4.1.1",
     "electron-updater": "^4.2.5",
